@@ -16,7 +16,7 @@
 
 ---
 
-![Entertainment Meme Radar](./assets/entertainment-radar.jpg)
+![Entertainment Meme Radar](./assets/entertainment-radar.svg)
 
 ## ✨ What does it solve?
 
