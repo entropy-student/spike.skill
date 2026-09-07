@@ -24,7 +24,7 @@ Current skill:
 
 **Core tiers:** `S+` · `S` · `A` · `B`
 
-![Entertainment Rander](./entertainment-rander/assets/entertainment-radar.jpg)
+![Entertainment Rander](./entertainment-rander/assets/entertainment-radar.svg)
 
 ### The rule in one line
 
