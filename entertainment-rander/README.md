@@ -16,7 +16,7 @@
 
 ---
 
-![娱乐热梗雷达](./assets/entertainment-radar.jpg)
+![娱乐热梗雷达](./assets/entertainment-radar.svg)
 
 ## ✨ 它解决什么问题？
 
