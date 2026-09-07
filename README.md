@@ -24,7 +24,7 @@
 
 **核心评级：** `S+` · `S` · `A` · `B`
 
-![Entertainment Rander](./entertainment-rander/assets/entertainment-radar.png)
+![Entertainment Rander](./entertainment-rander/assets/entertainment-radar.svg)
 
 ### 一句话判断
 
