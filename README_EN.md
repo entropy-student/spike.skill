@@ -2,7 +2,7 @@
 
 # ⚡ spike.skill
 
-### Turning useful thinking into reusable AI skills
+### Turn one useful way of thinking into a capability you can call again
 
 [简体中文](./README.md) · [English](./README_EN.md)
 
@@ -16,37 +16,38 @@
 
 `spike.skill` is a personal **AI Skill Library**.
 
-It is not a prompt dump or a pile of one-off answers. It preserves methods that have been tested, calibrated, and are worth reusing:
+It is not a prompt dump and not a collection of one-off answers. It preserves methods that have been calibrated through real examples, counterexamples, and feedback, then turns them into reusable systems:
 
-- judgment frameworks
-- prompting systems
-- scoring rubrics
-- research workflows
-- repeatable operating methods
-- handoff-friendly execution standards
+- judgment frameworks and scoring rubrics
+- prompt / skill specifications
+- research and filtering workflows
+- reproducible output formats
+- operating rules another AI can execute directly
 
-> **Turn one useful way of thinking into a capability you can call again later.**
+> **The goal: turn “I figured it out once” into “I never have to start from zero again.”**
 
 ---
 
-## 🌟 Current Skill
+## 🌟 Current Skill — Entertainment Rander
 
-## 🎯 [Entertainment Rander](./entertainment-rander/)
+[Open the Skill →](./entertainment-rander/)
 
-> A ranking system for Chinese internet entertainment memes.
->
-> Instead of chasing hot-search volume, it distinguishes memes that merely flare up from those that grow into reusable **meme universes** people keep quoting, imitating, excavating, remixing, and building on.
+> A radar for **Chinese internet entertainment memes that actually have cultural staying power**. Instead of asking “what trended today?”, it asks: **what is merely seen, what gets repeated, what gets imitated, and what is growing into a meme universe?**
 
 ![Entertainment Rander](./entertainment-rander/assets/hero.jpg)
 
-### The rule in one line
+### The four-tier rule
 
-> **B: People say it · A: People imitate it · S: People build on it · S+: People use it to create the next meme.**
+| Tier | Fastest test |
+|---|---|
+| **B** | People say it |
+| **A** | People imitate it |
+| **S** | People keep building on it |
+| **S+** | People use it to create the next meme |
 
-Useful for daily / weekly meme radars, content topic selection, trend evaluation, meme retrospectives, and reusable internet-culture judgment.
+The core insight is simple: **virality is not the same as meme power.**
 
-→ [Entertainment Rander homepage](./entertainment-rander/)  
-→ [Full Skill rules](./entertainment-rander/SKILL.md)
+A dance template with billions of views can still be A-tier, while an old show with no single catchphrase may be S-tier if it keeps generating characters, archaeology, theories, remixes, and new interpretations.
 
 ---
 
@@ -66,17 +67,21 @@ spike.skill/
 
 ---
 
-## 🧩 What makes a method worth keeping as a skill?
+## 🧩 What makes a method worth keeping as a Skill?
 
-A strong candidate is:
-
-1. **Reusable** — the same class of problem will appear again.
-2. **Calibrated** — the rules have been corrected through examples and counterexamples.
-3. **Transferable** — another AI can run it without hidden conversational context.
-4. **Operational** — inputs, outputs, and invocation conditions are clear.
-5. **Evolvable** — new examples improve the skill instead of forcing a rewrite.
+1. **It will recur** — it is not a one-off problem.
+2. **It has been calibrated** — with positive, negative, and boundary examples.
+3. **It is transferable** — another AI can read and execute it.
+4. **Inputs and outputs are clear** — you know when to invoke it and what it should produce.
+5. **It can evolve** — new cases improve the skill instead of forcing a full rewrite.
 
 ---
+
+## 🚀 Philosophy
+
+The long-term asset is not a pile of answers. It is an increasingly mature **personal AI methodology stack**.
+
+Complex judgment should not start from zero every time. Proven capabilities should be callable again like functions.
 
 <div align="center">
 
