@@ -99,13 +99,41 @@ User confirms
 ↓
 Image stage
 → use source references when an identifiable person/character/object/scene exists
+→ choose image text language for meme effect, not by default locale
 ↓
 Music Quality Radar (fresh read again)
 ↓
 Lyrics + style/arrangement prompt
+→ choose lyric / hook language for meme effect
 ↓
 Final delivery
 ```
+
+---
+
+## Flexible output language
+
+Final presentation language is **not locked to Chinese**.
+
+For meme images, captions, dialogue, lyrics, hooks, titles, or other visible/audible outputs, the Router may choose:
+
+- Chinese;
+- English;
+- Chinese + English mixed;
+- dialect / colloquial language;
+- other language elements that clearly improve the meme.
+
+The choice should follow the source meme, the selected derivative version, character identity, platform/audience context, rhythm, rhyme, contrast and comedic effect.
+
+Core rule:
+
+> **Use the language that makes the meme land best.**
+
+Do not force Chinese for consistency, and do not add foreign language just to sound “international.”
+
+See:
+
+`references/LANGUAGE_FLEXIBILITY_RULES.md`
 
 ---
 
@@ -114,6 +142,8 @@ Final delivery
 For identifiable people, characters, objects or iconic scenes:
 
 > **Reference first. Recognition first. Style second.**
+
+Image text is also language-flexible when text is needed.
 
 See:
 
@@ -131,6 +161,7 @@ Fixed orchestration constraints:
 
 - both Original and Adaptation must fresh-read `music-quality-radar` at the music-content node;
 - use clear section labels such as `[Verse]`, `[Chorus]`, `[Bridge]`, `[Outro]` when needed;
+- lyrics and hooks are not required to be Chinese;
 - style/arrangement prompt target: **200–350 Chinese characters**;
 - hard maximum: **500 Chinese characters**;
 - keep only information that materially affects generation.
@@ -139,6 +170,10 @@ Fixed orchestration constraints:
 
 ## Status
 
-**v0.3.0 — Orchestrator Build / Calibrating**
+**v0.3.1 — Orchestrator Build / Calibrating**
 
-Core change: the Router now stores orchestration logic and handoff contracts, not duplicated upstream domain definitions.
+Core additions in v0.3.1:
+
+- flexible output-language policy for images, dialogue, lyrics, hooks and titles;
+- language choice follows meme effectiveness rather than a fixed Chinese default;
+- image and music output rules now reference the same language policy source of truth.
