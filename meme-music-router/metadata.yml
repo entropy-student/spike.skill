@@ -1,6 +1,6 @@
 slug: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
-version: 0.2.2
+version: 0.2.3
 status: calibrating
 language:
   - zh-CN
@@ -46,6 +46,23 @@ post_confirmation:
       - single visual focus
       - strong expression/action/contrast
       - minimal text
+  music_output:
+    rules: references/MUSIC_OUTPUT_RULES.md
+    types:
+      - original
+      - adaptation
+    style_prompt:
+      preferred_chars: 200-350
+      max_chars: 500
+      concise_first: true
+    lyrics:
+      require_section_labels: true
+      common_labels:
+        - Verse
+        - Pre-Chorus
+        - Chorus
+        - Bridge
+        - Outro
 handoff:
   music_prompt_generator:
     status: CALIBRATING
