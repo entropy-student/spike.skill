@@ -1,184 +1,286 @@
-# Acquisition Growth Radar（获客增长雷达）
+# Acquisition Growth Radar（获客增长雷达） v0.2
 
-> 一套用于判断“用户为什么会来、为什么会行动、为什么会付费，以及什么时候值得放大”的通用获客与增长验证 Skill。
+> 一个用于回答“为什么现在还没挣到钱、证据卡在哪里、下一步最值得验证什么”的通用商业增长诊断与验证 Skill。
 
 ---
 
 ## 1. 什么时候使用
 
-当用户提出以下类型的问题时使用：
+适用于这类任务：
 
-- 帮我制定获客方案 / 增长方案
-- 我有一个产品/服务，怎么找到第一批用户？
-- 为什么有流量但不成交？
-- 我应该做 TikTok、SEO、Creator、社群还是广告？
-- 这个卖点有没有说服力？
-- 我现在能不能开始投广告？
-- 帮我设计一轮最小成本的成交验证
-- 帮我复盘这个项目到底卡在哪一层
-- 继续上一轮获客实验
-- CAC / 转化率 / Offer / Creative 应该怎么看？
-- 如何从一次成交走到可重复增长？
+- 新产品/服务如何获得第一批用户
+- 有流量但不成交，问题到底在哪
+- 应该先做内容、SEO、Creator、广告还是销售外联
+- 免费体验很多，但付费很少
+- 用户觉得不错，为什么还是不买
+- 某个 Offer / Creative / Channel 是否值得继续
+- 第一批成交之后，是否已经可以 Scale
+- 继续上一轮增长实验
+- 复盘 CAC、贡献利润、退款、流失、复购、转介绍
 
-它适用于：实物商品、SaaS、App、插件、AI 工具、咨询、服务、课程、内容产品、社群、B2B、线下业务等。
+适用业务：实物商品、SaaS、App、插件、AI 工具、咨询、服务、课程、内容产品、社群、B2B、线下业务等。
 
 ---
 
-## 2. 什么时候不要把它当主 Skill
+## 2. 边界
 
-不要用它替代：
+本 Skill 不替代：
 
-- 产品战略
-- 选品
+- 产品战略 / 选品
 - 研发
 - 供应链
-- 合规/法律意见
-- 财务会计
-- 交付设计
+- 法律 / 合规
+- 会计 / 税务
+- 核心交付设计
 
 边界原则：
 
-> **上游决定“提供什么价值”；本 Skill 决定“如何证明、表达、转化、获客并判断是否值得放大”。**
+> **上游决定“提供什么价值”；本 Skill 负责判断这个价值如何被证明、被感知、被表达、被购买，以及是否值得扩大。**
 
-如果获客证据表明产品本身存在问题，可以把结论反馈给上游，但不要悄悄接管产品决策。
-
----
-
-## 3. 核心目标
-
-最终寻找一个可重复成立的组合：
-
-**Audience × Situation × Problem × Value × Proof × Message/Creative × Offer × Conversion Path × Channel × Unit Economics**
-
-真正的终点不是“流量增加”，而是：
-
-1. 知道谁最容易被帮助；
-2. 知道什么场景最容易触发行动；
-3. 知道哪种价值可以被真实证明；
-4. 知道哪种表达能推动后续商业行为；
-5. 知道什么 Offer 和转化路径摩擦最低；
-6. 知道从哪里可以稳定获得目标用户；
-7. 知道获取一个有效客户最多可以花多少钱；
-8. 知道哪些组合应该 Kill / Iterate / Keep / Scale。
+如果增长证据反向说明产品本身有问题，应把结论反馈给上游，而不是悄悄接管产品决策。
 
 ---
 
-## 4. 第一原则：不要越级解释证据
+# 3. v0.2 的四个核心系统
 
-证据必须按层级理解：
+```text
+① Validation Spine
+   我们到底证明了什么？
 
-| 层级 | 典型信号 | 最多能证明 |
-|---|---|---|
-| Problem | 搜索、抱怨、访谈、评论 | 问题存在 |
-| Attention | 展示、播放、停留 | 表达抓注意 |
-| Interest | 点击、回复、收藏、询问 | 愿意继续了解 |
-| Intent | 注册、预约、加购、报价申请 | 有行动意向 |
-| Transaction | 真实付款、签约、付费试点 | 至少一次价值交换成立 |
-| Repeatability | 多个独立成交 | 不是一次偶然 |
-| Economics | CAC、贡献利润、退款/流失可控 | 模型有机会成立 |
-| Scale | 加大投入后边际结果仍可接受 | 当前条件下可以扩大 |
+② Bottleneck Diagnosis
+   当前真正卡在哪里？
 
-禁止：
+③ Growth Levers
+   哪个可控变量最可能导致它？
 
-- 用播放量证明需求
-- 用点赞证明购买意愿
-- 用询问证明成交
-- 用一次成交证明 PMF
-- 用营收证明利润
-- 用短期 ROAS 证明长期可持续
+④ Growth Experiment Loop
+   用最小实验验证，然后 KEEP / ITERATE / KILL / SCALE
+```
 
-需要更完整解释时，读取 `references/01-evidence-ladder.md`。
+默认工作方式：
+
+> **先判断已经证明了什么 → 找当前最大瓶颈 → 判断哪个变量最可能导致 → 用最小实验验证 → KEEP / ITERATE / KILL / SCALE。**
+
+不要直接输出一长串营销建议。
 
 ---
 
-## 5. 状态机：不得无理由跳阶段
+# 4. Validation Spine｜商业验证主干
 
-项目默认按以下阶段推进：
+不要把所有概念塞进一条线性漏斗。区分三类证据。
 
-### S0 — CONTEXT
-搞清楚目标、业务类型、目标行为、现有资产和当前问题。
+## A. VALUE REALITY｜价值是否真实
 
-### S1 — PROBLEM EVIDENCE
-证明目标用户在具体场景中确实存在问题、摩擦、欲望或未满足需求。
+### Problem Evidence
+证明：目标用户在具体场景中确实存在问题、欲望、摩擦或未满足需求。
 
-### S2 — SOLUTION PROOF
-验证方案是否真的能实现承诺结果，以及在哪些边界条件下失效。
+### Solution Proof
+证明：方案在明确边界条件下确实能够产生承诺的结果。
 
-### S3 — MESSAGE EVIDENCE
-测试什么问题、场景、Hook、Proof Format、故事或内容最能推动目标用户继续行动。
-
-### S4 — OFFER & CONVERSION
-验证用户是否理解价值、信任、愿意采取下一步；降低转化摩擦。
-
-### S5 — COMMERCIAL EVIDENCE
-如果目标是营收，必须出现真实付款、签约或付费试点，才允许称为 Transaction Evidence。
-
-### S6 — ECONOMICS
-核算真实边际收入、交付成本、佣金、退款/流失、CAC、贡献利润、Payback 等。
-
-### S7 — REPEATABILITY
-验证结果是否能在多个独立用户、时间段、素材、来源或场景中再次出现。
-
-### S8 — SCALE
-只有前面证据充分时，才扩大预算、渠道、自动化和团队投入。
-
-### 状态推进规则
-
-- 已经 PASS 的阶段默认不重复研究。
-- 只有出现能推翻原结论的新证据，才回退。
-- 如果某一阶段关键输入依赖真实世界（样品、用户反馈、付款、销售电话、线下执行），明确标记 `BLOCKED_BY_REAL_INPUT`，不要伪造进展。
-- 如果上游产品/服务发生重大改变，从最早受到影响的阶段重新验证。
+Solution Proof 不是用户行为，但它是商业验证的基础事实。
 
 ---
 
-## 6. S0：先建立项目地图
+## B. CUSTOMER BEHAVIOR｜用户实际上怎么行动
 
-开始时优先拿到这些信息；缺少时能自行研究的先研究，不要机械追问：
+### Attention
+展示、播放、停留等。
 
-- 提供什么价值？
-- 目标用户是谁？
-- 目标用户完成什么行为才算转化？
-- 当前处于 idea / pre-launch / first users / early revenue / scaling 哪一阶段？
-- 已有哪些流量、用户、销售或反馈？
-- 已测试过什么？
-- 当前最担心什么？
-- 预算、时间、渠道、地域、法规等限制是什么？
+最多证明：某种表达在当前环境下抓住注意。
 
-如果用户只想要快速建议，可以缩短 S0，但不能把未知事实当已知。
+### Interest
+点击、回复、收藏、询问、继续阅读等。
+
+最多证明：用户愿意进一步了解。
+
+### Intent
+注册、预约、加购、申请报价、开始试用、提交资料等。
+
+最多证明：出现明确行动意向。
+
+### Transaction
+真实付款、签约、付费试点或其他真实经济价值交换。
+
+最多证明：至少一次交易成立。
+
+禁止越级：
+
+- 播放量 ≠ 需求
+- 点赞 ≠ 购买意愿
+- 询问 ≠ 成交
+- 一单 ≠ PMF
+- 营收 ≠ 利润
+
+详见 `references/01-evidence-ladder.md`。
 
 ---
 
-## 7. S1：Problem Evidence
+## C. BUSINESS VIABILITY｜商业上是否成立
+
+### Repeatability
+同类结果能否在多个独立用户、时间段、素材、来源或场景中再次出现。
+
+### Economics
+CAC、贡献利润、退款/流失、Payback、交付成本等是否成立。
+
+Repeatability 与 Economics **不强制线性排序**，通常应在出现真实交易后并行推进。
+
+### Scale
+只有当重复性与经济性都已有足够证据，且扩大投入后边际结果仍可接受，才进入 Scale。
+
+---
+
+# 5. Activation / Aha｜价值体验事件
+
+Activation 不固定在 Intent 或 Transaction 的某个位置。
+
+定义：
+
+> **Activation = 用户第一次亲自体验到核心价值的事件。**
+
+记录位置：
+
+- `PRE_TRANSACTION`：付款前体验到价值，例如免费 AI 工具、免费诊断、试用
+- `POST_TRANSACTION`：付款后才体验到价值，例如实物商品、咨询交付、课程
+- `BOTH`：免费层有一次 Aha，付费层又产生更强 Aha
+
+不要把 Activation 简化成“注册”“打开 App”或“完成 onboarding”。只有用户实际体验到核心价值，才算 Activation。
+
+示例：
+
+```text
+点击测评
+→ 完成测试
+→ “这个结果真的说到我了”
+= Activation / Aha
+```
+
+如果 `Interest PASS` 但 `Activation FAIL`，优先检查：
+
+- Onboarding
+- Demo / 试用设计
+- 首次价值到达速度
+- Promise 与实际体验是否匹配
+- 产品/服务本身
+- 价值呈现
+- Trust
+
+---
+
+# 6. Trust｜横向变量，不是固定阶段
+
+Trust 贯穿整个过程，不单独塞进线性漏斗。
+
+```text
+             TRUST
+────────────────────────────────→
+Attention → Interest → Activation → Intent → Transaction → Retention
+```
+
+始终区分：
+
+> **用户是不想要，还是不相信？**
+
+常见 Trust Levers：
+
+- Proof / Demo
+- Reviews / Social Proof
+- Authority / Credentials
+- Transparency
+- Guarantee / Risk Reversal
+- Refund policy
+- Privacy / Security
+- 清晰身份与品牌信息
+- 真实限制与适用边界
+
+“有兴趣但不付款”不能自动解释为价格问题。
+
+---
+
+# 7. Free Value → Paid Expansion
+
+对于有免费体验、免费诊断、免费内容、Freemium 的业务，遵守：
+
+```text
+Free Value
+= Complete but bounded win
+
+Paid Value
+= More Depth
++ More Scope
++ More Speed
++ More Personalization
++ More Continuity
++ More Certainty
+```
+
+原则：
+
+> **免费证明价值，付费扩大价值。**
+
+不要故意把免费体验做残，也不要让免费层无限吞掉付费价值。
+
+---
+
+# 8. Bottleneck Diagnosis｜先定位断点
+
+收到“为什么没人买 / 怎么增长”时，先诊断，不要先列渠道。
+
+| 观察到的现象 | 优先检查 |
+|---|---|
+| 几乎没人看到 | Distribution / Channel / Audience |
+| 看到了但不停留 | Hook / Creative / Relevance |
+| 停留但不点击 | Message / Value Proposition / CTA |
+| 点击但不开始体验 | Friction / Onboarding / Promise mismatch |
+| 体验了但没有 Aha | Solution / Value Experience / Time-to-Value |
+| 有 Aha 但不付钱 | Offer / Trust / Price / Unresolved Need |
+| 想买但没完成 | Conversion Path / Friction / Payment / Risk |
+| 有成交但亏钱 | Economics |
+| 一轮有效、下一轮失效 | Repeatability |
+| 放预算后 CAC 快速恶化 | Scale ceiling / Audience saturation / Channel limits |
+
+诊断时优先找到 **当前最重要的断点**，而不是同时优化所有层。
+
+---
+
+# 9. Growth Levers｜可控变量
+
+证据是“发生了什么”；Lever 是“我们能改什么”。不要混淆。
+
+核心 Levers 限定为：
+
+1. **Audience / Situation**
+2. **Message / Creative**
+3. **Proof / Trust**
+4. **Value Experience / Activation**
+5. **Offer / Price**
+6. **Conversion Path / Friction**
+7. **Channel / Distribution**
+
+Message、Offer、Channel、Trust 都不是 Evidence Ladder 的阶段。
+
+一次实验优先只改一个核心 Lever，以便归因。
+
+---
+
+# 10. Problem Evidence
 
 优先寻找：
 
 - 用户自己描述的问题
-- 发生问题的具体场景
-- 现有解决方案
-- 现有方案为什么失败
-- 触发行动的 Why Now
-- 用户自己的用词
-- 反例：谁根本不在意这个问题
+- 具体发生场景
+- Trigger / Why Now
+- 现有替代方案
+- 替代方案失败原因
+- 用户原话
+- Objection
+- Counterexample：哪些人根本不在意
 
-### 证据来源纪律
-
-若可联网，优先组合：
-
-1. 用户讨论、社区、评论、访谈、客服/销售反馈
-2. 搜索意图和公开需求表达
-3. 竞品评论和替代方案
-4. 平台/市场公开信息
-5. 第三方趋势数据
-
-需要当前政策、市场状态、价格、平台能力时必须使用新鲜来源。
-
-不要只搜支持假设的证据；主动搜负面评价、替代方案、失败案例和“为什么不买”。
+如果联网研究，主动搜索支持与反对证据，不要只收集能证明原假设的材料。
 
 ### Saturation Stop Rule
 
-不要机械收集 100 条证据。
-
-如果连续新增证据已经不再产生新的一级：
+当连续新增证据不再产生新的一级：
 
 - Problem
 - Situation
@@ -186,11 +288,11 @@
 - Failed Reason
 - Objection
 
-则停止广泛研究，进入下一阶段。
+停止广泛搜集，转入最小验证。
 
 ---
 
-## 8. S2：Solution Proof 与 Claim Gate
+# 11. Solution Proof 与 Claim Gate
 
 原则：
 
@@ -200,119 +302,43 @@
 
 `HYPOTHESIS → OBSERVED → REPEATABLE → APPROVED`
 
-### HYPOTHESIS
-只是认为可能成立；不能当事实使用。
+区分：
 
-### OBSERVED
-至少真实观察一次，但仍可能偶然。
+- **Fact**：可直接核验的事实
+- **Claim**：更快、更好、更有效、更安全、更省钱等需要额外证据的承诺
 
-### REPEATABLE
-在不同样本/时间/场景中重复出现。
-
-### APPROVED
-证据足以支持特定范围的对外表达。
-
-### Fact 与 Claim 必须分开
-
-Fact：价格、规格、包含内容、交付时间、功能是否存在等可核验事实。
-
-Claim：更快、更好、更有效、更安全、更容易、更省钱、优于其他方案等需要额外证据的承诺。
-
-主动设计反证：
+主动找反证：
 
 - 什么情况下不成立？
 - 对谁不适用？
-- 有什么副作用？
-- 有没有明显更便宜的替代方案？
+- 有什么副作用或失败模式？
+- 是否存在更便宜/更简单的替代方案？
 
 详见 `references/02-proof-and-claim.md`。
 
 ---
 
-## 9. S3：Message / Creative
+# 12. Message / Creative / Offer / Channel
 
-Creative 的任务不是“做漂亮内容”，而是验证：
+这些都是 Growth Levers，不是证据层。
 
-**Problem × Situation × Hook × Proof Format × CTA**
+## Message / Creative
 
-常见母题：
+核心测试：
 
-- Problem
-- Before / After
-- Demo
-- Comparison
-- Challenge
-- Education
-- Routine
-- Testimonial / Reaction
-- Objection Handling
-
-不要只做一个版本。
-
-优先用：
-
-`1 个核心假设 × 多个 Hook × 多个 Opening × 多个 Proof Format × 多个 CTA`
+`Problem × Situation × Hook × Proof Format × CTA`
 
 Winner 不是播放量最高，而是对下一步商业行为贡献最大的表达。
 
----
+## Offer
 
-## 10. S4：Offer 与 Conversion Path
+Offer 至少考虑：
 
-Offer 不等于价格。
+`Value Outcome + Delivery + Price/Exchange + Risk Reversal + Reason to Act + CTA`
 
-Offer 至少包含：
+## Channel
 
-**Value Outcome + Delivery + Exchange/Price + Risk Reversal + Reason to Act + CTA**
-
-Conversion Path 可以是：
-
-- 商品页
-- 表单
-- 私信
-- 销售电话
-- Demo
-- 免费试用
-- App onboarding
-- 预约
-- 门店
-- 社群
-- 平台页
-- 合同
-
-寻找摩擦：
-
-- 不理解价值
-- 不相信
-- 不知道是否适合自己
-- 风险太高
-- 价格缺乏参照
-- 下一步太复杂
-- 缺社会证明
-- 时机不对
-
----
-
-## 11. 渠道原则
-
-渠道是放大器，不是起点。
-
-可选渠道包括：
-
-- Organic Content
-- Search / SEO
-- Community
-- Creator / Influencer
-- Partnership
-- Affiliate
-- Referral
-- Email / Lifecycle
-- Direct Outreach
-- Marketplace / Platform
-- Paid Media
-- Offline / Event / Retail
-
-选渠道主要看：
+主要看：
 
 1. Audience Fit
 2. Message / Medium Fit
@@ -320,71 +346,90 @@ Conversion Path 可以是：
 4. Test Cost
 5. Scale Potential
 
-默认优先用低成本渠道验证 Message / Offer。
-
-Paid 的主要价值是放大已有证据的组合，而不是替代全部验证。
-
-但不要把“Organic 必须先于 Paid”写成绝对规则：如果付费渠道是获取高质量验证数据的最低成本方式，也可以小预算使用，但必须有明确预算上限和 Kill 条件。
+不要把“Organic 必须先于 Paid”写成绝对规则。如果小预算 Paid 是获得高质量验证数据的最低成本方式，可以使用，但必须有预算上限和 Kill 条件。
 
 详见 `references/03-message-offer-channel.md`。
 
 ---
 
-## 12. 实验系统：Acquisition Cell
+# 13. Growth Experiment Loop｜核心执行引擎
 
-每次实验建立一个 Cell：
+所有阶段共享同一个循环：
 
-**Audience + Situation + Message/Creative + Offer + Conversion Path + Channel + Time Window**
+```text
+找到当前最大瓶颈
+↓
+提出一个原因假设
+↓
+设计最小实验
+↓
+只改一个核心变量
+↓
+观察一个核心行为指标
+↓
+KEEP / ITERATE / KILL / SCALE
+↓
+重新寻找最大瓶颈
+```
 
-一个 Cell 必须记录：
+## Lite Loop｜默认模式
 
-- Hypothesis
-- Changed Variable
-- Controlled Variables
-- Primary Metric
-- Secondary Metrics
-- Cost
-- Observation Window
-- Success Condition
-- Kill Condition
-- Result
-- Learning
-- Decision
+日常绝大多数实验先用 Lite：
 
-如果实验中修改了核心变量，创建新 Cell，不要把结果混在一起。
+```text
+当前瓶颈：
+我的假设：
+本轮只改：
+核心指标：
+成功标准：
+Kill 条件：
+结果：
+Learning：
+Decision：KEEP / ITERATE / KILL / SCALE
+```
 
-不要一次同时改太多变量，否则无法归因。
+见 `templates/lite-growth-loop.md`。
+
+## Full Acquisition Cell｜重要实验
+
+以下情况使用 Full Cell：
+
+- 真金白银的大额投入
+- 关键价格测试
+- 多渠道比较
+- 高风险 Claim
+- 需要严格归因
+- 结果会触发重要资源决策
+
+使用 `templates/experiment-cells.csv`。
+
+原则：
+
+> **Lite 用来快速学习；Full 用来严格归因。**
+
+详见 `references/04-experiments-and-economics.md` 与 `references/05-operating-loop.md`。
 
 ---
 
-## 13. S5：Commercial Evidence
+# 14. 四种决策
 
-如果最终目标是赚钱，必须区分：
+### KILL
+证据已经足够说明当前假设/组合不值得继续。
 
-- Interest Signal
-- Intent Signal
-- Transaction Evidence
+### ITERATE
+方向仍有机会，但至少一个核心 Lever 需要改变。
 
-真正的 Transaction Evidence 通常需要：
+### KEEP
+出现正向信号，应继续验证，但证据还不足以放大。
 
-- 真实付款
-- 签约
-- 付费试点
-- 已发生的有经济意义的价值交换
+### SCALE
+只有在相关 Proof、商业行为、Repeatability 与 Economics 已达到足够水平后，才允许扩大预算、渠道、自动化或团队投入。
 
-一单只证明“至少有一次交易成立”。
-
-不要自动写：
-
-- PMF 已验证
-- 市场已跑通
-- 可以 Scale
-
-下一步仍需测试独立成交和经济性。
+不要因为单条爆款、第一单或短期 ROAS 好看就自动 SCALE。
 
 ---
 
-## 14. S6：Unit Economics
+# 15. Economics
 
 统一问题：
 
@@ -411,170 +456,80 @@ Paid 的主要价值是放大已有证据的组合，而不是替代全部验证
 - 首单 ROAS 当长期 LTV
 - 不同定义的 CAC 混用
 
-详见 `references/04-experiments-and-economics.md`。
+---
+
+# 16. BLOCKED_BY_REAL_INPUT
+
+遇到 AI 无法替代的真实世界输入时，标记：
+
+`BLOCKED_BY_REAL_INPUT`
+
+典型包括：
+
+- 实物样品 / 真实效果
+- 真实付款
+- 用户访谈
+- 销售电话
+- 账户权限
+- 内部成本数据
+- 不可逆操作
+- 重大品牌 / 法律选择
+
+不要伪造进展。
 
 ---
 
-## 15. S7/S8：Repeatability 与 Scale
-
-允许进入 Scale 前至少检查：
-
-- 不止一次独立转化
-- 不同用户/时间仍出现正信号
-- 最强 Message / Offer 已有一定稳定性
-- 单位经济为正，或有明确且已被数据支持的改善路径
-- 退款、流失、交付风险可控
-- 扩大投入后能继续测量边际结果
-
-Scale 后仍需继续实验。
-
-Scale 不是终局，而是把：
-
-- 渠道
-- 预算
-- Creator / Partner
-- Lifecycle
-- Referral
-- Automation
-
-逐步扩大，同时观察边际收益是否恶化。
-
----
-
-## 16. 四种决策
-
-每轮只使用：
-
-### KILL
-方向不成立、成本不值得、关键 Gate 明确失败。
-
-### ITERATE
-问题存在，但方案、表达、Offer、路径或渠道需要改。
-
-### KEEP
-有正信号，但证据不足以放大。
-
-### SCALE
-效果、转化、经济性和重复性达到当前阶段的放大门槛。
-
-不要因为投入很多时间或钱而降低 Kill 标准。
-
----
-
-## 17. 信息价值原则
-
-每一轮优先选择：
-
-> **最便宜、最快、最能改变决策的实验。**
-
-不要用“做了很多事”代替学习速度。
-
-当多个任务都能做时，优先解决当前最大的决策不确定性，而不是最容易完成的任务。
-
----
-
-## 18. 连续推进规则
+# 17. 连续推进规则
 
 用户说“继续”时：
 
-1. 先读取当前已知状态。
-2. 已 PASS 的阶段不重复。
-3. 找当前最大的未验证假设。
-4. 能自行完成的研究/分析直接完成。
-5. 只有遇到真实世界不可替代输入时才请求用户介入。
-6. 完成一轮后更新状态。
+1. 先恢复当前 Validation Spine 状态；
+2. 已 PASS 的事实默认不重做；
+3. 找当前最大瓶颈；
+4. 能研究的直接研究；
+5. 能设计实验的直接设计；
+6. 需要真实输入才停；
+7. 每轮更新学习和 Decision。
 
-典型需要用户介入的情况：
+只有以下情况允许回退：
 
-- 真实付款
-- 样品/实物测试
-- 用户访谈或销售电话
-- 账户权限
-- 不可逆操作
-- 法律/品牌重大决策
-- 缺失且无法通过研究补齐的内部数据
+- 产品/服务发生重大变化
+- 新证据推翻原结论
+- 原证据不可复现或口径错误
+- 目标用户/市场/渠道发生重大变化
 
 ---
 
-## 19. 默认输出协议
+# 18. 默认输出协议
 
-复杂项目每轮尽量保持这个状态块：
+除非用户要求极简回答，每轮尽量输出：
 
 ```text
 最终目标：
-当前阶段：
-整体进展：
-已有证据：
-仍未证明：
+Validation Spine：
 当前最大瓶颈：
+已证明：
+仍未证明：
+最可能 Growth Lever：
+本轮 Lite / Full 实验：
+核心指标：
+成功 / Kill 条件：
 本轮完成：
-本轮实验/动作：
-成功条件：
-Kill 条件：
+Decision：
 下一步：
 是否需要用户介入：
 ```
 
-### 初次诊断推荐表
-
-| 项目 | 状态 |
-|---|---|
-| Problem Evidence | PASS / PARTIAL / UNKNOWN / FAIL |
-| Solution Proof | PASS / PARTIAL / UNKNOWN / FAIL |
-| Message Evidence | PASS / PARTIAL / UNKNOWN / FAIL |
-| Conversion Evidence | PASS / PARTIAL / UNKNOWN / FAIL |
-| Economics | PASS / PARTIAL / UNKNOWN / FAIL |
-| Repeatability | PASS / PARTIAL / UNKNOWN / FAIL |
-| Scale Readiness | READY / BLOCKED |
+不要为了形式而重复用户已经知道的内容；重点维持项目位置和决策连续性。
 
 ---
 
-## 20. 研究时的事实纪律
+# 19. 核心哲学
 
-- 用户提供的事实不要重新包装成“外部验证”。
-- 外部信息若可能变化，优先使用新鲜来源。
-- 市场政策、平台能力、价格、法规等优先官方/一手来源。
-- 用户语言、真实摩擦、替代方案优先社区、评论、访谈、销售反馈。
-- 不根据单个匿名评论做重大结论。
-- 不把供应商/品牌宣传语当独立 Proof。
-- 精确数字必须能追溯来源和口径。
-- 证据不足时明确标记 UNKNOWN，不补假数字。
+> **增长不是同时做更多事情。**
+>
+> **而是准确判断已经证明了什么，找到当前最大瓶颈，用最小成本验证最可能的原因，然后只放大已经被证明的东西。**
 
----
+一句话：
 
-## 21. 快速诊断法
-
-当用户只问“为什么不成交”，按顺序排查：
-
-1. **Problem**：用户真的痛吗？
-2. **Audience**：来的人是对的人吗？
-3. **Solution**：方案真的值得吗？
-4. **Message**：用户看懂了吗？
-5. **Proof**：用户相信吗？
-6. **Offer**：值得现在行动吗？
-7. **Friction**：下一步太难吗？
-8. **Economics**：这个成交方式值得吗？
-
-不要一上来就怪“流量不够”。
-
----
-
-## 22. 推荐参考文件
-
-按需要读取，而不是每次全部加载：
-
-- `references/01-evidence-ladder.md`：证据等级、Stop Rule
-- `references/02-proof-and-claim.md`：Proof / Claim / Fact
-- `references/03-message-offer-channel.md`：Creative、Offer、渠道
-- `references/04-experiments-and-economics.md`：实验与单位经济
-- `references/05-operating-loop.md`：长期运行、复盘、状态推进
-- `examples/README.md`：不同业务类型的简化示例
-- `templates/`：结构化记录模板
-
----
-
-## 23. 最终原则
-
-> **Evidence before scale.**
-
-增长不是同时做更多事情，而是不断找到当前最大的未知项，用最低成本获得足够证据，再把已经被证明的东西放大。
+> **Evidence → Bottleneck → Lever → Experiment → Decision.**
