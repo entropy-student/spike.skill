@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎯 Entertainment Rander
+# 🎯 Entertainment Rander（娱乐热梗雷达）
 
 ### A radar for Chinese internet entertainment memes
 

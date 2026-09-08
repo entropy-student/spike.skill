@@ -6,7 +6,7 @@ version: 1.0.0
 language: zh-CN
 ---
 
-# Entertainment Rander — 娱乐热梗雷达
+# Entertainment Rander（娱乐热梗雷达）
 
 ## 1. 任务定义
 

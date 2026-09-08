@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎯 Entertainment Rander
+# 🎯 Entertainment Rander（娱乐热梗雷达）
 
 ### 中文互联网娱乐热梗雷达 · Meme Radar Skill
 
