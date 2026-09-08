@@ -1,12 +1,12 @@
 slug: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
-version: 0.3.1
+version: 0.4.0
 status: calibrating
 language:
   - zh-CN
   - en
-purpose: Orchestrate live upstream skill calls and turn their latest outputs into original or adapted meme-music production workflows without duplicating upstream domain definitions.
-role: orchestrator
+purpose: Find strong memes through live upstream judgment, lock the meme core, then choose the funniest presentation form—image, dialogue, song, short video, or mixed—to amplify the meme without replacing its theme.
+role: meme_first_creative_orchestrator
 runtime:
   live_skill_invocation_required: true
   rules: references/LIVE_SKILL_INVOCATION_RULES.md
@@ -20,19 +20,35 @@ upstream_skills:
   music_trend: music-trend-radar
   music_quality: music-quality-radar
 upstream_results_are_authoritative: true
+meme_first:
+  rules: references/MEME_AMPLIFICATION_RULES.md
+  meme_core_lock_required: true
+  parent_child_separation_required: true
+  format_serves_meme: true
+  music_is_optional: true
+  music_role: amplifier
+  theme_drift_forbidden: true
 router_scope:
   stores_upstream_domain_definitions: false
   responsibilities:
     - invoke the right upstream skill at the right step
-    - combine hotspot, person, scene and music into production concepts
-    - choose original or adaptation
-    - manage confirmation, image and music handoffs
+    - lock the source meme and selected derivative before creation
+    - preserve parent meme versus child unit boundaries
+    - choose the presentation form that best amplifies the meme
+    - manage confirmation and downstream handoffs
+    - prevent theme drift across image, dialogue, music and video
     - assemble final deliverables
 selection:
   entertainment_gate_from_upstream_result:
     - S+
     - S
-  final_types:
+  presentation_forms:
+    - image
+    - dialogue
+    - song
+    - short_video
+    - mixed
+  song_types:
     - original
     - adaptation
   creative_output_tiers:
@@ -48,27 +64,35 @@ output_language_policy:
   optimize_for_meme_effect_over_default_language: true
 post_confirmation:
   meme_image:
-    proactive_ask: true
-    auto_generate: false
-    ask_once: true
-    keep_same_core_meme: true
-    reference_first: true
     reference_rules: references/IMAGE_REFERENCE_RULES.md
+    amplification_rules: references/MEME_AMPLIFICATION_RULES.md
     language_rules: references/LANGUAGE_FLEXIBILITY_RULES.md
-    source_entity_required_when_identifiable: true
-    preserve_iconic_visual_traits: true
+    reference_first: true
+    preserve_source_meme: true
+    preserve_selected_derivative: true
+    prompt_chars:
+      recommended: 80-160
+      max: 200
     avoid_freeform_character_redesign: true
   music_output:
     rules: references/MUSIC_OUTPUT_RULES.md
+    amplification_rules: references/MEME_AMPLIFICATION_RULES.md
     language_rules: references/LANGUAGE_FLEXIBILITY_RULES.md
+    only_when_song_is_selected: true
     live_quality_skill_read_required: true
+    theme_lock_required: true
+    required_meme_anchor_in_hook: true
     style_prompt:
       preferred_chars: 200-350
       max_chars: 500
       concise_first: true
     lyrics:
       require_section_labels: true
+quality_gates:
+  meme_recognition_test: true
+  meme_binding_test: true
+  amplification_test: true
 handoff:
   music_prompt_generator:
     status: CALIBRATING
-    required_input: high_level_music_handoff
+    required_input: music_meme_lock
