@@ -6,7 +6,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md)
 
-![Skills](https://img.shields.io/badge/skills-2-blueviolet?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-3-blueviolet?style=flat-square)
 ![Status](https://img.shields.io/badge/status-growing-success?style=flat-square)
 ![Format](https://img.shields.io/badge/format-SKILL.md-black?style=flat-square)
 
@@ -34,6 +34,7 @@ It is not a prompt dump and not a collection of one-off answers. It preserves me
 |---|---|---|
 | **Entertainment Rander** | Identify and rank Chinese internet entertainment memes | [Open](./entertainment-rander/) |
 | **Music Quality Radar** | Analyze music quality, arrangement, lyrics, and aesthetics | [Open](./music-quality-radar/) |
+| **Music Taste Profiler** | Analyze authorized playlists to infer the user's real music taste and recurring preferences | [Open](./music-taste-profiler/) |
 
 Each skill keeps its full introduction, examples, rules, and assets inside its own subfolder. The repository root is only the master index.
 
@@ -50,10 +51,15 @@ spike.skill/
 │   ├── README_EN.md
 │   ├── SKILL.md
 │   └── assets/
-└── music-quality-radar/
+├── music-quality-radar/
+│   ├── README.md
+│   ├── README_EN.md
+│   └── SKILL.md
+└── music-taste-profiler/
     ├── README.md
     ├── README_EN.md
-    └── SKILL.md
+    ├── SKILL.md
+    └── REFERENCES.md
 ```
 
 ---
