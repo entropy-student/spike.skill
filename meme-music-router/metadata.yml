@@ -1,11 +1,20 @@
 slug: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
-version: 0.2.3
+version: 0.2.4
 status: calibrating
 language:
   - zh-CN
   - en
 purpose: Route recent high-tier memes and hot topics into the strongest music reinterpretation path without redefining hotspot, music-trend, or music-quality standards.
+runtime:
+  live_skill_invocation_required: true
+  rules: references/LIVE_SKILL_INVOCATION_RULES.md
+  source_of_truth: current_github_default_branch
+  allow_memory_or_cached_summary_as_substitute: false
+  refetch_before_each_actual_skill_use: true
+  refetch_required_references: true
+  on_live_read_failure: LIVE_SKILL_READ_FAILED
+  check_version_consistency: true
 dependencies:
   optional:
     - entertainment-rander
