@@ -2,7 +2,7 @@
 name: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
 description: 一个框架级音乐内容编排器。负责现场调用 Entertainment Rander、Music Trend Radar、Music Quality Radar，把它们的最新结果组织成【原创】或【改编】选题，并管理确认、配图、歌词与曲风提示词交接；不在自身重复保存热点、热歌或好音乐的专业定义。
-version: 0.3.0
+version: 0.3.1
 language: zh-CN
 status: calibrating
 ---
@@ -152,6 +152,39 @@ Router 可以给自己的“创意组合”做优先级排序，例如 S+ / S / 
 
 默认主输出保留高潜力方案，普通方案可隐藏。
 
+### 4.5 输出语言灵活性
+
+最终呈现语言 **不固定为中文**。
+
+无论是：
+
+- 梗图文字；
+- 图片标题 / 短句；
+- 台词 / 口播；
+- 原创歌词；
+- 改编歌词；
+- Hook；
+- 标题；
+- 其他最终可见 / 可听内容；
+
+Router 都应根据原梗语言、本期选中的具体二创版本、角色身份、传播语境与玩梗效果，选择最合适的语言形式。
+
+允许：
+
+- 中文；
+- 英文；
+- 中英混合；
+- 方言 / 口语表达；
+- 其他更适合当前梗的语言点缀或表达形式。
+
+> **不是“必须中文”，而是“哪种语言更能把梗玩漂亮，就用哪种”。**
+
+禁止为了统一中文破坏原梗，也禁止为了显得国际化无意义地加入外语。
+
+详细规则见：
+
+`references/LANGUAGE_FLEXIBILITY_RULES.md`
+
 ---
 
 ## 5. 默认完整工作流
@@ -175,9 +208,11 @@ Meme Music Router
 图片步骤
 → 按当前图片规则执行
 → 涉及明确来源人物 / 角色 / 物品 / 场景时，遵循 references/IMAGE_REFERENCE_RULES.md
+→ 图片文字 / 标题语言遵循 references/LANGUAGE_FLEXIBILITY_RULES.md
 ↓
 歌曲内容步骤
 → 现场重新读取 Music Quality Radar
+→ 歌词 / Hook 语言遵循 references/LANGUAGE_FLEXIBILITY_RULES.md
 ↓
 【原创】
 → 完整原创歌词 + 曲风 / 编曲提示词
@@ -199,12 +234,17 @@ Meme Music Router
 
 `references/MUSIC_OUTPUT_RULES.md`
 
+语言选择遵循：
+
+`references/LANGUAGE_FLEXIBILITY_RULES.md`
+
 Router 只保存输出接口，不保存 Music Quality Radar 的专业细则。
 
 固定要求：
 
 - 【原创】与【改编】都必须在该执行节点现场调用当前 `music-quality-radar`；
 - 歌词使用 `[Verse]`、`[Pre-Chorus]`、`[Chorus]`、`[Bridge]`、`[Outro]` 等必要段落标签；
+- 歌词 / Hook 不强制中文，可按梗与二创版本选择语言；
 - 曲风 / 编曲提示词硬上限 **500 字**；
 - 默认尽量精简到 **200–350 字**；
 - 最终提示词要可直接复制给音乐生成模型。
@@ -233,13 +273,21 @@ selection:
   source_song_if_any:
   one_sentence_concept:
 
+language_handoff:
+  rules: references/LANGUAGE_FLEXIBILITY_RULES.md
+  fixed_chinese_only: false
+  preferred_language_or_mix:
+  reason:
+
 image_handoff:
   reference_rules: references/IMAGE_REFERENCE_RULES.md
+  language_rules: references/LANGUAGE_FLEXIBILITY_RULES.md
 
 music_handoff:
   target_skill: music-quality-radar
   live_read_required: true
   output_rules: references/MUSIC_OUTPUT_RULES.md
+  language_rules: references/LANGUAGE_FLEXIBILITY_RULES.md
 ```
 
 不要把上游 Skill 的评分体系全文复制进交接数据。
@@ -258,7 +306,9 @@ music_handoff:
 6. 明明没有自然歌曲载体，却为了完成流程强行改编；
 7. 歌曲内容阶段没有重新调用当前 Music Quality Radar；
 8. 曲风 / 编曲提示词超过 500 字；
-9. 图片涉及明确梗来源，却脱离真实人物 / 角色 / 物品 / 场景自由重设计。
+9. 图片涉及明确梗来源，却脱离真实人物 / 角色 / 物品 / 场景自由重设计；
+10. 为了默认中文或形式统一，牺牲原梗 / 二创版本中更自然、更有效的语言表达；
+11. 为了显得国际化，无意义地加入外语并削弱梗的识别度或节奏。
 
 ---
 
@@ -270,4 +320,8 @@ music_handoff:
 
 它的价值不是“记住更多标准”，而是：
 
-> **现场调用正确的专业能力 → 做高层创意决策 → 管理工作流 → 输出完整成品。**
+> **现场调用正确的专业能力 → 做高层创意决策 → 选择最有效的呈现语言 → 管理工作流 → 输出完整成品。**
+
+语言只是玩梗工具之一，不是必须遵守的形式目标：
+
+> **Language serves the meme. The meme does not serve the language.**
