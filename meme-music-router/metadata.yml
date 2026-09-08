@@ -1,11 +1,11 @@
 slug: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
-version: 0.4.0
+version: 0.4.1
 status: calibrating
 language:
   - zh-CN
   - en
-purpose: Find strong memes through live upstream judgment, lock the meme core, then choose the funniest presentation form—image, dialogue, song, short video, or mixed—to amplify the meme without replacing its theme.
+purpose: Find strong memes through live upstream judgment, lock the meme core and episode name, then choose the funniest presentation form while keeping every downstream output bound to the same meme and creative concept.
 role: meme_first_creative_orchestrator
 runtime:
   live_skill_invocation_required: true
@@ -24,6 +24,7 @@ meme_first:
   rules: references/MEME_AMPLIFICATION_RULES.md
   meme_core_lock_required: true
   parent_child_separation_required: true
+  creative_name_lock_required: true
   format_serves_meme: true
   music_is_optional: true
   music_role: amplifier
@@ -34,9 +35,10 @@ router_scope:
     - invoke the right upstream skill at the right step
     - lock the source meme and selected derivative before creation
     - preserve parent meme versus child unit boundaries
+    - create an episode name before user confirmation
     - choose the presentation form that best amplifies the meme
-    - manage confirmation and downstream handoffs
-    - prevent theme drift across image, dialogue, music and video
+    - keep image, lyrics and music prompt consistent with the same creative lock
+    - prevent theme drift across downstream outputs
     - assemble final deliverables
 selection:
   entertainment_gate_from_upstream_result:
@@ -55,6 +57,21 @@ selection:
     - S+
     - S
     - A+
+  concept_lock:
+    required_fields:
+      - episode_name
+      - meme_core
+      - selected_derivative
+      - one_sentence_play
+      - must_preserve
+standard_meme_music_episode:
+  only_when_image_and_music_amplify_meme: true
+  final_deliverables:
+    - episode_name
+    - titled_image
+    - lyrics
+    - melody_style_prompt
+  all_share_same_creative_lock: true
 output_language_policy:
   rules: references/LANGUAGE_FLEXIBILITY_RULES.md
   fixed_chinese_only: false
@@ -70,6 +87,7 @@ post_confirmation:
     reference_first: true
     preserve_source_meme: true
     preserve_selected_derivative: true
+    exact_episode_title_required: true
     prompt_chars:
       recommended: 80-160
       max: 200
@@ -81,8 +99,9 @@ post_confirmation:
     only_when_song_is_selected: true
     live_quality_skill_read_required: true
     theme_lock_required: true
+    episode_name_consistency_required: true
     required_meme_anchor_in_hook: true
-    style_prompt:
+    melody_style_prompt:
       preferred_chars: 200-350
       max_chars: 500
       concise_first: true
@@ -92,6 +111,7 @@ quality_gates:
   meme_recognition_test: true
   meme_binding_test: true
   amplification_test: true
+  name_consistency_test: true
 handoff:
   music_prompt_generator:
     status: CALIBRATING
