@@ -1,10 +1,22 @@
 # Live Skill Invocation Rules（Skill 现场读取规则）
 
-> **硬规则：凡工作流中出现“调用某个 Skill”，必须在该次实际使用它之前，现场读取 GitHub 当前版本。历史读取、聊天记忆、摘要、缓存理解均不得替代。**
+## 0. 作用域
+
+本规则 **只约束 `meme-music-router` 自己**，用于规定它在调用上游 Skill 时必须如何读取与执行。
+
+它不会自动作用于仓库中的其他 Skill，也不要求其他 Skill 彼此调用或执行本规则。除非某个其他 Skill 未来自己明确声明采用同样机制，否则一律不继承本规则。
+
+当前受本 Router 现场调用约束的上游包括：
+
+- `entertainment-rander`
+- `music-trend-radar`
+- `music-quality-radar`
+
+> **硬规则：当 `meme-music-router` 的工作流中出现“调用某个上游 Skill”，必须在该次实际使用它之前，现场读取 GitHub 当前版本。历史读取、聊天记忆、摘要、缓存理解均不得替代。**
 
 ## 1. Source of Truth
 
-GitHub 当前默认分支中的原始 Skill 文件是唯一执行依据。
+GitHub 当前默认分支中的原始 Skill 文件是本 Router 本次调用该上游 Skill 时的唯一执行依据。
 
 调用时必须优先读取：
 
@@ -22,9 +34,9 @@ GitHub 当前默认分支中的原始 Skill 文件是唯一执行依据。
 
 ## 2. Fresh Read Before Every Actual Skill Use
 
-每一个实际执行节点都要重新读取其上游 Skill。
+`meme-music-router` 的每一个实际执行节点都要重新读取对应上游 Skill。
 
-例如本工作流：
+例如：
 
 ```text
 找热梗
@@ -40,7 +52,7 @@ GitHub 当前默认分支中的原始 Skill 文件是唯一执行依据。
 → 执行
 ```
 
-如果同一 Skill 在后续独立步骤再次被正式调用，也应再次读取，而不是假设它从上一阶段到现在没有变化。
+如果同一上游 Skill 在后续独立步骤再次被 Router 正式调用，也应再次读取，而不是假设它从上一阶段到现在没有变化。
 
 ## 3. Latest Wins
 
@@ -52,7 +64,7 @@ GitHub 当前默认分支中的原始 Skill 文件是唯一执行依据。
 
 ## 4. No Silent Fallback
 
-如果无法读取当前 Skill：
+如果 Router 无法读取当前上游 Skill：
 
 - 不得声称“已调用 Skill”；
 - 不得偷偷退回助手记忆中的旧规则；
@@ -61,14 +73,13 @@ GitHub 当前默认分支中的原始 Skill 文件是唯一执行依据。
 
 ## 5. References Must Also Be Fresh When Required
 
-如果当前 `SKILL.md` 指向其他规则文件，例如：
+如果当前上游 `SKILL.md` 指向其他规则文件，例如：
 
 - `references/SCORING.md`
 - `references/TIERING.md`
-- `references/MUSIC_OUTPUT_RULES.md`
 - 其他当前任务依赖文件
 
-则本次执行也要读取这些文件的当前版本。
+则 Router 本次执行也要读取这些文件的当前版本。
 
 只读 `SKILL.md`、却继续使用旧 reference 内容，不算完整现场调用。
 
@@ -78,6 +89,7 @@ GitHub 当前默认分支中的原始 Skill 文件是唯一执行依据。
 
 ```yaml
 live_skill_invocation:
+  caller: meme-music-router
   skill:
   repository:
   path:
@@ -90,15 +102,15 @@ live_skill_invocation:
 
 ## 7. Version Consistency Check
 
-若同一个 Skill 的 `SKILL.md`、`metadata.yml`、README 等版本号不一致：
+若被 Router 调用的同一个 Skill 的 `SKILL.md`、`metadata.yml`、README 等版本号不一致：
 
 1. 不得假设它们已经同步；
 2. 以实际规则正文为执行依据；
 3. 标记版本不一致；
-4. 在维护 Skill 时修复一致性。
+4. 维护该 Skill 时再修复一致性。
 
 ## 8. Core Rule
 
-> **调用 Skill ≠ 记得 Skill。**
+> **对 `meme-music-router` 而言：调用 Skill ≠ 记得 Skill。**
 >
-> **调用 Skill = 在当前执行时刻重新读取当前原始 Skill，并按当前规则执行。**
+> **调用 Skill = 在当前执行时刻重新读取当前上游原始 Skill，并按当前规则执行。**
