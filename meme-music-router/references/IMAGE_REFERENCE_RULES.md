@@ -160,7 +160,28 @@ meme_image_reference:
 
 ---
 
-## 8. 最终判定
+## 8. 图片文字语言不固定为中文
+
+如果图片需要标题、台词、短句或其他文字，其语言遵循：
+
+`references/LANGUAGE_FLEXIBILITY_RULES.md`
+
+允许根据原梗、本期二创版本和传播效果选择：
+
+- 中文；
+- 英文；
+- 中英混合；
+- 方言 / 口语；
+- 其他更自然的语言形式；
+- 或者完全不放文字。
+
+> **图片文字的目标是强化梗，不是满足“必须中文”的形式要求。**
+
+同时禁止为了显得国际化而无意义加入外语。
+
+---
+
+## 9. 最终判定
 
 生成前先问自己：
 
@@ -169,6 +190,10 @@ meme_image_reference:
 - 能 → 可以继续风格化；
 - 不能 → 先修正人物、妆造、场景或关键道具，再谈美术风格。
 
+如果需要文字，再继续问：
+
+> **当前语言是不是最能让这个梗成立的语言？**
+
 最终目标：
 
-> **Reference first. Recognition first. Style second.**
+> **Reference first. Recognition first. Style second. Language serves the meme.**
