@@ -1,0 +1,17 @@
+slug: meme-music-router
+display_name: Meme Music Router（热梗音乐路由器）
+version: 0.1.0
+status: calibrating
+language:
+  - zh-CN
+  - en
+purpose: Route memes and hot topics into the strongest music reinterpretation path without forcing a trending-song step.
+dependencies:
+  optional:
+    - entertainment-rander
+    - music-trend-radar
+    - music-quality-radar
+handoff:
+  music_prompt_generator:
+    status: UNVERIFIED
+    required_input: MUSIC_BRIEF
