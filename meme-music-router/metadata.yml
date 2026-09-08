@@ -1,6 +1,6 @@
 slug: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
-version: 0.2.1
+version: 0.2.2
 status: calibrating
 language:
   - zh-CN
@@ -35,8 +35,14 @@ post_confirmation:
     auto_generate: false
     ask_once: true
     keep_same_core_meme: true
+    reference_first: true
+    reference_rules: references/IMAGE_REFERENCE_RULES.md
+    source_entity_required_when_identifiable: true
+    preserve_iconic_visual_traits: true
+    avoid_freeform_character_redesign: true
     default_visual_goal:
       - understandable in 1-3 seconds
+      - recognizable without relying only on text
       - single visual focus
       - strong expression/action/contrast
       - minimal text
