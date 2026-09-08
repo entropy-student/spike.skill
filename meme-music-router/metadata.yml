@@ -1,6 +1,6 @@
 slug: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
-version: 0.2.0
+version: 0.2.1
 status: calibrating
 language:
   - zh-CN
@@ -29,6 +29,17 @@ selection_defaults:
     - upbeat / energetic / rhythmic music
     - identity or story loop
     - multiple distinct high-tier creative routes
+post_confirmation:
+  meme_image:
+    proactive_ask: true
+    auto_generate: false
+    ask_once: true
+    keep_same_core_meme: true
+    default_visual_goal:
+      - understandable in 1-3 seconds
+      - single visual focus
+      - strong expression/action/contrast
+      - minimal text
 handoff:
   music_prompt_generator:
     status: CALIBRATING
