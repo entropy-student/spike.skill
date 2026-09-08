@@ -1,4 +1,4 @@
-# Music Quality Radar
+# Music Quality Radar（音乐质量雷达）
 
 > 一个用“普通人也能看懂”的方式判断歌曲质量、解释为什么好听/普通、并给出改进方向的音乐审美 Skill。
 
