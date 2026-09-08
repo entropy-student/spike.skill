@@ -1,6 +1,6 @@
 slug: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
-version: 0.3.0
+version: 0.3.1
 status: calibrating
 language:
   - zh-CN
@@ -39,6 +39,13 @@ selection:
     - S+
     - S
     - A+
+output_language_policy:
+  rules: references/LANGUAGE_FLEXIBILITY_RULES.md
+  fixed_chinese_only: false
+  language_flexibility: true
+  allow_bilingual_or_mixed_language: true
+  allow_dialect_or_other_language_when_effective: true
+  optimize_for_meme_effect_over_default_language: true
 post_confirmation:
   meme_image:
     proactive_ask: true
@@ -47,11 +54,13 @@ post_confirmation:
     keep_same_core_meme: true
     reference_first: true
     reference_rules: references/IMAGE_REFERENCE_RULES.md
+    language_rules: references/LANGUAGE_FLEXIBILITY_RULES.md
     source_entity_required_when_identifiable: true
     preserve_iconic_visual_traits: true
     avoid_freeform_character_redesign: true
   music_output:
     rules: references/MUSIC_OUTPUT_RULES.md
+    language_rules: references/LANGUAGE_FLEXIBILITY_RULES.md
     live_quality_skill_read_required: true
     style_prompt:
       preferred_chars: 200-350
