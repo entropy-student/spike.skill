@@ -1,11 +1,12 @@
 slug: meme-music-router
 display_name: Meme Music Router（热梗音乐路由器）
-version: 0.2.4
+version: 0.3.0
 status: calibrating
 language:
   - zh-CN
   - en
-purpose: Route recent high-tier memes and hot topics into the strongest music reinterpretation path without redefining hotspot, music-trend, or music-quality standards.
+purpose: Orchestrate live upstream skill calls and turn their latest outputs into original or adapted meme-music production workflows without duplicating upstream domain definitions.
+role: orchestrator
 runtime:
   live_skill_invocation_required: true
   rules: references/LIVE_SKILL_INVOCATION_RULES.md
@@ -14,30 +15,30 @@ runtime:
   refetch_before_each_actual_skill_use: true
   refetch_required_references: true
   on_live_read_failure: LIVE_SKILL_READ_FAILED
-  check_version_consistency: true
-dependencies:
-  optional:
-    - entertainment-rander
-    - music-trend-radar
-    - music-quality-radar
-selection_defaults:
-  freshness:
-    primary: 24h
-    preferred: 3d
-    max_if_still_active: 7d
-  entertainment_gate:
-    pass:
-      - S+
-      - S
-  output_tiers:
+upstream_skills:
+  hotspot: entertainment-rander
+  music_trend: music-trend-radar
+  music_quality: music-quality-radar
+upstream_results_are_authoritative: true
+router_scope:
+  stores_upstream_domain_definitions: false
+  responsibilities:
+    - invoke the right upstream skill at the right step
+    - combine hotspot, person, scene and music into production concepts
+    - choose original or adaptation
+    - manage confirmation, image and music handoffs
+    - assemble final deliverables
+selection:
+  entertainment_gate_from_upstream_result:
+    - S+
+    - S
+  final_types:
+    - original
+    - adaptation
+  creative_output_tiers:
     - S+
     - S
     - A+
-  prefer:
-    - single-character POV
-    - upbeat / energetic / rhythmic music
-    - identity or story loop
-    - multiple distinct high-tier creative routes
 post_confirmation:
   meme_image:
     proactive_ask: true
@@ -49,30 +50,16 @@ post_confirmation:
     source_entity_required_when_identifiable: true
     preserve_iconic_visual_traits: true
     avoid_freeform_character_redesign: true
-    default_visual_goal:
-      - understandable in 1-3 seconds
-      - recognizable without relying only on text
-      - single visual focus
-      - strong expression/action/contrast
-      - minimal text
   music_output:
     rules: references/MUSIC_OUTPUT_RULES.md
-    types:
-      - original
-      - adaptation
+    live_quality_skill_read_required: true
     style_prompt:
       preferred_chars: 200-350
       max_chars: 500
       concise_first: true
     lyrics:
       require_section_labels: true
-      common_labels:
-        - Verse
-        - Pre-Chorus
-        - Chorus
-        - Bridge
-        - Outro
 handoff:
   music_prompt_generator:
     status: CALIBRATING
-    required_input: MUSIC_BRIEF
+    required_input: high_level_music_handoff
