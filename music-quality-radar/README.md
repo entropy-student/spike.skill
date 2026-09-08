@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎧 Music Quality Radar
+# 🎧 Music Quality Radar（音乐质量雷达）
 
 ### 不懂乐理，也能判断一首歌为什么好听
 
