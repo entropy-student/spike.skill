@@ -6,7 +6,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md)
 
-![Skills](https://img.shields.io/badge/skills-2-blueviolet?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-3-blueviolet?style=flat-square)
 ![Status](https://img.shields.io/badge/status-growing-success?style=flat-square)
 ![Format](https://img.shields.io/badge/format-SKILL.md-black?style=flat-square)
 
@@ -34,6 +34,7 @@
 |---|---|---|
 | **Entertainment Rander** | 中文互联网娱乐热梗识别与分级 | [进入](./entertainment-rander/) |
 | **Music Quality Radar** | 音乐质量、编曲、歌词与审美分析 | [进入](./music-quality-radar/) |
+| **Music Taste Profiler** | 从授权歌单分析用户真正喜欢的音乐类型与审美偏好 | [进入](./music-taste-profiler/) |
 
 每个 Skill 的完整介绍、示例、规则和素材都只保存在各自子文件夹中，根目录只作为总索引。
 
@@ -50,10 +51,15 @@ spike.skill/
 │   ├── README_EN.md
 │   ├── SKILL.md
 │   └── assets/
-└── music-quality-radar/
+├── music-quality-radar/
+│   ├── README.md
+│   ├── README_EN.md
+│   └── SKILL.md
+└── music-taste-profiler/
     ├── README.md
     ├── README_EN.md
-    └── SKILL.md
+    ├── SKILL.md
+    └── REFERENCES.md
 ```
 
 ---
