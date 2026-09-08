@@ -16,7 +16,7 @@
 
 ---
 
-![Entertainment Meme Radar](./assets/entertainment-radar.jpg)
+![Entertainment Meme Radar](https://raw.githubusercontent.com/entropy-student/spike.skill/821bb618e3c602c5fbce9620f74f256512537215/entertainment-rander/assets/entertainment-radar.jpg)
 
 ## ✨ What is this?
 
@@ -53,8 +53,7 @@ It is especially helpful if you work on:
 - fast judgment calls like “Does this qualify as an S-tier meme?”
 
 A normal trending list only tells you **what has attention**.
-
-Content work needs a better question:
+What content work really needs is a better question:
 
 > **What is actually fun to play with, what keeps growing, and what will die immediately?**
 
@@ -97,26 +96,7 @@ It is:
 That is why:
 
 - a meme with billions of views can still be only **A-tier**
-- a smaller but more generative phenomenon can be **S-tier** if it produces characters, reinterpretations, storylines, archaeology, and an entire logic system
-
----
-
-## 🔍 What is it especially good at finding?
-
-### 📼 Content archaeology
-Old shows, dramas, or clips suddenly become shared remix libraries. People rewatch frame by frame, reinterpret characters, rebuild relationships, and create new readings.
-
-### 🧪 Character schools
-A personality stops being just a trending topic and grows into a vocabulary, theory system, or meme discipline of its own.
-
-### 🌀 Absurd meme systems
-The content develops its own language, logic, characters, and worldbuilding. People do not merely copy it—they extend it.
-
-### 🎵 Sticky audio memes
-Not just sing-alongs or dance challenges, but sounds that keep entering new contexts and generating new formats.
-
-### 🧬 Meme parents
-The most valuable type: a meme that keeps generating child memes and repeatedly revives inside future events.
+- a smaller but more generative phenomenon can be **S-tier** if it produces characters, reinterpretations, storylines, meme archaeology, and an entire logic system
 
 ---
 
@@ -138,20 +118,13 @@ Does “XXX” qualify as an S-tier meme? Evaluate it using Entertainment Rander
 
 ---
 
-## 🧪 The most useful test
+## 🔍 What is it especially good at finding?
 
-When you see something viral, do not begin with:
-
-> “How many views does it have?”
-
-Ask instead:
-
-1. Do people merely know it, or do they actively play with it?
-2. Are they copying it, or creating new material from it?
-3. Can it survive after the original event ends?
-4. Can it grow into a shared language, character system, or meme universe?
-
-The more often the answer is “yes,” the closer it is to S or S+.
+- 📼 **Content archaeology** — old shows, dramas, or clips suddenly becoming shared remix libraries
+- 🧪 **Character schools** — one personality spawning a vocabulary, theory system, or meme discipline
+- 🌀 **Absurd meme systems** — content with its own logic, language, characters, and worldbuilding
+- 🎵 **Sticky audio memes** — not just sing-alongs, but sounds that keep producing new formats
+- 🧬 **Meme parents** — formats that repeatedly generate child memes and revive in new contexts
 
 ---
 
