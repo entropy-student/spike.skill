@@ -1,0 +1,164 @@
+<div align="center">
+
+# 🧩 Spike Skill Library（Spike 技能库）
+
+### 一组面向真实任务的可复用 AI Skills
+
+**不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
+
+![Skills](https://img.shields.io/badge/skills-4-blue?style=flat-square)
+![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
+![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
+
+</div>
+
+---
+
+## 当前 Skills
+
+| Skill | 主要解决什么问题 | 状态 | 入口 |
+|---|---|---:|---|
+| 📈 **Acquisition Growth Radar（获客增长雷达）** | 判断项目为什么还没挣到钱、当前卡在哪层证据、下一步最值得验证什么 | v0.2 Frozen | [进入](./acquisition-growth-radar/) |
+| 🎯 **Entertainment Rander（娱乐热梗雷达）** | 区分普通热点、模仿型热梗与真正能持续增殖的互联网梗文化 | Active | [进入](./entertainment-rander/) |
+| 🎧 **Music Quality Radar（音乐质量雷达）** | 不依赖复杂乐理，判断一首歌为什么好听、哪里普通、最值得怎么改 | Calibrating | [进入](./music-quality-radar/) |
+| 🎵 **Music Trend Radar（音乐趋势雷达）** | 跨平台识别真正热门、正在爆发和具有持续传播能力的歌曲 | Active | [进入](./music-trend-radar/) |
+
+---
+
+## 这个仓库在做什么？
+
+很多 AI 工作流的问题不是“模型不会回答”，而是：
+
+- 每次回答标准不一致；
+- 一换对话就丢失方法；
+- 看起来分析很多，但不知道最后应该怎么决策；
+- 有数据，却不知道这些数据到底能证明什么；
+- 好的方法只存在于一次聊天里，无法复用。
+
+这个仓库尝试把这些经验整理成 **Skill**：
+
+```text
+一个真实问题
+    ↓
+固定的判断框架
+    ↓
+明确的证据标准
+    ↓
+可重复的执行流程
+    ↓
+结构化输出
+    ↓
+继续校准
+```
+
+目标不是让 Skill 写得越来越长，而是让它在真实案例里越来越稳定。
+
+---
+
+## Skill 的基本结构
+
+不同 Skill 会根据任务复杂度有所不同，但原则上采用：
+
+```text
+skill-name/
+├── README.md        # 给人看的介绍与最快用法
+├── README_EN.md     # 英文介绍（如有）
+├── SKILL.md         # 给 AI 执行的核心规则
+├── metadata.yml     # 统一展示名称等元信息
+├── references/      # 深入规则 / 方法论（需要时加载）
+├── templates/       # 可重复使用的记录与执行模板
+├── examples/        # 示例与校准样本
+└── assets/          # 图片等展示资源（如有）
+```
+
+不是所有 Skill 都必须包含全部目录。
+
+---
+
+## 命名规范
+
+为了兼顾 GitHub 路径、工具调用和中文可读性：
+
+- **文件夹 slug**：保持英文小写，例如 `music-quality-radar`；
+- **展示名称**：统一采用 `English（中文）`；
+- **README 标题 / SKILL 标题 / metadata.display_name**：尽量保持一致；
+- 不因为展示需要去修改稳定的文件夹路径。
+
+例如：
+
+```text
+slug: acquisition-growth-radar
+display_name: Acquisition Growth Radar（获客增长雷达）
+```
+
+---
+
+## 怎么使用
+
+最简单的方式是进入对应 Skill，查看 `README.md` 的调用示例。
+
+如果是让 AI 严格执行 Skill，则以各目录中的 `SKILL.md` 为准。
+
+例如：
+
+```text
+按 Acquisition Growth Radar 帮我判断这个项目现在卡在哪里，
+不要先给一堆渠道建议，先找最大瓶颈和最小验证实验。
+```
+
+```text
+按 Music Quality Radar 分析这首歌，
+告诉我为什么好听/普通，最大优点、最大问题和最值得改的一处。
+```
+
+```text
+按 Entertainment Rander 筛选最近真正值得关注的娱乐热梗，
+不要把单纯热搜或播放量当成梗力。
+```
+
+---
+
+## 设计原则
+
+### 1. Evidence before conclusion
+
+低等级信号不能越级证明高等级结论。
+
+### 2. Explain the decision
+
+Skill 不只给结果，还要说明为什么，以及为什么没有到更高等级。
+
+### 3. Prefer operational rules
+
+比起堆理论，更重视“下一步具体怎么做”。
+
+### 4. Keep boundaries clear
+
+一个 Skill 只解决自己擅长的问题，不悄悄接管其他系统的职责。
+
+### 5. Calibrate with real cases
+
+规则不是写完就永远正确。真实反例出现时，再升级 Skill。
+
+---
+
+## 当前方向
+
+这个仓库目前主要沉淀两类能力：
+
+- **商业与增长判断**：如何验证、成交、增长；
+- **内容与文化判断**：什么正在流行、什么真正优秀、为什么。
+
+后续新增 Skill 仍遵循同一原则：
+
+> **先把一个真实问题解决得足够稳定，再把解决方法沉淀成 Skill。**
+
+---
+
+<div align="center">
+
+### Small skills. Repeatable judgment.
+
+**把一次好判断，变成可以重复使用的方法。**
+
+</div>
