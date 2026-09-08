@@ -1,149 +1,118 @@
 # Meme Music Router
 
-> A framework-level orchestrator for meme-driven music production. It does **not** redefine what counts as a hot meme, a trending song, or good music. It live-invokes the appropriate upstream Skill and turns the latest outputs into a complete workflow.
+> Starting with v0.4.0, this is no longer a router that assumes every meme should become a song. It is a **meme-first creative orchestrator**.
 
-## Role
+## Core goal
 
-`Meme Music Router` acts as an Orchestrator / Workflow Framework.
+> **Find a strong meme → lock the meme core → choose the funniest presentation form → amplify the meme.**
 
-It is responsible for:
+Possible forms:
 
-- calling `entertainment-rander` for recent meme/hotspot candidates;
-- calling `music-trend-radar` for recent or resurfacing songs when needed;
-- combining person, scene, meme and music into production concepts;
-- choosing between **Original** and **Adaptation**;
-- managing confirmation, image, lyric and style-prompt handoffs;
-- calling `music-quality-radar` at the actual music-content stage;
-- assembling the final deliverables.
+- image / meme poster
+- dialogue / mini-sketch
+- song
+- short video
+- mixed format
 
-It is not responsible for storing or redefining:
+Music is optional.
 
-- what a strong meme is;
-- what a trending song is;
-- what good music is;
-- upstream scoring systems, platform weights, or music-quality methodology.
+---
 
-> **Upstream Skills make professional judgments. The Router decides when to call them and what to do with their results.**
+## Core workflow
+
+```text
+Entertainment Rander (LIVE)
+↓
+Find S+/S meme candidates
+↓
+Meme Core Lock
+→ person / scene
+→ core action / conflict / iconic line
+→ why it is funny
+→ parent meme vs child unit
+→ must-not-drift items
+↓
+Presentation Router
+→ image / dialogue / song / short video / mixed
+↓
+Call only the upstream Skills required by that form
+↓
+Generate
+↓
+Meme Recognition / Binding / Amplification Tests
+```
+
+> **Meme first. Format second. Quality third.**
+
+---
+
+## Why v0.4.0 changed the architecture
+
+A failure pattern in the previous workflow was:
+
+```text
+hot meme
+→ force it into music
+→ make the song theme more “artistic”
+→ lose the meme itself
+```
+
+Calibration example:
+
+```text
+Source meme: Xue Zhenzhu storms into the office to confront Ling Ling / the mistress
+Selected derivative: Indian-cinema musical version
+Wrong song theme: “Put Everything on the Table”
+```
+
+The song was no longer about the original meme conflict.
+
+Correct logic:
+
+```text
+WHAT is being played: find Ling Ling / confront the mistress / storm into the office
+HOW it is played: Indian-cinema song-and-dance
+```
+
+> **Music amplifies the meme. Music does not replace the meme.**
+
+See:
+
+`references/MEME_AMPLIFICATION_RULES.md`
 
 ---
 
 ## Upstream Skills
 
-| Need | Upstream Skill | Router redefines the domain? |
-|---|---|---|
-| Recent memes / hotspots | `entertainment-rander` | No |
-| Recent / resurfacing songs | `music-trend-radar` | No |
-| Lyrics, arrangement and music quality | `music-quality-radar` | No |
-| Workflow, concept combination, Original vs Adaptation | `meme-music-router` | Yes, at orchestration level |
+| Need | Skill |
+|---|---|
+| Recent meme judgment | `entertainment-rander` |
+| Current song heat, only when relevant | `music-trend-radar` |
+| Lyrics / arrangement / music review, only after song is selected | `music-quality-radar` |
 
----
-
-## Mandatory live invocation
-
-Every actual upstream Skill use must begin with a fresh read of the current GitHub version.
-
-```text
-Need a meme
-→ fresh-read entertainment-rander
-→ execute
-
-Need a trending song
-→ fresh-read music-trend-radar
-→ execute
-
-Need final lyrics / adaptation / style prompt
-→ fresh-read music-quality-radar
-→ execute
-```
-
-Previous reads, assistant memory, summaries and cached interpretations do not count as a Skill invocation.
-
-See:
+Every actual upstream use starts with a fresh GitHub read:
 
 `references/LIVE_SKILL_INVOCATION_RULES.md`
 
 ---
 
-## Two final production types
+## Image rules
 
-### Original
-
-Create a new song when an existing song would be forced or when an original track serves the meme/person/scene better.
-
-### Adaptation
-
-Use an existing song when the source meme is musical, a current or classic song fits naturally, or the user explicitly chooses a song.
-
-Legacy Route A/B/C/D reasoning may still help internally, but the production-facing output is simply:
+The image must preserve both:
 
 ```text
-Original / Adaptation
+source meme recognizability
++
+selected derivative recognizability
 ```
 
----
+For identifiable people or iconic scenes, source references come first.
 
-## Default workflow
+Final image prompt:
 
-```text
-User starts an episode
-↓
-Entertainment Rander (fresh read)
-↓
-Music Trend Radar (fresh read when needed)
-↓
-Router combines person × scene × music
-→ Original / Adaptation
-→ rank concepts
-↓
-User confirms
-↓
-Image stage
-→ use source references when an identifiable person/character/object/scene exists
-→ choose image text language for meme effect, not by default locale
-↓
-Music Quality Radar (fresh read again)
-↓
-Lyrics + style/arrangement prompt
-→ choose lyric / hook language for meme effect
-↓
-Final delivery
-```
-
----
-
-## Flexible output language
-
-Final presentation language is **not locked to Chinese**.
-
-For meme images, captions, dialogue, lyrics, hooks, titles, or other visible/audible outputs, the Router may choose:
-
-- Chinese;
-- English;
-- Chinese + English mixed;
-- dialect / colloquial language;
-- other language elements that clearly improve the meme.
-
-The choice should follow the source meme, the selected derivative version, character identity, platform/audience context, rhythm, rhyme, contrast and comedic effect.
-
-Core rule:
-
-> **Use the language that makes the meme land best.**
-
-Do not force Chinese for consistency, and do not add foreign language just to sound “international.”
-
-See:
-
-`references/LANGUAGE_FLEXIBILITY_RULES.md`
-
----
-
-## Image rule
-
-For identifiable people, characters, objects or iconic scenes:
-
-> **Reference first. Recognition first. Style second.**
-
-Image text is also language-flexible when text is needed.
+- recommended: 80–160 Chinese characters or equivalent brevity
+- **hard max: 200 Chinese characters or equivalent**
+- let reference images carry identity details instead of repeating them in a long prompt
 
 See:
 
@@ -151,29 +120,66 @@ See:
 
 ---
 
-## Music output rules
+## Music rules
+
+Only enter the music node when music is actually the best meme amplifier.
+
+Before calling `music-quality-radar`, lock:
+
+```yaml
+music_meme_lock:
+  meme_core:
+  selected_derivative:
+  music_role: amplifier
+  song_theme:
+  required_meme_anchor:
+  forbidden_theme_drift:
+```
+
+Fixed requirements:
+
+- song theme must directly inherit the meme action / conflict / iconic line
+- title, hook and chorus should carry clear meme anchors
+- do not replace the meme with a generic new theme such as communication, growth, dignity, or empowerment unless that is already part of the meme
+- style/arrangement prompt target: 200–350 Chinese characters; hard max 500
 
 See:
 
 `references/MUSIC_OUTPUT_RULES.md`
 
-Fixed orchestration constraints:
+---
 
-- both Original and Adaptation must fresh-read `music-quality-radar` at the music-content node;
-- use clear section labels such as `[Verse]`, `[Chorus]`, `[Bridge]`, `[Outro]` when needed;
-- lyrics and hooks are not required to be Chinese;
-- style/arrangement prompt target: **200–350 Chinese characters**;
-- hard maximum: **500 Chinese characters**;
-- keep only information that materially affects generation.
+## Flexible output language
+
+Images, dialogue, lyrics, hooks and titles are not locked to Chinese.
+
+> **Use the language that makes the meme land best.**
+
+See:
+
+`references/LANGUAGE_FLEXIBILITY_RULES.md`
+
+---
+
+## Final gates
+
+### Meme Recognition
+Can people who know the source recognize what meme is being played without extra explanation?
+
+### Meme Binding
+If you swap the character name, could the same output fit many unrelated memes almost unchanged?
+
+If yes, it is too generic.
+
+### Amplification
+Did the chosen format actually make the meme funnier, sharper, more absurd, more satisfying, or easier to spread?
+
+“Prettier / more musical / more professional” alone is not enough.
 
 ---
 
 ## Status
 
-**v0.3.1 — Orchestrator Build / Calibrating**
+**v0.4.0 — Meme-first Orchestrator / Calibrating**
 
-Core additions in v0.3.1:
-
-- flexible output-language policy for images, dialogue, lyrics, hooks and titles;
-- language choice follows meme effectiveness rather than a fixed Chinese default;
-- image and music output rules now reference the same language policy source of truth.
+> **The meme is the subject. Every generation capability is only a performance tool.**
