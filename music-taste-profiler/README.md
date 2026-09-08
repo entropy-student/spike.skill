@@ -1,4 +1,4 @@
-# Music Taste Profiler
+# Music Taste Profiler（音乐口味画像）
 
 > 从用户授权的歌单和“我喜欢”里，自动分析：**你到底喜欢什么音乐，以及为什么。**
 
