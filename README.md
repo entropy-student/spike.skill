@@ -20,7 +20,7 @@
 |---|---|---:|---|
 | 📈 **Acquisition Growth Radar（获客增长雷达）** | 判断项目为什么还没挣到钱、当前卡在哪层证据、下一步最值得验证什么 | v0.2 Frozen | [进入](./acquisition-growth-radar/) |
 | 🎯 **Entertainment Rander（娱乐热梗雷达）** | 区分普通热点、模仿型热梗与真正能持续增殖的互联网梗文化 | Active | [进入](./entertainment-rander/) |
-| 🎭 **Meme Music Router（热梗音乐路由器）** | 从热点/热梗出发，判断该沿用原生音乐、匹配近期热歌/经典歌，还是跳过找歌直接原创 | v0.1 Calibrating | [进入](./meme-music-router/) |
+| 🎭 **Meme Music Router（热梗音乐路由器）** | 在既有热点/歌曲趋势/音乐质量标准上，只做近期高等级热点的音乐路由、创意组合与 S+/S/A+ 优先输出 | **v0.2 Calibrating** | [进入](./meme-music-router/) |
 | 🎧 **Music Quality Radar（音乐质量雷达）** | 不依赖复杂乐理，判断一首歌为什么好听、哪里普通、最值得怎么改 | Calibrating | [进入](./music-quality-radar/) |
 | 🎵 **Music Trend Radar（音乐趋势雷达）** | 跨平台识别真正热门、正在爆发和具有持续传播能力的歌曲 | Active | [进入](./music-trend-radar/) |
 | 🎬 **Narrative Motion Semantics（叙事动效语义库）** | 根据流程、时间、对比、因果语义选择信息拓扑、Template ID 与动效表达 | **Incomplete** | [进入](./narrative-motion-semantics/) |
@@ -119,9 +119,11 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 ```
 
 ```text
-按 Meme Music Router 处理这个热点，
-先判断应该走原生音乐、近期热歌、经典歌曲还是原创音乐，
-不要为了找热歌而硬配。
+按 Meme Music Router 跑近期选题。
+先用 Entertainment Rander 只保留近期 S / S+ 热点，
+再按 Route A/B/C/D 多想几个不同音乐化方案；
+歌曲热度只服从 Music Trend Radar，音乐质量只服从 Music Quality Radar；
+默认只输出 S+ / S / 有明确升级潜力的 A+。
 ```
 
 ```text
