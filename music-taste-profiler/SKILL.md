@@ -8,7 +8,7 @@ version: "0.1"
 category: music
 ---
 
-# Music Taste Profiler
+# Music Taste Profiler（音乐口味画像）
 
 ## Goal
 
