@@ -6,7 +6,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md)
 
-![Skills](https://img.shields.io/badge/skills-1-blueviolet?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-2-blueviolet?style=flat-square)
 ![Status](https://img.shields.io/badge/status-growing-success?style=flat-square)
 ![Format](https://img.shields.io/badge/format-SKILL.md-black?style=flat-square)
 
@@ -28,15 +28,15 @@
 
 ---
 
-## 🌟 Current Skill — Entertainment Rander
+## 🌟 Skills
+
+### 🎯 Entertainment Rander
 
 [进入 Skill →](./entertainment-rander/)
 
 > 一个专门识别 **中文互联网真正娱乐热梗** 的雷达。它不问“今天谁上热搜”，而问：**什么只是被看见，什么会被复读，什么会被模仿，什么正在长成一个梗宇宙？**
 
 ![Entertainment Rander](./entertainment-rander/assets/hero.jpg)
-
-### 四级判断法
 
 | 等级 | 最快判断 |
 |---|---|
@@ -45,9 +45,26 @@
 | **S** | 大家会继续往下编 |
 | **S+** | 大家会拿它创造下一代梗 |
 
-这套标准专门解决一个常见问题：**热度不等于梗力。**
+---
 
-一个几十亿播放的跟跳模板可能只是 A；一个没有单一口号、却不断长出人物、考古、解释体系和二创的旧综艺，反而可能是 S。
+### 🎧 Music Quality Radar
+
+[进入 Skill →](./music-quality-radar/)
+
+> 一个用普通语言解释 **“这首歌为什么好听 / 为什么普通”** 的音乐审美 Skill。
+
+它会从七个方面判断：
+
+`旋律` · `编曲` · `歌词` · `情绪推进` · `演唱/演奏` · `声音质感` · `独特性`
+
+| 等级 | 最快判断 |
+|---|---|
+| **B** | 能听，但普通 |
+| **A** | 好听，完成度高 |
+| **S** | 优秀，听完会记住 |
+| **S+** | 标杆级，有一种“只能是它”的感觉 |
+
+它特别适合拿来分析真实歌曲、AI 音乐、歌词、编曲和音乐生成 Prompt。
 
 ---
 
@@ -57,19 +74,21 @@
 spike.skill/
 ├── README.md
 ├── README_EN.md
-└── entertainment-rander/
+├── entertainment-rander/
+│   ├── README.md
+│   ├── README_EN.md
+│   ├── SKILL.md
+│   └── assets/
+│       └── hero.jpg
+└── music-quality-radar/
     ├── README.md
     ├── README_EN.md
-    ├── SKILL.md
-    └── assets/
-        └── hero.jpg
+    └── SKILL.md
 ```
 
 ---
 
 ## 🧩 什么样的方法值得成为 Skill？
-
-一个方法进入这个仓库，最好满足这些条件：
 
 1. **会重复遇到**：不是一次性问题。
 2. **已经校准**：有正例、反例和边界案例，而不是凭感觉写规则。
