@@ -6,7 +6,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md)
 
-![Skills](https://img.shields.io/badge/skills-1-blueviolet?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-2-blueviolet?style=flat-square)
 ![Status](https://img.shields.io/badge/status-growing-success?style=flat-square)
 ![Format](https://img.shields.io/badge/format-SKILL.md-black?style=flat-square)
 
@@ -28,15 +28,15 @@ It is not a prompt dump and not a collection of one-off answers. It preserves me
 
 ---
 
-## 🌟 Current Skill — Entertainment Rander
+## 🌟 Skills
 
-[Open the Skill →](./entertainment-rander/)
+### 🎯 Entertainment Rander
 
-> A radar for **Chinese internet entertainment memes that actually have cultural staying power**. Instead of asking “what trended today?”, it asks: **what is merely seen, what gets repeated, what gets imitated, and what is growing into a meme universe?**
+[Open Skill →](./entertainment-rander/)
+
+> A radar for **Chinese internet entertainment memes that actually have cultural staying power**. It asks what is merely seen, what gets repeated, what gets imitated, and what is growing into a meme universe.
 
 ![Entertainment Rander](./entertainment-rander/assets/hero.jpg)
-
-### The four-tier rule
 
 | Tier | Fastest test |
 |---|---|
@@ -45,9 +45,26 @@ It is not a prompt dump and not a collection of one-off answers. It preserves me
 | **S** | People keep building on it |
 | **S+** | People use it to create the next meme |
 
-The core insight is simple: **virality is not the same as meme power.**
+---
 
-A dance template with billions of views can still be A-tier, while an old show with no single catchphrase may be S-tier if it keeps generating characters, archaeology, theories, remixes, and new interpretations.
+### 🎧 Music Quality Radar
+
+[Open Skill →](./music-quality-radar/)
+
+> A plain-language music evaluation skill for answering **why a song works, why it feels ordinary, and what should be improved first.**
+
+It evaluates seven dimensions:
+
+`Melody` · `Arrangement` · `Lyrics` · `Emotional arc` · `Performance` · `Production` · `Identity`
+
+| Tier | Fastest test |
+|---|---|
+| **B** | Competent but ordinary |
+| **A** | Good and well-made |
+| **S** | Excellent and memorable |
+| **S+** | Benchmark-level and uniquely itself |
+
+It is designed for real songs, AI-generated music, lyrics, arrangements, and music-generation prompts.
 
 ---
 
@@ -57,12 +74,16 @@ A dance template with billions of views can still be A-tier, while an old show w
 spike.skill/
 ├── README.md
 ├── README_EN.md
-└── entertainment-rander/
+├── entertainment-rander/
+│   ├── README.md
+│   ├── README_EN.md
+│   ├── SKILL.md
+│   └── assets/
+│       └── hero.jpg
+└── music-quality-radar/
     ├── README.md
     ├── README_EN.md
-    ├── SKILL.md
-    └── assets/
-        └── hero.jpg
+    └── SKILL.md
 ```
 
 ---
