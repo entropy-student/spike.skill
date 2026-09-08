@@ -1,144 +1,144 @@
-# Meme Music Router（热梗音乐路由器）
+# Meme Music Router
 
-> A routing and creative-combination skill for turning **recent, already-qualified high-tier memes or hot topics** into strong music reinterpretation concepts without redefining hotspot, music-trend, or music-quality standards.
+> A framework-level orchestrator for meme-driven music production. It does **not** redefine what counts as a hot meme, a trending song, or good music. It live-invokes the appropriate upstream Skill and turns the latest outputs into a complete workflow.
 
-## Core boundary
+## Role
 
-The router does **not** decide on its own:
+`Meme Music Router` acts as an Orchestrator / Workflow Framework.
 
-- whether a meme/hot topic is S/A/B;
-- whether a song is currently trending;
-- whether the final music is good.
+It is responsible for:
 
-Those decisions belong to:
+- calling `entertainment-rander` for recent meme/hotspot candidates;
+- calling `music-trend-radar` for recent or resurfacing songs when needed;
+- combining person, scene, meme and music into production concepts;
+- choosing between **Original** and **Adaptation**;
+- managing confirmation, image, lyric and style-prompt handoffs;
+- calling `music-quality-radar` at the actual music-content stage;
+- assembling the final deliverables.
 
-- **Entertainment Rander** → hotspot/meme tier;
-- **Music Trend Radar** → current song trend;
-- **Music Quality Radar** → final musical quality.
+It is not responsible for storing or redefining:
 
-> **The three Skills above are judges. Meme Music Router is the director.**
+- what a strong meme is;
+- what a trending song is;
+- what good music is;
+- upstream scoring systems, platform weights, or music-quality methodology.
 
-## Default freshness
+> **Upstream Skills make professional judgments. The Router decides when to call them and what to do with their results.**
 
-Current project mode prioritizes:
+---
 
-1. today / last 24 hours;
-2. last 3 days;
-3. up to 7 days only when the topic is still actively spreading.
+## Upstream Skills
 
-By default, only Entertainment Rander **S / S+** topics enter the main production pool.
-
-## Four routes
-
-1. **Route A — Native music meme**: the meme is already tied to a song, lyric, performance, or BGM. Do not search for another song; instead find the strongest role, scene, identity callback, or musical reinterpretation.
-2. **Route B — Current hit reinterpretation**: use a current/recently resurfaced song only when Music Trend Radar confirms the song is actually hot and the narrative relationship is natural.
-3. **Route C — Classic song reinterpretation**: if current hits do not fit, use a highly recognizable classic song with a stronger identity/story connection.
-4. **Route D — Original music**: if no existing song truly fits, skip song matching and design an original song around the meme itself.
-
-Original music is not a downgrade. If Route D completes the meme better than borrowing a song, Route D should win.
-
-## Creative preferences
-
-When otherwise comparable, prioritize:
-
-**upbeat / energetic / rhythmic** > **dramatic / triumphant** > mid-tempo > slow emotional songs > slow sad ballads.
-
-Default to a **single-character POV** rather than frequent multi-character switching.
-
-The strongest concepts create an identity/story loop rather than merely sharing the same mood.
-
-## Calibration anchor
-
-Fixed S-tier anchor:
-
-> **Tang Yixin × Consort Qi / the blood-test accusation scene × “你嘴巴多毒我才不在乎” = S.**
-
-The performer behind the trending lyric is the same actor behind a classic role whose personality and famous scene naturally reinterpret the lyric.
-
-## Creative tiers
-
-| Tier | Definition | Typical reaction |
+| Need | Upstream Skill | Router redefines the domain? |
 |---|---|---|
-| **B** | It can fit | “Sure, that works.” |
-| **A** | Clever match | “That pairing is pretty good.” |
-| **A+** | Pre-S with a clear upgrade path | “This is close — one more layer could make it perfect.” |
-| **S** | Natural identity/story loop | “This song / idea belongs to this character.” |
-| **S+** | Creates a reusable new format | “I want to create another one using this method.” |
+| Recent memes / hotspots | `entertainment-rander` | No |
+| Recent / resurfacing songs | `music-trend-radar` | No |
+| Lyrics, arrangement and music quality | `music-quality-radar` | No |
+| Workflow, concept combination, Original vs Adaptation | `meme-music-router` | Yes, at orchestration level |
 
-A+ is not just “a slightly better A”. It means the hotspot has already passed the high-tier gate and the concept is close enough to S that the Router should keep exploring alternate routes, scenes, hooks, or identity loops.
+---
 
-## Default final output
+## Mandatory live invocation
 
-The main output normally shows only:
-
-- **S+**
-- **S**
-- **A+**
-
-Ordinary A/B concepts are hidden unless the user asks for a full calibration pool or boundary analysis.
-
-Do not invent S+ just to fill a quota. Do not promote ordinary A concepts to A+ merely to increase count.
-
-## Creative expansion requirement
-
-For each qualified hotspot, the Router should not stop at the first usable pairing. It should actively test:
-
-- native-music reinterpretation;
-- current-hit options;
-- classic-song options;
-- original-music options;
-- single-character identity callbacks;
-- stronger scenes or hooks;
-- what specifically would upgrade an A+ concept into S.
-
-The goal is not to list everything. The goal is to **search harder inside the high-quality pool**.
-
-## After the user confirms a concept: proactively offer a meme image
-
-When the user clearly locks a concept — for example, “use this one”, “pick #1”, “this works”, or equivalent — the Router must proactively ask once:
-
-> **“Want me to generate a meme image for this concept too?”**
-
-Rules:
-
-- ask proactively; do not wait for the user to remember;
-- do **not** generate automatically unless the user says yes;
-- ask only once unless the user later changes their mind;
-- keep the image tied to the confirmed character, scene, and core joke;
-- default visual goal: understandable in 1–3 seconds, one strong focal point, strong expression/action/contrast, minimal text;
-- after the image is generated, continue the already-confirmed music workflow instead of reopening concept selection;
-- if the user already says “confirm this and generate the meme image”, skip the extra question and generate directly.
-
-## Skill chain
+Every actual upstream Skill use must begin with a fresh read of the current GitHub version.
 
 ```text
-Entertainment Rander
-    ↓
-Recent S / S+ hotspot pool
-    ↓
-Meme Music Router
-    ↓
-Route A / B / C / D + creative expansion
-    ↓
-User confirms one concept
-    ↓
-Proactively ask whether to generate a meme image
-    ├─ Yes → generate image → continue confirmed concept
-    └─ No  → continue directly
-    ↓
-Music Trend Radar
-    ↓
-Only when Route B requires current-song validation
-    ↓
-Music Quality Radar
-    ↓
-Make the selected concept genuinely good music
-    ↓
-Music Prompt Generator
-    ↓
-Still being calibrated through real Suno/music-model generations
+Need a meme
+→ fresh-read entertainment-rander
+→ execute
+
+Need a trending song
+→ fresh-read music-trend-radar
+→ execute
+
+Need final lyrics / adaptation / style prompt
+→ fresh-read music-quality-radar
+→ execute
 ```
 
-## Current status
+Previous reads, assistant memory, summaries and cached interpretations do not count as a Skill invocation.
 
-**v0.2.1 — Calibrating**
+See:
+
+`references/LIVE_SKILL_INVOCATION_RULES.md`
+
+---
+
+## Two final production types
+
+### Original
+
+Create a new song when an existing song would be forced or when an original track serves the meme/person/scene better.
+
+### Adaptation
+
+Use an existing song when the source meme is musical, a current or classic song fits naturally, or the user explicitly chooses a song.
+
+Legacy Route A/B/C/D reasoning may still help internally, but the production-facing output is simply:
+
+```text
+Original / Adaptation
+```
+
+---
+
+## Default workflow
+
+```text
+User starts an episode
+↓
+Entertainment Rander (fresh read)
+↓
+Music Trend Radar (fresh read when needed)
+↓
+Router combines person × scene × music
+→ Original / Adaptation
+→ rank concepts
+↓
+User confirms
+↓
+Image stage
+→ use source references when an identifiable person/character/object/scene exists
+↓
+Music Quality Radar (fresh read again)
+↓
+Lyrics + style/arrangement prompt
+↓
+Final delivery
+```
+
+---
+
+## Image rule
+
+For identifiable people, characters, objects or iconic scenes:
+
+> **Reference first. Recognition first. Style second.**
+
+See:
+
+`references/IMAGE_REFERENCE_RULES.md`
+
+---
+
+## Music output rules
+
+See:
+
+`references/MUSIC_OUTPUT_RULES.md`
+
+Fixed orchestration constraints:
+
+- both Original and Adaptation must fresh-read `music-quality-radar` at the music-content node;
+- use clear section labels such as `[Verse]`, `[Chorus]`, `[Bridge]`, `[Outro]` when needed;
+- style/arrangement prompt target: **200–350 Chinese characters**;
+- hard maximum: **500 Chinese characters**;
+- keep only information that materially affects generation.
+
+---
+
+## Status
+
+**v0.3.0 — Orchestrator Build / Calibrating**
+
+Core change: the Router now stores orchestration logic and handoff contracts, not duplicated upstream domain definitions.
