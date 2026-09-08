@@ -1,75 +1,122 @@
 # Meme Music Router（热梗音乐路由器）
 
-> A routing skill for turning internet memes and hot topics into music-driven reinterpretations without forcing every idea through the same “find a trending song” pipeline.
+> A routing and creative-combination skill for turning **recent, already-qualified high-tier memes or hot topics** into strong music reinterpretation concepts without redefining hotspot, music-trend, or music-quality standards.
 
-## What it does
+## Core boundary
 
-The router starts from a meme or hot topic and selects the best musical treatment:
+The router does **not** decide on its own:
 
-1. **Route A — Native music meme**: the meme is already tied to a song, lyric, performance, or BGM; keep that musical memory and find the strongest role, scene, or identity reinterpretation.
-2. **Route B — Current hit reinterpretation**: use a currently trending or recently resurfaced song only when the relationship is genuinely natural.
-3. **Route C — Classic song reinterpretation**: if current hits do not fit, use a highly recognizable classic song with a stronger narrative or identity connection.
+- whether a meme/hot topic is S/A/B;
+- whether a song is currently trending;
+- whether the final music is good.
+
+Those decisions belong to:
+
+- **Entertainment Rander** → hotspot/meme tier;
+- **Music Trend Radar** → current song trend;
+- **Music Quality Radar** → final musical quality.
+
+> **The three Skills above are judges. Meme Music Router is the director.**
+
+## Default freshness
+
+Current project mode prioritizes:
+
+1. today / last 24 hours;
+2. last 3 days;
+3. up to 7 days only when the topic is still actively spreading.
+
+By default, only Entertainment Rander **S / S+** topics enter the main production pool.
+
+## Four routes
+
+1. **Route A — Native music meme**: the meme is already tied to a song, lyric, performance, or BGM. Do not search for another song; instead find the strongest role, scene, identity callback, or musical reinterpretation.
+2. **Route B — Current hit reinterpretation**: use a current/recently resurfaced song only when Music Trend Radar confirms the song is actually hot and the narrative relationship is natural.
+3. **Route C — Classic song reinterpretation**: if current hits do not fit, use a highly recognizable classic song with a stronger identity/story connection.
 4. **Route D — Original music**: if no existing song truly fits, skip song matching and design an original song around the meme itself.
 
-The key rule is simple:
-
-> **Do not force a trending song into the workflow just because the workflow has a song-matching step.**
+Original music is not a downgrade. If Route D completes the meme better than borrowing a song, Route D should win.
 
 ## Creative preferences
 
-When two ideas are otherwise comparable, prioritize:
+When otherwise comparable, prioritize:
 
 **upbeat / energetic / rhythmic** > **dramatic / triumphant** > mid-tempo > slow emotional songs > slow sad ballads.
 
 Default to a **single-character POV** rather than frequent multi-character switching.
 
-The strongest concepts usually create a real identity or story loop, not just a similar mood.
+The strongest concepts create an identity/story loop rather than merely sharing the same mood.
 
 ## Calibration anchor
 
-The fixed S-tier anchor is:
+Fixed S-tier anchor:
 
-> **Tang Yixin × Consort Qi / the blood-test accusation scene × “你嘴巴多毒我才不在乎” = S tier.**
+> **Tang Yixin × Consort Qi / the blood-test accusation scene × “你嘴巴多毒我才不在乎” = S.**
 
-Why it works: the performer who made the lyric trend is the same actor behind a classic role whose personality and famous scene naturally reinterprets that lyric. The joke/connection requires almost no explanation.
+The performer behind the trending lyric is the same actor behind a classic role whose personality and famous scene naturally reinterpret the lyric.
 
 ## Creative tiers
 
 | Tier | Definition | Typical reaction |
 |---|---|---|
-| **B** | It can work | “Sure, that fits.” |
+| **B** | It can fit | “Sure, that works.” |
 | **A** | Clever match | “That pairing is pretty good.” |
-| **S** | Natural narrative/identity loop | “That song belongs to this character.” |
-| **S+** | Creates a reusable new format | “I want to make another one using this method.” |
+| **A+** | Pre-S with a clear upgrade path | “This is close — one more layer could make it perfect.” |
+| **S** | Natural identity/story loop | “This song / idea belongs to this character.” |
+| **S+** | Creates a reusable new format | “I want to create another one using this method.” |
 
-S+ is intentionally rare. It means the work creates a pattern that generates follow-up works, not simply that it is a better S-tier edit.
+A+ is not just “a slightly better A”. It means the hotspot has already passed the high-tier gate and the concept is close enough to S that the Router should keep exploring alternate routes, scenes, hooks, or identity loops.
+
+## Default final output
+
+The main output normally shows only:
+
+- **S+**
+- **S**
+- **A+**
+
+Ordinary A/B concepts are hidden unless the user asks for a full calibration pool or boundary analysis.
+
+Do not invent S+ just to fill a quota. Do not promote ordinary A concepts to A+ merely to increase count.
+
+## Creative expansion requirement
+
+For each qualified hotspot, the Router should not stop at the first usable pairing. It should actively test:
+
+- native-music reinterpretation;
+- current-hit options;
+- classic-song options;
+- original-music options;
+- single-character identity callbacks;
+- stronger scenes or hooks;
+- what specifically would upgrade an A+ concept into S.
+
+The goal is not to list everything. The goal is to **search harder inside the high-quality pool**.
 
 ## Skill chain
 
 ```text
 Entertainment Rander
     ↓
-Find a meme / hot topic worth playing with
+Recent S / S+ hotspot pool
     ↓
 Meme Music Router
     ↓
-Choose Route A / B / C / D
+Route A / B / C / D + creative expansion
     ↓
 Music Trend Radar
     ↓
-Only when current-song discovery is actually needed
+Only when Route B requires current-song validation
     ↓
 Music Quality Radar
     ↓
-Turn the concept into a strong musical brief
+Make the selected concept genuinely good music
     ↓
 Music Prompt Generator
     ↓
-Current status: UNVERIFIED
+Still being calibrated through real Suno/music-model generations
 ```
-
-The final music-prompt layer has not yet been validated through repeated real Suno/music-model generations. The router therefore outputs a structured `MUSIC_BRIEF` rather than pretending that a stable final prompt recipe already exists.
 
 ## Current status
 
-**v0.1.0 — Calibrating**
+**v0.2.0 — Calibrating**
