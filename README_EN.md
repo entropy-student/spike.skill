@@ -2,7 +2,7 @@
 
 # ⚡ spike.skill
 
-### Turning scattered experience into reusable AI skills
+### Turning useful thinking into reusable AI skills
 
 [简体中文](./README.md) · [English](./README_EN.md)
 
@@ -16,7 +16,7 @@
 
 `spike.skill` is a personal **AI Skill Library**.
 
-It is not meant to be a dump of one-off answers or random prompts. It is a place for methods that have been tested in real use and are worth preserving as reusable systems:
+It is not a prompt dump or a pile of one-off answers. It preserves methods that have been tested, calibrated, and are worth reusing:
 
 - judgment frameworks
 - prompting systems
@@ -25,11 +25,7 @@ It is not meant to be a dump of one-off answers or random prompts. It is a place
 - repeatable operating methods
 - handoff-friendly execution standards
 
-The goal is simple:
-
 > **Turn one useful way of thinking into a capability you can call again later.**
-
-Each skill aims to be **clear in purpose, operational in rules, reproducible in output, easy to hand off, and expandable over time.**
 
 ---
 
@@ -37,25 +33,20 @@ Each skill aims to be **clear in purpose, operational in rules, reproducible in 
 
 ## 🎯 [Entertainment Rander](./entertainment-rander/)
 
-> An AI skill for identifying and ranking **Chinese internet entertainment memes**.
+> A ranking system for Chinese internet entertainment memes.
 >
-> Instead of chasing raw hot-search volume, it asks a more useful question: which memes flare up for a day, and which ones grow into reusable **meme universes** that people keep quoting, imitating, excavating, parodying, remixing, and expanding?
+> Instead of chasing hot-search volume, it distinguishes memes that merely flare up from those that grow into reusable **meme universes** people keep quoting, imitating, excavating, remixing, and building on.
 
-### Especially useful for
-
-- building a **daily / weekly meme radar**
-- choosing pop-culture topics for posts, covers, and short videos
-- deciding whether a meme belongs to **S+ / S / A / B**
-- building a more stable and transferable sense of internet-culture judgment
-- looking back at old trends and separating “once viral” from “actually lasting”
-
-**Core tiers:** `S+` · `S` · `A` · `B`
-
-![Entertainment Rander](./entertainment-rander/assets/entertainment-radar.jpg)
+![Entertainment Rander](./entertainment-rander/assets/hero.jpg)
 
 ### The rule in one line
 
 > **B: People say it · A: People imitate it · S: People build on it · S+: People use it to create the next meme.**
+
+Useful for daily / weekly meme radars, content topic selection, trend evaluation, meme retrospectives, and reusable internet-culture judgment.
+
+→ [Entertainment Rander homepage](./entertainment-rander/)  
+→ [Full Skill rules](./entertainment-rander/SKILL.md)
 
 ---
 
@@ -70,30 +61,20 @@ spike.skill/
     ├── README_EN.md
     ├── SKILL.md
     └── assets/
-        └── entertainment-radar.jpg
+        └── hero.jpg
 ```
 
 ---
 
-## 🧩 What makes a skill worth keeping?
+## 🧩 What makes a method worth keeping as a skill?
 
-A method belongs in this repository when it satisfies at least several of these conditions:
+A strong candidate is:
 
-1. **It is reusable** — the same class of problem will appear again.
-2. **It has been calibrated** — the rules have been revised through examples, counterexamples, and feedback.
-3. **Another AI can run it** — it does not depend entirely on hidden conversational context.
-4. **It has clear inputs and outputs** — you know when to invoke it and what it should produce.
-5. **It can evolve** — new examples should improve the skill rather than force a full rewrite.
-
----
-
-## 🚀 Philosophy
-
-The long-term goal is to turn this repository into a personal **AI skill library**.
-
-Complex judgments should not have to start from scratch every time. Proven methods should be callable. Good new workflows should be promoted into reusable skills.
-
-The asset worth preserving is not a pile of answers—it is an increasingly mature **personal AI methodology stack**.
+1. **Reusable** — the same class of problem will appear again.
+2. **Calibrated** — the rules have been corrected through examples and counterexamples.
+3. **Transferable** — another AI can run it without hidden conversational context.
+4. **Operational** — inputs, outputs, and invocation conditions are clear.
+5. **Evolvable** — new examples improve the skill instead of forcing a rewrite.
 
 ---
 
