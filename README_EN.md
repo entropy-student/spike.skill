@@ -2,7 +2,7 @@
 
 # ⚡ spike.skill
 
-### Small, reusable AI skills built from real workflows
+### Turning scattered experience into reusable AI skills
 
 [简体中文](./README.md) · [English](./README_EN.md)
 
@@ -14,17 +14,44 @@
 
 ---
 
-A personal library for reusable AI workflows and practical skills.
+`spike.skill` is a personal **AI Skill Library**.
 
-Current skill:
+It is not meant to be a dump of one-off answers or random prompts. It is a place for methods that have been tested in real use and are worth preserving as reusable systems:
+
+- judgment frameworks
+- prompting systems
+- scoring rubrics
+- research workflows
+- repeatable operating methods
+- handoff-friendly execution standards
+
+The goal is simple:
+
+> **Turn one useful way of thinking into a capability you can call again later.**
+
+Each skill aims to be **clear in purpose, operational in rules, reproducible in output, easy to hand off, and expandable over time.**
+
+---
+
+## 🌟 Current Skill
 
 ## 🎯 [Entertainment Rander](./entertainment-rander/)
 
-> A ranking system for Chinese internet entertainment memes. It ignores raw trending-news volume and focuses on whether a meme merely gets repeated—or keeps generating new creative material.
+> An AI skill for identifying and ranking **Chinese internet entertainment memes**.
+>
+> Instead of chasing raw hot-search volume, it asks a more useful question: which memes flare up for a day, and which ones grow into reusable **meme universes** that people keep quoting, imitating, excavating, parodying, remixing, and expanding?
+
+### Especially useful for
+
+- building a **daily / weekly meme radar**
+- choosing pop-culture topics for posts, covers, and short videos
+- deciding whether a meme belongs to **S+ / S / A / B**
+- building a more stable and transferable sense of internet-culture judgment
+- looking back at old trends and separating “once viral” from “actually lasting”
 
 **Core tiers:** `S+` · `S` · `A` · `B`
 
-![Entertainment Rander](./entertainment-rander/assets/entertainment-radar.svg)
+![Entertainment Rander](./entertainment-rander/assets/entertainment-radar.jpg)
 
 ### The rule in one line
 
@@ -32,4 +59,48 @@ Current skill:
 
 ---
 
-More reusable skills will be added over time.
+## 🧭 Repository Structure
+
+```text
+spike.skill/
+├── README.md
+├── README_EN.md
+└── entertainment-rander/
+    ├── README.md
+    ├── README_EN.md
+    ├── SKILL.md
+    └── assets/
+        └── entertainment-radar.jpg
+```
+
+---
+
+## 🧩 What makes a skill worth keeping?
+
+A method belongs in this repository when it satisfies at least several of these conditions:
+
+1. **It is reusable** — the same class of problem will appear again.
+2. **It has been calibrated** — the rules have been revised through examples, counterexamples, and feedback.
+3. **Another AI can run it** — it does not depend entirely on hidden conversational context.
+4. **It has clear inputs and outputs** — you know when to invoke it and what it should produce.
+5. **It can evolve** — new examples should improve the skill rather than force a full rewrite.
+
+---
+
+## 🚀 Philosophy
+
+The long-term goal is to turn this repository into a personal **AI skill library**.
+
+Complex judgments should not have to start from scratch every time. Proven methods should be callable. Good new workflows should be promoted into reusable skills.
+
+The asset worth preserving is not a pile of answers—it is an increasingly mature **personal AI methodology stack**.
+
+---
+
+<div align="center">
+
+### Small skills. Reusable leverage.
+
+**Saving the method matters more than saving the answer.**
+
+</div>
