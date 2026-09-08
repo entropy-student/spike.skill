@@ -30,41 +30,12 @@
 
 ## 🌟 Skills
 
-### 🎯 Entertainment Rander
+| Skill | 用途 | 入口 |
+|---|---|---|
+| **Entertainment Rander** | 中文互联网娱乐热梗识别与分级 | [进入](./entertainment-rander/) |
+| **Music Quality Radar** | 音乐质量、编曲、歌词与审美分析 | [进入](./music-quality-radar/) |
 
-[进入 Skill →](./entertainment-rander/)
-
-> 一个专门识别 **中文互联网真正娱乐热梗** 的雷达。它不问“今天谁上热搜”，而问：**什么只是被看见，什么会被复读，什么会被模仿，什么正在长成一个梗宇宙？**
-
-![Entertainment Rander](./entertainment-rander/assets/hero.jpg)
-
-| 等级 | 最快判断 |
-|---|---|
-| **B** | 大家会说 |
-| **A** | 大家会模仿 |
-| **S** | 大家会继续往下编 |
-| **S+** | 大家会拿它创造下一代梗 |
-
----
-
-### 🎧 Music Quality Radar
-
-[进入 Skill →](./music-quality-radar/)
-
-> 一个用普通语言解释 **“这首歌为什么好听 / 为什么普通”** 的音乐审美 Skill。
-
-它会从七个方面判断：
-
-`旋律` · `编曲` · `歌词` · `情绪推进` · `演唱/演奏` · `声音质感` · `独特性`
-
-| 等级 | 最快判断 |
-|---|---|
-| **B** | 能听，但普通 |
-| **A** | 好听，完成度高 |
-| **S** | 优秀，听完会记住 |
-| **S+** | 标杆级，有一种“只能是它”的感觉 |
-
-它特别适合拿来分析真实歌曲、AI 音乐、歌词、编曲和音乐生成 Prompt。
+每个 Skill 的完整介绍、示例、规则和素材都只保存在各自子文件夹中，根目录只作为总索引。
 
 ---
 
@@ -79,7 +50,6 @@ spike.skill/
 │   ├── README_EN.md
 │   ├── SKILL.md
 │   └── assets/
-│       └── hero.jpg
 └── music-quality-radar/
     ├── README.md
     ├── README_EN.md
