@@ -6,7 +6,7 @@
 
 **不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
 
-![Skills](https://img.shields.io/badge/skills-4-blue?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-5-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
 ![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
 
@@ -20,6 +20,7 @@
 |---|---|---:|---|
 | 📈 **Acquisition Growth Radar（获客增长雷达）** | 判断项目为什么还没挣到钱、当前卡在哪层证据、下一步最值得验证什么 | v0.2 Frozen | [进入](./acquisition-growth-radar/) |
 | 🎯 **Entertainment Rander（娱乐热梗雷达）** | 区分普通热点、模仿型热梗与真正能持续增殖的互联网梗文化 | Active | [进入](./entertainment-rander/) |
+| 🎭 **Meme Music Router（热梗音乐路由器）** | 从热点/热梗出发，判断该沿用原生音乐、匹配近期热歌/经典歌，还是跳过找歌直接原创 | v0.1 Calibrating | [进入](./meme-music-router/) |
 | 🎧 **Music Quality Radar（音乐质量雷达）** | 不依赖复杂乐理，判断一首歌为什么好听、哪里普通、最值得怎么改 | Calibrating | [进入](./music-quality-radar/) |
 | 🎵 **Music Trend Radar（音乐趋势雷达）** | 跨平台识别真正热门、正在爆发和具有持续传播能力的歌曲 | Active | [进入](./music-trend-radar/) |
 
@@ -114,6 +115,12 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 ```text
 按 Entertainment Rander 筛选最近真正值得关注的娱乐热梗，
 不要把单纯热搜或播放量当成梗力。
+```
+
+```text
+按 Meme Music Router 处理这个热点，
+先判断应该走原生音乐、近期热歌、经典歌曲还是原创音乐，
+不要为了找热歌而硬配。
 ```
 
 ---
