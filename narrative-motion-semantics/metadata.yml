@@ -1,0 +1,14 @@
+name: narrative-motion-semantics
+display_name: Narrative Motion Semantics（叙事动效语义库）
+description: 将旁白和信息按流程、时间、对比、因果语义路由到 Narrative Motion Gallery 模板、调用协议与运行时的叙事动效 Skill。
+version: 0.1.0
+status: incomplete
+language:
+  - zh-CN
+  - en
+semantic_packs:
+  - process
+  - time
+  - comparison
+  - causal
+notes: "统一 Skill 尚未完成；四个导入语义包保留各自原始稳定状态。"
