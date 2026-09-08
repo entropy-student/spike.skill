@@ -2,9 +2,9 @@
 
 # 🎯 Entertainment Rander
 
-### A radar and ranking skill for Chinese internet entertainment memes
+### A meme radar skill for Chinese internet entertainment culture
 
-**Not a trending-news tracker. It finds memes people actually keep remixing, quoting, excavating, and building on.**
+**Not a hot-search recap. Not a celebrity-news digest. It is built to find the memes people genuinely keep replaying, remixing, excavating, parodying, and expanding.**
 
 [简体中文](./README.md) · [English](./README_EN.md) · [Skill Rules](./SKILL.md)
 
@@ -16,17 +16,49 @@
 
 ---
 
-![Entertainment Meme Radar](./assets/entertainment-radar.svg)
+![Entertainment Meme Radar](./assets/entertainment-radar.jpg)
 
-## ✨ What does it solve?
+## ✨ What is this?
 
-A normal trending list tells you **what made the news today**.
+Entertainment Rander is a ranking and evaluation skill focused on **Chinese internet entertainment memes**.
 
-Entertainment Rander asks a different question:
+It is not satisfied with answering:
 
-> **What is the Chinese internet actually playing with right now—and which memes are growing into reusable meme universes instead of dying after one trend cycle?**
+> “Who trended today?”
 
-It deliberately filters out celebrity news, one-day hot searches, overly serious cultural events, and viral content with huge views but little creative remixing.
+It is designed to answer:
+
+> **“What is the Chinese internet actually playing with right now—and which memes are turning into reusable meme universes instead of disappearing after one trend cycle?”**
+
+That means it deliberately filters out:
+
+- plain celebrity news
+- one-off trending moments or accidental slip-ups
+- overly serious cultural events
+- viral content with huge view counts but weak creative afterlife
+
+The value of this skill is not merely recency. It is the ability to identify **internet-native cultural phenomena worth tracking and reusing**.
+
+---
+
+## 💡 Why is it useful?
+
+It is especially helpful if you work on:
+
+- trend selection
+- entertainment topic curation
+- covers, scripts, captions, or short-form content ideas
+- meme retrospectives
+- recurring social-media columns
+- fast judgment calls like “Does this qualify as an S-tier meme?”
+
+A normal trending list only tells you **what has attention**.
+
+Content work needs a better question:
+
+> **What is actually fun to play with, what keeps growing, and what will die immediately?**
+
+Entertainment Rander is built for exactly that.
 
 ---
 
@@ -48,19 +80,43 @@ It deliberately filters out celebrity news, one-day hot searches, overly serious
 
 ---
 
-## 🧠 Evaluation dimensions
+## 🧠 How does it judge?
 
-The skill considers:
+The skill focuses on eight dimensions:
 
 `Entertainment value` · `Cross-circle reach` · `Longevity` · `Remixability` · `Source independence` · `Derivative potential` · `Creative density` · `Internet-native feel`
 
-The key question is not:
+The core question is not:
 
 > “How many people watched it?”
 
 It is:
 
-> **“Are people just watching and repeating—or are they imitating, remixing, and creating new layers?”**
+> **“Are people merely watching, repeating, and imitating—or have they started generating new layers?”**
+
+That is why:
+
+- a meme with billions of views can still be only **A-tier**
+- a smaller but more generative phenomenon can be **S-tier** if it produces characters, reinterpretations, storylines, archaeology, and an entire logic system
+
+---
+
+## 🔍 What is it especially good at finding?
+
+### 📼 Content archaeology
+Old shows, dramas, or clips suddenly become shared remix libraries. People rewatch frame by frame, reinterpret characters, rebuild relationships, and create new readings.
+
+### 🧪 Character schools
+A personality stops being just a trending topic and grows into a vocabulary, theory system, or meme discipline of its own.
+
+### 🌀 Absurd meme systems
+The content develops its own language, logic, characters, and worldbuilding. People do not merely copy it—they extend it.
+
+### 🎵 Sticky audio memes
+Not just sing-alongs or dance challenges, but sounds that keep entering new contexts and generating new formats.
+
+### 🧬 Meme parents
+The most valuable type: a meme that keeps generating child memes and repeatedly revives inside future events.
 
 ---
 
@@ -82,26 +138,33 @@ Does “XXX” qualify as an S-tier meme? Evaluate it using Entertainment Rander
 
 ---
 
-## 🔍 What it is especially good at finding
+## 🧪 The most useful test
 
-- 📼 **Content archaeology** — old shows or dramas suddenly becoming shared remix libraries
-- 🧪 **Character “schools”** — one personality spawning a vocabulary, theory system, or meme discipline
-- 🌀 **Absurd meme systems** — content with its own logic, language, characters, and worldbuilding
-- 🎵 **Sticky audio memes** — not just sing-alongs, but sounds that keep producing new formats
-- 🧬 **Meme parents** — formats that continuously generate child memes and revive in new contexts
+When you see something viral, do not begin with:
+
+> “How many views does it have?”
+
+Ask instead:
+
+1. Do people merely know it, or do they actively play with it?
+2. Are they copying it, or creating new material from it?
+3. Can it survive after the original event ends?
+4. Can it grow into a shared language, character system, or meme universe?
+
+The more often the answer is “yes,” the closer it is to S or S+.
 
 ---
 
-## ⚠️ One rule matters most
+## ⚠️ The most important rule
 
 **Virality is not the same as tier.**
-
-A dance with billions of views can still be A-tier if everyone is simply copying the same template. A smaller phenomenon can be S-tier when it keeps generating characters, stories, reinterpretations, archaeology, and new rules.
 
 > **B: People say it.**  
 > **A: People imitate it.**  
 > **S: People keep building on it.**  
 > **S+: People use it to create the next meme.**
+
+If you remember these four lines, you already understand the core of the skill.
 
 ---
 
