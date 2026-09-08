@@ -93,6 +93,22 @@ For each qualified hotspot, the Router should not stop at the first usable pairi
 
 The goal is not to list everything. The goal is to **search harder inside the high-quality pool**.
 
+## After the user confirms a concept: proactively offer a meme image
+
+When the user clearly locks a concept — for example, “use this one”, “pick #1”, “this works”, or equivalent — the Router must proactively ask once:
+
+> **“Want me to generate a meme image for this concept too?”**
+
+Rules:
+
+- ask proactively; do not wait for the user to remember;
+- do **not** generate automatically unless the user says yes;
+- ask only once unless the user later changes their mind;
+- keep the image tied to the confirmed character, scene, and core joke;
+- default visual goal: understandable in 1–3 seconds, one strong focal point, strong expression/action/contrast, minimal text;
+- after the image is generated, continue the already-confirmed music workflow instead of reopening concept selection;
+- if the user already says “confirm this and generate the meme image”, skip the extra question and generate directly.
+
 ## Skill chain
 
 ```text
@@ -103,6 +119,12 @@ Recent S / S+ hotspot pool
 Meme Music Router
     ↓
 Route A / B / C / D + creative expansion
+    ↓
+User confirms one concept
+    ↓
+Proactively ask whether to generate a meme image
+    ├─ Yes → generate image → continue confirmed concept
+    └─ No  → continue directly
     ↓
 Music Trend Radar
     ↓
@@ -119,4 +141,4 @@ Still being calibrated through real Suno/music-model generations
 
 ## Current status
 
-**v0.2.0 — Calibrating**
+**v0.2.1 — Calibrating**
