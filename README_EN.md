@@ -30,41 +30,12 @@ It is not a prompt dump and not a collection of one-off answers. It preserves me
 
 ## 🌟 Skills
 
-### 🎯 Entertainment Rander
+| Skill | Purpose | Open |
+|---|---|---|
+| **Entertainment Rander** | Identify and rank Chinese internet entertainment memes | [Open](./entertainment-rander/) |
+| **Music Quality Radar** | Analyze music quality, arrangement, lyrics, and aesthetics | [Open](./music-quality-radar/) |
 
-[Open Skill →](./entertainment-rander/)
-
-> A radar for **Chinese internet entertainment memes that actually have cultural staying power**. It asks what is merely seen, what gets repeated, what gets imitated, and what is growing into a meme universe.
-
-![Entertainment Rander](./entertainment-rander/assets/hero.jpg)
-
-| Tier | Fastest test |
-|---|---|
-| **B** | People say it |
-| **A** | People imitate it |
-| **S** | People keep building on it |
-| **S+** | People use it to create the next meme |
-
----
-
-### 🎧 Music Quality Radar
-
-[Open Skill →](./music-quality-radar/)
-
-> A plain-language music evaluation skill for answering **why a song works, why it feels ordinary, and what should be improved first.**
-
-It evaluates seven dimensions:
-
-`Melody` · `Arrangement` · `Lyrics` · `Emotional arc` · `Performance` · `Production` · `Identity`
-
-| Tier | Fastest test |
-|---|---|
-| **B** | Competent but ordinary |
-| **A** | Good and well-made |
-| **S** | Excellent and memorable |
-| **S+** | Benchmark-level and uniquely itself |
-
-It is designed for real songs, AI-generated music, lyrics, arrangements, and music-generation prompts.
+Each skill keeps its full introduction, examples, rules, and assets inside its own subfolder. The repository root is only the master index.
 
 ---
 
@@ -79,7 +50,6 @@ spike.skill/
 │   ├── README_EN.md
 │   ├── SKILL.md
 │   └── assets/
-│       └── hero.jpg
 └── music-quality-radar/
     ├── README.md
     ├── README_EN.md
