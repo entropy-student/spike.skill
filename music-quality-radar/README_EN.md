@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎧 Music Quality Radar
+# 🎧 Music Quality Radar（音乐质量雷达）
 
 ### Understand why a song works — without needing a music degree
 
