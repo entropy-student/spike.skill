@@ -1,20 +1,12 @@
 # Meme Music Router
 
-> Starting with v0.4.0, this is no longer a router that assumes every meme should become a song. It is a **meme-first creative orchestrator**.
+> v0.4.1 is a **meme-first creative orchestrator**: find the meme first, lock the meme core and episode name, then make image and music serve that same concept.
 
 ## Core goal
 
-> **Find a strong meme → lock the meme core → choose the funniest presentation form → amplify the meme.**
+> **Find a strong meme → lock the meme core → name the episode before production → choose the funniest treatment → amplify the meme.**
 
-Possible forms:
-
-- image / meme poster
-- dialogue / mini-sketch
-- song
-- short video
-- mixed format
-
-Music is optional.
+> **Meme first. Name locks the concept. Format amplifies it.**
 
 ---
 
@@ -23,111 +15,102 @@ Music is optional.
 ```text
 Entertainment Rander (LIVE)
 ↓
-Find S+/S meme candidates
+Find S+/S memes
 ↓
 Meme Core Lock
-→ person / scene
-→ core action / conflict / iconic line
-→ why it is funny
-→ parent meme vs child unit
-→ must-not-drift items
+↓
+Creative Name Lock
+→ episode_name
+→ one_sentence_play
 ↓
 Presentation Router
 → image / dialogue / song / short video / mixed
 ↓
-Call only the upstream Skills required by that form
+User confirms concept + name + treatment
 ↓
-Generate
+If suitable for a standard Meme Music Episode
+→ Name
+→ Titled image
+→ Lyrics
+→ Melody / style prompt
 ↓
-Meme Recognition / Binding / Amplification Tests
+Recognition / Binding / Amplification / Name Consistency Tests
 ```
-
-> **Meme first. Format second. Quality third.**
 
 ---
 
-## Why v0.4.0 changed the architecture
+## Why the name is locked early
 
-A failure pattern in the previous workflow was:
+The name is not final packaging. It is the creative anchor for the entire episode.
 
-```text
-hot meme
-→ force it into music
-→ make the song theme more “artistic”
-→ lose the meme itself
-```
-
-Calibration example:
+Example:
 
 ```text
-Source meme: Xue Zhenzhu storms into the office to confront Ling Ling / the mistress
-Selected derivative: Indian-cinema musical version
-Wrong song theme: “Put Everything on the Table”
+Source meme: Xue Zhenzhu storms into the office to find Ling Ling / confront the mistress
+Treatment: Indian-cinema musical version
 ```
 
-The song was no longer about the original meme conflict.
+Good directions remain bound to that meme, such as:
 
-Correct logic:
+- “Ling Ling, Come Out”
+- “I Came Here for Ling Ling”
+- “Find the Mistress — Indian Musical Version”
 
-```text
-WHAT is being played: find Ling Ling / confront the mistress / storm into the office
-HOW it is played: Indian-cinema song-and-dance
-```
+A generic title like “Put Everything on the Table” fails because it changes the meme into a different theme.
 
-> **Music amplifies the meme. Music does not replace the meme.**
-
-See:
-
-`references/MEME_AMPLIFICATION_RULES.md`
+Once confirmed, the image title, lyric theme, hook and music prompt must all stay under the same creative lock.
 
 ---
 
-## Upstream Skills
+## Standard four-deliverable package
 
-| Need | Skill |
-|---|---|
-| Recent meme judgment | `entertainment-rander` |
-| Current song heat, only when relevant | `music-trend-radar` |
-| Lyrics / arrangement / music review, only after song is selected | `music-quality-radar` |
+Only enter the standard Meme Music Episode when image + music genuinely amplify the meme, or the user explicitly chooses that mode.
 
-Every actual upstream use starts with a fresh GitHub read:
+Final deliverables:
 
-`references/LIVE_SKILL_INVOCATION_RULES.md`
+1. **Episode name**
+2. **Image** — must visibly include that title and show source meme + selected treatment
+3. **Lyrics**
+4. **Melody / style prompt**
+
+All four share the same `creative_lock`.
+
+Do not force a meme into music just to complete the package.
 
 ---
 
 ## Image rules
 
-The image must preserve both:
+The image must preserve:
 
 ```text
 source meme recognizability
 +
 selected derivative recognizability
++
+locked episode title
 ```
 
-For identifiable people or iconic scenes, source references come first.
+Use source references for identifiable people and iconic scenes.
 
 Final image prompt:
 
 - recommended: 80–160 Chinese characters or equivalent brevity
-- **hard max: 200 Chinese characters or equivalent**
-- let reference images carry identity details instead of repeating them in a long prompt
+- hard max: 200 Chinese characters or equivalent
+- reference images should carry identity details
+- the visible title must match `episode_name`
 
-See:
-
-`references/IMAGE_REFERENCE_RULES.md`
+See: `references/IMAGE_REFERENCE_RULES.md`
 
 ---
 
 ## Music rules
 
-Only enter the music node when music is actually the best meme amplifier.
-
 Before calling `music-quality-radar`, lock:
 
 ```yaml
 music_meme_lock:
+  episode_name:
   meme_core:
   selected_derivative:
   music_role: amplifier
@@ -136,50 +119,50 @@ music_meme_lock:
   forbidden_theme_drift:
 ```
 
-Fixed requirements:
+Fixed rules:
 
-- song theme must directly inherit the meme action / conflict / iconic line
-- title, hook and chorus should carry clear meme anchors
-- do not replace the meme with a generic new theme such as communication, growth, dignity, or empowerment unless that is already part of the meme
-- style/arrangement prompt target: 200–350 Chinese characters; hard max 500
+- song theme inherits the meme action / conflict / iconic line
+- lyrics and hook cannot invent a new theme that conflicts with the episode name
+- melody / style prompt only explains how music should perform the meme
+- prompt target: 200–350 Chinese characters; hard max 500
 
-See:
+See: `references/MUSIC_OUTPUT_RULES.md`
 
-`references/MUSIC_OUTPUT_RULES.md`
+---
+
+## Upstream Skills
+
+| Need | Skill |
+|---|---|
+| Recent meme judgment | `entertainment-rander` |
+| Current song heat when relevant | `music-trend-radar` |
+| Lyrics / melody-style prompt / music review | `music-quality-radar` |
+
+Every actual upstream use starts with a fresh GitHub read.
 
 ---
 
 ## Flexible output language
 
-Images, dialogue, lyrics, hooks and titles are not locked to Chinese.
+Names, image titles, dialogue, lyrics and hooks are not locked to Chinese.
 
 > **Use the language that makes the meme land best.**
 
-See:
-
-`references/LANGUAGE_FLEXIBILITY_RULES.md`
+See: `references/LANGUAGE_FLEXIBILITY_RULES.md`
 
 ---
 
 ## Final gates
 
-### Meme Recognition
-Can people who know the source recognize what meme is being played without extra explanation?
-
-### Meme Binding
-If you swap the character name, could the same output fit many unrelated memes almost unchanged?
-
-If yes, it is too generic.
-
-### Amplification
-Did the chosen format actually make the meme funnier, sharper, more absurd, more satisfying, or easier to spread?
-
-“Prettier / more musical / more professional” alone is not enough.
+1. **Meme Recognition** — can people recognize what meme is being played?
+2. **Meme Binding** — could the same output fit many unrelated memes after only changing the name? If yes, it is too generic.
+3. **Amplification** — did the treatment actually make the meme funnier, sharper, more absurd or more satisfying?
+4. **Name Consistency** — do the name, image, lyrics, hook and music prompt still express the same meme + treatment?
 
 ---
 
 ## Status
 
-**v0.4.0 — Meme-first Orchestrator / Calibrating**
+**v0.4.1 — Meme-first + Creative Name Lock / Calibrating**
 
-> **The meme is the subject. Every generation capability is only a performance tool.**
+> **The meme is the subject. The name locks the concept. Image and music perform it.**
