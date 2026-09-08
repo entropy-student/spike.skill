@@ -1,4 +1,4 @@
-# Music Taste Profiler
+# Music Taste Profiler（音乐口味画像）
 
 > Analyze authorized playlists and liked songs to answer: **what music do you actually like, and why?**
 
