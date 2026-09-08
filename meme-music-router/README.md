@@ -1,162 +1,118 @@
 # Meme Music Router（热梗音乐路由器）
 
-> 一个框架级音乐内容编排器：**不自己定义什么是热梗、热歌或好音乐，只负责在正确的时间现场调用正确的 Skill，并把结果组织成完整作品。**
+> v0.4.0 开始，它不再是“默认把热梗做成歌”的 Router，而是一个 **Meme-first 创意编排器**。
 
-## 它的角色
+## 一句话目标
 
-`Meme Music Router` 更接近 Orchestrator / Workflow Framework，而不是另一个专业评分器。
+> **找到真正的热梗 → 锁定梗核 → 选择最好玩的演绎形式 → 把原梗放大。**
 
-它负责：
+形式可以是：
 
-- 调用 `Entertainment Rander` 找近期热梗；
-- 调用 `Music Trend Radar` 找 / 验证近期热歌；
-- 把人物、场景、热点和歌曲组合成选题；
-- 决定最终走【原创】还是【改编】；
-- 管理用户确认、配图、歌词、曲风提示词之间的流程；
-- 在歌曲内容阶段调用 `Music Quality Radar`；
-- 把多个专业结果组装成最终交付。
+- 图片 / 梗图
+- 台词 / 小剧场
+- 歌曲
+- 短视频
+- Mixed
 
-它不负责：
+音乐只是可选放大方式之一。
 
-- 定义什么叫热梗；
-- 定义什么叫热门歌曲；
-- 定义什么叫好音乐；
-- 保存上游 Skill 的评分表、榜单权重或音乐审美细则。
+---
 
-> **上游 Skill 负责专业判断；Router 负责什么时候叫谁来，以及拿到结果以后怎么办。**
+## 核心架构
+
+```text
+Entertainment Rander（LIVE）
+↓
+找到 S+/S 热梗
+↓
+Meme Core Lock
+→ 人物 / 场景
+→ 核心动作 / 冲突 / 原句
+→ 为什么好笑
+→ parent / child 分开
+→ 不可漂移项
+↓
+Presentation Router
+→ 图片 / 台词 / 歌曲 / 短视频 / Mixed
+↓
+只调用当前形式需要的上游 Skill
+↓
+输出
+↓
+Meme Recognition / Binding / Amplification Test
+```
+
+> **Meme first. Format second. Quality third.**
+
+---
+
+## 为什么要做这次 v0.4.0 重构
+
+旧流程容易变成：
+
+```text
+热梗
+→ 想办法做歌
+→ 歌曲主题越来越像“作品”
+→ 原梗反而被稀释
+```
+
+真实校准反例：
+
+```text
+原梗：薛甄珠冲进办公室找凌玲 / 手撕小三
+选中二创：印度电影歌舞版
+错误主题：《把话摊开》
+```
+
+问题不是歌不好，而是**主题漂移了**。
+
+正确逻辑：
+
+```text
+演什么：找小三 / 找凌玲 / 上门手撕
+怎么演：印度电影歌舞
+```
+
+> **音乐是梗的放大器，不是新的主题生成器。**
+
+详见：
+
+`references/MEME_AMPLIFICATION_RULES.md`
 
 ---
 
 ## 上游 Skills
 
-| 需要什么 | Router 调谁 | Router 自己做不做专业判断 |
-|---|---|---|
-| 近期热梗 / 热点 | `entertainment-rander` | 不做 |
-| 近期热歌 / 翻红歌曲 | `music-trend-radar` | 不做 |
-| 歌词、编曲、音乐质量 | `music-quality-radar` | 不做 |
-| 整体流程、创意组合、原创/改编选择 | `meme-music-router` | 做 |
+| 需要什么 | 调用 |
+|---|---|
+| 判断近期热梗 | `entertainment-rander` |
+| 需要判断当前热歌时 | `music-trend-radar` |
+| 最终选择歌曲后，写词 / 编曲 / 审查 | `music-quality-radar` |
 
----
-
-## 最重要的运行规则：每次都现场读取
-
-Router 每一次真正调用上游 Skill 时，都必须重新读取 GitHub 当前版本。
-
-```text
-需要热梗
-→ 现场读取 entertainment-rander
-→ 执行
-
-需要热歌
-→ 现场读取 music-trend-radar
-→ 执行
-
-需要正式写词 / 改词 / 曲风提示词
-→ 现场读取 music-quality-radar
-→ 执行
-```
-
-不能使用：
-
-- 上一次读过的版本；
-- 助手记忆；
-- 对 Skill 的摘要；
-- 缓存理解。
-
-详细规则见：
+所有实际调用都必须现场重新读取 GitHub 当前版本：
 
 `references/LIVE_SKILL_INVOCATION_RULES.md`
 
 ---
 
-## 最终制作类型只有两个
+## 图片规则
 
-### 【原创】
-
-当原创比硬套现成歌曲更自然时，直接创作属于这个梗 / 人物 / 场景的新歌。
-
-### 【改编】
-
-使用已有歌曲作为载体，包括：
-
-- 梗本身就是歌曲；
-- 近期热歌天然适配；
-- 经典歌曲天然适配；
-- 用户直接指定歌曲。
-
-旧的 Route A / B / C / D 只可作为内部思考来源；用户最终看到的生产类型统一为：
+图片必须同时保留：
 
 ```text
-【原创】 / 【改编】
+原梗识别度
++
+本期选中二创版本识别度
 ```
 
----
+明确人物 / 名场面先找真实参考图。
 
-## 默认工作流
+**最终生图 Prompt：**
 
-```text
-用户发起一期
-↓
-Entertainment Rander（现场读取）
-↓
-Music Trend Radar（需要时现场读取）
-↓
-Router 做高层组合
-→ 人物 × 场景 × 音乐
-→ 【原创】/【改编】
-→ 候选排序
-↓
-用户确认
-↓
-配图
-→ 涉及明确人物 / 角色 / 物品 / 场景时先找真实来源参考
-→ 图片文字语言按梗决定
-↓
-Music Quality Radar（再次现场读取当前版本）
-↓
-歌词 + 曲风 / 编曲提示词
-→ 歌词 / Hook 语言按梗决定
-↓
-最终交付
-```
-
----
-
-## 输出语言不锁死中文
-
-图片、台词、歌词、Hook、标题等最终呈现内容 **不要求必须是中文**。
-
-可根据：
-
-- 原梗语言；
-- 本期选中的具体二创版本；
-- 人物 / 角色身份；
-- 平台与受众；
-- 节奏、押韵、反差与笑点；
-
-选择中文、英文、中英混合、方言 / 口语或其他更合适的表达。
-
-核心原则：
-
-> **怎么更好地玩梗，就怎么选语言。**
-
-不为了统一中文牺牲梗，也不为了“国际感”无意义塞外语。
-
-详见：
-
-`references/LANGUAGE_FLEXIBILITY_RULES.md`
-
----
-
-## 配图规则
-
-涉及真实人物、影视角色、具体物品或经典场景时：
-
-> **Reference first. Recognition first. Style second.**
-
-先确认真实来源和最有辨识度的视觉特征，再生成图片，不允许把具体角色自由重设计成“概念相似的陌生人”。
-
-图片中的文字也不强制中文；语言选择服务于梗本身。
+- 推荐 80–160 字
+- **硬上限 200 字**
+- 用参考图承担身份细节，不写成长篇说明书
 
 详见：
 
@@ -164,45 +120,81 @@ Music Quality Radar（再次现场读取当前版本）
 
 ---
 
-## 歌曲输出规则
+## 歌曲规则
 
-歌曲内容节点遵循：
+只有歌曲确实最适合放大这个梗，才进入音乐节点。
 
-`references/MUSIC_OUTPUT_RULES.md`
+进入前必须锁定：
+
+```yaml
+music_meme_lock:
+  meme_core:
+  selected_derivative:
+  music_role: amplifier
+  song_theme:
+  required_meme_anchor:
+  forbidden_theme_drift:
+```
+
+然后现场调用 `music-quality-radar`。
 
 固定要求：
 
-- 【原创】和【改编】都要现场重新读取 `music-quality-radar`；
-- 歌词使用必要的 `[Verse]` / `[Chorus]` / `[Bridge]` / `[Outro]` 等标签；
-- 歌词 / Hook 不强制中文；
-- 曲风 / 编曲提示词推荐 **200–350 字**；
-- 硬上限 **500 字**；
-- 能短就短，只保留真正影响生成结果的信息。
+- 歌曲主题直接继承原梗核心动作 / 冲突 / 原句
+- 标题、Hook、副歌优先出现明确梗锚点
+- 不把原梗抽象成“沟通、成长、体面、女性力量”等新主题，除非它本来就是梗
+- 曲风 / 编曲提示词推荐 200–350 字，硬上限 500 字
+
+详见：
+
+`references/MUSIC_OUTPUT_RULES.md`
+
+---
+
+## 输出语言
+
+图片、台词、歌词、Hook、标题等不锁死中文。
+
+> **哪种语言更能把梗玩好，就用哪种。**
+
+详见：
+
+`references/LANGUAGE_FLEXIBILITY_RULES.md`
+
+---
+
+## 三个最终检查
+
+### 1. Meme Recognition
+去掉解释，还能一眼认出在玩哪个梗吗？
+
+### 2. Meme Binding
+换个人名，这个作品还能原样套给大量其他梗吗？
+
+如果能，说明太泛。
+
+### 3. Amplification
+所选形式有没有让原梗更好笑、更荒诞、更爽、更容易传播？
+
+只是“更漂亮 / 更像歌 / 更专业”不算通过。
 
 ---
 
 ## 一句话调用
 
 ```text
-按 Meme Music Router 跑一期热梗音乐选题。
-所有上游 Skill 都必须在实际调用时现场读取 GitHub 当前版本；
-Entertainment Rander 负责热梗，Music Trend Radar 负责热歌，Music Quality Radar 负责最终音乐质量；
-Router 只做整体编排、创意组合、【原创】/【改编】选择和最终交付；
-最终图片、台词、歌词、Hook 等语言不锁死中文，以最能把梗玩好的语言为准。
+按 Meme Music Router v0.4.0 跑一期。
+先 LIVE 调用 Entertainment Rander 找热梗并锁定 meme_core，
+再判断图片、台词、歌曲、短视频或 Mixed 哪种形式最能放大原梗；
+形式不能改写梗。只有需要热歌或歌曲创作时，再 LIVE 调用 Music Trend / Music Quality。
 ```
 
 ---
 
 ## 当前状态
 
-**v0.3.1 — Orchestrator Build / Calibrating**
+**v0.4.0 — Meme-first Orchestrator / Calibrating**
 
-本版本核心：
+本版最重要的变化：
 
-- Router 从“保存很多上游标准”改为“现场调用上游能力”；
-- 删除对热梗、热歌、好音乐的重复专业定义；
-- 所有上游 Skill 在每次实际使用时重新读取当前版本；
-- 最终制作类型统一为【原创】与【改编】；
-- 保留图片 Reference-first 与曲风提示词 ≤500 字规则；
-- 新增 **Language Flexibility**：图片、台词、歌词、Hook、标题等不固定为中文，以玩梗效果优先；
-- Router 专注于整个流程的方向、路由、交接和最终成品。
+> **热梗是主角，所有生成能力都是演绎工具。**
