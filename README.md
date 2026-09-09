@@ -6,7 +6,7 @@
 
 **不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
 
-![Skills](https://img.shields.io/badge/skills-6-blue?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-7-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
 ![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
 
@@ -24,6 +24,7 @@
 | 🎧 **Music Quality Radar（音乐质量雷达）** | 不依赖复杂乐理，判断一首歌为什么好听、哪里普通、最值得怎么改 | Calibrating | [进入](./music-quality-radar/) |
 | 🎵 **Music Trend Radar（音乐趋势雷达）** | 跨平台识别真正热门、正在爆发和具有持续传播能力的歌曲 | Active | [进入](./music-trend-radar/) |
 | 🎬 **Narrative Motion Semantics（叙事动效语义库）** | 根据流程、时间、对比、因果语义选择信息拓扑、Template ID 与动效表达 | **Incomplete** | [进入](./narrative-motion-semantics/) |
+| 🎥 **TalkCraft Design Orchestrator（TalkCraft 视觉编排器）** | 在不修改 video-talkcraft 的前提下增加视觉风格选择与 SHOTBOOK 素材确认，并可接入 awesome-design-md | **Active** | [进入](./video-talkcraft-design-orchestrator/) |
 
 ---
 
@@ -130,6 +131,12 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 先判断它主要属于流程、时间、对比还是因果，再选择 Template ID。
 ```
 
+```text
+按 TalkCraft Design Orchestrator 制作这条视频。
+开始前让我选择视觉风格；SHOTBOOK 完成后先让我确认并提示哪些镜头适合补充自有素材；
+除此之外严格执行当前 video-talkcraft。
+```
+
 ---
 
 ## 设计原则
@@ -158,11 +165,12 @@ Skill 不只给结果，还要说明为什么，以及为什么没有到更高�
 
 ## 当前方向
 
-这个仓库目前主要沉淀三类能力：
+这个仓库目前主要沉淀四类能力：
 
 - **商业与增长判断**：如何验证、成交、增长；
 - **内容与文化判断**：什么正在流行、什么真正优秀、为什么；
-- **视觉叙事与语义表达**：信息关系应该用什么视觉拓扑和 Motion Grammar 来解释。
+- **视觉叙事与语义表达**：信息关系应该用什么视觉拓扑和 Motion Grammar 来解释；
+- **视频制作与视觉编排**：在稳定的视频生产流程上增加设计语言选择、素材确认与上游能力编排。
 
 后续新增 Skill 仍遵循同一原则：
 
