@@ -22,7 +22,7 @@
 
 This Skill does not reimplement those systems. It adds only two practical interaction points:
 
-1. **Choose the visual design language before production starts.**
+1. **At kickoff, collect the inputs currently required by TalkCraft and ask for the visual style in the same user interaction.**
 2. **Review the SHOTBOOK before implementation and optionally replace recommended shots with user-provided assets.**
 
 ---
@@ -30,10 +30,8 @@ This Skill does not reimplement those systems. It adds only two practical intera
 ## One-line workflow
 
 ```text
-Inputs required by video-talkcraft
-        ↓
-Choose visual style
-TalkCraft default / awesome-design-md / custom
+One kickoff interaction:
+provide current TalkCraft-required inputs + choose visual style
         ↓
 Run the current video-talkcraft pipeline until SHOTBOOK is complete
         ↓
@@ -47,13 +45,26 @@ Resume the current video-talkcraft pipeline
 Final video
 ```
 
+If the current `video-talkcraft` version still requires **a script plus a finished voice track that matches it**, both items and the style choice must be requested together rather than in separate rounds.
+
 ---
 
 ## The two added interaction points
 
-### 1. Before production: choose a visual style
+### 1. At kickoff: collect required inputs + choose visual style together
 
-The user selects one of three sources:
+The first time user information is needed, use one message to do both:
+
+- collect whatever inputs the current `video-talkcraft` version requires;
+- ask the user to choose a visual design source.
+
+When the current required inputs are still a script and finished voice track, the entry prompt should be equivalent to:
+
+> Please provide: (1) the script and (2) a finished wav/mp3 voice track matching the script. In the same reply, choose the visual style: A. TalkCraft default; B. a style from awesome-design-md; or C. an uploaded / described custom design direction.
+
+If one of the required inputs is already present in the conversation, request only what is missing and do not ask for it again.
+
+Visual style sources:
 
 - **TalkCraft default** — use the visual-language rules defined by the current `video-talkcraft` version.
 - **awesome-design-md** — use a current `VoltAgent/awesome-design-md` DESIGN.md as the visual skin source, such as Apple, Runway, Nike, Stripe, Linear, Notion, Spotify, or WIRED. Available examples must be verified at runtime.
@@ -104,15 +115,16 @@ The current upstream rules must be read at runtime instead of relying on a froze
 
 ```text
 Use TalkCraft Design Orchestrator to produce this video.
-First check the inputs according to the current video-talkcraft rules, then ask me to choose a visual style.
+In the first interaction, collect the current TalkCraft-required inputs and ask me to choose the visual style at the same time.
 After the SHOTBOOK is complete, let me review it and tell me which shots could use my own assets.
 Except for those two checkpoints, follow the current video-talkcraft pipeline exactly.
 ```
 
-If the style is already known:
+If the style is already known, provide it together with the inputs:
 
 ```text
-Use TalkCraft Design Orchestrator with the Runway design language from awesome-design-md.
+Use TalkCraft Design Orchestrator.
+Here are the script and finished voice track; use the Runway design language from awesome-design-md.
 Let me review the SHOTBOOK and asset opportunities before implementation.
 Follow the current video-talkcraft rules for everything else.
 ```
@@ -134,6 +146,7 @@ This Skill does **not**:
 
 - modify `video-talkcraft`;
 - modify `awesome-design-md`;
+- split required-input collection and visual-style selection into separate sequential checkpoints;
 - reimplement TalkCraft recipes;
 - skip SHOTBOOK, preflight, rendering, or QA;
 - require users to upload optional assets;
