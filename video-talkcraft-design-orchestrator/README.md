@@ -4,7 +4,7 @@
 
 ### 为 video-talkcraft 增加可选设计风格与 SHOTBOOK 素材确认层
 
-**不 fork、不复制、不改写 TalkCraft；只在原流程前后增加两个用户交互点。**
+**不 fork、不复制、不改写 TalkCraft；只增加两个用户交互点。**
 
 [简体中文](./README.md) · [English](./README_EN.md) · [完整 Skill 规则](./SKILL.md)
 
@@ -20,20 +20,17 @@
 
 `video-talkcraft` 已经有完整的视频制作流程、SHOTBOOK、Recipe、Remotion、渲染与验收体系。
 
-这个 Skill 不重新实现这些能力，而是解决两个实际使用问题：
+这个 Skill 不重新实现这些能力，只增加两个交互点：
 
-1. **开工前先明确视觉风格**，而不是默认只能沿用 TalkCraft 自带风格。
-2. **SHOTBOOK 完成后让用户确认素材镜头**，有自有素材时可替换；没有就继续 TalkCraft 原流程。
+1. **开工时一次性收集 TalkCraft 必需输入，并同步选择视觉风格。**
+2. **SHOTBOOK 完成后让用户确认分镜与素材镜头**，有自有素材时可替换；没有就继续 TalkCraft 原流程。
 
 ---
 
 ## 一句话流程
 
 ```text
-TalkCraft 要求的输入
-        ↓
-选择视觉风格
-默认 / awesome-design-md / 用户自定义
+一次性提供 TalkCraft 必需输入 + 选择视觉风格
         ↓
 按最新 video-talkcraft 生成 SHOTBOOK
         ↓
@@ -47,13 +44,26 @@ TalkCraft 要求的输入
 最终视频
 ```
 
+当前 `video-talkcraft` 如果仍要求 **口播稿 + 与口播稿一致的成品配音**，那么首次交互应直接同时询问这两项和视觉风格，而不是拆成两轮。
+
 ---
 
 ## 两个新增交互点
 
-### ① 开始前：选择视觉风格
+### ① 开始时：一次性收集输入 + 选择视觉风格
 
-用户从三类中选择：
+首次需要向用户索取信息时，同一条消息完成两件事：
+
+- 收集当前 `video-talkcraft` 要求的必需输入；
+- 同步让用户选择视觉风格。
+
+当上游当前必需输入仍为口播稿与成品配音时，入口应类似：
+
+> 请同时提供：①口播稿；②与口播稿一致的成品配音（wav/mp3）。同时请选择本次视频视觉风格：A. TalkCraft 默认；B. awesome-design-md 中的风格；C. 上传 / 描述自定义设计风格。
+
+如果用户已提供其中一项，只补齐缺失项，不重复索要。
+
+视觉风格有三类：
 
 - **TalkCraft 默认风格**：完全采用当前 `video-talkcraft` 的视觉语言规则。
 - **awesome-design-md 风格**：从 `VoltAgent/awesome-design-md` 当前 DESIGN.md 库选择，例如 Apple、Runway、Nike、Stripe、Linear、Notion、Spotify、WIRED 等；实际可选项以调用时仓库现状为准。
@@ -106,16 +116,16 @@ awesome-design-md = 可选视觉设计语言源
 
 ```text
 按 TalkCraft Design Orchestrator 制作这条视频。
-先按当前 video-talkcraft 检查输入，然后让我选择视觉风格；
+首次交互时一次性向我收集当前 TalkCraft 必需输入，并同步让我选择视觉风格；
 SHOTBOOK 完成后先给我确认，并提醒哪些镜头适合补充自有素材；
 除这两个节点外，其余严格按当前 video-talkcraft 执行。
 ```
 
-如果已经知道想要的风格：
+如果已经知道想要的风格，也可以直接随输入一起说明：
 
 ```text
-按 TalkCraft Design Orchestrator 制作，
-视觉风格使用 awesome-design-md 里的 Runway 风格。
+按 TalkCraft Design Orchestrator 制作。
+这里是口播稿和成品配音，视觉风格使用 awesome-design-md 里的 Runway。
 SHOTBOOK 做完后再让我确认素材镜头，其余严格按当前 video-talkcraft。
 ```
 
@@ -136,6 +146,7 @@ SHOTBOOK 做完后再让我确认素材镜头，其余严格按当前 video-talk
 
 - 修改 `video-talkcraft`；
 - 修改 `awesome-design-md`；
+- 把“收集必需输入”和“选择视觉风格”拆成两个顺序确认节点；
 - 重新实现 TalkCraft Recipe；
 - 跳过 SHOTBOOK、preflight、渲染或验收；
 - 把“可上传素材”变成“必须上传素材”；
