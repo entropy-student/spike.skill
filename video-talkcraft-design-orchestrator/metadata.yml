@@ -1,8 +1,8 @@
 name: video-talkcraft-design-orchestrator
 display_name: TalkCraft Design Orchestrator（TalkCraft 视觉编排器）
 description: 在不修改 video-talkcraft 的前提下，为其增加视觉风格选择与 SHOTBOOK 素材确认两个交互节点，并可调用 awesome-design-md 作为设计语言来源。
-version: 0.1.0
-status: active
+version: 1.0.0
+status: frozen
 category: video-production
 language:
   - zh-CN
@@ -10,4 +10,4 @@ language:
 upstreams:
   - Vincentwei1021/video-talkcraft
   - VoltAgent/awesome-design-md
-notes: "Thin orchestration layer only; upstream video production rules remain authoritative."
+notes: "v1.0.0 frozen baseline. Thin orchestration layer only; upstream video production rules remain authoritative and are read at runtime."
