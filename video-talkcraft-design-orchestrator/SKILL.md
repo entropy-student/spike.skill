@@ -1,6 +1,6 @@
 ---
 name: video-talkcraft-design-orchestrator
-description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei1021/video-talkcraft 的现行流程，不复制、不修改其内部规则；仅增加两个用户交互点：开工前选择视觉风格，以及 SHOTBOOK 完成后进行用户确认并提示可补充素材。可将 VoltAgent/awesome-design-md 中的 DESIGN.md 作为视觉风格来源。其余制作、Recipe、Remotion、渲染、验收与交付规则全部以当前 video-talkcraft 为准。
+description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei1021/video-talkcraft 的现行流程，不复制、不修改其内部规则；仅增加两个用户交互点：开工时一次性收集 TalkCraft 必需输入并同步选择视觉风格，以及 SHOTBOOK 完成后进行用户确认并提示可补充素材。可将 VoltAgent/awesome-design-md 中的 DESIGN.md 作为视觉风格来源。其余制作、Recipe、Remotion、渲染、验收与交付规则全部以当前 video-talkcraft 为准。
 ---
 
 # TalkCraft Design Orchestrator（TalkCraft 视觉编排器）
@@ -11,7 +11,7 @@ description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei10
 
 它只负责：
 
-1. 在 `video-talkcraft` 正式开工前增加一次**视觉风格选择**。
+1. 在 `video-talkcraft` 正式开工时，用**同一次用户交互**收集 TalkCraft 当前要求的必需输入，并同步让用户选择视觉风格。
 2. 在 `SHOTBOOK` 生成完成、进入实现前增加一次**用户确认 + 素材补充提醒**。
 
 除此之外，**所有规则、输入要求、素材采集、SHOTBOOK 格式、Recipe 选卡、TSX 复制、运动命门、Remotion 实现、渲染、音效、质检、审片、交付等，全部由当前版本的 `video-talkcraft` 决定。**
@@ -35,12 +35,13 @@ description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei10
 每次调用本 Skill 时：
 
 1. **先读取当前可用的 `video-talkcraft/SKILL.md`，不得依赖本文件中对其流程的历史摘要。**
-2. 用户选择 `awesome-design-md` 风格时，再读取该仓库当前对应的 `DESIGN.md`。
-3. 不把上游 `SKILL.md`、Recipe、TSX、DESIGN.md 复制进本 Skill 作为固定快照。
-4. 上游若更新流程名称或步骤编号，以语义位置为准：
-   - 风格选择插入在“视觉语言 / 风格档确定”之前。
+2. 识别 `video-talkcraft` 当前要求用户提供的必需输入；如果当前仍为“口播稿 + 与之逐字一致的成品配音”，则按当前规则执行；若上游未来变化，以最新上游为准。
+3. 用户选择 `awesome-design-md` 风格时，再读取该仓库当前对应的 `DESIGN.md`。
+4. 不把上游 `SKILL.md`、Recipe、TSX、DESIGN.md 复制进本 Skill 作为固定快照。
+5. 上游若更新流程名称或步骤编号，以语义位置为准：
+   - 入口交互发生在正式制作开始前；必需输入收集与风格选择必须合并为同一次询问。
    - SHOTBOOK 用户确认插入在“SHOTBOOK 已完成”与“Remotion / Recipe 实现开始”之间。
-5. 除本 Skill 明确声明的两个插入点外，出现任何规则差异时，**以上游当前 `video-talkcraft` 为准**。
+6. 除本 Skill 明确声明的两个插入点外，出现任何规则差异时，**以上游当前 `video-talkcraft` 为准**。
 
 ---
 
@@ -50,23 +51,40 @@ description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei10
 
 完整读取当前 `video-talkcraft/SKILL.md` 以及执行当前任务所要求读取的 references。
 
-先按 `video-talkcraft` 判断输入是否齐全。不要改变它对口播稿、成品配音、画幅、素材等输入的原始要求。
+识别当前上游要求的必需输入，但**不要先单独询问输入、再单独询问风格**。
 
-然后执行本 Skill 的【插入点 ①】。
+随后执行本 Skill 的【插入点 ①】。
 
 ---
 
-# 插入点 ① — 开工前让用户选择视觉风格
+# 插入点 ① — 一次性收集必需输入 + 选择视觉风格
 
-在 `video-talkcraft` 确定本片视觉语言之前，必须让用户选择以下三类之一：
+正式制作开始前，第一次需要向用户索取信息时，必须将以下两类内容放在**同一条询问**中：
 
-### A. TalkCraft 默认风格
+### A. video-talkcraft 当前要求的必需输入
 
-说明：完全使用当前 `video-talkcraft` 自己的视觉语言规则与领域风格派生流程。
+以当前上游为准。
 
-### B. awesome-design-md 风格
+若当前要求仍为：
 
-说明：从 `VoltAgent/awesome-design-md` 当前 DESIGN.md 库中选择一种设计语言，用作本片的**视觉皮肤来源**。
+- 口播稿
+- 与口播稿逐字一致的成品配音（wav/mp3）
+
+则同时请用户上传 / 提供这两项。
+
+如果用户已经在当前会话中提供其中一项，不要重复索要，只补齐缺失项。
+
+### B. 同步选择视觉风格
+
+在同一次询问中，让用户从以下三类中选择：
+
+#### 1. TalkCraft 默认风格
+
+完全使用当前 `video-talkcraft` 自己的视觉语言规则与领域风格派生流程。
+
+#### 2. awesome-design-md 风格
+
+从 `VoltAgent/awesome-design-md` 当前 DESIGN.md 库中选择一种设计语言，用作本片的**视觉皮肤来源**。
 
 向用户简要给出少量代表性例子即可，不要一次罗列全库。例如：
 
@@ -81,9 +99,9 @@ description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei10
 
 示例必须以 `awesome-design-md` 当前实际存在的 DESIGN.md 为准；若库已变化，以当前内容更新例子。
 
-如果用户选择 B 但尚未指定具体 DESIGN.md，则让用户从推荐项中选择，或根据用户明确描述的目标风格定位到一个 DESIGN.md 后请用户确认该选择。
+如果用户选择该类但尚未指定具体 DESIGN.md，则让用户从推荐项中选择，或根据用户明确描述的目标风格定位到一个 DESIGN.md 后请用户确认。
 
-### C. 用户自定义 / 上传设计风格
+#### 3. 用户自定义 / 上传设计风格
 
 用户可以提供任意一种：
 
@@ -95,20 +113,28 @@ description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei10
 
 按 `video-talkcraft` 当前“用户明确指定风格”的规则处理。
 
+### 标准首次询问形式
+
+当当前 `video-talkcraft` 的必需输入仍为口播稿与成品配音时，用户看到的入口应接近：
+
+> 请同时提供：①口播稿；②与口播稿一致的成品配音（wav/mp3）。同时请选择本次视频视觉风格：A. TalkCraft 默认；B. awesome-design-md 中的风格；C. 上传 / 描述自定义设计风格。
+
+不要把这一步拆成“先上传输入 → 再问风格”两个独立确认节点。
+
 ---
 
 ## 风格接入边界
 
-无论选择 A / B / C，都**不得改变 `video-talkcraft` 的 Recipe 运动实现规则**。
+无论选择默认 / awesome-design-md / 自定义，都**不得改变 `video-talkcraft` 的 Recipe 运动实现规则**。
 
-如果选择 B 或 C：
+如果选择外部风格：
 
 1. 将所选设计语言转换 / 映射为 `video-talkcraft` 当前允许的风格档 / theme / 蒙皮信息。
 2. 只影响上游允许修改的视觉皮层，例如颜色、字体气质、字重、圆角、描边、投影、材质、图表视觉、素材气质、卡片外观等。
 3. Recipe 的时序、缓动、几何比例、运动方向、层级关系及其他上游定义的“运动命门”继续严格遵守 `video-talkcraft` 当前规则。
 4. 若 DESIGN.md 中存在面向网页交互、响应式布局等与视频无关的规则，只提取可映射到视频视觉语言的部分；不得因此扩展或改写 TalkCraft 的制作流程。
 
-风格确定后，**恢复执行当前 `video-talkcraft` 原流程**，直到 SHOTBOOK 完整生成并通过上游要求的实现前检查。
+输入与风格确定后，**恢复执行当前 `video-talkcraft` 原流程**，直到 SHOTBOOK 完整生成并通过上游要求的实现前检查。
 
 ---
 
@@ -177,6 +203,7 @@ description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei10
 - 禁止修改上游 `video-talkcraft` 仓库内容。
 - 禁止修改 `awesome-design-md` 仓库内容。
 - 禁止在本 Skill 内维护一份 `video-talkcraft` 流程副本并声称等价。
+- 禁止把“必需输入收集”和“视觉风格选择”拆成两个顺序询问节点。
 - 禁止重新实现 Recipe 动画以替代上游模板。
 - 禁止因为选择 DESIGN.md 而跳过 TalkCraft 的 SHOTBOOK、选卡、preflight、渲染或验收规则。
 - 禁止把“用户可上传素材”变成“用户必须上传素材”。
@@ -187,10 +214,8 @@ description: 上层视频制作编排 Skill。动态读取并调用 Vincentwei10
 # 用户看到的最简流程
 
 ```text
-用户提供 video-talkcraft 要求的输入
-        ↓
-选择视觉风格
-A TalkCraft 默认 / B awesome-design-md / C 自定义
+一次性入口交互：
+上传 / 提供 TalkCraft 必需输入 + 同时选择视觉风格
         ↓
 按最新 video-talkcraft 制作
         ↓
