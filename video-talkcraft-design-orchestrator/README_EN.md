@@ -8,7 +8,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md) · [Full Skill Rules](./SKILL.md)
 
-![Status](https://img.shields.io/badge/status-active-success?style=flat-square)
+![Status](https://img.shields.io/badge/status-v1.0.0%20Frozen-blue?style=flat-square)
 ![Type](https://img.shields.io/badge/type-orchestrator-blueviolet?style=flat-square)
 ![Upstream](https://img.shields.io/badge/upstream-video--talkcraft-orange?style=flat-square)
 
@@ -151,6 +151,14 @@ This Skill does **not**:
 - skip SHOTBOOK, preflight, rendering, or QA;
 - require users to upload optional assets;
 - take over the rest of the TalkCraft workflow beyond the two declared interaction points.
+
+---
+
+## Version status
+
+**v1.0.0 — Frozen**
+
+The interaction and orchestration rules have been validated and frozen as the stable baseline. Future upstream updates are still read at runtime; this Skill should only change for a confirmed defect or an explicit new-version request.
 
 ---
 
