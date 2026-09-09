@@ -25,7 +25,7 @@
 | 🎧 **Music Quality Radar（音乐质量雷达）** | 不依赖复杂乐理，判断一首歌为什么好听、哪里普通、最值得怎么改 | Calibrating | [进入](./music-quality-radar/) |
 | 🎵 **Music Trend Radar（音乐趋势雷达）** | 跨平台识别真正热门、正在爆发和具有持续传播能力的歌曲 | Active | [进入](./music-trend-radar/) |
 | 🎬 **Narrative Motion Semantics（叙事动效语义库）** | 根据流程、时间、对比、因果语义选择信息拓扑、Template ID 与动效表达 | **Incomplete** | [进入](./narrative-motion-semantics/) |
-| 🎥 **TalkCraft Design Orchestrator（TalkCraft 视觉编排器）** | 在不修改 video-talkcraft 的前提下增加视觉风格选择与 SHOTBOOK 素材确认，并可接入 awesome-design-md | **Active** | [进入](./video-talkcraft-design-orchestrator/) |
+| 🎥 **TalkCraft Design Orchestrator（TalkCraft 视觉编排器）** | 在不修改 video-talkcraft 的前提下增加视觉风格选择与 SHOTBOOK 素材确认，并可接入 awesome-design-md | **v1.0.0 Frozen** | [进入](./video-talkcraft-design-orchestrator/) |
 
 ---
 
@@ -140,7 +140,8 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 
 ```text
 按 TalkCraft Design Orchestrator 制作这条视频。
-开始前让我选择视觉风格；SHOTBOOK 完成后先让我确认并提示哪些镜头适合补充自有素材；
+首次交互一次性收集当前 TalkCraft 必需输入并同步让我选择视觉风格；
+SHOTBOOK 完成后先让我确认并提示哪些镜头适合补充自有素材；
 除此之外严格执行当前 video-talkcraft。
 ```
 
