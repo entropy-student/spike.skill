@@ -8,7 +8,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md) · [完整 Skill 规则](./SKILL.md)
 
-![Status](https://img.shields.io/badge/status-active-success?style=flat-square)
+![Status](https://img.shields.io/badge/status-v1.0.0%20Frozen-blue?style=flat-square)
 ![Type](https://img.shields.io/badge/type-orchestrator-blueviolet?style=flat-square)
 ![Upstream](https://img.shields.io/badge/upstream-video--talkcraft-orange?style=flat-square)
 
@@ -151,6 +151,14 @@ SHOTBOOK 做完后再让我确认素材镜头，其余严格按当前 video-talk
 - 跳过 SHOTBOOK、preflight、渲染或验收；
 - 把“可上传素材”变成“必须上传素材”；
 - 在两个新增交互点之外接管 TalkCraft 的后续制作规则。
+
+---
+
+## 版本状态
+
+**v1.0.0 — Frozen**
+
+当前交互与编排规则已完成验证并封板。后续除非发现明确缺陷或用户主动提出新版本需求，否则不继续修改本 Skill；两个上游依赖仍在每次调用时读取其当前版本。
 
 ---
 
