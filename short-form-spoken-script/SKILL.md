@@ -1,8 +1,8 @@
 ---
 name: short-form-spoken-script
 title: Short-Form Spoken Script（短视频口播脚本）
-description: 面向抖音、小红书视频、TikTok、Reels、YouTube Shorts 等短视频的口播逐字稿创作与改稿 Skill。把主题、素材或观点先压缩成单一内容承诺，再设计诚实的停滑与留存结构，最后进行中文口语化和出声质检。用户可指定口播语速；未指定时中文默认按 4.8 个可朗读字符/秒规划篇幅。默认产出标题、最佳 Hook、完整可直接朗读的逐字稿、字数/字符数与预计时长。不得为了“爆款感”编造事实、夸大承诺或让语言润色破坏前序内容结构。
-version: 0.1.1
+description: 面向抖音、小红书视频、TikTok、Reels、YouTube Shorts 等短视频的口播逐字稿创作与改稿 Skill。把主题、素材或观点先压缩成单一内容承诺，再设计诚实的停滑与留存结构，最后进行中文口语化和出声质检。用户可指定口播语速；未指定时中文默认按 4.8 个可朗读字符/秒规划篇幅。默认产出标题、最佳 Hook、正文续接、字数/字符数与预计时长；Hook 作为正式口播第一段只出现一次，正文从 Hook 后直接续接。不得为了“爆款感”编造事实、夸大承诺或让语言润色破坏前序内容结构。
+version: 0.1.2
 language: zh-CN
 ---
 
@@ -25,10 +25,11 @@ language: zh-CN
 5. **Structure before style.** 先把留存结构写对，再做人话化；语言层不得擅自重排 Hook、证据顺序、Payoff 或 CTA。
 6. **Write for the ear.** 口播是给耳朵听的，不是给眼睛读的。句子要能一口气说清，新名词第一次说全，代词必须有明确指向。
 7. **Speaking rate is an input.** 用户指定语速优先；未指定时中文默认 `4.8 spoken characters/second`。目标篇幅由时长和语速共同决定，不通过临时加速朗读来补救超长稿。
-8. **No fake virality.** 不保证“必爆”、不虚构平台规律、不把未经核验的经验数字写成事实。
-9. **No mandatory gimmicks.** 不强制反转、争议、夸张、网络黑话、悬念或循环结尾；只有在内容本身支持时才使用。
-10. **Final script stays clean.** 默认最终逐字稿不夹导演指令、括号表演说明、镜头提示和分析注释。
-11. **Measure with reality.** 真实发布后的停留、完播、跳出、评论质量等数据用于后续校准，不能用写作规则代替真实测试。
+8. **Hook appears once.** 最佳 Hook 就是正式口播的第一段。默认交付中单独展示 Hook 后，正文必须从 Hook 结束处继续，禁止再次复制或改写同一个 Hook。时长与字量按 `Hook + 正文续接` 合计一次。
+9. **No fake virality.** 不保证“必爆”、不虚构平台规律、不把未经核验的经验数字写成事实。
+10. **No mandatory gimmicks.** 不强制反转、争议、夸张、网络黑话、悬念或循环结尾；只有在内容本身支持时才使用。
+11. **Final script stays clean.** 默认最终逐字稿不夹导演指令、括号表演说明、镜头提示和分析注释。
+12. **Measure with reality.** 真实发布后的停留、完播、跳出、评论质量等数据用于后续校准，不能用写作规则代替真实测试。
 
 ## 2. Intake Gate
 
@@ -53,6 +54,7 @@ language: zh-CN
 - 默认目标区间为理论字量的约 `±5%`，除非用户要求更严格；
 - 中文汉字按一个可朗读字符计；标点、Markdown、空白不计入口播字量；
 - 数字、英文缩写、英文单词按实际朗读占用做近似换算，不能仅按键盘字符数机械计算；
+- Hook 和正文续接共同构成一条完整口播，只合计一次；
 - 真正音频实测优先于任何字符模型。
 
 例如：`120 秒 × 4.8 ≈ 576`，因此两分钟中文口播默认以约 576 个可朗读字符为中心规划。
@@ -71,6 +73,8 @@ language: zh-CN
 
 正文按：`HOOK → ORIENTATION → PROGRESSION → PAYOFF → CTA/END`。背景只保留理解后文的最低限度；每段必须推进；Payoff 明确兑现 Hook；CTA 只保留一个自然动作，没有合理 CTA 时可以干净结束。
 
+最佳 Hook 一旦锁定，它就是最终正式口播的第一段。内部可以保留完整结构稿用于推演，但最终展示时必须拆成 `最佳 Hook + 正文续接`，其中正文续接从 Hook 之后的第一句开始。
+
 在进入 Spoken Rewrite 前检查预计总字量是否落在 Timing Contract 附近。超长优先删背景、重复、弱例子和次要分支；过短则补最有证明力的信息，不用空话填时长。
 
 详见 `references/02_RETENTION_ARCHITECTURE.md`。
@@ -81,13 +85,13 @@ language: zh-CN
 
 口语化重点：书面长句拆成自然呼吸单位；报告腔改成具体主语+动作；新术语第一次出现时顺手解释；减少层层编号、抽象总结和机械排比；允许自然补充/停顿/自我修正但不表演口语感；删除无信息路标；不主动添加网络黑话、粗口、错别字或假口头禅；现实资料不改写成“我亲眼见过”。
 
-语言自然化之后必须重新检查字符预算；不能因为润色增加大量口头填充词导致超时。
+语言自然化之后必须重新检查字符预算；不能因为润色增加大量口头填充词导致超时。最终切分 `Hook / 正文续接` 时不得为衔接方便重复 Hook 的最后一句；需要过渡时，直接从新信息继续推进。
 
 详见 `references/03_SPOKEN_REWRITE.md`。
 
 ### Stage D — Oral QA
 
-必须检查：First-breath、Breath、Pronoun、Progress、Promise、Mouth、Timing、Claim。
+必须检查：First-breath、Breath、Pronoun、Progress、Promise、Mouth、Timing、Claim、Hook Duplication。
 
 Timing 使用优先级：
 1. 用户/真人实测语速；
@@ -96,6 +100,8 @@ Timing 使用优先级：
 4. 其他语言或无法合理换算时标 `ESTIMATED` 并说明假设。
 
 字符模型只是计划工具。已有成品音频时，以音频真实时长为准。
+
+Hook Duplication 必须检查：把 `最佳 Hook` 与 `正文续接` 首段连起来朗读，确认没有逐字重复、同义重复或再次自我介绍；总字量只计算这条连续口播一次。
 
 详见 `references/04_ORAL_QA.md`。
 
@@ -118,9 +124,11 @@ Timing 使用优先级：
 标准调用只交付：
 
 1. **标题 / 选题名**
-2. **最佳 Hook**
-3. **完整口播逐字稿**
-4. **可朗读字符/字数 + 使用语速 + 预计时长**
+2. **最佳 Hook** —— 正式口播第一段，只出现一次
+3. **正文续接** —— 从 Hook 后直接继续，禁止再次重复 Hook
+4. **可朗读字符/字数 + 使用语速 + 预计时长** —— 按 `Hook + 正文续接` 合计一次
+
+展示顺序固定为：`标题 → 最佳 Hook → 正文续接 → 长度/语速/时长`。必须明确提示：Hook 已包含在正式口播开头，朗读时不需要再说第二遍。
 
 时长说明必须注明采用的语速来源，例如：`4.8 chars/s (DEFAULT)`、`5.2 chars/s (USER)` 或 `4.6 chars/s (MEASURED)`。
 
@@ -138,7 +146,7 @@ Timing 使用优先级：
 
 ## 8. Definition of Done
 
-必须满足：一个清晰受众、一个 Promise、一个 Takeaway；Hook 具体诚实且可兑现；每个主要段落有推进；现实信息有证据或降低措辞强度；口语化不破坏结构性不变量；全文可直接朗读；通过 Mouth/Breath/Pronoun/Promise/Timing/Claim 测试；目标字量与时长/语速契约基本一致；默认最终只交付四项。
+必须满足：一个清晰受众、一个 Promise、一个 Takeaway；Hook 具体诚实且可兑现；每个主要段落有推进；现实信息有证据或降低措辞强度；口语化不破坏结构性不变量；Hook 在最终交付中只出现一次且正文自然续接；全文按 `Hook + 正文续接` 连起来可直接朗读；通过 Mouth/Breath/Pronoun/Promise/Timing/Claim/Hook Duplication 测试；目标字量与时长/语速契约基本一致；默认最终只交付四项。
 
 ## 9. Calibration Rule
 
