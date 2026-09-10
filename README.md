@@ -21,7 +21,7 @@
 | 📈 **Acquisition Growth Radar（获客增长雷达）** | 判断项目为什么还没挣到钱、当前卡在哪层证据、下一步最值得验证什么 | v0.2 Frozen | [进入](./acquisition-growth-radar/) |
 | 🧭 **Independent Store Product Opportunity（独立站选品决策系统）** | 从实物、虚拟与 SaaS 候选中区分发现信号与决策证据，筛出最值得真实验证的 DTC 产品机会 | **v2.1.0 Active** | [进入](./independent-store-product-opportunity/) |
 | 🔬 **Product Business Teardown（产品商业拆解）** | 拆解任意产品服务谁、为什么存在、谁付钱、赚哪部分钱、整体运行逻辑、增长机制与护城河 | **v0.2.0 Calibrating** | [进入](./product-business-teardown/) |
-| 🎙️ **Short-Form Spoken Script（短视频口播脚本）** | 先锁定单一内容承诺和短视频留存结构，再做中文口语化、时长与出声质检；Hook 只出现一次，正文从 Hook 后直接续接 | **v0.1.2 Calibrating** | [进入](./short-form-spoken-script/) |
+| 🎙️ **Short-Form Spoken Script（短视频口播脚本）** | 先锁定单一内容承诺和短视频留存结构，再做中文口语化、时长与出声质检；Hook 只出现一次，并按同一语速派生独立 SRT | **v0.1.3 Calibrating** | [进入](./short-form-spoken-script/) |
 | 🎯 **Entertainment Rander（娱乐热梗雷达）** | 区分普通热点、模仿型热梗与真正能持续增殖的互联网梗文化 | Active | [进入](./entertainment-rander/) |
 | 🎭 **Meme Music Router（热梗音乐路由器）** | Meme-first 创意编排：先锁热梗与作品名，再让图片与音乐围绕同一梗核做有趣放大 | **v0.4.1 Calibrating** | [进入](./meme-music-router/) |
 | 🎧 **Music Quality Radar（音乐质量雷达）** | 不依赖复杂乐理，判断一首歌为什么好听、哪里普通、最值得怎么改 | Calibrating | [进入](./music-quality-radar/) |
@@ -131,7 +131,8 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 再锁定一个核心承诺和最佳 Hook，按留存逻辑推进；
 最后只做中文口语化，不破坏 Hook、证据、Payoff 和 CTA。
 默认输出标题、最佳 Hook、正文续接、字量、使用语速和预计时长。
-Hook 只出现一次，正文从 Hook 后直接继续。
+Hook 只出现一次，正文从 Hook 后直接继续；
+同时生成一个遵循同一语速的独立 SRT 文件。
 ```
 
 ```text
