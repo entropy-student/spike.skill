@@ -1,0 +1,12 @@
+slug: short-form-spoken-script
+display_name: Short-Form Spoken Script（短视频口播脚本）
+version: 0.1.0
+status: Calibrating
+category: content-creation
+language:
+  - zh-CN
+focus:
+  - short-form-video
+  - spoken-script
+  - retention
+  - natural-chinese
