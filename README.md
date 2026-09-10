@@ -6,7 +6,7 @@
 
 **不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
 
-![Skills](https://img.shields.io/badge/skills-8-blue?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-9-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
 ![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
 
@@ -20,6 +20,7 @@
 |---|---|---:|---|
 | 📈 **Acquisition Growth Radar（获客增长雷达）** | 判断项目为什么还没挣到钱、当前卡在哪层证据、下一步最值得验证什么 | v0.2 Frozen | [进入](./acquisition-growth-radar/) |
 | 🧭 **Independent Store Product Opportunity（独立站选品决策系统）** | 从实物、虚拟与 SaaS 候选中区分发现信号与决策证据，筛出最值得真实验证的 DTC 产品机会 | **v2.1.0 Active** | [进入](./independent-store-product-opportunity/) |
+| 🔬 **Product Business Teardown（产品商业拆解）** | 拆解任意产品服务谁、为什么存在、谁付钱、赚哪部分钱、整体运行逻辑、增长机制与护城河 | **v0.1.0 Calibrating** | [进入](./product-business-teardown/) |
 | 🎯 **Entertainment Rander（娱乐热梗雷达）** | 区分普通热点、模仿型热梗与真正能持续增殖的互联网梗文化 | Active | [进入](./entertainment-rander/) |
 | 🎭 **Meme Music Router（热梗音乐路由器）** | Meme-first 创意编排：先锁热梗与作品名，再让图片与音乐围绕同一梗核做有趣放大 | **v0.4.1 Calibrating** | [进入](./meme-music-router/) |
 | 🎧 **Music Quality Radar（音乐质量雷达）** | 不依赖复杂乐理，判断一首歌为什么好听、哪里普通、最值得怎么改 | Calibrating | [进入](./music-quality-radar/) |
@@ -117,6 +118,12 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 ```
 
 ```text
+按 Product Business Teardown 拆解这个产品。
+告诉我它服务谁、用户为什么需要、为什么会有这个产品、谁付钱、真正赚哪部分钱、整体运行逻辑和最难复制的部分；
+真实产品要区分 FACT / INFERENCE / UNKNOWN。
+```
+
+```text
 按 Music Quality Radar 分析这首歌，
 告诉我为什么好听/普通，最大优点、最大问题和最值得改的一处。
 ```
@@ -175,7 +182,7 @@ Skill 不只给结果，还要说明为什么，以及为什么没有到更高�
 
 这个仓库目前主要沉淀四类能力：
 
-- **商业与增长判断**：如何选品、验证、成交、增长；
+- **商业与增长判断**：如何拆解产品、选品、验证、成交、增长；
 - **内容与文化判断**：什么正在流行、什么真正优秀、为什么；
 - **视觉叙事与语义表达**：信息关系应该用什么视觉拓扑和 Motion Grammar 来解释；
 - **视频制作与视觉编排**：在稳定的视频生产流程上增加设计语言选择、素材确认与上游能力编排。
