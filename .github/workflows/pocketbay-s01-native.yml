@@ -1,0 +1,147 @@
+name: PocketBay S01 Native TalkCraft
+
+on:
+  push:
+    branches:
+      - work/pocketbay-talkcraft-s01-20260910
+    paths:
+      - '_runs/pocketbay-s01/**'
+      - '.github/workflows/pocketbay-s01-native.yml'
+
+jobs:
+  render-s01:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: _runs/pocketbay-s01/package.json
+
+      - name: Fetch current TalkCraft source
+        run: |
+          git clone --depth 1 https://github.com/Vincentwei1021/video-talkcraft.git /tmp/video-talkcraft
+          mkdir -p _runs/pocketbay-s01/src/cards _runs/pocketbay-s01/src/motion-systems
+          cp /tmp/video-talkcraft/template/cards/lead-word-zoom-assemble.tsx _runs/pocketbay-s01/src/cards/
+          cp /tmp/video-talkcraft/template/motion-systems/backdrop.tsx _runs/pocketbay-s01/src/motion-systems/
+          cp /tmp/video-talkcraft/template/motion-systems/camera.tsx _runs/pocketbay-s01/src/motion-systems/
+          cp /tmp/video-talkcraft/template/motion-systems/schematic.tsx _runs/pocketbay-s01/src/motion-systems/
+          cp /tmp/video-talkcraft/template/motion-systems/icons.ts _runs/pocketbay-s01/src/motion-systems/
+          cp /tmp/video-talkcraft/THIRD_PARTY_NOTICES.md _runs/pocketbay-s01/THIRD_PARTY_NOTICES.md
+
+      - name: Install Remotion and browser
+        working-directory: _runs/pocketbay-s01
+        run: |
+          npm install --no-audit --no-fund
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Automatically collect approved public assets
+        working-directory: _runs/pocketbay-s01
+        run: |
+          mkdir -p preflight-project/assets/stills preflight-project/assets/logos preflight-project/assets/icons
+          mkdir -p preflight-project/public/pages/pocketbay-home preflight-project/public/pages/pocketbay-discover preflight-project/remotion
+          curl -L --fail --retry 3 'https://images.pexels.com/photos/102061/pexels-photo-102061.jpeg?cs=srgb&fm=jpg' -o preflight-project/assets/stills/s02-developer-coding-pexels-102061.jpg
+          curl -L --fail --retry 3 'https://pocketbay.com/favicon.ico' -o preflight-project/assets/logos/pocketbay.ico
+          curl -L --fail --retry 3 'https://api.iconify.design/logos/vercel-icon.svg' -o preflight-project/assets/logos/vercel.svg
+          curl -L --fail --retry 3 'https://api.iconify.design/logos/railway.svg' -o preflight-project/assets/logos/railway.svg
+          curl -L --fail --retry 3 'https://api.iconify.design/lucide/app-window.svg' -o preflight-project/assets/icons/app-store.svg
+          curl -L --fail --retry 3 'https://api.iconify.design/lucide/server.svg' -o preflight-project/assets/icons/server.svg
+          curl -L --fail --retry 3 'https://api.iconify.design/lucide/user-round.svg' -o preflight-project/assets/icons/creator.svg
+          cat > capture-pages.cjs <<'NODE'
+          const {chromium} = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+          (async()=>{
+            const browser = await chromium.launch({headless:true});
+            for (const [slug,url] of [['pocketbay-home','https://pocketbay.com/'],['pocketbay-discover','https://pocketbay.com/discover']]) {
+              const dir = path.resolve('preflight-project/public/pages', slug);
+              const page = await browser.newPage({viewport:{width:1280,height:900}, deviceScaleFactor:2});
+              await page.goto(url,{waitUntil:'networkidle',timeout:90000});
+              await page.screenshot({path:path.join(dir,'page.png'),fullPage:true});
+              const metrics = await page.evaluate(()=>({dpr:devicePixelRatio,viewport:{width:innerWidth,height:innerHeight},page:{width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight}}));
+              fs.writeFileSync(path.join(dir,'targets.json'), JSON.stringify(metrics,null,2));
+              await page.close();
+            }
+            await browser.close();
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          node capture-pages.cjs
+
+      - name: Build machine-check SHOTBOOK mirror
+        working-directory: _runs/pocketbay-s01
+        run: |
+          cat > preflight-project/SHOTBOOK.md <<'EOF'
+          # PocketBay SHOTBOOK machine-check mirror
+          ### S01 · 0.000–11.250 · Hook
+          - 素材：文
+          - G5 线稿示意图：code → rocket → layers
+          ### S02 · 11.250–25.000 · AI coding
+          - 素材：图（assets/stills/s02-developer-coding-pexels-102061.jpg）· 文
+          ### S03 · 25.000–36.875 · bottleneck
+          - 素材：文
+          - G5 线稿示意图：开发 → 部署 → 运营 → 分发 → 商业化
+          ### S04 · 36.875–45.417 · PocketBay evidence
+          - 素材：截图（public/pages/pocketbay-home/page.png, public/pages/pocketbay-home/targets.json）
+          ### S05 · 45.417–59.792 · comparison
+          - 素材：图（assets/logos/pocketbay.ico, assets/logos/vercel.svg, assets/logos/railway.svg）· 文
+          ### S06 · 59.792–76.042 · product loop
+          - 素材：文
+          - G5 线稿示意图：Build → Deploy → Discover → Use → Feedback → Iterate → Pay
+          ### S07 · 76.042–83.958 · convergence
+          - 素材：图（assets/icons/app-store.svg, assets/icons/server.svg, assets/icons/creator.svg）· 文
+          ### S08 · 83.958–99.792 · demand-side risk
+          - 素材：截图（public/pages/pocketbay-discover/page.png, public/pages/pocketbay-discover/targets.json）· 文
+          ### S09 · 99.792–111.667 · two metrics
+          - 素材：文
+          - G5 线稿示意图：应用→外部用户；开发者→首笔收入
+          ### S10 · 111.667–120.000 · final thesis
+          - 素材：文
+          - G5 线稿示意图：AI code → remaining product work
+          ## 未完成 / 未采集清单
+          无
+          EOF
+          cat > preflight-project/remotion/shots.json <<'EOF'
+          [{"id":"S01"},{"id":"S02"},{"id":"S03"},{"id":"S04"},{"id":"S05"},{"id":"S06"},{"id":"S07"},{"id":"S08"},{"id":"S09"},{"id":"S10"}]
+          EOF
+          cat > preflight-project/sources.md <<'EOF'
+          # sources.md
+          - S02 developer coding photo: Pexels photo 102061; source query: developer coding workspace; Pexels free-to-use page; downloaded from images.pexels.com.
+          - S04/S08 PocketBay pages: official pocketbay.com homepage and /discover; captured with Playwright fullPage at DPR 2.
+          - S05 logos: PocketBay official favicon; Vercel/Railway brand marks via Iconify logos collection; brand marks used only for identification.
+          - S07 icons: Lucide via Iconify (app-window/server/user-round); open-source line icons used as generic category symbols.
+          EOF
+
+      - name: TalkCraft preflight gate
+        working-directory: _runs/pocketbay-s01
+        run: |
+          python3 /tmp/video-talkcraft/scripts/preflight.py --project preflight-project --shotbook SHOTBOOK.md --fps 30 --shots remotion/shots.json | tee preflight.log
+
+      - name: TalkCraft card fidelity gate
+        working-directory: _runs/pocketbay-s01
+        run: |
+          python3 /tmp/video-talkcraft/scripts/card_lint.py src lead-word-zoom-assemble | tee card-lint.log
+
+      - name: Render native Remotion S01 only
+        working-directory: _runs/pocketbay-s01
+        run: |
+          mkdir -p out/stills
+          npx remotion render src/index.ts S01 out/s01-silent.mp4 --codec=h264 --crf=18 --gl=angle
+          npx remotion still src/index.ts S01 out/stills/f036.png --frame=36 --gl=angle
+          npx remotion still src/index.ts S01 out/stills/f129.png --frame=129 --gl=angle
+          npx remotion still src/index.ts S01 out/stills/f261.png --frame=261 --gl=angle
+          npx remotion still src/index.ts S01 out/stills/f315.png --frame=315 --gl=angle
+          ffprobe -v error -show_entries stream=width,height,r_frame_rate,codec_name -show_entries format=duration -of json out/s01-silent.mp4 > out/ffprobe.json
+          cp preflight.log card-lint.log out/
+          cp -r preflight-project/public/pages out/pages
+
+      - name: Upload S01 sample artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pocketbay-talkcraft-s01-native
+          path: _runs/pocketbay-s01/out/
+          if-no-files-found: error
+          retention-days: 7
