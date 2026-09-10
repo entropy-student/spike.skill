@@ -1,0 +1,17 @@
+{
+  "name": "pocketbay-talkcraft-s01",
+  "private": true,
+  "scripts": {
+    "render": "remotion render src/index.ts S01 out/s01-silent.mp4 --codec=h264 --crf=18"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.344",
+    "@remotion/paths": "4.0.344",
+    "remotion": "4.0.344",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
+  }
+}
