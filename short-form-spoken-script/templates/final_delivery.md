@@ -10,5 +10,7 @@
 {spoken_script}
 
 ## 长度
-- 字符/字数：{count}
-- 预计口播时长：{estimated_duration} `ESTIMATED | MEASURED`
+- 可朗读字符/字数：{count}
+- 使用语速：{speaking_rate_cps} chars/s `{DEFAULT | USER | MEASURED | ESTIMATED}`
+- 目标时长：{target_duration}
+- 预计/实测口播时长：{duration} `{ESTIMATED | MEASURED}`
