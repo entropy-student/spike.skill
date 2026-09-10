@@ -1,0 +1,24 @@
+# Quick Product Business Teardown
+
+- **分析单位：**
+- **产品类型：**
+- **它是什么：**
+- **服务谁：**
+- **User / Payer / Beneficiary：**
+- **用户真正的 Job：**
+- **没有它以前怎么办：**
+- **为什么会有它：**
+- **Why Now / Enabler：**
+- **价值创造机制：**
+- **谁付钱：**
+- **付款买的是什么：**
+- **Revenue Engine：**
+- **Profit Engine：**
+- **免费/补贴/交叉销售层：**
+- **Operating Loop：**
+- **Growth Engine：**
+- **最大竞争替代：**
+- **最难复制：**
+- **最大脆弱点：**
+- **关键 UNKNOWN：**
+- **一句话商业本质：**
