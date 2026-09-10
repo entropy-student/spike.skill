@@ -4,11 +4,11 @@
 
 ### 先把短视频结构写对，再把它改成真人能顺口说出来的中文
 
-**一个自包含的口播创作 Skill：内容承诺 → 留存结构 → 真人口语化 → 出声与时长质检。**
+**一个自包含的口播创作 Skill：内容承诺 → 留存结构 → 真人口语化 → 出声与时长质检 → SRT。**
 
 [简体中文](./README.md) · [English](./README_EN.md) · [完整执行规则](./SKILL.md)
 
-![Version](https://img.shields.io/badge/version-v0.1.2-orange?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.3-orange?style=flat-square)
 ![Status](https://img.shields.io/badge/status-Calibrating-yellow?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-Spoken%20Script-blueviolet?style=flat-square)
 
@@ -18,7 +18,7 @@
 
 ## 它解决什么问题？
 
-很多 AI 口播稿会同时出现两类问题：结构没问题但不像人说话，或者说话自然但留不住人。这个 Skill 把两件事拆成两遍做，并在写稿前先锁定时长与语速：
+很多 AI 口播稿会同时出现两类问题：结构没问题但不像人说话，或者说话自然但留不住人。这个 Skill 把两件事拆成两遍做，并在写稿前先锁定时长与语速；口播稿锁定后，再用同一语速派生 SRT：
 
 ```text
 主题 / 素材
@@ -38,7 +38,9 @@ Spoken Rewrite
 Oral QA
 按嘴、耳朵、事实和时长检查
     ↓
-最终口播逐字稿
+Script Lock
+    ├── 口播稿
+    └── SRT（同一语速时间轴）
 ```
 
 ## 语速前置条件
@@ -60,9 +62,11 @@ target_spoken_chars = target_seconds × speaking_rate_cps
 
 默认允许约 ±5% 浮动。标点、Markdown 和空白不算口播字量；数字、英文缩写和英文单词按实际朗读占用近似。已有真人/音频实测时长时，以实测为准。
 
+**SRT 必须继承同一个 speaking rate。** 如果口播稿按 4.8 字/秒规划，估算 SRT 也必须按 4.8 字/秒计算各字幕块时间，不允许另用一套固定速度。
+
 ## 默认产出物
 
-一轮标准调用只交付：
+原有口播稿模板保持不变：
 
 1. **标题 / 选题名**
 2. **最佳 Hook** —— 正式口播第一段，只展示一次
@@ -79,7 +83,31 @@ target_spoken_chars = target_seconds × speaking_rate_cps
 
 Hook 单独展示是为了查看、替换和做 A/B 测试，不代表需要朗读两遍。总字数和总时长按 `Hook + 正文续接` 合计一次。
 
-默认不把镜头、B-roll、导演提示混进口播正文。需要制作时，把锁定稿再交给 TalkCraft / Director Layer。
+此外默认再交付：
+
+5. **独立 `.srt` 字幕文件**
+
+SRT 从同一份 `最佳 Hook + 正文续接` 派生，不修改正文。没有真实音频时，时间码按前置语速估算；如果之后提供真实录音/TTS，应重新音频对齐并覆盖估算时间轴。
+
+默认不把镜头、B-roll、导演提示混进口播正文。需要制作时，把锁定稿和 SRT 再交给 TalkCraft / Director Layer。
+
+## SRT 怎么生成？
+
+```text
+Locked Script
+↓
+按语义 / 呼吸切字幕块
+↓
+segment duration = 可朗读字符数 ÷ speaking_rate_cps
+↓
+累计时间码
+↓
+标准 UTF-8 .srt
+```
+
+基本要求：Hook 只出现一次；不漏句、不重复句；时间码不重叠、不倒退；优先约 1.5–4 秒一个字幕块；不在专有名词、数字单位和固定短语中间硬切。
+
+详细规则：[`references/05_SRT_TIMING.md`](./references/05_SRT_TIMING.md)
 
 ## 适合什么内容？
 
@@ -101,6 +129,8 @@ Hook 单独展示是为了查看、替换和做 A/B 测试，不代表需要朗�
 
 第二层 Spoken Rewrite 负责句子能不能一口气说完、有没有报告腔/模型腔、指代听不听得懂、专业词是否自然，以及纸面顺但嘴里拗的地方怎么改。第二层**禁止擅自改掉第一层的 Hook、证据、Payoff 和 CTA 功能**。
 
+SRT 是第三个派生层，只负责“在哪个时间显示哪句话”，**禁止反过来改写 Script Lock 后的口播稿**。
+
 ## 最快调用
 
 ```text
@@ -114,8 +144,9 @@ Hook 单独展示是为了查看、替换和做 A/B 测试，不代表需要朗�
 
 先按时长和语速确定目标字量，再锁定一个核心承诺，设计留存结构；
 最后只做中文口语化，不破坏 Hook、证据和 Payoff。
-输出标题、最佳 Hook、正文续接、字量、语速和预计时长。
-Hook 只出现一次，正文从 Hook 后直接续接。
+输出标题、最佳 Hook、正文续接、字量、语速和预计时长；
+Hook 只出现一次，正文从 Hook 后直接续接；
+另外生成一个遵循同一语速的独立 SRT 文件。
 ```
 
 如果只给一个主题也可以。Skill 只补问真正缺失且会改变结果的信息，默认最多 4 个问题；用户说“你决定”时直接采用合理默认值。
@@ -129,18 +160,18 @@ Hook 只出现一次，正文从 Hook 后直接续接。
 ```text
 Short-Form Spoken Script
         ↓
-最终口播逐字稿
+Locked Script + Estimated SRT
         ↓
 Voice / TTS
         ↓
-Aligned Subtitles
+Real Audio Alignment（有音频时）
         ↓
 TalkCraft / Director Layer
         ↓
 Video Production
 ```
 
-本 Skill 不负责正式分镜、配音、字幕、动效、封面和发布。
+本 Skill 不负责正式分镜、配音、动效、封面和发布。无音频时的 SRT 是语速模型估算值，不冒充真实字词级音频对齐。
 
 ## 方法来源
 
@@ -161,7 +192,9 @@ short-form-spoken-script/
 ├── metadata.yml
 ├── RESEARCH_NOTES.md
 ├── references/
+│   └── 05_SRT_TIMING.md
 ├── templates/
+│   └── srt_delivery.md
 └── examples/
 ```
 
