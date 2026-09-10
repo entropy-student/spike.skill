@@ -8,7 +8,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md) · [完整执行规则](./SKILL.md)
 
-![Version](https://img.shields.io/badge/version-v0.1.1-orange?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.2-orange?style=flat-square)
 ![Status](https://img.shields.io/badge/status-Calibrating-yellow?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-Spoken%20Script-blueviolet?style=flat-square)
 
@@ -65,9 +65,19 @@ target_spoken_chars = target_seconds × speaking_rate_cps
 一轮标准调用只交付：
 
 1. **标题 / 选题名**
-2. **最佳 Hook**
-3. **完整可直接朗读的口播逐字稿**
+2. **最佳 Hook** —— 正式口播第一段，只展示一次
+3. **正文续接** —— 从 Hook 后直接开始，不重复 Hook
 4. **可朗读字符/字数 + 使用语速 + 预计口播时长**
+
+实际朗读顺序就是：
+
+```text
+最佳 Hook
+↓
+正文续接
+```
+
+Hook 单独展示是为了查看、替换和做 A/B 测试，不代表需要朗读两遍。总字数和总时长按 `Hook + 正文续接` 合计一次。
 
 默认不把镜头、B-roll、导演提示混进口播正文。需要制作时，把锁定稿再交给 TalkCraft / Director Layer。
 
@@ -104,7 +114,8 @@ target_spoken_chars = target_seconds × speaking_rate_cps
 
 先按时长和语速确定目标字量，再锁定一个核心承诺，设计留存结构；
 最后只做中文口语化，不破坏 Hook、证据和 Payoff。
-输出标题、最佳 Hook、完整逐字稿、字量、语速和预计时长。
+输出标题、最佳 Hook、正文续接、字量、语速和预计时长。
+Hook 只出现一次，正文从 Hook 后直接续接。
 ```
 
 如果只给一个主题也可以。Skill 只补问真正缺失且会改变结果的信息，默认最多 4 个问题；用户说“你决定”时直接采用合理默认值。
