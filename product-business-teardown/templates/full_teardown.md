@@ -1,22 +1,55 @@
-# Full Product Business Teardown
+# Full Teardown Template
 
-## 1. Executive Anatomy
-## 2. Unit of Analysis
-## 3. Product Identity
-## 4. Stakeholder & JTBD Map
-## 5. Why It Exists / Why Now
-## 6. Value Architecture — Create / Deliver / Capture
-## 7. Money Flow
-### 7.1 Payers
-### 7.2 Chargeable Objects
-### 7.3 Revenue Engines
-### 7.4 Profit Engine / Profit Pool
-### 7.5 Cross-subsidies
-## 8. Operating Loop
-## 9. Growth / Distribution Engine
-## 10. Competition & Real Alternatives
-## 11. Moat / Defensibility
-## 12. Fragility / What Must Be True
-## 13. Copyability Lens
-## 14. Evidence Ledger
-## 15. One-sentence Business Essence
+## Scope
+- Unit: SKU_OR_LISTING / PRODUCT / PRODUCT_LINE / COMPANY / PLATFORM_ECOSYSTEM
+- Product / entity:
+- Market / period:
+- Archetype:
+- Evidence environment:
+
+## Executive Business Essence
+
+## A. Product Identity
+
+## B. Customer / JTBD
+- User:
+- Payer/Economic Buyer:
+- Beneficiary:
+- Influencer/Gatekeeper:
+- Trigger:
+- Job:
+- Before / alternatives:
+- After:
+
+## C. Why It Exists / Why Now
+
+## D. Value Architecture
+- CREATE:
+- DELIVER:
+- CAPTURE:
+
+## E. Money Flow & Profit Engine
+- Revenue engine:
+- Paid boundary / value metric:
+- Financial ladder:
+- Profit engine / profit pool:
+- Channel economics:
+- Partner/supplier claims:
+- Unknowns:
+
+## F. Operating System
+
+## G. Growth / Distribution Engine
+
+## H. Competition / Moat
+
+## I. Fragility / What Must Be True
+
+## Evidence Ledger
+
+## Copyability
+- Copyable mechanism:
+- Context-dependent advantage:
+- Dangerous/non-copyable:
+
+## Mandatory Final Summary

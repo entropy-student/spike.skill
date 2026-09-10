@@ -1,31 +1,30 @@
-# Competition & Moat
+# Competition and Moat
 
-## Competition map
-1. Direct competitor
-2. Adjacent solution
-3. Manual workaround
-4. In-house build/team
-5. Old habit
-6. Non-consumption
+真正替代方案包括：
+- 直接竞品；
+- 相邻品类；
+- DIY / 手工方案；
+- 内部团队 / 人工服务；
+- 旧习惯；
+- Non-consumption（不解决）。
 
 ## Moat checks
 - Scale economies
 - Network effects
 - Switching costs
-- Brand/trust
-- Proprietary data/IP
-- Distribution advantage
-- Ecosystem/complements
-- Process power / activity fit
+- Brand / trust
+- Proprietary data / IP
+- Distribution
+- Ecosystem
+- Process fit
 - Counter-positioning
-- Regulation/certification
+- Regulation / certification
 - Supply advantage
 
-## Evidence discipline
-- 用户多 ≠ 网络效应。
-- 数据多 ≠ 数据护城河。
-- 品牌知名 ≠ 定价权。
-- 功能多 ≠ switching cost。
-- AI ≠ 技术壁垒。
+对小商品还要问：
+- 功能是否容易被工厂复制？
+- 真正差异来自材料/工艺，还是设计/包装/渠道/品牌？
+- 用户切换成本多低？
+- 廉价替代是否完成 80% Job？
 
-必须说明护城河通过什么机制降低竞争者收益或提高复制成本。
+不要把“功能不同”自动称为护城河。护城河必须解释竞争者为何难以复制、跟随或经济性不愿跟随。

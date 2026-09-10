@@ -1,22 +1,24 @@
 # Customer / JTBD
 
-不要从年龄性别开始，而从“什么情况下，用户想取得什么进展”开始。
+分析产品前，先问用户在什么情境下“雇佣”它完成什么进展。
 
-## Stakeholder Map
-- User：真正使用产品的人。
-- Payer：付款的人/组织。
-- Economic Buyer：能批准预算的人。
-- Beneficiary：最终受益者。
-- Supplier/Producer：平台或生态供给侧。
-- Gatekeeper/Influencer：影响采用但不直接使用或付款的人。
+## Participants
+- Primary User
+- Payer / Economic Buyer
+- Beneficiary
+- Supply-side Participant
+- Influencer / Gatekeeper
 
-## Job
-- Trigger：为什么现在开始找解决方案？
-- Functional：实际任务。
-- Emotional：想获得/避免的感受。
-- Social：希望别人怎么看自己。
-- Before：当前替代。
-- Friction：当前办法哪里难受。
-- After：购买后的真实结果。
-- Fire criteria：什么会让用户放弃这个产品？
-- Hire criteria：什么让用户决定采用？
+这些角色可以重合，也可以完全不同。
+
+## JTBD
+- Trigger：什么事件/情境触发需求？
+- Functional Job：实际要完成什么？
+- Emotional Job：希望怎么感觉？
+- Social Job：希望别人怎么看自己？
+- Before：产品出现前怎么解决？
+- Friction：旧方案哪里慢、贵、难、风险高、不舒服或不体面？
+- After：成功后发生什么变化？
+- Non-consumption：如果不解决会怎样？
+
+竞争不等于同类产品。所有能完成同一 Job 的替代方案都属于竞争，包括 DIY、朋友、人工服务、Excel、旧习惯和什么都不做。

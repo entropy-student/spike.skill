@@ -1,14 +1,20 @@
 # Why It Exists / Why Now
 
-“因为用户有需求”不是完整答案。
+不要把“为什么存在”写成品牌故事。需要给出机制：
 
-## 六问
-1. 这个 Job 在产品出现前是否已经存在？
-2. 当时用户怎么解决？
-3. 旧方案结构性缺陷是什么？
-4. 什么 Enabler 使新方案成立：技术、成本、分发、法规、供应链、文化、基础设施？
-5. 产品最初的 Wedge 是什么？
-6. 它是否还承担公司级战略任务：获客、留存、交叉销售、生态控制、防御、数据反馈？
+`Underlying Job / Pain → Old Alternative → Gap/Friction → Enabler → Product Wedge → Why Now`
 
-## Why-now 警告
-若找不到 Why Now，不代表产品不能成立；可能它满足的是长期稳定 Job，而不是时代窗口。
+可能 Enabler：
+- 新技术/AI/API；
+- 制造/物流成本下降；
+- 新渠道或平台；
+- 法规/标准变化；
+- 新文化/消费习惯；
+- 设备普及；
+- 数据可用性；
+- 支付基础设施；
+- 市场结构变化。
+
+如分析公司内的免费/低利润产品，还要识别 Portfolio Role：获客、Retention、Cross-sell、Ecosystem Control、Data/Feedback、Supply aggregation、Strategic defense。
+
+没有证据时，Why Now 可以是 INFERENCE/HYPOTHESIS，不要把漂亮叙事当事实。

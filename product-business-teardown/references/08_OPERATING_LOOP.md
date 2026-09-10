@@ -1,24 +1,32 @@
 # Operating Loop
 
-不是组织架构，而是价值和钱怎样循环。
+商业拆解必须让人看见“机器怎么转”，而不是只列 9 个 Canvas 方块。
 
-## 通用骨架
-INPUT → TRANSFORMATION → DELIVERY → PAYMENT → DATA / FEEDBACK → REINVESTMENT → NEXT LOOP
+通用骨架：
+
+`INPUT → TRANSFORMATION → DELIVERY → PAYMENT → FEEDBACK/DATA → REINVESTMENT → NEXT LOOP`
+
+按类型改写：
 
 ## SaaS
-Acquire → Activate → Core Habit → Renew → Expand → Product/Data Improvement → More Acquisition
+`Acquire → Activate → Repeated Use → Upgrade/Renew/Expand → Product/Data Feedback → Improve/Distribute`
 
 ## Marketplace
-Recruit Supply + Recruit Demand → Match → Trust → Transaction → Take Rate → Better Liquidity → More Supply/Demand
+`Acquire Supply + Acquire Demand → Match → Trust/Safety → Transaction → Fee → Better Liquidity/Selection → More Supply/Demand`
 
-## Direct Commerce
-Design/Source → Inventory → Demand Generation → Purchase → Fulfillment → Experience → Repeat/Referral → Reorder
+## Physical Product
+`Source/Build → Inventory → Channel/Discovery → Purchase → Fulfillment → Use → Repeat/Replacement/Upsell/Word of Mouth`
 
-## Media
-Create/Acquire Content → Audience Attention → Retention → Ad/Subscription Inventory → Revenue → Fund More Content
+## Small Product / SKU
+`Use Scene/Need → Discovery/Gatekeeper → Listing/Brand Proof → Purchase → Fulfillment → Product Outcome → Wear/Replacement/Collection/Gifting/Referral → Next Purchase`
 
 ## Service
-Lead → Diagnose → Scope → Deliver Expertise → Outcome → Testimonial/Referral/Retainer
+`Lead → Diagnose → Scope → Deliver → Outcome → Proof/Referral → Repeat/Upsell`
+
+## Media
+`Create/Curate → Distribute → Attention → Engagement → Monetize → Reinvest in Content/Distribution`
 
 ## Open Source
-Free Adoption → Community/Ecosystem → Organizational Dependency → Paid Hosting/Support/Security/Enterprise Features → Reinvestment in Core
+`Free Adoption → Community/Ecosystem → Production/Team Need → Paid Trigger → Hosted/Enterprise/Support → Expansion/Contribution → More Adoption`
+
+分析时指出循环里最难的节点、最强正反馈、最容易断裂的节点，以及哪些环节依赖持续买流量而不是自增强。

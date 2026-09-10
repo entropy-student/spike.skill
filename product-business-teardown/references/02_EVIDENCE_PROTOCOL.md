@@ -1,23 +1,20 @@
 # Evidence Protocol
 
-## 证据标签
-- FACT：官方/监管/财报/价格页/直接观察可证明。
-- INFERENCE：由多个事实合理推导，但官方未直接确认。
-- HYPOTHESIS：需要验证的解释。
-- UNKNOWN：无法从公开信息可靠判断。
-- CONFLICT：来源相互冲突。
+## Labels
+- `FACT`: source directly supports the statement.
+- `INFERENCE`: a reasonable conclusion from cited facts, but not directly disclosed.
+- `HYPOTHESIS`: plausible mechanism requiring validation.
+- `UNKNOWN`: insufficient public evidence.
+- `CONFLICT`: credible sources disagree or use incompatible scope.
 
-## 来源优先级
-1. 财报、监管披露、官方条款/价格/文档。
-2. 官方投资者材料、客户案例、创始人/高管原话。
-3. App Store / Marketplace 可观察交易与评论。
-4. 高质量行业研究。
-5. 招聘、SEO、合作伙伴、技术痕迹等代理信号。
-6. Reddit/社媒/论坛：用于痛点、语言、替代行为、口碑；不能单独证明利润。
+## Rules
+1. Every concrete number needs date, geography/channel and source scope when material.
+2. Do not convert user count, reviews, downloads, GMV, bookings or traffic into revenue without a justified bridge.
+3. Do not convert revenue into profit.
+4. Do not infer private CAC, contribution margin, seller profit, supplier terms or internal cost structure as facts.
+5. Community anecdotes are evidence of language, use cases, alternatives and complaints—not automatically prevalence or market size.
+6. A product image can support visible form/mechanism observations, but not hidden materials, sales or profitability.
+7. If a source is stale but still useful, state its date rather than silently treating it as current.
+8. If a claim materially affects the teardown and evidence is unavailable, preserve `UNKNOWN` instead of filling the gap with a neat story.
 
-## 禁止
-- 从售价猜净利润并写成事实。
-- 从流量猜营收并写成事实。
-- 从用户数量直接宣称网络效应。
-- 从“免费”直接推断“卖数据”。
-- 从融资额推断产品盈利。
+The goal is an understandable commercial mechanism with explicit uncertainty, not false completeness.

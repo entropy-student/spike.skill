@@ -1,10 +1,15 @@
-# Growth / Distribution Engine
+# Growth Engine
 
-拆解下一批用户从哪里来：Paid、Search、Content、Sales、Product-led、Referral/Virality、Partnership/Channel、Network Effect、Ecosystem、Installed-base Cross-sell。
+增长与变现必须分开分析。
 
-## 自增强程度
-A. 每增长一个用户会提高下一位用户的获取/留存/价值：强回路。
-B. 规模提高效率，但仍需持续投放：中等。
-C. 停止营销即停止增长：弱回路。
+可能来源：Paid、Search/SEO、Content、Sales-led、Product-led、Referral/Virality、Partnership/Channel、Network effects、Ecosystem distribution、Cross-sell。
 
-增长引擎和利润引擎可以不同；不要把流量来源当收入来源。
+回答：
+- 第一批用户从哪里来？
+- 下一批用户是否更容易获得？
+- 产品使用本身是否创造分发？
+- 是否依赖持续买流量？
+- 免费用户、供应侧参与者、渠道伙伴或内容是否形成增长资产？
+- 增长是否会带来单位经济改善，还是规模越大成本同步扩大？
+
+不要因为“用户很多”就自动声称存在网络效应；网络效应需要证明更多参与者会提高其他参与者的产品价值。

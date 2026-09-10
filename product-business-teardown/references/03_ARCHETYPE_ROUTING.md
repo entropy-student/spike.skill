@@ -1,25 +1,29 @@
-# Product Archetype Routing
+# Archetype Routing
+
+先识别“商业机器类型”，再选择分析重点。允许 HYBRID。
 
 ## DIRECT_SALE
-核心：单位商品毛利、复购、渠道、库存/履约。
+实物 / 数字商品直接销售。重点：制造/采购、库存、渠道、AOV、退货、复购、品牌/价格权。
+
+若是小商品/SKU，再识别：`DURABLE / CONSUMABLE / REPLACEMENT / ACCESSORY / GIFT_IDENTITY / BUNDLE`，并加载 Small Product / Sparse Evidence Mode。
 
 ## SUBSCRIPTION_SAAS
-核心：持续价值、续费、扩张、席位/套餐、服务成本、CAC payback。
+重点：Acquisition → Activation → Usage → Renewal/Expansion，席位/层级/使用量，Gross Margin、churn、NRR/LTV。
 
 ## USAGE_BASED
-核心：使用量与价值是否同步、边际成本、毛利、账单可预测性。
+重点：使用量与价值是否一致、variable cost、gross margin、用量扩张/收缩、commit contracts。
 
 ## SERVICE
-核心：专家时间/流程/结果、利用率、标准化程度、人力瓶颈。
+重点：专家时间/产能、利用率、标准化程度、交付质量、lead flow、productization。
 
 ## MARKETPLACE_PLATFORM
-核心：供需两侧、匹配、流动性、信任、Take Rate、绕平台风险、网络密度。
+重点：多边参与者、供需、Match、Trust/Safety、Liquidity、Take Rate、网络效应。必须使用 Marketplace Volume-to-Revenue Bridge。
 
 ## MEDIA_ATTENTION
-核心：内容供给、注意力、广告库存/订阅、受众质量、内容成本。
+重点：Audience → Attention/Engagement → Ad/Subscription/Sponsor/Commerce，内容生产成本和注意力竞争。
 
 ## OPEN_SOURCE_ECOSYSTEM
-核心：免费采用、社区/开发者、企业痛点、托管/支持/安全/治理/高级能力。
+重点：Free Adoption → Ecosystem/Community → Paid Trigger → Hosted/Enterprise/Support/Usage，Packaging 与 cross-subsidy。
 
 ## HYBRID
-拆出多个子引擎，再说明它们如何交叉补贴或互相导流。
+指出：用户增长引擎、收入引擎、利润引擎、战略引擎分别属于哪种类型。不要因为业务复杂就强行只选一个。

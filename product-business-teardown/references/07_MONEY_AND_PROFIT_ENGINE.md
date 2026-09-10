@@ -1,36 +1,48 @@
-# Money Flow & Profit Engine
+# Money and Profit Engine
 
-## 先画钱流
-`Payer → Chargeable Object → Pricing Metric → Company → Variable Cost / Partner Share → Gross Contribution`
+商业分析不能只回答“怎么收费”，还要回答“钱为什么在这里被收走”。
 
-## Chargeable Object
-- Asset / ownership
-- Access
-- Seat
-- Usage
-- Transaction
-- Outcome
-- License/IP
-- Lead
-- Attention/ad inventory
-- Support/service
-- Consumable
-- Financing/float
+## Revenue Streams
+- Subscription
+- One-time purchase
+- Usage-based
+- Seat-based
+- Transaction fee / take rate
+- Advertising
+- Licensing
+- Marketplace commission
+- Service fee
+- Hardware
+- Consumable/refill
+- Affiliate / lead generation
+- Data/service package（仅在有公开证据时）
+- Hybrid
 
-## Revenue Engine vs Profit Engine
-Revenue Engine = 钱从哪里进入。
-Profit Engine = 扣掉该收入流直接相关成本后，哪部分更可能贡献经济利润。
+## Revenue Engine
+回答：
+- 谁付款？
+- 为哪一段价值付款？
+- 收费单位是什么？
+- 多久付一次？
+- 是否存在免费/补贴层？
 
-不要把二者混淆。
+## Profit Engine
+不能简单用 Revenue Share 代替 Profit Pool。
 
-## Cross Subsidy
-检查：免费用户是否带来供给/内容/网络价值；硬件是否为后续耗材/服务铺路；低毛利产品是否承担获客；功能是否增加留存而非直接收费；一侧用户是否被另一侧付款者补贴。
+检查：
+- 哪个 Revenue Stream 毛利可能更高？
+- 哪些直接成本跟收入一起增长？
+- 哪部分需要大量人工/销售/履约？
+- 哪部分具有规模效应？
+- 哪部分收入大但利润薄？
+- 哪个配套服务/耗材/广告/交易可能比主产品更赚钱？
 
-## Value Stick
-WTP > Price > Cost > WTS
-- 用户剩余：WTP - Price
-- 企业毛利空间：Price - Cost
-- 供应侧剩余：Cost - WTS
+必须使用 `references/13_FINANCIAL_LADDER.md` 指定利润层级，不能把 Gross Margin 直接当成 Operating Profit。
 
-## Profit Pool
-若行业价值链多个环节都赚钱，尝试判断利润集中在制造、品牌、分销、交易、支付、订阅、售后、耗材、金融、数据/软件、广告等哪一段。公开信息不足时标 `UNKNOWN`。
+## Value Capture
+使用 Value Stick 思路：
+`WTP → Price → Cost → WTS`
+
+企业改善经济性的方式包括：提高 WTP、降低 Cost、降低/改善 WTS、改变分成结构、提高重复购买/LTV、降低 CAC。
+
+没有公开财务时，Revenue Engine 可以判断；真实 Profit Engine 应标 `INFERENCE` / `UNKNOWN`。

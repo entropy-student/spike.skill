@@ -1,18 +1,23 @@
 # Money Flow Map
 
-## Payers
-- Payer A:
-- Payer B:
+## Participants
+| Participant | Gives | Receives | Pays/gets paid | Evidence |
+|---|---|---|---|---|
 
 ## Flow
-`Payer → What they pay for → Pricing metric → Revenue stream → Direct cost/partner share → Contribution`
+`Customer WTP → Price / transaction → recognized company revenue → direct product/channel/partner claims → retained gross/contribution economics → shared operating costs → operating/net/cash economics`
 
-## Cross-subsidy
-- Free/subsidized side:
-- Paying side:
-- Strategic purpose:
+## Paid boundary
+- What is free/subsidized:
+- What triggers payment:
+- What exactly becomes paid:
+- Pricing/value metric:
 
-## Profit Engine
-- Highest-confidence profit contributor:
-- Evidence level:
-- Unknowns:
+## Revenue engine(s)
+
+## Profit engine / profit pool
+- Level supported by evidence:
+- Strongest disclosed contributor:
+- Unknown lower levels:
+
+## Strategic value not captured as direct revenue

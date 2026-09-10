@@ -8,7 +8,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md) · [Full Skill](./SKILL.md)
 
-![Version](https://img.shields.io/badge/version-v0.1.0-orange?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.2.0-orange?style=flat-square)
 ![Status](https://img.shields.io/badge/status-calibrating-success?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-Product%20Business%20Teardown-blueviolet?style=flat-square)
 
@@ -16,44 +16,39 @@
 
 ---
 
-## What it does
+## What it analyzes
 
-Product Business Teardown analyzes products, services and business models across SaaS, apps, AI/API products, physical goods, services, marketplaces, media, open source and hybrids.
+The skill works across SaaS, apps, AI/API products, marketplaces, services, media, open source, physical goods, and hybrids. Product size does not matter: a public company, a single SKU, one marketplace listing, or an identifiable product image can all be valid inputs.
 
-It separates user from payer and beneficiary, customer job from product features, value creation from value capture, revenue engine from profit engine, product-level value from company-level strategic role, and facts from inference and unknowns.
+It separates user from payer/beneficiary, customer job from features, value creation from value capture, revenue from profit level, and product-level value from company-level strategic role.
 
-## Core flow
+## Small Product / Sparse Evidence Mode
 
-```text
-Unit of analysis
-→ Customer / JTBD
-→ Why it exists / Why now
-→ Create / Deliver / Capture
-→ Money flow
-→ Revenue engine
-→ Profit engine / profit pool
-→ Operating loop
-→ Growth engine
-→ Competition / moat
-→ Fragility
-→ Copyable vs non-copyable mechanisms
-```
+When the input is a small physical item or listing rather than a disclosure-rich company, the skill focuses on:
+
+`Use scene → Job → Workaround → Product mechanism → Price/substitutes → Value capture → Cost stack → Channel → Repeat/replacement/refill/gifting → Copyability → Unknowns`
+
+Seller revenue, margin, CAC, or profit stay `UNKNOWN` unless evidence exists.
+
+## Financial discipline
+
+`Revenue → Gross Profit → Contribution Profit → Operating Profit → Net Income → Cash Flow / FCF`
+
+GMV/GBV is not automatically marketplace revenue, take rate is not profit margin, and higher DTC gross margin does not automatically mean higher contribution after fulfillment and acquisition costs.
 
 ## Evidence labels
 
 `FACT / INFERENCE / HYPOTHESIS / UNKNOWN / CONFLICT`
 
-Never invent private unit economics or assume that high revenue means high profit.
-
 ## Quick invocation
 
 ```text
-Use Product Business Teardown to analyze this product.
+Use Product Business Teardown to analyze this product or SKU.
 Tell me who it serves, why it exists, who pays, what they are really paying for,
-where revenue and profit may come from, how the operating loop works,
-and what is genuinely hard to copy.
+where revenue/value capture and profit may come from, how the operating loop works,
+and what is genuinely hard to copy. Do not invent private economics.
 ```
 
 ## Status
 
-v0.1.0 — Calibrating across multiple product archetypes.
+v0.2.0 — Calibrating across company/platform and product/SKU depth tracks.
