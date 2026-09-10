@@ -1,6 +1,6 @@
 slug: short-form-spoken-script
 display_name: Short-Form Spoken Script（短视频口播脚本）
-version: 0.1.2
+version: 0.1.3
 status: Calibrating
 category: content-creation
 language:
@@ -11,3 +11,4 @@ focus:
   - retention
   - natural-chinese
   - timing
+  - srt
