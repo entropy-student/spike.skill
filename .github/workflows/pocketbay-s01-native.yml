@@ -45,7 +45,6 @@ jobs:
           mkdir -p preflight-project/assets/stills preflight-project/assets/logos preflight-project/assets/icons
           mkdir -p preflight-project/public/pages/pocketbay-home preflight-project/public/pages/pocketbay-discover preflight-project/remotion
           curl -L --fail --retry 3 'https://images.pexels.com/photos/102061/pexels-photo-102061.jpeg?cs=srgb&fm=jpg' -o preflight-project/assets/stills/s02-developer-coding-pexels-102061.jpg
-          curl -L --fail --retry 3 'https://pocketbay.com/favicon.ico' -o preflight-project/assets/logos/pocketbay.ico
           curl -L --fail --retry 3 'https://api.iconify.design/logos/vercel-icon.svg' -o preflight-project/assets/logos/vercel.svg
           curl -L --fail --retry 3 'https://api.iconify.design/logos/railway.svg' -o preflight-project/assets/logos/railway.svg
           curl -L --fail --retry 3 'https://api.iconify.design/lucide/app-window.svg' -o preflight-project/assets/icons/app-store.svg
@@ -62,7 +61,12 @@ jobs:
               const page = await browser.newPage({viewport:{width:1280,height:900}, deviceScaleFactor:2});
               await page.goto(url,{waitUntil:'networkidle',timeout:90000});
               await page.screenshot({path:path.join(dir,'page.png'),fullPage:true});
-              const metrics = await page.evaluate(()=>({dpr:devicePixelRatio,viewport:{width:innerWidth,height:innerHeight},page:{width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight}}));
+              const metrics = await page.evaluate(()=>({
+                dpr:devicePixelRatio,
+                viewport:{width:innerWidth,height:innerHeight},
+                page:{width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight},
+                headings:Array.from(document.querySelectorAll('h1,h2,h3')).filter(el=>el.getBoundingClientRect().width>0).slice(0,20).map(el=>{const r=el.getBoundingClientRect();return {text:(el.textContent||'').trim().slice(0,120),x:r.left+scrollX,y:r.top+scrollY,w:r.width,h:r.height}})
+              }));
               fs.writeFileSync(path.join(dir,'targets.json'), JSON.stringify(metrics,null,2));
               await page.close();
             }
@@ -87,7 +91,7 @@ jobs:
           ### S04 · 36.875–45.417 · PocketBay evidence
           - 素材：截图（public/pages/pocketbay-home/page.png, public/pages/pocketbay-home/targets.json）
           ### S05 · 45.417–59.792 · comparison
-          - 素材：图（assets/logos/pocketbay.ico, assets/logos/vercel.svg, assets/logos/railway.svg）· 文
+          - 素材：截图（public/pages/pocketbay-home/page.png）· 图（assets/logos/vercel.svg, assets/logos/railway.svg）· 文
           ### S06 · 59.792–76.042 · product loop
           - 素材：文
           - G5 线稿示意图：Build → Deploy → Discover → Use → Feedback → Iterate → Pay
@@ -109,10 +113,10 @@ jobs:
           EOF
           cat > preflight-project/sources.md <<'EOF'
           # sources.md
-          - S02 developer coding photo: Pexels photo 102061; source query: developer coding workspace; Pexels free-to-use page; downloaded from images.pexels.com.
-          - S04/S08 PocketBay pages: official pocketbay.com homepage and /discover; captured with Playwright fullPage at DPR 2.
-          - S05 logos: PocketBay official favicon; Vercel/Railway brand marks via Iconify logos collection; brand marks used only for identification.
-          - S07 icons: Lucide via Iconify (app-window/server/user-round); open-source line icons used as generic category symbols.
+          - S02 developer coding photo: Pexels photo 102061; source query: developer coding workspace; downloaded from images.pexels.com under Pexels free-use terms.
+          - S04/S05/S08 PocketBay evidence: official pocketbay.com homepage and /discover; captured with Playwright fullPage at DPR 2 with DOM heading coordinates saved in targets.json.
+          - S05 Vercel/Railway marks: Iconify logos collection; brand marks used only for identification/comparison.
+          - S07 generic symbols: Lucide app-window/server/user-round via Iconify; used as generic category symbols.
           EOF
 
       - name: TalkCraft preflight gate
