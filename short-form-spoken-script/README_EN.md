@@ -8,7 +8,7 @@
 
 [简体中文](./README.md) · [English](./README_EN.md) · [Full Skill Rules](./SKILL.md)
 
-![Version](https://img.shields.io/badge/version-v0.1.1-orange?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.2-orange?style=flat-square)
 ![Status](https://img.shields.io/badge/status-Calibrating-yellow?style=flat-square)
 ![Focus](https://img.shields.io/badge/focus-Spoken%20Script-blueviolet?style=flat-square)
 
@@ -53,9 +53,11 @@ Examples at the default Chinese rate:
 ## Default deliverables
 
 1. Title / topic name
-2. Best hook
-3. Complete read-aloud script
+2. Best hook — the actual opening of the spoken script, shown once
+3. Body continuation — starts immediately after the hook and must not repeat it
 4. Spoken character/word count + speaking rate + estimated duration
+
+The reading order is simply `Best Hook → Body Continuation`. The hook is surfaced separately only for review, replacement and A/B testing. Total count and duration are calculated once across `hook + body continuation`.
 
 Shot directions, B-roll, motion design, voice, subtitles, thumbnails and publishing are downstream tasks.
 
@@ -76,7 +78,8 @@ Goal: watch-through + meaningful comments
 
 Calculate the target spoken length first, lock one content promise,
 build the retention structure, then rewrite only for natural spoken language.
-Return title, best hook, full spoken script, spoken length, rate and estimated duration.
+Return title, best hook, body continuation, spoken length, rate and estimated duration.
+Show the hook once; the body must continue after it without repeating it.
 ```
 
 ## Method references
