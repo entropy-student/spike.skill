@@ -64,6 +64,7 @@ jobs:
         run: |
           mkdir -p src/motion-systems
           cp ../../_video-talkcraft/template/motion-systems/backdrop.tsx src/motion-systems/backdrop.tsx
+          cp ../../_video-talkcraft/template/motion-systems/camera.tsx src/motion-systems/camera.tsx
           npm run prepare
           node scripts/prebuild.mjs
 
@@ -96,10 +97,6 @@ jobs:
         working-directory: workbench/pocketbay-talkcraft-strict
         run: npm run still
 
-      # TalkCraft SKILL §⑥-1.5: the first master render MUST NOT go straight to --all.
-      # Render only S01 with the upstream segmented renderer. The user's private audio is
-      # muxed locally in ChatGPT after this artifact is downloaded, producing the required
-      # audible single-shot preview before the user chooses full-film vs shot-by-shot cadence.
       - name: Mandatory first-shot preview - visual segment only
         working-directory: workbench/pocketbay-talkcraft-strict
         run: >-
@@ -123,6 +120,7 @@ jobs:
           - Mandatory cadence gate: this run renders S01 only; it intentionally does NOT render the full master.
           - Timing source: uploaded SRT cue boundaries; S01 word/token timing file is derived from that source and beat_lint must pass.
           - Real page: PocketBay live homepage captured with Playwright during this run; no code-mocked webpage is used.
+          - Global motion: current upstream G1 CameraRig is copied fresh and wraps S01 with one continuous 1.00→1.06 scale path, no x/y/rotation/blur and no impulses.
           - Recipe: slab-punch-title and line-carry-transition are copied from upstream template/cards; core motion laws remain unchanged.
           - S01 semantic timing: copied slab Recipe is offset so its fixed punch lands on the verified “一句话部署” beat; the line-carry title entry is derived from the verified “比部署大得多” beat.
           - Machine gates before artifact upload: preflight.py, card_lint.py, beat_lint.py, beat_gap_check.py advisory, QA still, upstream render_shots.mjs frame assertions, motion_check.py.
