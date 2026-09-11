@@ -1,0 +1,121 @@
+name: PocketBay TalkCraft Strict Render
+
+on:
+  push:
+    branches:
+      - workbench/pocketbay-talkcraft-strict-20260911
+    paths:
+      - 'workbench/pocketbay-talkcraft-strict/**'
+      - '.github/workflows/pocketbay-talkcraft-strict.yml'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: workbench/pocketbay-talkcraft-strict-20260911
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg imagemagick python3-pip fonts-noto-cjk
+
+      - name: Fetch current upstream TalkCraft
+        run: git clone --depth 1 https://github.com/Vincentwei1021/video-talkcraft.git _video-talkcraft
+
+      - name: Install Node dependencies
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: npm install --no-audit --no-fund
+
+      - name: Install Playwright Chromium
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: npx playwright install --with-deps chromium
+
+      - name: Capture live PocketBay evidence assets
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: npm run capture
+
+      - name: Build real-page media derivatives
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: |
+          set -euxo pipefail
+          mkdir -p public/pages public/stills out
+          convert public/stills/home-deploy.png -resize 620x /tmp/a.png
+          convert public/stills/home-discover.png -resize 620x /tmp/b.png
+          convert public/stills/home-creator.png -resize 620x /tmp/c.png
+          convert public/stills/home-earn.png -resize 620x /tmp/d.png
+          convert /tmp/a.png /tmp/b.png /tmp/c.png /tmp/d.png -append /tmp/home-stack.png
+          convert /tmp/home-stack.png -gravity north -background white -extent 620x1162 public/pages/home-scroll.png
+          convert public/pages/discover-full.png -resize 620x -gravity north -background white -extent 620x1162 public/pages/discover-scroll.png
+          ffmpeg -y -loop 1 -i public/pages/deploy-full.png -vf "scale=576:540:force_original_aspect_ratio=increase,crop=576:540,fps=30" -t 12 -c:v libx264 -pix_fmt yuv420p public/stills/deploy-loop.mp4
+          test -s public/pages/home-scroll.png
+          test -s public/pages/discover-scroll.png
+          test -s public/stills/deploy-loop.mp4
+          test -s public/stills/pocketbay-logo.png
+          test -s public/stills/app-auto-ledger.png
+          test -s public/stills/app-rednote-copy.png
+          test -s public/stills/app-color-type.png
+
+      - name: Copy current upstream global system and Recipe TSX files
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: |
+          mkdir -p src/motion-systems
+          cp ../../_video-talkcraft/template/motion-systems/backdrop.tsx src/motion-systems/backdrop.tsx
+          npm run prepare
+          node scripts/prebuild.mjs
+
+      - name: Install TalkCraft QA Python dependencies
+        run: python3 -m pip install --break-system-packages numpy imageio
+
+      - name: Gate 1 - upstream asset preflight
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: python3 ../../_video-talkcraft/scripts/preflight.py --shotbook SHOTBOOK.md --fps 30
+
+      - name: Gate 2 - upstream Recipe fidelity lint
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: >-
+          python3 ../../_video-talkcraft/scripts/card_lint.py src
+          slab-punch-title,source-converge,word-slot-cycle,title-demote-to-label,evidence-scroll-tour,split-60-40-story,strike-and-replace,step-timeline-vertical,gallery-wall-dolly,lead-word-zoom-assemble,line-carry-transition,caret-wipe-transition,pullback-cool-transition
+
+      - name: Compile and render QA still
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: npm run still
+
+      - name: Render 1920x1080 strict visual master
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: npm run render
+
+      - name: Gate 3 - upstream motion health
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: python3 ../../_video-talkcraft/scripts/motion_check.py out/PocketBay_strict_visual.mp4 0.8 0.003
+
+      - name: Write build audit
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: |
+          cat > out/STRICT_BUILD_AUDIT.md <<'EOF'
+          # PocketBay TalkCraft Strict Build Audit
+
+          - Upstream: Vincentwei1021/video-talkcraft cloned fresh during this run.
+          - Inputs: user-confirmed SHOTBOOK semantics; SRT sentence boundaries are hard anchors.
+          - Timing correction: S07/S08 boundary follows uploaded SRT (56.667 / 62.292), correcting the earlier SHOTBOOK transcription typo without changing shot intent.
+          - Real pages: captured live with Playwright; long-page evidence uses real screenshots, not code-mocked UI.
+          - Recipe implementation: files copied from upstream `template/cards/*.tsx`; only CONFIG/content/input presentation/skin edits allowed by each card's reuse contract were applied.
+          - Global background: copied from upstream `template/motion-systems/backdrop.tsx`.
+          - Machine gates: upstream `preflight.py`, `card_lint.py`, `motion_check.py` all must pass before artifact upload.
+          - Audio is intentionally not embedded in CI because the user audio remains private to the ChatGPT session; it is muxed locally after the visual master is downloaded.
+          EOF
+
+      - name: Upload strict visual artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pocketbay-talkcraft-strict-visual
+          path: |
+            workbench/pocketbay-talkcraft-strict/out/PocketBay_strict_visual.mp4
+            workbench/pocketbay-talkcraft-strict/out/check.png
+            workbench/pocketbay-talkcraft-strict/out/STRICT_BUILD_AUDIT.md
+            workbench/pocketbay-talkcraft-strict/sources.md
+            workbench/pocketbay-talkcraft-strict/SHOTBOOK.md
+          retention-days: 7
