@@ -73,12 +73,16 @@ const Note:React.FC<{children:React.ReactNode;dark?:boolean;top?:number}> = ({ch
 const SmallNote:React.FC<{children:React.ReactNode;dark?:boolean}> = ({children,dark=false}) =>
   <div style={{position:'absolute',left:130,right:130,bottom:165,textAlign:'center',fontFamily:'Noto Sans CJK SC, Microsoft YaHei, sans-serif',fontSize:30,fontWeight:600,color:dark?'#CBD5E1':'#667085'}}>{children}</div>;
 
-const S01_CAMERA_PATH=[{t:0,scale:1.00},{t:11.25,scale:1.06}];
+// Keep the upstream G1 easing curve already in motion at the exact segment boundaries.
+// Negative / post-roll keys are supported by the upstream CameraRig contract; this avoids
+// spending the first/last second inside the inOut(sin) near-zero-velocity shoulder.
+const S01_CAMERA_PATH=[{t:-1.5,scale:1.00},{t:12.75,scale:1.06}];
+const S01_TRANSITION_CAMERA_PATH=[{t:-1.5,scale:1.00},{t:8.3,scale:1.04}];
 
 // S01 is the mandatory TalkCraft first-shot validation target.
 // The copied slab Recipe is not rewritten: only its Sequence offset is derived from the
 // uploaded SRT timing so the Recipe's fixed punchAt=0.87s lands exactly on “一句话部署” (5.625s).
-// The whole shot is wrapped by current upstream G1 CameraRig: one 1.00→1.06 scale path,
+// The whole shot is wrapped by current upstream G1 CameraRig: one continuous scale path,
 // no x/y/rotation/blur and no impulses, matching the current TalkCraft global-camera rule.
 const S01=()=> <CameraRig path={S01_CAMERA_PATH} impulses={[]} durationSec={11.25}>
   <AbsoluteFill>
@@ -98,7 +102,7 @@ const S03=()=> <HoldCard freezeAt={180}>
 </HoldCard>;
 
 const S04=()=> <HoldCard freezeAt={160}>
-  <TitleDemoteToLabel title="门槛正在后移" items={['开发门槛降低','上线与运营','获客变现']} itemBg={['#E8F0FF','#E6F7F2','#EDE9FE']} accent={ACCENT}/>
+  <TitleDemoteToLabel title="门槛正在后移" items={['开发门槛降低','上线与运营','获客与变现']} itemBg={['#E8F0FF','#E6F7F2','#EDE9FE']} accent={ACCENT}/>
 </HoldCard>;
 
 const S05=()=> <CardStage camera={0}><EvidenceScrollTour pageSrc={staticFile('pages/home-scroll.png')} markTop={625} filename="PocketBay · live homepage"/></CardStage>;
@@ -159,7 +163,11 @@ const CaptionLayer=()=>{
 const TransitionStage:React.FC<{children:React.ReactNode}>=({children})=><div style={{position:'absolute',left:0,top:0,width:960,height:540,transform:'scale(2)',transformOrigin:'0 0'}}>{children}</div>;
 
 const Overlays=()=> <>
-  <Sequence from={f(10.000-0.1)} durationInFrames={204}><TransitionStage><LineCarryTransition titleA="比部署更大" subA="PocketBay 的野心" titleB="AI 编码之后" subB="代码做出来，只是开始" srcB={staticFile('stills/home-deploy.png')}/></TransitionStage></Sequence>
+  <Sequence from={f(10.000-0.1)} durationInFrames={204}>
+    <CameraRig path={S01_TRANSITION_CAMERA_PATH} impulses={[]} durationSec={6.8}>
+      <TransitionStage><LineCarryTransition titleA="比部署更大" subA="PocketBay 的野心" titleB="AI 编码之后" subB="代码做出来，只是开始" srcB={staticFile('stills/home-deploy.png')}/></TransitionStage>
+    </CameraRig>
+  </Sequence>
   <Sequence from={f(32.742)} durationInFrames={103}><TransitionStage><CaretWipeTransition oldText="门槛后移" newText="看真实页面"/></TransitionStage></Sequence>
   <Sequence from={f(71.492)} durationInFrames={103}><TransitionStage><CaretWipeTransition oldText="完整链路" newText="产品发行平台"/></TransitionStage></Sequence>
 
