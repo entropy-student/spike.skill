@@ -72,10 +72,14 @@ const Note:React.FC<{children:React.ReactNode;dark?:boolean;top?:number}> = ({ch
 const SmallNote:React.FC<{children:React.ReactNode;dark?:boolean}> = ({children,dark=false}) =>
   <div style={{position:'absolute',left:130,right:130,bottom:165,textAlign:'center',fontFamily:'Noto Sans CJK SC, Microsoft YaHei, sans-serif',fontSize:30,fontWeight:600,color:dark?'#CBD5E1':'#667085'}}>{children}</div>;
 
+// S01 is the mandatory TalkCraft first-shot validation target.
+// The copied slab Recipe is not rewritten: only its Sequence offset is derived from the
+// uploaded SRT timing so the Recipe's fixed punchAt=0.87s lands exactly on “一句话部署” (5.625s).
 const S01=()=> <AbsoluteFill>
   <SlowPage src={staticFile('pages/home-hero.png')} dark/>
-  <div style={{position:'absolute',inset:0}}><CardStage camera={0}><SlabPunchTitle line1="表面上在做" line2="一句话部署" transparent/></CardStage></div>
-  <div style={{position:'absolute',left:130,bottom:190,padding:'18px 30px',borderRadius:18,background:'rgba(13,17,23,.82)',color:'#fff',fontFamily:'Noto Sans CJK SC, sans-serif',fontSize:36,fontWeight:700}}>真正想做的事情，比部署大得多</div>
+  <Sequence from={f(5.625-0.87)}>
+    <div style={{position:'absolute',inset:0}}><CardStage camera={0}><SlabPunchTitle line1="表面上在做" line2="一句话部署" transparent/></CardStage></div>
+  </Sequence>
 </AbsoluteFill>;
 
 const S02=()=> <HoldCard freezeAt={165}>
@@ -148,8 +152,9 @@ const CaptionLayer=()=>{
 const TransitionStage:React.FC<{children:React.ReactNode}>=({children})=><div style={{position:'absolute',left:0,top:0,width:960,height:540,scale:2,transformOrigin:'0 0'}}>{children}</div>;
 
 const Overlays=()=> <>
-  {/* All of these are the copied upstream transition Recipes, not reimplemented approximations. */}
-  <Sequence from={f(8.45)} durationInFrames={204}><TransitionStage><LineCarryTransition titleA="比部署更大" subA="PocketBay 的野心" titleB="AI 编码之后" subB="代码做出来，只是开始" srcB={staticFile('stills/home-deploy.png')}/></TransitionStage></Sequence>
+  {/* Copied upstream transition Recipes. S01→S02 starts from the verified 10.000s spoken beat;
+      titleIn=0.1s is preserved, so the visible carry starts at that semantic turn instead of an arbitrary timestamp. */}
+  <Sequence from={f(10.000-0.1)} durationInFrames={204}><TransitionStage><LineCarryTransition titleA="比部署更大" subA="PocketBay 的野心" titleB="AI 编码之后" subB="代码做出来，只是开始" srcB={staticFile('stills/home-deploy.png')}/></TransitionStage></Sequence>
   <Sequence from={f(32.742)} durationInFrames={103}><TransitionStage><CaretWipeTransition oldText="门槛后移" newText="看真实页面"/></TransitionStage></Sequence>
   <Sequence from={f(71.492)} durationInFrames={103}><TransitionStage><CaretWipeTransition oldText="完整链路" newText="产品发行平台"/></TransitionStage></Sequence>
 
@@ -162,7 +167,6 @@ const Overlays=()=> <>
 </>;
 
 export const PocketBayStrict:React.FC=()=> <AbsoluteFill style={{background:DARK}}>
-  {/* Global backdrop system is copied from upstream TalkCraft. It remains visible during transparent/media shots and boundaries. */}
   <Backdrop kind="mesh-flow-dark" speed={1.0}/>
   {SHOTS.map((shot,i)=>{
     const [,start,end]=shot;
