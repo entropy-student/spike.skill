@@ -1,4 +1,4 @@
-<img width="1122" height="1402" alt="个人开发流程一览图" src="https://github.com/user-attachments/assets/c19a3750-9850-413e-8324-9a46366624ca" />
+
 # VPS Project Governance（VPS 项目管理规范） v0.1.6
 
 > 把“Owner 提需求 → Reviewer 定边界 → Executor 执行 → Evidence 回传 → Reviewer PASS/RETURN”固化成一套可跨聊天、跨 Agent、跨项目复用的交付治理 Skill。
@@ -6,7 +6,7 @@
 **当前状态：Active / Validated on Xianyu / Evolving**
 
 这不是一套“如何写 Docker 命令”的教程，而是一套用于控制**项目交付、生产变更、Shared VPS 多项目边界、证据、回滚、Secret、数据与 Owner 介入时机**的治理方法。
-
+<img width="785" height="982" alt="个人开发流程一览图" src="https://github.com/user-attachments/assets/c19a3750-9850-413e-8324-9a46366624ca" />
 ---
 
 ## 什么时候用
