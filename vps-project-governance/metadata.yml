@@ -4,3 +4,5 @@ category: engineering-governance
 language: zh-CN + en
 version: 0.1.6
 status: active-validated
+storage_contract_revision: 1
+storage_contract_status: active-validated-by-shared-vps-pattern
