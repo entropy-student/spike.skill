@@ -2,9 +2,10 @@
 
 > A reusable delivery-governance Skill for turning project work into a controlled loop: Owner request → Reviewer boundary → Executor action → Evidence → Reviewer PASS/RETURN.
 
-**Status: Active / Validated on Xianyu / Evolving**
+**Status: Active / Validated on Xianyu / Evolving**  
+**Storage Layout Contract: rev1 / active operational addendum**
 
-This is not a Docker command cookbook. It governs project delivery, production changes, Shared VPS boundaries, evidence, rollback, secrets, data handling, and when the Owner must intervene.
+This is not a Docker command cookbook. It governs project delivery, production changes, Shared VPS boundaries, evidence, rollback, secrets, data handling, storage layout, and when the Owner must intervene.
 
 ## Use it for
 
@@ -63,7 +64,28 @@ change only the authorized scope, verify, regress, and RETURN/rollback on mismat
 - broad Docker prune is forbidden by default;
 - first real business action uses a bounded Canary;
 - successful reauthentication does not automatically resume business actions;
-- post-production maintenance uses a Change Gate rather than reopening onboarding.
+- post-production maintenance uses a Change Gate rather than reopening onboarding;
+- Shared VPS projects must freeze their storage layout before deployment.
+
+## Shared VPS Storage Layout
+
+The canonical project-storage layout is:
+
+```text
+/srv/infra                 Shared Infrastructure only
+/srv/apps/<project>        reconstructible app / Compose / non-secret config
+/srv/data/<project>        database / uploads / durable state / secret files
+/srv/backups/<project>     project-specific recovery material
+```
+
+Each project must have its own apps/data/backups namespace and an explicit `PROJECT_STORAGE_MANIFEST.md` before Shared VPS deployment. Durable anonymous volumes are not allowed. Named volumes are allowed only when project-namespaced, documented, and backed by a clear backup/restore path.
+
+Historical production projects are not migrated merely for neatness. Any path migration must use a separate Storage Migration Change Gate with backup, rollback, restore/read-back validation, and Reviewer PASS before cleanup.
+
+See:
+
+- `references/STORAGE_LAYOUT_CONTRACT.md`
+- `templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md`
 
 ## Source-of-truth order
 
@@ -81,4 +103,6 @@ Governance defines reusable rules. Handoff files belong to the concrete project 
 
 The original v0.1.6 protocol still contained legacy `PROJECT_HANDOFF.md` wording in older sections even though v0.1.6 later standardized `REVIEWER_HANDOFF.md` as the canonical project Reviewer truth. This Skill consistently uses `REVIEWER_HANDOFF.md`; `PROJECT_HANDOFF.md` is legacy-only.
 
-The original protocol header also retained `DRAFT / EVOLVING`, while `GOVERNANCE_HANDOFF.md` declared v0.1.6 `ACTIVE / VALIDATED-ON-XIANYU / EVOLVING`. This Skill follows the Governance Handoff status. These are terminology/status consistency fixes, not a governance-version change.
+The original protocol header also retained `DRAFT / EVOLVING`, while `GOVERNANCE_HANDOFF.md` declared v0.1.6 `ACTIVE / VALIDATED-ON-XIANYU / EVOLVING`. This Skill follows the Governance Handoff status.
+
+Storage Layout Contract rev1 formalizes the Shared VPS layout already used by the infrastructure design. It is an operational addendum and does not change the core Owner/Reviewer/Executor or PASS/RETURN semantics, so the Governance version remains v0.1.6.
