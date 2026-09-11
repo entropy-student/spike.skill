@@ -1,4 +1,3 @@
-
 # VPS Project Governance（VPS 项目管理规范） v0.1.6
 
 > 把“Owner 提需求 → Reviewer 定边界 → Executor 执行 → Evidence 回传 → Reviewer PASS/RETURN”固化成一套可跨聊天、跨 Agent、跨项目复用的交付治理 Skill。
@@ -6,6 +5,7 @@
 **当前状态：Active / Validated on Xianyu / Evolving**
 
 这不是一套“如何写 Docker 命令”的教程，而是一套用于控制**项目交付、生产变更、Shared VPS 多项目边界、证据、回滚、Secret、数据与 Owner 介入时机**的治理方法。
+
 ---
 <img width="785" height="982" alt="个人开发流程一览图" src="https://github.com/user-attachments/assets/c19a3750-9850-413e-8324-9a46366624ca" />
 ---
@@ -112,6 +112,29 @@ Reviewer PASS / RETURN
 10. **首次真实业务动作必须 Canary**：单 target、动作上限、短 expiry、central guard、restart/idempotency 验证。
 11. **REAUTH success ≠ 自动恢复业务**：重新认证后还要 read-only 验证与显式 controlled resume。
 12. **上线后的优化进入 Change Gate**，不重开整套 onboarding。
+13. **Storage Layout 必须先冻结再上线**：程序、持久数据、备份与 Shared Infra 分层；任何新项目进入 Shared VPS 前建立 `PROJECT_STORAGE_MANIFEST.md`。
+
+---
+
+## Shared VPS Storage Layout
+
+Storage Contract rev1 已纳入本 Skill，固定以下顶层约束：
+
+```text
+/srv/infra                 Shared Infrastructure only
+/srv/apps/<project>        可重建程序 / Compose / 非秘密配置
+/srv/data/<project>        DB / uploads / state / secrets
+/srv/backups/<project>     项目独立恢复材料
+```
+
+核心目标不是“目录好看”，而是保证以后能明确回答：
+
+> 如果明天换 VPS，这个项目真正需要搬走哪些数据？
+
+详细规则：[`references/STORAGE_LAYOUT_CONTRACT.md`](./references/STORAGE_LAYOUT_CONTRACT.md)  
+项目模板：[`templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md`](./templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md)
+
+历史生产项目不会因为这个规则被强制搬迁；需要迁移时必须另开 Storage Migration Change Gate。
 
 ---
 
@@ -141,11 +164,13 @@ vps-project-governance/
 ├── metadata.yml
 ├── references/
 │   ├── GOVERNANCE_V0_1_6.md
+│   ├── STORAGE_LAYOUT_CONTRACT.md
 │   └── USAGE_SCENARIOS.md
 └── templates/
     ├── REVIEWER_HANDOFF_TEMPLATE.md
     ├── EXECUTOR_HANDOFF_TEMPLATE.md
-    └── EXECUTION_EVIDENCE_TEMPLATE.md
+    ├── EXECUTION_EVIDENCE_TEMPLATE.md
+    └── PROJECT_STORAGE_MANIFEST_TEMPLATE.md
 ```
 
 ---
@@ -158,6 +183,8 @@ vps-project-governance/
 
 这两处是**术语/状态一致性修正，不改变治理语义，也不升级 Governance 版本**。
 
+Storage Layout Contract rev1 是 v0.1.6 的 operational addendum：它把 Shared VPS 已采用的 `/srv/apps`、`/srv/data`、`/srv/backups` 分层正式固化，但不改变 Owner/Reviewer/Executor、PASS/RETURN 等核心治理语义，因此当前不单独升级 Governance 主版本。
+
 ---
 
 ## 当前验证程度
@@ -166,6 +193,7 @@ vps-project-governance/
 Shared VPS Infrastructure  I0-I7 PASS / SEALED
 Xianyu                     X0-X7 FINAL PASS / PRODUCTION SEALED
 Post-X7 Image Slimming     Change Gate PASS
+Storage Layout Contract    rev1 ACTIVE
 Governance v0.1.6          ACTIVE
 ```
 
