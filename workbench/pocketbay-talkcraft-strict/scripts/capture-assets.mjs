@@ -9,8 +9,6 @@ await fs.mkdir(pagesDir, {recursive:true});
 await fs.mkdir(stillsDir, {recursive:true});
 
 const browser = await chromium.launch({headless:true});
-// Force the public homepage into the English variant because the approved SHOTBOOK
-// and known live-page anchors use the English section names. This removes locale-dependent misses.
 const ctx = await browser.newContext({viewport:{width:1440,height:900}, deviceScaleFactor:2, locale:'en-US'});
 const page = await ctx.newPage();
 page.setDefaultTimeout(4000);
@@ -20,13 +18,19 @@ const safeGoto = async (url) => {
   await page.waitForTimeout(1800);
 };
 
-const boxForText = async (text) => {
-  const loc = page.getByText(text, {exact:false}).first();
+// page.screenshot({clip}) expects document coordinates. Measure from getBoundingClientRect()
+// plus scroll offsets rather than Locator.boundingBox() viewport coordinates.
+const docBox = async (loc) => {
   try {
     if ((await loc.count()) < 1) return null;
-    return await loc.boundingBox();
+    return await loc.evaluate((el) => {
+      const r = el.getBoundingClientRect();
+      return {x:r.left + window.scrollX, y:r.top + window.scrollY, width:r.width, height:r.height};
+    });
   } catch { return null; }
 };
+
+const boxForText = async (text) => docBox(page.getByText(text, {exact:false}).first());
 
 const boxForCandidates = async (candidates) => {
   for (const t of candidates) {
@@ -37,16 +41,13 @@ const boxForCandidates = async (candidates) => {
 };
 
 const screenshotBox = async (b, file, padX=80, padY=70, minH=180) => {
-  const fullW = await page.evaluate(() => document.documentElement.scrollWidth);
-  const fullH = await page.evaluate(() => document.documentElement.scrollHeight);
-  const x = Math.max(0, b.x-padX);
-  const y = Math.max(0, b.y-padY);
-  const clip = {
-    x, y,
-    width: Math.max(1, Math.min(fullW-x, Math.max(b.width+padX*2, 420))),
-    height: Math.max(1, Math.min(fullH-y, Math.max(b.height+padY*2, minH))),
-  };
-  await page.screenshot({path:path.join(stillsDir,file), clip});
+  const {fullW,fullH} = await page.evaluate(() => ({fullW:document.documentElement.scrollWidth, fullH:document.documentElement.scrollHeight}));
+  const x = Math.max(0, Math.min(fullW-1, b.x-padX));
+  const y = Math.max(0, Math.min(fullH-1, b.y-padY));
+  const width = Math.min(fullW-x, Math.max(b.width+padX*2, 420));
+  const height = Math.min(fullH-y, Math.max(b.height+padY*2, minH));
+  if (width < 2 || height < 2) return false;
+  await page.screenshot({path:path.join(stillsDir,file), clip:{x,y,width,height}});
   return true;
 };
 
@@ -56,13 +57,11 @@ const screenshotAroundCandidates = async (candidates, file, padX=80, padY=70, mi
   return screenshotBox(r.box,file,padX,padY,minH);
 };
 
-// Fallback still uses live DOM geometry, never eyeballed pixels or a code mock.
-// It captures around a real H2/H3 element by document order.
 const screenshotAroundHeadingIndex = async (selector, index, file, padX=180, padY=220, minH=520) => {
   const locs = page.locator(selector);
   const n = await locs.count();
   if (n <= index) return false;
-  const b = await locs.nth(index).boundingBox();
+  const b = await docBox(locs.nth(index));
   if (!b) return false;
   return screenshotBox(b,file,padX,padY,minH);
 };
@@ -72,7 +71,6 @@ const mustExist = async (p) => {
   if (!st || st.size===0) throw new Error(`Required live evidence asset missing: ${p}`);
 };
 
-// Homepage: real hero/full page + machine-measured interest points.
 await safeGoto('https://pocketbay.com/');
 await page.screenshot({path:path.join(pagesDir,'home-hero.png'), fullPage:false});
 await page.screenshot({path:path.join(pagesDir,'home-full.png'), fullPage:true});
@@ -104,7 +102,6 @@ ok = await screenshotAroundCandidates(['Launch is not the finish line','where th
 if (!ok) ok = await screenshotAroundHeadingIndex('h2',2,'home-earn.png');
 if (!ok) throw new Error('Could not DOM-locate homepage Earn section');
 
-// These are live public example cards present on the homepage. Fail rather than invent if the site changes.
 for (const [label,file] of [
   ['Auto Ledger','app-auto-ledger.png'],
   ['RedNote Copy Gen','app-rednote-copy.png'],
@@ -114,7 +111,6 @@ for (const [label,file] of [
   if (!found) throw new Error(`Could not DOM-locate real public app card: ${label}`);
 }
 
-// Brand mark: capture a real rendered image/wordmark; text fallback is still a live-page capture.
 let logoDone = false;
 for (const sel of ['img[alt="PocketBay"]','img[src*="brand"]','img[src*="logo"]']) {
   const loc = page.locator(sel).first();
@@ -125,17 +121,15 @@ for (const sel of ['img[alt="PocketBay"]','img[src*="brand"]','img[src*="logo"]'
 if (!logoDone) logoDone = await screenshotAroundCandidates(['PocketBay'],'pocketbay-logo.png',24,18,80);
 if (!logoDone) throw new Error('Could not capture a live PocketBay brand mark');
 
-// Deployment guide: real full page + DOM coordinates.
 await safeGoto('https://pocketbay.com/zh-CN/deploy');
 await page.screenshot({path:path.join(pagesDir,'deploy-full.png'), fullPage:true});
 const deployTargets = {};
 for (const label of ['部署前检查清单','完整流程','准备可运行的 Web 项目','平台生成构建计划','上线或根据错误修复']) deployTargets[label] = await boxForText(label);
 await fs.writeFile(path.join(pagesDir,'deploy-targets.json'), JSON.stringify(deployTargets,null,2));
 
-// Discover and Community evidence pages.
 await safeGoto('https://pocketbay.com/discover');
 await page.screenshot({path:path.join(pagesDir,'discover-full.png'), fullPage:true});
-const discoverTargets = {body: await page.locator('body').boundingBox()};
+const discoverTargets = {body: await docBox(page.locator('body'))};
 await fs.writeFile(path.join(pagesDir,'discover-targets.json'), JSON.stringify(discoverTargets,null,2));
 
 await safeGoto('https://pocketbay.com/community');
