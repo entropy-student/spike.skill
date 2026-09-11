@@ -80,42 +80,66 @@ jobs:
           python3 ../../_video-talkcraft/scripts/card_lint.py src
           slab-punch-title,source-converge,word-slot-cycle,title-demote-to-label,evidence-scroll-tour,split-60-40-story,strike-and-replace,step-timeline-vertical,gallery-wall-dolly,lead-word-zoom-assemble,line-carry-transition,caret-wipe-transition,pullback-cool-transition
 
+      - name: Gate 2b - S01 beat alignment against uploaded SRT timing
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: >-
+          python3 ../../_video-talkcraft/scripts/beat_lint.py beats-s01.json audio/timestamps-s01.json
+          --shots shots.json --tail 0.5
+
+      - name: Gate 2c - S01 empty-stage advisory
+        working-directory: workbench/pocketbay-talkcraft-strict
+        run: >-
+          python3 ../../_video-talkcraft/scripts/beat_gap_check.py beats-s01.json shots-s01.json
+          --gap 2.0 --ok s01
+
       - name: Compile and render QA still
         working-directory: workbench/pocketbay-talkcraft-strict
         run: npm run still
 
-      - name: Render 1920x1080 strict visual master
+      # TalkCraft SKILL §⑥-1.5: the first master render MUST NOT go straight to --all.
+      # Render only S01 with the upstream segmented renderer. The user's private audio is
+      # muxed locally in ChatGPT after this artifact is downloaded, producing the required
+      # audible single-shot preview before the user chooses full-film vs shot-by-shot cadence.
+      - name: Mandatory first-shot preview - visual segment only
         working-directory: workbench/pocketbay-talkcraft-strict
-        run: npm run render
+        run: >-
+          node ../../_video-talkcraft/scripts/render_shots.mjs
+          --shots shots.json --entry src/index.ts --comp PocketBayStrict
+          --only s01 --parallel 1 --seg-dir out/segments --crf 18
 
-      - name: Gate 3 - upstream motion health
+      - name: Gate 3a - S01 motion health
         working-directory: workbench/pocketbay-talkcraft-strict
-        run: python3 ../../_video-talkcraft/scripts/motion_check.py out/PocketBay_strict_visual.mp4 0.8 0.003
+        run: >-
+          python3 ../../_video-talkcraft/scripts/motion_check.py out/segments/s01.mp4
+          0.8 0.003 --anchors beats-s01.json
 
-      - name: Write build audit
+      - name: Write first-shot build audit
         working-directory: workbench/pocketbay-talkcraft-strict
         run: |
-          cat > out/STRICT_BUILD_AUDIT.md <<'EOF'
-          # PocketBay TalkCraft Strict Build Audit
+          cat > out/STRICT_S01_AUDIT.md <<'EOF'
+          # PocketBay TalkCraft Strict S01 Audit
 
           - Upstream: Vincentwei1021/video-talkcraft cloned fresh during this run.
-          - Inputs: user-confirmed SHOTBOOK semantics; SRT sentence boundaries are hard anchors.
-          - Timing correction: S07/S08 boundary follows uploaded SRT (56.667 / 62.292), correcting the earlier SHOTBOOK transcription typo without changing shot intent.
-          - Real pages: captured live with Playwright; long-page evidence uses real screenshots, not code-mocked UI.
-          - Recipe implementation: files copied from upstream `template/cards/*.tsx`; only CONFIG/content/input presentation/skin edits allowed by each card's reuse contract were applied.
-          - Global background: copied from upstream `template/motion-systems/backdrop.tsx`.
-          - Machine gates: upstream `preflight.py`, `card_lint.py`, `motion_check.py` all must pass before artifact upload.
-          - Audio is intentionally not embedded in CI because the user audio remains private to the ChatGPT session; it is muxed locally after the visual master is downloaded.
+          - Mandatory cadence gate: this run renders S01 only; it intentionally does NOT render the full master.
+          - Timing source: uploaded SRT cue boundaries; S01 word/token timing file is derived from that source and beat_lint must pass.
+          - Real page: PocketBay live homepage captured with Playwright during this run; no code-mocked webpage is used.
+          - Recipe: slab-punch-title and line-carry-transition are copied from upstream template/cards; core motion laws remain unchanged.
+          - S01 semantic timing: copied slab Recipe is offset so its fixed punch lands on the verified “一句话部署” beat; the line-carry title entry is derived from the verified “比部署大得多” beat.
+          - Machine gates before artifact upload: preflight.py, card_lint.py, beat_lint.py, beat_gap_check.py advisory, QA still, upstream render_shots.mjs frame assertions, motion_check.py.
+          - Audio: user audio remains private to the ChatGPT session, so CI uploads the visual S01 segment only. ChatGPT muxes 0–11.25s of the uploaded MP3 locally to create the mandatory audible preview.
+          - Next mandatory user gate: after viewing audible S01, user chooses full-film render or shot-by-shot render cadence.
           EOF
 
-      - name: Upload strict visual artifact
+      - name: Upload strict S01 preview artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pocketbay-talkcraft-strict-visual
+          name: pocketbay-talkcraft-strict-s01
           path: |
-            workbench/pocketbay-talkcraft-strict/out/PocketBay_strict_visual.mp4
+            workbench/pocketbay-talkcraft-strict/out/segments/s01.mp4
             workbench/pocketbay-talkcraft-strict/out/check.png
-            workbench/pocketbay-talkcraft-strict/out/STRICT_BUILD_AUDIT.md
+            workbench/pocketbay-talkcraft-strict/out/STRICT_S01_AUDIT.md
             workbench/pocketbay-talkcraft-strict/sources.md
             workbench/pocketbay-talkcraft-strict/SHOTBOOK.md
+            workbench/pocketbay-talkcraft-strict/beats-s01.json
+            workbench/pocketbay-talkcraft-strict/shots.json
           retention-days: 7
