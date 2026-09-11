@@ -1,3 +1,4 @@
+<img width="1122" height="1402" alt="个人开发流程一览图" src="https://github.com/user-attachments/assets/c19a3750-9850-413e-8324-9a46366624ca" />
 # VPS Project Governance（VPS 项目管理规范） v0.1.6
 
 > 把“Owner 提需求 → Reviewer 定边界 → Executor 执行 → Evidence 回传 → Reviewer PASS/RETURN”固化成一套可跨聊天、跨 Agent、跨项目复用的交付治理 Skill。
