@@ -11,6 +11,7 @@ import {
 } from 'remotion';
 import {CAPTIONS} from './captions';
 import {Backdrop} from './motion-systems/backdrop';
+import {CameraRig} from './motion-systems/camera';
 
 import SlabPunchTitle from './cards/slab-punch-title';
 import SourceConverge from './cards/source-converge';
@@ -44,8 +45,8 @@ const CardStage:React.FC<{children:React.ReactNode; camera?:number}> = ({childre
   const frame=useCurrentFrame();
   const scale=interpolate(frame,[0,240],[1,1+camera],{extrapolateRight:'clamp',easing:Easing.inOut(Easing.sin)});
   return <AbsoluteFill style={{overflow:'hidden',background:LIGHT}}>
-    <div style={{position:'absolute',inset:-12,scale,transformOrigin:'50% 50%'}}>
-      <div style={{position:'absolute',left:0,top:0,width:960,height:540,scale:2,transformOrigin:'0 0'}}>{children}</div>
+    <div style={{position:'absolute',inset:-12,transform:`scale(${scale})`,transformOrigin:'50% 50%'}}>
+      <div style={{position:'absolute',left:0,top:0,width:960,height:540,transform:'scale(2)',transformOrigin:'0 0'}}>{children}</div>
     </div>
   </AbsoluteFill>;
 };
@@ -59,7 +60,7 @@ const SlowPage:React.FC<{src:string;dark?:boolean;push?:number;overlay?:number}>
   const frame=useCurrentFrame();
   const scale=interpolate(frame,[0,330],[1,push],{extrapolateRight:'clamp',easing:Easing.linear});
   return <AbsoluteFill style={{background:dark?DARK:LIGHT,overflow:'hidden'}}>
-    <div style={{position:'absolute',inset:-24,scale,transformOrigin:'50% 50%'}}>
+    <div style={{position:'absolute',inset:-24,transform:`scale(${scale})`,transformOrigin:'50% 50%'}}>
       <Img src={src} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
     </div>
     <AbsoluteFill style={{background:dark?`rgba(13,17,23,${overlay})`:`rgba(245,247,251,${overlay})`}}/>
@@ -72,15 +73,21 @@ const Note:React.FC<{children:React.ReactNode;dark?:boolean;top?:number}> = ({ch
 const SmallNote:React.FC<{children:React.ReactNode;dark?:boolean}> = ({children,dark=false}) =>
   <div style={{position:'absolute',left:130,right:130,bottom:165,textAlign:'center',fontFamily:'Noto Sans CJK SC, Microsoft YaHei, sans-serif',fontSize:30,fontWeight:600,color:dark?'#CBD5E1':'#667085'}}>{children}</div>;
 
+const S01_CAMERA_PATH=[{t:0,scale:1.00},{t:11.25,scale:1.06}];
+
 // S01 is the mandatory TalkCraft first-shot validation target.
 // The copied slab Recipe is not rewritten: only its Sequence offset is derived from the
 // uploaded SRT timing so the Recipe's fixed punchAt=0.87s lands exactly on “一句话部署” (5.625s).
-const S01=()=> <AbsoluteFill>
-  <SlowPage src={staticFile('pages/home-hero.png')} dark/>
-  <Sequence from={f(5.625-0.87)}>
-    <div style={{position:'absolute',inset:0}}><CardStage camera={0}><SlabPunchTitle line1="表面上在做" line2="一句话部署" transparent/></CardStage></div>
-  </Sequence>
-</AbsoluteFill>;
+// The whole shot is wrapped by current upstream G1 CameraRig: one 1.00→1.06 scale path,
+// no x/y/rotation/blur and no impulses, matching the current TalkCraft global-camera rule.
+const S01=()=> <CameraRig path={S01_CAMERA_PATH} impulses={[]} durationSec={11.25}>
+  <AbsoluteFill>
+    <SlowPage src={staticFile('pages/home-hero.png')} dark push={1}/>
+    <Sequence from={f(5.625-0.87)}>
+      <div style={{position:'absolute',inset:0}}><CardStage camera={0}><SlabPunchTitle line1="表面上在做" line2="一句话部署" transparent/></CardStage></div>
+    </Sequence>
+  </AbsoluteFill>
+</CameraRig>;
 
 const S02=()=> <HoldCard freezeAt={165}>
   <SourceConverge title="AI 编码已经把“写出代码”变得可达" sources={['Codex','Cursor','Claude Code']} hub="产品代码" caption="代码做出来了"/>
@@ -91,7 +98,7 @@ const S03=()=> <HoldCard freezeAt={180}>
 </HoldCard>;
 
 const S04=()=> <HoldCard freezeAt={160}>
-  <TitleDemoteToLabel title="门槛正在后移" items={['开发门槛降低','上线与运营','获客与变现']} itemBg={['#E8F0FF','#E6F7F2','#EDE9FE']} accent={ACCENT}/>
+  <TitleDemoteToLabel title="门槛正在后移" items={['开发门槛降低','上线与运营','获客变现']} itemBg={['#E8F0FF','#E6F7F2','#EDE9FE']} accent={ACCENT}/>
 </HoldCard>;
 
 const S05=()=> <CardStage camera={0}><EvidenceScrollTour pageSrc={staticFile('pages/home-scroll.png')} markTop={625} filename="PocketBay · live homepage"/></CardStage>;
@@ -149,11 +156,9 @@ const CaptionLayer=()=>{
   return <div style={{position:'absolute',left:130,right:130,bottom:50,minHeight:76,display:'flex',alignItems:'center',justifyContent:'center',padding:'12px 28px',borderRadius:22,background:'rgba(0,0,0,.78)',boxShadow:'0 8px 32px rgba(0,0,0,.22)',color:'#fff',fontFamily:'Noto Sans CJK SC, Microsoft YaHei, sans-serif',fontSize:46,lineHeight:1.25,fontWeight:600,textAlign:'center',zIndex:1000}}>{c.text}</div>;
 };
 
-const TransitionStage:React.FC<{children:React.ReactNode}>=({children})=><div style={{position:'absolute',left:0,top:0,width:960,height:540,scale:2,transformOrigin:'0 0'}}>{children}</div>;
+const TransitionStage:React.FC<{children:React.ReactNode}>=({children})=><div style={{position:'absolute',left:0,top:0,width:960,height:540,transform:'scale(2)',transformOrigin:'0 0'}}>{children}</div>;
 
 const Overlays=()=> <>
-  {/* Copied upstream transition Recipes. S01→S02 starts from the verified 10.000s spoken beat;
-      titleIn=0.1s is preserved, so the visible carry starts at that semantic turn instead of an arbitrary timestamp. */}
   <Sequence from={f(10.000-0.1)} durationInFrames={204}><TransitionStage><LineCarryTransition titleA="比部署更大" subA="PocketBay 的野心" titleB="AI 编码之后" subB="代码做出来，只是开始" srcB={staticFile('stills/home-deploy.png')}/></TransitionStage></Sequence>
   <Sequence from={f(32.742)} durationInFrames={103}><TransitionStage><CaretWipeTransition oldText="门槛后移" newText="看真实页面"/></TransitionStage></Sequence>
   <Sequence from={f(71.492)} durationInFrames={103}><TransitionStage><CaretWipeTransition oldText="完整链路" newText="产品发行平台"/></TransitionStage></Sequence>
