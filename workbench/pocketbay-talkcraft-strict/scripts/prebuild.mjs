@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+const file=path.join(process.cwd(),'src/Composition.tsx');
+let s=await fs.readFile(file,'utf8');
+s=s.replace('interpolate(frame,[0,240],[1,1+camera]', 'interpolate(frame,[0,360],[1,1+camera]');
+const old=`const TransitionStage:React.FC<{children:React.ReactNode}>=({children})=><div style={{position:'absolute',left:0,top:0,width:960,height:540,scale:2,transformOrigin:'0 0'}}>{children}</div>;`;
+const neu=`const TransitionStage:React.FC<{children:React.ReactNode}>=({children})=>{\n  const frame=useCurrentFrame();\n  const cam=interpolate(frame,[0,210],[1,1.006],{extrapolateLeft:'clamp',extrapolateRight:'clamp',easing:Easing.inOut(Easing.sin)});\n  return <div style={{position:'absolute',left:0,top:0,width:960,height:540,scale:2,transformOrigin:'0 0',overflow:'hidden'}}><div style={{position:'absolute',inset:-4,scale:cam,transformOrigin:'50% 50%'}}>{children}</div></div>;\n};`;
+if(!s.includes(old)) throw new Error('TransitionStage build patch target not found');
+s=s.replace(old,neu);
+await fs.writeFile(file,s);
+console.log('Applied global ultra-slow camera continuity across shot holds and transition holds.');
