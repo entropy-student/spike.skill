@@ -66,7 +66,6 @@ jobs:
           cp ../../_video-talkcraft/template/motion-systems/backdrop.tsx src/motion-systems/backdrop.tsx
           cp ../../_video-talkcraft/template/motion-systems/camera.tsx src/motion-systems/camera.tsx
           npm run prepare
-          node scripts/prebuild.mjs
 
       - name: Install TalkCraft QA Python dependencies
         run: python3 -m pip install --break-system-packages numpy imageio
