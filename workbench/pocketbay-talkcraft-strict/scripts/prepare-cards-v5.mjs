@@ -1,0 +1,12 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+await import('./prepare-cards-v4.mjs');
+const root=process.cwd();
+const file=path.join(root,'src/cards/evidence-scroll-tour.tsx');
+let s=await fs.readFile(file,'utf8');
+const terminal=`          </div>\n        </div>\n      </div>\n\n      <div className="host-badge"><Host src={hostSrc} /></div>`;
+if(!s.includes(terminal)) throw new Error('evidence terminal pattern not found');
+s=s.replace(terminal,`            </>}\n          </div>\n        </div>\n      </div>\n\n      <div className="host-badge" style={{display:'none'}} />`);
+s=s.replace('let stopY = GEO.boxTop + GEO.boxH / 2 - GEO.vh * C.stopAlign;','let stopY = markTop + GEO.boxH / 2 - GEO.vh * C.stopAlign;');
+await fs.writeFile(file,s);
+console.log('Evidence real-page presentation closed correctly; machine-measured markTop drives the original stop curve.');
