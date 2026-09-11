@@ -6,7 +6,7 @@
 
 **不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
 
-![Skills](https://img.shields.io/badge/skills-10-blue?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-11-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
 ![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
 
@@ -14,10 +14,13 @@
 
 ---
 
+> ⭐ **Featured / Core Skill：** [VPS Project Governance（VPS 项目管理规范）](./vps-project-governance/) — 用 Reviewer / Executor / Evidence / PASS-RETURN 治理 VPS、Docker、Shared VPS 与生产变更。
+
 ## 当前 Skills
 
 | Skill | 主要解决什么问题 | 状态 | 入口 |
 |---|---|---:|---|
+| ⭐ **VPS Project Governance（VPS 项目管理规范）** | 把新项目接管、VPS/Shared VPS 部署、生产变更、Evidence、回滚、Secret、资源与 Owner 介入时机统一成可复用的 Reviewer / Executor 治理闭环 | **v0.1.6 Active / Validated** | [进入](./vps-project-governance/) |
 | 📈 **Acquisition Growth Radar（获客增长雷达）** | 判断项目为什么还没挣到钱、当前卡在哪层证据、下一步最值得验证什么 | v0.2 Frozen | [进入](./acquisition-growth-radar/) |
 | 🧭 **Independent Store Product Opportunity（独立站选品决策系统）** | 从实物、虚拟与 SaaS 候选中区分发现信号与决策证据，筛出最值得真实验证的 DTC 产品机会 | **v2.1.0 Active** | [进入](./independent-store-product-opportunity/) |
 | 🔬 **Product Business Teardown（产品商业拆解）** | 拆解任意产品服务谁、为什么存在、谁付钱、赚哪部分钱、整体运行逻辑、增长机制与护城河 | **v0.2.0 Calibrating** | [进入](./product-business-teardown/) |
@@ -108,6 +111,13 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 例如：
 
 ```text
+按 VPS Project Governance v0.1.6 接管这个项目。
+先读现有 Handoff；没有可靠 Handoff 就进入只读 P0 Discovery。
+能安全合并的 Gate 自行压缩，已 PASS 的阶段不要重复跑；
+除 Owner-only 事项外，技术判断由 Reviewer 自行完成。
+```
+
+```text
 按 Acquisition Growth Radar 帮我判断这个项目现在卡在哪里，
 不要先给一堆渠道建议，先找最大瓶颈和最小验证实验。
 ```
@@ -192,8 +202,9 @@ Skill 不只给结果，还要说明为什么，以及为什么没有到更高�
 
 ## 当前方向
 
-这个仓库目前主要沉淀四类能力：
+这个仓库目前主要沉淀五类能力：
 
+- **工程交付与生产治理**：如何接管项目、定义 Gate、约束 Executor、验证 Evidence、保护 Shared Infra 与生产回滚；
 - **商业与增长判断**：如何拆解产品、选品、验证、成交、增长；
 - **内容与文化判断**：什么正在流行、什么真正优秀、为什么；
 - **视觉叙事与语义表达**：信息关系应该用什么视觉拓扑和 Motion Grammar 来解释；
