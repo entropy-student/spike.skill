@@ -1,6 +1,7 @@
 # VPS Project Governance（VPS 项目管理规范） v0.1.6
 
-> 用于管理“Reviewer / Execution Agent / Evidence / PASS-RETURN”闭环的工程交付治理 Skill。
+> 用于管理 “Reviewer / Execution Agent / Evidence / PASS-RETURN” 闭环的工程交付治理 Skill。  
+> Storage Layout Contract rev1 is an operational addendum to v0.1.6.
 
 ---
 
@@ -9,16 +10,16 @@
 当任务涉及以下任一情况时，优先调用本 Skill：
 
 - 新项目准备部署到 VPS / Docker / Shared VPS；
-- 项目已有代码但当前真实状态不清楚；
-- 需要 Reviewer 给 Codex / Executor 生成执行任务；
-- 需要审核 Executor 的执行证据；
+- 项目已有代码但真实状态不清楚；
+- Reviewer 给 Codex / Executor 生成执行任务；
+- 审核 Executor 的执行证据；
 - 生产项目修 Bug、升级依赖、改配置、迁移数据、优化镜像；
 - 自动化 / Browser Agent / Worker / 支付 / 数据库项目；
 - 多项目共用 SSH、UFW、Docker daemon、80/443、Caddy、cloudflared、shared network；
 - 换聊天、换 Reviewer、换 Executor 后继续推进；
-- 希望减少 Owner 反复做技术判断、复制文件、手动调度。
+- 希望减少 Owner 的技术判断、文件搬运和手工调度。
 
-不要把本 Skill 当成具体业务项目本身。它只定义**治理方式**。
+本 Skill 定义的是**治理方式**，不是某个具体业务项目。
 
 ---
 
@@ -44,16 +45,15 @@ Reviewer 是唯一技术决策与正式验收角色。
 
 必须负责：
 
-1. 先理解项目；
-2. 建立项目地图；
-3. 区分事实 / UNKNOWN / 过时文档；
-4. 定义架构、安全边界、数据边界；
-5. 划分或压缩 Gate；
-6. 明确允许 / 禁止动作；
-7. 给 Executor 精确 Prompt；
-8. 独立审核 Evidence；
-9. 给出 `PASS` / `RETURN`；
-10. 维护唯一 `REVIEWER_HANDOFF.md`。
+1. 理解项目并建立项目地图；
+2. 区分事实 / UNKNOWN / 过时文档；
+3. 定义架构、安全、数据、Shared Infra 边界；
+4. 划分或压缩 Gate；
+5. 明确允许 / 禁止动作；
+6. 给 Executor 精确 Prompt；
+7. 独立审核 Evidence；
+8. 给出 `PASS` / `RETURN`；
+9. 维护唯一 `REVIEWER_HANDOFF.md`。
 
 Reviewer 不得：
 
@@ -81,8 +81,7 @@ Executor 是受限执行角色。
 
 不得：
 
-- 自行改变架构；
-- 扩大 scope；
+- 自行改变架构或扩大 scope；
 - 顺手重构；
 - 自行进入下一 Gate；
 - 自行修改 Shared Infra；
@@ -104,7 +103,7 @@ Executor 是受限执行角色。
 6. `EXECUTOR_HANDOFF.md`；
 7. README / 历史设计 / 聊天。
 
-`PROJECT_HANDOFF.md` 仅作为 legacy compatibility name；新/current 项目统一收敛到 `REVIEWER_HANDOFF.md`，不得同时维护两份竞争的 Reviewer truth。
+`PROJECT_HANDOFF.md` 仅作为 legacy compatibility name；current 项目统一收敛到 `REVIEWER_HANDOFF.md`，不得维护两份竞争的 Reviewer truth。
 
 ---
 
@@ -114,26 +113,24 @@ Executor 是受限执行角色。
 
 至少建立：
 
-- 项目目标；
-- 当前是否真的能运行；
-- 入口文件；
-- 语言 / runtime / framework；
+- 项目目标与当前运行状态；
+- 入口、runtime、framework；
 - frontend / backend / worker / scheduler；
 - database / persistence；
 - Secret 类型与存放；
 - account / Cookie / Token；
-- ports；
-- domain；
+- ports / domain；
 - Docker / Compose；
 - external APIs；
 - browser automation；
-- upload / object storage；
+- uploads / object storage；
 - tests；
 - backup / restore；
 - 当前线上资源；
 - 已知风险；
 - license / third-party constraints；
-- Shared Infra 冲突。
+- Shared Infra 冲突；
+- Storage Layout / durable-data 位置（如部署到 VPS）。
 
 未知项写 `UNKNOWN`，禁止猜。
 
@@ -169,7 +166,7 @@ REVIEWER INDEPENDENT REVIEW
 
 一轮 Gate 应尽量满足：目标单一、可验证、可回滚、失败不会拖垮其他项目、证据能明确证明成败。
 
-但 v0.1.6 允许在满足以下条件时压缩相邻 Gate：
+v0.1.6 允许在以下条件满足时压缩相邻 Gate：
 
 - 同一 rollback domain；
 - 同一 evidence boundary；
@@ -184,17 +181,13 @@ REVIEWER INDEPENDENT REVIEW
 
 ### A — Project-local / Reversible
 
-例如：项目代码、Compose service 参数、项目 health check、项目 backup script、临时测试容器。
-
-Reviewer Prompt 明确授权后，Executor 可执行。
+项目代码、Compose service 参数、项目 health check、项目 backup script、临时测试对象等。Reviewer Prompt 明确授权后，Executor 可执行。
 
 ### B — Shared Infrastructure
 
-例如：SSH、UFW、Docker daemon、宿主机 80/443、Shared Caddy、shared cloudflared、shared network、Shared Infra backup/monitoring。
+SSH、UFW、Docker daemon、宿主机 80/443、Shared Caddy、shared cloudflared、shared network、Shared Infra backup/monitoring。
 
-业务项目不得自行修改。
-
-若当前 Gate 发现需要改 Shared Infra：
+业务项目不得自行修改。如确需修改：
 
 ```text
 RETURN_SHARED_INFRA_CHANGE_REQUIRED
@@ -204,15 +197,13 @@ RETURN_SHARED_INFRA_CHANGE_REQUIRED
 
 ### C — Owner-only / Consequential
 
-涉及付款、身份、Secret、不可逆删除、material production enablement 或重大业务/合规选择时，必须等待 Owner。
+付款、身份、Secret、不可逆删除、material production enablement 或重大业务/合规选择必须等待 Owner。
 
 ---
 
 ## 7. Evidence Standard
 
-证据优先记录可复核事实，而不是长篇日志。
-
-至少根据任务选择：
+证据优先记录可复核事实，而不是长篇日志。按任务至少选择：
 
 - command exit status；
 - file permission / ownership；
@@ -251,14 +242,7 @@ Cleanup 是 Gate 的一部分。
 - buyer/order/account 私密标识；
 - decrypted private data。
 
-Evidence 只记录必要 metadata，例如：
-
-- secret file exists；
-- path；
-- mode `0600`；
-- read-only mount；
-- compatibility PASS；
-- value not recorded。
+Evidence 只记录必要 metadata，例如：secret file exists、path、mode、read-only mount、compatibility PASS、value not recorded。
 
 ---
 
@@ -267,8 +251,9 @@ Evidence 只记录必要 metadata，例如：
 - 测试不得直接写真实迁移 DB；
 - writable rehearsal 使用工作副本；
 - SQLite backup 优先使用 SQLite backup API，而不是 live file copy；
+- PostgreSQL 等数据库使用其一致性备份机制；
 - 加密 DB 的恢复集必须与匹配 encryption key 同步治理；
-- backup 后必须验证 integrity / counts / decrypt compatibility（不得输出明文）；
+- backup 后验证 integrity / counts / decrypt compatibility（不得输出明文）；
 - migration 前后保留可比较 baseline。
 
 ---
@@ -291,20 +276,11 @@ Evidence 只记录必要 metadata，例如：
 
 - safe mode 实际 wiring 到 worker / scheduler / business actions；
 - restart/recreate 后仍安全；
-- 浏览器进程、profile、Cookie/session lifecycle 清晰；
+- browser profile / Cookie / session lifecycle 清晰；
 - 幂等 / duplicate prevention；
 - 首次真实动作可限制 target / count / expiry。
 
-首次真实业务动作必须用 bounded Canary：
-
-- single target；
-- max action count（通常 1）；
-- short expiry；
-- central guard；
-- Reviewer explicit authorization；
-- 完成后恢复安全状态；
-- non-target delta = 0；
-- restart / duplicate prevention 验证。
+首次真实业务动作必须用 bounded Canary：single target、max action count、short expiry、central guard、Reviewer explicit authorization、完成后恢复安全状态、non-target delta=0、restart/duplicate prevention。
 
 ---
 
@@ -338,7 +314,7 @@ Reviewer 默认：
 2. 一个 execution package 尽量跨多个 checkpoint 使用；
 3. 已 PASS Gate 不重复执行，除非 fresh preflight 发现 material drift；
 4. 技术细节由 Reviewer 决定；
-5. Executor 的常规错误优先 rollback / RETURN；
+5. Executor 常规错误优先 rollback / RETURN；
 6. 只有 Owner-only 事项才中断 Owner。
 
 ### Conditional Preauthorization
@@ -395,7 +371,47 @@ Cleanup 必须 allowlist + reference check + before/after evidence + production/
 
 ---
 
-## 16. Production Change Gate
+## 16. Storage Layout Contract rev1
+
+任何新项目进入 Shared VPS 前，必须先冻结数据位置，而不是上线后再整理。
+
+Canonical layout：
+
+```text
+/srv/infra                  # Shared Infra only
+/srv/apps/<project>         # 可重建代码 / Compose / 非秘密配置
+/srv/data/<project>         # DB / uploads / durable state / secret files
+/srv/backups/<project>      # 项目独立恢复材料
+```
+
+强制规则：
+
+- one project → one apps/data/backups namespace；
+- 不同项目不得共用 DB、uploads、secrets 或 backup directory；
+- 用户可控的 durable data 优先显式 bind mount 到 `/srv/data/<project>/...`；
+- named volume 允许，但必须 project-namespaced、登记、可备份/恢复；
+- anonymous volume 不得保存唯一业务数据；
+- build cache / temp / disposable logs 与 durable data 分离；
+- `/srv/apps/<project>` 应是可从 Git/release 重建的 application layer；
+- 项目上线前建立 `PROJECT_STORAGE_MANIFEST.md`；
+- 历史生产项目不因本规则强制搬迁，迁移必须独立 Change Gate。
+
+Storage Manifest 必须让 Reviewer 能回答：
+
+> 如果明天换 VPS，这个项目真正需要搬走哪些东西？
+
+若 durable-data location / backup / restore / secret metadata 无法确定：
+
+```text
+RETURN_STORAGE_LAYOUT_UNRESOLVED
+```
+
+详细契约：`references/STORAGE_LAYOUT_CONTRACT.md`  
+模板：`templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md`
+
+---
+
+## 17. Production Change Gate
 
 项目已经 production sealed 后：
 
@@ -417,27 +433,21 @@ Reviewer PASS / RETURN
 update REVIEWER_HANDOFF
 ```
 
-小型低风险变更可以简化 Gate，但仍必须保留：
+小型低风险变更可以简化 Gate，但仍必须保留：current baseline、actual change、validation、rollback point。
 
-- current baseline；
-- actual change；
-- validation；
-- rollback point。
-
-Bug fix、dependency upgrade、image slimming 等**不重新打开 initial onboarding**。
+Bug fix、dependency upgrade、image slimming、storage migration 等**不重新打开 initial onboarding**。
 
 ---
 
-## 17. Handoff 模型
-
-层级：
+## 18. Handoff 模型
 
 ```text
-GOVERNANCE_HANDOFF.md          # 通用治理自身
-SHARED_VPS_HANDOFF.md          # 基础设施（如适用）
-<project>/REVIEWER_HANDOFF.md  # Reviewer 当前项目真相
-<project>/EXECUTOR_HANDOFF.md  # Executor 执行事实
-<project>/EXECUTION_EVIDENCE.md# 详细脱敏证据
+GOVERNANCE_HANDOFF.md             # 通用治理自身
+SHARED_VPS_HANDOFF.md             # 基础设施（如适用）
+<project>/REVIEWER_HANDOFF.md     # Reviewer 当前项目真相
+<project>/EXECUTOR_HANDOFF.md     # Executor 执行事实
+<project>/EXECUTION_EVIDENCE.md   # 详细脱敏证据
+<project>/PROJECT_STORAGE_MANIFEST.md # Shared VPS 项目存储地图（如适用）
 ```
 
 规则：
@@ -445,12 +455,13 @@ SHARED_VPS_HANDOFF.md          # 基础设施（如适用）
 - `REVIEWER_HANDOFF.md` 只由 Reviewer 更新；
 - `EXECUTOR_HANDOFF.md` 只记录 Executor 实际事实；
 - `EXECUTION_EVIDENCE.md` 保存详细 evidence；
+- Storage Manifest 只记录位置/恢复/权限 metadata，不记录 Secret value；
 - per-gate decision/prompt 是附件，不代替 continuity Handoff；
 - 换聊天/Agent 时优先读这些文件，不要求 Owner 重述历史。
 
 ---
 
-## 18. Reviewer 最低输出
+## 19. Reviewer 最低输出
 
 每轮最少让 Owner 看清：
 
@@ -473,7 +484,7 @@ UNKNOWN
 
 ---
 
-## 19. Executor 返回格式
+## 20. Executor 返回格式
 
 成功：
 
@@ -489,6 +500,7 @@ RETURN_PREFLIGHT_DRIFT
 RETURN_TEST_FAILURE
 RETURN_DATA_MIGRATION_RISK
 RETURN_SHARED_INFRA_CHANGE_REQUIRED
+RETURN_STORAGE_LAYOUT_UNRESOLVED
 RETURN_SECRET_RISK
 RETURN_OWNER_ACTION_REQUIRED
 ```
@@ -497,7 +509,7 @@ RETURN_OWNER_ACTION_REQUIRED
 
 ---
 
-## 20. Governance 升级规则
+## 21. Governance 升级规则
 
 不要因为每个小事故改 Governance。
 
@@ -509,19 +521,20 @@ RETURN_OWNER_ACTION_REQUIRED
 - `PROVISIONAL`：理由充分但未完整验证；
 - `CANDIDATE`：单次观察，不急于固化。
 
-当前 v0.1.6 是 Xianyu production-closeout validated baseline。下一阶段应优先用另一类真实项目（例如 web/payment）检验，而不是继续在同一项目上堆规则。
+当前 v0.1.6 是 Xianyu production-closeout validated baseline。Storage Layout Contract rev1 固化的是已经存在于 Shared VPS 的目录/隔离模式，作为 operational addendum，不单独升级主版本。
 
 ---
 
-## 21. 加载顺序
+## 22. 加载顺序
 
 真正执行本 Skill 时：
 
 1. 先读本 `SKILL.md`；
 2. 需要完整规则时读 `references/GOVERNANCE_V0_1_6.md`；
-3. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
-4. 新项目按需使用 `templates/`；
-5. 若项目部署在 Shared VPS，再读其 Contract / Handoff；
-6. 最后读当前项目 Handoff 和当前 Gate Prompt。
+3. 只要项目将部署/已经部署到 Shared VPS，必须读 `references/STORAGE_LAYOUT_CONTRACT.md`；
+4. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
+5. 新项目按需使用 `templates/`，Shared VPS 项目必须建立 `PROJECT_STORAGE_MANIFEST.md`；
+6. 若项目部署在 Shared VPS，再读 Shared VPS Contract / Handoff；
+7. 最后读当前项目 Handoff 和当前 Gate Prompt。
 
 不要先从聊天历史猜当前状态。
