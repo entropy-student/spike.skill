@@ -1,7 +1,10 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
 
+const execFileP = promisify(execFile);
 const root = process.cwd();
 const pagesDir = path.join(root, 'public/pages');
 const stillsDir = path.join(root, 'public/stills');
@@ -70,7 +73,7 @@ const screenshotRegionForLocator = async (loc, file, {minW=420,minH=180,maxH=110
     }, {minW,minH,maxH,preferSection});
     const el = handle.asElement();
     if (!el) return false;
-    await el.screenshot({path:path.join(stillsDir,file), animations:'disabled'});
+    await el.screenshot({path:path.join(stillsDir,file), animations:'disabled', timeout:15000});
     await handle.dispose();
     return true;
   } catch (err) {
@@ -90,6 +93,46 @@ const screenshotAroundHeadingIndex = async (selector, index, file, opts={}) => {
   const n = await locs.count();
   if (n <= index) return false;
   return screenshotRegionForLocator(locs.nth(index), file, opts);
+};
+
+// Public app cards can keep moving because the live homepage has JS-driven motion. For those
+// cards we use a stricter evidence path: take the already-captured REAL full-page screenshot,
+// measure the real card ancestor in document coordinates, and crop that bitmap offline.
+// This is still a live-page screenshot + DOM-measured crop; no UI is reconstructed or mocked.
+const cropLiveCardFromFullPage = async (candidates, file, {minW=240,minH=120,maxH=620}={}) => {
+  const found = await textLocator(candidates);
+  if (!found) return false;
+  try {
+    const b = await found.loc.evaluate((el, cfg) => {
+      let n = el;
+      let best = el;
+      while (n && n !== document.body && n !== document.documentElement) {
+        const r = n.getBoundingClientRect();
+        const usable = r.width >= cfg.minW && r.height >= cfg.minH && r.height <= cfg.maxH;
+        if (usable) best = n;
+        n = n.parentElement;
+      }
+      const r = best.getBoundingClientRect();
+      return {x:r.left + window.scrollX, y:r.top + window.scrollY, width:r.width, height:r.height};
+    }, {minW,minH,maxH});
+    if (!b || b.width < 2 || b.height < 2) return false;
+    const dpr = 2;
+    const pad = 18;
+    const x = Math.max(0, Math.floor((b.x-pad)*dpr));
+    const y = Math.max(0, Math.floor((b.y-pad)*dpr));
+    const w = Math.max(2, Math.ceil((b.width+pad*2)*dpr));
+    const h = Math.max(2, Math.ceil((b.height+pad*2)*dpr));
+    await execFileP('convert', [
+      path.join(pagesDir,'home-full.png'),
+      '-crop', `${w}x${h}+${x}+${y}`,
+      '+repage',
+      path.join(stillsDir,file),
+    ]);
+    return true;
+  } catch (err) {
+    console.warn(`DOM-measured full-page crop failed for ${file}: ${String(err)}`);
+    return false;
+  }
 };
 
 const mustExist = async (p) => {
@@ -129,14 +172,14 @@ ok = await screenshotAroundCandidates(['Launch is not the finish line','where th
 if (!ok) ok = await screenshotAroundHeadingIndex('h2',2,'home-earn.png',sectionOpts);
 if (!ok) throw new Error('Could not DOM-capture homepage Earn section');
 
-const cardOpts = {minW:240,minH:120,maxH:620,preferSection:false};
+const cardOpts = {minW:240,minH:120,maxH:620};
 for (const [label,file] of [
   ['Auto Ledger','app-auto-ledger.png'],
   ['RedNote Copy Gen','app-rednote-copy.png'],
   ['Color & Type Pairer','app-color-type.png'],
 ]) {
-  const found = await screenshotAroundCandidates([label],file,cardOpts);
-  if (!found) throw new Error(`Could not DOM-capture real public app card: ${label}`);
+  const found = await cropLiveCardFromFullPage([label],file,cardOpts);
+  if (!found) throw new Error(`Could not DOM-measure/crop real public app card: ${label}`);
 }
 
 let logoDone = false;
@@ -145,7 +188,7 @@ for (const sel of ['img[alt="PocketBay"]','img[src*="brand"]','img[src*="logo"]'
   try {
     if (await loc.count()) {
       await loc.scrollIntoViewIfNeeded();
-      await loc.screenshot({path:path.join(stillsDir,'pocketbay-logo.png'), animations:'disabled'});
+      await loc.screenshot({path:path.join(stillsDir,'pocketbay-logo.png'), animations:'disabled', timeout:15000});
       logoDone=true;
       break;
     }
@@ -179,6 +222,6 @@ for (const p of [
   path.join(pagesDir,'deploy-full.png'), path.join(pagesDir,'discover-full.png'), path.join(pagesDir,'community-full.png')
 ]) await mustExist(p);
 
-const sources = `# sources.md\n\nAll PocketBay visual evidence assets were captured by Playwright during this build from the live public website. Section crops are screenshots of real DOM ancestors selected from matched live-page text; long-page stop coordinates are separately measured from the live DOM. No hand-drawn mock UI is used.\n\n- https://pocketbay.com/ — homepage hero/full-page, DOM-captured Deploy/Discover/Creator/Earn sections, and three public example app cards.\n- https://pocketbay.com/zh-CN/deploy — deployment guide full-page + DOM target coordinates.\n- https://pocketbay.com/discover — Discover full-page.\n- https://pocketbay.com/community — Community full-page.\n\nUsage: commentary/analysis video only. The PocketBay homepage explicitly marks its showcased usage/revenue figures as illustrative demo data; the film must not present those figures as customer data.\n`;
+const sources = `# sources.md\n\nAll PocketBay visual evidence assets were captured by Playwright during this build from the live public website. Section stills are screenshots of real DOM ancestors. Public app cards are DOM-measured crops of the real full-page screenshot, used to avoid instability from the live page's JS motion. Long-page stop coordinates are separately measured from the live DOM. No hand-drawn or code-mocked UI is used.\n\n- https://pocketbay.com/ — homepage hero/full-page, DOM-captured Deploy/Discover/Creator/Earn sections, and three public example app cards.\n- https://pocketbay.com/zh-CN/deploy — deployment guide full-page + DOM target coordinates.\n- https://pocketbay.com/discover — Discover full-page.\n- https://pocketbay.com/community — Community full-page.\n\nUsage: commentary/analysis video only. The PocketBay homepage explicitly marks its showcased usage/revenue figures as illustrative demo data; the film must not present those figures as customer data.\n`;
 await fs.writeFile(path.join(root,'sources.md'), sources);
 console.log('Captured and validated real PocketBay page assets:', pagesDir, stillsDir);
