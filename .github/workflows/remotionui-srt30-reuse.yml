@@ -1,0 +1,98 @@
+name: RemotionUI SRT30 Reuse Proof
+
+on:
+  push:
+    branches:
+      - workbench/remotionui-srt30-20260912
+    paths:
+      - 'workbench/remotionui-srt30/**'
+      - '.github/workflows/remotionui-srt30-reuse.yml'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout proof wrapper
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Clone current RemotionUI source
+        run: |
+          git clone --depth 1 https://github.com/riaz37/remotion-ui.git /tmp/remotion-ui
+          git -C /tmp/remotion-ui rev-parse HEAD | tee /tmp/remotionui-upstream-sha.txt
+
+      - name: Install RemotionUI dependencies
+        working-directory: /tmp/remotion-ui
+        run: pnpm install --frozen-lockfile
+
+      - name: Inject only the composition wrapper
+        run: |
+          mkdir -p /tmp/remotion-ui/apps/web/showcase/reuse-proof/src
+          cp workbench/remotionui-srt30/index.tsx /tmp/remotion-ui/apps/web/showcase/reuse-proof/src/index.tsx
+          mkdir -p /tmp/out/sources /tmp/out/review
+          cp workbench/remotionui-srt30/segment.srt /tmp/out/segment.srt
+          cp /tmp/remotion-ui/apps/web/registry/bases/default/scenes/title-card/index.tsx /tmp/out/sources/title-card.tsx
+          cp /tmp/remotion-ui/apps/web/registry/bases/default/scenes/comparison-table/index.tsx /tmp/out/sources/comparison-table.tsx
+          cp /tmp/remotion-ui/apps/web/registry/bases/default/scenes/feature-list/index.tsx /tmp/out/sources/feature-list.tsx
+          cp workbench/remotionui-srt30/index.tsx /tmp/out/composition-wrapper.tsx
+
+      - name: Render with official Remotion runtime
+        working-directory: /tmp/remotion-ui/apps/web
+        run: |
+          pnpm exec remotion render \
+            showcase/reuse-proof/src/index.tsx \
+            SrtSemanticReuse \
+            /tmp/out/RemotionUI_SRT_Semantic_29s.mp4 \
+            --codec=h264 \
+            --crf=18
+
+      - name: Build proof bundle
+        run: |
+          sudo apt-get update -y >/dev/null
+          sudo apt-get install -y ffmpeg >/dev/null
+          sha256sum /tmp/out/RemotionUI_SRT_Semantic_29s.mp4 | tee /tmp/out/VIDEO_SHA256.txt
+          sha256sum /tmp/out/sources/*.tsx | tee /tmp/out/UPSTREAM_TEMPLATE_SHA256.txt
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_frame_rate -of json /tmp/out/RemotionUI_SRT_Semantic_29s.mp4 > /tmp/out/FFPROBE.json
+          for t in 1 5 10 16 23 28; do
+            ffmpeg -y -ss "$t" -i /tmp/out/RemotionUI_SRT_Semantic_29s.mp4 -frames:v 1 -q:v 2 "/tmp/out/review/frame_${t}s.jpg" >/dev/null 2>&1
+          done
+          UPSTREAM=$(cat /tmp/remotionui-upstream-sha.txt)
+          cat > /tmp/out/PROOF.md <<EOF
+          # RemotionUI SRT Semantic Reuse Proof
+
+          - Upstream: riaz37/remotion-ui
+          - Upstream commit: $UPSTREAM
+          - Render runtime: official Remotion from upstream repository dependencies
+          - Output: 1920×1080, 30fps, 870 frames = 29.0s
+          - Selected SRT window: 00:03:19.792 → 00:03:48.750
+          - Template source edits: 0 lines
+          - Custom code: composition wrapper only (sequencing, props, plain subtitle overlay)
+
+          ## Semantic mapping
+
+          1. TitleCard — “事情不能只往好的方向说” (argument reversal)
+          2. ComparisonTable — “不一定是消费升级 / 也可能是焦虑营销” (contrast)
+          3. FeatureList — four concrete anxiety-marketing patterns (enumeration)
+          4. FeatureList — five verifiable standards to check (checklist)
+
+          Exact upstream template files used are bundled under sources/.
+          EOF
+
+      - name: Upload proof artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: remotionui-srt-semantic-29s
+          path: /tmp/out
+          if-no-files-found: error
+          retention-days: 7
