@@ -1,0 +1,33 @@
+{
+  "version": "0.1.0",
+  "hard_gates": {
+    "talkcraft_preflight": "PASS",
+    "asset_truthfulness": "PASS",
+    "code_motion_source_integrity": "PASS",
+    "template_uniqueness": "PASS",
+    "style_family_lock": "PASS",
+    "continuity_handoff": "PASS",
+    "timing_authority": "PASS",
+    "technical_qc": "PASS"
+  },
+  "score": {
+    "semantic_fit": {"max": 20, "score": 0, "evidence": []},
+    "visual_continuity": {"max": 20, "score": 0, "evidence": []},
+    "style_coherence": {"max": 15, "score": 0, "evidence": []},
+    "asset_evidence_appropriateness": {"max": 15, "score": 0, "evidence": []},
+    "shot_variety": {"max": 10, "score": 0, "evidence": []},
+    "timing_vo_sync": {"max": 10, "score": 0, "evidence": []},
+    "template_integrity": {"max": 5, "score": 0, "evidence": []},
+    "technical_final_hold": {"max": 5, "score": 0, "evidence": []}
+  },
+  "total": 0,
+  "decision": "FAIL",
+  "thresholds": {
+    "fail_below": 75,
+    "preview": [75, 84],
+    "pass": [85, 92],
+    "exceptional_min": 93
+  },
+  "largest_remaining_gap": "",
+  "next_fix": ""
+}
