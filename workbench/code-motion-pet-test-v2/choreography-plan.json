@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0",
+  "source": "SRT 03:39.527-04:08.230",
+  "durationFrames": 861,
+  "fps": 30,
+  "constraints": {
+    "preserveUpstreamStyle": true,
+    "templateReusePerVideo": 1,
+    "customSkin": false,
+    "customOverlay": false,
+    "aRoll": "none",
+    "bRoll": "none"
+  },
+  "beats": [
+    {
+      "from": 0,
+      "to": 184,
+      "semantic": "科学照护不等于每个问题都对应商品",
+      "composition": "AeSaasKineticType",
+      "action": "用原版动态排版制造判断冲突"
+    },
+    {
+      "from": 184,
+      "to": 424,
+      "semantic": "猫喝水少存在多个可选解决路径",
+      "composition": "WideCausalTagMap",
+      "action": "从同一问题分叉到多种方案并汇聚到同一结果"
+    },
+    {
+      "from": 424,
+      "to": 718,
+      "semantic": "购买前按三个问题依次判断",
+      "composition": "WideProcessPillBuilder",
+      "action": "把三个判断问题组织成一次完整流程"
+    },
+    {
+      "from": 718,
+      "to": 861,
+      "semantic": "除了购买还可以先寻找别的方法",
+      "composition": "WideGiantKeywordBackdrop",
+      "action": "用原版大关键词镜头收束观点"
+    }
+  ]
+}
