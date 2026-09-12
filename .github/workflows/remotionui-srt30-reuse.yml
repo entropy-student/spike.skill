@@ -27,6 +27,13 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install CJK fonts
+        run: |
+          sudo apt-get update -y >/dev/null
+          sudo apt-get install -y fonts-noto-cjk ffmpeg >/dev/null
+          fc-cache -f >/dev/null
+          fc-match 'Noto Sans CJK SC'
+
       - name: Clone current RemotionUI source
         run: |
           git clone --depth 1 https://github.com/riaz37/remotion-ui.git /tmp/remotion-ui
@@ -59,8 +66,6 @@ jobs:
 
       - name: Build proof bundle
         run: |
-          sudo apt-get update -y >/dev/null
-          sudo apt-get install -y ffmpeg >/dev/null
           sha256sum /tmp/out/RemotionUI_SRT_Semantic_29s.mp4 | tee /tmp/out/VIDEO_SHA256.txt
           sha256sum /tmp/out/sources/*.tsx | tee /tmp/out/UPSTREAM_TEMPLATE_SHA256.txt
           ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_frame_rate -of json /tmp/out/RemotionUI_SRT_Semantic_29s.mp4 > /tmp/out/FFPROBE.json
@@ -78,6 +83,7 @@ jobs:
           - Selected SRT window: 00:03:19.792 → 00:03:48.750
           - Template source edits: 0 lines
           - Custom code: composition wrapper only (sequencing, props, plain subtitle overlay)
+          - CJK rendering: system Noto Sans CJK installed on runner; upstream template files remain untouched
 
           ## Semantic mapping
 
