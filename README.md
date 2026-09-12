@@ -6,7 +6,7 @@
 
 **不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
 
-![Skills](https://img.shields.io/badge/skills-11-blue?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-12-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
 ![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
 
@@ -31,6 +31,7 @@
 | 🎵 **Music Trend Radar（音乐趋势雷达）** | 跨平台识别真正热门、正在爆发和具有持续传播能力的歌曲 | Active | [进入](./music-trend-radar/) |
 | 🎬 **Narrative Motion Semantics（叙事动效语义库）** | 根据流程、时间、对比、因果语义选择信息拓扑、Template ID 与动效表达 | **Incomplete** | [进入](./narrative-motion-semantics/) |
 | 🎥 **TalkCraft Design Orchestrator（TalkCraft 视觉编排器）** | 在不修改 video-talkcraft 的前提下增加视觉风格选择与 SHOTBOOK 素材确认，并可接入 awesome-design-md | **v1.0.0 Frozen** | [进入](./video-talkcraft-design-orchestrator/) |
+| 🎞️ **Video Director Orchestrator（混合视频导演编排器）** | 组合 TalkCraft 与 Code Motion：先判画面角色、再选模板，用真实素材 + 原生动效 + Continuity / Handoff 统一成片 | **v0.1.0 Experimental** | [进入](./video-director-orchestrator/) |
 
 ---
 
@@ -172,6 +173,14 @@ Hook 只出现一次，正文从 Hook 后直接继续；
 首次交互一次性收集当前 TalkCraft 必需输入并同步让我选择视觉风格；
 SHOTBOOK 完成后先让我确认并提示哪些镜头适合补充自有素材；
 除此之外严格执行当前 video-talkcraft。
+```
+
+```text
+按 Video Director Orchestrator v0.1 制作这条视频。
+先按当前 TalkCraft 完成时间锚、素材与 SHOTBOOK，再生成 DIRECTOR_PLAN；
+每个 Beat 先决定 A-roll / B-roll / Evidence / Screen / Code Motion / Typography，再搜索模板；
+Code Motion 现成模板保持原版风格，同一模板整片最多一个连续实例，并优先使用同一 Native Style Family；
+把 SHOTBOOK、素材缺口、Style Family、模板候选和 Handoff 合成一次 Director Pack 让我确认。
 ```
 
 ---
