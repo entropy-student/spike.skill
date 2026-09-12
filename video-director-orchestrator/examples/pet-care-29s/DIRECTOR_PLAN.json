@@ -1,0 +1,124 @@
+{
+  "version": "0.1.0",
+  "status": "PLANNING_ONLY_PENDING_U1",
+  "source_window": {
+    "start": "00:03:19.792",
+    "end": "00:03:48.750",
+    "duration_seconds": 28.958
+  },
+  "style_strategy": {
+    "code_motion_primary_family": "VibeCutReferenceShots",
+    "code_motion_secondary_family": null,
+    "native_style_lock": true,
+    "talkcraft_bridge": "derive the surrounding TalkCraft theme from the current VibeCut native palette and editorial character without changing Code Motion template source or canonical template colors"
+  },
+  "asset_policy": {
+    "talkcraft_real_media_gate": "must follow current upstream requirements",
+    "planned_real_media_shots": ["S01", "S02", "S03"],
+    "code_motion_is_not_evidence": true,
+    "user_assets_required_now": false,
+    "note": "If the user provides better owned assets at U1, replace the corresponding material slots and rerun affected TalkCraft preflight."
+  },
+  "persistent_object_registry": [
+    {
+      "id": "pet-maternity-label",
+      "meaning": "宠物用品母婴化 / 高级护理标签",
+      "path": ["S01", "S02", "S03", "S04"]
+    },
+    {
+      "id": "verifiable-standard",
+      "meaning": "透明、可验证",
+      "path": ["S04", "S05", "S06"]
+    }
+  ],
+  "shots": [
+    {
+      "id": "S01",
+      "time": [0.0, 2.916],
+      "meaning": "观点转折：事情不能只往好的方向说",
+      "visual_role": ["B_ROLL", "TYPOGRAPHY"],
+      "material_job": "真实宠物用品 / 包装 / 货架画面作为现实世界底床，不承担品牌或效果证明",
+      "talkcraft_job": "用当前 TalkCraft 规则做短 Hook / 观点转折，保留真实媒体主体",
+      "code_motion": null,
+      "handoff_out": "画面中的‘母婴化/高级护理’标签成为下一镜比较对象"
+    },
+    {
+      "id": "S02",
+      "time": [2.916, 9.791],
+      "meaning": "母婴化不一定等于消费升级，也可能是焦虑营销",
+      "visual_role": ["B_ROLL", "TYPOGRAPHY"],
+      "material_job": "延续同类真实宠物用品画面，TalkCraft 在同一视觉世界内做‘消费升级 / 焦虑营销’对比",
+      "talkcraft_job": "优先使用当前 TalkCraft 的对比表达，不使用 Code Motion 模板仅仅因为它好看",
+      "code_motion": null,
+      "handoff_in": "pet-maternity-label",
+      "handoff_out": "‘焦虑营销’标签留给下一镜真实包装 / 功能宣称例子"
+    },
+    {
+      "id": "S03",
+      "time": [9.791, 14.583],
+      "meaning": "普通清洁被包装成专宠专用，日常营养被说成复杂功能",
+      "visual_role": ["B_ROLL", "EVIDENCE"],
+      "material_job": "真实清洁 / 营养类宠物用品图像或视频；如展示具体网页 / 包装文字，按当前 TalkCraft 真图与证据规则处理",
+      "talkcraft_job": "真实媒体优先，不用 mock 产品包装替代",
+      "code_motion": null,
+      "handoff_in": "焦虑营销标签",
+      "handoff_out": "从具体宣称收束成‘不确定效果 → 健康承诺 → 价格抬高’的抽象关系"
+    },
+    {
+      "id": "S04",
+      "time": [14.583, 19.375],
+      "meaning": "效果不确定，却被暗示成健康承诺，最后价格也被抬高",
+      "visual_role": ["CODE_MOTION"],
+      "why_code_motion": "这里需要表达的是抽象因果链，而不是某个真实品牌的证据",
+      "code_motion": {
+        "family": "VibeCutReferenceShots",
+        "template_id": "WideCausalTagMap",
+        "native_style_preserved": true,
+        "canonical_accent": "#a8ff47",
+        "semantic_mapping": "效果不确定 → 健康承诺；复杂功能 → 价格抬高；outcome = 焦虑被放大"
+      },
+      "handoff_in": "S03 的宣称 / 功能标签",
+      "handoff_out": "因果图的出口收束为‘需要透明、可验证’"
+    },
+    {
+      "id": "S05",
+      "time": [19.375, 24.375],
+      "meaning": "越像母婴用品，越需要透明、可验证的标准",
+      "visual_role": ["TYPOGRAPHY", "TRANSITION"],
+      "talkcraft_job": "用当前 TalkCraft 的关键词 / 章节承接方式，不引入新的 Code Motion 模板",
+      "code_motion": null,
+      "handoff_in": "verifiable-standard",
+      "handoff_out": "‘透明、可验证’作为下一镜标准清单的标题 / 上位概念"
+    },
+    {
+      "id": "S06",
+      "time": [24.375, 28.958],
+      "meaning": "真正该看的是成分、适用对象、生产资质、检测依据和售后责任",
+      "visual_role": ["CODE_MOTION"],
+      "why_code_motion": "五个标准是结构化检查对象，适合可编辑卡片系统；不把它当事实来源，而是对旁白结构进行可视化",
+      "code_motion": {
+        "family": "VibeCutReferenceShots",
+        "template_id": "WideExplodedWorkflowBoard",
+        "native_style_preserved": true,
+        "canonical_accent": "#ffe64f",
+        "semantic_mapping": "cards = 成分 / 适用对象 / 生产资质 / 检测依据 / 售后责任"
+      },
+      "handoff_in": "verifiable-standard",
+      "handoff_out": "final hold on the five checks"
+    }
+  ],
+  "template_registry": {
+    "WideCausalTagMap": {"instances": 1, "family": "VibeCutReferenceShots"},
+    "WideExplodedWorkflowBoard": {"instances": 1, "family": "VibeCutReferenceShots"}
+  },
+  "continuity_gate": {
+    "planned_handoffs": 5,
+    "unplanned_resets": 0,
+    "chapter_resets": 0,
+    "status": "PASS_AT_PLAN_LEVEL"
+  },
+  "u1_director_pack": {
+    "status": "PENDING_USER_CONFIRMATION",
+    "requires_confirmation_before_implementation": true
+  }
+}

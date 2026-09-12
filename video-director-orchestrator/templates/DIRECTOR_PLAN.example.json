@@ -1,0 +1,86 @@
+{
+  "version": "0.1.0",
+  "mode": "talkcraft-plus-code-motion",
+  "production_contract": {
+    "script_authority": "approved-script",
+    "timing_authority": "human-verified-subtitles-or-talkcraft-timestamps",
+    "aspect_ratio": "1920x1080",
+    "fps": 30,
+    "duration_seconds": 30
+  },
+  "style_strategy": {
+    "talkcraft_visual_language": "resolved by current TalkCraft rules",
+    "code_motion_primary_family": "VibeCutReferenceShots",
+    "code_motion_secondary_family": null,
+    "native_style_lock": true,
+    "bridge_rule": "align surrounding TalkCraft design to the selected native family; do not reskin existing Code Motion templates"
+  },
+  "asset_policy": {
+    "real_evidence_first": true,
+    "code_motion_may_replace_real_evidence": false,
+    "asset_gaps": []
+  },
+  "persistent_object_registry": [
+    {
+      "id": "problem-node",
+      "meaning": "the problem currently being discussed",
+      "first_beat": "B01",
+      "last_beat": "B03"
+    }
+  ],
+  "beats": [
+    {
+      "id": "B01",
+      "time": {"start": 0.0, "end": 5.0},
+      "meaning": "state the main problem",
+      "visual_role": "TYPOGRAPHY",
+      "evidence_requirement": "none",
+      "asset_status": "not-required",
+      "persistent_object": "problem-node",
+      "handoff_in": null,
+      "handoff_out": "problem-node becomes a visible node for the next beat",
+      "talkcraft_recipe": "candidate resolved by current TalkCraft",
+      "code_motion_candidate": null
+    },
+    {
+      "id": "B02",
+      "time": {"start": 5.0, "end": 12.0},
+      "meaning": "show several solution paths from one problem",
+      "visual_role": "CODE_MOTION",
+      "evidence_requirement": "none",
+      "asset_status": "not-required",
+      "persistent_object": "problem-node",
+      "handoff_in": "problem-node",
+      "handoff_out": "multiple solution paths become the input to the decision beat",
+      "talkcraft_recipe": null,
+      "code_motion_candidate": {
+        "family": "VibeCutReferenceShots",
+        "template_id": "WideCausalTagMap",
+        "why_this_template": "the semantic job is one input branching into multiple causal/solution paths",
+        "why_not_media": "the relationship is abstract rather than evidence of a real-world event"
+      }
+    }
+  ],
+  "template_registry": {
+    "WideCausalTagMap": {
+      "instances": 1,
+      "contiguous": true,
+      "native_style_preserved": true
+    }
+  },
+  "chapter_resets": [],
+  "qc_targets": {
+    "hard_gates_required": true,
+    "director_score_minimum": 85,
+    "dimensions": [
+      "semantic_fit",
+      "visual_continuity",
+      "style_coherence",
+      "asset_evidence_appropriateness",
+      "shot_variety",
+      "timing_vo_sync",
+      "template_integrity",
+      "technical_final_hold"
+    ]
+  }
+}

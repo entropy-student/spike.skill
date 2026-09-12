@@ -1,0 +1,10 @@
+name: video-director-orchestrator
+display_name: Video Director Orchestrator（混合视频导演编排器）
+description: 混合编排 TalkCraft 与 Code Motion，增加画面角色、风格家族、模板去重、镜头承接与统一导演质检。
+version: 0.1.0
+status: experimental
+category: video-production
+language:
+  - zh-CN
+  - en
+notes: "Experimental hybrid directing layer; upstream rules are loaded at runtime."

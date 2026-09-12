@@ -1,0 +1,68 @@
+name: Video Director Orchestrator Calibration
+
+on:
+  push:
+    branches:
+      - workbench/video-director-orchestrator-v0.1-20260912
+    paths:
+      - 'video-director-orchestrator/examples/pet-care-45s/render/**'
+      - '.github/workflows/video-director-orchestrator-calibration.yml'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout skill repo
+        uses: actions/checkout@v4
+
+      - name: Checkout Code Motion upstream
+        uses: actions/checkout@v4
+        with:
+          repository: vibe-motion/remotion-code-motion-explainer
+          path: _upstream
+
+      - name: Prepare runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runtime/src
+          cp video-director-orchestrator/examples/pet-care-45s/render/HybridAnalysis.tsx runtime/src/
+          cp video-director-orchestrator/examples/pet-care-45s/render/index.ts runtime/src/
+          cp _upstream/assets/shot-library/src/VibeCutReferenceShots.tsx runtime/src/
+          cat > runtime/package.json <<'EOF'
+          {
+            "private": true,
+            "dependencies": {
+              "@remotion/cli": "4.0.489",
+              "@remotion/media": "4.0.489",
+              "react": "19.2.3",
+              "react-dom": "19.2.3",
+              "remotion": "4.0.489"
+            }
+          }
+          EOF
+
+      - name: Install CJK fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+
+      - name: Install dependencies
+        working-directory: runtime
+        run: npm install --no-audit --no-fund
+
+      - name: Render native Code Motion block
+        working-directory: runtime
+        run: npx remotion render src/index.ts HybridAnalysis hybrid-analysis.mp4 --codec h264
+
+      - name: Save upstream SHA
+        run: git -C _upstream rev-parse HEAD > runtime/UPSTREAM_SHA.txt
+
+      - name: Upload render
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-director-calibration-analysis
+          path: |
+            runtime/hybrid-analysis.mp4
+            runtime/UPSTREAM_SHA.txt
