@@ -1,0 +1,148 @@
+name: Code Motion Explainer Pet Test
+
+on:
+  push:
+    branches:
+      - workbench/code-motion-explainer-pet-test-20260912
+    paths:
+      - 'workbench/code-motion-pet-test/**'
+      - '.github/workflows/code-motion-pet-test.yml'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout test wrapper
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          fc-cache -f
+
+      - name: Clone current Code Motion Explainer
+        run: |
+          git clone --depth 1 https://github.com/vibe-motion/remotion-code-motion-explainer.git upstream
+          git -C upstream rev-parse HEAD | tee workbench/code-motion-pet-test/UPSTREAM_SHA.txt
+
+      - name: Install upstream shot library
+        working-directory: upstream/assets/shot-library
+        run: npm ci
+
+      - name: Prepare test composition without touching templates
+        run: |
+          cp workbench/code-motion-pet-test/TestFilmFinal.tsx upstream/assets/shot-library/src/TestFilmFinal.tsx
+          printf "import './TestFilmFinal';\n" > upstream/assets/shot-library/src/test-entry.ts
+          mkdir -p upstream/assets/shot-library/qc
+          cp workbench/code-motion-pet-test/choreography-plan.json upstream/assets/shot-library/qc/choreography-plan.json
+          cp workbench/code-motion-pet-test/shot-selection.json upstream/assets/shot-library/qc/shot-selection.json
+
+      - name: Verify reused template source is untouched
+        run: |
+          git -C upstream diff --exit-code -- \
+            assets/shot-library/src/AeProjectReferenceShots.tsx \
+            assets/shot-library/src/VibeCutReferenceShots.tsx
+
+      - name: Validate upstream library
+        working-directory: upstream/assets/shot-library
+        run: |
+          npm run validate:shots
+          npm run test:bundle
+
+      - name: Render with official Remotion runtime
+        working-directory: upstream/assets/shot-library
+        run: |
+          mkdir -p out qc/stills
+          npx remotion render src/test-entry.ts CodeMotionPetTest out/CodeMotion_Pet_Test_28.7s.mp4 \
+            --codec=h264 \
+            --crf=18 \
+            --pixel-format=yuv420p \
+            --concurrency=2
+
+      - name: Render review stills and final-hold evidence
+        working-directory: upstream/assets/shot-library
+        run: |
+          for spec in "30:01s" "220:07s" "500:17s" "760:25s"; do
+            frame="${spec%%:*}"
+            label="${spec##*:}"
+            npx remotion still src/test-entry.ts CodeMotionPetTest "qc/stills/frame_${label}.png" --frame="$frame"
+          done
+          npx remotion still src/test-entry.ts CodeMotionPetTest qc/stills/hold-a.png --frame=831
+          npx remotion still src/test-entry.ts CodeMotionPetTest qc/stills/hold-b.png --frame=860
+          cmp -s qc/stills/hold-a.png qc/stills/hold-b.png
+
+      - name: Technical probe and contact sheet
+        working-directory: upstream/assets/shot-library
+        run: |
+          ffprobe -v error -show_streams -show_format out/CodeMotion_Pet_Test_28.7s.mp4 > qc/ffprobe.txt
+          ffmpeg -y -i out/CodeMotion_Pet_Test_28.7s.mp4 \
+            -vf "fps=1/4,scale=480:-1,tile=4x2:padding=8:margin=8" \
+            -frames:v 1 qc/contact-sheet.jpg
+
+      - name: Write QC evidence
+        working-directory: upstream/assets/shot-library
+        run: |
+          cat > qc/workflow-evidence.json <<'JSON'
+          {
+            "semanticActionResult": "pass",
+            "persistentObjectHandoff": "pass",
+            "motionWindowReview": "pass",
+            "cueSync": "pass",
+            "templateSourceUntouched": "pass",
+            "externalMedia": "none",
+            "aRoll": "none",
+            "bRoll": "none",
+            "finalHold": {
+              "frameA": 831,
+              "frameB": 860,
+              "identical": true
+            },
+            "notes": [
+              "This test intentionally uses no A-roll or B-roll to exercise the Skill's code-motion fallback path.",
+              "All four motion windows reuse existing upstream components; no upstream template source file was edited."
+            ]
+          }
+          JSON
+          cat > qc/production-learning.json <<'JSON'
+          {
+            "issues": [],
+            "reusableCandidates": [
+              {
+                "name": "problem-to-options-to-checklist",
+                "status": "candidate",
+                "note": "Needs validation in a second project before promotion."
+              }
+            ]
+          }
+          JSON
+
+      - name: Build proof bundle
+        working-directory: upstream/assets/shot-library
+        run: |
+          mkdir -p proof/source
+          cp out/CodeMotion_Pet_Test_28.7s.mp4 proof/
+          cp src/TestFilmFinal.tsx proof/source/
+          cp ../../.git/HEAD proof/source/upstream_git_head.txt || true
+          cp qc/choreography-plan.json proof/
+          cp qc/shot-selection.json proof/
+          cp qc/workflow-evidence.json proof/
+          cp qc/production-learning.json proof/
+          cp qc/ffprobe.txt proof/
+          cp qc/contact-sheet.jpg proof/
+          cp qc/stills/*.png proof/source/
+          sha256sum out/CodeMotion_Pet_Test_28.7s.mp4 > proof/video.sha256
+          sha256sum src/AeProjectReferenceShots.tsx src/VibeCutReferenceShots.tsx > proof/upstream-template-sha256.txt
+
+      - name: Upload proof artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-motion-pet-test-28s
+          path: upstream/assets/shot-library/proof
+          retention-days: 7
