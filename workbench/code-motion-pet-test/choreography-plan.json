@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "authority": "srt",
+    "sourceRange": "03:39.527-04:08.230",
+    "durationSeconds": 28.703,
+    "fps": 30,
+    "externalMedia": "none"
+  },
+  "conceptAngle": "把消费判断做成一个持续的‘问题求解台’：先否定问题=商品，再展开替代方案，最后收束成三问检查。",
+  "beats": [
+    {
+      "id": "b01",
+      "frames": [0, 92],
+      "statement": "因为真正科学的照护，不应该是：",
+      "narrativePurpose": "建立反命题",
+      "inputState": "科学照护被误解为购买行为",
+      "dominantVerb": "否定",
+      "visibleTransformation": "动势文字从‘科学照护’推进到‘不应该是’",
+      "outputState": "观众等待被否定的对象",
+      "viewerFocus": "真正科学的照护",
+      "handoff": "把最后一个词槽交给‘问题 = 商品’"
+    },
+    {
+      "id": "b02",
+      "frames": [93, 183],
+      "statement": "每一个问题，都对应一件商品。",
+      "narrativePurpose": "指出错误映射",
+      "inputState": "反命题已建立",
+      "dominantVerb": "绑定",
+      "visibleTransformation": "最终动势词锁定为‘问题 = 商品’",
+      "outputState": "错误映射被明确看见",
+      "viewerFocus": "问题 = 商品",
+      "handoff": "把‘问题’作为下一段输入胶囊"
+    },
+    {
+      "id": "b03",
+      "frames": [184, 292],
+      "statement": "猫喝水少，不一定非要买智能饮水机。",
+      "narrativePurpose": "给出具体问题和常见购买解",
+      "inputState": "问题：猫喝水少",
+      "dominantVerb": "拆解",
+      "visibleTransformation": "问题胶囊展开为多个解决路径，其中智能饮水机只是一个选项",
+      "outputState": "单一购买路径被去中心化",
+      "viewerFocus": "猫喝水少",
+      "handoff": "让替代方案继续填入同一个解决台"
+    },
+    {
+      "id": "b04",
+      "frames": [293, 423],
+      "statement": "多放几个水碗、增加湿粮，同样可能解决问题。",
+      "narrativePurpose": "展示非购买型替代方案",
+      "inputState": "同一个问题仍然存在",
+      "dominantVerb": "扩展",
+      "visibleTransformation": "‘多放水碗’和‘增加湿粮’加入同一方案网格",
+      "outputState": "一个问题出现多条可比较路径",
+      "viewerFocus": "多种解法",
+      "handoff": "从‘怎么解决’切换到‘该不该买’"
+    },
+    {
+      "id": "b05",
+      "frames": [424, 522],
+      "statement": "所以判断一件宠物用品值不值得买，",
+      "narrativePurpose": "从案例上升到决策框架",
+      "inputState": "多种解决路径已建立",
+      "dominantVerb": "抽象",
+      "visibleTransformation": "解决台标题更新为购买判断",
+      "outputState": "案例变成通用检查流程",
+      "viewerFocus": "值不值得买",
+      "handoff": "检查流程等待三个问题"
+    },
+    {
+      "id": "b06",
+      "frames": [523, 635],
+      "statement": "可以先问三个问题：问题真的存在吗？",
+      "narrativePurpose": "检查1：验证问题",
+      "inputState": "购买判断流程为空",
+      "dominantVerb": "验证",
+      "visibleTransformation": "第一张检查卡进入：问题真的存在吗？",
+      "outputState": "问题真实性成为第一门槛",
+      "viewerFocus": "问题真的存在吗",
+      "handoff": "保留同一检查台进入第二问"
+    },
+    {
+      "id": "b07",
+      "frames": [636, 717],
+      "statement": "这个问题真的需要解决吗？",
+      "narrativePurpose": "检查2：验证必要性",
+      "inputState": "问题已被确认",
+      "dominantVerb": "判断",
+      "visibleTransformation": "第二张检查卡进入：真的需要解决吗？",
+      "outputState": "必要性成为第二门槛",
+      "viewerFocus": "真的需要解决吗",
+      "handoff": "保留同一检查台进入第三问"
+    },
+    {
+      "id": "b08",
+      "frames": [718, 816],
+      "statement": "除了买东西，还有没有别的方法？",
+      "narrativePurpose": "检查3：寻找替代路径",
+      "inputState": "问题存在且需要解决",
+      "dominantVerb": "替代",
+      "visibleTransformation": "第三张检查卡落位：还有别的方法吗？",
+      "outputState": "购买从默认动作变成候选动作",
+      "viewerFocus": "除了购买",
+      "handoff": "三问收束为最终原则"
+    },
+    {
+      "id": "b09",
+      "frames": [817, 860],
+      "statement": "最后再回头看：",
+      "narrativePurpose": "结尾接力",
+      "inputState": "三问已经完整",
+      "dominantVerb": "收束",
+      "visibleTransformation": "系统退化为一句原则：先解决问题，再决定买不买",
+      "outputState": "形成可复用的消费判断原则",
+      "viewerFocus": "先解决问题",
+      "handoff": "留给原长视频后续结论"
+    }
+  ],
+  "persistentObjects": [
+    {
+      "semanticName": "problem-solving-rail",
+      "component": "ContinuityRail",
+      "visualState": "全片顶部持续存在，进度连续推进",
+      "handoff": "作为跨场景视觉不变量"
+    },
+    {
+      "semanticName": "problem",
+      "component": "prompt capsule / title",
+      "visualState": "从‘问题=商品’演化为‘猫喝水少’，再演化为购买判断",
+      "handoff": "同一问题概念跨场景持续"
+    }
+  ]
+}
