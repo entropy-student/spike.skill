@@ -1,0 +1,31 @@
+{
+  "selectionPolicy": "semantic match first; each template may appear only once; upstream visual style locked",
+  "selected": [
+    {
+      "template": "AeSaasKineticType",
+      "status": "reuse",
+      "style": "upstream default",
+      "styleProps": "accent omitted; component default #ff2cc3"
+    },
+    {
+      "template": "WideCausalTagMap",
+      "status": "reuse",
+      "style": "upstream default",
+      "styleProps": "accent #a8ff47 exactly matches upstream Root.tsx defaultProps"
+    },
+    {
+      "template": "WideProcessPillBuilder",
+      "status": "reuse",
+      "style": "upstream default",
+      "styleProps": "accent #45b83f exactly matches upstream Root.tsx defaultProps"
+    },
+    {
+      "template": "WideGiantKeywordBackdrop",
+      "status": "reuse",
+      "style": "upstream default",
+      "styleProps": "accent #ffe64f exactly matches upstream Root.tsx defaultProps"
+    }
+  ],
+  "customTemplates": [],
+  "repeatedTemplates": []
+}
