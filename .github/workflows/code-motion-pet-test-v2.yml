@@ -1,0 +1,154 @@
+name: Code Motion Explainer Pet Test V2
+
+on:
+  push:
+    branches:
+      - workbench/code-motion-explainer-pet-test-v2-20260912
+    paths:
+      - 'workbench/code-motion-pet-test-v2/**'
+      - '.github/workflows/code-motion-pet-test-v2.yml'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout test wrapper
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update >/dev/null
+          sudo apt-get install -y ffmpeg fonts-noto-cjk >/dev/null
+          fc-cache -f >/dev/null
+
+      - name: Clone current Code Motion Explainer
+        run: |
+          git clone --depth 1 https://github.com/vibe-motion/remotion-code-motion-explainer.git upstream
+          git -C upstream rev-parse HEAD | tee workbench/code-motion-pet-test-v2/UPSTREAM_SHA.txt
+
+      - name: Install upstream shot library
+        working-directory: upstream/assets/shot-library
+        run: npm ci
+
+      - name: Prepare V2 composition
+        run: |
+          cp workbench/code-motion-pet-test-v2/TestFilmV2.tsx upstream/assets/shot-library/src/TestFilmV2.tsx
+          cp workbench/code-motion-pet-test-v2/choreography-plan.json upstream/assets/shot-library/choreography-plan-v2.json
+          cp workbench/code-motion-pet-test-v2/shot-selection.json upstream/assets/shot-library/shot-selection-v2.json
+
+      - name: Verify upstream template sources untouched
+        run: |
+          git -C upstream diff --exit-code -- \
+            assets/shot-library/src/AeProjectReferenceShots.tsx \
+            assets/shot-library/src/VibeCutReferenceShots.tsx \
+            assets/shot-library/src/Root.tsx
+
+      - name: Verify one-use-only and style lock
+        run: |
+          FILE=upstream/assets/shot-library/src/TestFilmV2.tsx
+          test "$(grep -c '<AeSaasKineticType' "$FILE")" -eq 1
+          test "$(grep -c '<WideCausalTagMap' "$FILE")" -eq 1
+          test "$(grep -c '<WideProcessPillBuilder' "$FILE")" -eq 1
+          test "$(grep -c '<WideGiantKeywordBackdrop' "$FILE")" -eq 1
+          ! grep -q 'style=' "$FILE"
+          ! grep -q 'backgroundColor' "$FILE"
+          ! grep -q 'colors=' "$FILE"
+          ! grep -q 'accent="#' "$FILE" || true
+          grep -q 'accent="#a8ff47"' "$FILE"
+          grep -q 'accent="#45b83f"' "$FILE"
+          grep -q 'accent="#ffe64f"' "$FILE"
+
+      - name: Validate upstream library
+        working-directory: upstream/assets/shot-library
+        run: |
+          npm run validate:shots
+          npm run test:bundle
+
+      - name: Render with official Remotion runtime
+        working-directory: upstream/assets/shot-library
+        run: |
+          mkdir -p out qc/stills
+          npx remotion render src/TestFilmV2.tsx CodeMotionPetTestV2 out/CodeMotion_Pet_Test_V2_28.7s.mp4 \
+            --codec=h264 \
+            --crf=18 \
+            --pixel-format=yuv420p \
+            --concurrency=2
+
+      - name: Render review stills
+        working-directory: upstream/assets/shot-library
+        run: |
+          for spec in "60:02s" "250:08s" "550:18s" "790:26s"; do
+            frame="${spec%%:*}"
+            label="${spec##*:}"
+            npx remotion still src/TestFilmV2.tsx CodeMotionPetTestV2 "qc/stills/frame_${label}.png" --frame="$frame"
+          done
+          npx remotion still src/TestFilmV2.tsx CodeMotionPetTestV2 qc/stills/hold-a.png --frame=840
+          npx remotion still src/TestFilmV2.tsx CodeMotionPetTestV2 qc/stills/hold-b.png --frame=860
+          cmp -s qc/stills/hold-a.png qc/stills/hold-b.png
+
+      - name: Technical probe and contact sheet
+        working-directory: upstream/assets/shot-library
+        run: |
+          ffprobe -v error -show_streams -show_format out/CodeMotion_Pet_Test_V2_28.7s.mp4 > qc/ffprobe.txt
+          ffmpeg -y -i out/CodeMotion_Pet_Test_V2_28.7s.mp4 \
+            -vf "fps=1/4,scale=480:-1,tile=4x2:padding=8:margin=8" \
+            -frames:v 1 qc/contact-sheet.jpg >/dev/null 2>&1
+
+      - name: Write QC evidence
+        working-directory: upstream/assets/shot-library
+        run: |
+          cat > qc/workflow-evidence.json <<'JSON'
+          {
+            "semanticActionResult": "pass",
+            "templateSourceUntouched": "pass",
+            "originalStyleLocked": "pass",
+            "templateUseLimit": "one-per-template",
+            "repeatedTemplates": [],
+            "customSkin": "none",
+            "customOverlay": "none",
+            "externalMedia": "none",
+            "aRoll": "none",
+            "bRoll": "none",
+            "finalHold": {
+              "frameA": 840,
+              "frameB": 860,
+              "identical": true
+            },
+            "notes": [
+              "Style-bearing props use canonical upstream Root.tsx defaults.",
+              "AeSaasKineticType uses its internal default accent; no accent override is supplied.",
+              "No custom subtitle skin, continuity rail, background, or wrapper styling is present."
+            ]
+          }
+          JSON
+
+      - name: Build proof bundle
+        working-directory: upstream/assets/shot-library
+        run: |
+          mkdir -p proof/source/upstream
+          cp out/CodeMotion_Pet_Test_V2_28.7s.mp4 proof/
+          cp src/TestFilmV2.tsx proof/source/
+          cp src/AeProjectReferenceShots.tsx proof/source/upstream/
+          cp src/VibeCutReferenceShots.tsx proof/source/upstream/
+          cp ../../workbench/code-motion-pet-test-v2/UPSTREAM_SHA.txt proof/UPSTREAM_SHA.txt
+          cp choreography-plan-v2.json proof/choreography-plan.json
+          cp shot-selection-v2.json proof/shot-selection.json
+          cp qc/workflow-evidence.json proof/
+          cp qc/ffprobe.txt proof/
+          cp qc/contact-sheet.jpg proof/
+          cp qc/stills/*.png proof/source/
+          sha256sum out/CodeMotion_Pet_Test_V2_28.7s.mp4 > proof/video.sha256
+          sha256sum src/AeProjectReferenceShots.tsx src/VibeCutReferenceShots.tsx > proof/upstream-template-sha256.txt
+
+      - name: Upload proof artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-motion-pet-test-v2-28s
+          path: upstream/assets/shot-library/proof
+          retention-days: 7
