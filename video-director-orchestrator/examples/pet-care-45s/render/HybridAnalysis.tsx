@@ -1,6 +1,6 @@
 import React from 'react';
 import {Sequence} from 'remotion';
-import {WideHudChapterTitle, WideCausalTagMap} from './VibeCutReferenceShots';
+import {WideHudChapterTitle, WideProcessPillBuilder} from './VibeCutReferenceShots';
 
 export const HybridAnalysis: React.FC = () => {
   return (
@@ -14,14 +14,15 @@ export const HybridAnalysis: React.FC = () => {
         />
       </Sequence>
       <Sequence from={113} durationInFrames={244}>
-        <WideCausalTagMap
-          pairs={[
-            {from: '家庭关系', to: '家庭成员'},
-            {from: '生活方式', to: '精细照护'},
-            {from: '风险敏感', to: '健康管理'},
+        <WideProcessPillBuilder
+          title="三件事，在同时变化"
+          prompt="共同把养宠推向长期照护"
+          steps={[
+            '家庭关系 / 家庭成员',
+            '生活方式 / 精细照护',
+            '风险敏感 / 健康管理',
           ]}
-          outcome="养宠方式改变"
-          accent="#a8ff47"
+          accent="#45b83f"
         />
       </Sequence>
     </>
