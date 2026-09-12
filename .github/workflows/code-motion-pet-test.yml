@@ -39,7 +39,6 @@ jobs:
       - name: Prepare test composition without touching templates
         run: |
           cp workbench/code-motion-pet-test/TestFilmFinal.tsx upstream/assets/shot-library/src/TestFilmFinal.tsx
-          printf "import './TestFilmFinal';\n" > upstream/assets/shot-library/src/test-entry.ts
           mkdir -p upstream/assets/shot-library/qc
           cp workbench/code-motion-pet-test/choreography-plan.json upstream/assets/shot-library/qc/choreography-plan.json
           cp workbench/code-motion-pet-test/shot-selection.json upstream/assets/shot-library/qc/shot-selection.json
@@ -60,7 +59,7 @@ jobs:
         working-directory: upstream/assets/shot-library
         run: |
           mkdir -p out qc/stills
-          npx remotion render src/test-entry.ts CodeMotionPetTest out/CodeMotion_Pet_Test_28.7s.mp4 \
+          npx remotion render src/TestFilmFinal.tsx CodeMotionPetTest out/CodeMotion_Pet_Test_28.7s.mp4 \
             --codec=h264 \
             --crf=18 \
             --pixel-format=yuv420p \
@@ -72,10 +71,10 @@ jobs:
           for spec in "30:01s" "220:07s" "500:17s" "760:25s"; do
             frame="${spec%%:*}"
             label="${spec##*:}"
-            npx remotion still src/test-entry.ts CodeMotionPetTest "qc/stills/frame_${label}.png" --frame="$frame"
+            npx remotion still src/TestFilmFinal.tsx CodeMotionPetTest "qc/stills/frame_${label}.png" --frame="$frame"
           done
-          npx remotion still src/test-entry.ts CodeMotionPetTest qc/stills/hold-a.png --frame=831
-          npx remotion still src/test-entry.ts CodeMotionPetTest qc/stills/hold-b.png --frame=860
+          npx remotion still src/TestFilmFinal.tsx CodeMotionPetTest qc/stills/hold-a.png --frame=831
+          npx remotion still src/TestFilmFinal.tsx CodeMotionPetTest qc/stills/hold-b.png --frame=860
           cmp -s qc/stills/hold-a.png qc/stills/hold-b.png
 
       - name: Technical probe and contact sheet
