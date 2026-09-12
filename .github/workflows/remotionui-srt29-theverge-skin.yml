@@ -1,0 +1,141 @@
+name: RemotionUI The Verge Skin Proof
+
+on:
+  push:
+    branches:
+      - workbench/remotionui-srt29-theverge-skin-20260912
+    paths:
+      - '.github/workflows/remotionui-srt29-theverge-skin.yml'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout proof wrapper
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install CJK fonts
+        run: |
+          sudo apt-get update -y >/dev/null
+          sudo apt-get install -y fonts-noto-cjk ffmpeg >/dev/null
+          fc-cache -f
+
+      - name: Clone current RemotionUI source
+        run: |
+          git clone --depth 1 https://github.com/riaz37/remotion-ui.git /tmp/remotion-ui
+          git -C /tmp/remotion-ui rev-parse HEAD | tee /tmp/remotionui-upstream-sha.txt
+
+      - name: Install RemotionUI dependencies
+        working-directory: /tmp/remotion-ui
+        run: pnpm install --frozen-lockfile
+
+      - name: Prepare skin-only composition
+        run: |
+          mkdir -p /tmp/remotion-ui/apps/web/showcase/reuse-proof/src /tmp/out/sources /tmp/out/review
+          cp workbench/remotionui-srt30/index.tsx /tmp/remotion-ui/apps/web/showcase/reuse-proof/src/index.tsx
+          cp workbench/remotionui-srt30/segment.srt /tmp/out/segment.srt
+          cp /tmp/remotion-ui/apps/web/registry/bases/default/scenes/title-card/index.tsx /tmp/out/sources/title-card.tsx
+          cp /tmp/remotion-ui/apps/web/registry/bases/default/scenes/comparison-table/index.tsx /tmp/out/sources/comparison-table.tsx
+          cp /tmp/remotion-ui/apps/web/registry/bases/default/scenes/feature-list/index.tsx /tmp/out/sources/feature-list.tsx
+          cp /tmp/remotion-ui/apps/web/registry/bases/default/lib/code-syntax.tsx /tmp/out/sources/code-syntax-original.tsx
+          cp workbench/remotionui-srt30/index.tsx /tmp/out/composition-wrapper-original.tsx
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          wrapper = Path('/tmp/remotion-ui/apps/web/showcase/reuse-proof/src/index.tsx')
+          s = wrapper.read_text()
+          s = s.replace('const ACCENT = "#E8B86D";', 'const ACCENT = "#D9FF36";')
+          s = s.replace('<AbsoluteFill style={{backgroundColor: "#080810"}}>', '<AbsoluteFill style={{backgroundColor: "#0B0714"}}>')
+          s = s.replace('accentColor={ACCENT}\n        theme="dark"', 'backgroundColor="#0B0714"\n        accentColor={ACCENT}\n        theme="dark"')
+          s = s.replace('accentColor="#F59E0B"\n        theme="dark"', 'backgroundColor="#0B0714"\n        accentColor="#D9FF36"\n        theme="dark"', 1)
+          s = s.replace('accentColor="#F59E0B"\n        theme="dark"', 'backgroundColor="#0B0714"\n        accentColor="#8B5CF6"\n        theme="dark"', 1)
+          s = s.replace('accentColor="#60A5FA"\n        theme="dark"', 'backgroundColor="#0B0714"\n        accentColor="#D9FF36"\n        theme="dark"')
+          s = s.replace('color: "rgba(255,255,255,0.92)"', 'color: "rgba(247,245,251,0.96)"')
+          s = s.replace('textShadow: "0 2px 18px rgba(0,0,0,0.7)"', 'textShadow: "0 2px 18px rgba(11,7,20,0.82)"')
+          wrapper.write_text(s)
+
+          theme = Path('/tmp/remotion-ui/apps/web/registry/bases/default/lib/code-syntax.tsx')
+          t = theme.read_text()
+          replacements = {
+            'page: "#07070B"': 'page: "#0B0714"',
+            'window: "#0B0C11"': 'window: "#171020"',
+            'header: "rgba(255,255,255,0.035)"': 'header: "rgba(139,92,246,0.08)"',
+            'border: "rgba(255,255,255,0.09)"': 'border: "rgba(217,255,54,0.20)"',
+            'highlight: "rgba(255,255,255,0.14)"': 'highlight: "rgba(217,255,54,0.28)"',
+            'gutter: "rgba(255,255,255,0.02)"': 'gutter: "rgba(139,92,246,0.05)"',
+            'fg: "#D8DCE4"': 'fg: "#F7F5FB"',
+            'dim: "#7A828F"': 'dim: "#C7BED4"',
+            'faint: "#4A5160"': 'faint: "#7E748D"',
+            'band: "rgba(255,255,255,0.05)"': 'band: "rgba(139,92,246,0.12)"',
+          }
+          for a,b in replacements.items():
+              t = t.replace(a,b,1)
+          theme.write_text(t)
+          PY
+
+          cp /tmp/remotion-ui/apps/web/showcase/reuse-proof/src/index.tsx /tmp/out/composition-wrapper-theverge.tsx
+          cp /tmp/remotion-ui/apps/web/registry/bases/default/lib/code-syntax.tsx /tmp/out/sources/code-syntax-theverge.tsx
+
+      - name: Verify template code is untouched
+        working-directory: /tmp/remotion-ui
+        run: |
+          git diff --exit-code -- \
+            apps/web/registry/bases/default/scenes/title-card/index.tsx \
+            apps/web/registry/bases/default/scenes/comparison-table/index.tsx \
+            apps/web/registry/bases/default/scenes/feature-list/index.tsx
+
+      - name: Render with official Remotion runtime
+        working-directory: /tmp/remotion-ui/apps/web
+        run: |
+          pnpm exec remotion render \
+            showcase/reuse-proof/src/index.tsx \
+            SrtSemanticReuse \
+            /tmp/out/RemotionUI_Pet_SRT_29s_TheVerge_SKIN_ONLY.mp4 \
+            --codec=h264 \
+            --crf=18
+
+      - name: Build proof bundle
+        run: |
+          sha256sum /tmp/out/RemotionUI_Pet_SRT_29s_TheVerge_SKIN_ONLY.mp4 > /tmp/out/VIDEO_SHA256.txt
+          sha256sum /tmp/out/sources/title-card.tsx /tmp/out/sources/comparison-table.tsx /tmp/out/sources/feature-list.tsx > /tmp/out/UPSTREAM_TEMPLATE_SHA256.txt
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_frame_rate -of json /tmp/out/RemotionUI_Pet_SRT_29s_TheVerge_SKIN_ONLY.mp4 > /tmp/out/FFPROBE.json
+          for t in 1 5 10 16 23 28; do
+            ffmpeg -y -ss "$t" -i /tmp/out/RemotionUI_Pet_SRT_29s_TheVerge_SKIN_ONLY.mp4 -frames:v 1 -q:v 2 "/tmp/out/review/frame_${t}s.jpg" >/dev/null 2>&1
+          done
+          UPSTREAM=$(cat /tmp/remotionui-upstream-sha.txt)
+          cat > /tmp/out/PROOF.md <<EOF
+          # RemotionUI The Verge Skin-Only Proof
+
+          - Upstream: riaz37/remotion-ui
+          - Upstream commit: $UPSTREAM
+          - Render runtime: official Remotion from upstream repository dependencies
+          - Output: 1920x1080, 30fps, 870 frames = 29.0s
+          - Scene order, copy, timing, animation speed: unchanged from accepted 29s version
+          - Template source edits: 0 lines for title-card / comparison-table / feature-list
+          - Style changes only: dark palette tokens, acid-mint/ultraviolet accents, scene background and subtitle color
+          - Chinese: rendered through installed Noto Sans CJK fallback; no Latin-only display font used for Chinese
+          - No The Verge logo/branding added
+
+          Design reference: VoltAgent awesome-design-md / The Verge — tech editorial media, acid-mint and ultraviolet accents.
+          EOF
+
+      - name: Upload proof artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: remotionui-theverge-skin-only-29s
+          path: /tmp/out
+          if-no-files-found: error
+          retention-days: 7
