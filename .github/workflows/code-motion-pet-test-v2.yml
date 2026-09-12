@@ -59,7 +59,6 @@ jobs:
           ! grep -q 'style=' "$FILE"
           ! grep -q 'backgroundColor' "$FILE"
           ! grep -q 'colors=' "$FILE"
-          ! grep -q 'accent="#' "$FILE" || true
           grep -q 'accent="#a8ff47"' "$FILE"
           grep -q 'accent="#45b83f"' "$FILE"
           grep -q 'accent="#ffe64f"' "$FILE"
@@ -136,7 +135,7 @@ jobs:
           cp src/TestFilmV2.tsx proof/source/
           cp src/AeProjectReferenceShots.tsx proof/source/upstream/
           cp src/VibeCutReferenceShots.tsx proof/source/upstream/
-          cp ../../workbench/code-motion-pet-test-v2/UPSTREAM_SHA.txt proof/UPSTREAM_SHA.txt
+          cp ../../../workbench/code-motion-pet-test-v2/UPSTREAM_SHA.txt proof/UPSTREAM_SHA.txt
           cp choreography-plan-v2.json proof/choreography-plan.json
           cp shot-selection-v2.json proof/shot-selection.json
           cp qc/workflow-evidence.json proof/
