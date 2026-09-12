@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "selection": [
+    {
+      "window": "00:00.000-00:06.128",
+      "semanticJob": "否定‘问题=商品’的错误映射",
+      "shotId": "ae-saas-kinetic-type",
+      "component": "AeSaasKineticType",
+      "decision": "reused",
+      "source": "assets/shot-library/src/AeProjectReferenceShots.tsx",
+      "reason": "现有 AE 参考镜头就是短句分段、相反方向聚合和品牌色接力，适合反命题钩子。",
+      "modifiedTemplateSource": false
+    },
+    {
+      "window": "00:06.128-00:14.143",
+      "semanticJob": "同一个问题展开多个解决方案",
+      "shotId": "wide-process-pill-builder",
+      "component": "WideProcessPillBuilder",
+      "decision": "reused",
+      "source": "assets/shot-library/src/VibeCutReferenceShots.tsx",
+      "reason": "问题胶囊展开为多个步骤/方案，能直接表示‘智能饮水机不是唯一解’。",
+      "modifiedTemplateSource": false
+    },
+    {
+      "window": "00:14.143-00:23.925",
+      "semanticJob": "把案例抽象成三问购买检查流程",
+      "shotId": "wide-process-pill-builder",
+      "component": "WideProcessPillBuilder",
+      "decision": "reused",
+      "source": "assets/shot-library/src/VibeCutReferenceShots.tsx",
+      "reason": "继续保留同一流程空间，替换 Props 为三个判断问题，减少整屏重置。",
+      "modifiedTemplateSource": false
+    },
+    {
+      "window": "00:23.925-00:28.700",
+      "semanticJob": "把三问收束成一个可记住的原则并接力后文",
+      "shotId": "ae-organic-gradient-field",
+      "component": "AeOrganicGradientField",
+      "decision": "reused",
+      "source": "assets/shot-library/src/AeProjectReferenceShots.tsx",
+      "reason": "作为章节收束/连续氛围场，避免再引入新的信息组件。",
+      "modifiedTemplateSource": false
+    }
+  ],
+  "externalAssets": [],
+  "aRoll": "none",
+  "bRoll": "none",
+  "newShotsCreated": 0
+}
