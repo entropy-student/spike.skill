@@ -1,7 +1,8 @@
 # VPS Project Governance（VPS 项目管理规范） v0.1.6
 
 > 用于管理 “Reviewer / Execution Agent / Evidence / PASS-RETURN” 闭环的工程交付治理 Skill。  
-> Storage Layout Contract rev1 is an operational addendum to v0.1.6.
+> Storage Layout Contract rev1 is an operational addendum to v0.1.6.  
+> Target Host Reality Contract rev1 is an operational addendum to v0.1.6.
 
 ---
 
@@ -206,6 +207,7 @@ RETURN_SHARED_INFRA_CHANGE_REQUIRED
 证据优先记录可复核事实，而不是长篇日志。按任务至少选择：
 
 - command exit status；
+- target-host identity + host-local read-back（当声称修改真实宿主机时）；
 - file permission / ownership；
 - process/container state；
 - restart count；
@@ -223,7 +225,10 @@ RETURN_SHARED_INFRA_CHANGE_REQUIRED
 
 - “Access 后能访问” + “匿名不能直达”；
 - “目标 account 可动作” + “非目标 account delta=0”；
-- “backup 可恢复” + “Secret 未进入 archive/log”。
+- “backup 可恢复” + “Secret 未进入 archive/log”；
+- “Agent 声称写入宿主机” + “目标宿主机自身 read-back 证明同一事实”。
+
+Sandbox/container/WSL/remote runner 中的同名绝对路径不得单独作为真实宿主机写入证据；详见 `references/TARGET_HOST_REALITY_CONTRACT.md`。
 
 Cleanup 是 Gate 的一部分。
 
@@ -501,6 +506,7 @@ RETURN_TEST_FAILURE
 RETURN_DATA_MIGRATION_RISK
 RETURN_SHARED_INFRA_CHANGE_REQUIRED
 RETURN_STORAGE_LAYOUT_UNRESOLVED
+RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE
 RETURN_SECRET_RISK
 RETURN_OWNER_ACTION_REQUIRED
 ```
@@ -521,7 +527,7 @@ RETURN_OWNER_ACTION_REQUIRED
 - `PROVISIONAL`：理由充分但未完整验证；
 - `CANDIDATE`：单次观察，不急于固化。
 
-当前 v0.1.6 是 Xianyu production-closeout validated baseline。Storage Layout Contract rev1 固化的是已经存在于 Shared VPS 的目录/隔离模式，作为 operational addendum，不单独升级主版本。
+当前 v0.1.6 是 Xianyu production-closeout validated baseline。Storage Layout Contract rev1 固化的是已经存在于 Shared VPS 的目录/隔离模式；Target Host Reality Contract rev1 固化的是 DujiaoNext / Unified Pay Windows host 中验证过的 execution-environment / target-host evidence boundary。二者均作为 operational addendum，不单独改变 Owner/Reviewer/Executor 或 PASS/RETURN 核心语义，因此暂不升级主版本。
 
 ---
 
@@ -532,9 +538,28 @@ RETURN_OWNER_ACTION_REQUIRED
 1. 先读本 `SKILL.md`；
 2. 需要完整规则时读 `references/GOVERNANCE_V0_1_6.md`；
 3. 只要项目将部署/已经部署到 Shared VPS，必须读 `references/STORAGE_LAYOUT_CONTRACT.md`；
-4. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
-5. 新项目按需使用 `templates/`，Shared VPS 项目必须建立 `PROJECT_STORAGE_MANIFEST.md`；
-6. 若项目部署在 Shared VPS，再读 Shared VPS Contract / Handoff；
-7. 最后读当前项目 Handoff 和当前 Gate Prompt。
+4. 只要 Gate 声称修改真实宿主机绝对路径、ACL、service、Docker daemon、端口或 Secret staging，必须读 `references/TARGET_HOST_REALITY_CONTRACT.md`；
+5. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
+6. 新项目按需使用 `templates/`，Shared VPS 项目必须建立 `PROJECT_STORAGE_MANIFEST.md`；
+7. 若项目部署在 Shared VPS，再读 Shared VPS Contract / Handoff；
+8. 最后读当前项目 Handoff 和当前 Gate Prompt。
 
 不要先从聊天历史猜当前状态。
+
+---
+
+## 23. Target Host Reality Contract rev1
+
+当 Executor 与 Owner 真实主机可能不在同一 execution environment 时，**目标宿主机真实性本身就是 Evidence boundary**。
+
+强制规则：
+
+- `C:\...`、`/srv/...` 等绝对路径在 sandbox/container/WSL/remote runner 中同名存在，不证明目标宿主机已修改；
+- host-local write 必须有目标 host identity + write 后 host-local read-back；
+- 无法证明当前 runtime 就是目标 host 时，不得宣称创建/修改成功，必须 `RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE`；
+- 必须由 Owner 本机完成的动作，由 Executor 给一次性最小 host-local 命令，Owner 只负责执行，不负责设计/排错；
+- Windows ACL 收紧默认不要强行 `SetOwner()`；`SetOwner()` / 部分 `Set-Acl` 组合可能触发 `SeSecurityPrivilege`；对 Owner-owned staging 目录优先只处理 DACL/inheritance，并用 host-native read-back 验证；
+- native command non-zero、PowerShell exception、ACL/path mismatch 任一出现，都不得继续无条件打印 PASS；
+- partial execution 后再次运行先 classify existing state，不盲删、不覆盖未知 Secret 内容。
+
+详细契约：`references/TARGET_HOST_REALITY_CONTRACT.md`
