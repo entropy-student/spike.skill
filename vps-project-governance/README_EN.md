@@ -4,6 +4,7 @@
 
 **Status: Active / Validated on Xianyu / Evolving**  
 **Storage Layout Contract: rev1 / active operational addendum**  
+**SSH / Delegated Secret Operations: rev1 / active operational addendum**  
 **Target Host Reality Contract: rev1 / active operational addendum**
 
 This is not a Docker command cookbook. It governs project delivery, production changes, Shared VPS boundaries, evidence, rollback, secrets, data handling, storage layout, and when the Owner must intervene.
@@ -57,7 +58,7 @@ change only the authorized scope, verify, regress, and RETURN/rollback on mismat
 - evidence before PASS;
 - read before write;
 - Shared Infrastructure is changed only in a separate Infra Review;
-- Owner involvement is reserved for payments/purchases, identity/account authorization, Secret entry/rotation, irreversible deletion, material production enablement, and major business/compliance choices;
+- Owner involvement is reserved for payments/purchases, identity/account authorization, Secret authority/entry/rotation, irreversible deletion, material production enablement, and major business/compliance choices; an exact Secret allowlist may be delegated only after explicit Owner authorization;
 - adjacent Gates may be compressed only when rollback and evidence boundaries stay safe;
 - accepted Gates are not rerun without material drift;
 - production deploy/recreate explicitly selects the canonical manifest and verifies release identity after recreate;
@@ -67,6 +68,8 @@ change only the authorized scope, verify, regress, and RETURN/rollback on mismat
 - successful reauthentication does not automatically resume business actions;
 - post-production maintenance uses a Change Gate rather than reopening onboarding;
 - Shared VPS projects must freeze their storage layout before deployment;
+- existing Shared VPS SSH trust should be recovered from a value-safe handoff rather than Owner memory;
+- delegated Secret generation is exact, explicit, fail-on-existing, and never implies Provider activation;
 - before proving what changed on a host, prove which host was actually changed.
 
 ## Shared VPS Storage Layout
@@ -87,27 +90,25 @@ Historical production projects are not migrated merely for neatness. Any path mi
 See:
 
 - `references/STORAGE_LAYOUT_CONTRACT.md`
+- `references/SSH_AND_DELEGATED_SECRET_OPERATIONS.md`
 - `templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md`
+- `templates/SHARED_VPS_HANDOFF_TEMPLATE.md`
+
+## SSH and Delegated Secret Operations
+
+Shared VPS connection metadata belongs in a value-safe `SHARED_VPS_HANDOFF.md`: host/user/port, identity-file reference, public/host-key fingerprints, privilege model, and a bounded read-only probe. Private-key contents, passwords, passphrases, and tokens never belong there. Host-key drift fails closed.
+
+Secret authority remains Owner-controlled by default. If the Owner cannot create or enter a Secret, they may explicitly delegate an exact allowlist to the Executor. Generation must happen inside the protected target, refuse unexpected existing files, use a CSPRNG, emit zero values, prove least-privilege runtime access, and create encrypted recovery in another failure domain. DPAPI CurrentUser is acceptable as a low-operation first Windows recovery copy only with its profile-bound limitation documented.
+
+See `references/SSH_AND_DELEGATED_SECRET_OPERATIONS.md` and `templates/SHARED_VPS_HANDOFF_TEMPLATE.md`.
 
 ## Target Host Reality
 
-An Execution Agent may run in a sandbox, container, WSL instance, VM, or remote runner that is not the Owner's real target host. Therefore an absolute path with the same spelling is not sufficient evidence that the target host was changed.
+An Execution Agent may run in a sandbox, container, WSL instance, VM, or remote runner that is not the Owner's real target host. Therefore an absolute path with the same spelling is not sufficient evidence that the target host was changed. Host-local claims require target-host identity plus read-back from that same host after the write. If the Executor cannot prove it can actually operate the target host, it must return `RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE`.
 
-For host-local claims involving paths, ACLs, services, Docker daemon state, ports, Secret staging, or production host writes, evidence must include target-host identity plus a read-back from that same host after the write.
+For Windows Owner-owned Secret staging directories, do not change the owner merely to tighten the DACL. Some `SetOwner()` / `Set-Acl` patterns require `SeSecurityPrivilege`; prefer bounded DACL/inheritance changes with host-native read-back such as `Get-Acl` / `icacls`.
 
-If the Executor cannot prove it can actually operate the target host, it must return:
-
-```text
-RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE
-```
-
-and must not create a same-named path in its own environment and call that a PASS.
-
-For Windows Owner-owned Secret staging directories, do not change the owner merely to tighten the DACL. Some `SetOwner()` / `Set-Acl` patterns require `SeSecurityPrivilege` even when the current user already owns the path. Prefer bounded DACL/inheritance changes with host-native read-back such as `Get-Acl` / `icacls`. Any exception or non-zero native exit invalidates PASS; scripts must not print unconditional PASS lines afterward.
-
-See:
-
-- `references/TARGET_HOST_REALITY_CONTRACT.md`
+See `references/TARGET_HOST_REALITY_CONTRACT.md`.
 
 ## Source-of-truth order
 
@@ -129,4 +130,6 @@ The original protocol header also retained `DRAFT / EVOLVING`, while `GOVERNANCE
 
 Storage Layout Contract rev1 formalizes the Shared VPS layout already used by the infrastructure design. It is an operational addendum and does not change the core Owner/Reviewer/Executor or PASS/RETURN semantics, so the Governance version remains v0.1.6.
 
-Target Host Reality Contract rev1 is also an operational addendum. It was validated by a DujiaoNext / Unified Pay Windows-host incident where an Agent-side path did not exist on the real Owner host. It adds an execution-environment / target-host evidence boundary without changing the core role or PASS/RETURN semantics, so the Governance version remains v0.1.6.
+SSH/Delegated Secret Operations rev1 records reusable SSH trust metadata and
+allows an Owner who cannot run commands to delegate an exact Secret allowlist.
+The SSH contract is validated. Delegated provisioning and DPAPI CurrentUser recovery are validated on Unified Pay production-like Gates, while remaining respectively explicit-Owner-authorization-only and profile-bound. Target Host Reality is validated on a DujiaoNext / Unified Pay Windows-host incident.
