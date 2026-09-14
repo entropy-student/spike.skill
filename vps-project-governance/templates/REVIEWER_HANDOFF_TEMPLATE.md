@@ -27,6 +27,7 @@
 - Network/exposure:
 - Auth/secrets:
 - Shared Infra dependencies:
+- Target-host execution boundary / proof:
 
 ## 4. Current State
 
@@ -64,6 +65,7 @@ Next Gate     ⏳
 - Payment/purchase:
 - Identity/account authorization:
 - Secret entry/rotation:
+- Delegated Secret generation authorization (exact allowlist/recovery only):
 - Irreversible operation:
 - Material production enablement:
 - Major business/compliance decision:
@@ -80,6 +82,7 @@ Next Gate     ⏳
 
 - Rollback release/image:
 - Backup/recovery pair:
+- Secret recovery artifact metadata/limitation:
 - Restore validation:
 
 ## 12. Next Step
