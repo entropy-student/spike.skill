@@ -1,0 +1,14 @@
+name: aroll-video-maker
+display_name: Aroll Video Maker（A-roll 视频生成器）
+description: 语义驱动的 16:9 横屏插画叙事视频 Skill。保留可选画风与 Character Lock，取消一句话=一镜/一图，使用 Audio Master Timeline + Semantic Director + Visual Beat + Shot Planner；每个真正需要的新视觉状态最多生成 1 张彩色母图，其余镜头变化由 Remotion/CSS 完成。
+version: 0.1.0
+status: calibrating
+category: video-production
+language:
+  - zh-CN
+  - en
+upstreams:
+  - gnipbao/story-to-handdrawn-video
+  - luvisir/story-to-handdrawn-video
+  - Vincentwei1021/video-shotcraft
+notes: "B2 baseline. 16:9 landscape, subtitles off by default, no generative video model, semantic many-to-many narration/visual mapping, character/style consistency gate, one color master per genuinely new visual state."
