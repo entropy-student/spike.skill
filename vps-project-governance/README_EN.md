@@ -3,7 +3,8 @@
 > A reusable delivery-governance Skill for turning project work into a controlled loop: Owner request → Reviewer boundary → Executor action → Evidence → Reviewer PASS/RETURN.
 
 **Status: Active / Validated on Xianyu / Evolving**  
-**Storage Layout Contract: rev1 / active operational addendum**
+**Storage Layout Contract: rev1 / active operational addendum**  
+**Target Host Reality Contract: rev1 / active operational addendum**
 
 This is not a Docker command cookbook. It governs project delivery, production changes, Shared VPS boundaries, evidence, rollback, secrets, data handling, storage layout, and when the Owner must intervene.
 
@@ -65,7 +66,8 @@ change only the authorized scope, verify, regress, and RETURN/rollback on mismat
 - first real business action uses a bounded Canary;
 - successful reauthentication does not automatically resume business actions;
 - post-production maintenance uses a Change Gate rather than reopening onboarding;
-- Shared VPS projects must freeze their storage layout before deployment.
+- Shared VPS projects must freeze their storage layout before deployment;
+- before proving what changed on a host, prove which host was actually changed.
 
 ## Shared VPS Storage Layout
 
@@ -87,6 +89,26 @@ See:
 - `references/STORAGE_LAYOUT_CONTRACT.md`
 - `templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md`
 
+## Target Host Reality
+
+An Execution Agent may run in a sandbox, container, WSL instance, VM, or remote runner that is not the Owner's real target host. Therefore an absolute path with the same spelling is not sufficient evidence that the target host was changed.
+
+For host-local claims involving paths, ACLs, services, Docker daemon state, ports, Secret staging, or production host writes, evidence must include target-host identity plus a read-back from that same host after the write.
+
+If the Executor cannot prove it can actually operate the target host, it must return:
+
+```text
+RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE
+```
+
+and must not create a same-named path in its own environment and call that a PASS.
+
+For Windows Owner-owned Secret staging directories, do not change the owner merely to tighten the DACL. Some `SetOwner()` / `Set-Acl` patterns require `SeSecurityPrivilege` even when the current user already owns the path. Prefer bounded DACL/inheritance changes with host-native read-back such as `Get-Acl` / `icacls`. Any exception or non-zero native exit invalidates PASS; scripts must not print unconditional PASS lines afterward.
+
+See:
+
+- `references/TARGET_HOST_REALITY_CONTRACT.md`
+
 ## Source-of-truth order
 
 1. Owner's latest explicit instruction;
@@ -106,3 +128,5 @@ The original v0.1.6 protocol still contained legacy `PROJECT_HANDOFF.md` wording
 The original protocol header also retained `DRAFT / EVOLVING`, while `GOVERNANCE_HANDOFF.md` declared v0.1.6 `ACTIVE / VALIDATED-ON-XIANYU / EVOLVING`. This Skill follows the Governance Handoff status.
 
 Storage Layout Contract rev1 formalizes the Shared VPS layout already used by the infrastructure design. It is an operational addendum and does not change the core Owner/Reviewer/Executor or PASS/RETURN semantics, so the Governance version remains v0.1.6.
+
+Target Host Reality Contract rev1 is also an operational addendum. It was validated by a DujiaoNext / Unified Pay Windows-host incident where an Agent-side path did not exist on the real Owner host. It adds an execution-environment / target-host evidence boundary without changing the core role or PASS/RETURN semantics, so the Governance version remains v0.1.6.
