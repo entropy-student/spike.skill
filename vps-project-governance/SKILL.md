@@ -1,8 +1,17 @@
+---
+name: vps-project-governance
+description: >
+  VPS/Docker/Shared VPS 项目交付治理纲领 v0.1.6（Owner-Reviewer-Executor 闭环、Gate 流程、
+  证据与回滚标准、Secret 策略、SSH 连接契约、存储布局契约）。当任务涉及：新项目部署到 VPS/Docker/共享服务器、
+  接手状态不明的已有项目、已上线项目修 Bug/升级依赖/改配置/迁移数据、生成或审核 Executor 执行任务与证据、
+  多项目共用 SSH/UFW/Docker daemon/80-443/Caddy/cloudflared、自动化/浏览器 Agent/支付/数据库项目、
+  换聊天或换 Agent 后继续推进项目时使用。
+---
+
 # VPS Project Governance（VPS 项目管理规范） v0.1.6
 
 > 用于管理 “Reviewer / Execution Agent / Evidence / PASS-RETURN” 闭环的工程交付治理 Skill。  
-> Storage Layout Contract rev1 is an operational addendum to v0.1.6.  
-> Target Host Reality Contract rev1 is an operational addendum to v0.1.6.
+> Storage Layout Contract rev1, SSH/Delegated Secret Operations rev1, and Target Host Reality Contract rev1 are operational addenda to v0.1.6.
 
 ---
 
@@ -32,7 +41,7 @@ Owner 只负责必须由本人承担的动作：
 
 - 真实付款、购买、订阅；
 - 身份验证、账号授权、验证码；
-- Secret 创建 / 安全录入 / 轮换；
+- Secret 范围授权、最终托管与轮换决定；默认 Secret 创建/安全录入/轮换仍是 Owner-only。只有 Owner 明确授权 exact allowlist 时，才可把受保护环境中的生成/安装委托给 Executor，并必须遵守 SSH/Delegated Secret Operations 与 Target Host Reality 契约；
 - 不可逆删除；
 - material production enablement；
 - 重大产品、业务、法律、合规选择；
@@ -194,6 +203,9 @@ SSH、UFW、Docker daemon、宿主机 80/443、Shared Caddy、shared cloudflared
 RETURN_SHARED_INFRA_CHANGE_REQUIRED
 ```
 
+读取已登记的 SSH 连接契约并执行 bounded read-only probe 不属于写入；新建
+账号/密钥、修改 `authorized_keys`、sshd、sudo、UFW 或其他 host 权限仍属于 B。
+
 切换到独立 Infra Review。
 
 ### C — Owner-only / Consequential
@@ -248,6 +260,14 @@ Cleanup 是 Gate 的一部分。
 - decrypted private data。
 
 Evidence 只记录必要 metadata，例如：secret file exists、path、mode、read-only mount、compatibility PASS、value not recorded。
+
+任何真实 credential 一旦以明文进入 chat、普通附件、仓库、Evidence、Handoff 或日志，应视为 compromised input；不得继续作为 production/canary credential，必须通过独立 Owner-authorized rotation checkpoint 更换。
+
+当 Owner 明确表示无能力自行创建/录入时，可按
+`references/SSH_AND_DELEGATED_SECRET_OPERATIONS.md` 委托 Executor 生成精确
+allowlist。授权必须绑定项目、主机、文件/用途、禁止覆盖和恢复策略；值直接在
+受保护目标生成，不回显，并先形成可验证的加密异机恢复副本。该授权不包含
+Provider 启用、付款、账号授权或 production enablement。
 
 ---
 
@@ -463,6 +483,9 @@ SHARED_VPS_HANDOFF.md             # 基础设施（如适用）
 - Storage Manifest 只记录位置/恢复/权限 metadata，不记录 Secret value；
 - per-gate decision/prompt 是附件，不代替 continuity Handoff；
 - 换聊天/Agent 时优先读这些文件，不要求 Owner 重述历史。
+- `SHARED_VPS_HANDOFF.md` 必须记录可复用 SSH trust/identity/privilege metadata
+  与最后一次只读验证，不得记录 private key、密码或 Token；已有连接优先按
+  Handoff 恢复，不让 Owner 回忆命令。
 
 ---
 
@@ -507,6 +530,11 @@ RETURN_DATA_MIGRATION_RISK
 RETURN_SHARED_INFRA_CHANGE_REQUIRED
 RETURN_STORAGE_LAYOUT_UNRESOLVED
 RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE
+RETURN_SSH_TRUST_DRIFT
+RETURN_SSH_CONNECTION_REQUIRED
+RETURN_SECRET_COLLISION
+RETURN_SECRET_ACCESS_MISMATCH
+RETURN_SECRET_RECOVERY_UNAVAILABLE
 RETURN_SECRET_RISK
 RETURN_OWNER_ACTION_REQUIRED
 ```
@@ -527,7 +555,7 @@ RETURN_OWNER_ACTION_REQUIRED
 - `PROVISIONAL`：理由充分但未完整验证；
 - `CANDIDATE`：单次观察，不急于固化。
 
-当前 v0.1.6 是 Xianyu production-closeout validated baseline。Storage Layout Contract rev1 固化的是已经存在于 Shared VPS 的目录/隔离模式；Target Host Reality Contract rev1 固化的是 DujiaoNext / Unified Pay Windows host 中验证过的 execution-environment / target-host evidence boundary。二者均作为 operational addendum，不单独改变 Owner/Reviewer/Executor 或 PASS/RETURN 核心语义，因此暂不升级主版本。
+当前 v0.1.6 是 Xianyu production-closeout validated baseline。Storage Layout Contract rev1、SSH/Delegated Secret Operations rev1 与 Target Host Reality Contract rev1 均作为 operational addenda，不单独升级主版本。SSH connection contract 已验证；delegated provisioning 与 DPAPI CurrentUser recovery 已在 Unified Pay production-like Gate 验证，但仍分别受 explicit Owner authorization 与 Windows profile failure-domain 限制；Target Host Reality 已在 DujiaoNext / Unified Pay Windows host 反例中验证。
 
 ---
 
@@ -536,15 +564,17 @@ RETURN_OWNER_ACTION_REQUIRED
 真正执行本 Skill 时：
 
 1. 先读本 `SKILL.md`；
-2. 需要完整规则时读 `references/GOVERNANCE_V0_1_6.md`；
-3. 只要项目将部署/已经部署到 Shared VPS，必须读 `references/STORAGE_LAYOUT_CONTRACT.md`；
-4. 只要 Gate 声称修改真实宿主机绝对路径、ACL、service、Docker daemon、端口或 Secret staging，必须读 `references/TARGET_HOST_REALITY_CONTRACT.md`；
-5. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
-6. 新项目按需使用 `templates/`，Shared VPS 项目必须建立 `PROJECT_STORAGE_MANIFEST.md`；
-7. 若项目部署在 Shared VPS，再读 Shared VPS Contract / Handoff；
-8. 最后读当前项目 Handoff 和当前 Gate Prompt。
+2. 读 `GOVERNANCE_HANDOFF.md`，确认 active baseline/addenda；
+3. 需要完整规则时读 `references/GOVERNANCE_V0_1_6.md`；
+4. 只要项目将部署/已经部署到 Shared VPS，必须读 `references/STORAGE_LAYOUT_CONTRACT.md`；
+5. 涉及 SSH 连接恢复、Secret 创建/注入/备份/恢复时，必须读 `references/SSH_AND_DELEGATED_SECRET_OPERATIONS.md`；
+6. 只要 Gate 声称修改真实宿主机绝对路径、ACL、service、Docker daemon、端口或 Secret staging，必须读 `references/TARGET_HOST_REALITY_CONTRACT.md`；
+7. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
+8. 新项目按需使用 `templates/`，Shared VPS 项目必须建立 `PROJECT_STORAGE_MANIFEST.md` 与读取唯一 `SHARED_VPS_HANDOFF.md`；
+9. 最后读当前项目 Handoff 和当前 Gate Prompt。
 
 不要先从聊天历史猜当前状态。
+
 
 ---
 
@@ -554,7 +584,7 @@ RETURN_OWNER_ACTION_REQUIRED
 
 强制规则：
 
-- `C:\...`、`/srv/...` 等绝对路径在 sandbox/container/WSL/remote runner 中同名存在，不证明目标宿主机已修改；
+- `C:\\...`、`/srv/...` 等绝对路径在 sandbox/container/WSL/remote runner 中同名存在，不证明目标宿主机已修改；
 - host-local write 必须有目标 host identity + write 后 host-local read-back；
 - 无法证明当前 runtime 就是目标 host 时，不得宣称创建/修改成功，必须 `RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE`；
 - 必须由 Owner 本机完成的动作，由 Executor 给一次性最小 host-local 命令，Owner 只负责执行，不负责设计/排错；
