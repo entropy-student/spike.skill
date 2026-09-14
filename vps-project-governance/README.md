@@ -113,6 +113,7 @@ Reviewer PASS / RETURN
 11. **REAUTH success ≠ 自动恢复业务**：重新认证后还要 read-only 验证与显式 controlled resume。
 12. **上线后的优化进入 Change Gate**，不重开整套 onboarding。
 13. **Storage Layout 必须先冻结再上线**：程序、持久数据、备份与 Shared Infra 分层；任何新项目进入 Shared VPS 前建立 `PROJECT_STORAGE_MANIFEST.md`。
+14. **先证明改的是哪台机器，再证明改了什么**：sandbox/container/WSL/remote runner 中的同名绝对路径不能代替目标宿主机 evidence；host-local write 必须有目标主机 identity + write 后 read-back。
 
 ---
 
@@ -135,6 +136,46 @@ Storage Contract rev1 已纳入本 Skill，固定以下顶层约束：
 项目模板：[`templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md`](./templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md)
 
 历史生产项目不会因为这个规则被强制搬迁；需要迁移时必须另开 Storage Migration Change Gate。
+
+---
+
+## Target Host Reality
+
+Target Host Reality Contract rev1 用来约束一个容易被忽略的风险：**Execution Agent 所在环境不一定就是 Owner 的真实宿主机。**
+
+例如 Agent 在 sandbox 内创建了：
+
+```text
+C:\Users\...\AppData\Local\DujiaoNext\D16
+```
+
+并不能证明 Owner 的真实 Windows 主机上已经存在该目录。
+
+因此涉及真实宿主机路径、ACL、service、Docker daemon、端口、Secret staging 等 host-local state 时：
+
+```text
+Executor claim
+  ↓
+prove target host identity
+  ↓
+write
+  ↓
+read back on target host
+  ↓
+Evidence
+```
+
+如果 Executor 无法证明自己真的能操作目标宿主机，必须返回：
+
+```text
+RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE
+```
+
+而不是在自身环境创建同名路径后宣称 PASS。
+
+Windows 上还额外约束：收紧 Owner-owned Secret staging ACL 时，默认不要为了“设权限”而强行 `SetOwner()`；某些 `SetOwner()` / `Set-Acl` 组合会要求 `SeSecurityPrivilege`。优先只修改 DACL/inheritance，并用 `Get-Acl` / `icacls` 做真实主机 read-back。任何异常后都不得继续无条件打印 PASS。
+
+详细规则：[`references/TARGET_HOST_REALITY_CONTRACT.md`](./references/TARGET_HOST_REALITY_CONTRACT.md)
 
 ---
 
@@ -165,6 +206,7 @@ vps-project-governance/
 ├── references/
 │   ├── GOVERNANCE_V0_1_6.md
 │   ├── STORAGE_LAYOUT_CONTRACT.md
+│   ├── TARGET_HOST_REALITY_CONTRACT.md
 │   └── USAGE_SCENARIOS.md
 └── templates/
     ├── REVIEWER_HANDOFF_TEMPLATE.md
@@ -185,6 +227,8 @@ vps-project-governance/
 
 Storage Layout Contract rev1 是 v0.1.6 的 operational addendum：它把 Shared VPS 已采用的 `/srv/apps`、`/srv/data`、`/srv/backups` 分层正式固化，但不改变 Owner/Reviewer/Executor、PASS/RETURN 等核心治理语义，因此当前不单独升级 Governance 主版本。
 
+Target Host Reality Contract rev1 同样作为 operational addendum：它来自 DujiaoNext / Unified Pay Windows host 的真实 Gate 反例，补上 execution-environment 与 target-host 真实性的 Evidence boundary，不改变既有角色与 PASS/RETURN 语义，因此暂不升级 Governance 主版本。
+
 ---
 
 ## 当前验证程度
@@ -194,6 +238,7 @@ Shared VPS Infrastructure  I0-I7 PASS / SEALED
 Xianyu                     X0-X7 FINAL PASS / PRODUCTION SEALED
 Post-X7 Image Slimming     Change Gate PASS
 Storage Layout Contract    rev1 ACTIVE
+Target Host Reality        rev1 ACTIVE / VALIDATED-ON-DUJIAONEXT-WINDOWS-HOST
 Governance v0.1.6          ACTIVE
 ```
 
