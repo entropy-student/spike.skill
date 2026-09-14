@@ -88,6 +88,25 @@ Shared Infra 典型包括：SSH、UFW、Docker daemon、宿主机 80/443、Share
 不要自己改架构，不扩大 scope；异常精确 RETURN Reviewer。
 ```
 
+## 11. Agent 说“已创建宿主机文件”，但 Owner 看不到
+
+```text
+按 Target Host Reality Contract rev1 处理。
+不要假定当前执行环境就是 Owner 的真实宿主机。
+先证明 target host identity，并从目标宿主机自身对目标路径做 read-back。
+如果无法证明能直接操作目标宿主机，返回 RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE；
+不要在 sandbox/container/WSL/remote runner 创建同名绝对路径后宣称 PASS。
+如果必须由 Owner 本机执行，请只给一次性最小 host-local 命令，并在任何异常时 fail-closed，不得继续打印 PASS。
+```
+
+Windows ACL checkpoint 可补：
+
+```text
+如果目标目录已由当前 Owner 持有，不要为了收紧 ACL 强行 SetOwner()。
+优先只处理 DACL/inheritance，并用 Get-Acl / icacls 在真实 Windows host read-back；
+任何 PowerShell exception 或 native command non-zero 都使本轮 FAIL/RETURN。
+```
+
 ---
 
 # 最常用的一句话
