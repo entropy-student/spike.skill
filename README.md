@@ -6,7 +6,7 @@
 
 **不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
 
-![Skills](https://img.shields.io/badge/skills-11-blue?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-12-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
 ![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
 
@@ -31,6 +31,7 @@
 | 🎵 **Music Trend Radar（音乐趋势雷达）** | 跨平台识别真正热门、正在爆发和具有持续传播能力的歌曲 | Active | [进入](./music-trend-radar/) |
 | 🎬 **Narrative Motion Semantics（叙事动效语义库）** | 根据流程、时间、对比、因果语义选择信息拓扑、Template ID 与动效表达 | **Incomplete** | [进入](./narrative-motion-semantics/) |
 | 🎥 **TalkCraft Design Orchestrator（TalkCraft 视觉编排器）** | 在不修改 video-talkcraft 的前提下增加视觉风格选择与 SHOTBOOK 素材确认，并可接入 awesome-design-md | **v1.0.0 Frozen** | [进入](./video-talkcraft-design-orchestrator/) |
+| 🎞️ **Aroll Video Maker（A-roll 视频生成器）** | 用配音主时间轴 + Semantic Director 解耦“句子、画面、镜头、图片”，在固定人物与画风下制作 16:9 横屏插画叙事视频；每个真正的新视觉状态最多生成 1 张彩色母图，其余镜头变化交给 Remotion/CSS | **v0.1.0 Calibrating** | [进入](./aroll-video-maker/) |
 
 ---
 
@@ -172,6 +173,14 @@ Hook 只出现一次，正文从 Hook 后直接继续；
 首次交互一次性收集当前 TalkCraft 必需输入并同步让我选择视觉风格；
 SHOTBOOK 完成后先让我确认并提示哪些镜头适合补充自有素材；
 除此之外严格执行当前 video-talkcraft。
+```
+
+```text
+按 Aroll Video Maker 制作这条视频。
+这是口播稿、成品配音和人物参考图；让我从当前画风库中选择一种。
+默认 16:9 横屏、无字幕，不调用视频模型。
+不要一句话配一张图；按语义决定 Visual Beat，一句话可以多图，多句话也可以共用一图。
+每个真正需要的新视觉状态最多生成 1 张彩色母图，其余 Shot 用 Remotion/CSS 完成。
 ```
 
 ---
