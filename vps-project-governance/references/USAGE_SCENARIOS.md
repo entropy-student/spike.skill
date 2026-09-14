@@ -88,7 +88,26 @@ Shared Infra 典型包括：SSH、UFW、Docker daemon、宿主机 80/443、Share
 不要自己改架构，不扩大 scope；异常精确 RETURN Reviewer。
 ```
 
-## 11. Agent 说“已创建宿主机文件”，但 Owner 看不到
+## 11. Owner 不会创建或录入 Secret
+
+```text
+Owner 明确授权 Executor 仅为 [project/environment] 在已验证目标内生成并安装
+[exact allowlist]。禁止覆盖现有文件、禁止输出值；先验证 runtime 最小读取权限，
+再创建并校验异机加密恢复副本。此授权不包含 Provider 启用、付款、账号授权、
+公网路由或 production enablement。异常 RETURN Reviewer。
+```
+
+不要让 Owner 在聊天中粘贴随机值，也不要让 Owner 手工执行一串不理解的命令。
+
+## 12. 忘记以前如何连接 VPS
+
+```text
+先读唯一 SHARED_VPS_HANDOFF.md，按其中 identity reference、host-key fingerprint
+和 canonical read-only probe 恢复连接。不得读取/输出私钥值，不得自动接受 host
+key 变化。只有 Handoff 缺失或验证失败时才向 Owner 请求账号/面板介入。
+```
+
+## 13. Agent 说“已创建宿主机文件”，但 Owner 看不到
 
 ```text
 按 Target Host Reality Contract rev1 处理。
