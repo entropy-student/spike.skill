@@ -6,5 +6,9 @@ version: 0.1.6
 status: active-validated
 storage_contract_revision: 1
 storage_contract_status: active-validated-by-shared-vps-pattern
+ssh_secret_operations_revision: 1
+ssh_connection_contract_status: active-validated
+delegated_secret_provisioning_status: active-validated-on-unified-pay
+dpapi_recovery_pattern_status: validated-on-unified-pay-limited-failure-domain
 target_host_reality_contract_revision: 1
 target_host_reality_contract_status: active-validated-on-dujiaonext-windows-host
