@@ -53,11 +53,19 @@
 
 ## 7. Secrets Inventory — metadata only
 
-| Secret purpose | File/path or secret mechanism | Expected permission | Backup/transfer policy |
-|---|---|---|---|
-|  |  |  |  |
+| Secret purpose | File/path or mechanism | Runtime reader | Expected owner/group/mode | Recovery/transfer policy |
+|---|---|---|---|---|
+|  |  |  |  |  |
 
 Do not record any Secret value, token, private key, webhook URL, Cookie, password or decrypted data.
+
+- Provisioning authority: Owner-entered / exact delegated allowlist / external store
+- Existing-file policy: refuse / separately approved rotation
+- Runtime read verification:
+- Target-host identity/read-back requirement for host-local Secret writes:
+- Unrelated-service denial/not-mounted verification:
+- Encrypted off-host recovery location (metadata only):
+- Recovery limitation / failure domain:
 
 ## 8. Backup Policy
 
@@ -110,6 +118,8 @@ STORAGE_LAYOUT_CONTRACT_READ=
 PROJECT_STORAGE_MANIFEST_EXISTS=YES
 DURABLE_DATA_PATHS_EXPLICIT=
 SECRET_PATHS_EXPLICIT_METADATA_ONLY=
+SECRET_RUNTIME_ACCESS_DEFINED=
+SECRET_RECOVERY_POLICY_DEFINED=
 BACKUP_PATH_EXPLICIT=
 RESTORE_METHOD_DEFINED=
 ANONYMOUS_DURABLE_VOLUME=
