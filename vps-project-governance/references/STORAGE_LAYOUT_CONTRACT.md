@@ -87,6 +87,11 @@ Shared VPS 的项目级持久化目录统一为：
 - 不进入 Git；
 - 不输出到 chat / Evidence / ordinary Handoff；
 - 备份方式必须单独标明，不能假设普通项目备份会安全包含 Secret。
+- “0600 root” 不是通用答案；必须证明实际非 root runtime 能读到其挂载的
+  Secret，同时无关 service 未挂载/不可读。owner/group/mode 由项目 Gate 冻结。
+- Owner 无技术能力时，允许按 SSH/Delegated Secret Operations addendum 由
+  Executor 代生成 exact allowlist，但必须 fail-on-existing 并先建立加密异机恢复。
+- 任何宿主机 Secret 目录/ACL/文件创建声明还必须满足 Target Host Reality Contract：证明目标主机 identity，并在同一目标主机 read-back。
 
 ---
 
@@ -194,6 +199,8 @@ Persistent mounts / named volumes
 Database type + location
 Uploads location
 Secret locations (metadata only, never values)
+Secret runtime access identity / effective permission
+Secret encrypted recovery destination + restore boundary
 Backup method
 Restore method
 Retention
@@ -325,6 +332,8 @@ STORAGE_LAYOUT_CONTRACT_READ=YES
 PROJECT_STORAGE_MANIFEST_EXISTS=YES
 DURABLE_DATA_PATHS_EXPLICIT=YES
 SECRET_PATHS_EXPLICIT_METADATA_ONLY=YES
+SECRET_RUNTIME_ACCESS_DEFINED=YES
+SECRET_RECOVERY_POLICY_DEFINED=YES
 BACKUP_PATH_EXPLICIT=YES
 RESTORE_METHOD_DEFINED=YES
 ANONYMOUS_DURABLE_VOLUME=NO
