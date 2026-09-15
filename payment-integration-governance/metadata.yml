@@ -1,0 +1,10 @@
+slug: payment-integration-governance
+display_name: Payment Integration Governance（支付与履约接入准则）
+category: engineering-architecture
+language: zh-CN
+version: 1.0.0
+status: active-default-architecture
+default_payment_entry: dujiao-next
+default_simple_physical_fulfillment: dujiao-manual
+default_complex_physical_fulfillment: dujiao-plus-erp-oms-wms
+direct_shared_payment_api: exception-path
