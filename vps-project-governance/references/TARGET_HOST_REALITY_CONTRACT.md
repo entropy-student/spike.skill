@@ -1,4 +1,4 @@
-# Target Host Reality Contract rev1
+# Target Host Reality Contract rev2
 
 > Operational addendum to VPS Project Governance v0.1.6.
 >
@@ -37,6 +37,7 @@ Execution Agent、sandbox、container、WSL、remote runner 与 Owner 真实宿�
 - WSL / VM / remote runner 中存在同名目录；
 - Executor 自报 `PASS` / `PASS_CANDIDATE`；
 - 仅有写命令 exit 0，但没有目标宿主机 identity 与 read-back；
+- 文档写着“应该存在”或“已创建”，但目标宿主机 `Test-Path/Get-Item/stat` 没有证明；
 - 截图或日志无法证明来自目标宿主机。
 
 ---
@@ -49,13 +50,16 @@ Execution Agent、sandbox、container、WSL、remote runner 与 Owner 真实宿�
 2. 当前 user / effective privilege；
 3. 目标 host identity；
 4. 目标路径是否从当前 runtime 真实可见；
-5. write 后能否从同一目标 host read-back。
+5. write 后能否从同一目标 host read-back；
+6. 当前 shell/runtime 版本是否支持脚本所用 API/语法；
+7. native executable 的 exit-status 是否会被显式检查。
 
 可使用的 host-local evidence 示例：
 
 ### Windows
 
 ```powershell
+$PSVersionTable.PSVersion
 [Environment]::MachineName
 [Security.Principal.WindowsIdentity]::GetCurrent().Name
 Test-Path -LiteralPath 'C:\target\path'
@@ -101,7 +105,7 @@ STOP_AT_REVIEWER: YES
 
 ## 5. Owner-local checkpoint pattern
 
-当真实宿主机只有 Owner 可以访问，而动作又属于安全 staging / Secret preparation 等必要 checkpoint 时：
+当真实宿主机只有 Owner 可以访问，而动作又属于安全 staging / Secret preparation / recovery 等必要 checkpoint 时：
 
 ```text
 Executor prepares exact host-local command
@@ -120,6 +124,26 @@ continue Gate
 Owner 只执行一次，不承担排错、架构判断、脚本设计或 Secret 回传。
 
 如果命令失败，返回失败输出；不要让 Owner 自行“继续往下跑”。
+
+### Phase-split rule
+
+当一个 Owner-local script 同时包含本地文件/ACL、SSH 远程动作、应用验证、恢复文件晋升等多个 failure domain 时，应拆成可判定阶段或至少输出阶段性证据：
+
+```text
+LOCAL_PREP
+REMOTE_EXECUTION
+APPLICATION_VERIFY
+FINAL_HOST_READBACK
+```
+
+必须能区分：
+
+- `FAILED_BEFORE_REMOTE_EXECUTION`；
+- `REMOTE_OUTCOME_AMBIGUOUS`；
+- `REMOTE_EXECUTION_CONFIRMED_FAILED`；
+- `REMOTE_EXECUTION_PASS_BUT_LOCAL_FINALIZATION_FAILED`。
+
+否则 Reviewer 无法安全决定是否重试。
 
 ---
 
@@ -146,6 +170,19 @@ icacls.exe <root> /grant:r "<current-user>:(OI)(CI)F"
 
 如果服务账号确实需要访问 Secret，必须由 Reviewer 明确列出允许主体，而不是套用“Owner-only”模板。
 
+### ACL scope rule
+
+不要因为一个更高层、并非当前 Gate 管理对象的父目录 ACL 较宽，就自动判定目标叶子目录失败。
+
+对目标 protected subtree，应验证：
+
+- 目标 leaf/file 自身 inheritance 是否按设计关闭；
+- 实际 allow principals 是否符合 allowlist；
+- 父目录较宽 ACL 是否仍会继承/影响目标 leaf；
+- 当前 Gate 是否拥有修改父目录的授权。
+
+只有当父 ACL 实际流入或破坏目标 protected subtree 时，它才是当前 Gate 的 blocker。
+
 ---
 
 ## 7. Fail-closed script result
@@ -158,7 +195,8 @@ icacls.exe <root> /grant:r "<current-user>:(OI)(CI)F"
 - PowerShell exception → FAIL/RETURN；
 - verification mismatch → FAIL/RETURN；
 - PASS 只在所有 required checks 完成后输出；
-- 之前失败过的步骤不能被后续静态字符串 `PASS` 覆盖。
+- 之前失败过的步骤不能被后续静态字符串 `PASS` 覆盖；
+- 捕获异常时应保留足够的非敏感 failure class，不能只剩一个模糊 `FAIL`。
 
 推荐：
 
@@ -182,7 +220,7 @@ catch {
 
 ## 8. Partial execution / target collision
 
-Host-local command 可能在中途失败，留下部分目录或空文件。
+Host-local command 可能在中途失败，留下部分目录、空文件、`.pending` artifact 或 ACL 已变但内容未完成的中间状态。
 
 再次执行时：
 
@@ -190,19 +228,61 @@ Host-local command 可能在中途失败，留下部分目录或空文件。
 - 不因 `Target collision` 就自动删除；
 - 如果 existing objects 正是上一轮已知 partial state，可做 bounded repair；
 - 如果来源不明或内容非空，立即 STOP / RETURN；
-- Secret 路径存在未知内容时不得 overwrite、打印、hash 或读出其值，除非当前 Gate 明确授权安全处理。
+- Secret 路径存在未知内容时不得 overwrite、打印、hash 或读出其值，除非当前 Gate 明确授权安全处理；
+- canonical/final artifact 不应在远程 consequential action 仍未验证时提前发布。
 
 ---
 
-## 9. Required Evidence fields
+## 9. Recovery artifact reality rule
+
+对于 DPAPI / password manager export / local encrypted recovery 等 Owner-host artifact：
+
+```text
+intended path
+≠ created
+≠ verified usable
+```
+
+正式 Evidence 至少区分：
+
+```text
+RECOVERY_ARTIFACT_PATH_PLANNED
+RECOVERY_ARTIFACT_CREATED
+RECOVERY_ARTIFACT_EXISTS_HOST_LOCAL
+RECOVERY_ARTIFACT_ROUNDTRIP_VERIFIED
+```
+
+如果真实 Owner host 的 recursive search / `Test-Path` 返回不存在，它立即 supersede 任何旧文档中的“artifact exists”声明。
+
+不得继续尝试解密一个被真实主机证明不存在的 artifact。
+
+---
+
+## 10. Payload/parser reality rule
+
+一个加密 artifact 可以成功解密，但业务 parser 仍然失败。例如 Windows CRLF 与 LF、字段尾部 `\r`、编码/BOM 差异都可能造成“artifact 存在但格式无效”。
+
+因此：
+
+- serialization format 必须明确；
+- parser 必须与实际 host serialization 兼容；
+- 创建后立即做 in-memory round-trip + parser validation；
+- parser 未通过时不得继续 consequential remote action；
+- 不要把 parser failure 误诊为 DPAPI、SSH 或 Provider failure。
+
+---
+
+## 11. Required Evidence fields
 
 涉及 target-host write 的 Gate，Evidence 至少记录：
 
 ```text
 TARGET_HOST_IDENTITY: <redacted / non-secret machine identity>
 TARGET_HOST_EXECUTION_PROVEN: PASS
+TARGET_RUNTIME_VERSION_CHECK: PASS / N-A
 TARGET_PATH_READBACK: PASS
 TARGET_PERMISSION_OR_ACL_READBACK: PASS / N-A
+NATIVE_EXIT_STATUS_CHECKED: YES / N-A
 SANDBOX_ONLY_WRITE_USED_AS_HOST_EVIDENCE: NO
 SECRET_VALUES_EMITTED: 0
 ```
@@ -216,7 +296,7 @@ RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE
 
 ---
 
-## 10. Reviewer acceptance rule
+## 12. Reviewer acceptance rule
 
 Reviewer 不得仅凭 Executor 的“已创建 / 已配置 / 已部署”文字描述正式 PASS。
 
@@ -225,13 +305,16 @@ Reviewer 不得仅凭 Executor 的“已创建 / 已配置 / 已部署”文字�
 - 目标 host identity；
 - write 后 read-back；
 - 与目标 host 一致的权限 / service / container / path evidence；
-- 没有把 sandbox-local state 当作 target-host state。
+- 没有把 sandbox-local state 当作 target-host state；
+- 如果存在多阶段脚本，能定位失败发生在哪个 execution boundary。
 
 如果 Evidence 只能证明 sandbox 内成功，则该事实仍为 `UNKNOWN` 或 `RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE`。
 
 ---
 
-## 11. Validated incident pattern
+## 13. Validated incident patterns
+
+### Incident A — Agent-side path != Owner-host path
 
 DujiaoNext / Unified Pay 的 Windows Secret-staging checkpoint 中，Executor 曾在自身执行环境声明创建：
 
@@ -239,22 +322,25 @@ DujiaoNext / Unified Pay 的 Windows Secret-staging checkpoint 中，Executor �
 C:\Users\...\AppData\Local\DujiaoNext\D16
 ```
 
-但 Owner 在真实 Windows PowerShell 执行 `Test-Path` 返回 `False`，证明 Agent-side path 并未落到真实宿主机。
+但 Owner 在真实 Windows PowerShell 执行 host-local read-back 后证明对应状态与 Executor 环境不同。后续改为一次性 Owner-host PowerShell + host-native read-back。
 
-后续改为：
+### Incident B — documented DPAPI artifact did not exist
 
-1. Executor 明确承认无法证明自己在 Owner host；
-2. 生成一次性 host-local PowerShell；
-3. Owner 在真实 Windows 执行；
-4. 对 ACL 错误 fail-closed；
-5. 使用 host-native `icacls` 完成 DACL 收紧；
-6. 再由真实主机 read-back 得到 PASS。
+项目文档曾记录一个 Owner-local DPAPI recovery artifact 为“存在”，但真实 Owner Windows 的 recursive search / `Test-Path` 证明它不存在。
 
-这个模式证明：**执行环境真实性本身就是 Evidence boundary 的一部分。**
+真实主机证据立即 supersede 文档，后续流程改为受控 credential reset + Owner-host artifact creation + existence verification；没有继续尝试解密不存在的文件。
+
+### Incident C — local phase / remote phase confusion
+
+一次大型 Owner script 的本地 DPAPI、ACL、payload parsing、SSH remote reset 混在同一 failure path 内，导致需要多轮判定实际失败位置。
+
+后续通过本地 DPAPI round-trip、payload parser validation、SSH preflight、remote execution 和 final artifact read-back分阶段验证，减少了盲目重跑。
+
+这些模式共同证明：**执行环境真实性、阶段边界和 read-back 本身就是 Evidence boundary 的一部分。**
 
 ---
 
-## 12. Relationship to existing Governance
+## 14. Relationship to existing Governance
 
 本 Contract 不改变：
 
@@ -268,4 +354,4 @@ C:\Users\...\AppData\Local\DujiaoNext\D16
 
 它补充的是一个更底层的 invariant：
 
-> **在证明“改了什么”之前，先证明“到底改的是哪台机器”。**
+> **在证明“改了什么”之前，先证明“到底改的是哪台机器”；在决定“能不能重试”之前，先证明上一轮到底执行到了哪一层。**
