@@ -1,0 +1,135 @@
+name: Conversion Leak Audit G1 WordPress Baseline
+
+on:
+  push:
+    paths:
+      - 'independent-store-operations/validation/g1_wordpress/**'
+      - '.github/workflows/conversion-leak-audit-g1-wordpress.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wordpress-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mariadb:
+        image: mariadb:11.4
+        env:
+          MARIADB_ROOT_PASSWORD: root-local-test
+          MARIADB_DATABASE: conversion_leak_audit
+          MARIADB_USER: wordpress
+          MARIADB_PASSWORD: wordpress-local-test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=3s
+          --health-retries=20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install local WordPress runtime prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y php-cli php-mysql php-curl php-mbstring php-xml php-zip mariadb-client curl
+          curl -fsSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /tmp/wp-cli.phar
+          php /tmp/wp-cli.phar --info
+
+      - name: Install WordPress 7.1
+        run: |
+          rm -rf /tmp/conversion-leak-audit-wp
+          mkdir -p /tmp/conversion-leak-audit-wp
+          php /tmp/wp-cli.phar core download --version=7.1 --path=/tmp/conversion-leak-audit-wp
+          php /tmp/wp-cli.phar config create \
+            --path=/tmp/conversion-leak-audit-wp \
+            --dbname=conversion_leak_audit \
+            --dbuser=wordpress \
+            --dbpass=wordpress-local-test \
+            --dbhost=127.0.0.1:3306
+          php /tmp/wp-cli.phar core install \
+            --path=/tmp/conversion-leak-audit-wp \
+            --url=http://127.0.0.1:8080 \
+            --title='Conversion Leak Audit' \
+            --admin_user=localadmin \
+            --admin_password='local-test-only-not-secret' \
+            --admin_email=local@example.invalid \
+            --skip-email
+
+      - name: Install and freeze SaasLauncher 2.0.18
+        run: |
+          php /tmp/wp-cli.phar theme install https://downloads.wordpress.org/theme/saaslauncher.2.0.18.zip \
+            --path=/tmp/conversion-leak-audit-wp --activate
+          test "$(php /tmp/wp-cli.phar theme get saaslauncher --path=/tmp/conversion-leak-audit-wp --field=version)" = "2.0.18"
+          test "$(php /tmp/wp-cli.phar theme get saaslauncher --path=/tmp/conversion-leak-audit-wp --field=status)" = "active"
+
+      - name: Seed baseline pages
+        env:
+          WP_PATH: /tmp/conversion-leak-audit-wp
+          RESULT_DIR: ${{ github.workspace }}/independent-store-operations/validation/g1_wordpress/results
+        run: |
+          rm -rf "$RESULT_DIR"
+          mkdir -p "$RESULT_DIR"
+          bash independent-store-operations/validation/g1_wordpress/seed-baseline.sh
+
+      - name: Start local HTTP runtime and verify pages
+        run: |
+          RESULT_DIR="$GITHUB_WORKSPACE/independent-store-operations/validation/g1_wordpress/results"
+          php -S 127.0.0.1:8080 -t /tmp/conversion-leak-audit-wp > "$RESULT_DIR/php-server.log" 2>&1 &
+          echo $! > "$RESULT_DIR/php-server.pid"
+          sleep 3
+          source "$RESULT_DIR/page-ids.env"
+
+          check_page() {
+            local name="$1" url="$2"
+            code=$(curl -sS -o "$RESULT_DIR/${name}.html" -w '%{http_code}' "$url")
+            echo "$name=$code" >> "$RESULT_DIR/http-status.txt"
+            test "$code" = "200"
+          }
+
+          check_page home 'http://127.0.0.1:8080/'
+          check_page how "http://127.0.0.1:8080/?page_id=$HOW_ID"
+          check_page demo "http://127.0.0.1:8080/?page_id=$DEMO_ID"
+          check_page pricing "http://127.0.0.1:8080/?page_id=$PRICING_ID"
+          check_page faq "http://127.0.0.1:8080/?page_id=$FAQ_ID"
+          check_page blog "http://127.0.0.1:8080/?page_id=$BLOG_ID"
+
+          grep -q 'Find where your store makes buyers hesitate' "$RESULT_DIR/home.html"
+          grep -q 'https://yourstore.com' "$RESULT_DIR/home.html"
+          grep -q 'How it works' "$RESULT_DIR/how.html"
+          grep -q 'Demo report' "$RESULT_DIR/demo.html"
+          grep -q 'Pricing' "$RESULT_DIR/pricing.html"
+          grep -q 'Does this tell me exactly why people are not buying' "$RESULT_DIR/faq.html"
+
+      - name: Write G1 evidence report
+        run: |
+          RESULT_DIR="$GITHUB_WORKSPACE/independent-store-operations/validation/g1_wordpress/results"
+          WP='php /tmp/wp-cli.phar --path=/tmp/conversion-leak-audit-wp'
+          {
+            echo 'G1_WORDPRESS_BASELINE_EVIDENCE'
+            echo "WORDPRESS_VERSION=$($WP core version)"
+            echo "THEME=saaslauncher"
+            echo "THEME_VERSION=$($WP theme get saaslauncher --field=version)"
+            echo "THEME_STATUS=$($WP theme get saaslauncher --field=status)"
+            echo "PUBLISHED_PAGES=$($WP post list --post_type=page --post_status=publish --format=count)"
+            echo 'SCANNER_INTEGRATED=NO'
+            echo 'REAL_PAYMENT_ENABLED=NO'
+            echo 'PRODUCTION_SECRETS_USED=NO'
+            echo 'VPS_WRITES=0'
+            echo 'PASS_CANDIDATE_G1_WORDPRESS_LOCAL_BASELINE'
+          } | tee "$RESULT_DIR/g1-report.txt"
+          cat "$RESULT_DIR/http-status.txt"
+
+      - name: Upload G1 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conversion-leak-audit-g1-wordpress-baseline
+          path: independent-store-operations/validation/g1_wordpress/results/
+          if-no-files-found: warn
+          retention-days: 14
