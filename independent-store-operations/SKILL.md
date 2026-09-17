@@ -456,23 +456,22 @@ Gate：
 
 规则变化不得为了提高测试通过率偷偷改变含义。规则调整必须重新进入 Reviewer 校准。
 
-当前仓库持久保存了规则、Fixture、真实网络校准与 G2 网络安全验证资产；项目侧完整 Scanner V0 产品源码的唯一持久位置仍需在进入产品集成前确认或恢复。
+Skill 仓库长期保存规则、Fixture、真实网络校准与 G2 网络安全验证资产；项目 Recovery Review 已重新确认完整 Scanner V0 与 WordPress G1 源码快照，并重新通过 `55 / 55` Scanner tests 与 `20 / 20` WordPress asset checks。
 
-这属于工程资产持久化问题，不重新打开理论 Gate。
+这意味着产品可以进入 G4 本地集成，但不改变理论证据边界，也不授权支付或生产部署。
 
 ---
 
 # 20. 当前成熟度
 
-当前：`v0.6.0 — Active Validated / Scanner V0 Evidence PASS`
+当前：`v0.6.0 — Active Validated / G4 Integration Ready`
 
 理论骨架与开发前规则体系已冻结。后续改进主要来自真实反例、更多真实 ISSUE、行为数据和实验，而不是继续堆叠抽象框架。
 
 项目产品化顺序：
 
 ```text
-确认 / 恢复 Scanner V0 canonical source
-→ WordPress ↔ Scanner ↔ Top 3 本地集成
+WordPress ↔ Scanner ↔ Top 3 本地集成
 → 完整修复队列 / 模型解释
 → 本地产品闭环
 → VPS / 支付 / 生产 Gate
