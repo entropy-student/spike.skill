@@ -148,14 +148,14 @@ context misuse        0
 
 ## 后续状态
 
-后续 Review 已确认：
+Recovery Review 已确认：
 
 ```text
 G2_SAFE_SCANNER_V0 = REVIEWER EVIDENCE PASS
 G1_WORDPRESS_LOCAL_BASELINE = PASS
 G3_RULE_ENGINE_V0 = MERGED / CLOSED
-NEXT = CONFIRM_OR_RESTORE_SCANNER_V0_CANONICAL_SOURCE
-THEN = G4_WORDPRESS_SCANNER_TOP3_LOCAL_INTEGRATION
+SOURCE_RECOVERY = PASS
+NEXT = G4_WORDPRESS_SCANNER_TOP3_LOCAL_INTEGRATION
 ```
 
-注意：完整 Scanner V0 产品源码的唯一持久位置尚需确认；这属于源码资产恢复问题，不重新打开本开发前理论 Gate。
+完整 Scanner V0 与 WordPress G1 源码已在项目交接快照中确认并重新回归；因此源码 UNKNOWN 已解除。本文仅保留作为开发前历史 Gate，不应再用其旧 NEXT 驱动执行。
