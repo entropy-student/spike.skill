@@ -37,6 +37,12 @@ jobs:
         run: |
           python independent-store-operations/validation/real_network/browser_fallback.py
 
+      - name: Run real-network fact-to-rule E2E
+        run: |
+          cd independent-store-operations/validation/real_network
+          python real_rule_e2e.py
+          cd ../../..
+
       - name: Show calibration reports
         if: always()
         run: |
@@ -44,6 +50,8 @@ jobs:
           cat independent-store-operations/validation/real_network/results/report.json || true
           echo '--- Combined report ---'
           cat independent-store-operations/validation/real_network/results/combined_report.json || true
+          echo '--- Rule E2E report ---'
+          cat independent-store-operations/validation/real_network/results/rule_e2e_report.json || true
 
       - name: Upload crawl evidence
         if: always()
