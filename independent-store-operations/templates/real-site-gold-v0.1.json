@@ -1,0 +1,136 @@
+{
+  "version": "0.1.0",
+  "purpose": "Real-site public fact gold set for future Scrapy/browser precision calibration. Not a CRO score and not causal evidence.",
+  "as_of": "2026-09-17",
+  "sites": [
+    {
+      "site_id": "magic_spoon_variety_4",
+      "url": "https://magicspoon.com/products/variety-pack-cereal-case",
+      "archetype": ["PHYSICAL", "REPLENISHMENT", "SUBSCRIPTION"],
+      "facts": {
+        "one_time_price_usd": 39.0,
+        "subscription_price_usd": 31.2,
+        "subscription_discount_percent": 20,
+        "cadence": "EVERY_30_DAYS",
+        "cancel_or_skip_visible": true,
+        "review_count_visible": true
+      }
+    },
+    {
+      "site_id": "hellofresh_us",
+      "url": "https://www.hellofresh.com/about/faq?search=Cancel",
+      "archetype": ["PHYSICAL", "SUBSCRIPTION"],
+      "facts": {
+        "weekly_auto_renewing": true,
+        "skip_visible": true,
+        "cancel_visible": true,
+        "cancel_cutoff_days_before_delivery": 5,
+        "cancel_cutoff_time": "23:59 PST",
+        "post_cutoff_orders_chargeable": true
+      }
+    },
+    {
+      "site_id": "oura_membership_us",
+      "url": "https://ouraring.com/membership",
+      "archetype": ["DIGITAL_SERVICE", "SUBSCRIPTION", "PHYSICAL_PLUS_MEMBERSHIP"],
+      "facts": {
+        "monthly_price_usd": 5.99,
+        "annual_price_usd": 69.99,
+        "first_month_free": true,
+        "membership_starts_on_ring_activation": true,
+        "cancel_visible": true
+      }
+    },
+    {
+      "site_id": "oura_membership_jp",
+      "url": "https://ouraring.com/ja/membership",
+      "archetype": ["DIGITAL_SERVICE", "SUBSCRIPTION", "INTERNATIONAL"],
+      "facts": {
+        "monthly_price_jpy": 999,
+        "annual_price_jpy": 11800,
+        "first_month_free": true,
+        "cancel_visible": true,
+        "region_specific_pricing": true
+      }
+    },
+    {
+      "site_id": "oura_retail_cross_transaction",
+      "url": "https://support.ouraring.com/hc/en-us/articles/18852337038227-Retail-Purchases",
+      "archetype": ["PHYSICAL_PLUS_MEMBERSHIP", "HYBRID_TRANSACTION"],
+      "facts": {
+        "retailer_handles_ring_return": true,
+        "membership_must_be_cancelled_separately_after_ring_return": true,
+        "continued_membership_charges_possible_if_not_cancelled": true
+      }
+    },
+    {
+      "site_id": "onepassword_personal",
+      "url": "https://1password.com/pricing/personal",
+      "archetype": ["DIGITAL_SERVICE", "SUBSCRIPTION", "TRIAL_TO_PAID", "PROMO_TO_STANDARD"],
+      "facts": {
+        "individual_promo_monthly_equivalent_usd": 2.99,
+        "individual_regular_monthly_equivalent_usd": 3.99,
+        "families_promo_monthly_equivalent_usd": 4.49,
+        "families_regular_monthly_equivalent_usd": 5.99,
+        "paid_annually": true,
+        "free_trial_days": 14,
+        "promo_first_year_only": true,
+        "third_party_promo_excluded": true
+      }
+    },
+    {
+      "site_id": "headspace_terms",
+      "url": "https://www.headspace.com/terms-and-conditions",
+      "archetype": ["DIGITAL_SERVICE", "SUBSCRIPTION", "TRIAL_TO_PAID"],
+      "facts": {
+        "free_trial_auto_converts": true,
+        "monthly_or_annual_subscription": true,
+        "cancel_before_conversion_supported": true
+      }
+    },
+    {
+      "site_id": "allbirds_returns",
+      "url": "https://www.allbirds.com/",
+      "archetype": ["PHYSICAL", "BROAD_CATALOG", "SIZE_SENSITIVE"],
+      "facts": {
+        "standard_return_days": 30,
+        "customer_responsible_return_shipping_by_default": true,
+        "return_coverage_can_include_free_label": true,
+        "return_in_country_of_purchase": true
+      }
+    },
+    {
+      "site_id": "ridge_warranty",
+      "url": "https://ridge.com/pages/warranty-policy",
+      "archetype": ["PHYSICAL", "NARROW_CATALOG", "HIGH_CONSIDERATION"],
+      "facts": {
+        "return_window_days_referenced": 99,
+        "lifetime_warranty_visible": true
+      }
+    },
+    {
+      "site_id": "glossier_jp_skincare",
+      "url": "https://www.glossier.com/en-jp/collections/skincare",
+      "archetype": ["PHYSICAL", "BROAD_CATALOG", "INTERNATIONAL"],
+      "facts": {
+        "filter_visible": true,
+        "sort_visible": true,
+        "skin_type_filters_visible": true,
+        "skin_concern_filters_visible": true,
+        "currency": "JPY",
+        "direct_add_to_bag_visible": true
+      }
+    },
+    {
+      "site_id": "glossier_us_skincare",
+      "url": "https://www.glossier.com/collections/skincare",
+      "archetype": ["PHYSICAL", "BROAD_CATALOG"],
+      "facts": {
+        "filter_visible": true,
+        "sort_visible": true,
+        "currency": "USD",
+        "direct_add_to_bag_visible": true
+      }
+    }
+  ]
+}
