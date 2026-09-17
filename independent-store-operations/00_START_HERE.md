@@ -68,25 +68,52 @@ S8 留存与传播
 
 ## 当前成熟度
 
-版本：`v0.5.2`
+版本：`v0.6.0`
 
-状态：**Theory Frozen / Real-site Gold Prepared**
+状态：**Pre-development Foundation PASS / Scanner V0 Implementation Allowed**
 
-理论骨架已经冻结，后续主要通过真实站点、正反样本、人工审计和自动检测结果继续校准，不再频繁重构总框架。
+理论骨架已经冻结。开发前规则、事实提取和真实网络端到端验证已经达到 Reviewer 通过条件。
 
-当前开发前验证资产：
+当前验证资产：
 - 77 条完整知识规则；
 - 17 条首版可信规则；
-- 51 条规则判断 Fixture；
-- 静态事实提取 Fixture；
-- 动态浏览器事实 Fixture；
+- 51 条规则判断 Fixture：`51 / 51`；
+- 静态 / 动态事实提取 Fixture；
 - 多报价 / 订阅交易事实模型；
-- 11 个真实公开站点、52 条事实断言的 Gold Set。
+- 真实网络普通目标覆盖：`9 / 9`；
+- 真实事实断言：`26 / 26`；
+- 真实规则断言：`28 / 28`；
+- 意外 ISSUE：`0`；
+- 地区上下文误用：`0`。
 
-真实站 Gold Set：
+验证证据：
+- `validation/01-mtrs-rule-engine-synthetic-fixtures.md`
+- `validation/02-real-network-fact-to-rule-e2e.md`
 - `references/09-real-site-gold-calibration.md`
-- `templates/real-site-gold-v0.1.json`
 
-下一 Gate：`REAL_NETWORK_FACT_EXTRACTION_PRECISION`
+开发前范围冻结：
+- `references/10-pre-development-scope-freeze.md`
 
-在能够运行真实网络 Scrapy / 浏览器抓取的执行环境中，自动抓取这些固定 URL，并与 Gold Set 对照。只有真实事实提取准确率达到目标、抓取失败误报为网站问题为 0，才允许继续向正式扫描器开发推进。
+## 当前 Gate
+
+已通过：
+
+`PASS_PRE_DEVELOPMENT_FOUNDATION_2026-09-17`
+
+下一 Gate：
+
+`G2_SAFE_SCANNER_SERVICE_IMPLEMENTATION`
+
+## HOLD 状态
+
+已经允许：
+- Scanner V0 的受限实现与测试环境开发。
+
+仍然 HOLD：
+- WordPress 产品集成；
+- 支付与付费解锁；
+- VPS 生产部署；
+- 正式用户扫描；
+- 商业上线。
+
+因此下一步不是做完整网站，而是把已经冻结的事实提取 + 17 条规则实现成一个安全、可回归、会在证据不足时停止判断的扫描服务。
