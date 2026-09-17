@@ -2,7 +2,7 @@
 name: independent-store-operations
 title: Independent Store Operations（独立站运营系统）
 description: 面向独立站 / DTC 的运营诊断、站内转化、信任、商品决策、结账、履约、留存、内容与经济性 Skill。先定位运营阶段与证据等级，再决定 FIX / MEASURE / RESEARCH / EXPERIMENT。
-version: 0.5.1
+version: 0.6.0
 language: zh-CN
 ---
 
@@ -438,32 +438,45 @@ Gate：
 
 ---
 
-# 19. v0.5.1 校准纪律
+# 19. v0.6.0 校准纪律
 
-当前已经定义：
+当前已经定义并验证：
 
-- 17 条规则；
+- 17 条首版可信规则；
 - 51 个正例 / 反例 / 边界 Fixture；
 - 统一结果枚举；
 - 每条 Fixture 的 Allowed Output 与 Forbidden Output；
 - Fail-closed Gate；
-- 未来真实站 Dry Run 的 Precision / Applicability / Claim Calibration 门槛。
+- 真实站 Gold Set；
+- 真实事实断言 `26 / 26`；
+- 真实规则断言 `28 / 28`；
+- unexpected ISSUE = `0`；
+- geo context misuse = `0`；
+- Scrapy / Chromium connection-time pinning 安全验证。
 
-当前尚未存在自动检测代码，因此不得声称扫描器准确率已经通过。
+规则变化不得为了提高测试通过率偷偷改变含义。规则调整必须重新进入 Reviewer 校准。
 
-下一 Gate：
+当前仓库持久保存了规则、Fixture、真实网络校准与 G2 网络安全验证资产；项目侧完整 Scanner V0 产品源码的唯一持久位置仍需在进入产品集成前确认或恢复。
 
-`MTRS_MINIMAL_DETECTOR_PROTOTYPE`
-
-该阶段仍然只能做**测试工具**，不能视为商业扫描器开发恢复。
+这属于工程资产持久化问题，不重新打开理论 Gate。
 
 ---
 
 # 20. 当前成熟度
 
-当前：`v0.5.1 — Theory Frozen / Executable Fixtures Ready`
+当前：`v0.6.0 — Active Validated / Scanner V0 Evidence PASS`
 
-框架已冻结；后续只允许通过真实反例、Fixture 或实际数据修改边界。
+理论骨架与开发前规则体系已冻结。后续改进主要来自真实反例、更多真实 ISSUE、行为数据和实验，而不是继续堆叠抽象框架。
+
+项目产品化顺序：
+
+```text
+确认 / 恢复 Scanner V0 canonical source
+→ WordPress ↔ Scanner ↔ Top 3 本地集成
+→ 完整修复队列 / 模型解释
+→ 本地产品闭环
+→ VPS / 支付 / 生产 Gate
+```
 
 目标始终是：
 
