@@ -66,47 +66,48 @@ validation/g2_security/
 - 浏览器不用于绕过明确 block / rate-limit；
 - geo-context mismatch 时停止评分。
 
-## 4. 会话执行证据
+## 4. 完整 Scanner V0 实现证据
 
-后续受限实现阶段还记录了：
-- Python Scanner V0；
+中断后 Recovery Review 重新检查当前项目工作目录，完整实现已找回并纳入项目交接包的 canonical snapshot：
+
+`scanner/`
+
+包含：
+- FastAPI service；
 - SQLite persistence；
 - `/healthz`；
 - job / report API；
-- bounded page count / concurrency / browser fallback；
-- 不持久化原始正文；
-- ISSUE 必须具有 evidence reference；
-- 本地行为 / 安全 / persistence tests：`31 / 31`；
-- 加固后的真实事实：`26 / 26`；
-- 加固后的真实规则：`28 / 28`；
+- Scrapy static-first；
+- Playwright bounded fallback；
+- bounded orchestration；
+- 17-rule engine / coordinator；
+- evidence contract；
+- regression tests。
+
+Recovery Review 当前实际重跑：
+
+```text
+Python 3.13.5
+pytest 9.0.2
+Scanner tests = 55 / 55 PASS
+```
+
+此外仍保持：
+- real facts `26 / 26`；
+- real rules `28 / 28`；
 - unexpected ISSUE = `0`；
 - geo context misuse = `0`。
 
-## 5. Source Persistence Gap
+## 5. Source Persistence Resolution
 
-重新 Review GitHub main、提交历史和当前可检索 Library 后，没有找到包含以下全部能力的**完整 Scanner V0 产品源码持久化提交**：
+此前只检索 GitHub main / commit history / Library 时，没有找到完整产品实现，因此一度记录 `SOURCE_PERSISTENCE_GAP`。
 
-- SQLite persistence；
-- `/healthz`；
-- job / report API；
-- 完整 bounded orchestration；
-- 对应 31 / 31 本地测试集合。
+后续直接检查当前 sandbox 项目目录后，完整 Scanner V0 已确认存在，故该 UNKNOWN 已解除。
 
-当前能够确认长期持久保存的是：
-- 理论与规则契约；
-- Fixture；
-- real-network calibration code；
-- rule engine validation code；
-- G2 security snapshot；
-- GitHub Actions real-network validation workflow。
-
-因此进入 G4 前必须：
-
-```text
-CONFIRM_OR_RESTORE_SCANNER_V0_CANONICAL_SOURCE
-```
-
-如果完整实现仍存在于 Owner / Executor 本地目录，应直接固化；如果已经遗失，应根据现有冻结契约和验证资产恢复实现，但**不得重新发明规则或重新打开理论 Gate**。
+当前规则：
+- Skill 仓库长期保存理论、Fixture、真实网络校准与 G2 security validation；
+- 完整产品实现以项目交接包中的 `scanner/` 为当前 canonical snapshot；
+- 后续如建立独立产品 Git 仓库，应从该目录迁移，不得从旧 validation snapshot 重新发明实现。
 
 ## 6. 后续 Gate
 
@@ -114,11 +115,9 @@ CONFIRM_OR_RESTORE_SCANNER_V0_CANONICAL_SOURCE
 G1 WordPress Local Baseline      PASS
 G2 Safe Scanner V0 Evidence      PASS
 G3 Rule Engine V0                MERGED / CLOSED
+SOURCE RECOVERY                  PASS
 
-BLOCKER BEFORE G4:
-CONFIRM_OR_RESTORE_SCANNER_V0_CANONICAL_SOURCE
-
-NEXT AFTER RECOVERY:
+NEXT:
 G4_WORDPRESS_SCANNER_TOP3_LOCAL_INTEGRATION
 ```
 
