@@ -17,47 +17,27 @@ TARGETS = [
     {
         "site_id": "magic_spoon_variety_4",
         "url": "https://magicspoon.com/products/variety-pack-cereal-case",
-        "checks": [
-            ["price", 39.0],
-            ["price", 31.2],
-            ["text_any", ["cancel", "skip"]],
-        ],
+        "checks": [["price", 39.0], ["price", 31.2], ["text_any", ["cancel", "skip"]]],
     },
     {
         "site_id": "hellofresh_us",
         "url": "https://www.hellofresh.com/about/faq?search=Cancel",
-        "checks": [
-            ["text", "cancel"],
-            ["text", "skip"],
-            ["text_any", ["5 days", "five days"]],
-        ],
+        "checks": [["text", "cancel"], ["text", "skip"], ["text_any", ["5 days", "five days"]]],
     },
     {
         "site_id": "oura_membership_us",
         "url": "https://ouraring.com/membership",
-        "checks": [
-            ["price", 5.99],
-            ["price", 69.99],
-            ["text_any", ["first month", "one month", "1 month"]],
-        ],
+        "checks": [["price", 5.99], ["price", 69.99], ["text_any", ["first month", "one month", "1 month"]]],
     },
     {
         "site_id": "onepassword_personal",
         "url": "https://1password.com/pricing/personal",
-        "checks": [
-            ["price", 2.99],
-            ["price", 3.99],
-            ["text_any", ["14-day", "14 day", "14 days"]],
-        ],
+        "checks": [["price", 2.99], ["price", 3.99], ["text_any", ["14-day", "14 day", "14 days"]]],
     },
     {
         "site_id": "glossier_jp_skincare",
         "url": "https://www.glossier.com/en-jp/collections/skincare",
-        "checks": [
-            ["text", "filter"],
-            ["text", "sort"],
-            ["currency_any", ["JPY", "¥"]],
-        ],
+        "checks": [["text", "filter"], ["text", "sort"], ["currency_any", ["JPY", "¥"]]],
     },
 ]
 
@@ -99,7 +79,7 @@ class GoldSpider(scrapy.Spider):
         "CONCURRENT_REQUESTS": 2,
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,
         "DOWNLOAD_DELAY": 1.0,
-        "RANDOMIZE_DOWNLOAD_DELAY": True,
+        "DOWNLOAD_DELAY_JITTER": 0.5,
         "DOWNLOAD_TIMEOUT": 20,
         "RETRY_TIMES": 1,
         "REDIRECT_MAX_TIMES": 5,
@@ -110,7 +90,8 @@ class GoldSpider(scrapy.Spider):
         "FEEDS": {str(RAW): {"format": "jsonlines", "overwrite": True}},
     }
 
-    def start_requests(self):
+    async def start(self):
+        """Scrapy 2.13+ start hook. Keep crawl bounded to the five gold targets."""
         for target in TARGETS:
             yield scrapy.Request(
                 target["url"],
@@ -223,6 +204,5 @@ if __name__ == "__main__":
     process = CrawlerProcess()
     process.crawl(GoldSpider)
     process.start()
-    report = build_report()
-    # A calibration RETURN is not a CI infrastructure failure; preserve artifact and logs.
+    build_report()
     raise SystemExit(0)
