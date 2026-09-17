@@ -70,9 +70,9 @@ S8 留存与传播
 
 版本：`v0.6.0`
 
-状态：**Pre-development Foundation PASS / Scanner V0 Implementation Allowed**
+状态：**Active Validated / Scanner V0 Evidence PASS**
 
-理论骨架已经冻结。开发前规则、事实提取和真实网络端到端验证已经达到 Reviewer 通过条件。
+理论骨架已经冻结。开发前规则、事实提取、真实网络端到端验证，以及 Scanner V0 的安全验证证据已经达到 Reviewer 通过条件。
 
 当前验证资产：
 - 77 条完整知识规则；
@@ -84,36 +84,73 @@ S8 留存与传播
 - 真实事实断言：`26 / 26`；
 - 真实规则断言：`28 / 28`；
 - 意外 ISSUE：`0`；
-- 地区上下文误用：`0`。
+- 地区上下文误用：`0`；
+- Scrapy / Chromium 连接时固定解析验证；
+- WordPress 本地基线验证已成功。
 
 验证证据：
 - `validation/01-mtrs-rule-engine-synthetic-fixtures.md`
 - `validation/02-real-network-fact-to-rule-e2e.md`
+- `validation/03-g2-safe-scanner-v0-reviewer-pass.md`
 - `references/09-real-site-gold-calibration.md`
 
-开发前范围冻结：
+开发前范围历史冻结：
 - `references/10-pre-development-scope-freeze.md`
 
-## 当前 Gate
+## 当前 Gate 状态
 
 已通过：
 
-`PASS_PRE_DEVELOPMENT_FOUNDATION_2026-09-17`
+```text
+PASS_PRE_DEVELOPMENT_FOUNDATION_2026-09-17
+PASS_G2_SAFE_SCANNER_V0_EVIDENCE_2026-09-17
+PASS_G1_WORDPRESS_LOCAL_BASELINE_2026-09-17
+```
 
-下一 Gate：
+旧 `G3 Rule Engine v0` 已被开发前规则校准与 G2 实现吸收：
 
-`G2_SAFE_SCANNER_SERVICE_IMPLEMENTATION`
+`G3_RULE_ENGINE_V0 = MERGED / CLOSED`
+
+下一产品 Gate：
+
+`G4_WORDPRESS_SCANNER_TOP3_LOCAL_INTEGRATION`
+
+但进入 G4 前必须先完成源码恢复检查：
+
+> 当前 GitHub 主分支能够确认保存的是理论、Fixture、真实网络校准、G2 网络安全快照和 G1 WordPress 可重复验证资产；没有找到带 SQLite、/healthz、Job/Report API 的完整 Scanner V0 产品源码持久化提交。
+
+因此当前恢复要求是：
+
+`CONFIRM_OR_RESTORE_SCANNER_V0_CANONICAL_SOURCE`
+
+这不是重新做理论或重新跑 G2，而是把已经验证过的完整实现固化到唯一源码位置。
 
 ## HOLD 状态
 
-已经允许：
-- Scanner V0 的受限实现与测试环境开发。
-
 仍然 HOLD：
-- WordPress 产品集成；
-- 支付与付费解锁；
+- WordPress ↔ Scanner 产品集成，直到 Scanner canonical source 被确认或恢复；
+- 完整报告产品化；
+- 模型解释层；
+- 付费解锁；
+- 正式支付；
 - VPS 生产部署；
-- 正式用户扫描；
+- 正式用户生产扫描；
 - 商业上线。
 
-因此下一步不是做完整网站，而是把已经冻结的事实提取 + 17 条规则实现成一个安全、可回归、会在证据不足时停止判断的扫描服务。
+## 当前正确下一步
+
+```text
+统一项目单一真相
+↓
+确认 / 恢复 Scanner V0 完整源码
+↓
+G4 WordPress → Scanner → Top 3 本地闭环
+↓
+完整修复队列 / 模型解释
+↓
+本地产品闭环 PASS
+↓
+VPS Onboarding / Storage Gate
+```
+
+不要重复：理论调研、77 条规则建设、51 Fixture、真实网络 Gold 校准、G1 WordPress CI、G2 网络安全验证。
