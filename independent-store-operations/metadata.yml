@@ -2,8 +2,8 @@ slug: independent-store-operations
 display_name: Independent Store Operations（独立站运营系统）
 category: commerce-operations
 language: zh-CN
-version: 0.5.1
-status: theory-frozen-executable-fixtures
+version: 0.5.2
+status: theory-frozen-real-site-gold-prepared
 upstream:
   - independent-store-product-opportunity
 downstream:
