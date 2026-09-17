@@ -2,7 +2,7 @@
 name: independent-store-operations
 title: Independent Store Operations（独立站运营系统）
 description: 面向独立站 / DTC 的运营诊断、站内转化、信任、商品决策、结账、履约、留存、内容与经济性 Skill。先定位运营阶段与证据等级，再决定 FIX / MEASURE / RESEARCH / EXPERIMENT。
-version: 0.5.0
+version: 0.5.1
 language: zh-CN
 ---
 
@@ -41,7 +41,7 @@ language: zh-CN
 
 > **可重复、可信任、可盈利的价值交换。**
 
-所以始终记住：
+始终记住：
 
 ```text
 更多访问 ≠ 更多合格需求
@@ -57,17 +57,11 @@ language: zh-CN
 
 ## S1 Audience & Entry｜人群与入口
 
-问：
-- 来的人是不是目标用户？
-- 为什么现在来？
-- 来源 / 素材 / 搜索意图与落地页是否匹配？
+判断来的人是不是目标用户、为什么现在来、来源 / 素材 / 搜索意图是否与落地页匹配。
 
 ## S2 Findability｜商品发现
 
-问：
-- 用户知道这个站卖什么吗？
-- 能快速找到正确商品吗？
-- 导航、分类、搜索、筛选是否与目录规模匹配？
+判断用户能否理解网站卖什么，并快速找到正确商品；导航、分类、搜索、筛选必须与目录规模匹配。
 
 ## S3 Product Decision｜商品决策
 
@@ -89,44 +83,19 @@ language: zh-CN
 
 ## S5 Offer & Basket｜报价与购物篮
 
-检查：
-- 价格；
-- 套餐；
-- 数量；
-- 折扣；
-- 赠品；
-- 免邮门槛；
-- 购物篮价值结构。
+检查价格、套餐、数量、折扣、赠品、免邮门槛与购物篮价值结构。
 
 ## S6 Checkout & Payment｜结账与支付
 
-检查：
-- 总价；
-- 配送；
-- 字段；
-- 账号要求；
-- 支付方式；
-- 错误恢复；
-- 最终确认。
+检查总价、配送、字段、账号要求、支付方式、错误恢复与最终确认。
 
 ## S7 Fulfillment & Post-purchase｜履约与购买后
 
-检查：
-- 发货；
-- 状态通知；
-- 客服；
-- 退换；
-- 期待是否兑现。
+检查发货、状态通知、客服、退换与承诺兑现。
 
 ## S8 Retention & Advocacy｜留存与传播
 
-检查：
-- 补货；
-- 复购；
-- 互补商品；
-- 生命周期；
-- 社区；
-- 推荐。
+检查补货、复购、互补商品、生命周期、社区与推荐。
 
 横向系统：
 - Data
@@ -142,17 +111,10 @@ language: zh-CN
 
 ## 店铺证据 L0–L3
 
-### L0 — Observable Fact
-页面 / 技术事实。
-
-### L1 — Research-backed Risk
-事实 + 外部研究，只说明这是合理风险。
-
-### L2 — Store-specific Behavioral Evidence
-本店漏斗 / 订单 / 客服 / 退货等行为数据。
-
-### L3 — Causal Proof
-受控实验或可靠因果设计。
+- `L0 Observable Fact`：页面 / 技术事实；
+- `L1 Research-backed Risk`：事实 + 外部研究，只说明合理风险；
+- `L2 Store-specific Behavioral Evidence`：本店漏斗 / 订单 / 客服 / 退货等行为数据；
+- `L3 Causal Proof`：受控实验或可靠因果设计。
 
 禁止：
 
@@ -176,42 +138,19 @@ language: zh-CN
 ## H1 — 基础卫生规则
 
 明确技术 / 可用性 / 一致性缺陷。
-
 默认：`FIX`
-
-例：
-- 关键页面 4xx/5xx；
-- CTA 失效；
-- 表单无可访问标签；
-- 结构化价格与页面价格矛盾。
 
 ## C1 — 条件规则
 
 只有满足店型 / 商品 / 页面条件才启用。
-
 默认：`CHECK APPLICABILITY → FIX / MEASURE`
-
-例：
-- 大目录搜索；
-- 服饰尺码；
-- 跨境税费；
-- 订阅透明度。
 
 ## E1 — 商业实验规则
 
 没有通用最优答案。
-
 默认：`MEASURE / EXPERIMENT`
 
-例：
-- 定价；
-- 折扣；
-- 免邮门槛；
-- 免费退货；
-- CTA 文案；
-- 套装；
-- 弹窗；
-- 交叉销售。
+典型 E1：定价、折扣、免邮门槛、免费退货、CTA 文案、套装、弹窗、交叉销售。
 
 ---
 
@@ -240,17 +179,17 @@ language: zh-CN
 - `REGULATED`
 - `HYBRID_TRANSACTION`
 
-店型不确定：
+店型不确定时：
 
 `STORE_ARCHETYPE_UNCERTAIN`
 
-此时抑制高条件化规则。
+并抑制高条件化规则。
 
 ---
 
 # 6. 信息距离 P0–P4
 
-不只检查“有没有”，还检查用户做决定时离信息多远。
+不只检查“有没有”，还检查用户做决定时离信息多远：
 
 - `P0`：当前决策区；
 - `P1`：一次明显点击；
@@ -258,16 +197,7 @@ language: zh-CN
 - `P3`：帮助中心 / 多跳；
 - `P4`：未发现。
 
-越接近：
-- 金钱；
-- 自动续费；
-- 配送；
-- 退货；
-- 尺码；
-- 兼容；
-- 关键限制；
-
-越应该靠近当前决策。
+越接近金钱、自动续费、配送、退货、尺码、兼容、关键限制，越应该靠近当前决策。
 
 ---
 
@@ -280,34 +210,23 @@ language: zh-CN
 - `T5 PROMO_TO_STANDARD`：首期优惠 → 标准价；
 - `T6 MARKETPLACE_DEPENDENT`：第三方平台管理。
 
-订阅 / 混合交易至少理解：
-- 首次价格；
-- 后续价格；
-- 周期；
-- 自动续费；
-- 试用结束；
-- 取消；
-- 暂停 / 跳过；
-- 第三方管理；
-- 跨交易依赖。
+订阅 / 混合交易至少理解：首次价格、后续价格、周期、自动续费、试用结束、取消、暂停 / 跳过、第三方管理、跨交易依赖。
 
 ---
 
 # 8. 强制诊断协议
 
-收到独立站问题时，不先给“十大建议”。
+收到独立站问题时，不先给“十大建议”。按顺序：
 
-按顺序：
-
-1. **定义商业对象**：市场、商品、店型、客单、主要流量、当前目标；
-2. **检查数据可信度**；
-3. **分群**：source / landing / product / device / geo / new-returning；
-4. **定位 S1–S8**；
-5. **至少提出多个候选原因**；
-6. **标 L0–L3**；
-7. **检查信息距离 P0–P4**；
-8. **检查交易拓扑 T1–T6**；
-9. **找最高信息价值的下一条证据**；
+1. 定义商业对象：市场、商品、店型、客单、主要流量、当前目标；
+2. 检查数据可信度；
+3. 分群：source / landing / product / device / geo / new-returning；
+4. 定位 S1–S8；
+5. 至少提出多个候选原因；
+6. 标 L0–L3；
+7. 检查信息距离 P0–P4；
+8. 检查交易拓扑 T1–T6；
+9. 找最高信息价值的下一条证据；
 10. 选择：`FIX / MEASURE / RESEARCH / EXPERIMENT / HOLD / ESCALATE`。
 
 原则：
@@ -349,18 +268,7 @@ view_item_list
 
 > 用户现在承担的主要不确定性是什么？什么可信证据能降低它？
 
-Proof 可以是：
-- 评论；
-- UGC；
-- 第三方测试；
-- 认证；
-- 规格；
-- 演示；
-- 试用；
-- 质保；
-- 退款保证；
-- 案例；
-- 清楚限制。
+Proof 可以是评论、UGC、第三方测试、认证、规格、演示、试用、质保、退款保证、案例、清楚限制。
 
 “没有评论”不自动等于“没有 Proof”。
 
@@ -368,17 +276,7 @@ Proof 可以是：
 
 # 11. 内容运营
 
-内容优先从真实运营信号中产生：
-
-1. 搜索词；
-2. 站内搜索；
-3. 售前问题；
-4. 客服；
-5. 评论；
-6. 差评；
-7. 退货原因；
-8. 漏斗掉点；
-9. 实验结果。
+内容优先从真实运营信号产生：搜索词、站内搜索、售前问题、客服、评论、差评、退货原因、漏斗掉点、实验结果。
 
 形成：
 
@@ -422,12 +320,12 @@ Revenue
 - `EXPERIMENT_REQUIRED`
 
 公开扫描不得声称：
-- “每月损失 X 美元”；
-- “一定提升 X%”；
-- “这是真正根因”；
-- “评论一定是假”；
-- “流量质量一定差”；
-- “应该把价格改成 X”。
+- 每月损失 X 美元；
+- 一定提升 X%；
+- 这是真正根因；
+- 评论一定是假；
+- 流量质量一定差；
+- 应该把价格改成 X。
 
 ---
 
@@ -436,14 +334,14 @@ Revenue
 必须区分：
 
 - `ACCESS_OK`
+- `ACCESS_OK_WITH_GEO_CONTEXT`
 - `ACCESS_RATE_LIMITED`
 - `ACCESS_BLOCKED`
-- `ACCESS_GEO_REDIRECT`
 - `ACCESS_LOGIN_REQUIRED`
 - `ACCESS_JS_INCOMPLETE`
 - `ACCESS_UNKNOWN_FAILURE`
 
-任何非 `ACCESS_OK`：
+任何非完整访问状态：
 
 > 不得把“没扫描到”解释成“网站缺少”。
 
@@ -513,13 +411,59 @@ Definition
 
 ---
 
-# 18. 当前成熟度
+# 18. 首版最小可信规则集（MTRS）
 
-当前：`v0.5.0 — Theory Frozen / Calibrating`
+首版自动化不运行全部知识规则，只允许进入 17 条高可信规则：
 
-框架已冻结；后续通过真实站、正反样本和实际数据继续校准。
+- 2 条扫描 Gate；
+- 8 条通用事实型核心；
+- 2 条实物透明度规则；
+- 5 条订阅透明度规则。
 
-不要因为增加更多规则会让报告更长，就扩张规则库。
+详细检测契约：
+
+`references/09-mtrs-v0-detection-contract.md`
+
+可执行正反样本：
+
+`templates/mtrs-v0-fixture-matrix.csv`
+
+Fixture Schema：
+
+`templates/mtrs-fixture-schema.json`
+
+Gate：
+
+`references/10-mtrs-executable-fixture-gate.md`
+
+---
+
+# 19. v0.5.1 校准纪律
+
+当前已经定义：
+
+- 17 条规则；
+- 51 个正例 / 反例 / 边界 Fixture；
+- 统一结果枚举；
+- 每条 Fixture 的 Allowed Output 与 Forbidden Output；
+- Fail-closed Gate；
+- 未来真实站 Dry Run 的 Precision / Applicability / Claim Calibration 门槛。
+
+当前尚未存在自动检测代码，因此不得声称扫描器准确率已经通过。
+
+下一 Gate：
+
+`MTRS_MINIMAL_DETECTOR_PROTOTYPE`
+
+该阶段仍然只能做**测试工具**，不能视为商业扫描器开发恢复。
+
+---
+
+# 20. 当前成熟度
+
+当前：`v0.5.1 — Theory Frozen / Executable Fixtures Ready`
+
+框架已冻结；后续只允许通过真实反例、Fixture 或实际数据修改边界。
 
 目标始终是：
 
