@@ -66,9 +66,8 @@ jobs:
           php /tmp/wp-cli.phar theme install https://downloads.wordpress.org/theme/saaslauncher.2.0.18.zip \
             --path=/tmp/conversion-leak-audit-wp --activate
           test "$(php /tmp/wp-cli.phar theme get saaslauncher --path=/tmp/conversion-leak-audit-wp --field=version)" = "2.0.18"
-          test "$(php /tmp/wp-cli.phar theme get saaslauncher --path=/tmp/conversion-leak-audit-wp --field=status)" = "active"
 
-      - name: Seed baseline pages
+      - name: Seed project-local child theme and baseline pages
         env:
           WP_PATH: /tmp/conversion-leak-audit-wp
           RESULT_DIR: ${{ github.workspace }}/independent-store-operations/validation/g1_wordpress/results
@@ -76,6 +75,8 @@ jobs:
           rm -rf "$RESULT_DIR"
           mkdir -p "$RESULT_DIR"
           bash independent-store-operations/validation/g1_wordpress/seed-baseline.sh
+          test "$(php /tmp/wp-cli.phar theme get conversion-leak-audit-child --path=/tmp/conversion-leak-audit-wp --field=status)" = "active"
+          test "$(php /tmp/wp-cli.phar eval 'echo wp_is_block_theme() ? "YES" : "NO";' --path=/tmp/conversion-leak-audit-wp)" = "YES"
 
       - name: Start local HTTP runtime and verify pages
         run: |
@@ -99,12 +100,18 @@ jobs:
           check_page faq "http://127.0.0.1:8080/?page_id=$FAQ_ID"
           check_page blog "http://127.0.0.1:8080/?page_id=$BLOG_ID"
 
-          grep -q 'Find where your store makes buyers hesitate' "$RESULT_DIR/home.html"
-          grep -q 'https://yourstore.com' "$RESULT_DIR/home.html"
+          grep -q 'Your store may not need more traffic' "$RESULT_DIR/home.html"
+          grep -q 'data-cla-g1-placeholder="true"' "$RESULT_DIR/home.html"
+          grep -q 'aria-disabled="true"' "$RESULT_DIR/home.html"
+          grep -q 'cla-baseline-style-css' "$RESULT_DIR/home.html"
           grep -q 'How it works' "$RESULT_DIR/how.html"
           grep -q 'Demo report' "$RESULT_DIR/demo.html"
           grep -q 'Pricing' "$RESULT_DIR/pricing.html"
           grep -q 'Does this tell me exactly why people are not buying' "$RESULT_DIR/faq.html"
+          grep -q 'Insights' "$RESULT_DIR/blog.html"
+          ! grep -qi 'Sample Page' "$RESULT_DIR/home.html"
+          ! grep -qi 'Hello world' "$RESULT_DIR/blog.html"
+          ! grep -Eqi 'scanner[^<]{0,20}(connected|running)|paypal|stripe|pay now|checkout now' "$RESULT_DIR/home.html"
 
       - name: Write G1 evidence report
         run: |
@@ -113,10 +120,15 @@ jobs:
           {
             echo 'G1_WORDPRESS_BASELINE_EVIDENCE'
             echo "WORDPRESS_VERSION=$($WP core version)"
-            echo "THEME=saaslauncher"
-            echo "THEME_VERSION=$($WP theme get saaslauncher --field=version)"
-            echo "THEME_STATUS=$($WP theme get saaslauncher --field=status)"
+            echo "PARENT_THEME=saaslauncher"
+            echo "PARENT_THEME_VERSION=$($WP theme get saaslauncher --field=version)"
+            echo "PARENT_THEME_STATUS=$($WP theme get saaslauncher --field=status)"
+            echo "CHILD_THEME=conversion-leak-audit-child"
+            echo "CHILD_THEME_STATUS=$($WP theme get conversion-leak-audit-child --field=status)"
+            echo "BLOCK_THEME=$($WP eval 'echo wp_is_block_theme() ? "YES" : "NO";')"
             echo "PUBLISHED_PAGES=$($WP post list --post_type=page --post_status=publish --format=count)"
+            echo "FRONT_PAGE_ID=$($WP option get page_on_front)"
+            echo 'PLACEHOLDER_RENDERED_DISABLED=YES'
             echo 'SCANNER_INTEGRATED=NO'
             echo 'REAL_PAYMENT_ENABLED=NO'
             echo 'PRODUCTION_SECRETS_USED=NO'
