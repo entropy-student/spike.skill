@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'independent-store-operations/validation/real_network/**'
+      - 'independent-store-operations/validation/g2_security/**'
       - '.github/workflows/independent-store-ops-real-crawl.yml'
   workflow_dispatch:
 
@@ -28,6 +29,18 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install 'Scrapy==2.19.0' 'playwright>=1.55,<2'
           python -m playwright install chromium
+
+      - name: Prove Scrapy connection-time DNS pinning
+        env:
+          PYTHONPATH: independent-store-operations/validation/g2_security
+        run: |
+          python independent-store-operations/validation/g2_security/test_scrapy_connection_pinning.py
+
+      - name: Prove Chromium connection-time DNS pinning
+        env:
+          PYTHONPATH: independent-store-operations/validation/g2_security
+        run: |
+          python independent-store-operations/validation/g2_security/test_browser_connection_pinning.py
 
       - name: Run bounded Scrapy crawl
         run: |
