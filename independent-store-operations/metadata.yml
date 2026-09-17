@@ -3,7 +3,7 @@ display_name: Independent Store Operations（独立站运营系统）
 category: commerce-operations
 language: zh-CN
 version: 0.6.0
-status: active-validated-scanner-v0-evidence-pass
+status: active-validated-g4-integration-ready
 upstream:
   - independent-store-product-opportunity
 downstream:
