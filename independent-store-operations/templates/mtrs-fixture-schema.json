@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Independent Store Operations MTRS Fixture",
+  "type": "object",
+  "required": [
+    "fixture_id",
+    "rule_id",
+    "case_type",
+    "applicability",
+    "input_state",
+    "expected_result",
+    "allowed_output",
+    "forbidden_output"
+  ],
+  "properties": {
+    "fixture_id": {"type": "string", "minLength": 1},
+    "rule_id": {"type": "string", "minLength": 1},
+    "case_type": {"enum": ["positive", "negative", "edge"]},
+    "applicability": {"type": "string", "minLength": 1},
+    "input_state": {"type": "string", "minLength": 1},
+    "expected_result": {
+      "enum": [
+        "PASS",
+        "ISSUE",
+        "NOT_APPLICABLE",
+        "CONTEXT_INSUFFICIENT",
+        "AUDIT_INCOMPLETE",
+        "MANUAL_REVIEW_REQUIRED"
+      ]
+    },
+    "allowed_output": {"type": "string", "minLength": 1},
+    "forbidden_output": {"type": "string", "minLength": 1},
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "page_url": {"type": "string"},
+        "source_locator": {"type": "string"},
+        "evidence_level": {"enum": ["L0", "L1", "L2", "L3"]},
+        "information_proximity": {"enum": ["P0", "P1", "P2", "P3", "P4", "N/A"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}
