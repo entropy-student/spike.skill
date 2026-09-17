@@ -1,0 +1,8 @@
+slug: xianyu-xiaohongshu-virtual-product-opportunity
+display_name: Xianyu & Xiaohongshu Virtual Product Opportunity（闲鱼/小红书虚拟产品选品决策系统）
+category: product-research
+language: zh-CN
+version: 1.0.0
+status: active
+scope: xianyu-xiaohongshu-virtual-products
+upstream: independent-store-product-opportunity-v2.1
