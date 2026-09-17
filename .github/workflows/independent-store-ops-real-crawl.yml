@@ -39,9 +39,7 @@ jobs:
 
       - name: Run real-network fact-to-rule E2E
         run: |
-          cd independent-store-operations/validation/real_network
-          python real_rule_e2e.py
-          cd ../../..
+          python independent-store-operations/validation/real_network/real_rule_e2e.py
 
       - name: Show calibration reports
         if: always()
