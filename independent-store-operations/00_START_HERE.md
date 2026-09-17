@@ -68,8 +68,25 @@ S8 留存与传播
 
 ## 当前成熟度
 
-版本：`v0.5.0`
+版本：`v0.5.2`
 
-状态：**Theory Frozen / Calibrating**
+状态：**Theory Frozen / Real-site Gold Prepared**
 
-理论骨架已经冻结，后续主要通过真实站点、正反样本、人工审计和未来自动检测结果继续校准，不再频繁重构总框架。
+理论骨架已经冻结，后续主要通过真实站点、正反样本、人工审计和自动检测结果继续校准，不再频繁重构总框架。
+
+当前开发前验证资产：
+- 77 条完整知识规则；
+- 17 条首版可信规则；
+- 51 条规则判断 Fixture；
+- 静态事实提取 Fixture；
+- 动态浏览器事实 Fixture；
+- 多报价 / 订阅交易事实模型；
+- 11 个真实公开站点、52 条事实断言的 Gold Set。
+
+真实站 Gold Set：
+- `references/09-real-site-gold-calibration.md`
+- `templates/real-site-gold-v0.1.json`
+
+下一 Gate：`REAL_NETWORK_FACT_EXTRACTION_PRECISION`
+
+在能够运行真实网络 Scrapy / 浏览器抓取的执行环境中，自动抓取这些固定 URL，并与 Gold Set 对照。只有真实事实提取准确率达到目标、抓取失败误报为网站问题为 0，才允许继续向正式扫描器开发推进。
