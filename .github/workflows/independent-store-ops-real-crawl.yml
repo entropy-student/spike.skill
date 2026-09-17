@@ -13,7 +13,7 @@ permissions:
 jobs:
   real-crawl:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,16 +26,24 @@ jobs:
       - name: Install crawler dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install 'Scrapy==2.19.0'
+          python -m pip install 'Scrapy==2.19.0' 'playwright>=1.55,<2'
+          python -m playwright install chromium
 
-      - name: Run bounded public-site crawl
+      - name: Run bounded Scrapy crawl
         run: |
           python independent-store-operations/validation/real_network/crawl_gold.py
 
-      - name: Show calibration report
+      - name: Run browser fallback for incomplete targets
+        run: |
+          python independent-store-operations/validation/real_network/browser_fallback.py
+
+      - name: Show calibration reports
         if: always()
         run: |
+          echo '--- Scrapy report ---'
           cat independent-store-operations/validation/real_network/results/report.json || true
+          echo '--- Combined report ---'
+          cat independent-store-operations/validation/real_network/results/combined_report.json || true
 
       - name: Upload crawl evidence
         if: always()
