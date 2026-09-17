@@ -1,0 +1,14 @@
+slug: independent-store-operations
+display_name: Independent Store Operations（独立站运营系统）
+category: commerce-operations
+language: zh-CN
+version: 0.5.0
+status: theory-frozen-calibrating
+upstream:
+  - independent-store-product-opportunity
+downstream:
+  - acquisition-growth-radar
+  - short-form-spoken-script
+complements:
+  - payment-integration-governance
+  - vps-project-governance
