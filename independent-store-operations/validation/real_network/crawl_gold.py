@@ -14,31 +14,16 @@ RAW = OUT / "observed.jsonl"
 REPORT = OUT / "report.json"
 
 TARGETS = [
-    {
-        "site_id": "magic_spoon_variety_4",
-        "url": "https://magicspoon.com/products/variety-pack-cereal-case",
-        "checks": [["price", 39.0], ["price", 31.2], ["text_any", ["cancel", "skip"]]],
-    },
-    {
-        "site_id": "hellofresh_us",
-        "url": "https://www.hellofresh.com/about/faq?search=Cancel",
-        "checks": [["text", "cancel"], ["text", "skip"], ["text_any", ["5 days", "five days"]]],
-    },
-    {
-        "site_id": "oura_membership_us",
-        "url": "https://ouraring.com/membership",
-        "checks": [["price", 5.99], ["price", 69.99], ["text_any", ["first month", "one month", "1 month"]]],
-    },
-    {
-        "site_id": "onepassword_personal",
-        "url": "https://1password.com/pricing/personal",
-        "checks": [["price", 2.99], ["price", 3.99], ["text_any", ["14-day", "14 day", "14 days"]]],
-    },
-    {
-        "site_id": "glossier_jp_skincare",
-        "url": "https://www.glossier.com/en-jp/collections/skincare",
-        "checks": [["text", "filter"], ["text", "sort"], ["currency_any", ["JPY", "¥"]]],
-    },
+    {"site_id":"magic_spoon_variety_4","url":"https://magicspoon.com/products/variety-pack-cereal-case","checks":[["price",39.0],["price",31.2],["text_any",["cancel","skip"]]]},
+    {"site_id":"hellofresh_us","url":"https://www.hellofresh.com/about/faq?search=Cancel","checks":[["text","cancel"],["text","skip"],["text_any",["5 days","five days"]]]},
+    {"site_id":"oura_membership_us","url":"https://ouraring.com/membership","checks":[["price",5.99],["price",69.99],["text_any",["first month","one month","1 month"]]]},
+    {"site_id":"onepassword_personal","url":"https://1password.com/pricing/personal","checks":[["price",2.99],["price",3.99],["text_any",["14-day","14 day","14 days"]]]},
+    {"site_id":"glossier_us_skincare","url":"https://www.glossier.com/collections/skincare-staples","checks":[["text","filter"],["text","sort"],["text","add to bag"]]},
+    {"site_id":"allbirds_returns","url":"https://www.allbirds.com/pages/help","checks":[["text","30 days"],["text_any",["return shipping","shipping charges"]],["text","country of purchase"]]},
+    {"site_id":"ridge_warranty","url":"https://ridge.com/pages/warranty-policy","checks":[["text_any",["99-day return","99 day return"]],["text_any",["lifetime warranty","built for life"]]]},
+    {"site_id":"headspace_terms","url":"https://www.headspace.com/terms-and-conditions","checks":[["text_any",["free trial","free trials"]],["text_any",["automatically convert","automatic conversion"]],["text_any",["monthly","annual"]]]},
+    {"site_id":"oura_retail","url":"https://support.ouraring.com/hc/en-us/articles/18852337038227-Retail-Purchases","checks":[["price",5.99],["price",69.99],["text_any",["cancel your membership","continued charges"]]]},
+    {"site_id":"glossier_jp_skincare","url":"https://www.glossier.com/en-jp/collections/skincare","checks":[["text","filter"],["text","sort"],["currency_any",["JPY","¥"]]],"context_guard":True,"required_path_hint":"/en-jp/"},
 ]
 
 PRICE_RE = re.compile(r"(?:US\$|USD|\$|EUR|€|GBP|£|JPY|¥)\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)", re.I)
@@ -91,7 +76,6 @@ class GoldSpider(scrapy.Spider):
     }
 
     async def start(self):
-        """Scrapy 2.13+ start hook. Keep crawl bounded to the five gold targets."""
         for target in TARGETS:
             yield scrapy.Request(
                 target["url"],
@@ -111,6 +95,11 @@ class GoldSpider(scrapy.Spider):
         access_state = "ACCESS_OK" if status == 200 and body_len > 500 else "AUDIT_INCOMPLETE"
         if status in (403, 429):
             access_state = "ACCESS_BLOCKED_OR_RATE_LIMITED"
+        if 300 <= status < 400:
+            access_state = "REDIRECT_CONTEXT_INCOMPLETE"
+        path_hint = target.get("required_path_hint")
+        if path_hint and status == 200 and path_hint not in response.url:
+            access_state = "GEO_CONTEXT_MISMATCH"
         yield {
             "site_id": target["site_id"],
             "requested_url": target["url"],
@@ -149,41 +138,36 @@ def build_report() -> dict[str, Any]:
                 observed[row["site_id"]] = row
 
     rows = []
-    match = mismatch = incomplete = 0
+    match = mismatch = incomplete = context_guarded = 0
     for target in TARGETS:
         row = observed.get(target["site_id"])
         if not row or row.get("access_state") != "ACCESS_OK":
+            if target.get("context_guard") and row and row.get("access_state") in {"GEO_CONTEXT_MISMATCH","REDIRECT_CONTEXT_INCOMPLETE"}:
+                context_guarded += 1
+                rows.append({"site_id":target["site_id"],"state":row.get("access_state"),"status":row.get("status"),"final_url":row.get("final_url"),"checks":[]})
+                continue
             incomplete += 1
-            rows.append({
-                "site_id": target["site_id"],
-                "state": "AUDIT_INCOMPLETE",
-                "status": None if not row else row.get("status"),
-                "final_url": None if not row else row.get("final_url"),
-                "checks": [],
-            })
+            rows.append({"site_id":target["site_id"],"state":"AUDIT_INCOMPLETE","status":None if not row else row.get("status"),"final_url":None if not row else row.get("final_url"),"checks":[]})
             continue
         checks = []
         for kind, expected in target["checks"]:
             ok = check_fact(kind, expected, row)
             checks.append({"kind": kind, "expected": expected, "match": ok})
-            if ok:
-                match += 1
-            else:
-                mismatch += 1
-        rows.append({
-            "site_id": target["site_id"],
-            "state": "OBSERVED",
-            "status": row.get("status"),
-            "final_url": row.get("final_url"),
-            "body_len": row.get("body_len"),
-            "checks": checks,
-        })
+            match += int(ok)
+            mismatch += int(not ok)
+        rows.append({"site_id":target["site_id"],"state":"OBSERVED","status":row.get("status"),"final_url":row.get("final_url"),"body_len":row.get("body_len"),"checks":checks})
 
     total_scorable = match + mismatch
     agreement = match / total_scorable if total_scorable else None
+    scorable_targets = len(TARGETS) - sum(1 for t in TARGETS if t.get("context_guard"))
+    observed_scorable = sum(1 for r in rows if r["state"] == "OBSERVED" and not next(t for t in TARGETS if t["site_id"] == r["site_id"]).get("context_guard"))
+    coverage = observed_scorable / scorable_targets if scorable_targets else 0.0
     result = {
         "targets": len(TARGETS),
-        "observed_targets": len(TARGETS) - incomplete,
+        "scorable_targets": scorable_targets,
+        "observed_scorable_targets": observed_scorable,
+        "scorable_coverage": coverage,
+        "context_guarded_targets": context_guarded,
         "audit_incomplete_targets": incomplete,
         "matched_checks": match,
         "mismatched_checks": mismatch,
@@ -191,7 +175,7 @@ def build_report() -> dict[str, Any]:
         "rows": rows,
         "gate": (
             "PASS_CANDIDATE_REAL_NETWORK_STATIC_EXTRACTION"
-            if total_scorable and agreement is not None and agreement >= 0.95 and mismatch == 0
+            if total_scorable and agreement is not None and agreement >= 0.95 and mismatch == 0 and coverage >= 0.80
             else "RETURN_REAL_NETWORK_STATIC_EXTRACTION_CALIBRATION"
         ),
     }
