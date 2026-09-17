@@ -49,7 +49,6 @@ class ProbeSpider(scrapy.Spider):
         "DOWNLOAD_TIMEOUT": 20,
         "LOG_LEVEL": "ERROR",
         "DOWNLOADER_MIDDLEWARES": {"app.crawlers.safety_middleware.SafeURLMiddleware": 50},
-        "TWISTED_DNS_RESOLVER": "app.crawlers.pinned_resolver.PinnedResolver",
         "USER_AGENT": "ConversionLeakAuditG2PinProbe/0.2",
     }
 
@@ -61,7 +60,11 @@ class ProbeSpider(scrapy.Spider):
         remote = str(response.ip_address) if response.ip_address is not None else None
         observed.update({"pinned": pinned, "remote": remote, "status": response.status})
 
-process = CrawlerProcess()
+# Scrapy 2.19 reads TWISTED_DNS_RESOLVER as a reactor/process setting.
+# Spider custom_settings are too late for this setting.
+process = CrawlerProcess(settings={
+    "TWISTED_DNS_RESOLVER": "app.crawlers.pinned_resolver.PinnedResolver",
+})
 process.crawl(ProbeSpider)
 process.start()
 
