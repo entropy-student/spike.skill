@@ -30,17 +30,30 @@ jobs:
           python -m pip install 'Scrapy==2.19.0' 'playwright>=1.55,<2'
           python -m playwright install chromium
 
+      - name: Prepare evidence directory
+        run: |
+          mkdir -p independent-store-operations/validation/real_network/results
+
       - name: Prove Scrapy connection-time DNS pinning
+        continue-on-error: true
         env:
           PYTHONPATH: independent-store-operations/validation/g2_security
         run: |
-          python independent-store-operations/validation/g2_security/test_scrapy_connection_pinning.py
+          set -o pipefail
+          python independent-store-operations/validation/g2_security/test_scrapy_connection_pinning.py 2>&1 | tee independent-store-operations/validation/real_network/results/g2_scrapy_pinning.txt
 
       - name: Prove Chromium connection-time DNS pinning
+        continue-on-error: true
         env:
           PYTHONPATH: independent-store-operations/validation/g2_security
         run: |
-          python independent-store-operations/validation/g2_security/test_browser_connection_pinning.py
+          set -o pipefail
+          python independent-store-operations/validation/g2_security/test_browser_connection_pinning.py 2>&1 | tee independent-store-operations/validation/real_network/results/g2_browser_pinning.txt
+
+      - name: Enforce G2 connection pinning gate
+        run: |
+          grep -q 'PASS_G2_SCRAPY_CONNECTION_PINNING' independent-store-operations/validation/real_network/results/g2_scrapy_pinning.txt
+          grep -q 'PASS_G2_BROWSER_CONNECTION_PINNING' independent-store-operations/validation/real_network/results/g2_browser_pinning.txt
 
       - name: Run bounded Scrapy crawl
         run: |
@@ -57,6 +70,10 @@ jobs:
       - name: Show calibration reports
         if: always()
         run: |
+          echo '--- G2 Scrapy pinning ---'
+          cat independent-store-operations/validation/real_network/results/g2_scrapy_pinning.txt || true
+          echo '--- G2 Browser pinning ---'
+          cat independent-store-operations/validation/real_network/results/g2_browser_pinning.txt || true
           echo '--- Scrapy report ---'
           cat independent-store-operations/validation/real_network/results/report.json || true
           echo '--- Combined report ---'
