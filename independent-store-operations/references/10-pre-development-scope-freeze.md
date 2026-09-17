@@ -2,6 +2,8 @@
 
 日期：2026-09-17
 
+> **状态说明（2026-09-17 后续 Review）**：本文是开发前范围冻结的历史 Gate 记录，保留用于审计。本文末尾原写的 `G2_SAFE_SCANNER_SERVICE_IMPLEMENTATION` 已在后续执行中完成 Reviewer 证据验收，不再是当前 NEXT。当前状态请以 `../00_START_HERE.md` 与 `../validation/03-g2-safe-scanner-v0-reviewer-pass.md` 为准。
+
 ## Reviewer 最终判断
 
 开发前理论与验证基础：
@@ -136,7 +138,7 @@ context misuse        0
 9. 更多真实 ISSUE 校准；
 10. WordPress 接口安全审查。
 
-## 下一 Gate
+## 当时的下一 Gate（历史记录）
 
 `G2_SAFE_SCANNER_SERVICE_IMPLEMENTATION`
 
@@ -144,4 +146,16 @@ context misuse        0
 
 > **能够安全接收公开网址、提取可验证事实、运行冻结规则、返回结构化证据，并严格知道什么时候不该下结论的扫描服务。**
 
-通过 G2 后，才考虑结果页 / WordPress 集成。
+## 后续状态
+
+后续 Review 已确认：
+
+```text
+G2_SAFE_SCANNER_V0 = REVIEWER EVIDENCE PASS
+G1_WORDPRESS_LOCAL_BASELINE = PASS
+G3_RULE_ENGINE_V0 = MERGED / CLOSED
+NEXT = CONFIRM_OR_RESTORE_SCANNER_V0_CANONICAL_SOURCE
+THEN = G4_WORDPRESS_SCANNER_TOP3_LOCAL_INTEGRATION
+```
+
+注意：完整 Scanner V0 产品源码的唯一持久位置尚需确认；这属于源码资产恢复问题，不重新打开本开发前理论 Gate。
