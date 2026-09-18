@@ -109,7 +109,7 @@ Reviewer PASS / RETURN
 7. **生产部署显式选择 canonical manifest**，Docker Compose 不依赖默认文件；写前 render/validate，写后验证 running image/release identity。
 8. **功能 PASS ≠ 资源 PASS**：记录磁盘、镜像、BuildKit/cache、browser runtime、backup 的 before/after。
 9. **禁止 casual broad prune**：默认禁止 `docker system prune -a`、`docker image prune -a` 以及 volume/network broad prune。
-10. **首次真实业务动作必须 Canary**：单 target、动作上限、短 expiry、central guard、restart/idempotency 验证。
+10. **首次真实业务动作必须 Canary**：单 target、动作上限、短 expiry、central guard、restart/idempotency 验证；真实支付/恢复还必须遵守 Provider Canary & Recovery Contract rev2，禁止 ambiguous/partial commit 后盲目重放。
 11. **REAUTH success ≠ 自动恢复业务**：重新认证后还要 read-only 验证与显式 controlled resume。
 12. **上线后的优化进入 Change Gate**，不重开整套 onboarding。
 13. **Storage Layout 必须先冻结再上线**：程序、持久数据、备份与 Shared Infra 分层；任何新项目进入 Shared VPS 前建立 `PROJECT_STORAGE_MANIFEST.md`。
@@ -166,17 +166,35 @@ Target Host Reality Contract rev1 用来约束一个容易被忽略的风险：*
 
 ## Source of Truth 顺序
 
-发生冲突时：
+先区分规则和项目事实。
+
+### Governance 规则
+
+默认唯一 canonical source：
+
+```text
+GitHub: entropy-student/spike.skill
+Path: /vps-project-governance
+```
+
+冲突优先级：
 
 1. Owner 最新明确指令；
-2. Shared VPS Contract（如适用）；
-3. 当前项目 `REVIEWER_HANDOFF.md`；
-4. Reviewer 当前 Gate Prompt / decision；
-5. `EXECUTION_EVIDENCE.md`；
-6. `EXECUTOR_HANDOFF.md`；
-7. README / 历史文档 / 聊天。
+2. active Reviewer 当前明确 override / pinned addendum；
+3. GitHub canonical Governance latest；
+4. 本地 Skill / 项目包里的历史 Governance copy；
+5. README snapshot / 历史聊天。
 
-Governance 管规则；Handoff 属于具体项目或基础设施。
+Reviewer override 是临时的；结束后自动恢复 GitHub latest。本地 copy 只作为 cache，不作为第二个 Source of Truth。
+详见 [`references/GOVERNANCE_SOURCE_POLICY.md`](./references/GOVERNANCE_SOURCE_POLICY.md)。
+
+### 项目事实
+
+项目现在“实际发生了什么”以当前 Reviewer decision/Handoff、fresh authoritative read-back、
+accepted Evidence、Executor Handoff 的证据链为准。Evidence 比 Handoff 更新时，下一次 consequential Gate
+前由 Reviewer reconcile/synchronize，不删除历史 Evidence。
+
+Governance 管规则；Handoff/Evidence 管具体项目或基础设施事实。
 
 ---
 
@@ -194,6 +212,8 @@ vps-project-governance/
 │   ├── SSH_AND_DELEGATED_SECRET_OPERATIONS.md
 │   ├── STORAGE_LAYOUT_CONTRACT.md
 │   ├── TARGET_HOST_REALITY_CONTRACT.md
+│   ├── PRODUCTION_PROVIDER_CANARY_AND_RECOVERY_CONTRACT.md
+│   ├── GOVERNANCE_SOURCE_POLICY.md
 │   └── USAGE_SCENARIOS.md
 └── templates/
     ├── REVIEWER_HANDOFF_TEMPLATE.md
@@ -219,7 +239,7 @@ SSH/Delegated Secret Operations rev1 也是 operational addendum：它登记可�
 SSH trust metadata，并允许无命令操作能力的 Owner 对 exact allowlist 做显式委托。
 SSH contract 已验证；delegated Secret provisioning 与 DPAPI CurrentUser recovery 已在 Unified Pay production-like Gate 验证，但前者仍需 explicit Owner authorization，后者仍受 Windows profile failure-domain 限制。
 
-Target Host Reality Contract rev1 同样作为 operational addendum：它来自 DujiaoNext / Unified Pay Windows host 的真实反例，补上 execution-environment 与 target-host 真实性的 Evidence boundary，不改变既有角色与 PASS/RETURN 语义。
+Target Host Reality Contract rev2 同样作为 operational addendum：它来自 DujiaoNext / Unified Pay Windows host 的真实反例，补上 execution-environment 与 target-host 真实性的 Evidence boundary，不改变既有角色与 PASS/RETURN 语义。
 
 ---
 
@@ -230,11 +250,13 @@ Shared VPS Infrastructure  I0-I7 PASS / SEALED
 Xianyu                     X0-X7 FINAL PASS / PRODUCTION SEALED
 Post-X7 Image Slimming     Change Gate PASS
 Storage Layout Contract    rev1 ACTIVE
-SSH Connection Contract    rev1 ACTIVE / VALIDATED
-Delegated Secret Provision rev1 VALIDATED-ON-UNIFIED-PAY / EXPLICIT-AUTH-ONLY
+SSH Connection Contract    rev2 ACTIVE / VALIDATED
+Delegated Secret Provision rev2 VALIDATED-ON-UNIFIED-PAY / EXPLICIT-AUTH-ONLY
 DPAPI Recovery Pattern     VALIDATED-ON-UNIFIED-PAY / PROFILE-BOUND
-Target Host Reality        rev1 ACTIVE / VALIDATED-ON-DUJIAONEXT-WINDOWS-HOST
-Governance v0.1.6          ACTIVE
+Target Host Reality        rev2 ACTIVE / VALIDATED-ON-DUJIAONEXT-WINDOWS-HOST
+Provider Canary/Recovery   rev2 ACTIVE / VALIDATED-ON-DUJIAONEXT-ALIPAY-R16
+Governance Source Policy   rev1 ACTIVE / GITHUB-CANONICAL
+Governance core v0.1.6     ACTIVE
 ```
 
 v0.1.6 暂作为当前基线。不要因为每个小事故频繁改 Governance；先收集跨项目可复用、经过真实验证的模式，再批量升级。
