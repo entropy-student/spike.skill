@@ -2,7 +2,7 @@
 name: vps-project-governance
 description: >
   VPS/Docker/Shared VPS 项目交付治理纲领 v0.1.6（Owner-Reviewer-Executor 闭环、Gate 流程、
-  证据与回滚标准、Secret 策略、SSH 连接契约、存储布局契约）。当任务涉及：新项目部署到 VPS/Docker/共享服务器、
+  证据与回滚标准、Secret 策略、SSH/存储契约、Provider Transaction Recovery rev2、Governance Source Policy rev1）。当任务涉及：新项目部署到 VPS/Docker/共享服务器、
   接手状态不明的已有项目、已上线项目修 Bug/升级依赖/改配置/迁移数据、生成或审核 Executor 执行任务与证据、
   多项目共用 SSH/UFW/Docker daemon/80-443/Caddy/cloudflared、自动化/浏览器 Agent/支付/数据库项目、
   换聊天或换 Agent 后继续推进项目时使用。
@@ -11,7 +11,7 @@ description: >
 # VPS Project Governance（VPS 项目管理规范） v0.1.6
 
 > 用于管理 “Reviewer / Execution Agent / Evidence / PASS-RETURN” 闭环的工程交付治理 Skill。  
-> Storage Layout Contract rev1, SSH/Delegated Secret Operations rev1, and Target Host Reality Contract rev1 are operational addenda to v0.1.6.
+> Storage Layout Contract rev1, SSH/Delegated Secret Operations rev2, Target Host Reality Contract rev2, Production Provider Canary and Recovery Contract rev2, and Governance Source Policy rev1 are operational addenda to v0.1.6.
 
 ---
 
@@ -103,15 +103,40 @@ Executor 是受限执行角色。
 
 ## 3. Source of Truth
 
-发生冲突时按以下顺序：
+先区分 **Governance 规则真相** 与 **项目事实真相**。
+
+### Governance 规则真相
+
+默认 canonical source：
+
+```text
+GitHub: entropy-student/spike.skill
+Path: /vps-project-governance
+```
+
+规则冲突优先级：
 
 1. Owner 当前最新明确指令；
-2. Shared VPS Contract（如适用）；
-3. 项目 `REVIEWER_HANDOFF.md`；
-4. 当前 Reviewer Gate Prompt / decision；
-5. `EXECUTION_EVIDENCE.md`；
-6. `EXECUTOR_HANDOFF.md`；
-7. README / 历史设计 / 聊天。
+2. active Reviewer 当前明确 override / pinned version / Gate-specific addendum；
+3. GitHub canonical Governance latest；
+4. 本地 Skill、副本、项目包中的历史 Governance copy；
+5. README snapshot / 历史聊天。
+
+Reviewer override 必须是 bounded/explicit 的；override 结束后自动恢复 GitHub latest。
+本地 Governance Skill 只是 cache，不得长期作为第二个 Source of Truth。
+详细规则见 `references/GOVERNANCE_SOURCE_POLICY.md`。
+
+### 项目事实真相
+
+对于“某项目现在实际上发生了什么”，优先依赖：
+
+1. 当前 accepted Reviewer decision / `REVIEWER_HANDOFF.md`；
+2. fresh authoritative read-back + accepted `EXECUTION_EVIDENCE.md`；
+3. `EXECUTOR_HANDOFF.md`；
+4. README / 历史设计 / 聊天。
+
+如果 Executor Evidence 已推进而 Reviewer Handoff 暂时滞后，下一次 consequential Gate 前必须由 Reviewer
+reconcile/synchronize current truth；不得通过删除历史 Evidence 来制造一致性。
 
 `PROJECT_HANDOFF.md` 仅作为 legacy compatibility name；current 项目统一收敛到 `REVIEWER_HANDOFF.md`，不得维护两份竞争的 Reviewer truth。
 
@@ -555,7 +580,7 @@ RETURN_OWNER_ACTION_REQUIRED
 - `PROVISIONAL`：理由充分但未完整验证；
 - `CANDIDATE`：单次观察，不急于固化。
 
-当前 v0.1.6 是 Xianyu production-closeout validated baseline。Storage Layout Contract rev1、SSH/Delegated Secret Operations rev1 与 Target Host Reality Contract rev1 均作为 operational addenda，不单独升级主版本。SSH connection contract 已验证；delegated provisioning 与 DPAPI CurrentUser recovery 已在 Unified Pay production-like Gate 验证，但仍分别受 explicit Owner authorization 与 Windows profile failure-domain 限制；Target Host Reality 已在 DujiaoNext / Unified Pay Windows host 反例中验证。
+当前 v0.1.6 仍是 core baseline。Storage Layout Contract rev1、SSH/Delegated Secret Operations rev2、Target Host Reality Contract rev2、Production Provider Canary and Recovery Contract rev2、Governance Source Policy rev1 均作为 operational addenda，不因单次 incident 频繁改主版本。Provider Recovery rev2 已在 DujiaoNext Alipay R16 真实恢复链路验证 exact-cardinality、fresh recheck、full-invariant recovery、no-blind-replay、diagnostic parity 与 incident-tool containment；跨 Provider 泛化仍按 Contract 标为 PROVISIONAL。
 
 ---
 
@@ -563,22 +588,24 @@ RETURN_OWNER_ACTION_REQUIRED
 
 真正执行本 Skill 时：
 
-1. 先读本 `SKILL.md`；
-2. 读 `GOVERNANCE_HANDOFF.md`，确认 active baseline/addenda；
-3. 需要完整规则时读 `references/GOVERNANCE_V0_1_6.md`；
-4. 只要项目将部署/已经部署到 Shared VPS，必须读 `references/STORAGE_LAYOUT_CONTRACT.md`；
-5. 涉及 SSH 连接恢复、Secret 创建/注入/备份/恢复时，必须读 `references/SSH_AND_DELEGATED_SECRET_OPERATIONS.md`；
-6. 只要 Gate 声称修改真实宿主机绝对路径、ACL、service、Docker daemon、端口或 Secret staging，必须读 `references/TARGET_HOST_REALITY_CONTRACT.md`；
-7. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
-8. 新项目按需使用 `templates/`，Shared VPS 项目必须建立 `PROJECT_STORAGE_MANIFEST.md` 与读取唯一 `SHARED_VPS_HANDOFF.md`；
-9. 最后读当前项目 Handoff 和当前 Gate Prompt。
+1. 先按 `references/GOVERNANCE_SOURCE_POLICY.md` 确认 canonical Governance source；默认读取 GitHub latest，除非 active Reviewer 明确 pin/override；
+2. 读本 `SKILL.md`；
+3. 读 `GOVERNANCE_HANDOFF.md`，确认 active core baseline/addenda；
+4. 需要完整 core 规则时读 `references/GOVERNANCE_V0_1_6.md`；
+5. 只要项目将部署/已经部署到 Shared VPS，必须读 `references/STORAGE_LAYOUT_CONTRACT.md`；
+6. 涉及 SSH 连接恢复、Secret 创建/注入/备份/恢复时，必须读 `references/SSH_AND_DELEGATED_SECRET_OPERATIONS.md`；
+7. 只要 Gate 声称修改真实宿主机绝对路径、ACL、service、Docker daemon、端口或 Secret staging，必须读 `references/TARGET_HOST_REALITY_CONTRACT.md`；
+8. 只要涉及真实 Provider/payment/webhook/callback/refund/reconciliation/fulfillment 或 consequential transaction recovery，必须读 `references/PRODUCTION_PROVIDER_CANARY_AND_RECOVERY_CONTRACT.md`；
+9. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
+10. 新项目按需使用 `templates/`，Shared VPS 项目必须建立 `PROJECT_STORAGE_MANIFEST.md` 与读取唯一 `SHARED_VPS_HANDOFF.md`；
+11. 最后读当前项目 Handoff、最新 accepted Evidence 和当前 Gate Prompt。
 
-不要先从聊天历史猜当前状态。
+不要先从聊天历史或 stale local Governance copy 猜当前状态。
 
 
 ---
 
-## 23. Target Host Reality Contract rev1
+## 23. Target Host Reality Contract rev2
 
 当 Executor 与 Owner 真实主机可能不在同一 execution environment 时，**目标宿主机真实性本身就是 Evidence boundary**。
 
