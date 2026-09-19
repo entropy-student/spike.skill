@@ -1,0 +1,16 @@
+name: jingsui-story-video-director
+display_name: Jingsui Story Video Director（景岁式故事漫画视频导演）
+description: 基于多条真实旁白与完整视频样本校准的第一人称故事漫画视频生产 Skill，负责主题切口、口播、SRT、Visual Beat、分镜、生图计划和剪辑 QA。
+version: 3.4.0
+status: calibrating
+language:
+  - zh-CN
+  - en
+capabilities:
+  - spoken-script
+  - srt
+  - storyboard
+  - visual-beat
+  - image-generation-planning
+  - comic-video
+notes: "正式生产使用原创 IP；不复制参考创作者的角色、原句、既有段子或既有镜头。"

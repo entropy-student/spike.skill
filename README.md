@@ -6,7 +6,7 @@
 
 **不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
 
-![Skills](https://img.shields.io/badge/skills-12-blue?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-13-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
 ![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
 
@@ -32,6 +32,7 @@
 | 🎬 **Narrative Motion Semantics（叙事动效语义库）** | 根据流程、时间、对比、因果语义选择信息拓扑、Template ID 与动效表达 | **Incomplete** | [进入](./narrative-motion-semantics/) |
 | 🎥 **TalkCraft Design Orchestrator（TalkCraft 视觉编排器）** | 在不修改 video-talkcraft 的前提下增加视觉风格选择与 SHOTBOOK 素材确认，并可接入 awesome-design-md | **v1.0.0 Frozen** | [进入](./video-talkcraft-design-orchestrator/) |
 | 🎞️ **Aroll Video Maker（A-roll 视频生成器）** | 用配音主时间轴 + Semantic Director 解耦“句子、画面、镜头、图片”，在固定人物与画风下制作 16:9 横屏插画叙事视频；每个真正的新视觉状态最多生成 1 张彩色母图，其余镜头变化交给 Remotion/CSS | **v0.1.0 Calibrating** | [进入](./aroll-video-maker/) |
+| 🎞️ **Jingsui Story Video Director（景岁式故事漫画视频导演）** | 基于真实旁白与完整视频样本校准，把第一人称故事口播转成 SRT、Visual Beat、漫画分镜、生图计划与剪辑 QA；正式生产使用原创 IP | **v3.4.0 Calibrating** | [进入](./jingsui-story-video-director/) |
 
 ---
 
