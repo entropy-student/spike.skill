@@ -149,7 +149,7 @@ locked spoken script
 
 1. **One brain, many workers**：Worker 不互相自由改上游。
 2. **Knowledge before style**：Writer 不得改 locked KnowledgeCore。
-3. **Timing before Director**：Production SRT 在 G4/Director 之前完成。
+3. **Planned Timing before Director; Final Timing after TTS**：Director 消费 planned timeline；真实 TTS 后由 Runtime Timeline Resolver 自动生成 final timeline。
 4. **Visual meaning before prompt**：Director 决定画面意义，Frame Blueprint 决定注意力结构，Asset Compiler 再生成 prompt/edit row。
 5. **Reference truth outranks generated continuity**：上一张生成图永远不是角色身份真相。
 6. **Pilot is calibration-only**：关键帧人工抽样不是每期必经 Gate。
@@ -164,15 +164,16 @@ locked spoken script
 2. `references/PIPELINE.md`
 3. `references/WRITER_CONTRACT.md`
 4. `references/TIMING_COMPILER.md`
-5. `references/DIRECTOR_LANGUAGE.md`
-6. `references/VIEWPOINT_GRAMMAR.md`
-7. `references/FRAME_BLUEPRINT.md`
-8. `references/CHARACTER_IDENTITY_CONTRACT.md`
-9. `references/ASSET_COMPILER.md`
-10. `references/EXECUTOR_CONTRACT.md`
-11. `references/QA_AND_RETURN_CODES.md`
-12. 当前 Domain Adapter / Profile / Provider Adapter
-13. 当前 runtime Calendar / Registry / episode state
+5. `references/TIMELINE_RESOLVER.md`
+6. `references/DIRECTOR_LANGUAGE.md`
+7. `references/VIEWPOINT_GRAMMAR.md`
+8. `references/FRAME_BLUEPRINT.md`
+9. `references/CHARACTER_IDENTITY_CONTRACT.md`
+10. `references/ASSET_COMPILER.md`
+11. `references/EXECUTOR_CONTRACT.md`
+12. `references/QA_AND_RETURN_CODES.md`
+13. 当前 Domain Adapter / Profile / Provider Adapter
+14. 当前 runtime Calendar / Registry / episode state
 
 不要从 stale 项目历史推断当前规则。
 
