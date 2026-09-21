@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://entropy-student.local/story-showrunner/visual-beat.schema.json",
+  "title": "Story Showrunner Visual Beat v0.5",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "visual_beat_id",
+    "semantic_shot_id",
+    "sequence_id",
+    "start",
+    "end",
+    "duration",
+    "timing_source",
+    "narration_fragment",
+    "image_state",
+    "inherited_visual_intention",
+    "local_visual_intention",
+    "shot_function",
+    "shot_size",
+    "pov_mode",
+    "camera_angle",
+    "image_relation_grammar",
+    "visual_intensity"
+  ],
+  "properties": {
+    "visual_beat_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "semantic_shot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sequence_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "start": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Exact visual-beat start on the locked Production SRT / authored-pause timeline."
+    },
+    "end": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Exact visual-beat end on the locked Production SRT / authored-pause timeline."
+    },
+    "duration": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Derived visual-beat duration; Director may map visual states inside spoken windows but may not change speech timing."
+    },
+    "timing_source": {
+      "type": "string",
+      "enum": [
+        "PRODUCTION_SRT"
+      ]
+    },
+    "narration_fragment": {
+      "type": "string"
+    },
+    "image_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inherited_visual_intention": {
+      "type": "string",
+      "minLength": 1
+    },
+    "local_visual_intention": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shot_function": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shot_size": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pov_mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "camera_angle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "image_relation_grammar": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visual_intensity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pov_reason": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
