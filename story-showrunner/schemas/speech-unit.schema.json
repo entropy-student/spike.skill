@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://entropy-student.local/story-showrunner/speech-unit.schema.json",
-  "title": "Story Showrunner Speech Unit v0.1",
+  "title": "Story Showrunner Speech Unit v0.2",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -36,7 +36,10 @@
       ]
     },
     "pace_class": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "enum": [
         "SLOW_NORMAL",
         "NORMAL",
@@ -56,7 +59,7 @@
     },
     "predicted_speech_duration": {
       "type": "number",
-      "exclusiveMinimum": 0
+      "minimum": 0
     },
     "authored_pause_after": {
       "type": "number",
@@ -70,6 +73,48 @@
         "string",
         "null"
       ]
+    },
+    "visual_beat_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "paragraph_range": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "features": {
+      "type": "object"
+    },
+    "allocated_window_duration": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "legacy_semantic_prior_duration": {
+      "type": "number",
+      "minimum": 0
+    },
+    "allocation_rule": {
+      "type": "string"
+    },
+    "applied_profile_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mixed_token_rule_applied": {
+      "type": "boolean"
+    },
+    "timing_source": {
+      "type": "string"
+    },
+    "tts_required": {
+      "type": "boolean"
     }
   }
 }
