@@ -150,7 +150,7 @@ locked spoken script
 1. **One brain, many workers**：Worker 不互相自由改上游。
 2. **Knowledge before style**：Writer 不得改 locked KnowledgeCore。
 3. **Timing before Director**：Production SRT 在 G4/Director 之前完成。
-4. **Visual meaning before prompt**：G4 决定画面意义，Frame Blueprint 决定注意力结构，G5 再生成 prompt。
+4. **Visual meaning before prompt**：Director 决定画面意义，Frame Blueprint 决定注意力结构，Asset Compiler 再生成 prompt/edit row。
 5. **Reference truth outranks generated continuity**：上一张生成图永远不是角色身份真相。
 6. **Pilot is calibration-only**：关键帧人工抽样不是每期必经 Gate。
 7. **Fail closed**：无法满足 contract 时 RETURN，不得静默猜。
