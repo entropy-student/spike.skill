@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://entropy-student.local/story-showrunner/speech-unit.schema.json",
+  "title": "Story Showrunner Speech Unit v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "speech_unit_id",
+    "text",
+    "timing_kind",
+    "pace_class",
+    "lock_class",
+    "predicted_speech_duration",
+    "authored_pause_after"
+  ],
+  "properties": {
+    "speech_unit_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timing_kind": {
+      "type": "string",
+      "enum": [
+        "NORMAL",
+        "BUILD",
+        "BUILD_PATTERN",
+        "PUNCH_SETUP",
+        "PUNCH",
+        "REVERSAL",
+        "REACTION",
+        "FINAL"
+      ]
+    },
+    "pace_class": {
+      "type": "string",
+      "enum": [
+        "SLOW_NORMAL",
+        "NORMAL",
+        "FAST_NORMAL",
+        "FAST_CLEAR",
+        "CONTROLLED",
+        "FINAL"
+      ]
+    },
+    "lock_class": {
+      "type": "string",
+      "enum": [
+        "HARD_ANCHOR",
+        "SEMANTIC_RANGE",
+        "ELASTIC"
+      ]
+    },
+    "predicted_speech_duration": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "authored_pause_after": {
+      "type": "number",
+      "minimum": 0
+    },
+    "voice_profile_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
