@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://entropy-student.local/story-showrunner/visual-beat.schema.json",
-  "title": "Story Showrunner Visual Beat v0.5",
+  "title": "Story Showrunner Visual Beat v0.6",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -39,12 +39,12 @@
     "start": {
       "type": "number",
       "minimum": 0,
-      "description": "Exact visual-beat start on the locked Production SRT / authored-pause timeline."
+      "description": "Planned or resolved visual-beat start according to timing_source. Durable production logic should also carry semantic anchors."
     },
     "end": {
       "type": "number",
       "exclusiveMinimum": 0,
-      "description": "Exact visual-beat end on the locked Production SRT / authored-pause timeline."
+      "description": "Planned or resolved visual-beat end according to timing_source. Final absolute time may change after real TTS."
     },
     "duration": {
       "type": "number",
@@ -54,7 +54,8 @@
     "timing_source": {
       "type": "string",
       "enum": [
-        "PRODUCTION_SRT"
+        "PLANNED_PRODUCTION_SRT",
+        "RESOLVED_RUNTIME_TIMELINE"
       ]
     },
     "narration_fragment": {
