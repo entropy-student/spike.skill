@@ -19,7 +19,8 @@ Check:
 
 ### Timing QA
 Check:
-- Production SRT derives from locked script
+- planned Production SRT derives from locked script
+- FINAL_SUBTITLES / FINAL_TIMELINE derive from real TTS through Runtime Timeline Resolver
 - no overlap/order errors
 - semantic pace/pauses preserved
 - Voice Profile safety constraints satisfied
@@ -77,8 +78,10 @@ Check:
 ### Timing
 - `RETURN_TIMING_INFEASIBLE`
 - `RETURN_TIMING_PROFILE_CLASS_UNSUPPORTED`
+- `VOICE_TIMING_PROFILE_DRIFT` (diagnostic unless locked constraints become infeasible)
 - `RETURN_VOICE_TIMING_PROFILE_MISS`
 - `RETURN_TIMING_VISUAL_CONFLICT`
+- `RETURN_TIMELINE_RESOLUTION_INFEASIBLE`
 
 ### Director
 - `RETURN_SCRIPT_COVERAGE_GAP`
