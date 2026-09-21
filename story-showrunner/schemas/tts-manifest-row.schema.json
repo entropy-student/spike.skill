@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://entropy-student.local/story-showrunner/tts-manifest-row.schema.json",
+  "title": "Story Showrunner TTS Manifest Row v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "speech_unit_id",
+    "text",
+    "start",
+    "end",
+    "timing_kind",
+    "pace_class",
+    "generation_speed",
+    "voice_profile_id",
+    "seed",
+    "reference_audio_resource_id",
+    "reference_text_resource_id",
+    "authored_pause_after",
+    "allowed_alignment_tolerance_ms"
+  ],
+  "properties": {
+    "speech_unit_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "start": {
+      "type": "number",
+      "minimum": 0
+    },
+    "end": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "timing_kind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pace_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generation_speed": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "voice_profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "reference_audio_resource_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reference_text_resource_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authored_pause_after": {
+      "type": "number",
+      "minimum": 0
+    },
+    "allowed_alignment_tolerance_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "runtime_overrides": {
+      "type": "object",
+      "description": "Optional non-canonical runtime bindings; must not redefine timing semantics."
+    }
+  }
+}
