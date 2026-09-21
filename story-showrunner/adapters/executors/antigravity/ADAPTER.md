@@ -1,4 +1,4 @@
-# Antigravity Executor Adapter — Candidate v0.1
+# Antigravity Executor Adapter — Candidate v0.2
 
 ## Role
 
@@ -23,12 +23,16 @@ Expected core files are defined in:
 1. resolve runtime resource IDs
 2. load/call configured TTS adapter
 3. render locked Speech Units
-4. call configured image adapter per execution row
-5. run identity/scene/composition checks
-6. place accepted images on exact shot timeline
-7. add only specified cuts/transitions/subtitles/audio operations
-8. export final video
-9. return execution result
+4. measure normalized actual durations
+5. run Runtime Timeline Resolver
+6. emit FINAL_SUBTITLES / FINAL_TIMELINE / FINAL_SHOT_TIMELINE
+7. call configured image adapter per execution row
+8. run identity/scene/composition checks
+9. place accepted images on the resolved final shot timeline
+10. invoke the validated video runtime backend
+11. add only specified cuts/transitions/subtitles/audio operations
+12. export final video
+13. return execution result
 
 ## Creative freedom
 
@@ -47,7 +51,7 @@ Forbidden:
 - adding explanatory graphics
 - adding brand/logo
 - adding transitions/BGM/SFX without instruction
-- changing TTS pace or SRT
+- changing TTS pace or subtitle text; final absolute timestamps may only change through the Runtime Timeline Resolver
 - deleting “redundant” images
 - inventing missing references
 
@@ -58,7 +62,7 @@ Current validation configuration:
 
 Meaning:
 Antigravity calls CosyVoice according to the locked TTS Manifest.
-Timing authority remains upstream.
+Semantic timing authority remains upstream. Final absolute timestamps are resolved automatically from real TTS by the Runtime Timeline Resolver.
 
 ## Image
 
@@ -86,3 +90,19 @@ Return:
 - PASS_CANDIDATE or exact RETURN
 
 Current trigger mode may be manual. Programmatic integration availability is not assumed.
+
+
+## Video runtime
+
+The video backend is intentionally not frozen until a capability probe establishes what Antigravity can actually invoke in the user's environment.
+
+Possible validated targets may include:
+- FFmpeg;
+- existing Remotion project/runtime;
+- existing Hyperframe project/runtime;
+- Antigravity-native deterministic timeline API;
+- another reproducible local renderer.
+
+Do not assume one exists without probe evidence.
+
+Prefer reusing an already installed Codex/local runtime over reinstalling it.
