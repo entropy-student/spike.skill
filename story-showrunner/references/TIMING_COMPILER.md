@@ -25,8 +25,14 @@ locked spoken script
 | PUNCH_SETUP | NORMAL |
 | PUNCH | FAST_CLEAR |
 | REVERSAL | CONTROLLED |
-| REACTION | SLOW_NORMAL or authored silent hold |
+| REACTION | NORMAL for voiced reaction; authored silent hold when silence carries the beat |
 | FINAL | FINAL |
+
+### Optional pace classes
+
+A provider/profile may define additional classes such as `SLOW_NORMAL`, but the Timing Compiler must not use a pace class unless the selected Voice Profile explicitly supports it.
+
+The current CosyVoice v2.1 profile does not expose an independently calibrated `SLOW_NORMAL`; therefore a voiced REACTION uses NORMAL and any extra dramatic breathing is authored as a pause/hold.
 
 ## Lock classes
 
