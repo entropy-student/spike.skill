@@ -34,14 +34,6 @@
       "short_utterance_indicator": -0.1311
     }
   },
-  "semantic_speed_map": {
-    "NORMAL": 1,
-    "PUNCH_SETUP": 1,
-    "FAST_NORMAL": 1.06,
-    "FAST_CLEAR": 1.08,
-    "CONTROLLED": 1,
-    "FINAL": 0.96
-  },
   "safety_rules": {
     "short_normal": {
       "condition": "semantic_class == NORMAL && content_unit_count <= 7",
@@ -107,6 +99,14 @@
       "speaking style changes",
       "language changes",
       "repeated material profile misses"
-    ]
+    ],
+    "unsupported_pace_class_behavior": "RETURN_TIMING_PROFILE_CLASS_UNSUPPORTED; do not invent a speed."
+  },
+  "pace_class_speed_map": {
+    "NORMAL": 1,
+    "FAST_NORMAL": 1.06,
+    "FAST_CLEAR": 1.08,
+    "CONTROLLED": 1,
+    "FINAL": 0.96
   }
 }
