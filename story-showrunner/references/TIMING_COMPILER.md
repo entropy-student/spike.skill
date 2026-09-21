@@ -1,8 +1,8 @@
-# Timing Compiler — Candidate v0.1
+# Timing Compiler — Candidate v0.2
 
 ## Core authority
 
-Production speech timing is solved before Director.
+Production speech timing is planned before Director. Final absolute timestamps are resolved after real TTS by the Runtime Timeline Resolver.
 
 ```text
 locked spoken script
@@ -13,7 +13,7 @@ locked spoken script
 → safe duration
 → authored semantic pauses
 → whole-script scheduling
-→ Production SRT + TTS Manifest
+→ PLANNED Production SRT + TTS Manifest
 ```
 
 ## Dramatic timing → pace class
@@ -45,6 +45,8 @@ The current CosyVoice v2.1 profile does not expose an independently calibrated `
 > 逐段计算 duration，整篇统一编排 start/end。
 
 Do not output independent per-line SRT fragments.
+
+The resulting SRT is a **planned production timeline** used by Director and upstream production planning. It is not required to remain the final millisecond timeline after real TTS.
 
 ## Whole-script scheduler
 
@@ -87,10 +89,26 @@ Over-allocation is separately tracked as tail slack.
 
 Absolute machine paths belong runtime config.
 
-## Executor boundary
+## Executor / runtime boundary
 
 Executor may render/normalize/assemble.
-Executor may not rewrite, re-pace or redistribute authored pauses.
 
-Material miss:
-`RETURN_VOICE_TIMING_PROFILE_MISS`
+After real TTS, the executor must call the Runtime Timeline Resolver:
+
+`references/TIMELINE_RESOLVER.md`
+
+Runtime resolution may:
+- replace planned absolute timestamps with real-duration timestamps;
+- shift downstream units;
+- rebalance ELASTIC slack;
+- extend semantically valid visual holds;
+- extend total episode duration.
+
+It may not:
+- rewrite text;
+- change pace class;
+- choose a new generation speed;
+- move/delete HARD_ANCHOR meaning;
+- change Visual Beat order/meaning/POV.
+
+A Voice Profile miss is diagnostic by default. It becomes a blocking `RETURN_VOICE_TIMING_PROFILE_MISS` only when the actual duration cannot be reconciled with locked constraints by the resolver.
