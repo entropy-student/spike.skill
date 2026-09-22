@@ -96,8 +96,10 @@ Current trigger mode may be manual. Programmatic integration availability is not
 
 The video backend is intentionally not frozen until a capability probe establishes what Antigravity can actually invoke in the user's environment.
 
-Possible validated targets may include:
-- FFmpeg;
+Validated baseline target for the current environment:
+- FFmpeg = PASS_PROGRAMMATIC / baseline deterministic renderer.
+
+Optional discovered runtimes, not yet selected for baseline E2E:
 - existing Remotion project/runtime;
 - existing Hyperframe project/runtime;
 - Antigravity-native deterministic timeline API;
@@ -106,3 +108,17 @@ Possible validated targets may include:
 Do not assume one exists without probe evidence.
 
 Prefer reusing an already installed Codex/local runtime over reinstalling it.
+
+
+## Current baseline backend decision
+
+For the first complete E2E validation:
+
+```text
+FINAL_TIMELINE
+→ accepted still frames
+→ FFmpeg Renderer Adapter
+→ final.mp4
+```
+
+Remotion and Hyperframe remain optional future scene renderers. Do not invoke them in the baseline E2E unless a later package explicitly declares a non-FFmpeg render mode.
