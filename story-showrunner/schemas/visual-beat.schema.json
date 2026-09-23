@@ -1,13 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://entropy-student.local/story-showrunner/visual-beat.schema.json",
-  "title": "Story Showrunner Visual Beat v0.6",
+  "title": "Story Showrunner Visual Beat v0.7",
   "type": "object",
   "additionalProperties": true,
   "required": [
     "visual_beat_id",
     "semantic_shot_id",
     "sequence_id",
+    "speech_unit_id",
+    "start_anchor",
+    "end_anchor",
+    "timing_flex",
     "start",
     "end",
     "duration",
@@ -23,6 +27,34 @@
     "image_relation_grammar",
     "visual_intensity"
   ],
+  "$defs": {
+    "timingAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "speech_unit_id",
+        "edge",
+        "offset_ms"
+      ],
+      "properties": {
+        "speech_unit_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "edge": {
+          "type": "string",
+          "enum": [
+            "START",
+            "SPEECH_END",
+            "WINDOW_END"
+          ]
+        },
+        "offset_ms": {
+          "type": "integer"
+        }
+      }
+    }
+  },
   "properties": {
     "visual_beat_id": {
       "type": "string",
@@ -36,20 +68,37 @@
       "type": "string",
       "minLength": 1
     },
+    "speech_unit_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "start_anchor": {
+      "$ref": "#/$defs/timingAnchor"
+    },
+    "end_anchor": {
+      "$ref": "#/$defs/timingAnchor"
+    },
+    "timing_flex": {
+      "type": "string",
+      "enum": [
+        "HARD_ANCHOR",
+        "SEMANTIC_RANGE",
+        "ELASTIC"
+      ]
+    },
     "start": {
       "type": "number",
       "minimum": 0,
-      "description": "Planned or resolved visual-beat start according to timing_source. Durable production logic should also carry semantic anchors."
+      "description": "Planned or resolved absolute start for observability. Durable runtime relationship is start_anchor."
     },
     "end": {
       "type": "number",
       "exclusiveMinimum": 0,
-      "description": "Planned or resolved visual-beat end according to timing_source. Final absolute time may change after real TTS."
+      "description": "Planned or resolved absolute end for observability. Durable runtime relationship is end_anchor."
     },
     "duration": {
       "type": "number",
-      "exclusiveMinimum": 0,
-      "description": "Derived visual-beat duration; Director may map visual states inside spoken windows but may not change speech timing."
+      "exclusiveMinimum": 0
     },
     "timing_source": {
       "type": "string",

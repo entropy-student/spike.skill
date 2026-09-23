@@ -98,3 +98,23 @@ Candidate Timing Compiler
 ```
 
 Do not migrate validation history into the Skill to make it appear more mature than it is.
+
+
+## 2026-09-23 post-extraction reconciliation
+
+The R2 extraction decision remains accepted.
+
+A later takeover review found a **validation-fixture seam**, not a reason to roll back the core/profile/provider split:
+
+- Candidate Timing Compiler had already produced the current Production SRT/TTS Manifest;
+- the validation workspace still referenced an older accepted G4 Visual Beat artifact with legacy `JINGSUI_PRIOR_ESTIMATE` timing;
+- the Runtime Timeline Resolver contract expected durable semantic anchors that were not yet required by the Candidate Visual Beat schema.
+
+Reconciliation changes:
+- Visual Beat schema now requires `speech_unit_id`, `start_anchor`, `end_anchor`, and `timing_flex`;
+- Runtime Timeline Resolver now has a deterministic reference implementation under `runtime/timeline_resolver.py`;
+- CosyVoice adapter no longer treats planned SRT windows as final audio-clock truth;
+- Antigravity adapter records FFmpeg as the already-proven baseline E2E renderer;
+- the validation workspace must rebuild its current execution package before real asset execution.
+
+This is `G6R`, not a reopening of R2 or accepted creative gates.

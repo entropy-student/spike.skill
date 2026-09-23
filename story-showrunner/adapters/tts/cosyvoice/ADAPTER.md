@@ -1,10 +1,10 @@
-# CosyVoice TTS Adapter — Candidate v0.1
+# CosyVoice TTS Adapter — Candidate v0.2
 
 ## Role
 
 Concrete TTS execution adapter for a locked Timing Package.
 
-It does not decide semantic pace.
+It does not decide semantic pace or final absolute timeline.
 
 ## Current validated setup family
 
@@ -12,59 +12,82 @@ It does not decide semantic pace.
 - zero_shot
 - deterministic seed support
 - speaker/reference prompt caching
-- output sample rate: profile-defined
+- profile-defined sample rate
 - technical leading/trailing silence normalization
 
-Exact runtime install paths are not part of this adapter.
+Exact runtime install paths are runtime configuration, not portable Skill truth.
 
 ## Input
 
-Per Speech Unit:
-- exact text
-- intended generation speed
-- profile ID
-- seed
-- logical reference audio ID
-- logical reference transcript ID
-- target start/end
-- allowed alignment tolerance
+Per voiced Speech Unit:
+
+- exact text;
+- intended generation speed;
+- profile ID;
+- seed;
+- logical reference audio ID;
+- logical reference transcript ID;
+- planned speech/window metadata;
+- authored pause;
+- allowed technical alignment tolerance.
 
 ## Execution policy
 
 Prefer:
-- load model once
-- cache speaker prompt once
-- reset deterministic seed as required by validated runtime
-- generate each locked Speech Unit
-- normalize only technical head/tail silence
-- preserve internal semantic pauses
-- assemble final audio according to Production SRT
+
+1. load model once;
+2. cache speaker prompt once;
+3. reset deterministic seed as required;
+4. generate each locked voiced Speech Unit;
+5. normalize only technical head/tail silence;
+6. preserve internal semantic pauses;
+7. persist each normalized unit immediately;
+8. record real normalized duration.
+
+Do **not** force each WAV into its planned absolute window.
+
+After all required unit durations exist:
+
+```text
+real normalized durations
+→ Runtime Timeline Resolver
+→ FINAL_TIMELINE
+→ assemble narration_master.wav on FINAL timing
+```
+
+The explicit silent Speech Units/holds are timeline elements and are not sent to TTS.
 
 ## Forbidden
 
-- text rewrite
-- “make it sound nicer” retry loops
-- changing semantic class
-- large unplanned time-stretch
-- moving authored pauses
-- re-segmenting the script creatively
+- text rewrite;
+- aesthetic retry loops;
+- changing semantic class;
+- changing generation speed to rescue planned milliseconds;
+- large unplanned time-stretch;
+- moving authored pauses;
+- creative re-segmentation.
 
 ## Timing QA
 
-Actual duration vs allocated window is evaluated by Voice Timing Profile contract.
+Voice Timing Profile is planning/safety evidence.
 
-Material miss:
-`RETURN_VOICE_TIMING_PROFILE_MISS`
+A material duration miss records `VOICE_TIMING_PROFILE_DRIFT`.
 
-Do not repair by silently forcing a large speed-up.
+It becomes blocking `RETURN_VOICE_TIMING_PROFILE_MISS` only when:
+
+- a locked hard duration/sync constraint is infeasible; or
+- repeated systematic misses invalidate the selected profile.
+
+Ordinary actual-vs-planned duration difference is resolved by the Runtime Timeline Resolver.
 
 ## Runtime configuration
 
 Deployment resolves:
-- CosyVoice repository/model path
-- Python/venv path
-- reference WAV
-- reference transcript
-- output directory
 
-Portable Skill stores logical IDs, not owner-machine absolute paths.
+- CosyVoice repository/model path;
+- Python/venv path;
+- reference WAV;
+- reference transcript;
+- output directory.
+
+Portable Skill stores logical IDs, not Owner-machine absolute paths.

@@ -29,7 +29,7 @@ ANTIGRAVITY_PRODUCTION_PACKAGE/
 - Use logical resource IDs where possible.
 - Runtime adapter resolves local paths.
 - Planned Production SRT and TTS Manifest are locked before Executor.
-- Visual/shot timing should carry semantic anchors, not only absolute milliseconds.
+- `05_VISUAL_BEATS.json` must validate against the current Candidate Visual Beat schema and carry `speech_unit_id`, `start_anchor`, `end_anchor`, and `timing_flex`; absolute milliseconds alone are insufficient.
 - Executor resolves final absolute timing from real TTS before video assembly.
 - Image Generation rows carry explicit execution mode and references.
 - Exact critical text declares render mode.
@@ -42,7 +42,7 @@ ANTIGRAVITY_PRODUCTION_PACKAGE/
 2. resolve references/runtime resources
 3. execute TTS Manifest
 4. measure actual normalized durations
-5. run Runtime Timeline Resolver
+5. run `runtime/timeline_resolver.py` or an implementation proven equivalent to the same contract
 6. emit FINAL_SUBTITLES / FINAL_TIMELINE / FINAL_SHOT_TIMELINE
 7. execute image rows
 8. run per-frame QA
@@ -63,3 +63,10 @@ Executor-generated final artifacts are runtime-grade:
 - `FINAL_SHOT_TIMELINE.csv`
 
 The package must contain enough semantic anchors and resolver rules to generate these without a second Showrunner delivery.
+
+
+## G6R compatibility rule
+
+A package that combines current Candidate timing with legacy Visual Beats whose only timing authority is `JINGSUI_PRIOR_ESTIMATE` is migration evidence, not current Candidate E2E proof.
+
+Reconcile the Visual Beats to the current anchor schema before execution.
