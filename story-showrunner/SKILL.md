@@ -5,7 +5,7 @@ description: >
   经 Domain Adapter、Knowledge/Causal Core、Story、Writer、Timing Compiler、Director、Asset Compiler、
   Production Compiler、Executor Adapter 与 QA，产出可执行的视频生产包。当前状态为 CANDIDATE，核心规则已从
   ai-story-showrunner 验证项目抽取，但完整 Antigravity 端到端成片尚未最终验证。
-version: 0.1.0-candidate
+version: 0.1.1-candidate
 language: zh-CN
 status: CANDIDATE_E2E_NOT_YET_PROVEN
 ---
@@ -149,7 +149,7 @@ locked spoken script
 
 1. **One brain, many workers**：Worker 不互相自由改上游。
 2. **Knowledge before style**：Writer 不得改 locked KnowledgeCore。
-3. **Planned Timing before Director; Final Timing after TTS**：Director 消费 planned timeline；真实 TTS 后由 Runtime Timeline Resolver 自动生成 final timeline。
+3. **Planned Timing before Director; Final Timing after TTS**：Director 消费 planned timeline；每个 Visual Beat 必须携带 durable Speech Unit anchors；真实 TTS 后由 Runtime Timeline Resolver 自动生成 final timeline。
 4. **Visual meaning before prompt**：Director 决定画面意义，Frame Blueprint 决定注意力结构，Asset Compiler 再生成 prompt/edit row。
 5. **Reference truth outranks generated continuity**：上一张生成图永远不是角色身份真相。
 6. **Pilot is calibration-only**：关键帧人工抽样不是每期必经 Gate。
@@ -187,12 +187,20 @@ locked spoken script
 - Character drift controls
 - Viewpoint grammar
 - Voice Timing Profile v2.1
+- Candidate Production SRT + TTS Manifest compile
+- FFmpeg programmatic baseline probe
 - Production-package boundary
 
+2026-09-23 takeover reconciliation:
+- 发现 validation fixture 的新 Candidate Timing 与旧 G4 `JINGSUI_PRIOR_ESTIMATE` Visual Beat artifact 存在迁移缝隙；
+- Candidate schema 现要求 durable Speech Unit anchors；
+- Runtime Timeline Resolver 增加 executable reference implementation。
+
 尚待：
-- 用 Candidate 规则编译完整 Production SRT + TTS Manifest
-- 完整 Antigravity package
-- Antigravity TTS + images + edit + export
+- validation workspace 用新 anchors 重建当前执行 package
+- real CosyVoice production TTS + runtime timeline resolution
+- 44-frame first-E2E asset calibration
+- FFmpeg final render
 - final-video QA
 
 完整 E2E PASS 后才允许升级为 CANONICAL。
