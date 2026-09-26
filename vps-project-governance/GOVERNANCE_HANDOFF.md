@@ -1,7 +1,7 @@
 # VPS Project Governance — GOVERNANCE HANDOFF
 
 > Maintainer: Governance Reviewer  
-> Last reviewed: 2026-09-19 (Asia/Shanghai)
+> Last reviewed: 2026-09-26 (Asia/Shanghai)
 
 ## Current baseline
 
@@ -15,6 +15,17 @@
 - Governance Source Policy: rev1, ACTIVE. GitHub `entropy-student/spike.skill/vps-project-governance` is the default canonical Governance source; local Skill copies are non-authoritative caches unless an active Reviewer explicitly pins/overrides a version/addendum.
 
 The v0.1.6 core version remains unchanged. Storage, SSH/Secret, Target Host Reality, Production Provider Canary/Recovery and Governance Source Policy are operational addenda so project observations do not silently rewrite the validated core model.
+
+## Documentation consistency reconciliation — 2026-09-26
+
+A bounded documentation-only reconciliation corrected stale references without changing Governance v0.1.6 behavior:
+
+- README / README_EN Target Host Reality references now point to rev2;
+- README_EN SSH / Delegated Secret Operations now points to rev2;
+- metadata Provider Canary contract revision now matches canonical rev2;
+- Reviewer Handoff template now separates Governance-rule precedence from project factual-state precedence per Governance Source Policy rev1.
+
+No core role, Gate, Secret, Shared Infra, Owner-only, PASS/RETURN, or production-action authority changed.
 
 ## Problems closed by current addenda
 
