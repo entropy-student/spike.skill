@@ -110,7 +110,7 @@ key 变化。只有 Handoff 缺失或验证失败时才向 Owner 请求账号/�
 ## 13. Agent 说“已创建宿主机文件”，但 Owner 看不到
 
 ```text
-按 Target Host Reality Contract rev1 处理。
+按 Target Host Reality Contract rev2 处理。
 不要假定当前执行环境就是 Owner 的真实宿主机。
 先证明 target host identity，并从目标宿主机自身对目标路径做 read-back。
 如果无法证明能直接操作目标宿主机，返回 RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE；
