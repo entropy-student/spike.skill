@@ -4,8 +4,8 @@
 
 **Status: Active / Validated on Xianyu / Evolving**  
 **Storage Layout Contract: rev1 / active operational addendum**  
-**SSH / Delegated Secret Operations: rev1 / active operational addendum**  
-**Target Host Reality Contract: rev1 / active operational addendum**
+**SSH / Delegated Secret Operations: rev2 / active operational addendum**  
+**Target Host Reality Contract: rev2 / active operational addendum**
 
 This is not a Docker command cookbook. It governs project delivery, production changes, Shared VPS boundaries, evidence, rollback, secrets, data handling, storage layout, and when the Owner must intervene.
 
@@ -110,17 +110,26 @@ For Windows Owner-owned Secret staging directories, do not change the owner mere
 
 See `references/TARGET_HOST_REALITY_CONTRACT.md`.
 
-## Source-of-truth order
+## Source of truth
+
+Separate **governance rules** from **project factual state**.
+
+Governance-rule precedence:
 
 1. Owner's latest explicit instruction;
-2. Shared VPS Contract, when applicable;
-3. project `REVIEWER_HANDOFF.md`;
-4. current Reviewer Gate Prompt / decision;
-5. `EXECUTION_EVIDENCE.md`;
-6. `EXECUTOR_HANDOFF.md`;
-7. README / history / chat.
+2. active bounded Reviewer override / pinned addendum;
+3. GitHub canonical Governance latest;
+4. project-local or local-machine historical Governance copies;
+5. old snapshots / chat.
 
-Governance defines reusable rules. Handoff files belong to the concrete project or infrastructure layer.
+Project factual-state precedence:
+
+1. current accepted Reviewer decision / `REVIEWER_HANDOFF.md`;
+2. fresh authoritative read-back + accepted `EXECUTION_EVIDENCE.md`;
+3. `EXECUTOR_HANDOFF.md`;
+4. README / history / chat.
+
+Before a consequential Gate, reconcile any Evidence/Handoff lag instead of deleting historical evidence.
 
 ## Packaging normalization
 
@@ -130,6 +139,6 @@ The original protocol header also retained `DRAFT / EVOLVING`, while `GOVERNANCE
 
 Storage Layout Contract rev1 formalizes the Shared VPS layout already used by the infrastructure design. It is an operational addendum and does not change the core Owner/Reviewer/Executor or PASS/RETURN semantics, so the Governance version remains v0.1.6.
 
-SSH/Delegated Secret Operations rev1 records reusable SSH trust metadata and
+SSH/Delegated Secret Operations rev2 records reusable SSH trust metadata and
 allows an Owner who cannot run commands to delegate an exact Secret allowlist.
 The SSH contract is validated. Delegated provisioning and DPAPI CurrentUser recovery are validated on Unified Pay production-like Gates, while remaining respectively explicit-Owner-authorization-only and profile-bound. Target Host Reality is validated on a DujiaoNext / Unified Pay Windows-host incident.
