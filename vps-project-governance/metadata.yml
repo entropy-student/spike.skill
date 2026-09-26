@@ -12,6 +12,6 @@ delegated_secret_provisioning_status: active-validated-on-unified-pay
 dpapi_recovery_pattern_status: validated-with-target-host-and-pending-artifact-boundary
 target_host_reality_contract_revision: 2
 target_host_reality_contract_status: active-validated-on-dujiaonext-windows-host
-production_provider_canary_contract_revision: 1
+production_provider_canary_contract_revision: 2
 production_provider_canary_contract_status: active-validated-on-dujiaonext-alipay
 cross_provider_canary_clauses_status: provisional-pending-additional-live-provider-validation
