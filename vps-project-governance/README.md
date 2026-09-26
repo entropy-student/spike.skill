@@ -154,7 +154,7 @@ Shared VPS 模板：[`templates/SHARED_VPS_HANDOFF_TEMPLATE.md`](./templates/SHA
 
 ## Target Host Reality
 
-Target Host Reality Contract rev1 用来约束一个容易被忽略的风险：**Execution Agent 所在环境不一定就是 Owner 的真实宿主机。**
+Target Host Reality Contract rev2 用来约束一个容易被忽略的风险：**Execution Agent 所在环境不一定就是 Owner 的真实宿主机。**
 
 例如 Agent 在 sandbox 内创建了 `C:\Users\...\D16`，并不能证明 Owner 的真实 Windows 主机上已经存在该目录。涉及真实宿主机路径、ACL、service、Docker daemon、端口、Secret staging 等 host-local state 时，必须先证明 target host identity，再在写入后从同一目标主机 read-back。
 
