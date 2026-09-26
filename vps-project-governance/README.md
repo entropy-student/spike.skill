@@ -235,7 +235,7 @@ vps-project-governance/
 
 Storage Layout Contract rev1 是 v0.1.6 的 operational addendum：它把 Shared VPS 已采用的 `/srv/apps`、`/srv/data`、`/srv/backups` 分层正式固化，但不改变 Owner/Reviewer/Executor、PASS/RETURN 等核心治理语义，因此当前不单独升级 Governance 主版本。
 
-SSH/Delegated Secret Operations rev1 也是 operational addendum：它登记可复用
+SSH/Delegated Secret Operations rev2 也是 operational addendum：它登记可复用
 SSH trust metadata，并允许无命令操作能力的 Owner 对 exact allowlist 做显式委托。
 SSH contract 已验证；delegated Secret provisioning 与 DPAPI CurrentUser recovery 已在 Unified Pay production-like Gate 验证，但前者仍需 explicit Owner authorization，后者仍受 Windows profile failure-domain 限制。
 
