@@ -5,7 +5,7 @@ description: >
   经 Domain Adapter、Knowledge/Causal Core、Story、Writer、Timing Compiler、Director、Asset Compiler、
   Production Compiler、Executor Adapter 与 QA，产出可执行的视频生产包。当前状态为 CANDIDATE，核心规则已从
   ai-story-showrunner 验证项目抽取，但完整 Antigravity 端到端成片尚未最终验证。
-version: 0.1.1-candidate
+version: 0.1.2-candidate
 language: zh-CN
 status: CANDIDATE_E2E_NOT_YET_PROVEN
 ---
@@ -89,7 +89,7 @@ optional invocation override
 ## 5. Canonical stage ownership
 
 ### Topic / Research
-Domain Adapter 负责来源、领域事实与 causal mechanism。
+TopicProvider + Domain Adapter 负责来源、Human-world translation、Human Process、WHY / Human Tension、Meaning dedup、领域事实与 causal mechanism。默认 Topic discovery 不要求从 AI/domain 名词出发。
 
 ### Knowledge
 锁定：
@@ -155,6 +155,8 @@ locked spoken script
 6. **Pilot is calibration-only**：关键帧人工抽样不是每期必经 Gate。
 7. **Fail closed**：无法满足 contract 时 RETURN，不得静默猜。
 8. **Runtime state stays outside Skill**：Calendar、Registry、episode artifacts、local paths 都不应写死。
+9. **Human-world-first Topic discovery**：默认 `X → Human Process → WHY → Meaning → Mechanism`；强 domain signal 可走兼容路径。
+10. **Meaning dedup**：跨 X 也必须检查 Human Tension / Controlling Question 是否重复；`meaning_fingerprint` 只用于去重，不锁 thesis。
 
 ## 8. 加载顺序
 

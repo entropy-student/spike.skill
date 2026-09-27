@@ -1,4 +1,4 @@
-# AI Domain Adapter — Topic & Knowledge v0.1
+# AI Domain Adapter — Topic & Knowledge v0.2
 
 Status:
 `CANDIDATE / extracted from validated AI workspace`
@@ -22,13 +22,29 @@ Trend aggregators discover signals; they do not become technical truth.
 
 ## AI TopicOpportunity
 
-Translate:
+Default translation is human-world-first:
+
+```text
+human-interest X / observable situation
+→ Human Process Family
+→ observed paradox
+→ WHY
+→ Human Tension
+→ Meaning Fingerprint
+→ AI Changed Process
+→ causal AI mechanism
+→ storyable human stakes
+```
+
+Strong AI-first signals may use the compatibility path:
 
 ```text
 model/product/protocol/feature/event
 → capability or system change
-→ human consequence
-→ conflict/stakes
+→ audience translation
+→ Human Process / human consequence
+→ WHY / Human Tension
+→ Meaning Fingerprint
 → causal AI mechanism
 → storyable situation
 ```
@@ -37,13 +53,22 @@ Do not stop at “What is MCP/Agent/RAG?”
 
 ## AI hard gates
 
+Pre-gates:
+- X remains interesting without AI jargon when using Human-world-first entry;
+- Human Process Family is explicit;
+- there is a real paradox / WHY gap;
+- Human Tension is open enough to test rather than a disguised answer;
+- AI Changed Process identifies what AI changes/ compresses/ replaces/ amplifies.
+
+Hard gates:
 - source/evidence is traceable
 - ordinary person can care without knowing the acronym
 - exactly one main mechanism by default
 - causal mechanism is technically accurate
 - story can show actions/consequences
 - payoff is more than “AI can do X”
-- recent content is not the same mechanism + human problem + payoff in disguise
+- recent content is not the same mechanism + human process + human problem + payoff in disguise;
+- D5 Meaning Duplicate passes across X domains
 
 ## No-name test
 
@@ -59,10 +84,13 @@ If the human problem/story no longer matters, the topic is too dependent on jarg
 
 ## Duplicate fingerprint
 
-Primary:
-`mechanism + human_problem + audience_payoff`
+Topic:
+`mechanism + human_process_family + human_problem + audience_payoff`
 
-Secondary:
+Meaning:
+`meaning_fingerprint ≈ human_tension + controlling_question_seed`
+
+Surface:
 `story_motif + hook_pattern + visual_motif`
 
 ## HOT / EVERGREEN
@@ -71,7 +99,7 @@ HOT:
 recent AI change/event that survives all hard gates and can be produced before its useful half-life expires.
 
 EVERGREEN:
-persistent AI behavior/problem/mental model that remains useful without a current event.
+prefer Human-world domains/processes that remain useful without a current event; the legacy AI behavior/problem/mechanism bank remains valid as a fallback and mechanism reserve.
 
 Qualified HOT may override a planned Evergreen runtime slot.
 

@@ -1,4 +1,4 @@
-# Pipeline & Gates — Candidate v0.1
+# Pipeline & Gates — Candidate v0.1.1
 
 ## Stage 0 — Topic Resolution
 
@@ -17,6 +17,27 @@ If runtime state cannot be resolved:
 
 ## Stage 1 — Topic Opportunity
 
+Default semantic path:
+```text
+X Domain
+→ Human Process Family
+→ Paradox / WHY
+→ Human Tension / Meaning Fingerprint
+→ AI/Domain Changed Process
+→ Causal Mechanism
+→ Story Stakes
+```
+
+Compatibility: a strong domain-first signal may enter first, but must still resolve to an equivalent Human Process / WHY / Meaning before Story.
+
+Pre-gates:
+- native X interest
+- explicit human process
+- paradox / WHY
+- open human tension
+- changed process
+- meaning distinctness
+
 Hard gates:
 - evidence
 - human relevance
@@ -24,7 +45,7 @@ Hard gates:
 - one mechanism
 - storyability
 - non-trivial payoff
-- duplicate/repetition
+- D1–D5 duplicate/repetition, including Meaning Duplicate
 - audience/platform fit when a profile requires it
 
 ## Stage 2 — Knowledge Core
