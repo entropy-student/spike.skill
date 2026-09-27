@@ -1,6 +1,6 @@
 # Story Showrunner Candidate Status
 
-Date: 2026-09-23
+Date: 2026-09-27
 
 Status:
 `CANDIDATE / E2E_NOT_YET_PROVEN / G6R_RECONCILED_CONTRACT`
@@ -80,3 +80,18 @@ Do not label this Skill CANONICAL until:
 - RETURN codes correctly localize failures.
 
 The first 44-frame review is a calibration exception, not a permanent Owner approval gate.
+
+
+## 2026-09-27 Topic Supply sync
+
+Portable Candidate Topic layer synchronized with validation workspace Topic OS v0.2.1.
+
+Added:
+- Human-world-first default discovery;
+- Human Process Family;
+- WHY / Human Tension before mechanism;
+- Meaning Fingerprint;
+- D5 cross-domain Meaning Duplicate;
+- AI-first signal route retained as compatibility path.
+
+This does not promote the Skill to CANONICAL and does not change G6A/E2E status.
