@@ -5,7 +5,11 @@
 1. 把所有 Creator 合作都当成“发一条多少钱”；
 2. 用同一套 Likes / Views 衡量所有合作。
 
-只在出现真实品牌合作或需要设计首个付费提案时读取。核心收入范围是品牌为创作者自有账号的付费内容/发布位付费；UGC-only、联盟佣金、赠品和平台分成须分开记录，不能混入自有账号商单收入。
+只在出现真实品牌合作或需要设计首个付费提案时读取。
+
+本 Skill 的核心收入单位是 **Sponsored Account Contract Revenue**：只要该合同包含 Creator 自有账号上的付费发布，与这次发布绑定的 Creative Fee、Distribution / Placement Fee、Usage Rights、Paid Amplification Rights、Exclusivity、Performance Bonus 等都可以拆分记录为同一份账号商单合同价值。
+
+纯 UGC-only、联盟佣金、赠品和平台分成须分开记录，不能替代自有账号商单验证。
 
 ## 1. Creator Deal 是一组权利与服务
 
