@@ -435,6 +435,7 @@ REPEAT / SCALE
 - references/04_COLD_START_VALIDATION.md：双通道验证。
 - references/05_OPEN_WORLD_ACCOUNT_MODEL_DISCOVERY.md：开放发现与候选模型生成。
 - references/06_SPONSORSHIP_SUSTAINABILITY.md：可持续广告收入判断。
+- references/07_RESEARCH_BASIS_2026-09-29.md：v0.4 方法论研究依据；只用于解释设计，不替代动态事实核验。
 - templates/account-model-research-matrix.md：统一研究记录。
 
 本 Skill 聚焦账号模型发现与验证，不负责具体脚本创作、日常长期运营、合同法律意见或替用户保证商业结果。
