@@ -196,16 +196,19 @@ Skill 会明确区分这些证据，避免过早下结论。
 
 ## 当前状态
 
-**v0.2.0 — Calibrating**
+**v0.2.1 — Calibrating**
 
-v0.2 增加：
+v0.2–v0.2.1 增加：
 - Advertiser Job Router；
 - Brand Suitability / Buyer Readiness Gate；
 - Audience + Sponsor 双通道验证；
 - 主动商单获取 Loop；
 - Usage Rights / Paid Amplification / Exclusivity 的 Deal Architecture；
 - 按品牌 Job 区分 Measurement；
-- 抽样偏差与 Paid Amplification 污染控制。
+- 抽样偏差与 Paid Amplification 污染控制；
+- 非线性商业证据路径（分发 / UGC素材 / 效果合作）；
+- Adaptive Sampling + Saturation Stop；
+- Sponsorability Pretest，用自然内容提前检测商业格式是否伤害账号。
 
 仍不把任何单次市场调研结论写成永久规则；后续继续通过真实账号样本和实际起号结果校准。
 
