@@ -55,8 +55,8 @@ language: zh-CN
 ```text
 MARKET_EXISTS
 → BRANDS_SPEND_ON_CREATORS
-→ BRANDS_SPEND_IN_THIS NICHE
-→ BRANDS_BUY SMALL/MID CREATORS
+→ BRANDS_SPEND_IN_THIS_NICHE
+→ BRANDS_BUY_SMALL_MID_CREATORS
 → TARGET ACCOUNT MODEL FITS
 → SPONSOR INQUIRY
 → PAID COLLAB
@@ -162,7 +162,7 @@ first_observed_sponsorship
 notes
 ```
 
-如果某项无法公开确认，写 `UNKNOWN`，不要伪造。
+如果某项无法公开确认，写 `UNKNOWN`，不要伪造。完整抽样字段、证据编码和解释规则见 `references/01_REAL_ACCOUNT_RESEARCH_AND_SCORING.md`；执行时可直接使用 `templates/account-model-research-matrix.md`。
 
 ## 6. 核心商业指标
 
