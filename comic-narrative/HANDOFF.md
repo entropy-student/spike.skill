@@ -94,7 +94,7 @@ Part 2 原相关 / 疑似相关材料共 **50 份**，保存在：
 
 ## Part 3 — 分镜与视觉导演
 
-当前已完成：**源材料收集 / 原样备份 / 反向漏检 + 完整合并基线**。
+当前已完成：**源材料收集 / 原样备份 / 反向漏检 + 完整合并基线 + 第一轮结构简化**。
 
 备份目录：
 `source-snapshots/03-storyboard-visual-director/`
@@ -121,21 +121,24 @@ Part 2 原相关 / 疑似相关材料共 **50 份**，保存在：
 Part 3 当前唯一正式合并基线：
 `part3/STORYBOARD_VISUAL_DIRECTOR.md`
 
-合并原则：
-- 当前先完整，不做极简；
-- 2026-09-26 之后的 Owner 明确覆盖规则优先于旧 Candidate；
-- Semantic Shot / Visual Beat、POV、Story Event Gate、Frame Blueprint、Beat economy、整集视觉多样性与 Part 4 边界均已纳入；
-- 历史固定秒数、固定图片数量、抽象解释图、POST_OVERLAY、COMPOSITE_CROP 等被后续规则覆盖的行为只保留在历史快照中。
+当前第一轮结构结果：
+- 正式工作流：**整集 / 段落视觉策略 → Semantic Shot → Visual Beat**；
+- 戏剧层级并入 Semantic Shot 字段；
+- 视觉意图并入 Semantic Shot / Visual Beat 字段；
+- Frame Blueprint 并入 Visual Beat 单帧字段；
+- 时间映射并入 Visual Beat 时间字段；
+- 旧六层结构继续作为历史映射 / 审计来源，不要求每集逐层输出独立文件；
+- Story Event Gate、POV、物理视角、Beat economy、连续性、整集视觉多样性、100% 口播覆盖、Part 4 边界等能力均未删除。
 
 ## 当前停止点
 
-`PART3_MERGED_BASELINE_READY / SIMPLIFICATION_PENDING_OWNER`
+`PART3_STRUCTURE_SIMPLIFIED_PASS1 / CASE_VALIDATION_PENDING`
 
 下一步：
-1. Owner 先阅读 / 确认 Part 3 合并基线；
-2. 再逐组决定保留 / 合并 / 修改 / 降级 / 删除；
-3. 每次只改一小组规则；
-4. 每轮用旧 Case + 新 Case 回归；
+1. 用旧 Case + 新 Case 验证三层结构是否与旧六层等价；
+2. 若无能力退化，再进入下一小组规则审查；
+3. 后续若建议删除 / 修改 / 补充任何规则，先告知 Owner；
+4. 每次只改一小组；
 5. 146 份快照始终保留。
 
 ## 安全边界
