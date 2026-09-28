@@ -225,3 +225,18 @@ Candidate improvement:
 - Docker-daemon unavailability may defer Docker-resource cleanup independently from filesystem closeout; manual deletion of Docker/WSL internals remains forbidden.
 
 Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
+
+
+## Candidate lesson from authenticated browser attach snapshots
+
+Mini Craft K9B-R2R2A showed that attaching automation to an already-open authenticated browser tab can expose unrelated page text in the initial accessibility snapshot before the Executor navigates to the intended target.
+
+Candidate improvement:
+
+- before an authenticated browser Gate begins, prefer a neutral/admin landing page rather than a log/debug page;
+- treat initial accessibility snapshots as part of the execution boundary and avoid attaching on provider log pages when possible;
+- if unrelated potentially sensitive log text appears, navigate away immediately, do not inspect further, do not reproduce values in Evidence, and record only a redacted boundary event;
+- a non-target snapshot observation is not automatically a credential-compromise incident; rotation should require concrete evidence of credential/Secret exposure or misuse;
+- do not reopen sensitive provider logs merely to determine whether the accidental snapshot contained sensitive values.
+
+Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
