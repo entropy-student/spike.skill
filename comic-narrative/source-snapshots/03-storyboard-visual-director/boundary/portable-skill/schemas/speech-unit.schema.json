@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://entropy-student.local/story-showrunner/speech-unit.schema.json",
+  "title": "Story Showrunner Speech Unit v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "speech_unit_id",
+    "text",
+    "timing_kind",
+    "pace_class",
+    "lock_class",
+    "predicted_speech_duration",
+    "authored_pause_after"
+  ],
+  "properties": {
+    "speech_unit_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timing_kind": {
+      "type": "string",
+      "enum": [
+        "NORMAL",
+        "BUILD",
+        "BUILD_PATTERN",
+        "PUNCH_SETUP",
+        "PUNCH",
+        "REVERSAL",
+        "REACTION",
+        "FINAL"
+      ]
+    },
+    "pace_class": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "SLOW_NORMAL",
+        "NORMAL",
+        "FAST_NORMAL",
+        "FAST_CLEAR",
+        "CONTROLLED",
+        "FINAL"
+      ]
+    },
+    "lock_class": {
+      "type": "string",
+      "enum": [
+        "HARD_ANCHOR",
+        "SEMANTIC_RANGE",
+        "ELASTIC"
+      ]
+    },
+    "predicted_speech_duration": {
+      "type": "number",
+      "minimum": 0
+    },
+    "authored_pause_after": {
+      "type": "number",
+      "minimum": 0
+    },
+    "voice_profile_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "visual_beat_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "paragraph_range": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "features": {
+      "type": "object"
+    },
+    "allocated_window_duration": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "legacy_semantic_prior_duration": {
+      "type": "number",
+      "minimum": 0
+    },
+    "allocation_rule": {
+      "type": "string"
+    },
+    "applied_profile_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mixed_token_rule_applied": {
+      "type": "boolean"
+    },
+    "timing_source": {
+      "type": "string"
+    },
+    "tts_required": {
+      "type": "boolean"
+    }
+  }
+}

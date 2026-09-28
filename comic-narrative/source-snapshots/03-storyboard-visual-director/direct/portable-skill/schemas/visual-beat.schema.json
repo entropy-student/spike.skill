@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://entropy-student.local/story-showrunner/visual-beat.schema.json",
+  "title": "Story Showrunner Visual Beat v0.7",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "visual_beat_id",
+    "semantic_shot_id",
+    "sequence_id",
+    "speech_unit_id",
+    "start_anchor",
+    "end_anchor",
+    "timing_flex",
+    "start",
+    "end",
+    "duration",
+    "timing_source",
+    "narration_fragment",
+    "image_state",
+    "inherited_visual_intention",
+    "local_visual_intention",
+    "shot_function",
+    "shot_size",
+    "pov_mode",
+    "camera_angle",
+    "image_relation_grammar",
+    "visual_intensity"
+  ],
+  "$defs": {
+    "timingAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "speech_unit_id",
+        "edge",
+        "offset_ms"
+      ],
+      "properties": {
+        "speech_unit_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "edge": {
+          "type": "string",
+          "enum": [
+            "START",
+            "SPEECH_END",
+            "WINDOW_END"
+          ]
+        },
+        "offset_ms": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "properties": {
+    "visual_beat_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "semantic_shot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sequence_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "speech_unit_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "start_anchor": {
+      "$ref": "#/$defs/timingAnchor"
+    },
+    "end_anchor": {
+      "$ref": "#/$defs/timingAnchor"
+    },
+    "timing_flex": {
+      "type": "string",
+      "enum": [
+        "HARD_ANCHOR",
+        "SEMANTIC_RANGE",
+        "ELASTIC"
+      ]
+    },
+    "start": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Planned or resolved absolute start for observability. Durable runtime relationship is start_anchor."
+    },
+    "end": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Planned or resolved absolute end for observability. Durable runtime relationship is end_anchor."
+    },
+    "duration": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "timing_source": {
+      "type": "string",
+      "enum": [
+        "PLANNED_PRODUCTION_SRT",
+        "RESOLVED_RUNTIME_TIMELINE"
+      ]
+    },
+    "narration_fragment": {
+      "type": "string"
+    },
+    "image_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inherited_visual_intention": {
+      "type": "string",
+      "minLength": 1
+    },
+    "local_visual_intention": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shot_function": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shot_size": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pov_mode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "camera_angle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "image_relation_grammar": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visual_intensity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pov_reason": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
