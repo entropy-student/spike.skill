@@ -2,9 +2,9 @@
 name: comic-narrative
 title: 漫画叙事
 description: 面向“选题 → 剧本 → 分镜 → 漫画图片资产 → 配音/时间轴 → 成片”的漫画叙事生产 Skill。当前按模块逐步从 ai-story-showrunner / story-showrunner 简化迁移，并通过历史 Case 与源快照复查避免能力丢失。
-version: 0.0.7-draft
+version: 0.0.8-draft
 language: zh-CN
-status: PART3_MERGED_BASELINE
+status: PART3_STRUCTURE_SIMPLIFIED_PASS1
 ---
 
 # 漫画叙事
@@ -21,7 +21,7 @@ status: PART3_MERGED_BASELINE
 
 ## 当前完成范围
 
-Part 0「历史选题库」与 Part 1「选题与内容策略」已完成；Part 2「剧本与叙事」已建立合并基线并完成已确认的最小补充；Part 3「分镜与视觉导演」已完成不删能力的合并基线，等待 Owner 逐项简化确认。
+Part 0「历史选题库」与 Part 1「选题与内容策略」已完成；Part 2「剧本与叙事」已建立合并基线并完成已确认的最小补充；Part 3「分镜与视觉导演」已完成第一轮结构简化：正式工作流收敛为“整集视觉策略 → Semantic Shot → Visual Beat”，核心能力未删。
 
 执行选题时按顺序读取：
 
@@ -46,7 +46,7 @@ Part 3 当前唯一合并基线：
 
 ## 当前限制
 
-- Part 3 尚未简化；Part 4–6 尚未迁移完成，仍不得用本 Draft 替代完整生产系统。
+- Part 3 仅完成第一轮结构简化；具体规则仍需逐组验证。Part 4–6 尚未迁移完成，仍不得用本 Draft 替代完整生产系统。
 - 不修改 `ai-story-showrunner`。
 - 不修改原 `story-showrunner`。
 
