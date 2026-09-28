@@ -93,14 +93,18 @@ Part 2 只处理：
 
 ## 当前停止点
 
-`PART2_SOURCE_AUDIT_COMPLETE / SIMPLIFICATION_PLAN_PENDING_OWNER`
+`PART2_MERGED_BASELINE_READY / ADJUSTMENT_PENDING_OWNER`
+
+当前已建立唯一 Part 2 合并基线：`part2/SCRIPT_NARRATIVE.md`。
+
+合并原则：先完整整合，不做进一步简化；重复规则合并表达，废弃规则单独列明，验证 Case 保留在快照中。
 
 下一步：
-1. 从 20 份源材料中提取不可丢失的剧本能力；
-2. 标记重复、过时、互相冲突的规则；
-3. 给 Owner 看 Part 2 简化方案；
-4. Owner 确认后才开始简化；
-5. 简化后用旧 Case + 新 Case 做前后对照。
+1. Owner 先看合并后的 Part 2 到底包含什么；
+2. 再逐项决定哪些需要调整 / 删除 / 简化；
+3. 每次只改一小组规则；
+4. 改后用旧 Case + 新 Case 做对照验证；
+5. 原始 50 份快照始终保留。
 
 ## 安全边界
 

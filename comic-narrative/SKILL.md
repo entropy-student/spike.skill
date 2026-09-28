@@ -2,9 +2,9 @@
 name: comic-narrative
 title: 漫画叙事
 description: 面向“选题 → 剧本 → 分镜 → 漫画图片资产 → 配音/时间轴 → 成片”的漫画叙事生产 Skill。当前按模块逐步从 ai-story-showrunner / story-showrunner 简化迁移，并通过历史 Case 与源快照复查避免能力丢失。
-version: 0.0.5-draft
+version: 0.0.6-draft
 language: zh-CN
-status: PART2_SOURCE_COLLECTION
+status: PART2_MERGED_BASELINE
 ---
 
 # 漫画叙事
@@ -21,7 +21,7 @@ status: PART2_SOURCE_COLLECTION
 
 ## 当前完成范围
 
-Part 0「历史选题库」与 Part 1「选题与内容策略」已完成；Part 2「剧本与叙事」已进入源材料收集阶段。
+Part 0「历史选题库」与 Part 1「选题与内容策略」已完成；Part 2「剧本与叙事」已完成不删能力的合并基线，等待 Owner 逐项调整。
 
 执行选题时按顺序读取：
 
@@ -33,6 +33,9 @@ Part 0 只有一个正式文档：
 
 Part 1 只有一个正式文档：
 - `part1/TOPIC_STRATEGY.md`
+
+Part 2 当前唯一合并基线：
+- `part2/SCRIPT_NARRATIVE.md`
 
 旧材料仅用于追溯与备份：
 
