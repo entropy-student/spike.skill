@@ -125,7 +125,7 @@ Creator 尽量准备：
 
 没有商单时也可以建立 Portfolio，但必须诚实标记。
 
-推荐 3–6 个代表作品：
+Portfolio 数量以“足够让品牌判断合作形态”为准，优先覆盖不同可采购内容角色，例如：
 
 - Product Demo；
 - Comparison；
