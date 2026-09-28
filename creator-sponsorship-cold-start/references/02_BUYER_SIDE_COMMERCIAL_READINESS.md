@@ -230,17 +230,20 @@ MEASUREMENT_READY?
 低粉丝不自动 FAIL。
 任何关键项 FAIL，都可能导致“有内容价值但接不到单”。
 
-## 11. Minimum Buyer-ready Package
+## 11. Buyer-ready Sufficiency
 
-一个冷启动 Creator 达到以下状态，即可开始 Sponsor Validation：
+不要使用固定内容数量、固定 Portfolio 数量或固定响应小时数作为通用 Gate。
 
-1. 6–10 条稳定代表内容；
-2. 主页定位清楚；
-3. 有效商务联系方式；
-4. 3–6 条 Commercial Portfolio；
-5. 基础 Audience / Performance 数据；
-6. 可说明 Deliverables；
-7. Rights / Exclusivity 有基本边界；
-8. 平台广告披露规则已核验；
-9. 能在 24–48h 内处理正常商务询盘；
-10. 有一个明确 Sponsor Acquisition List。
+Creator 达到“足够可被品牌评估”的状态即可进入 Sponsor Validation：
+
+1. 有足够代表内容，让品牌能判断账号主题、受众和内容能力；
+2. 主页定位与商务联系方式清楚；
+3. 有足够 Commercial Portfolio 证明未来合作可以长什么样；
+4. 能提供当前平台可获得的基础 Audience / Performance 数据；
+5. 能说明可交付的 Deliverables；
+6. Rights / Exclusivity 有基本边界；
+7. 已核验平台广告披露规则；
+8. 商务响应和交付节奏与目标市场基本匹配；
+9. 有明确的 Sponsor Acquisition List 或平台采购入口。
+
+“足够”应根据平台、Creator 阶段和品牌采购方式判断，并记录理由。Buyer Readiness 是可修复执行条件，不是市场价值本身。
