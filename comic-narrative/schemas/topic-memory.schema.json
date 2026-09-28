@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Comic Narrative Topic Memory Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "topic_id",
+    "human_process",
+    "human_problem",
+    "main_mechanism",
+    "audience_payoff",
+    "meaning_fingerprint",
+    "status"
+  ],
+  "properties": {
+    "topic_id": {"type": "string"},
+    "aliases": {"type": "array", "items": {"type": "string"}},
+    "human_process": {"type": "string"},
+    "human_problem": {"type": "string"},
+    "main_mechanism": {"type": "string"},
+    "audience_payoff": {"type": "string"},
+    "meaning_fingerprint": {"type": "string"},
+    "story_motif": {"type": ["string", "null"]},
+    "visual_motif": {"type": ["string", "null"]},
+    "first_seen": {"type": ["string", "null"]},
+    "last_published": {"type": ["string", "null"]},
+    "status": {"enum": ["candidate", "scheduled", "locked", "published", "hold", "rejected", "revisit_allowed"]},
+    "revisit_reason": {"type": ["string", "null"]},
+    "performance": {"type": ["object", "null"]}
+  }
+}
