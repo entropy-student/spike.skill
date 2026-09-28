@@ -55,7 +55,12 @@
 - **MEDIUM：**多项迹象支持商业合作，但付费关系未公开；
 - **LOW：**只出现产品、疑似赠品、联盟链接或无法核实的广告结构。
 
-主分析使用 HIGH；必要时将 HIGH + MEDIUM 作为敏感性分析并明确标注。
+由于公开披露会系统性漏记，默认同时报告：
+
+- **Confirmed Paid — Lower Bound**：只计 HIGH；
+- **Confirmed + Probable — Sensitivity Range**：HIGH + 有充分依据的 MEDIUM。
+
+不得把公开观察得到的商单密度写成“真实精确商单率”。LOW 只作为线索，不进入核心统计。
 
 ## 4. 计算有用的比较指标
 
@@ -85,7 +90,20 @@ Organic Ad Retention = median organic sponsored performance / median organic non
 
 没有证据时标为 `UNKNOWN`，不要自动当成 PASS。Buyer Readiness（联系方式、主页、报价资料、交付流程）通常是可修复的执行条件，不能与市场本身是否成立混为一谈。
 
-通过结构性检查的候选可比较：品牌需求频率、可触达品牌范围、小号进入证据、受众商业价值、自然广告适配、竞争供给、制作净收益潜力和平台风险。按用户的成本、周期和目标调整权重；解释权重与证据，不用缺乏依据的精确总分制造确定性。
+通过结构性检查的候选再比较：
+
+- Brand Demand frequency / depth；
+- Small-creator access；
+- Content–Brand Fit；
+- Audience–Brand Fit；
+- Addressable Sponsor Market 的 Breadth / Depth / Concentration / Adjacency；
+- Audience Scale Path；
+- Sponsor Capacity；
+- Repeat / retention；
+- 制作与履约经济性；
+- 平台风险。
+
+先完成市场比较，再叠加用户的技能、预算、时间和个人约束。解释权重与证据，不用缺乏依据的精确总分制造确定性。
 
 ## 6. 候选模型卡
 
@@ -101,7 +119,11 @@ Why a Brand Would Pay for an On-account Placement:
 Comparable Small-creator Evidence:
 Observed Paid-on-account Cadence / Repeat:
 Organic Ad Retention (or UNKNOWN):
-Brand Breadth / Concentration:
+Content–Brand Fit:
+Audience–Brand Fit:
+Sponsor Market Breadth / Depth / Concentration / Adjacency:
+Audience Scale Path:
+Sponsor Capacity:
 Production Inputs and Net Economics:
 Platform Eligibility / Main Risks:
 Evidence Level:
