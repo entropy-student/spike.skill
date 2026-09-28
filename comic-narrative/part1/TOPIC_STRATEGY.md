@@ -1,14 +1,12 @@
-# Part 1 — 选题与内容策略（简化 Draft）
+# Part 1 — 选题策略
 
-Status: `DRAFT / REGRESSION_TESTED / AWAITING_OWNER_CONFIRMATION`
-
-## 1. 这个模块只负责什么
+## 1. 目标
 
 把“大家本来就关心的东西”变成一个：
 
 > **值得点开、值得追问、能讲成故事、AI 真正参与因果、而且没有和旧内容换皮重复的 WHY 选题。**
 
-它不负责写完整剧本、不负责分镜、不负责配音。
+本模块只负责选题，不负责完整剧本、分镜、配音或成片。
 
 ---
 
@@ -27,7 +25,7 @@ X（美食 / MBTI / 娱乐 / 工作 / 关系 / 天气……）
 → 最终 WHY 选题
 ```
 
-内部最短口令：
+最短口令：
 
 > **X → 反常 → WHY → 人类矛盾 → AI 改变什么 → 一个机制 → 选题**
 
@@ -58,50 +56,11 @@ AI 热点不能只因为“新”就进入选题。
 4. **一条只讲一个主机制**：多个机制才能成立时，拆题。
 5. **能讲成故事且有非平凡收获**：能出现行动、阻力、后果、变化；看完不能只剩“AI 可以做 X”。
 
-事实型题目还必须有可追溯证据。没有证据时不能把猜测写成事实。
+事实型题目必须有可追溯证据。没有证据时，不能把猜测写成事实。
 
 ---
 
-## 4. 最终候选最少要产出什么
-
-每个候选只要求锁定这些核心字段：
-
-```yaml
-topic:
-entry_mode:
-x_domain:
-human_process:
-paradox:
-why_question:
-human_tension:
-ai_changed_process:
-main_mechanism:
-human_stakes:
-audience_payoff:
-meaning_fingerprint:
-content_job:
-selection_status:
-duplicate_reason:
-evidence_or_uncertainty:
-```
-
-其中：
-
-- `meaning_fingerprint`：记录“这一期真正探索的矛盾”，用于去重，**不是提前锁死观点**。
-- `content_job` 只选一个主要任务：
-  - `DISCOVERY`：吸引陌生人；
-  - `TRUST`：讲清机制、建立信任；
-  - `SOLUTION`：自然通向一个行动或解决方案。
-- `selection_status`：
-  - `PASS`
-  - `HOLD_DUPLICATE`
-  - `RETURN`
-
----
-
-## 5. HOT / EVERGREEN
-
-选题来源只有两类：
+## 4. HOT / EVERGREEN
 
 ### HOT
 近期事件、新模型、新能力、新社会讨论。
@@ -124,6 +83,68 @@ evidence_or_uncertainty:
 
 ---
 
+## 5. 去重
+
+不能因为标题、领域或 AI 名词换了，就把同一个内容当成新选题。
+
+### D1 — 同一信号
+同一新闻、同一事件、同一来源的重复转载。
+
+### D2 — 同一题
+核心机制 + 人的问题 + 观众收获基本相同。
+
+### D3 — 同一角度
+技术对象不同，但实际上仍在讲同一个人类问题。
+
+### D4 — 同一故事 / 视觉母题
+例如连续反复使用同一种老板秘书、左右对比、办公室碰壁结构。
+
+D4 不一定禁止选题，但要提醒下游换表达。
+
+### D5 — 同一意义
+跨领域仍可能是同一个问题。
+
+例如：
+
+```text
+美食：推荐最优 → 少了探索
+音乐：推荐最优 → 少了探索
+购物：推荐最优 → 少了探索
+```
+
+如果核心都在问：
+
+`OPTIMIZATION_VS_EXPLORATION`
+
+则默认视为同一 Meaning。
+
+### 两个核心指纹
+
+```text
+Topic Fingerprint
+= 主机制 + human process + human problem + audience payoff
+```
+
+```text
+Meaning Fingerprint
+= human tension + controlling question
+```
+
+Meaning Fingerprint 只用于判断“灵魂是否重复”，不能提前锁死最终观点。
+
+允许重讲的情况包括：
+- 机制真的变了；
+- 出现新的人的后果；
+- 目标受众不同；
+- 内容任务不同；
+- 上一期留下了明确未解决需求；
+- 新热点让旧问题重新重要；
+- human process / stakes / counter-idea 已发生实质变化。
+
+只是换标题、换领域、换例子，不算新题。
+
+---
+
 ## 6. 传播与长期价值
 
 通过硬检查以后，再比较：
@@ -133,14 +154,14 @@ evidence_or_uncertainty:
 - 是否有明显好奇缺口；
 - 是否反常；
 - 是否值得分享；
-- 是否有真实需求/讨论信号。
+- 是否有真实需求 / 讨论信号。
 
 ### Asset Value
 - 是否建立新的理解；
 - 是否长期可搜索；
 - 是否有系列空间；
 - 是否建立信任；
-- 是否可能自然连接未来产品/工具需求。
+- 是否可能自然连接未来产品 / 工具需求。
 
 不使用一个总分替代判断。
 
@@ -153,22 +174,80 @@ evidence_or_uncertainty:
 - “什么是 X”式百科题；
 - 技术圈很重要，但普通人没有后果；
 - AI 只是标题标签；
-- 同一个意义换美食/购物/音乐外壳；
+- 同一个意义换美食 / 购物 / 音乐外壳；
 - 为了热点放弃事实准确性；
 - 为了转化硬塞产品；
 - 在选题阶段提前决定唯一观点，再找故事证明它。
 
 ---
 
-## 8. 发布后的反馈
+## 8. 参考 Case
+
+### Case 1 — 美食 + AI 推荐
+
+输入：
+
+> 长期只吃 AI 推荐里评分最高的餐厅。
+
+产出：
+
+- 最终选题：**一年只吃评分最高的餐厅，为什么后来什么都不好吃？**
+- Human Process：餐厅发现 / 口味形成
+- 反常：推荐越来越“最优”，主观体验却越来越没惊喜
+- Human Tension：最优化 vs 探索
+- AI Changed Process：推荐排序替人压缩了主动探索和随机发现
+- 主机制：基于既有偏好 / 可量化信号的推荐排序，会持续优先高概率匹配而减少探索
+- Meaning Fingerprint：`OPTIMIZATION_VS_EXPLORATION`
+- 去重结果：当前 Registry 未发现同义题
+- 结果：`PASS`
+
+### Case 2 — MBTI + AI 分析
+
+输入：
+
+> AI 根据一个人长期聊天记录越来越准确地判断他的 MBTI / 性格。
+
+产出：
+
+- 最终选题：**为什么 AI 越了解你，你反而越容易被一个标签困住？**
+- Human Process：自我理解 / 身份判断
+- 反常：描述越准确，本应更了解自己，却可能越来越按过去的标签限制未来选择
+- Human Tension：被理解 vs 被定义
+- AI Changed Process：AI 把零散的过去行为持续归纳成稳定画像，并让画像反过来参与判断
+- 主机制：基于历史行为的模式归纳 / 分类只能描述已有证据，不等于定义未来可能性
+- Meaning Fingerprint：`UNDERSTANDING_VS_DEFINITION`
+- 去重结果：当前 Registry 未发现同义题
+- 结果：`PASS`
+
+### Case 3 — AI Agent 能自动完成更多任务
+
+输入：
+
+> 新的 AI Agent 能自动替人执行越来越多任务。
+
+产出：
+
+- 候选选题：**为什么 AI 越能替你做事，你反而越需要决定哪些事不能交给它？**
+- Human Process：任务委托 / 控制权分配
+- 反常：能力越强，本应越省心，但越需要明确权限和确认边界
+- Human Tension：委托效率 vs 控制权
+- AI Changed Process：AI 从“告诉你怎么做”进入“实际执行工作流”
+- 主机制：工具能力与授权 / 审批边界是两个不同层次
+- Meaning Fingerprint：`DELEGATION_EFFICIENCY_VS_CONTROL`
+- 去重结果：已命中 `agent-delegated-workflow` 与 `tools-do-not-mean-permission`
+- 结果：`HOLD_DUPLICATE`
+
+---
+
+## 9. 发布后的反馈
 
 发布数据用于下一轮选题：
 
 ```text
-播放/留存
-+ 收藏/关注/高质量评论
-+ 搜索/私信/反复问题
-→ 更新 Topic Memory
+播放 / 留存
++ 收藏 / 关注 / 高质量评论
++ 搜索 / 私信 / 反复问题
+→ 更新选题记忆
 → 调整未来选题
 ```
 
