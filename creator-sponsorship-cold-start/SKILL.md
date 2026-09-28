@@ -1,10 +1,10 @@
 ---
 name: creator-sponsorship-cold-start
 description: >-
-  用于从 0 系统发现并验证最可能形成可持续品牌商单收入的自媒体账号模型。先开放式发现市场中的 Account Model，再验证品牌需求、小中型创作者可达性、收入可持续性与用户适配，最后设计冷启动实验；平台分成、联盟佣金、赠品和纯 UGC 制作费单独记录，不替代自有账号品牌商单证据。
+  用于从 0 系统发现并验证最可能形成可持续品牌商单收入的自媒体账号模型。先开放发现市场中的 Account Model，再验证品牌需求、小中型创作者可达性、Sponsor Fit 与可持续性，最后叠加个人约束并设计冷启动实验。
 metadata:
   title: Creator Sponsorship Cold Start（自媒体品牌商单冷启动）
-  version: "0.4.0"
+  version: "0.5.0"
   language: zh-CN
 ---
 
@@ -12,23 +12,17 @@ metadata:
 
 ## 0. 核心目标
 
-回答：
+> **系统发现并验证：从 0 开始，哪些自媒体账号模型最有可能形成可持续的品牌商单收入。**
 
-> **从 0 开始，哪些自媒体账号模型最有可能形成可持续的品牌商单收入？**
+核心收入只计包含 Creator 自有账号付费发布的品牌合作。平台分成、联盟、赠品、纯 UGC-only、自有产品收入可以旁录，但不能替代账号商单证据。
 
-这里的“品牌商单收入”指品牌为 Creator **自有账号上的付费内容、发布位或与该发布绑定的合作权利**支付的收入。
-
-平台广告分成、联盟佣金、赠品、纯 UGC / 素材制作、自有产品收入可以作为旁证或其他收入记录，但不能替代品牌商单验证。
-
-本 Skill 不保证收入，也不因为行业热度、粉丝量、单条爆款、头部案例或理论品牌数量直接推荐模型。
+本 Skill 不保证收入，也不因行业热度、粉丝量、单条爆款、头部案例或理论品牌数量直接推荐模型。
 
 ---
 
-## 1. Account Model 是研究单位
+## 1. Account Model
 
-Account Model 不是“美妆 / 科技 / 户外”这样的赛道名称。
-
-至少由以下部分组成：
+研究单位不是赛道，而是：
 
 ~~~text
 Audience
@@ -39,149 +33,99 @@ Audience
 × Platform Context
 ~~~
 
-它必须回答：
+一个合格模型必须回答：
 
 - 谁持续看；
 - 为什么持续看；
-- 什么内容可以重复生产；
-- 哪些品牌为什么愿意在这个账号上付费；
-- 品牌进入内容后是否仍然自然；
-- 这个模型是否有增长和长期采购空间。
+- 内容如何重复生产；
+- 哪些品牌为什么愿意付费；
+- 品牌进入后是否仍然自然；
+- 这个模型有没有增长和长期采购空间。
 
 ---
 
-## 2. 先定义研究边界，不提前锁死个人偏好
+## 2. 研究边界
 
-研究开始时只先固定会实质改变市场搜索空间的条件：
+开放发现前只固定真正会改变市场搜索空间的条件：
 
-- 目标平台；
-- 国家 / 地区；
-- 语言；
-- 明确的收入定义；
-- 法规或身份限制；
-- 用户明确要求排除的领域。
+- Platform；
+- Market / Country；
+- Language；
+- Core revenue definition；
+- 法规 / 身份限制；
+- 用户明确排除领域。
 
-以下通常**不要在开放发现前当成筛选器**：
+个人预算、时间、露脸、样品获取、现有技能和内容偏好默认后移到 User Fit。
 
-- 是否露脸；
-- 是否愿意买样品；
-- 每周投入几小时；
-- 当前技能；
-- 当前预算；
-- 个人内容偏好。
+只有绝对不可违反的个人条件才提前标为 HARD_CONSTRAINT。
 
-这些条件在市场候选形成后进入 User Fit 阶段。
-
-如果某个个人条件本身就是绝对硬约束，明确标记为 HARD_CONSTRAINT 后再提前应用。
-
-动态的平台商业工具、准入和披露规则，每次执行时重新核验并注明日期与来源。
+平台商业工具、准入、披露和政策属于动态事实，每次执行重新核验。
 
 ---
 
-## 3. Open-world Account Model Discovery
+## 3. Open-world Discovery
 
-禁止直接凭印象列几个赛道然后开始验证。
+禁止先凭印象列几个赛道再验证。
 
-至少使用四路发现：
+至少使用：
 
-### A. Advertiser-led
-从品牌 Campaign、公开合作、Creator Marketplace、代理/平台招募反查：
+1. **Advertiser-led**：品牌 Campaign、Marketplace、Agency / 平台招募；
+2. **Creator-led**：平台自然生态中的增长、商业化与反例账号；
+3. **Audience-led**：长期需求、兴趣、身份、搜索与决策场景；
+4. **Negative-space**：受众强但商单弱，或品牌需求强但 Creator 供给弱的区域。
 
-- 品牌反复购买哪些 Creator；
-- 买的是什么内容角色；
-- 哪些主题 / 人群 /形式有持续采购。
+将发现结果聚类成 Account Model，而不是宽泛赛道。
 
-### B. Creator-led
-从平台自然生态观察：
+候选状态：
 
-- 哪些中小账号结构在增长；
-- 哪些内容系列可以重复；
-- 哪些账号已经商业化；
-- 哪些账号自然表现强但商单少。
+- ESTABLISHED：已有明确品牌采购和中小 Creator 商单；
+- EMERGING：已有早期采购或需求增长，但重复性不足；
+- LATENT：受众或 Sponsor Fit 看起来强，但真实商单证据不足。
 
-### C. Audience-led
-从长期需求、兴趣、身份和决策场景发现：
+LATENT 必须继续验证，不能因“竞争少”直接推荐。
 
-- 用户为什么持续关注；
-- 需求是否反复出现；
-- 是否存在高意图或高频注意力。
-
-### D. Negative-space
-主动寻找：
-
-- 受众需求强但公开商单少；
-- 新兴主题尚未成熟商业化；
-- 品牌需求存在但 Creator 供给弱。
-
-Negative-space 只能生成 LATENT 假设，不能因“竞争少”直接推荐。
-
-详细流程见 references/05_OPEN_WORLD_ACCOUNT_MODEL_DISCOVERY.md。
+执行细节见 references/01_DISCOVERY_AND_SAMPLING.md。
 
 ---
 
-## 4. 候选模型分级
+## 4. Sponsor Market Validation
 
-发现阶段允许三种状态：
+对每个候选至少验证：
 
-### ESTABLISHED
-已有明确品牌采购和中小 Creator 商单证据。
+### Brand Demand
+品牌是否跨时间持续采购，而非单一 Campaign。
 
-### EMERGING
-已有早期采购、平台/品牌需求增长或少量商单，但市场仍在形成。
+### Small-creator Access
+与新号路径相近的小中型 Creator 是否真实获得 PAID_ON_ACCOUNT。
 
-### LATENT
-受众需求和 Sponsor Fit 看起来强，但真实商单证据不足。
-
-LATENT 必须进入品牌验证，不能直接推荐，也不能因商单少直接 KILL。
-
----
-
-## 5. Sponsor Market Validation
-
-对每个候选分别验证：
-
-### 5.1 Brand Demand
-- 品牌是否持续购买 Creator 内容；
-- 采购是否跨时间存在；
-- 是否只有单个品牌 / 单次 Campaign。
-
-### 5.2 Small-creator Access
-- 与从 0 起步路径相近的小中型账号是否获得过 PAID_ON_ACCOUNT；
-- 头部案例不能单独证明小号可进入。
-
-### 5.3 Content–Brand Fit
+### Content–Brand Fit
 品牌与 Creator 平时内容主题是否自然匹配。
 
-### 5.4 Audience–Brand Fit
-Creator 的受众是否接近品牌要触达的人。
+### Audience–Brand Fit
+Creator 受众是否接近品牌目标人群。
 
-不要把两种 Fit 合并成一句“品牌适配”。
+### Addressable Sponsor Market
+不要把“品牌越多越好”当目标。拆成：
 
-### 5.5 Addressable Sponsor Market
-不要优化“理论上能塞多少品牌”。
-
-拆成：
-
-- **Breadth**：有多少独立品牌 / 类别真实可买；
-- **Depth**：这些品牌采购频率和预算深度；
-- **Fit**：合作是否天然合理；
-- **Concentration**：是否依赖少数品牌；
-- **Adjacency**：是否存在自然相邻的 Sponsor 市场。
+- Breadth；
+- Depth；
+- Fit；
+- Concentration；
+- Adjacency。
 
 ---
 
-## 6. Real Creator Evidence
+## 5. Real Creator Evidence
 
-真实账号研究必须：
+真实账号研究至少并用 Advertiser-led + Creator-led；有条件时加入 Platform-led。
 
-- Advertiser-led 与 Creator-led 至少并用；
-- 条件允许时加入 Platform-led；
-- 纳入无明显商单账号和反例；
-- 使用可比观察窗口；
-- 保留粉丝原值，但不要预设固定粉丝段为成功门槛；
-- 不预设固定样本总量，以结论稳定和关键不确定性是否收敛作为停止依据。
+样本必须包含：
+- 商单明显账号；
+- 少商单账号；
+- 无明显商单账号；
+- 自然表现强但商业弱账号。
 
-商业内容编码：
+商业信号编码：
 
 - PAID_ON_ACCOUNT
 - GIFTED
@@ -189,145 +133,150 @@ Creator 的受众是否接近品牌要触达的人。
 - UGC_ONLY
 - UNKNOWN
 
-由于公开披露可能漏记，至少区分：
+公开披露会漏记，因此至少报告：
 
-- **Confirmed Paid — Lower Bound**
-- **Confirmed + Probable — Sensitivity Range**
+- Confirmed Paid — Lower Bound
+- Confirmed + Probable — Sensitivity Range
 
-不要把不确定商单率伪装成精确真实值。
+公开不可见的合同金额、后台受众、ROI 写 UNKNOWN。
 
-详细规范见 references/01_REAL_ACCOUNT_RESEARCH_AND_SCORING.md。
+样本量不固定；当新增样本不再改变候选排序、小号可达性和主要反例时停止。
+
+详见 references/01_DISCOVERY_AND_SAMPLING.md。
 
 ---
 
-## 7. Sustainability Model
+## 6. Sustainability
 
-“接到广告”不等于“可持续广告收入”。
+“接到广告”不等于“可持续收入”。
 
-对候选模型至少检查六层：
+至少检查六层：
 
-### A. DEMAND
-品牌需求是否持续，而非一次性热点。
+### DEMAND
+品牌需求是否持续。
 
-### B. FIT
+### FIT
 Content–Brand Fit 与 Audience–Brand Fit 是否长期成立。
 
-### C. SCALE
-账号受众、内容供给和品牌价值是否有增长空间。
-
-必须单独判断：
+### SCALE
+区分：
 - Small-account monetization；
 - Audience Scale Path；
 - Sponsorship value at larger scale。
 
-小号能接单，不代表收入天花板高。
+### CAPACITY
+账号能承载多少商业合作，而不持续损害 Audience Value、内容质量和 Creator 产能。
 
-### D. CAPACITY
-账号能承载多少商业合作，而不持续破坏受众价值、内容节奏和创作者产能。
+Sponsor Density 只是观察变量，不假设越高或越低越好。
 
-Sponsor Density 是观察变量，不假设“越低越好”。
+### RETENTION
+看同品牌复投、多品牌重复采购和跨时间采购。
 
-### E. RETENTION
-是否出现：
-- 同品牌复投；
-- 不同品牌重复采购；
-- 跨时间采购节奏。
+### ECONOMICS
+只有真实数据时计算收入、直接成本、时间成本、净收入和 Sponsor Concentration。
 
-### F. ECONOMICS
-真实有数据时检查：
-- 商单收入；
-- 直接现金成本；
-- 时间成本；
-- 履约/修改成本；
-- 净收入；
-- 收入集中度。
+Sustainability Level：
 
-无真实合同数据时写 UNKNOWN，不预测精确月收入或 ROI。
+- S0 SINGLE DEAL
+- S1 REPEAT SIGNAL
+- S2 REPEATABLE MARKET
+- S3 ECONOMICALLY SUSTAINABLE
+- S4 SCALABLE
 
-详细规范见 references/06_SPONSORSHIP_SUSTAINABILITY.md。
+详见 references/02_SPONSOR_MARKET_AND_SUSTAINABILITY.md。
 
 ---
 
-## 8. 先市场判断，再 User Fit
+## 7. User Fit 后置
 
-只有候选模型已经有市场证据后，才叠加个人条件：
+市场候选形成后，再加入：
 
-- 技能；
-- 资源；
-- 时间；
-- 现金预算；
-- 是否露脸；
-- 是否可外拍；
-- 是否能获得样品 / 场景 / 专家资源；
-- 长期兴趣；
-- 风险容忍度。
+- Skills；
+- Assets / resources；
+- Time；
+- Budget；
+- Face / voice / location constraints；
+- Product / scene access；
+- Long-term interest；
+- Risk tolerance。
 
-User Fit 回答的是：
+User Fit 回答：
 
 > **市场上值得做的模型里，哪些适合这个 Creator？**
 
-而不是：
-
-> **因为这个 Creator 目前不方便，所以市场研究一开始就不看其他模型。**
-
-若某约束为绝对硬限制，应显式标记，避免重复研究不可执行方案。
+不要反过来用当前不便提前砍掉整个市场搜索空间，除非它是 HARD_CONSTRAINT。
 
 ---
 
-## 9. Buyer Readiness 是执行层，不是市场价值本身
+## 8. Select Candidates
 
-当模型有市场潜力但商单验证受阻时，再诊断：
+最终只保留 1–3 个值得实际测试的模型。
 
+只有口径可比时才排序；否则明确暂不排序。
+
+每个 Candidate 至少说明：
+
+~~~text
+Account Model:
+Status:
+Brand Demand:
+Small-creator Access:
+Content–Brand Fit:
+Audience–Brand Fit:
+Sponsor Market:
+Scale Path:
+Sponsor Capacity:
+Retention Evidence:
+Economics Evidence:
+User Fit:
+Strongest Counterevidence:
+Unknowns:
+Confidence:
+~~~
+
+---
+
+## 9. Cold-start Dual Validation
+
+### Lane A — Audience
+验证：
+- Audience Need；
+- Content Engine；
+- 中位表现；
+- Production sustainability。
+
+### Lane B — Brand
+验证：
+- Qualified sponsor interest；
+- Budgeted brief；
+- PAID_ON_ACCOUNT；
+- Repeat。
+
+赠品、联盟、UGC-only 和单纯入选必须分开。
+
+Buyer Readiness 只在模型已有市场潜力但采购验证受阻时检查：
 - Discoverability；
 - Contactability；
-- Audience / performance data；
-- Commercial portfolio；
-- Offer clarity；
-- Rights / exclusivity；
-- Delivery reliability；
-- Measurement readiness。
+- Profile / Portfolio；
+- Data；
+- Offer；
+- Rights；
+- Delivery；
+- Measurement。
 
-这些大多是可修复执行条件，不能自动解释成“赛道没需求”。
+不使用固定作品数、固定回复时间或固定转化率作为通用 Gate。
 
-不要使用固定内容数量、固定 Portfolio 数量或固定响应小时数作为通用 Gate。
-
-详见 references/02_BUYER_SIDE_COMMERCIAL_READINESS.md。
+详见 references/03_VALIDATION_AND_BUYER_READINESS.md。
 
 ---
 
-## 10. Cold-start Dual Validation
+## 10. Real Deal Measurement
 
-选出 1–3 个值得实际测试的模型后，同时运行：
-
-### Lane A — Audience Validation
-验证：
-- 目标受众是否持续需要；
-- Content Engine 能否重复成立；
-- 中位表现和受众质量是否出现稳定正向信号；
-- Production 是否可持续。
-
-### Lane B — Brand Validation
-验证：
-- 品牌 / Agency 是否确认 Fit；
-- 是否出现预算明确 Brief；
-- 是否出现 PAID_ON_ACCOUNT；
-- 是否出现复投。
-
-询盘、入选、赠品、联盟、UGC-only 必须单独记录。
-
-测试规模、周期和停止条件根据平台、用户资源和主要不确定性预先定义，不使用通用固定阈值。
-
-详见 references/04_COLD_START_VALIDATION.md。
-
----
-
-## 11. Sponsored Account Contract Revenue
-
-若一笔合同包含 Creator 自有账号发布，则本次合作相关收入可以拆分记录：
+若一份合同包含 Creator 自有账号付费发布，可把绑定收入拆成：
 
 ~~~text
 Creative Fee
-+ On-account Distribution / Placement Fee
++ On-account Distribution / Placement
 + Usage Rights
 + Paid Amplification Rights
 + Exclusivity
@@ -335,107 +284,94 @@ Creative Fee
 + Other Bound Deliverables
 ~~~
 
-它们共同属于这次 Sponsored Account Contract 的商业价值。
+纯 UGC_ONLY 仍单独记录。
 
-纯 UGC_ONLY、没有 Creator 自有账号发布的交易继续单独记录，不计作本 Skill 核心商单验证。
+合作后按品牌目标选择指标，并区分 Organic 与 Paid Amplification。
 
-Deal 与测量见 references/03_DEAL_AND_MEASUREMENT_ARCHITECTURE.md。
+详见 references/04_DEAL_AND_MEASUREMENT.md。
 
 ---
 
-## 12. 结论等级
+## 11. Evidence Levels
 
 ### DIRECTION HYPOTHESIS
-只有市场 / 平台层信号。
+只有市场 / 平台信号。
 
 ### CANDIDATE MODEL
-已有真实中小账号 + 品牌需求 + Sponsor Fit 证据，值得进入自己的验证。
+有真实中小账号、品牌需求和 Sponsor Fit 证据，值得测试。
 
 ### INITIAL VALIDATION
-用户自己的账号获得重复受众信号，并出现真实 PAID_ON_ACCOUNT。
+用户自己的账号出现重复 Audience Signal + PAID_ON_ACCOUNT。
 
 ### SUSTAINABILITY EVIDENCE
-跨时间出现：
-- 持续品牌需求；
-- 可接受 Sponsor Capacity；
-- 复投或多品牌重复采购；
-- 可持续 Production；
-- 可接受净经济性；
-- 账号仍有 Scale Path。
+跨时间存在重复采购、可接受 Sponsor Capacity、可持续 Production 和经济性。
 
 ### SCALE
-只有用户自己的数据已证明重复性、经济性、受众承载和运营能力后才能进入。
+只有用户自己的数据证明重复性、经济性和放大后稳定性才进入。
 
-所有阶段报告：
-- 已证明；
-- 未证明；
-- 置信度；
-- 最强反证；
-- 主要偏差；
-- 下一项最便宜、信息增益最高的验证。
+---
+
+## 12. Evidence Rules
+
+优先来源：
+
+1. 平台官方商业规则 / Creator Marketplace；
+2. 品牌、Agency、真实 Campaign；
+3. 真实 Creator 账号；
+4. 第一方 Marketplace / 可信行业研究；
+5. 学术研究；
+6. Creator / Agency 访谈；
+7. 社区讨论。
+
+规则：
+
+- 行业报告不能代替真实账号；
+- 头部不能代替小号可达性；
+- Marketplace 数据不能自动外推整个市场；
+- 公开报价不等于成交价；
+- 动态规则每次重新查；
+- 事实、推断、假设和 UNKNOWN 分开。
 
 ---
 
 ## 13. 默认执行顺序
 
 ~~~text
-DEFINE OBJECTIVE
-↓
-OPEN-WORLD DISCOVERY
-↓
-BUILD ACCOUNT MODELS
-↓
-VALIDATE BRAND DEMAND
-↓
-VALIDATE SMALL-CREATOR ACCESS
-↓
-TEST SPONSOR FIT
-↓
-TEST SUSTAINABILITY
-↓
-APPLY USER CONSTRAINTS
-↓
-SELECT 1–3 MODELS
-↓
-COLD-START DUAL VALIDATION
-↓
-REAL PAID SPONSORSHIP
-↓
-REPEAT / SCALE
+DEFINE BOUNDARY
+→ OPEN-WORLD DISCOVERY
+→ BUILD ACCOUNT MODELS
+→ VALIDATE SPONSOR MARKET
+→ TEST SUSTAINABILITY
+→ APPLY USER FIT
+→ SELECT 1–3 CANDIDATES
+→ DUAL VALIDATION
+→ REAL PAID SPONSORSHIP
+→ REPEAT / SCALE
 ~~~
 
 ---
 
 ## 14. 默认交付
 
-输出：
-
-1. 研究边界与动态平台规则；
-2. Open-world Discovery 覆盖了什么；
-3. Account Model universe 与聚类方式；
-4. 候选模型及 ESTABLISHED / EMERGING / LATENT 状态；
-5. Brand Demand / Small-creator Access；
-6. Content–Brand Fit / Audience–Brand Fit；
-7. Addressable Sponsor Market；
-8. Scale / Capacity / Retention / Economics；
-9. User Fit 叠加后的筛选变化；
-10. 最终 1–3 个 Candidate；
-11. 最强反证与 UNKNOWN；
-12. Cold-start 双通道实验与停止条件。
-
-只有口径可比时才排序；否则明确“暂不排序”。
+1. Research Boundary；
+2. Discovery Coverage；
+3. Account Model Universe；
+4. Candidate status；
+5. Sponsor Market evidence；
+6. Sustainability；
+7. User Fit 后的变化；
+8. 最终 Candidate；
+9. Strongest Counterevidence / UNKNOWN；
+10. 下一项信息增益最高的验证。
 
 ---
 
-## 15. 按需参考
+## 15. References
 
-- references/01_REAL_ACCOUNT_RESEARCH_AND_SCORING.md：真实账号抽样、商单编码、模型比较。
-- references/02_BUYER_SIDE_COMMERCIAL_READINESS.md：采购摩擦诊断。
-- references/03_DEAL_AND_MEASUREMENT_ARCHITECTURE.md：真实合作后的收入、Rights 与测量。
-- references/04_COLD_START_VALIDATION.md：双通道验证。
-- references/05_OPEN_WORLD_ACCOUNT_MODEL_DISCOVERY.md：开放发现与候选模型生成。
-- references/06_SPONSORSHIP_SUSTAINABILITY.md：可持续广告收入判断。
-- references/07_RESEARCH_BASIS_2026-09-29.md：v0.4 方法论研究依据；只用于解释设计，不替代动态事实核验。
-- templates/account-model-research-matrix.md：统一研究记录。
+- references/01_DISCOVERY_AND_SAMPLING.md
+- references/02_SPONSOR_MARKET_AND_SUSTAINABILITY.md
+- references/03_VALIDATION_AND_BUYER_READINESS.md
+- references/04_DEAL_AND_MEASUREMENT.md
+- templates/account-model-research-matrix.md
 
-本 Skill 聚焦账号模型发现与验证，不负责具体脚本创作、日常长期运营、合同法律意见或替用户保证商业结果。
+本 Skill 聚焦 Account Model 发现与验证，不负责具体脚本、日常长期运营或合同法律意见。
