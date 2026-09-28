@@ -1,321 +1,120 @@
-# 03 — Deal & Measurement Architecture
+# 03 — Cold-start Validation & Buyer Readiness
 
-本文件用于避免两个常见错误：
+用于候选模型确定后，验证它能否同时建立受众价值和品牌采购信号。
 
-1. 把所有 Creator 合作都当成“发一条多少钱”；
-2. 用同一套 Likes / Views 衡量所有合作。
-
-只在出现真实品牌合作或需要设计首个付费提案时读取。
-
-本 Skill 的核心收入单位是 **Sponsored Account Contract Revenue**：只要该合同包含 Creator 自有账号上的付费发布，与这次发布绑定的 Creative Fee、Distribution / Placement Fee、Usage Rights、Paid Amplification Rights、Exclusivity、Performance Bonus 等都可以拆分记录为同一份账号商单合同价值。
-
-纯 UGC-only、联盟佣金、赠品和平台分成须分开记录，不能替代自有账号商单验证。
-
-## 1. Creator Deal 是一组权利与服务
-
-基础拆解：
+## 1. 先写验证假设
 
 ~~~text
-CREATIVE FEE
-+ DISTRIBUTION FEE
-+ USAGE RIGHTS
-+ PAID AMPLIFICATION
-+ RAW FOOTAGE
-+ CROSS-PLATFORM VERSIONS
-+ REVISION SCOPE
-+ RUSH
-+ EXCLUSIVITY
-+ PERFORMANCE BONUS
+Account Model:
+Primary uncertainty:
+Target audience:
+Content engine:
+Target sponsor categories:
+Paid-on-account offer:
+Time / cost limit:
+Positive signal:
+Disconfirming signal:
+Decision date:
 ~~~
 
-不要把额外权利隐含在 Base Fee 内。
+测试范围由平台、资源和主要不确定性决定，不使用通用固定数量或转化率。
 
-## 2. Creative Fee
+## 2. Lane A — Audience Validation
 
-覆盖：
-- 选题；
-- 脚本；
-- 拍摄；
-- 剪辑；
-- 设计；
-- 配音；
-- 版本制作；
-- 沟通与修改。
+验证：
+- 目标受众是否持续需要；
+- Content Engine 能否重复成立；
+- 中位表现是否出现稳定正向信号；
+- 制作是否可持续。
 
-即使 Creator 没有粉丝，Creative Fee 仍可能成立。
-
-## 3. Distribution Fee
-
-品牌购买 Creator 自有受众时产生。
-
-受影响因素：
-- Median reach；
-- Audience fit；
-- Platform；
-- Format；
-- Engagement quality；
-- Category intent；
-- 可预期分发稳定性。
-
-Follower count 只能作为参考，不是唯一基准。
-
-## 4. Usage Rights
-
-必须明确：
-
-### Channel
-- Brand organic social；
-- Paid social；
-- Website；
-- Landing page；
-- E-commerce；
-- Retail；
-- Email；
-- Sales material。
-
-### Duration
-- 30 / 60 / 90 days；
-- 6 / 12 months；
-- Perpetual。
-
-### Geography
-- Local；
-- Country；
-- Region；
-- Global。
-
-### Edit Rights
-- 原样复用；
-- Cutdown；
-- Caption / subtitle；
-- Re-edit；
-- Remix。
-
-权利越广、时间越长，Creator 放弃的未来价值越大。
-
-## 5. Paid Amplification
-
-包括但不限于：
-- Partnership Ads；
-- Whitelisting；
-- Spark / Boost；
-- Creator Partnerships Boost；
-- 平台授权投流。
-
-必须确认：
-- 谁发起；
-- 多久；
-- 是否允许品牌从 Creator 身份投放；
-- Creator 能否看到 Paid Performance；
-- 是否与 Organic 数据分离。
-
-## 6. Exclusivity
-
-必须限定：
-
-~~~text
-CATEGORY
-+ COMPETITOR SET
-+ DURATION
-+ TERRITORY
-~~~
-
-例如“3个月不得接任何科技品牌”远比“30天不得接某3个直接竞品”限制更大。
-
-Exclusivity 是机会成本，不应自动免费。
-
-## 7. Compensation Models
-
-区分：
-
-### FLAT
-固定创作/发布费。
-
-### PERFORMANCE
-按：
-- CPA；
-- CPI；
-- CPS；
-- Lead；
-- Revenue share；
-- Affiliate。
-
-### HYBRID
-Base Fee + Performance Bonus。
-
-### GIFTED
-仅产品/服务交换。
-
-### UGC_ONLY
-只交素材，不发 Creator 账号。
-
-不同模式不能混成一个“平均商单价”。
-
-## 8. Measurement by Advertiser Job
-
-### DISTRIBUTION
-主指标：
-- Reach；
-- Views；
-- Watch time；
-- Engagement；
-- Clicks。
-
-效率指标（有完整数据时）：
-- CPM；
-- CPV；
-- CPC。
-
-### CREATIVE_ASSET
-主指标：
-- Cost per usable asset；
-- Approval rate；
-- Number of usable hooks；
-- Reuse count；
-- Asset lifespan。
-
-品牌投流后：
-- CTR；
-- CVR；
-- CPA；
-- CPM efficiency；
-- Creative win rate。
-
-### PERFORMANCE
-主指标：
-- Qualified clicks；
-- Leads；
-- Installs；
-- Code uses；
-- Sales；
-- Revenue；
-- CPA；
-- ROAS。
-
-### TRUST / EXPERTISE
-主指标：
-- Save/share；
+记录符合平台和内容目标的指标，例如：
+- Reach / Views；
 - Completion；
-- Search / consideration lift；
-- Comment quality；
-- Brand lift；
-- Survey / research metrics。
+- Save / Share；
+- Comments；
+- Search；
+- Profile visits。
 
-不要拿 Awareness Campaign 的销量和 UGC Asset 的自然播放直接比较。
+单条爆款不能单独通过。
 
-## 9. Creator-side Measurement Pack
+## 3. Lane B — Brand Validation
 
-每个合作建议归档：
+验证：
+- 品牌 / Agency 是否确认 Fit；
+- 是否出现预算明确 Brief；
+- 是否出现 PAID_ON_ACCOUNT；
+- 是否出现复投。
+
+信号分级：
+
+1. Market Signal
+2. Qualified Interest
+3. Buying Intent
+4. Paid-on-account
+5. Repeat
+
+赠品、联盟、UGC-only 和入选必须单独记录。
+
+## 4. Buyer Readiness
+
+如果模型已有市场潜力，但 Brand Validation 受阻，再检查：
+
+- Discoverability；
+- Contactability；
+- Audience / performance data；
+- Profile clarity；
+- Portfolio 是否足够让品牌判断合作形态；
+- Offer clarity；
+- Rights / exclusivity；
+- Delivery reliability；
+- Measurement readiness；
+- 平台披露与合规。
+
+Buyer Readiness 通常是可修复执行问题，不能自动解释成市场没需求。
+
+不使用固定作品数量、固定 Portfolio 数量、固定响应小时数作 Gate。
+
+## 5. Buyer-side Funnel
+
+~~~text
+DISCOVER
+→ SHORTLIST
+→ VET
+→ CONTACT
+→ BRIEF
+→ PRICE / RIGHTS
+→ CONTRACT
+→ DELIVER
+→ MEASURE
+→ RENEW
+~~~
+
+目标是识别采购摩擦发生在哪一步。
+
+## 6. 首单后复盘
 
 ~~~text
 Brand:
-Campaign:
-Advertiser Job:
-Platform:
-Deliverable:
-Organic post URL:
-Published date:
+Content engine:
+Paid-on-account deliverable:
+Contract revenue:
+Direct cost:
+Hours:
 Organic performance:
 Paid amplification:
-Paid performance:
-UTM / Code:
-Usage rights:
-Rights expiry:
-Exclusivity:
-Revision rounds:
-Delivery status:
-Revenue:
-Follow-up date:
-Renewal:
-Notes:
+Audience response:
+Brand-reported outcome:
+Repeat / renewal:
+What to change:
 ~~~
 
-## 10. Ad Retention Correction
+品牌未提供结果时不推算 ROI。
 
-只有在能区分自然与 Paid 时：
+## 7. 决策
 
-~~~text
-Organic Ad Retention
-= Median Organic Sponsored Performance
-  / Median Organic Non-sponsored Performance
-~~~
+- KILL：核心市场假设被持续反证或生产经济性明显不成立；
+- ITERATE：有明确可修正的 Audience / Content / Sponsor / Offer / Buyer Readiness 问题；
+- KEEP：受众和品牌信号存在，但付费、复投或经济性仍未知；
+- SCALE：只有真实账号数据已证明重复采购、经济性和承载能力。
 
-### 不可算的情况
-- 明确被投流但没有自然拆分；
-- 平台显示总数据；
-- Brand Boost 无法区分；
-- 样本太少。
-
-写 UNKNOWN 优于错误精确。
-
-## 11. Commercial Unit Economics
-
-Creator 自己应看：
-
-### Gross Sponsor Revenue
-收到的合作总收入。
-
-### Direct Production Cost
-样品、场地、交通、外包、道具等。
-
-### Content Hours
-研究、沟通、制作、修改、发布、复盘总时间。
-
-### Sponsor Revenue per Content Hour
-
-~~~text
-Sponsor Revenue per Content Hour
-= Net Sponsor Revenue / Total Content Hours
-~~~
-
-### Repeat Revenue Share
-
-~~~text
-Repeat Revenue Share
-= Revenue from Returning Sponsors / Sponsor Revenue
-~~~
-
-### Rights Revenue Share
-
-~~~text
-Rights Revenue Share
-= Rights + Amplification Revenue / Sponsor Revenue
-~~~
-
-只有真实数据才计算。
-
-## 12. Measurement Readiness Ladder
-
-### L0 — PUBLIC ONLY
-只有公开 Views/Likes。
-
-### L1 — PLATFORM BACKEND
-有 Audience 与内容后台数据。
-
-### L2 — TRACKABLE
-能使用 UTM / Code / Affiliate。
-
-### L3 — BRAND FEEDBACK
-品牌愿意回传 Paid Performance / Conversion。
-
-### L4 — REPEAT BENCHMARK
-有多个 Campaign 可比较，并知道哪些 Hook / Format 对品牌有效。
-
-长期高价值 Creator 应逐步向 L3–L4 升级。
-
-## 13. Renewal Review
-
-每次商单后不要只问“数据好不好”，固定问：
-
-~~~text
-Did audience respond?
-Did creative survive sponsorship?
-Did brand get its intended job?
-Was delivery easy?
-Did rights create extra value?
-What should change next cycle?
-Will the brand renew?
-If not, why?
-~~~
-
-复投原因和拒绝复投原因都必须沉淀。
+证据不足时保留 PROVISIONAL。
