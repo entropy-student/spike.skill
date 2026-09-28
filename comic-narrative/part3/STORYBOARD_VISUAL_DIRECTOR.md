@@ -40,6 +40,22 @@ Part 3 不负责：
 
 这些属于后续模块。
 
+### 长期角色视觉基线
+
+Part 3 当前固定使用三名长期角色，并把角色身份视为已锁定视觉约束：
+
+- **主角**：[`MAIN_CHARACTER_MASTER.jpg`](assets/characters/MAIN_CHARACTER_MASTER.jpg)
+- **男生朋友 / 舍友**：[`MALE_FRIEND_ROOMMATE_MASTER.jpg`](assets/characters/MALE_FRIEND_ROOMMATE_MASTER.jpg)
+- **女生朋友 / 同事**：[`FEMALE_FRIEND_COLLEAGUE_MASTER.webp`](assets/characters/FEMALE_FRIEND_COLLEAGUE_MASTER.webp)
+
+规则：
+- 三张图只负责长期角色身份、外形、基础服装与轮廓一致性；
+- 男生配角默认是主角的朋友 / 舍友；
+- 女生配角默认是主角的朋友 / 同事，不默认建立恋爱关系；
+- 当前不设置长期固定场景、旧类比场景、长期 UI 或长期道具；
+- 面馆、老板、食物、酒店、街道、具体 UI / 道具等均按单集故事需要产生；
+- Part 3 必须尊重上述角色身份，但不负责为每个 Beat 选择或绑定具体参考图；具体图片执行绑定留给后续图片 / 资产模块。
+
 ---
 
 ## 2. 输入不能被导演偷偷改掉
