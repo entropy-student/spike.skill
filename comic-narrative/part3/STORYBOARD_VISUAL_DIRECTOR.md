@@ -1,10 +1,6 @@
-# Part 3 — 分镜与视觉导演（合并基线）
+# Part 3 — 分镜与视觉导演
 
-> 状态：STRUCTURE_SIMPLIFIED_PASS1 / 能力未删减
->
-> 本文件把原 `ai-story-showrunner`、portable `story-showrunner`、G4/G4R 验证、Frame Blueprint、Story Event Frame Patch 与后续生产证据中会影响“分镜与视觉导演”的规则合并到一个地方。
->
-> 当前目标是**完整，不是极简**。重复规则已合并表达；历史冲突按最新 Owner 明确规则处理。所有 146 份源材料仍保留在 `source-snapshots/03-storyboard-visual-director/`。
+本模块把已锁定剧本与 Part 2 产出的计划 SRT / 语义字幕单元转换为可执行的分镜与视觉导演方案。
 
 ---
 
@@ -80,14 +76,11 @@ Part 3 必须保留：
 → Director Shotboard
 ```
 
-原六层能力不删除，只重新归位：
+当前三层包含：
 
-- 戏剧层级 → 作为 Semantic Shot 的故事变化字段；
-- 视觉意图 → 作为 Semantic Shot / Visual Beat 字段；
-- Frame Blueprint → 作为 Visual Beat 的单帧字段；
-- 时间线映射与剪辑校准 → 作为 Visual Beat 的时间字段。
-
-旧六层结构继续保存在历史快照中，用于审计与回归；正常生产不再要求逐层输出独立文件。
+- Semantic Shot 记录故事变化、主要视觉意图和导演级视觉策略；
+- Visual Beat 记录具体画面状态、单帧注意力组织和时间字段；
+- 时间字段直接绑定 Part 2 产出的 SRT / 语义字幕单元。
 
 ---
 
@@ -309,9 +302,7 @@ Visual Beat 是最接近“一张最终完整画面”的导演单元。
 
 > **Beat 数量不是配额。**
 
-历史 ~2.7 秒 / 张、60+ 张、86 张等都只是历史证据，不是生产目标。
-
-酸菜肉丝面从 86 Beat 重审为 62 Beat，证明应优先做 Beat economy，而不是追求密度。
+不使用固定平均秒数、固定图片数量或 SRT 条数作为 Beat 配额；优先保证 Beat economy。
 
 ---
 
@@ -424,9 +415,7 @@ POV 标签正确不代表画面物理成立。
 
 ---
 
-## 14. 单帧字段（原 Frame Blueprint）
-
-Frame Blueprint 不再作为独立生产层；其能力已经并入 Visual Beat。
+## 14. 单帧字段
 
 核心问题仍然保留：
 
@@ -457,7 +446,7 @@ FIELD 不能只是为了塞更多信息。
 
 高密度必须有叙事理由。
 
-原 Frame Blueprint 的构图、注意力、背景压低、continuity preserve、frame delta、withheld information、acceptance criteria 均保留在 Visual Beat 字段中。
+构图、注意力、背景压低、continuity preserve、frame delta、withheld information、acceptance criteria 均记录在 Visual Beat 中。
 
 ---
 
@@ -520,13 +509,13 @@ FIELD 不能只是为了塞更多信息。
 
 变化只改变故事事件实际改变的部分。
 
-历史发生过的硬失败包括：
-- 多出第三只手；
+必须防止：
+- 多肢体或影响叙事的解剖错误；
 - 屏幕朝向与人物阅读关系不可能；
-- 回忆里的雨夜被画成晴天；
-- 因果食材虽然“存在”但视觉上几乎认不出来。
+- 回忆与既定时间 / 天气 / 场景冲突；
+- 因果物件存在但视觉上不可辨认。
 
-这些必须在 Part 3 / Part 4 接口中被明确表达。
+这些约束必须在 Part 3 / Part 4 接口中明确表达。
 
 ---
 
@@ -560,7 +549,7 @@ FIELD 不能只是为了塞更多信息。
 
 ## 19. 时间线字段
 
-时间映射不再作为独立导演层；直接记录在 Visual Beat 中。口播时间由上游 Timing / SRT 系统提供。
+时间直接记录在 Visual Beat 中，并优先绑定 Part 2 产出的 SRT / 语义字幕单元。当前阶段不额外引入新的 Speech Unit 体系。
 
 Part 3 可以决定：
 - cut；
@@ -605,7 +594,7 @@ Part 3 不可以：
 
 ## 21. 当前视觉风格边界
 
-历史当前生产方向：
+当前生产方向：
 > **扁平简化漫画风**
 
 目标：
@@ -631,15 +620,13 @@ Part 3 不可以：
 
 只有因果需要时才要求画面里出现可读文本。
 
-当前 Owner 覆盖规则：
+当前规则：
 - `TEXT_RENDER_MODE = NONE` 或 `IMAGE_NATIVE`；
 - 不使用后期文字覆盖修复关键文本；
 - 不使用 SVG / HTML / Canvas / PIL 文字；
 - 不把错误文字后期“补正确”。
 
 如果一个因果关键中文字符串必须可读，则后续成图必须逐字检查。
-
-原历史规则里的 `POST_OVERLAY` 已被当前 Owner 生产约束覆盖。
 
 原生 UI 中自然存在的返回箭头、列表箭头等允许出现；禁止的是为了解释概念额外加的漂浮箭头。
 
@@ -733,18 +720,14 @@ Part 3 不替 Part 4 选择具体执行资产，但必须给出足够语义，�
 
 不要为了修一个无意义的小细节反复付费重画。
 
-Owner 可以推翻执行器 QA；旧判断与后续裁定要分别保留，不能静默覆盖历史证据。
-
 ---
 
 ## 26. Director 输出
 
-正常生产只要求：
+正常生产输出：
 1. 一份整集 / 段落视觉策略；
 2. 一份 Semantic Shot → Visual Beat Shotbook；
 3. 对应的人可读 Shotboard。
-
-不再要求为“戏剧层级、视觉意图、Frame Blueprint、时间映射”分别输出独立中间文件。
 
 ### 人可读 Shotboard 最少包含
 - Semantic Shot ID；
@@ -834,121 +817,3 @@ Owner 可以推翻执行器 QA；旧判断与后续裁定要分别保留，不�
 涉及图片 / 资产的错误交给 Part 4 或执行模块，不应为了修图片错误而改写已经正确的故事意义。
 
 ---
-
-## 29. 当前明确被后续规则覆盖的历史行为
-
-以下内容仍保存在快照中，但不得恢复成当前默认：
-
-- 用固定平均秒数决定 Beat 数量；
-- “2.5–3 分钟必须 60+ 张图”；
-- 一条 SRT 默认一张图；
-- `1 Visual Beat ≈ 1 generated still` 被理解成硬配额；
-- 抽象流程图 / 卡片 / 箭头承担主要机制解释；
-- 为了视觉丰富随意增加镜头；
-- 所有第一人称旁白都使用第一人称 POV；
-- exact text 默认用 `POST_OVERLAY`；
-- `COMPOSITE_CROP`；
-- SVG / HTML / Canvas / PIL 文本；
-- 裁切拼装 / 外部图层；
-- 为了达到某个 DERIVE_EDIT 比例而强行复用；
-- 执行器自行选择故事意义、镜头或替代方案；
-- 因轻微手指距离、无害设备细节等重复高成本重画；
-- 只看逐帧通过、不做整集视觉重复检查。
-
----
-
-## 30. 历史验证与证据
-
-合并基线保留以下验证链作为回归证据，不把案例全文重复写进正文：
-
-### 早期 G4
-- Agent；
-- Context / Memory；
-- MCP。
-
-### G4R v0.3
-- Agent — 行动 / 反应；
-- Context / Memory — 演化隐喻；
-- MCP — 重复摩擦；
-- Blind Search Answer — 调查 / 发现。
-
-验证证明：
-- 同一导演架构可以适配不同视觉发动方式；
-- Semantic Shot → Visual Beat 两层可以稳定工作；
-- 具体景别应落在 Visual Beat；
-- Visual Beat 可局部覆盖意图；
-- setup / reveal 可能需要拆分；
-- 口播覆盖必须 100%；
-- 口头列举不应自动膨胀成蒙太奇。
-
-### 后续生产证据
-- Agent permission boundary 试生产暴露并修正故事事件、物理视角、UI 文本和 QA 过严问题；
-- 酸菜肉丝面 86 → 62 Beat 验证 Beat economy；
-- Owner 对第三只手、屏幕朝向、雨夜回忆等复核进一步明确硬失败 / 小偏差边界。
-
----
-
-## 31. 合并完整性审计
-
-本文件对照 `source-snapshots/03-storyboard-visual-director/` 的 **146 份**备份材料建立。
-
-### 已合并进正文的核心能力
-- 戏剧层级；
-- 整集视觉策略；
-- 视觉发动方式；
-- 画面关系语法；
-- 视觉意图；
-- Semantic Shot；
-- Visual Beat；
-- setup / reveal；
-- POV 语法；
-- 物理视角；
-- 景别选择；
-- Murch 优先级；
-- Frame Blueprint；
-- 焦点 / 注意力 / 密度；
-- anti-PPT；
-- story-event gate；
-- Beat economy；
-- visual variety；
-- continuity / recurring identity；
-- 机制可视化优先级；
-- 时间线边界；
-- 100% 口播覆盖；
-- 当前视觉风格边界；
-- UI / exact text 边界；
-- Part 3 → Part 4 handoff；
-- downstream full-frame / derive compatibility 约束；
-- 分镜 QA；
-- 主要 return conditions。
-
-### 只作为历史证据保留
-- 旧 Candidate 版本；
-- 旧 Jingsui 秒数 / Beat 密度；
-- G4R case 全文；
-- 历史具体 Beat 数、Case 时长和镜头数量。
-
-### 只作为下游边界保留
-- G5 资产绑定；
-- prompt / reference package；
-- image generation row；
-- Registry / storage；
-- 图片模型 adapter；
-- executor / renderer；
-- 最终图像文件和运行记录。
-
-### 当前结论
-
-当前没有发现以下类型的重要能力在合并时丢失：
-- 故事事件可视化；
-- 戏剧 / 镜头层级；
-- POV / 物理视角；
-- 单帧注意力组织；
-- Beat 拆分与经济性；
-- 口播覆盖与视觉节奏；
-- 视觉连续性与整集多样性；
-- anti-PPT；
-- 与图片 / 资产模块的职责边界；
-- 后续生产中已经验证出的失败类型。
-
-第一轮结构合并已完成：旧六层能力已映射到“整集视觉策略 → Semantic Shot → Visual Beat”三层工作结构，没有删除核心能力。后续再逐组判断具体规则是否需要修改、降级或删除。
