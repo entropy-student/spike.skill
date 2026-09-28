@@ -2,7 +2,7 @@
 name: creator-sponsorship-cold-start
 title: Creator Sponsorship Cold Start（自媒体广告冷启动）
 description: 面向“从 0 起号并尽快进入广告主投放池”的证据驱动 Skill。通过广告主 Job 路由、广告市场地图、真实中小账号抽样、Buyer Readiness、冷启动双通道实验、商单获取、使用权/投流授权与复投验证，筛出 1–3 个可执行且可持续获得品牌预算的账号模型。
-version: 0.2.0
+version: 0.2.1
 language: zh-CN
 ---
 
@@ -66,7 +66,11 @@ language: zh-CN
 
 ---
 
-## 3. 商业证据阶梯
+## 3. 商业证据图谱
+
+不要把所有商业化证据强行排成一条线。账号可能先卖 UGC / 素材，也可能先卖分发，再进入投流、复投或长期合作。
+
+### 共同前置证据
 
 ~~~text
 MARKET_EXISTS
@@ -75,19 +79,32 @@ MARKET_EXISTS
 → BRANDS_BUY_SMALL_MID_CREATORS
 → TARGET_ACCOUNT_MODEL_FITS
 → CREATOR_IS_BUYER_READY
-→ SPONSOR_OPPORTUNITY
-→ PAID_COLLAB
-→ RIGHTS_OR_PAID_AMPLIFICATION
-→ REPEAT_COLLAB
-→ MULTI_BRAND_REPEATABILITY
-→ LONG_TERM_PARTNERSHIP
 ~~~
+
+### 之后至少进入一条真实采购路径
+
+~~~text
+PATH A — DISTRIBUTION
+SPONSOR_OPPORTUNITY → PAID_SPONSORED_POST → REPEAT / LONG_TERM
+
+PATH B — CREATIVE
+UGC_OR_ASSET_BRIEF → PAID_CREATIVE_DELIVERY → RIGHTS / AMPLIFICATION → REPEAT
+
+PATH C — PERFORMANCE
+TRACKABLE_OFFER → PAID_OR_HYBRID_COLLAB → VERIFIED_OUTCOME → REPEAT
+~~~
+
+多条路径可以并行，最终再看：
+- MULTI_BRAND_REPEATABILITY；
+- LONG_TERM_PARTNERSHIP；
+- REVENUE_QUALITY。
 
 禁止越级：
 
 - 行业有预算 ≠ 会投这种账号；
 - 头部有商单 ≠ 小号能进入；
 - 有询盘 ≠ 成交；
+- UGC 成交 ≠ 自有账号分发价值已被证明；
 - 首单 ≠ 复投；
 - 单一品牌复投 ≠ 多品牌市场成立。
 
@@ -195,12 +212,29 @@ MARKET_EXISTS
 
 ## 6. Real Account Research
 
-完整研究：
-- 目标 100–200 个中小账号。
+### Adaptive Sampling
 
-快速研究：
-- 至少 30 个；
+不要机械跑满固定样本量。
+
+**Stage 1 — Exploration**
+- 先做 30 个账号；
 - 只能给 PROVISIONAL 结论。
+
+**Stage 2 — Expansion**
+- 每次增加 20 个账号；
+- 尽量补充不同粉丝层级、不同商业状态和不同抽样路径。
+
+**Stage 3 — Saturation Stop**
+连续两个新增批次同时满足以下条件时可停止：
+- Account Model 排序基本不变；
+- 没有出现新的一级 Advertiser Job；
+- 没有出现新的主要品牌类别；
+- Small-Creator Access 结论不变；
+- Hard Gate 结论不变。
+
+通常 70–150 个样本即可形成较稳定结论；证据冲突大时可扩展至约 200。
+
+不得为了达到数字而继续收集低价值重复样本。
 
 优先层级：
 - 1k–10k；
@@ -429,9 +463,26 @@ Commercial Portfolio 必须区分：
 
 ---
 
-## 12. Content Franchise
+## 12. Sponsorability Pretest + Content Franchise
 
-候选模型必须压缩成 2–3 个 Franchise。
+在真实商单前，可以先做 **Sponsorability Pretest**：
+
+- 使用自己正常拥有/可合法体验的产品或服务；
+- 按未来商单结构制作产品相关内容；
+- 明确它是自主体验，不伪装成品牌合作；
+- 比较这类内容与普通内容的自然中位表现。
+
+可记录：
+
+~~~text
+Commercial Format Retention
+= Median Organic Performance of Sponsor-shaped Organic Content
+  / Median Organic Performance of Other Organic Content
+~~~
+
+它只能证明“这种商业内容结构是否伤害自然内容”，**不能证明广告主会付钱**。
+
+候选模型随后必须压缩成 2–3 个 Franchise。
 
 每个 Franchise 满足：
 
