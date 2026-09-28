@@ -1,6 +1,6 @@
 # Part 3 — 分镜与视觉导演（合并基线）
 
-> 状态：MERGED_BASELINE / 尚未简化调整
+> 状态：STRUCTURE_SIMPLIFIED_PASS1 / 能力未删减
 >
 > 本文件把原 `ai-story-showrunner`、portable `story-showrunner`、G4/G4R 验证、Frame Blueprint、Story Event Frame Patch 与后续生产证据中会影响“分镜与视觉导演”的规则合并到一个地方。
 >
@@ -68,24 +68,26 @@ Part 3 必须保留：
 
 ---
 
-## 3. 当前完整导演架构
+## 3. 当前正式工作结构
 
-历史当前基线是六层：
+正式执行收敛为三层：
 
 ```text
 锁定剧本 + 机制核心 + 计划时间线
-→ 1. 戏剧层级
-→ 2. 整集 / 段落视觉策略
-→ 3. 视觉意图
-→ 4. Semantic Shot
-→ 5. Visual Beat
-→ 6. 时间线映射与剪辑校准
+→ 1. 整集 / 段落视觉策略
+→ 2. Semantic Shot
+→ 3. Visual Beat
 → Director Shotboard
 ```
 
-Frame Blueprint 位于 Visual Beat 之后，用于把已经确定的画面意义编译成单帧注意力结构；它不新增第七种故事意义。
+原六层能力不删除，只重新归位：
 
-这套层级目前先完整保留，后续再决定哪些可以合并为字段。
+- 戏剧层级 → 作为 Semantic Shot 的故事变化字段；
+- 视觉意图 → 作为 Semantic Shot / Visual Beat 字段；
+- Frame Blueprint → 作为 Visual Beat 的单帧字段；
+- 时间线映射与剪辑校准 → 作为 Visual Beat 的时间字段。
+
+旧六层结构继续保存在历史快照中，用于审计与回归；正常生产不再要求逐层输出独立文件。
 
 ---
 
@@ -133,7 +135,9 @@ Frame Blueprint 位于 Visual Beat 之后，用于把已经确定的画面意义
 
 ---
 
-## 5. 戏剧层级
+## 5. 戏剧层级（Semantic Shot 字段）
+
+不再单独产出戏剧层级文档。设计 Semantic Shot 时记录对应的故事变化即可。
 
 使用：
 `Sequence → Scene → Beat`
@@ -142,7 +146,7 @@ Frame Blueprint 位于 Visual Beat 之后，用于把已经确定的画面意义
 - **Scene**：一串连续 Beat，产生可感知的故事 / 状态变化。
 - **Sequence**：多个 Scene 形成更大的累积变化。
 
-这一层只回答“故事发生了什么变化”，不决定景别、机位、构图和图片时长。
+它只回答“故事发生了什么变化”，不决定景别、机位、构图和图片时长。
 
 避免：
 - 戏剧层级完全扁平；
@@ -188,7 +192,9 @@ Frame Blueprint 位于 Visual Beat 之后，用于把已经确定的画面意义
 
 ---
 
-## 7. 视觉意图
+## 7. 视觉意图（Semantic Shot / Visual Beat 字段）
+
+不再单独产出 Visual Intention Map。每个 Semantic Shot 记录主要意图；Visual Beat 如有必要可局部覆盖。
 
 每个有意义的单元先决定观众此刻最需要：
 - 建立环境；
@@ -259,15 +265,23 @@ Visual Beat 是最接近“一张最终完整画面”的导演单元。
 每个 Visual Beat 至少锁定：
 - 对应口播范围；
 - 本地视觉意图；
+- 这一刻实际发生什么；
 - 实际景别；
 - 实际 POV / 角度；
 - POV 原因；
 - 主要人物 / 物件状态；
 - state_before / state_after；
+- 主要焦点，可选第二焦点；
+- 构图 / 注意力路径；
+- 信息密度；
+- 必要背景锚点与应压低内容；
+- continuity preserve / frame delta；
+- 必要 withheld information；
 - 画面关系；
 - 视觉强度；
-- 时间线锚点；
-- 观众必须理解什么。
+- 时间线锚点与 cut / hold / handoff；
+- 观众必须理解什么；
+- acceptance criteria。
 
 只有当**图像级意义发生变化**时才拆新 Beat，例如：
 - setup → action；
@@ -410,35 +424,17 @@ POV 标签正确不代表画面物理成立。
 
 ---
 
-## 14. Frame Blueprint：把意义编译成单帧
+## 14. 单帧字段（原 Frame Blueprint）
 
-Frame Blueprint 不改变 G4 已确定的故事意义。
+Frame Blueprint 不再作为独立生产层；其能力已经并入 Visual Beat。
 
-它回答：
+核心问题仍然保留：
 
 > **观众怎样在第一眼看到这一 Beat 最重要的东西？**
 
-至少明确：
-- 单帧戏剧任务；
-- 画面原型；
-- 单 / 双 / 场域焦点；
-- 第一焦点；
-- 可选第二焦点；
-- 注意力进入点；
-- 注意力离开 / 交接点；
-- 构图模式；
-- 信息密度；
-- 视觉强度；
-- 必需背景锚点；
-- 应删除 / 压低的装饰；
-- 文字 / 品牌 / UI 需求；
-- continuity preserve；
-- frame delta；
-- withheld information；
-- acceptance criteria。
+Visual Beat 可使用以下单帧字段：
 
 ### 常用单帧原型
-
 - 人物反应；
 - 人物行动；
 - 双主体关系；
@@ -448,7 +444,6 @@ Frame Blueprint 不改变 G4 已确定的故事意义。
 - matched setup / reveal。
 
 ### 焦点
-
 - SINGLE：一个绝对主焦点，默认；
 - DUAL：两个有关系的焦点；
 - FIELD：多个元素共同形成一个整体模式。
@@ -456,12 +451,13 @@ Frame Blueprint 不改变 G4 已确定的故事意义。
 FIELD 不能只是为了塞更多信息。
 
 ### 信息密度
-
 - LOW；
 - MEDIUM；
 - HIGH_JUSTIFIED。
 
 高密度必须有叙事理由。
+
+原 Frame Blueprint 的构图、注意力、背景压低、continuity preserve、frame delta、withheld information、acceptance criteria 均保留在 Visual Beat 字段中。
 
 ---
 
@@ -562,9 +558,9 @@ FIELD 不能只是为了塞更多信息。
 
 ---
 
-## 19. 时间线关系
+## 19. 时间线字段
 
-口播时间由上游 Timing / SRT 系统提供。
+时间映射不再作为独立导演层；直接记录在 Visual Beat 中。口播时间由上游 Timing / SRT 系统提供。
 
 Part 3 可以决定：
 - cut；
@@ -743,13 +739,20 @@ Owner 可以推翻执行器 QA；旧判断与后续裁定要分别保留，不�
 
 ## 26. Director 输出
 
-至少输出机器可读 Shotbook 与人可读 Shotboard。
+正常生产只要求：
+1. 一份整集 / 段落视觉策略；
+2. 一份 Semantic Shot → Visual Beat Shotbook；
+3. 对应的人可读 Shotboard。
+
+不再要求为“戏剧层级、视觉意图、Frame Blueprint、时间映射”分别输出独立中间文件。
 
 ### 人可读 Shotboard 最少包含
+- Semantic Shot ID；
 - Beat ID；
 - 计划时间；
 - 对应口播；
 - 这一刻实际发生什么；
+- 故事变化；
 - 最终画面状态；
 - 景别；
 - POV；
@@ -948,4 +951,4 @@ Owner 可以推翻执行器 QA；旧判断与后续裁定要分别保留，不�
 - 与图片 / 资产模块的职责边界；
 - 后续生产中已经验证出的失败类型。
 
-因此本文件可作为下一步逐组“保留 / 合并 / 修改 / 降级 / 删除”的完整 Part 3 基线。
+第一轮结构合并已完成：旧六层能力已映射到“整集视觉策略 → Semantic Shot → Visual Beat”三层工作结构，没有删除核心能力。后续再逐组判断具体规则是否需要修改、降级或删除。
