@@ -46,14 +46,14 @@ Part 3 当前固定使用 **3 张角色 Master + 2 张画风参考图**，共 5 
 
 #### 角色 Master
 
-- **主角**：[`MAIN_CHARACTER_MASTER.webp`](assets/characters/MAIN_CHARACTER_MASTER.webp)
-- **男生朋友 / 舍友**：[`MALE_FRIEND_ROOMMATE_MASTER.webp`](assets/characters/MALE_FRIEND_ROOMMATE_MASTER.webp)
-- **女生朋友 / 同事**：[`FEMALE_FRIEND_COLLEAGUE_MASTER.webp`](assets/characters/FEMALE_FRIEND_COLLEAGUE_MASTER.webp)
+- **主角**：[`MAIN_CHARACTER_MASTER.png`](assets/characters/MAIN_CHARACTER_MASTER.png)
+- **男生朋友 / 舍友**：[`MALE_FRIEND_ROOMMATE_MASTER.png`](assets/characters/MALE_FRIEND_ROOMMATE_MASTER.png)
+- **女生朋友 / 同事**：[`FEMALE_FRIEND_COLLEAGUE_MASTER.png`](assets/characters/FEMALE_FRIEND_COLLEAGUE_MASTER.png)
 
 #### 画风参考
 
-- **主参考｜双人生活互动**：[`STYLE_PRIMARY_TWO_PERSON_DINING.webp`](assets/style/STYLE_PRIMARY_TWO_PERSON_DINING.webp)
-- **辅助参考｜单人生活场景**：[`STYLE_SECONDARY_SINGLE_PERSON_DINING.webp`](assets/style/STYLE_SECONDARY_SINGLE_PERSON_DINING.webp)
+- **主参考｜双人生活互动**：[`STYLE_PRIMARY_TWO_PERSON_DINING.png`](assets/style/STYLE_PRIMARY_TWO_PERSON_DINING.png)
+- **辅助参考｜单人生活场景**：[`STYLE_SECONDARY_SINGLE_PERSON_DINING.png`](assets/style/STYLE_SECONDARY_SINGLE_PERSON_DINING.png)
 
 规则：
 - 三张角色图主要锁定长期角色身份、外形、比例与轮廓；基础服装作为默认参考，单集可因剧情合理变化；
