@@ -58,29 +58,25 @@
 ## 核心方法
 
 ~~~text
+Advertiser Job
+        ↓
+品牌到底买分发、素材、转化还是专业信任
+        ↓
 Advertiser Market
         ↓
-品牌为什么持续花钱
+真实中小账号 + 平台采购证据
         ↓
-Small / Mid Creator Evidence
+Buyer-ready Account Model
         ↓
-真实中小账号是否已经在接商单
-        ↓
-Account Model
-        ↓
-谁看 + 看什么 + 品牌如何进入
-        ↓
-Cold-start Test
-        ↓
-20–30 条最小内容实验
+Audience Validation + Sponsor Validation
         ↓
 Paid Collaboration
         ↓
-首单广告
+Usage Rights / Paid Amplification
         ↓
 Repeat Sponsorship
         ↓
-复投 / 多品牌 / 长期合作
+多品牌 / 长期合作
 ~~~
 
 ---
@@ -95,16 +91,14 @@ Repeat Sponsorship
 
 > **哪些广告主长期有钱花？他们真实在买什么 Creator？**
 
-因此重点指标包括：
+因此重点不是一套统一指标，而是先判断广告主在买什么：
 
-- Sponsor Density；
-- Repeat Sponsor Rate；
-- Ad Retention；
-- 最近内容中位表现；
-- 品牌类别宽度；
-- 小号商业入口；
-- 制作经济性；
-- 多品牌复投能力。
+- **Distribution**：买你的受众；
+- **Creative Asset**：买你制作的素材；
+- **Performance**：买可测量转化；
+- **Trust / Expertise**：买专业性与可信度。
+
+之后再看 Sponsor Density、Repeat Sponsor Rate、Organic Ad Retention、品牌集中度、Buyer Readiness、Usage Rights / Paid Amplification、制作经济性与多品牌复投能力。
 
 而不是只看粉丝数、最大播放、单次点赞或赛道热度。
 
@@ -202,12 +196,19 @@ Skill 会明确区分这些证据，避免过早下结论。
 
 ## 当前状态
 
-**v0.1.0 — Calibrating**
+**v0.2.0 — Calibrating**
 
-第一版先固化方法论，不把任何单次市场调研结论写成永久规则。
+v0.2 增加：
+- Advertiser Job Router；
+- Brand Suitability / Buyer Readiness Gate；
+- Audience + Sponsor 双通道验证；
+- 主动商单获取 Loop；
+- Usage Rights / Paid Amplification / Exclusivity 的 Deal Architecture；
+- 按品牌 Job 区分 Measurement；
+- 抽样偏差与 Paid Amplification 污染控制。
 
-后续应通过真实账号样本和实际起号结果持续校准。
+仍不把任何单次市场调研结论写成永久规则；后续继续通过真实账号样本和实际起号结果校准。
 
 ---
 
-> **Advertiser Market → Real Creator Evidence → Account Model → Cold-start Test → Paid Collaboration → Repeat Sponsorship**
+> **Advertiser Job → Market → Real Creator Evidence → Buyer-ready Account Model → Audience + Sponsor Validation → Paid Collaboration → Rights / Amplification → Repeat Sponsorship**
