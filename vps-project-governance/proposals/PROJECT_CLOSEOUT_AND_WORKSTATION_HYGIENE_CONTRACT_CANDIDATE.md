@@ -192,3 +192,20 @@ Candidate improvement:
 - a remediation Gate should narrow scope to the already-classified exact target instead of repeating broad discovery when no project state was mutated.
 
 Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
+
+
+## Candidate lesson from Mini Craft K9B shared-repository barrier
+
+Mini Craft K9B showed that a whole-worktree Git cleanliness requirement can be too broad when the project lives inside a shared local repository or shared workspace.
+
+Candidate improvement:
+
+- project closeout archive barriers should be scoped to the project-owned subtree/files, not the cleanliness of unrelated shared repository state;
+- an unset upstream on a shared repository is not by itself a blocker when current canonical remote truth can be read directly;
+- do not mutate shared Git topology (set upstream, checkout/reset/clean) merely to prove one project's local subtree is safe to decommission;
+- compare exact project-owned tracked/untracked files against the canonical remote source;
+- stale local copies superseded by canonical GitHub may be classified for deletion without first making the entire shared repository clean;
+- local Docker daemon unavailability should block Docker-resource deletion, but need not block independent filesystem archive classification;
+- unresolved project-local artifacts still fail closed until classified.
+
+Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
