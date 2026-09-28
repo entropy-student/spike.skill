@@ -240,3 +240,19 @@ Candidate improvement:
 - do not reopen sensitive provider logs merely to determine whether the accidental snapshot contained sensitive values.
 
 Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
+
+
+## Candidate lesson from known-baseline vs new-drift reconciliation
+
+Mini Craft K9B showed that a closeout Gate can accidentally become blocked by a pre-existing, previously accepted product/runtime property when a later Evidence record omits the exact probe that produced an observation.
+
+Candidate improvement:
+
+- before opening remediation for an apparent regression, compare the observation against the last accepted baseline and the exact historical probe semantics;
+- if a later record says a resource is "discoverable" or "returned" but omits whether the probe explicitly targeted hidden/private/test state, do not automatically treat that as new drift;
+- distinguish `KNOWN_ACCEPTED_PROPERTY` from `NEW_REGRESSION_PROVEN`;
+- an unrelated pre-existing product issue should not block an independent workstation/filesystem closeout unless the current Gate materially increases that risk;
+- when the remediation premise is later disproven or unproven, explicitly supersede the blocker rather than continuing repeated write attempts;
+- repeated failed UI writes with authoritative no-change read-back should trigger premise/channel review, not endless retries.
+
+Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
