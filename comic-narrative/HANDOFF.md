@@ -94,7 +94,7 @@ Part 2 原相关 / 疑似相关材料共 **50 份**，保存在：
 
 ## Part 3 — 分镜与视觉导演
 
-当前仅完成：**源材料收集 / 原样备份 / 反向漏检**，尚未建立正式 Part 3 规则文档。
+当前已完成：**源材料收集 / 原样备份 / 反向漏检 + 完整合并基线**。
 
 备份目录：
 `source-snapshots/03-storyboard-visual-director/`
@@ -116,16 +116,25 @@ Part 2 原相关 / 疑似相关材料共 **50 份**，保存在：
 - 2026-09-26 Story Event Frame Patch 及最新执行证据；
 - portable Story Showrunner 的 Director / Viewpoint / Frame / schema / QA 合同。
 
-这些快照均为备份，不参与运行；G5、执行、资产内容目前只作为边界证据，不自动升级为 Part 3 规则。
+这些快照均为备份，不参与运行；G5、执行、资产内容只作为边界证据，不自动升级为 Part 3 规则。
+
+Part 3 当前唯一正式合并基线：
+`part3/STORYBOARD_VISUAL_DIRECTOR.md`
+
+合并原则：
+- 当前先完整，不做极简；
+- 2026-09-26 之后的 Owner 明确覆盖规则优先于旧 Candidate；
+- Semantic Shot / Visual Beat、POV、Story Event Gate、Frame Blueprint、Beat economy、整集视觉多样性与 Part 4 边界均已纳入；
+- 历史固定秒数、固定图片数量、抽象解释图、POST_OVERLAY、COMPOSITE_CROP 等被后续规则覆盖的行为只保留在历史快照中。
 
 ## 当前停止点
 
-`PART3_SOURCE_SNAPSHOT_READY / ORGANIZATION_PENDING_OWNER`
+`PART3_MERGED_BASELINE_READY / SIMPLIFICATION_PENDING_OWNER`
 
 下一步：
-1. Owner 先确认 Part 3 的整理 / 简化方向；
-2. 确认后才建立正式 Part 3 合并稿；
-3. 先完整合并，再逐组简化；
+1. Owner 先阅读 / 确认 Part 3 合并基线；
+2. 再逐组决定保留 / 合并 / 修改 / 降级 / 删除；
+3. 每次只改一小组规则；
 4. 每轮用旧 Case + 新 Case 回归；
 5. 146 份快照始终保留。
 
