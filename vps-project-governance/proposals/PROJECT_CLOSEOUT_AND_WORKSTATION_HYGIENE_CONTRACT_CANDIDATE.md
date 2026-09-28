@@ -209,3 +209,19 @@ Candidate improvement:
 - unresolved project-local artifacts still fail closed until classified.
 
 Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
+
+
+## Candidate lesson from Mini Craft K9B-R1 sensitive local-only artifact
+
+Mini Craft K9B-R1 proved that a sensitive local-only rollback artifact may be validly classified without being suitable for GitHub archival.
+
+Candidate improvement:
+
+- a sensitive local-only recovery artifact should not indefinitely block cleanup of unrelated ordinary project files once it is fully classified and no UNKNOWN remains;
+- such an artifact should be moved out of Git worktrees into an explicitly protected local recovery enclave before ordinary workspace deletion;
+- protected local recovery is an intentional closeout exception, not a failure to archive;
+- ordinary local-file-zero targets should exclude validated protected recovery artifacts and shared Git cache/worktree exceptions;
+- content should not be re-read, hashed, or emitted merely to prove a protected relocation when size/path/type metadata is sufficient;
+- Docker-daemon unavailability may defer Docker-resource cleanup independently from filesystem closeout; manual deletion of Docker/WSL internals remains forbidden.
+
+Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
