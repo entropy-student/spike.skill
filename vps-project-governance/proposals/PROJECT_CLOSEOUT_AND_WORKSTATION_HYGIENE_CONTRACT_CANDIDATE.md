@@ -256,3 +256,19 @@ Candidate improvement:
 - repeated failed UI writes with authoritative no-change read-back should trigger premise/channel review, not endless retries.
 
 Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
+
+
+## Candidate lesson from control-plane console recovery checks
+
+Mini Craft K9B-R3 showed that repeated SSH transport failure should not indefinitely block a read-only recovery-existence checkpoint when an authenticated provider control-plane browser console is available.
+
+Candidate improvement:
+
+- if strict SSH repeatedly fails before remote identity/output, do not keep retrying the same transport for a closeout-only read-back;
+- an authenticated VPS provider browser terminal / console may serve as a bounded Owner-local target-host checkpoint when Governance allows it;
+- console use must remain metadata-only for recovery verification unless a separately authorized mutation Gate exists;
+- record the actual console user (for example root) and target hostname;
+- fresh proof of project backup-root, DB recovery file, wp-content recovery file, deployment/manifest recovery file, and current durable data paths may be sufficient to prove local historical runtimes are not the sole remaining recovery source;
+- this does not imply perfect disaster-recovery recency; it establishes that irreversible local cleanup does not destroy the only known recovery path.
+
+Status remains CANDIDATE / NOT ACTIVE pending K9 completion.
