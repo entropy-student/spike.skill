@@ -2,114 +2,106 @@
 
 ## 当前状态
 
-当前分支：`codex/comic-narrative-part2-snapshot`
+分支：`codex/comic-narrative-part2-snapshot`
 
-### Part 0 — 历史选题库
-唯一正式文档：
-`part0/TOPIC_LIBRARY.md`
+原 `ai-story-showrunner`、`story-showrunner` 未修改；`source-snapshots/` 只作备份，不参与运行。
 
-当前：
-- 20 个 Case；
-- 第 1 个美食选题保留原版本；
-- 其余 13 个已改为更自然的人话题面；
-- 新增 6 个科技类 Case；
-- 当前历史复查：20 / 20 PASS。
+## Part 0 — 历史选题库
 
-### Part 1 — 选题策略
-唯一正式文档：
-`part1/TOPIC_STRATEGY.md`
+正式文档：`part0/TOPIC_LIBRARY.md`
 
-当前已确认：
+- 当前 20 个 Case。
+- H001 美食推荐保留原版本。
+- 题面优先自然人话。
+- “科技”包含 AI、推荐算法、自动化、平台机制、智能设备、数据系统等。
+
+## Part 1 — 选题策略
+
+正式文档：`part1/TOPIC_STRATEGY.md`
+
+已确认：
 - X 是主菜，科技是变量；
-- 科技包含人工智能、推荐算法、自动化、平台机制、智能设备、数据系统等；
-- 不要求标题出现“科技”或“人工智能”；
-- 题面先像普通人真的会问的话；
-- 先让人认出自己的生活，再解释背后的科技；
-- 不默认只做反思题，允许惊奇/机制、实用、判断、趋势、探索/体验等；
-- 候选必须对照 Part 0 做 D1–D5 历史复查。
+- 先让人认出自己的生活，再解释科技；
+- 不默认只做反思题；
+- 新候选必须对照 Part 0 做 D1–D5 历史复查。
 
-Owner 已明确否决以下四项修改，后续不得擅自恢复：
-1. 迁入旧项目完整历史选题；
-2. 把现有 Case 改成“证据待核验”状态；
-3. 修改 D3 的“主要结论”判定；
-4. 修改 D5 的 Meaning 判定公式。
+Owner 已明确否决，后续不得擅自恢复：
+1. 导入旧项目完整历史选题；
+2. 把现有 Case 改成“证据待核验”；
+3. 删除 D3 的“主要结论”判断；
+4. 修改 D5 Meaning 判定公式；
+5. 删除 / 降级对白、潜台词、幽默、句尾、排版等现有写作规则。
 
-## 当前进入 Part 2 — 剧本与叙事
+## Part 2 — 剧本与叙事
 
-当前只完成：
-**源材料收集 / 原样备份。**
+正式文档：`part2/SCRIPT_NARRATIVE.md`
 
-已完成反向漏检并复制 **50 份**相关 / 疑似相关材料到：
+状态：**完整合并基线已建立，并完成两项最小补充。**
 
+### 保持不变
+
+- 核心骨架继续保留：人物欲望 → 行动 → 预期落差 → 后果变化 → 转折 → 理解 / 选择。
+- 不新增“探究型 / 比较型”等新叙事类型。
+- 故事锁定方式、固定 IP、理解型 / 行动型、发现 / 信任 / 解决暂不修改。
+- 对白、潜台词、幽默、动作、停顿、句尾、排版规则不动。
+
+### 新增：视角确认门
+
+- 默认：第一人称亲历。
+- 若旁观 / 听说明显更自然、更有戏或更符合真实性边界，可提出建议。
+- 旁观 / 听说不得自动采用；必须先由 Owner 确认，再锁 StoryPremise。
+- 未确认时继续默认亲历。
+
+已做视角回归：
+- 外卖配送：旁观；
+- 手机翻译：听说。
+两者只用于验证视角差异，没有成为新的叙事类型。
+
+### 新增：SRT 下游最小合同
+
+核心原则：
+- 语义节拍单元、TTS 单元、字幕单元不再视为同一层；允许一对多 / 多对一。
+- 计划 SRT 只用于规划；最终 SRT 以真实 TTS / 对齐结果为准。
+- 字幕切分优先：完整意义 > 对话轮次 > 戏剧落点 > 阅读长度 > 标点。
+- 禁止拆词、孤立标点 / 引导词、普通信息连续碎切。
+- 极短字幕只用于明确包袱、反转、反应或强调。
+- 语音结束、字幕结束、静默 / 节拍窗口分开。
+- 最终字幕必须做专项 QA。
+
+该补充只定义 Part 2 向后续时间轴模块的合同，不把最终 SRT 时间戳控制权交给 Writer。
+
+## 回归 Case
+
+当前用于判断 Part 2 的样本包括：
+- 历史酸菜肉丝面稿：高质量参考，不是唯一模板；
+- 天气预报：默认亲历；
+- 睡眠手表：默认亲历；
+- 酒店价格：默认亲历；
+- 外卖配送：旁观测试；
+- 手机翻译：听说测试。
+
+当前结论：
+- 原核心故事骨架继续有效；
+- 暂无证据支持大改 Part 2；
+- 主要新发现是“视角入口”可降低长期重复感，以及旧 SRT 层缺少独立字幕编译合同。
+
+## 备份
+
+Part 2 原相关 / 疑似相关材料共 **50 份**，保存在：
 `source-snapshots/02-script-narrative/`
 
-包含三层：
-
-### A. 正式规则
-- 叙事风格；
-- Writer 质量规则；
-- Bilibili 编辑基线；
-- G2 / G3 / G3R 验证；
-- portable Writer Contract；
-- Pipeline / Architecture 边界；
-- Agent / Context-Memory / MCP 三组 StoryPremise + Script Case；
-### B. 验证证据
-- Agent / Context-Memory / MCP 的 Topic、KnowledgeCore、StoryPremise、Script；
-- G3R 改写版本与 Review，用于追踪“为什么这样改”。
-
-### C. 边界 / 历史参考
-- Pipeline / Architecture / Current Doc Index；
-- Skill migration conflict / reconciliation / migration review；
-- episode schema / template；
-- Viewpoint grammar（仅作 Part 2 / Part 3 边界检查）；
-- 原 Story Showrunner Skill / migration status；
-- 一份已 superseded 的 Dialogue / Prose 候选，仅作历史参考。
-
-所有复制文件均保持与源文件相同的 Git blob 内容。
-
-反向漏检结论：与 Part 2 行为直接相关或合理疑似相关的规则、验证记录和边界文件均已纳入备份；纯分镜、图片、配音、时间轴、执行输出未复制进 Part 2，因为属于后续模块。
-
-## Part 2 边界
-
-Part 2 只处理：
-- 故事骨架；
-- 人物欲望与冲突；
-- 因果推进；
-- 转折与收束；
-- 观点如何从故事里长出来；
-- 口语文案；
-- 叙事语气；
-- 第一人称 / 角色关系；
-- 剧本最终文本。
-
-暂不处理：
-- 分镜；
-- 镜头；
-- 图片资产；
-- 生图提示词；
-- 配音；
-- SRT 时间轴；
-- 成片执行。
+原样快照继续保留，不删除。
 
 ## 当前停止点
 
-`PART2_MERGED_BASELINE_READY / ADJUSTMENT_PENDING_OWNER`
+`PART2_MINIMAL_PATCH_APPLIED / OWNER_CONFIRMED`
 
-当前已建立唯一 Part 2 合并基线：`part2/SCRIPT_NARRATIVE.md`。
-
-合并原则：先完整整合，不做进一步简化；重复规则合并表达，废弃规则单独列明，验证 Case 保留在快照中。
-
-下一步：
-1. Owner 先看合并后的 Part 2 到底包含什么；
-2. 再逐项决定哪些需要调整 / 删除 / 简化；
-3. 每次只改一小组规则；
-4. 改后用旧 Case + 新 Case 做对照验证；
-5. 原始 50 份快照始终保留。
+下一步不自动修改 Part 2。继续调整、进入 Part 3，或处理后续模块，均等待 Owner 指令。
 
 ## 安全边界
 
 - 不修改原 `ai-story-showrunner`；
 - 不修改原 `story-showrunner`；
-- 不因为整理 Part 2 改写已经确认的 Part 0 / Part 1；
-- 原始快照不删除；
+- 不因 Part 2 调整改写已确认的 Part 0 / Part 1；
+- 不删除原始快照；
 - 本文件是 `comic-narrative` 唯一交接文档。
