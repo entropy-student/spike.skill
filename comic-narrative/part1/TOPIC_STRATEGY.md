@@ -4,7 +4,7 @@
 
 把“大家本来就关心的东西”变成一个：
 
-> **值得点开、值得追问、能讲成故事、AI 真正参与因果、而且没有和旧内容换皮重复的 WHY 选题。**
+> **值得点开、值得追问、能讲成故事、AI 真正参与因果、而且没有和历史选题换皮重复的 WHY 选题。**
 
 本模块只负责选题，不负责完整剧本、分镜、配音或成片。
 
@@ -16,6 +16,7 @@
 
 ```text
 X（美食 / MBTI / 娱乐 / 工作 / 关系 / 天气……）
+→ Human Process：人在这里原本做什么
 → 反常现象：本来应该 A，为什么却 B？
 → WHY
 → 人类矛盾：两边都合理的力量发生冲突
@@ -27,7 +28,7 @@ X（美食 / MBTI / 娱乐 / 工作 / 关系 / 天气……）
 
 最短口令：
 
-> **X → 反常 → WHY → 人类矛盾 → AI 改变什么 → 一个机制 → 选题**
+> **X → Human Process → 反常 → WHY → 人类矛盾 → AI 改变什么 → 一个机制 → 选题**
 
 ### 强 AI 热点兼容路径
 
@@ -36,6 +37,7 @@ X（美食 / MBTI / 娱乐 / 工作 / 关系 / 天气……）
 ```text
 AI 变化
 → 这会改变普通人的什么事情
+→ Human Process / Human Problem
 → 反常 / WHY
 → 人类矛盾
 → 一个核心机制
@@ -69,7 +71,7 @@ AI 热点不能只因为“新”就进入选题。
 - 信息真实且新鲜；
 - 能翻译成人的问题；
 - 通过五个检查；
-- 不重复；
+- 通过历史选题库复查；
 - 来得及在热点失效前制作；
 
 才可以抢占普通选题。
@@ -83,65 +85,83 @@ AI 热点不能只因为“新”就进入选题。
 
 ---
 
-## 5. 去重
+## 5. 历史选题库复查
 
-不能因为标题、领域或 AI 名词换了，就把同一个内容当成新选题。
+候选题通过前面的内容检查后，**必须读取**：
+
+`../part0/TOPIC_LIBRARY.md`
+
+然后再决定是否 PASS。
+
+复查顺序：
 
 ### D1 — 同一信号
-同一新闻、同一事件、同一来源的重复转载。
+
+HOT 题先看是否只是同一新闻 / 同一事件 / 同一来源的重复包装。
+
+- 同一信号：合并或 HOLD。
+- Evergreen 一般跳过 D1。
 
 ### D2 — 同一题
-核心机制 + 人的问题 + 观众收获基本相同。
 
-### D3 — 同一角度
-技术对象不同，但实际上仍在讲同一个人类问题。
-
-### D4 — 同一故事 / 视觉母题
-例如连续反复使用同一种老板秘书、左右对比、办公室碰壁结构。
-
-D4 不一定禁止选题，但要提醒下游换表达。
-
-### D5 — 同一意义
-跨领域仍可能是同一个问题。
-
-例如：
-
-```text
-美食：推荐最优 → 少了探索
-音乐：推荐最优 → 少了探索
-购物：推荐最优 → 少了探索
-```
-
-如果核心都在问：
-
-`OPTIMIZATION_VS_EXPLORATION`
-
-则默认视为同一 Meaning。
-
-### 两个核心指纹
+比较：
 
 ```text
 Topic Fingerprint
-= 主机制 + human process + human problem + audience payoff
+= 主机制 + Human Process + Human Problem + Audience Payoff
 ```
+
+如果四项高度一致，即使标题不同，也按重复题处理。
+
+### D3 — 同一角度
+
+技术对象或场景不同，但如果实际还是在讲：
+- 同一个人的问题；
+- 同一个主要结论；
+- 同一种观众收获；
+
+默认 HOLD，不因为换了 X 就当新题。
+
+### D4 — 同一故事 / 视觉母题
+
+比较历史 Case 的 Motif。
+
+如果只是 D4 重复：
+- 选题本身可以继续；
+- 但必须提醒下游更换故事表达 / 视觉结构。
+
+D4 单独命中，不直接否决选题。
+
+### D5 — 同一意义
+
+比较：
 
 ```text
 Meaning Fingerprint
-= human tension + controlling question
+≈ Human Tension + Controlling Question
 ```
 
-Meaning Fingerprint 只用于判断“灵魂是否重复”，不能提前锁死最终观点。
+如果表面领域不同，但核心仍在问同一个问题，默认 `HOLD_DUPLICATE`。
 
-允许重讲的情况包括：
-- 机制真的变了；
+只有以下内容发生实质变化时，才允许重讲：
+- 主机制真的变了；
 - 出现新的人的后果；
 - 目标受众不同；
 - 内容任务不同；
-- 上一期留下了明确未解决需求；
+- 旧题留下明确未解决的问题；
 - 新热点让旧问题重新重要；
-- human process / stakes / counter-idea 已发生实质变化。
+- Human Process / Stakes / Counter-Idea 实质变化。
 
 只是换标题、换领域、换例子，不算新题。
+
+### 最终结果
+
+- 没有实质重复：`PASS`
+- 重复但满足重讲条件：`PASS / REVISIT`
+- 实质重复：`HOLD_DUPLICATE`
+- 本身不满足选题要求：`RETURN`
+
+正式进入制作的 PASS / REVISIT 题，应追加进第零部分历史选题库。
 
 ---
 
@@ -198,8 +218,8 @@ Meaning Fingerprint 只用于判断“灵魂是否重复”，不能提前锁死
 - AI Changed Process：推荐排序替人压缩了主动探索和随机发现
 - 主机制：基于既有偏好 / 可量化信号的推荐排序，会持续优先高概率匹配而减少探索
 - Meaning Fingerprint：`OPTIMIZATION_VS_EXPLORATION`
-- 去重结果：当前 Registry 未发现同义题
-- 结果：`PASS`
+- 历史复查：命中 Part 0 H001；本 Case 是规则示例，不重复进入制作
+- 结果：`REFERENCE_CASE`
 
 ### Case 2 — MBTI + AI 分析
 
@@ -216,8 +236,8 @@ Meaning Fingerprint 只用于判断“灵魂是否重复”，不能提前锁死
 - AI Changed Process：AI 把零散的过去行为持续归纳成稳定画像，并让画像反过来参与判断
 - 主机制：基于历史行为的模式归纳 / 分类只能描述已有证据，不等于定义未来可能性
 - Meaning Fingerprint：`UNDERSTANDING_VS_DEFINITION`
-- 去重结果：当前 Registry 未发现同义题
-- 结果：`PASS`
+- 历史复查：命中 Part 0 H002；本 Case 是规则示例，不重复进入制作
+- 结果：`REFERENCE_CASE`
 
 ### Case 3 — AI Agent 能自动完成更多任务
 
@@ -234,21 +254,5 @@ Meaning Fingerprint 只用于判断“灵魂是否重复”，不能提前锁死
 - AI Changed Process：AI 从“告诉你怎么做”进入“实际执行工作流”
 - 主机制：工具能力与授权 / 审批边界是两个不同层次
 - Meaning Fingerprint：`DELEGATION_EFFICIENCY_VS_CONTROL`
-- 去重结果：已命中 `agent-delegated-workflow` 与 `tools-do-not-mean-permission`
+- 历史复查：旧项目历史 Registry 已存在 Agent 委托 / 权限边界的高度相近题
 - 结果：`HOLD_DUPLICATE`
-
----
-
-## 9. 发布后的反馈
-
-发布数据用于下一轮选题：
-
-```text
-播放 / 留存
-+ 收藏 / 关注 / 高质量评论
-+ 搜索 / 私信 / 反复问题
-→ 更新选题记忆
-→ 调整未来选题
-```
-
-播放量只证明注意力，不单独证明信任、需求或商业价值。
