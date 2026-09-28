@@ -1,800 +1,377 @@
 ---
 name: creator-sponsorship-cold-start
-title: Creator Sponsorship Cold Start（自媒体广告冷启动）
-description: 面向“从 0 起号并尽快进入广告主投放池”的证据驱动 Skill。通过广告主 Job 路由、广告市场地图、真实中小账号抽样、Buyer Readiness、冷启动双通道实验、商单获取、使用权/投流授权与复投验证，筛出 1–3 个可执行且可持续获得品牌预算的账号模型。
-version: 0.2.1
-language: zh-CN
+description: >-
+  用于从 0 系统发现并验证最可能形成可持续品牌商单收入的自媒体账号模型。先开放发现市场中的 Account Model，再验证品牌需求、小中型创作者可达性、Sponsor Fit 与可持续性，最后叠加个人约束并设计冷启动实验。
+metadata:
+  title: Creator Sponsorship Cold Start（自媒体品牌商单冷启动）
+  version: "0.5.0"
+  language: zh-CN
 ---
 
-# Creator Sponsorship Cold Start（自媒体广告冷启动）
+# Creator Sponsorship Cold Start（自媒体品牌商单冷启动）
 
 ## 0. 核心目标
 
-解决：
+> **系统发现并验证：从 0 开始，哪些自媒体账号模型最有可能形成可持续的品牌商单收入。**
 
-> **什么样的新账号，能够用尽可能低的冷启动成本，在较短周期内进入广告主可采购范围，并逐渐获得稳定复投？**
+核心收入只计包含 Creator 自有账号付费发布的品牌合作。平台分成、联盟、赠品、纯 UGC-only、自有产品收入可以旁录，但不能替代账号商单证据。
 
-最终必须交付：
-
-1. 1–3 个可执行 Account Model；
-2. 广告主到底购买每个模型的哪一种价值；
-3. 真实中小账号与平台采购证据；
-4. Audience Validation + Sponsor Validation；
-5. 首单 → Rights / Amplification → 复投路径；
-6. KILL / ITERATE / KEEP / SCALE 条件。
-
-本 Skill 不把“推荐赛道”视为完成。
+本 Skill 不保证收入，也不因行业热度、粉丝量、单条爆款、头部案例或理论品牌数量直接推荐模型。
 
 ---
 
-## 1. 强制边界
+## 1. Account Model
 
-主要商业目标：
-
-- Sponsored Post / Creator Partnership；
-- UGC / Content-only；
-- Usage Rights；
-- Paid Amplification / Boost / Partnership Ads；
-- Affiliate / Performance Hybrid；
-- Ambassador / Long-term Partnership。
-
-默认不以以下为北极星：
-
-- 卖自有产品；
-- 课程/社群；
-- 平台播放分成；
-- 单纯涨粉；
-- 单条爆款；
-- 泛流量最大化。
-
----
-
-## 2. 核心原则
-
-1. **Advertiser-first**：先研究谁在花钱、为什么花。
-2. **Advertiser Job first**：先判断品牌买分发、素材、转化还是信任。
-3. **赛道 ≠ Account Model**：市场名词不是可执行账号。
-4. **Real creator evidence > macro report**：报告发现方向，真实中小账号验证落地。
-5. **Median > Max**：稳定中位表现优先于爆款。
-6. **Repeat > First Deal**：首单只是低级商业证据。
-7. **Brand Suitability is a Gate**：品牌安全、调性、合规直接影响采购。
-8. **Buyer Readiness is part of the product**：品牌必须能发现、评估、联系、下单和复盘。
-9. **Rights are product**：Usage Rights / Amplification / Exclusivity 单独建模。
-10. **主动商单获取属于验证**：不能只等品牌私信。
-11. **Current rules must be current**：平台门槛、商业产品与政策实时核验。
-12. **Evidence before recommendation**：无真实样本不定案。
-
----
-
-## 3. 商业证据图谱
-
-不要把所有商业化证据强行排成一条线。账号可能先卖 UGC / 素材，也可能先卖分发，再进入投流、复投或长期合作。
-
-### 共同前置证据
-
-~~~text
-MARKET_EXISTS
-→ BRANDS_SPEND_ON_CREATORS
-→ BRANDS_SPEND_IN_THIS_NICHE
-→ BRANDS_BUY_SMALL_MID_CREATORS
-→ TARGET_ACCOUNT_MODEL_FITS
-→ CREATOR_IS_BUYER_READY
-~~~
-
-### 之后至少进入一条真实采购路径
-
-~~~text
-PATH A — DISTRIBUTION
-SPONSOR_OPPORTUNITY → PAID_SPONSORED_POST → REPEAT / LONG_TERM
-
-PATH B — CREATIVE
-UGC_OR_ASSET_BRIEF → PAID_CREATIVE_DELIVERY → RIGHTS / AMPLIFICATION → REPEAT
-
-PATH C — PERFORMANCE
-TRACKABLE_OFFER → PAID_OR_HYBRID_COLLAB → VERIFIED_OUTCOME → REPEAT
-~~~
-
-多条路径可以并行，最终再看：
-- MULTI_BRAND_REPEATABILITY；
-- LONG_TERM_PARTNERSHIP；
-- REVENUE_QUALITY。
-
-禁止越级：
-
-- 行业有预算 ≠ 会投这种账号；
-- 头部有商单 ≠ 小号能进入；
-- 有询盘 ≠ 成交；
-- UGC 成交 ≠ 自有账号分发价值已被证明；
-- 首单 ≠ 复投；
-- 单一品牌复投 ≠ 多品牌市场成立。
-
----
-
-## 4. Advertiser Job Router
-
-任何研究先标记品牌买什么。
-
-### DISTRIBUTION
-买 Creator 自有受众。
-
-主要证据：
-- Audience Fit；
-- Median Reach / Views；
-- Demographics；
-- Engagement Quality；
-- Community / Search Influence。
-
-### CREATIVE_ASSET
-买 Creator 制作的素材。
-
-主要证据：
-- Hook / Demo / Story 能力；
-- UGC；
-- Raw Footage；
-- Reusable Creative；
-- Paid Media Creative Performance。
-
-### PERFORMANCE
-买可测量结果。
-
-主要证据：
-- Click；
-- Lead；
-- Install；
-- Code Use；
-- Sales；
-- CPA / ROAS / Revenue。
-
-### TRUST_EXPERTISE
-买可信度、专业解释和决策影响力。
-
-主要证据：
-- Expertise；
-- Credibility；
-- Category Fit；
-- Audience Intent；
-- Long-form / high-consideration ability。
-
-### LOCAL_EXPERIENCE
-如适用：到店、活动、旅游、地域覆盖。
-
-**不同 Job 不得使用同一成功指标。**
-
-详见：
-- references/02_BUYER_SIDE_COMMERCIAL_READINESS.md
-- references/03_DEAL_AND_MEASUREMENT_ARCHITECTURE.md
-
----
-
-## 5. Advertiser Market Map
-
-先回答：
-
-### A. 谁持续花钱
-记录：
-- 品牌数量与规模；
-- 新品 / 活动频率；
-- 订阅 / 复购 / 季节性；
-- 是否需要持续内容教育；
-- 是否大量使用 Creator 内容进入 Paid Media。
-
-### B. 买什么 Job
-给行业标：
-- DISTRIBUTION；
-- CREATIVE_ASSET；
-- PERFORMANCE；
-- TRUST_EXPERTISE；
-- LOCAL_EXPERIENCE。
-
-### C. 从哪里采购
-实时核验：
-- Creator Marketplace；
-- Open Call / Recruitment；
-- Brand Invitation；
-- Agency / MCN；
-- UGC Marketplace；
-- Direct Outreach；
-- Service Provider bulk recruitment。
-
-### D. 最小可采购层级
-核验：
-- 注册；
-- 粉丝 / 有效粉丝；
-- 内容；
-- 地区 / 年龄 / 身份；
-- 商业披露；
-- 行业资质；
-- 不同任务类型门槛。
-
-动态数字不得永久写死。
-
----
-
-## 6. Real Account Research
-
-### Adaptive Sampling
-
-不要机械跑满固定样本量。
-
-**Stage 1 — Exploration**
-- 先做 30 个账号；
-- 只能给 PROVISIONAL 结论。
-
-**Stage 2 — Expansion**
-- 每次增加 20 个账号；
-- 尽量补充不同粉丝层级、不同商业状态和不同抽样路径。
-
-**Stage 3 — Saturation Stop**
-连续两个新增批次同时满足以下条件时可停止：
-- Account Model 排序基本不变；
-- 没有出现新的一级 Advertiser Job；
-- 没有出现新的主要品牌类别；
-- Small-Creator Access 结论不变；
-- Hard Gate 结论不变。
-
-通常 70–150 个样本即可形成较稳定结论；证据冲突大时可扩展至约 200。
-
-不得为了达到数字而继续收集低价值重复样本。
-
-优先层级：
-- 1k–10k；
-- 10k–50k；
-- 50k–200k。
-
-### 三路抽样
-
-完整研究优先同时使用：
-
-1. **Advertiser-led**：从品牌 Campaign / Sponsored Content 反查 Creator；
-2. **Creator-led**：从赛道中系统抽取账号，包含无商单账号；
-3. **Platform-led**：从 Marketplace / Open Call / Recruitment 抽样。
-
-默认观察窗口：
-- 最近 90 天；
-- 20–50 条；
-- 稀疏账号可扩展至 180 天。
-
-必须控制：
-- Selection Bias；
-- Survivorship Bias；
-- Platform Bias；
-- Disclosure Bias；
-- Paid Amplification Contamination；
-- Seasonality；
-- Category Regulation；
-- Creator Age Bias。
-
-详细执行见 references/01_REAL_ACCOUNT_RESEARCH_AND_SCORING.md。
-
----
-
-## 7. Account Model
-
-每个候选必须写成：
+研究单位不是赛道，而是：
 
 ~~~text
 Audience
-→ Persistent Need
-→ Content Promise
-→ 2–3 Repeatable Franchises
-→ Advertiser Jobs
-→ Natural Sponsor Slots
-→ Brand Categories
-→ Production Model
-→ Platform Fit
-→ Earliest Commercial Entry
-→ Why Brands Repeat
+× Persistent Need
+× Content Promise
+× Repeatable Content Engine
+× Sponsor Adjacency
+× Platform Context
 ~~~
 
-“科技号 / 美妆号 / 户外号 / AI号 / 生活号”都不是完整 Account Model。
+一个合格模型必须回答：
 
-一个合格模型必须让广告主迅速看懂：
-
-- 谁在看；
-- 为什么看；
-- 哪类品牌适合；
-- 怎么植入；
-- 可以购买什么 Creator Value。
+- 谁持续看；
+- 为什么持续看；
+- 内容如何重复生产；
+- 哪些品牌为什么愿意付费；
+- 品牌进入后是否仍然自然；
+- 这个模型有没有增长和长期采购空间。
 
 ---
 
-## 8. Hard Gates
+## 2. 研究边界
 
-先 Gate，后评分。
+开放发现前只固定真正会改变市场搜索空间的条件：
 
-### G1 MARKET DEMAND
-多个真实广告主持续采购。
+- Platform；
+- Market / Country；
+- Language；
+- Core revenue definition；
+- 法规 / 身份限制；
+- 用户明确排除领域。
 
-### G2 SMALL-CREATOR ACCESS
-有中小 Creator 或 UGC Creator 的真实采购证据。
+个人预算、时间、露脸、样品获取、现有技能和内容偏好默认后移到 User Fit。
 
-### G3 NATIVE INTEGRATION
-品牌进入后，用户价值仍成立。
+只有绝对不可违反的个人条件才提前标为 HARD_CONSTRAINT。
 
-### G4 PRODUCTION FEASIBILITY
-个人能长期持续生产。
-
-### G5 BRAND SUITABILITY
-内容风险、历史内容、Claims、平台健康度不会大幅缩小品牌池。
-
-### G6 BUYER READINESS
-具备或可快速建立：
-- 商务联系方式；
-- 清晰定位；
-- Audience / Performance data；
-- Media Kit / Portfolio；
-- Deliverables；
-- Rate logic；
-- Rights / Exclusivity boundaries；
-- Ad disclosure；
-- Reliable delivery。
-
-任一硬 Gate FAIL，不进入最终优先候选。
+平台商业工具、准入、披露和政策属于动态事实，每次执行重新核验。
 
 ---
 
-## 9. 评分
+## 3. Open-world Discovery
 
-Gate 全 PASS 后，0–5 分评：
+禁止先凭印象列几个赛道再验证。
 
-- Advertiser Density；
-- Budget Strength；
-- Repeat Frequency；
-- Small-Creator Accessibility；
-- Native Integration；
-- Audience Commercial Value；
-- Production Economics；
-- Creator Supply Competition；
-- Paid Amplification Potential；
-- Measurement Readiness。
+至少使用：
 
-### 权重按目标切换
+1. **Advertiser-led**：品牌 Campaign、Marketplace、Agency / 平台招募；
+2. **Creator-led**：平台自然生态中的增长、商业化与反例账号；
+3. **Audience-led**：长期需求、兴趣、身份、搜索与决策场景；
+4. **Negative-space**：受众强但商单弱，或品牌需求强但 Creator 供给弱的区域。
 
-支持至少：
+将发现结果聚类成 Account Model，而不是宽泛赛道。
 
-- FAST_FIRST_DEAL；
-- LONG_TERM_SPONSOR_INCOME；
-- LOW_COST_SOLO；
-- HIGH_VALUE_EXPERT。
+候选状态：
 
-禁止所有任务使用同一套权重。
+- ESTABLISHED：已有明确品牌采购和中小 Creator 商单；
+- EMERGING：已有早期采购或需求增长，但重复性不足；
+- LATENT：受众或 Sponsor Fit 看起来强，但真实商单证据不足。
+
+LATENT 必须继续验证，不能因“竞争少”直接推荐。
+
+执行细节见 references/01_DISCOVERY_AND_SAMPLING.md。
 
 ---
 
-## 10. Core Commercial Metrics
+## 4. Sponsor Market Validation
 
-### Median Organic Performance
-自然内容中位表现。
+对每个候选至少验证：
 
-### Sponsor Density
-~~~text
-Sponsored Posts / Observed Posts
-~~~
+### Brand Demand
+品牌是否跨时间持续采购，而非单一 Campaign。
 
-### Sponsor Cadence
-~~~text
-Sponsored Posts / Observation Months
-~~~
+### Small-creator Access
+与新号路径相近的小中型 Creator 是否真实获得 PAID_ON_ACCOUNT。
 
-### Repeat Sponsor Rate
-~~~text
-Brands With 2+ Collaborations / Unique Sponsor Brands
-~~~
+### Content–Brand Fit
+品牌与 Creator 平时内容主题是否自然匹配。
 
-### Top Sponsor Share
-~~~text
-Largest Sponsor Collaborations / All Sponsored Collaborations
-~~~
+### Audience–Brand Fit
+Creator 受众是否接近品牌目标人群。
 
-### Organic Ad Retention
-仅能区分自然 / Paid 时计算：
+### Addressable Sponsor Market
+不要把“品牌越多越好”当目标。拆成：
 
-~~~text
-Median Organic Sponsored Performance
-/
-Median Organic Non-sponsored Performance
-~~~
-
-如果被投流且无法拆分：
-- 写 UNKNOWN；
-- 不比较总播放。
-
-### Brand Breadth
-真实合作品牌类别。
-
-### Production Efficiency
-优先：
-- Hours per Deliverable；
-- Cash Cost per Deliverable；
-或 LOW / MEDIUM / HIGH。
-
-### Revenue Quality
-只有真实收入数据时才算：
-- Sponsor Revenue / Content Hour；
-- Repeat Revenue Share；
-- Rights Revenue Share。
+- Breadth；
+- Depth；
+- Fit；
+- Concentration；
+- Adjacency。
 
 ---
 
-## 11. Buyer Readiness Pack
+## 5. Real Creator Evidence
 
-冷启动账号必须逐步准备：
+真实账号研究至少并用 Advertiser-led + Creator-led；有条件时加入 Platform-led。
 
-### Discoverability
-- Marketplace Profile；
-- 行业标签；
-- 语言/地区；
-- 商务邮箱；
-- 平台允许时开启 Audience / Channel Insights Sharing。
+样本必须包含：
+- 商单明显账号；
+- 少商单账号；
+- 无明显商单账号；
+- 自然表现强但商业弱账号。
 
-### Proof
-- Audience Demographics；
-- 最近自然内容中位表现；
-- 3–6 条 Commercial Portfolio；
-- Case（如有）。
+商业信号编码：
 
-### Offer
-明确是否支持：
-- Sponsored Post；
-- UGC-only；
-- Raw Footage；
-- Usage Rights；
-- Paid Amplification；
-- Cross-platform；
-- Affiliate / Hybrid；
-- Long-term Package。
+- PAID_ON_ACCOUNT
+- GIFTED
+- AFFILIATE_ONLY
+- UGC_ONLY
+- UNKNOWN
 
-### Operations
-- Response SLA；
-- Brief Intake；
-- Revision rounds；
-- Delivery timeline；
-- Disclosure；
-- Contract / Invoice readiness。
+公开披露会漏记，因此至少报告：
 
-Commercial Portfolio 必须区分：
-- ORGANIC；
-- SPEC；
-- PAID。
+- Confirmed Paid — Lower Bound
+- Confirmed + Probable — Sensitivity Range
 
-不得把 SPEC 伪装成真实商单。
+公开不可见的合同金额、后台受众、ROI 写 UNKNOWN。
 
-详细执行见 references/02_BUYER_SIDE_COMMERCIAL_READINESS.md。
+样本量不固定；当新增样本不再改变候选排序、小号可达性和主要反例时停止。
+
+详见 references/01_DISCOVERY_AND_SAMPLING.md。
 
 ---
 
-## 12. Sponsorability Pretest + Content Franchise
+## 6. Sustainability
 
-在真实商单前，可以先做 **Sponsorability Pretest**：
+“接到广告”不等于“可持续收入”。
 
-- 使用自己正常拥有/可合法体验的产品或服务；
-- 按未来商单结构制作产品相关内容；
-- 明确它是自主体验，不伪装成品牌合作；
-- 比较这类内容与普通内容的自然中位表现。
+至少检查六层：
 
-可记录：
+### DEMAND
+品牌需求是否持续。
 
-~~~text
-Commercial Format Retention
-= Median Organic Performance of Sponsor-shaped Organic Content
-  / Median Organic Performance of Other Organic Content
-~~~
+### FIT
+Content–Brand Fit 与 Audience–Brand Fit 是否长期成立。
 
-它只能证明“这种商业内容结构是否伤害自然内容”，**不能证明广告主会付钱**。
+### SCALE
+区分：
+- Small-account monetization；
+- Audience Scale Path；
+- Sponsorship value at larger scale。
 
-候选模型随后必须压缩成 2–3 个 Franchise。
+### CAPACITY
+账号能承载多少商业合作，而不持续损害 Audience Value、内容质量和 Creator 产能。
 
-每个 Franchise 满足：
+Sponsor Density 只是观察变量，不假设越高或越低越好。
 
-~~~text
-Audience Need
-+ Repeatable Hook
-+ Evidence / Experience
-+ Advertiser Job
-+ Natural Sponsor Slot
-+ Organic Value
-+ Reusable Creative Potential
-~~~
+### RETENTION
+看同品牌复投、多品牌重复采购和跨时间采购。
 
-品牌出现后，内容核心价值仍必须成立。
+### ECONOMICS
+只有真实数据时计算收入、直接成本、时间成本、净收入和 Sponsor Concentration。
+
+Sustainability Level：
+
+- S0 SINGLE DEAL
+- S1 REPEAT SIGNAL
+- S2 REPEATABLE MARKET
+- S3 ECONOMICALLY SUSTAINABLE
+- S4 SCALABLE
+
+详见 references/02_SPONSOR_MARKET_AND_SUSTAINABILITY.md。
 
 ---
 
-## 13. Cold-start Dual Validation
+## 7. User Fit 后置
 
-必须同时跑：
+市场候选形成后，再加入：
 
-### Lane A — AUDIENCE
+- Skills；
+- Assets / resources；
+- Time；
+- Budget；
+- Face / voice / location constraints；
+- Product / scene access；
+- Long-term interest；
+- Risk tolerance。
+
+User Fit 回答：
+
+> **市场上值得做的模型里，哪些适合这个 Creator？**
+
+不要反过来用当前不便提前砍掉整个市场搜索空间，除非它是 HARD_CONSTRAINT。
+
+---
+
+## 8. Select Candidates
+
+最终只保留 1–3 个值得实际测试的模型。
+
+只有口径可比时才排序；否则明确暂不排序。
+
+每个 Candidate 至少说明：
+
+~~~text
+Account Model:
+Status:
+Brand Demand:
+Small-creator Access:
+Content–Brand Fit:
+Audience–Brand Fit:
+Sponsor Market:
+Scale Path:
+Sponsor Capacity:
+Retention Evidence:
+Economics Evidence:
+User Fit:
+Strongest Counterevidence:
+Unknowns:
+Confidence:
+~~~
+
+---
+
+## 9. Cold-start Dual Validation
+
+### Lane A — Audience
 验证：
-- 内容有人看；
-- 受众稳定；
-- Franchise 可重复。
+- Audience Need；
+- Content Engine；
+- 中位表现；
+- Production sustainability。
 
-### Lane B — SPONSOR
+### Lane B — Brand
 验证：
-- 品牌 / Agency 愿意给 Brief、采购内容或付费。
+- Qualified sponsor interest；
+- Budgeted brief；
+- PAID_ON_ACCOUNT；
+- Repeat。
 
-Sponsor Lane 不必等“大粉丝量”。
+赠品、联盟、UGC-only 和单纯入选必须分开。
 
-当已有：
-- 6–10 条代表内容；
-- 清晰主页；
-- 商务联系方式；
-- Portfolio；
-- 基础数据；
+Buyer Readiness 只在模型已有市场潜力但采购验证受阻时检查：
+- Discoverability；
+- Contactability；
+- Profile / Portfolio；
+- Data；
+- Offer；
+- Rights；
+- Delivery；
+- Measurement。
 
-即可启动。
+不使用固定作品数、固定回复时间或固定转化率作为通用 Gate。
 
-采购路径至少测试：
-- Marketplace；
-- Open Call / Recruitment；
-- Brand / Agency Direct Outreach；
-- UGC Marketplace；
-- Inbound。
-
-详见 references/05_COLD_START_DUAL_VALIDATION_AND_SPONSOR_ACQUISITION.md。
-
----
-
-## 14. Sponsor Acquisition Loop
-
-~~~text
-Build Portfolio
-→ Map Relevant Brands / Agencies
-→ Classify Advertiser Job
-→ Match Franchise / Offer
-→ Marketplace + Open Call + Outreach
-→ Track Reply / Brief / Paid Conversion
-→ Deliver
-→ Measure
-→ Renewal Ask
-→ Repeat
-~~~
-
-至少记录：
-
-- outreach_count；
-- qualified_replies；
-- briefs_received；
-- paid_collabs；
-- deal_cycle；
-- decline_reason；
-- renewals。
-
-没有品牌主动私信，不等于没有市场。
+详见 references/03_VALIDATION_AND_BUYER_READINESS.md。
 
 ---
 
-## 15. Deal Architecture
+## 10. Real Deal Measurement
 
-商单拆成：
+若一份合同包含 Creator 自有账号付费发布，可把绑定收入拆成：
 
 ~~~text
 Creative Fee
-+ Distribution Fee
++ On-account Distribution / Placement
 + Usage Rights
-+ Paid Amplification
-+ Raw Footage
-+ Cross-platform Versions
-+ Revision Scope
-+ Rush
++ Paid Amplification Rights
 + Exclusivity
 + Performance Bonus
++ Other Bound Deliverables
 ~~~
 
-### Usage Rights
-明确：
-- Channel；
-- Duration；
-- Territory；
-- Edit Rights。
+纯 UGC_ONLY 仍单独记录。
 
-### Exclusivity
-明确：
-- Category；
-- Competitors；
-- Duration；
-- Territory。
+合作后按品牌目标选择指标，并区分 Organic 与 Paid Amplification。
 
-Rights 越广、时间越长，价值越高。
-Exclusivity 不是默认免费。
-
-详见 references/03_DEAL_AND_MEASUREMENT_ARCHITECTURE.md。
+详见 references/04_DEAL_AND_MEASUREMENT.md。
 
 ---
 
-## 16. Measurement by Advertiser Job
+## 11. Evidence Levels
 
-### DISTRIBUTION
-看：
-- Reach / Views；
-- Watch Time；
-- Engagement；
-- Click；
-- CPM / CPV（如可算）。
+### DIRECTION HYPOTHESIS
+只有市场 / 平台信号。
 
-### CREATIVE_ASSET
-看：
-- Cost per usable asset；
-- Approval；
-- Reuse；
-- Asset lifespan；
-- Paid CTR / CVR / CPA（品牌回传时）。
+### CANDIDATE MODEL
+有真实中小账号、品牌需求和 Sponsor Fit 证据，值得测试。
 
-### PERFORMANCE
-看：
-- UTM；
-- Code；
-- Lead；
-- Install；
-- Sale；
-- CPA；
-- Revenue / ROAS。
+### INITIAL VALIDATION
+用户自己的账号出现重复 Audience Signal + PAID_ON_ACCOUNT。
 
-### TRUST_EXPERTISE
-看：
-- Save / Share；
-- Completion；
-- Comment quality；
-- Consideration / Search / Brand lift（可获得时）。
-
-没有数据时写 UNKNOWN，不制造 ROI。
-
----
-
-## 17. Decision Loop
-
-~~~text
-Advertiser Market
-→ Real Account Evidence
-→ Account Model
-→ Hard Gates
-→ Audience + Sponsor Validation
-→ Paid Collaboration
-→ Job-specific Measurement
-→ Rights / Amplification
-→ Renewal
-→ Multi-brand Repeatability
-→ KILL / ITERATE / KEEP / SCALE
-~~~
-
-### KILL
-- 多路样本都找不到中小 Creator 采购；
-- 品牌池过窄且无复投；
-- Production 不可持续；
-- Suitability 大幅限制合作；
-- Buyer-ready 后 Sponsor Lane 仍长期没有有效信号；
-- 商单持续严重破坏账号。
-
-### ITERATE
-市场存在，但需改变：
-- Audience；
-- Platform；
-- Franchise；
-- Advertiser Job；
-- Offer；
-- Pitch；
-- Brand Category；
-- Deal Structure。
-
-### KEEP
-出现稳定自然内容和早期商业信号，但复投/多品牌尚未证明。
+### SUSTAINABILITY EVIDENCE
+跨时间存在重复采购、可接受 Sponsor Capacity、可持续 Production 和经济性。
 
 ### SCALE
-至少出现：
-- 多次真实付费；
-- 至少部分复投；
-- 商单/素材表现可接受；
-- 制作经济性成立；
-- 多品牌可采购；
-- Measurement / Operations 可扩张。
+只有用户自己的数据证明重复性、经济性和放大后稳定性才进入。
 
 ---
 
-## 18. Source Hierarchy
+## 12. Evidence Rules
 
-优先：
+优先来源：
 
-1. 平台官方 Creator Marketplace / 商业规则 / 广告政策；
-2. 品牌、Agency、真实 Campaign / 招募；
-3. 真实 Creator 主页与商业内容；
-4. 第一方 Marketplace 数据、可信行业调查；
+1. 平台官方商业规则 / Creator Marketplace；
+2. 品牌、Agency、真实 Campaign；
+3. 真实 Creator 账号；
+4. 第一方 Marketplace / 可信行业研究；
 5. 学术研究；
 6. Creator / Agency 访谈；
 7. 社区讨论。
 
-约束：
+规则：
 
-- 行业报告不能代替真实账号样本；
-- 社区讨论不能单独证明报价/预算；
-- Marketplace 数据只代表该 Marketplace；
-- Vendor Report 必须说明样本与利益相关性；
-- 学术研究解释机制，不证明今天的平台门槛。
-
-当前 v0.2 研究依据见 references/04_EVIDENCE_BASE_2026-09-28.md。
-
----
-
-## 19. Research Stop Rule
-
-只有全部满足，才从研究进入起号：
-
-1. Advertiser Market Map 完成；
-2. 主要 Advertiser Job 明确；
-3. 至少一轮真实中小账号抽样；
-4. Small-Creator Access 有证据；
-5. Account Model 有 2–3 个 Franchise；
-6. Hard Gates 可 PASS；
-7. 平台商业入口已实时核验；
-8. Audience + Sponsor 两条实验线可执行；
-9. KILL / KEEP / SCALE 条件明确；
-10. Commercial Portfolio 与 Sponsor Acquisition 路径可执行。
-
-否则继续补证据。
+- 行业报告不能代替真实账号；
+- 头部不能代替小号可达性；
+- Marketplace 数据不能自动外推整个市场；
+- 公开报价不等于成交价；
+- 动态规则每次重新查；
+- 事实、推断、假设和 UNKNOWN 分开。
 
 ---
 
-## 20. 默认输出
+## 13. 默认执行顺序
 
 ~~~text
-核心商业目标：
-市场 / 平台：
-Advertiser Job：
-Advertiser Market Map：
-样本规模与抽样方法：
-主要 Bias / Limitations：
-
-已证明：
-仍未证明：
-
-候选 Account Model 1：
-- Audience：
-- Content Promise：
-- Franchises：
-- Advertiser Jobs：
-- Natural Sponsor Slots：
-- Real Brand Evidence：
-- Small-Creator Evidence：
-- Sponsor Density / Cadence：
-- Repeat Evidence：
-- Organic Ad Retention：
-- Brand Suitability：
-- Buyer Readiness：
-- Production Economics：
-- Platform Fit：
-- Evidence Level：
-- Main Risk：
-
-候选 2：
-候选 3：
-
-当前领先假设：
-Audience Validation：
-Sponsor Validation：
-Deal / Rights Plan：
-Measurement Plan：
-KILL 条件：
-KEEP / SCALE 条件：
-下一步最缺证据：
+DEFINE BOUNDARY
+→ OPEN-WORLD DISCOVERY
+→ BUILD ACCOUNT MODELS
+→ VALIDATE SPONSOR MARKET
+→ TEST SUSTAINABILITY
+→ APPLY USER FIT
+→ SELECT 1–3 CANDIDATES
+→ DUAL VALIDATION
+→ REAL PAID SPONSORSHIP
+→ REPEAT / SCALE
 ~~~
 
 ---
 
-## 21. 与其他 Skill 的关系
+## 14. 默认交付
 
-- Acquisition Growth Radar：账号运行后的增长瓶颈；
-- Short-Form Spoken Script：具体内容脚本；
-- Product Business Teardown：拆广告主/产品；
-- 本 Skill：**选什么广告型账号模型，并验证它是否能持续获得品牌预算。**
+1. Research Boundary；
+2. Discovery Coverage；
+3. Account Model Universe；
+4. Candidate status；
+5. Sponsor Market evidence；
+6. Sustainability；
+7. User Fit 后的变化；
+8. 最终 Candidate；
+9. Strongest Counterevidence / UNKNOWN；
+10. 下一项信息增益最高的验证。
 
 ---
 
-## 22. 核心哲学
+## 15. References
 
-> **不是先成为“大博主”，再想怎么接广告。**
->
-> **而是从第一天就把账号设计成一个品牌愿意发现、评估、采购、投流和复投的媒体与创意产品。**
+- references/01_DISCOVERY_AND_SAMPLING.md
+- references/02_SPONSOR_MARKET_AND_SUSTAINABILITY.md
+- references/03_VALIDATION_AND_BUYER_READINESS.md
+- references/04_DEAL_AND_MEASUREMENT.md
+- templates/account-model-research-matrix.md
 
-一句话：
-
-> **Advertiser Job → Market → Real Creator Evidence → Buyer-ready Account Model → Audience + Sponsor Validation → Paid Collaboration → Rights / Amplification → Repeat Sponsorship.**
+本 Skill 聚焦 Account Model 发现与验证，不负责具体脚本、日常长期运营或合同法律意见。
