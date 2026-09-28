@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-分支：`codex/comic-narrative-part2-snapshot`
+分支：`codex/comic-narrative-part3-snapshot`
 
 原 `ai-story-showrunner`、`story-showrunner` 未修改；`source-snapshots/` 只作备份，不参与运行。
 
@@ -92,16 +92,47 @@ Part 2 原相关 / 疑似相关材料共 **50 份**，保存在：
 
 原样快照继续保留，不删除。
 
+## Part 3 — 分镜与视觉导演
+
+当前仅完成：**源材料收集 / 原样备份 / 反向漏检**，尚未建立正式 Part 3 规则文档。
+
+备份目录：
+`source-snapshots/03-storyboard-visual-director/`
+
+当前共 **146 份**源文件副本，分为：
+- direct：25；
+- cases：63；
+- historical：6；
+- boundary：47；
+- evidence：5。
+
+覆盖：
+- G4 Director / Shot Compiler 正式规则；
+- 视角语法、Semantic Shot、Visual Beat、分镜拆解；
+- Frame Blueprint 与视觉风格；
+- 早期 Agent / Context-Memory / MCP G4 Case；
+- G4R v0.3 三组已知 Case + Blind Search Answer 完整验证；
+- G5 完整下游边界，用于防止简化时破坏资产接口；
+- 2026-09-26 Story Event Frame Patch 及最新执行证据；
+- portable Story Showrunner 的 Director / Viewpoint / Frame / schema / QA 合同。
+
+这些快照均为备份，不参与运行；G5、执行、资产内容目前只作为边界证据，不自动升级为 Part 3 规则。
+
 ## 当前停止点
 
-`PART2_MINIMAL_PATCH_APPLIED / OWNER_CONFIRMED`
+`PART3_SOURCE_SNAPSHOT_READY / ORGANIZATION_PENDING_OWNER`
 
-下一步不自动修改 Part 2。继续调整、进入 Part 3，或处理后续模块，均等待 Owner 指令。
+下一步：
+1. Owner 先确认 Part 3 的整理 / 简化方向；
+2. 确认后才建立正式 Part 3 合并稿；
+3. 先完整合并，再逐组简化；
+4. 每轮用旧 Case + 新 Case 回归；
+5. 146 份快照始终保留。
 
 ## 安全边界
 
 - 不修改原 `ai-story-showrunner`；
 - 不修改原 `story-showrunner`；
-- 不因 Part 2 调整改写已确认的 Part 0 / Part 1；
+- 不因 Part 3 改写已确认的 Part 0 / Part 1 / Part 2；
 - 不删除原始快照；
 - 本文件是 `comic-narrative` 唯一交接文档。
