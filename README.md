@@ -6,7 +6,7 @@
 
 **不是 Prompt 收藏夹，而是把判断标准、证据规则、执行循环和输出格式沉淀成可以重复调用的 Skill。**
 
-![Skills](https://img.shields.io/badge/skills-13-blue?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-14-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/language-中文%20%2B%20English-success?style=flat-square)
 ![Status](https://img.shields.io/badge/status-active-orange?style=flat-square)
 
@@ -22,6 +22,7 @@
 |---|---|---:|---|
 | ⭐ **VPS Project Governance（VPS 项目管理规范）** | 把新项目接管、VPS/Shared VPS 部署、生产变更、Evidence、回滚、Secret、资源与 Owner 介入时机统一成可复用的 Reviewer / Executor 治理闭环 | **v0.1.6 Active / Validated** | [进入](./vps-project-governance/) |
 | 📈 **Acquisition Growth Radar（获客增长雷达）** | 判断项目为什么还没挣到钱、当前卡在哪层证据、下一步最值得验证什么 | v0.2 Frozen | [进入](./acquisition-growth-radar/) |
+| 📣 **Creator Sponsorship Cold Start（自媒体广告冷启动）** | 从广告主 Job、真实中小账号采购、Buyer Readiness 与双通道冷启动验证反推可持续接商单的账号模型，并继续验证 Rights、投流与复投 | **v0.2.1 Calibrating** | [进入](./creator-sponsorship-cold-start/) |
 | 🧭 **Independent Store Product Opportunity（独立站选品决策系统）** | 从实物、虚拟与 SaaS 候选中区分发现信号与决策证据，筛出最值得真实验证的 DTC 产品机会 | **v2.1.0 Active** | [进入](./independent-store-product-opportunity/) |
 | 🔬 **Product Business Teardown（产品商业拆解）** | 拆解任意产品服务谁、为什么存在、谁付钱、赚哪部分钱、整体运行逻辑、增长机制与护城河 | **v0.2.0 Calibrating** | [进入](./product-business-teardown/) |
 | 🎙️ **Short-Form Spoken Script（短视频口播脚本）** | 先锁定单一内容承诺和短视频留存结构，再做中文口语化、时长与出声质检；Hook 只出现一次，并按同一语速派生独立 SRT | **v0.1.3 Calibrating** | [进入](./short-form-spoken-script/) |
@@ -122,6 +123,12 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 ```text
 按 Acquisition Growth Radar 帮我判断这个项目现在卡在哪里，
 不要先给一堆渠道建议，先找最大瓶颈和最小验证实验。
+```
+
+```text
+按 Creator Sponsorship Cold Start 帮我从零设计一个以品牌广告为主要变现方式的账号。
+不要先凭印象推荐赛道；先查当前平台商业入口和广告市场，再抽样真实中小账号，
+最后只保留 1–3 个可执行账号模型，并给出 20–30 条冷启动实验与 KILL / KEEP / SCALE 条件。
 ```
 
 ```text
