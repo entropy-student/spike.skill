@@ -4,11 +4,21 @@
 
 ## 1. Sampling Frame
 
-### 完整研究
-目标 100–200 个账号。
+### Stage 1 — Exploration
+先做 30 个账号，只能形成 PROVISIONAL 结论。
 
-### 快速研究
-至少 30 个账号，只能形成 PROVISIONAL 结论。
+### Stage 2 — Expansion
+之后按每批 20 个账号扩展，不要求机械跑满固定数字。
+
+### Stage 3 — Saturation Stop
+连续两个新增批次同时满足以下条件即可停止：
+- 候选 Account Model 排序基本不变；
+- 无新的一级 Advertiser Job；
+- 无新的主要品牌类别；
+- Small-Creator Access 结论不变；
+- Hard Gate 结论不变。
+
+通常 70–150 个样本即可形成较稳定结论；若平台差异、地区差异或证据冲突明显，可继续扩展至约 200。
 
 ### 分层
 尽量覆盖：
