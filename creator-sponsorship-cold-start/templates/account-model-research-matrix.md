@@ -1,183 +1,119 @@
 # Account Model Research Matrix
 
-用于 Creator Sponsorship Cold Start 的真实账号抽样、商业可采购性和冷启动验证。
+用于比较候选模型并记录从 0 起号后的验证。核心收入定义为品牌为创作者自有账号上的付费内容或发布位付费。
 
-## A. Account Sample
-
-| Field | Value |
-|---|---|
-| Platform | |
-| Account Name | |
-| Account URL | |
-| Country / Language | |
-| Followers | |
-| Niche | |
-| Account Model | |
-| Advertiser Job | DISTRIBUTION / CREATIVE_ASSET / PERFORMANCE / TRUST_EXPERTISE / LOCAL |
-| Observation Days | |
-| Posts Sampled | |
-| Posts / Month | |
-| Median Organic Performance | |
-| Sponsored Posts | |
-| Sponsored / Month | |
-| Sponsor Density | |
-| Brand Count | |
-| Repeat Brand Count | |
-| Repeat Sponsor Rate | |
-| Top Sponsor Share | |
-| Median Sponsored Organic Performance | |
-| Organic Ad Retention | |
-| Paid Amplification Contamination | YES / NO / UNKNOWN |
-| Rights / Amplification Evidence | |
-| Brand Categories | |
-| Content Franchises | |
-| Face Required | YES / NO / MIXED |
-| Production Complexity | LOW / MEDIUM / HIGH |
-| Platform Commercial Entry | |
-| First Observed Sponsorship | |
-| Sponsorship Evidence | HIGH / MEDIUM / LOW |
-| Evidence Confidence | HIGH / MEDIUM / LOW |
-| Notes | |
-
-## B. Candidate Model
+## A. Research Brief
 
 ~~~text
-Model Name:
+Target market / country:
+Platform(s) and language:
+Creator skills / assets / constraints:
+Available time and budget:
+Validation horizon:
+User's existing hypotheses:
+Core revenue: PAID_ON_ACCOUNT brand partnership
+Out of core: platform ad share / affiliate / gifted / UGC_ONLY (track separately)
+Research date:
+~~~
+
+## B. Candidate Account Model
+
+~~~text
+Model name:
 Audience:
-Persistent Need:
-Content Promise:
-Core Franchises:
-Advertiser Jobs:
-Natural Sponsor Slots:
-Observed Brand Categories:
-Small-Creator Evidence:
-Production Economics:
-Brand Suitability:
-Buyer Readiness:
-Platform Fit:
-Early Monetization Path:
-Rights / Amplification Potential:
-Why Brands Might Repeat:
-Main Risk:
-Evidence Level:
+Persistent need:
+Content promise:
+Repeatable content franchises:
+Target brand categories:
+Why a brand would pay for this account's placement:
+How a brand can enter naturally:
+Small-creator access evidence:
+Production inputs and cadence:
+Platform fit / eligibility:
+Main risks / disconfirming evidence:
 ~~~
 
-## C. Hard Gates
+## C. Real Account Sample
 
-| Gate | Result | Evidence |
-|---|---|---|
-| Advertiser Density | PASS / RETURN | |
-| Small-Creator Access | PASS / RETURN | |
-| Native Integration | PASS / RETURN | |
-| Production Feasibility | PASS / RETURN | |
-| Brand Suitability | PASS / RETURN | |
-| Buyer Readiness | PASS / RETURN | |
+| Field | Record |
+|---|---|
+| Platform / market / language | |
+| Account name and URL | |
+| Account model / creator stage | |
+| Sample source | ADVERTISER-LED / CREATOR-LED / PLATFORM-LED |
+| Observation dates / days | |
+| Posts sampled / posts per month | |
+| Organic median and metric | |
+| Paid-on-account posts / cadence | |
+| Evidence classification | PAID_ON_ACCOUNT / GIFTED / AFFILIATE_ONLY / UGC_ONLY / UNKNOWN |
+| Evidence strength and source | HIGH / MEDIUM / LOW; URL and date |
+| Brand count / categories / repeat evidence | |
+| Paid amplification | YES / NO / UNKNOWN |
+| Production signals | |
+| Bias / unknowns | |
 
-## D. Scenario Score
+## D. Candidate Comparison
 
-Choose one:
+| Dimension | Model A | Model B | Model C |
+|---|---|---|---|
+| Recurring brand demand | | | |
+| Comparable small-creator access | | | |
+| Audience value and organic median | | | |
+| Natural sponsored-content fit | | | |
+| Repeat / cadence evidence | | | |
+| Brand breadth / concentration | | | |
+| Production cost and time | | | |
+| Platform eligibility / risk | | | |
+| Strongest counterevidence | | | |
+| Evidence level / confidence | | | |
 
-- FAST_FIRST_DEAL
-- LONG_TERM_SPONSOR_INCOME
-- LOW_COST_SOLO
-- HIGH_VALUE_EXPERT
+Do not force a numeric total. If scoring helps, set criteria and weights for this user's constraints before scoring and keep `UNKNOWN` visible.
 
-| Dimension | Score 0–5 | Weight | Evidence |
-|---|---:|---:|---|
-| Advertiser Density | | | |
-| Budget Strength | | | |
-| Repeat Frequency | | | |
-| Small-Creator Accessibility | | | |
-| Native Integration | | | |
-| Audience Commercial Value | | | |
-| Production Economics | | | |
-| Creator Supply Competition | | | |
-| Paid Amplification Potential | | | |
-| Measurement Readiness | | | |
-
-## E. Buyer Readiness
-
-| Item | Status | Notes |
-|---|---|---|
-| Marketplace profile | READY / NOT READY / N/A | |
-| Business contact | | |
-| Audience data | | |
-| Media kit / portfolio | | |
-| Deliverables defined | | |
-| Rate logic | | |
-| Usage rights boundaries | | |
-| Exclusivity boundaries | | |
-| Ad disclosure compliance | | |
-| Response SLA | | |
-| Invoice / contract readiness | | |
-
-## F. Audience Validation
+## E. Minimum Validation Plan
 
 ~~~text
-Franchise 1:
-Franchise 2:
-Franchise 3:
-
-Median performance:
-Save/share:
-Watch/read depth:
-Audience profile:
-Repeatable winner pattern:
-Main failure:
-Decision:
+Model under test:
+Primary uncertainty:
+Decision date:
+Time / cost limit:
+Audience lane — content franchises and success signal:
+Brand lane — target brands and paid-on-account offer:
+Evidence that would support the model:
+Evidence that would disconfirm the model:
+Continue / iterate / stop conditions:
 ~~~
 
-## G. Sponsor Validation
+| Brand / source | Why it fits | Contact or application date | Reply / brief / budget / paid signal | Decline reason / next step |
+|---|---|---|---|---|
+| | | | | |
+
+No reply is not a rejection. Count only relevant, documented outreach in the denominator.
+
+## F. Paid Partnership Record
 
 ~~~text
-Relevant brands mapped:
-Agencies mapped:
-Marketplace applications:
-Open calls:
-Direct outreach:
-Qualified replies:
-Briefs:
-Paid collaborations:
-Average deal cycle:
-Common decline reasons:
-UGC-only opportunities:
-Rights / amplification opportunities:
-Decision:
+Brand / category:
+Account and content franchise:
+Paid-on-account deliverable:
+Fee received:
+Direct cash cost:
+Hours (brief, production, revisions, reporting):
+Organic performance:
+Paid amplification: YES / NO / UNKNOWN
+Audience response:
+Brand-reported outcome (or UNKNOWN):
+Repeat / renewal evidence:
 ~~~
 
-## H. Deal Record
+## G. Decision
 
 ~~~text
-Brand:
-Advertiser Job:
-Deliverable:
-Creative Fee:
-Distribution Fee:
-Usage Rights:
-Paid Amplification:
-Raw Footage:
-Cross-platform:
-Exclusivity:
-Performance Bonus:
-Revision Scope:
-Delivery Date:
-Organic Performance:
-Paid Performance:
-Revenue:
-Renewal:
-Reason for Renewal / Non-renewal:
-~~~
-
-## I. Decision
-
-~~~text
-Decision: KILL / ITERATE / KEEP / SCALE
-Why:
+Decision: KILL / ITERATE / KEEP / SCALE / PROVISIONAL
 What is proven:
-What is still unknown:
-Main bias / limitation:
-Next minimum test:
-Kill condition:
-Keep condition:
-Scale condition:
+What remains unknown:
+Strongest counterevidence:
+Main sampling / disclosure / amplification bias:
+Net production economics:
+Next smallest useful test:
+Why this decision fits the pre-set conditions:
 ~~~

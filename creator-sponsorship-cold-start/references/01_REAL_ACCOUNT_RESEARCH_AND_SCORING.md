@@ -1,326 +1,132 @@
-# 01 — Real Account Research & Scoring Method
+# 01 — Real Account Research & Model Comparison
 
-本文件用于把“真实账号反向验证”执行成可重复研究，而不是凭印象挑案例。
+本文件用于验证候选账号模型的品牌商单潜力。研究单位是“受众 × 内容系列 × 品牌适配 × 制作方式”，不是宽泛赛道，也不是某个单独的成功账号。
 
-## 1. Sampling Frame
+## 1. 建立可比较的样本
 
-### Stage 1 — Exploration
-先做 30 个账号，只能形成 PROVISIONAL 结论。
+先固定目标市场、平台、语言、时间范围和候选模型定义，再选择适合的观察窗口。优先组合：
 
-### Stage 2 — Expansion
-之后按每批 20 个账号扩展，不要求机械跑满固定数字。
+- **Advertiser-led：**从品牌 Campaign、付费合作内容、Marketplace 或公开招募反查创作者；
+- **Creator-led：**从目标平台和候选模型中系统抽取账号，包含没有明显商单的账号；
+- **Platform-led：**从官方 Marketplace 或 Open Call 观察准入与采购条件。
 
-### Stage 3 — Saturation Stop
-连续两个新增批次同时满足以下条件即可停止：
-- 候选 Account Model 排序基本不变；
-- 无新的一级 Advertiser Job；
-- 无新的主要品牌类别；
-- Small-Creator Access 结论不变；
-- Hard Gate 结论不变。
+按平台、地区、内容频率和创作者阶段分层。头部账号可以说明成熟商业形态，但不能单独证明新号有进入机会。每个模型都尽量加入成功、少量商单、无明显商单及自然表现强但商单少的对照样本。
 
-通常 70–150 个样本即可形成较稳定结论；若平台差异、地区差异或证据冲突明显，可继续扩展至约 200。
+样本数按需要排除的不确定性决定，不把固定账号量或粉丝段当成通过标准。若新增样本仍会改变候选排序、小号可达性或主要反例，就继续抽样；若主要结论稳定且新增样本重复度高，可停止并报告覆盖范围。
 
-### 分层
-尽量覆盖：
-- 1k–10k；
-- 10k–50k；
-- 50k–200k。
+## 2. 记录观察口径
 
-头部账号只用于观察成熟商业形态，不得作为新号可进入性的主要证据。
-
-## 2. 三路抽样
-
-至少组合两路；完整研究优先三路并行。
-
-### A. Advertiser-led
-从：
-- 品牌 Campaign；
-- Sponsored Content；
-- Agency Case；
-- Creator Marketplace Campaign；
-- 公开招募
-
-反查 Creator。
-
-优点：能确认真实广告需求。
-风险：容易高估“已经被品牌挑中”的账号。
-
-### B. Creator-led
-从目标赛道搜索结果、关键词、话题、平台推荐中系统抽取中小账号，再判断商单。
-
-优点：能看到无商单和低表现账号。
-风险：平台推荐本身存在排序偏差。
-
-### C. Platform-led
-从：
-- Creator Marketplace；
-- Open Call；
-- Recruitment；
-- 平台达人搜索/榜单
-
-抽样。
-
-优点：直接观察平台采购基础设施。
-风险：不同平台准入门槛不同。
-
-## 3. 对照组
-
-每个候选模型至少包含：
-- 商单密集账号；
-- 有少量商单账号；
-- 同类但暂无明显商单账号；
-- 自然流量高但商单少账号。
-
-否则无法判断广告是“赛道普遍现象”还是少数成功者特例。
-
-## 4. Observation Window
-
-默认优先：
-- 最近 90 天；
-- 至少 20 条、最多 50 条内容。
-
-发布频率低时：
-- 扩展到 180 天。
-
-同时记录：
-- observed_days；
-- post_count；
-- posts_per_month；
-- sponsored_post_count；
-- sponsored_posts_per_month。
-
-不得只用固定条数比较高频与低频账号。
-
-## 5. Research Fields
+不同频率的账号要用可比窗口，不要只比较固定条数。每个样本记录：
 
 | Field | Meaning |
 |---|---|
-| Platform | 平台 |
-| Account | 账号 |
-| Account URL | 链接 |
-| Country / Language | 市场 |
-| Followers | 粉丝 |
-| Account Model | 完整账号模型 |
-| Advertiser Job | Distribution / Creative / Performance / Trust / Local |
-| Observed Days | 观察窗口 |
-| Posts Sampled | 内容数 |
-| Posts / Month | 发布频率 |
-| Median Organic | 自然内容中位表现 |
-| Sponsored Posts | 商业内容数 |
-| Sponsored / Month | 商业合作频率 |
-| Sponsor Density | 商业内容 / 样本内容 |
-| Brand Count | 独立合作品牌 |
-| Repeat Brand Count | 复投品牌 |
-| Repeat Rate | 复投品牌 / 独立品牌 |
-| Top Sponsor Share | 最大品牌合作数 / 商单数 |
-| Median Sponsored Organic | 可确认自然商单表现 |
-| Organic Ad Retention | Sponsored Organic / Non-sponsored Organic |
-| Paid Amplified? | YES / NO / UNKNOWN |
-| Brand Categories | 实际合作类别 |
-| Rights / Amplification Evidence | 是否有投流/二次使用证据 |
-| Content Franchises | 主要模板 |
-| Face Required | YES / NO / MIXED |
-| Production Complexity | LOW / MEDIUM / HIGH |
-| Platform Entry | 当前商业入口 |
-| First Observed Sponsorship | 首次可见商单 |
-| Evidence Confidence | HIGH / MEDIUM / LOW |
-| Notes | 备注 |
+| Platform / Market | 平台、地区和语言 |
+| Account / URL | 账号标识与可复查链接 |
+| Account Model | 受众、需求、内容系列和品牌适配 |
+| Creator Stage | 用当地平台和研究目的定义阶段；保留粉丝数原值 |
+| Observation Window | 起止日期、观察天数和内容量 |
+| Posting Cadence | 发布频率 |
+| Organic Median | 可确认的自然内容中位表现及指标 |
+| Paid-on-account Posts | 可确认的品牌付费发布数及频率 |
+| Brand Count / Categories | 独立品牌数与类别 |
+| Repeat Evidence | 同品牌复投或跨时间采购证据 |
+| Content Franchises | 实际出现的重复形式 |
+| Production Signals | 制作复杂度、频率和可推断成本 |
+| Evidence Sources | 来源、日期、证据等级和限制 |
+| Notes | 未知项、反例及其他说明 |
 
-## 6. Sponsorship Evidence Coding
+只用公开资料时，不推测私有后台数据、合同金额或受众画像；无法观察的字段写 `UNKNOWN`。
 
-### HIGH
-- 平台 Paid Partnership / 商业合作标识；
-- 品牌或 Creator 明确合作声明；
-- 官方 Campaign；
-- Creator Marketplace / Agency Case；
-- 明确 Sponsored / Ad 披露。
+## 3. 区分商单与其他商业信号
 
-### MEDIUM
-- 明显广告结构 + 品牌露出 + 多项合作痕迹，但付费关系未公开。
+给每个商业内容编码：
 
-### LOW
-- 仅出现产品；
-- 疑似赠品；
-- 仅有优惠码/联盟链接但无法确认固定付费；
-- 无明确合作证据。
+- `PAID_ON_ACCOUNT`：能确认品牌为创作者自有账号上的付费合作；
+- `GIFTED`：产品/服务置换，未证实付费；
+- `AFFILIATE_ONLY`：佣金或优惠码收入，未证实固定商单费；
+- `UGC_ONLY`：制作素材但不在创作者账号发布；
+- `UNKNOWN`：存在商业迹象但付款或合作性质不清。
 
-核心 Sponsor Density 优先统计 HIGH。
-可单独报告 HIGH+MEDIUM 敏感性分析。
+核心商单指标只统计 `PAID_ON_ACCOUNT`。可单独报告其他类型，但不可合并成账号广告收入。
 
-## 7. Gifted / Affiliate / Paid 必须区分
+证据强度：
 
-尽量编码为：
-- PAID_FLAT；
-- PAID_PERFORMANCE；
-- HYBRID；
-- GIFTED；
-- AFFILIATE_ONLY；
-- UGC_ONLY；
-- UNKNOWN。
+- **HIGH：**平台商业合作标识、品牌/创作者明确付费披露、官方 Campaign 或可核验案例；
+- **MEDIUM：**多项迹象支持商业合作，但付费关系未公开；
+- **LOW：**只出现产品、疑似赠品、联盟链接或无法核实的广告结构。
 
-不得把免费寄样自动算成付费商单。
+主分析使用 HIGH；必要时将 HIGH + MEDIUM 作为敏感性分析并明确标注。
 
-## 8. Paid Amplification Contamination
+## 4. 计算有用的比较指标
 
-当 Sponsored Post 可能被：
-- Boost；
-- Partnership Ads；
-- 星图投流；
-- 品牌 Paid Media；
-- Creator Whitelisting
+只在样本窗口、分类和分母可比时计算：
 
-放大时，公开 Views 不再代表 Creator 自然分发。
+~~~text
+Paid Post Density = PAID_ON_ACCOUNT posts / observed posts
+Paid Post Cadence = PAID_ON_ACCOUNT posts / observation months
+Repeat Sponsor Rate = brands with confirmed repeat / brands with confirmed paid posts
+Top Sponsor Share = largest brand's paid posts / all confirmed paid posts
+Organic Ad Retention = median organic sponsored performance / median organic non-sponsored performance
+~~~
 
-规则：
-- 能确认自然数据 → 计算 Organic Ad Retention；
-- 只能看到总播放 → 标记 PAID_CONTAMINATED；
-- 无法判断 → Ad Retention = UNKNOWN。
+自然广告表现被付费投放污染或无法拆分时，将 `Organic Ad Retention` 记为 `UNKNOWN`。这些指标是已观察账号的信号，不是新号未来收入预测。
 
-禁止把 Paid Views 与普通自然播放直接相除。
+可记录收入时，优先计算扣除直接现金成本后的商单收入，并同时记录研究、制作、沟通、修改和复盘时间。没有可靠的合同收入数据时，不填估算金额。
 
-## 9. Core Metrics
+## 5. 先检查模型条件，再做相对评分
 
-### Sponsor Density
-Sponsored Posts / Observed Posts
+结构性检查：
 
-### Sponsor Cadence
-Sponsored Posts / Observation Months
+1. 品牌类别存在反复的 Creator 内容采购；
+2. 有与新号起步路径相近的小中型账号获得自有账号付费合作的证据；
+3. 品牌内容可以自然适配受众需要，且没有明显损害内容信任；
+4. 内容系列可重复生产，资源成本与用户约束相容；
+5. 平台规则、商业披露和类别限制没有让该模式不可行。
 
-### Repeat Sponsor Rate
-Brands With 2+ Collaborations / Unique Sponsor Brands
+没有证据时标为 `UNKNOWN`，不要自动当成 PASS。Buyer Readiness（联系方式、主页、报价资料、交付流程）通常是可修复的执行条件，不能与市场本身是否成立混为一谈。
 
-### Top Sponsor Share
-Collaborations From Largest Sponsor / All Sponsored Collaborations
+通过结构性检查的候选可比较：品牌需求频率、可触达品牌范围、小号进入证据、受众商业价值、自然广告适配、竞争供给、制作净收益潜力和平台风险。按用户的成本、周期和目标调整权重；解释权重与证据，不用缺乏依据的精确总分制造确定性。
 
-### Organic Ad Retention
-Median Organic Sponsored Performance / Median Organic Non-sponsored Performance
-
-### Brand Breadth
-Unique Real Brand Categories
-
-### Commercial Velocity
-从可确认的账号起点到：
-- First Sponsor；
-- First Repeat；
-- Multi-brand Repeat。
-
-成立时间不确定时必须标 LOW CONFIDENCE。
-
-## 10. Gate
-
-### G1 Advertiser Density
-多个独立品牌持续采购。
-
-### G2 Small-Creator Access
-中小 Creator 或 UGC Creator 有真实采购证据。
-
-### G3 Native Integration
-商业内容仍保留原有用户价值。
-
-### G4 Production Feasibility
-普通个人可持续执行。
-
-### G5 Brand Suitability
-账号内容环境不过度限制品牌池。
-
-### G6 Buyer Readiness
-Creator 可以被发现、被评估、被联系、被下单、被合规结算。
-
-全部 PASS 才进入优先候选。
-
-## 11. Scenario Scoring
-
-通过 Gate 后才评分。
-
-### FAST_FIRST_DEAL
-高权重：
-- Small-Creator Access；
-- UGC/Open Call；
-- Brand Density；
-- Production Speed。
-
-### LONG_TERM_SPONSOR_INCOME
-高权重：
-- Budget；
-- Repeat；
-- Brand Breadth；
-- Audience Value；
-- Rights / Amplification。
-
-### LOW_COST_SOLO
-高权重：
-- Production Economics；
-- Digital/remote；
-- No inventory；
-- No location dependency。
-
-### HIGH_VALUE_EXPERT
-高权重：
-- Expertise；
-- Audience Intent；
-- Sponsor Fit；
-- High-value Brand Pool。
-
-不得只输出“总分”，必须解释权重。
-
-## 12. Model Card
+## 6. 候选模型卡
 
 ~~~text
 Model Name:
+Target Market / Platform:
 Audience:
 Persistent Need:
 Content Promise:
-Core Franchises:
-Advertiser Jobs:
-Natural Sponsor Slots:
-Observed Brand Categories:
-Small-Creator Evidence:
-Sponsor Density / Cadence:
-Repeat Evidence:
-Top Sponsor Share:
-Organic Ad Retention:
-Paid Amplification Evidence:
-Brand Suitability:
-Buyer Readiness:
-Production Model:
-Platform Fit:
-Early Monetization Path:
-Main Risk:
+Repeatable Franchises:
+Target Brand Categories:
+Why a Brand Would Pay for an On-account Placement:
+Comparable Small-creator Evidence:
+Observed Paid-on-account Cadence / Repeat:
+Organic Ad Retention (or UNKNOWN):
+Brand Breadth / Concentration:
+Production Inputs and Net Economics:
+Platform Eligibility / Main Risks:
 Evidence Level:
+What Would Disconfirm This Model:
 Decision: KILL / ITERATE / KEEP / SCALE
 ~~~
 
-## 13. Bias Checklist
+## 7. 偏差检查
 
-每轮必须检查：
-- Selection Bias；
-- Survivorship Bias；
-- Platform Bias；
-- Disclosure Bias；
-- Paid Amplification Contamination；
-- Seasonality；
-- Category Regulation；
-- Creator Age Bias；
-- Language / Geography Bias。
+每轮检查并报告：
 
-任一明显存在都要降低置信度。
+- 成功者/幸存者偏差；
+- 广告披露不全造成的漏记；
+- 平台推荐、Marketplace 与抽样来源偏差；
+- 付费放大对公开表现的污染；
+- 地区、语言、季节和发布时间差异；
+- 账号年龄、发文频率与阶段不匹配。
 
-## 14. Minimum Decision Standard
+偏差未能校正时，降低置信度并指出结论适用范围。
 
-### 只能叫“方向”
-只有行业报告/平台证据，没有真实账号样本。
+## 8. 结论分级
 
-### 可以叫“候选账号模型”
-至少 30 个真实样本 + Small-Creator Access 证据。
+- **方向假设：**行业或平台资料提示可能有需求，暂无充分真实账号样本。
+- **候选模型：**有可复查的中小账号比较和品牌采购证据，足以设计自己的测试。
+- **初步验证：**用户自己的账号获得受众信号，并出现自有账号上的付费品牌合作。
+- **可持续性证据：**用户自己的合作出现跨时间复购或稳定节奏，来源不依赖单一偶发品牌，净制作经济性和受众反应可接受。
 
-### 可以进入冷启动
-完整 Account Model + Franchises + Buyer Readiness + Audience/Sponsor 双通道实验。
-
-### 可以称“初步商业验证”
-至少真实付费合作 + 可解释的商单/素材表现。
-
-### 可以称“可重复”
-出现复投或多个独立品牌重复采购。
-
-### 可以 SCALE
-重复采购 + 制作经济性 + Buyer Operations + Measurement 均可持续。
+报告每一级的证据、反例、未知项和下一项最小验证。账号样本不能替代用户自己起号后的验证。
