@@ -177,3 +177,18 @@ First validate the closeout pattern on at least one real project, capture any un
 as an operational addendum.
 
 Until promotion, current active Governance remains unchanged.
+
+
+## Candidate lesson from Mini Craft K9A preflight
+
+Mini Craft K9A produced a safe fail-closed stop before deletion because a cleanup helper used an opaque runtime-field assertion that did not match, even though the exact deletion candidate had already been independently classified as an empty, unreferenced project-local temp directory.
+
+Candidate improvement:
+
+- cleanup helpers should assert only the minimum invariants that are safety-relevant to the exact mutation;
+- unrelated serialized runtime fields should not become accidental deletion blockers;
+- when a pre-delete assertion fails, Evidence should name the exact failed field/invariant rather than only reporting a generic helper failure;
+- accepted candidate classification may be retained across a remediation Gate, but destructive execution still requires a fresh target-host recheck immediately before deletion;
+- a remediation Gate should narrow scope to the already-classified exact target instead of repeating broad discovery when no project state was mutated.
+
+Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
