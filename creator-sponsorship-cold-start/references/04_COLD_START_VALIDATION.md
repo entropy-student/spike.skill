@@ -1,81 +1,102 @@
-# 04 — Cold-start Validation
+# 04 — Deal & Measurement
 
-本文件用于验证候选模型能否同时建立受众价值与自有账号品牌商单需求。它不是商单销售手册；具体市场和平台规则须在执行时查证。
+用于出现真实品牌合作后，统一收入边界、Rights 和复盘口径。
 
-## 1. 先写假设与判定条件
+## 1. 核心收入单位
 
-每轮测试前记录：
+**Sponsored Account Contract Revenue**：
 
-~~~text
-Account Model:
-Target Audience:
-Content Franchises:
-Target Brand Categories:
-Paid-on-account Offer:
-Market / Platform:
-Time and Cost Limit:
-What would count as a positive signal:
-What would disconfirm the model:
-Decision date:
-~~~
-
-不要测试后再修改“成功”定义。测试范围和数量按资源、平台和需要排除的不确定性确定，不使用通用固定样本数。
-
-## 2. Lane A — Audience Validation
-
-目标：验证目标受众是否持续需要该内容承诺，候选内容系列能否重复成立。
-
-同一轮测试少改变量，并按系列记录：
-
-- 发布数与周期；
-- 自然触达或播放中位数；
-- 完播、收藏、分享、评论或搜索等符合平台和内容目标的信号；
-- 受众是否符合模型假设；
-- 制作时长、现金成本和复用程度。
-
-用中位表现和重复模式判断，不以单条峰值作结论。若受众信号弱，先区分模型问题、内容执行问题和分发波动。
-
-## 3. Lane B — Brand Validation
-
-验证对象是具体的品牌类别、账号模型和自有账号付费内容提案。可用与目标市场相符的 Marketplace、官方招募、品牌/代理公开 Campaign 或少量定向接触。优先选已采购相似创作者内容的品牌，并记录筛选理由与触达分母。
-
-按证据强弱分别记录：
-
-1. 看到类别预算或品牌活动：市场信号；
-2. 品牌/代理回应且确认受众、内容或平台匹配：合格兴趣；
-3. 预算明确的 Brief、付费邀请或谈价：采购意图；
-4. 品牌为创作者自有账号上的内容付费：付费商单；
-5. 同一品牌或独立品牌再次付费：复投证据。
-
-回复、入选、免费寄样、纯 UGC 订单和联盟佣金不等同于自有账号品牌商单。没有回复不是拒绝原因；记录 `NO_RESPONSE` 并判断触达是否足够相关。
-
-## 4. 复盘首轮合作
-
-若获得付费商单，记录：
+只要一份合同包含 Creator 自有账号上的付费发布，与这次发布绑定的以下收入可拆分记录：
 
 ~~~text
-Brand / Category:
-Account Model and Content Franchise:
-Paid-on-account Deliverable:
-Fee and Direct Cost:
-Hours for Brief, Production, Revisions and Reporting:
-Organic Performance:
-Paid Amplification (YES / NO / UNKNOWN):
-Audience Response:
-Brand's Stated Outcome:
-Renewal / Repeat Signal:
-What to change:
+Creative Fee
++ On-account Distribution / Placement
++ Usage Rights
++ Paid Amplification Rights
++ Exclusivity
++ Performance Bonus
++ Other Bound Deliverables
 ~~~
 
-自然数据与品牌付费放大无法拆分时标记 `UNKNOWN`。品牌未提供结果时不推算广告主 ROI。
+纯 UGC_ONLY、联盟佣金、赠品、平台分成单独记录，不替代账号商单验证。
 
-## 5. 决策
+## 2. Rights
 
-在预先设定的周期结束后，结合两条通道决策：
+Usage Rights 至少明确：
 
-- **KILL：**相关市场和小号样本持续缺少采购证据，关键假设被反证，或生产经济性无法成立。
-- **ITERATE：**有具体信号指出受众、内容系列、品牌类别、平台或提案中有可修正问题。
-- **KEEP：**受众模型有重复信号，品牌兴趣初现，但付费、复投或经济性仍未知。
-- **SCALE：**自有账号付费合作可重复，跨时间和品牌来源不依赖单一偶发机会，且制作成本、受众反应与用户目标相容。
+- Channel；
+- Duration；
+- Territory；
+- Edit Rights。
 
-样本不足或触达质量差时保留 `PROVISIONAL`，先补最关键的证据，不把不确定性误写成失败。
+Paid Amplification 至少明确：
+
+- 谁发起；
+- Duration；
+- 是否从 Creator 身份投放；
+- Organic / Paid 是否可拆分；
+- Creator 是否可获得 Paid Performance。
+
+Exclusivity 至少明确：
+
+- Category / Competitors；
+- Duration；
+- Territory。
+
+## 3. Measurement
+
+按品牌合作目标选指标，不统一用 Likes / Views。
+
+### Distribution / Awareness
+Reach、Views、Watch Time、Engagement、Clicks。
+
+### Performance
+UTM、Leads、Installs、Code Uses、Sales、CPA、Revenue / ROAS（可获得时）。
+
+### Trust / Expertise
+Save / Share、Completion、Comment Quality、Search / Consideration / Brand Lift（可获得时）。
+
+### Creative / Amplification
+若合同包含素材复用，可额外记录 Reuse、Paid CTR / CVR / CPA 等品牌回传数据。
+
+## 4. Organic Ad Retention
+
+只有能区分自然与 Paid 时：
+
+~~~text
+Organic Ad Retention
+= Median Organic Sponsored Performance
+  / Median Organic Non-sponsored Performance
+~~~
+
+无法拆分时写 UNKNOWN。
+
+## 5. Creator-side Economics
+
+有真实数据才计算：
+
+~~~text
+Gross Sponsored Account Revenue
+Direct Cash Cost
+Production + Communication + Revision Hours
+Net Sponsor Income
+Repeat Revenue Share
+Top Sponsor Revenue Share
+~~~
+
+公开报价不等于成交价。
+
+## 6. Renewal Review
+
+每次合作后固定问：
+
+~~~text
+Did audience value survive?
+Did the brand get its intended outcome?
+Was delivery efficient?
+Were extra rights used?
+Did the brand renew?
+If not, why?
+~~~
+
+复投原因与不复投原因都要沉淀。
