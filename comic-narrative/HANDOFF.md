@@ -600,6 +600,48 @@ Owner 已确认 Part 4 暂时封板。
 
 当前不继续做 Part 4 结构重构；后续只有真实生产回归暴露明确问题时再重新打开。
 
+
+### Part 4.5 — 素材库与图片复用（2026-09-29）
+
+Owner 决定新增 Part 4.5，用于历史图片复用与生产后素材入库。
+
+唯一正式文档：
+- `part4_5/ASSET_REUSE_LIBRARY.md`
+
+定位：
+- Part 3 决定画面意义；
+- Part 4 负责图片执行规划；
+- Part 4.5 是双向服务层：执行前检索历史素材并给出复用决策，执行后把通过验收的新图片登记为未来可检索素材；
+- 不要求按编号线性地“先完成 Part 4 再运行 Part 4.5”。
+
+当前正式复用结果：
+- 直接复用完整图片；
+- 基于一张完整旧图修改；
+- 旧图仅作明确方面参考；
+- 无兼容素材时重新生成。
+
+当前原则：
+- 元数据只用于召回候选，必须打开实际图片做兼容性检查；
+- 不允许为了复用旧图修改 Visual Beat、POV、关键人物/道具/数量、时间天气或 reveal；
+- 不建立裁切拼装体系；
+- 没有固定复用率和每集入库数量；
+- 执行 Agent 不自行搜索或重新选择素材，最终决定必须写回图片执行任务。
+
+已从 Part 4 历史快照中独立归档 7 份 4.5 直接来源材料到：
+`source-snapshots/045-asset-reuse/`
+
+包括：
+- 旧 Reference Library 说明与 catalog；
+- 旧 Production Registry 说明与 assets 记录；
+- `REFERENCE_LIBRARY_PRODUCTION_WORKFLOW.md`；
+- 实际图片运行的 `ASSET_OUTPUT_MANIFEST.json`；
+- 实际图片运行的 `RUN_RECORD.json`。
+
+这些历史来源只用于追溯，不参与当前正式运行。
+
+当前 Part 4 保持封板，本轮未修改 Part 4 正式文档。
+
+
 ## 当前停止点
 
 `PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_SAFE_SIMPLIFICATION_PASS1_CANDIDATE / BEHAVIOR_CHANGING_SIMPLIFICATION_PENDING`
