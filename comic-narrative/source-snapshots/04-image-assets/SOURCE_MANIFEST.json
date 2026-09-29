@@ -1,5 +1,5 @@
 {
-  "status": "BACKUP_ONLY / NOT_RUNTIME",
+  "status": "SOURCE_COLLECTION_REAUDIT_PASS / BACKUP_ONLY / NOT_RUNTIME",
   "part": "Part 4 — image / asset execution",
   "target_repository": "entropy-student/spike.skill",
   "target_branch": "codex/comic-narrative-part4-snapshot",
@@ -8,13 +8,13 @@
   "source_project_commit": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
   "counts": {
     "direct": 15,
-    "evidence": 6,
-    "boundary": 49,
+    "evidence": 7,
+    "boundary": 52,
     "cases": 18,
     "suspected-external": 3,
     "historical": 5
   },
-  "copied_text_source_files": 96,
+  "copied_text_source_files": 100,
   "historical_reference_library_binary_count": 10,
   "historical_binaries_duplicated": false,
   "locked_upstream": [
@@ -823,6 +823,38 @@
       "source_path": "jingsui-story-video-director/references/VISUAL_IP_BIBLE.md",
       "source_blob_sha": "dbfff938eacd31e3a725f0fa4c67d33b8e4b5fd0",
       "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/suspected-external/jingsui-story-video-director/references/VISUAL_IP_BIBLE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/README.md",
+      "source_blob_sha": "78faf392b4a2fac6fb19878b6be44424bbfd5823",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-root/README.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/GOVERNANCE_ADAPTATION.md",
+      "source_blob_sha": "e7e98f2dbccf716e764d70258b6faf8e7af172fa",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/GOVERNANCE_ADAPTATION.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/README.md",
+      "source_blob_sha": "3efaa0f12d327a93687d60260a0bdc3693f59339",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-outputs/README.md"
+    },
+    {
+      "category": "evidence",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/blind-search-answer/INDEX.md",
+      "source_blob_sha": "9d9b3c49d0d9bf5fe8543f472cb2c7482f670e3a",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/evidence/BLIND_SEARCH_ANSWER_OUTPUT_INDEX.md"
     }
   ]
 }
