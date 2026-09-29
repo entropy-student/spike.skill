@@ -1,10 +1,10 @@
 # Part 4 — Source Coverage Audit
 
-状态：`SOURCE_COLLECTION_REAUDIT_PASS / MERGED_BASELINE_NOT_STARTED`
+状态：`SOURCE_COLLECTION_REAUDIT_PASS / MERGED_BASELINE_PASS1`
 
 ## 结论
 
-已完成第二轮反向覆盖复查；当前仍尚未建立 Part 4 正式规则。
+已完成第二轮反向覆盖复查，并已建立 `part4/IMAGE_ASSET_EXECUTION.md` 完整合并基线 Pass 1。
 
 已覆盖的能力域：
 - G5 资产需求提取、Reference Lock、Beat Asset Binding；
@@ -55,4 +55,4 @@
 4. Reference Library / production Registry / final outputs 三套记录用途不同，但历史文档之间存在重叠，需要保留职责而避免重复维护；
 5. G5 与 G6 的图片执行边界曾多次移动，Part 4 正式基线必须重新锁定“做到哪一步为止”。
 
-下一步：先形成**完整合并基线**，只把现有能力合到一起；不做简化。完成后再逐组提出“保留 / 合并 / 修改 / 降级 / 删除”建议给 Owner 确认。
+完整合并基线已建立；下一步逐组提出“保留 / 合并 / 修改 / 降级 / 删除”建议给 Owner 确认。当前仍未开始结构简化。
