@@ -317,6 +317,29 @@ Owner 已确认：
 
 ---
 
+
+### Part 3 参考产出样例留存（2026-09-29）
+
+Owner 提供两份 Part 3 参考产出 ZIP，已按原始内容留存到 Library：
+- `/comic-narrative/part3/examples/H019_酒店价格_Part3_参考产出.zip`
+- `/comic-narrative/part3/examples/H015_天气预报_Part3_参考产出.zip`
+
+两份包均包含：
+- `VISUAL_STRATEGY.md`
+- `DIRECTOR_SHOTBOARD.md`
+- `SHOTBOOK.json`
+
+核对结果：
+- H019：12 Semantic Shot / 41 Visual Beat；
+- H015：9 Semantic Shot / 36 Visual Beat；
+- 两份均明确 `part4_binding_status = NOT_ASSIGNED_IN_PART3`；
+- Visual Beat 已包含故事事件、景别、POV、主焦点、前后状态、连续性、withheld information、audience_must_understand、acceptance criteria 等 Part 4 所需上游语义；
+- 未包含 asset binding、reference path/hash、execution mode、prompt/edit instruction、exact text contract、output naming、image QA execution fields，属于 Part 4 应补充的执行层信息。
+
+当前判断：Part 3 → Part 4 边界成立。Part 4 应从这些 Visual Beat 编译出自包含图片执行包，而不要求 Part 3 提前承担生图绑定或 prompt 编译。
+
+---
+
 ## Part 4 — 图片 / 资产执行
 
 当前分支：`codex/comic-narrative-part4-snapshot`
