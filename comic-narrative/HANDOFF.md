@@ -714,3 +714,20 @@ Review 结论：
 - 不修改原 `story-showrunner`；
 - 不删除原始快照；
 - `HANDOFF.md` 是唯一迁移 / 执行 / 决策交接入口。
+
+## Part 4.5 第一批正式素材入库
+
+日期：2026-09-29
+
+来源：ep-ai-noodle-preference-20260927
+
+结果：
+- 62 个最终画面位置；60 张不同最终图片。
+- 35 张经 Review 后正式进入素材库：31 张状态为“可复用”，4 张状态为“暂停复用”。
+- 复用方式：29 张允许“仅作参考”，6 张允许“基于旧图修改”，0 张允许“直接复用”。
+- 35 个 PNG 的 SHA-256 与 Review 版本一致；图片未重新生成、未修改内容或尺寸。
+- 正式图片目录：comic-narrative/part4_5/library/images/ep-ai-noodle-preference-20260927/
+- 正式 catalog：comic-narrative/part4_5/library/catalog.jsonl
+- Git 提交编号（35 张图片批次）：8ef400c4324e77ed2d797d116b903cbb83f715db
+- 本轮没有修改 Part 4 或 Part 4.5 正式规则文档。
+- Review 阶段指出的剧情推断式描述已在候选阶段修正完成。
