@@ -8,7 +8,7 @@
 
 ## 当前状态
 
-分支：`codex/comic-narrative-part3-snapshot`
+分支：`codex/comic-narrative-part4-snapshot`
 
 原 `ai-story-showrunner`、`story-showrunner` 未修改。
 
@@ -321,47 +321,108 @@ Owner 已确认：
 
 当前分支：`codex/comic-narrative-part4-snapshot`
 
-### 材料整理阶段
+正式合并基线：
+- `part4/IMAGE_ASSET_EXECUTION.md`
 
-已按既定流程完成第一步材料整理与第一轮覆盖审计：
+### 第二轮材料复查
 
-- 新建 `source-snapshots/04-image-assets/`；
-- 备份 / 固定 **96 份文本源文件**：
-  - direct：15；
-  - cases：18；
-  - historical：5；
-  - boundary：49；
-  - evidence：6；
-  - suspected-external：3；
-- 原项目历史 Reference Library 的 **10 张 PNG** 不重复复制，只记录 path / SHA / size；原二进制继续保存在 `entropy-student/project`；
-- 当前 Part 3 已封板的 3 Character Master + 2 Style Reference 作为正式上游输入，只记录 blob SHA，不重复复制；
-- 已建立 `SNAPSHOT_INDEX.md`、`SOURCE_MANIFEST.json`、`BINARY_REFERENCE_INDEX.md`、`SOURCE_COVERAGE_AUDIT.md`。
+在第一轮 96 份文本源材料基础上，重新从原 `ai-story-showrunner` 与 portable `story-showrunner` 的目录结构做反向覆盖复查，而不是只依赖关键词搜索。
 
-本轮没有：
-- 创建 Part 4 正式规则文档；
-- 删除 / 修改任何历史规则；
-- 修改 Part 0–3；
-- 修改 3+2 长期视觉资产。
+补入 4 份遗漏 / 疑似相关材料：
+- 原项目 `README.md`（boundary）；
+- `docs/GOVERNANCE_ADAPTATION.md`（boundary）；
+- `outputs/README.md`（boundary）；
+- `outputs/blind-search-answer/INDEX.md`（evidence）。
 
-第一轮覆盖审计已标出后续需要 reconcile 的问题，但**尚未决定删改**：
-- G5 多层 Asset / Bible / Manifest / Blueprint / Execution Row 可能重复；
-- 原项目与 portable Skill 存在字段双轨；
-- 历史 `COMPOSITE_CROP` / `POST_OVERLAY` 与当前封板边界冲突；
-- Reference Library / Registry / outputs 职责有重叠；
-- G5 / G6 图片执行边界曾移动。
+当前文本源合计 **100 份**：
+- direct：15；
+- cases：18；
+- historical：5；
+- boundary：52；
+- evidence：7；
+- suspected-external：3。
 
-下一步按原流程：**先建立完整合并基线，不做简化；之后再逐组向 Owner 提出保留 / 合并 / 修改 / 降级 / 删除建议。**
+历史 Reference Library 的 10 张 PNG 仍只记录 path / SHA / size，不重复复制；Part 3 的 3 Character Master + 2 Style Reference 继续作为正式上游。
+
+复查到但确认不属于 Part 4 正文的 portable 文件：
+- Director / Viewpoint / Writer → 已由 Part 2–3 承接；
+- Timeline Resolver / Timing Compiler / runtime → Part 5；
+- ffmpeg renderer → Part 6；
+- 旧 shot schema → 上游兼容材料，不作为 Part 4 主合同。
+
+当前判断：暂未发现新的 Part 4 **能力域级遗漏**。
+
+### 完整合并基线 Pass 1
+
+已建立：
+`part4/IMAGE_ASSET_EXECUTION.md`
+
+本轮遵循前几部分相同原则：
+- 先合并完整能力，不为了简洁删能力；
+- 不修改 Part 0–3；
+- 不恢复已被 Owner / Part 3 覆盖的旧规则；
+- 历史冲突保留在正文中显式标记；
+- 不在本轮决定最终 schema / 文件数量。
+
+已纳入的能力包括：
+- Episode Asset Requirement / Asset Manifest；
+- Character / Scene / Style / Prop-UI Bible；
+- Reference Manifest；
+- Character Identity / reference precedence；
+- scene / prop / UI continuity；
+- legacy Frame Blueprint 能力；
+- Beat Asset Binding；
+- Reference Library / production Registry / Outputs；
+- EXACT_FRAME / REFERENCE / DERIVE_EDIT_SOURCE / GENERATE；
+- Prompt / Edit Compiler；
+- image executor 权限；
+- Story Event / anti-PPT；
+- physical viewpoint；
+- exact text / UI；
+- image QA；
+- hard failure vs minor deviation；
+- calibration exception；
+- Agent A → Owner → Agent B；
+- output / hash / provenance / catalog reconciliation。
+
+### 当前冲突边界
+
+历史能力已保留，但下列旧行为不恢复为当前默认：
+- `COMPOSITE_CROP`；
+- `POST_OVERLAY`；
+- SVG / HTML / Canvas / PIL 文本；
+- cut-and-paste / external layer assembly；
+- 固定 DERIVE_EDIT 比例；
+- 图片数量配额；
+- 一条 SRT 一张图；
+- 长期固定场景 / UI / 道具作为默认资产库；
+- executor 自行导演或改变 Beat 意义。
+
+### 当前未决问题
+
+Pass 1 只完成完整合并，尚未简化。下一轮需逐组给 Owner 选择：
+1. Asset Manifest / Inventory / Beat Asset Matrix 如何合并；
+2. 多个 Bible 是否保留独立文件；
+3. legacy Frame Blueprint 是否保留独立文件；
+4. Frame Execution Row / Image Generation Row 如何统一；
+5. Reference Manifest 是否并入其他记录；
+6. Registry / Reference Library 是否继续双记录；
+7. EXACT_FRAME 是否成为正式 execution mode；
+8. Prompt/Edit Compiler 是否独立；
+9. Part 4 是否包含实际生图 + QA + catalog reconciliation；
+10. Agent A/B ZIP 是否是默认流程还是 adapter。
 
 ## 当前建议 / 下一步
 
 1. Part 3 保持封板；
-2. Part 4 下一步建立“完整合并基线”，先保留所有能力；
-3. 完整基线读懂后，再分小组讨论简化；
-4. 所有原始快照持续保留。
+2. Part 4 Source Re-audit 暂按 PASS_CANDIDATE；
+3. Part 4 Full Merged Baseline Pass 1 暂按 PASS_CANDIDATE；
+4. 下一步开始**分组简化审查**，只提出保留 / 合并 / 修改 / 降级 / 删除建议，不擅自拍板；
+5. 所有原始快照持续保留。
 
 ## 当前停止点
 
-`PART4_SOURCE_COLLECTION_PASS / MERGED_BASELINE_PENDING`
+`PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_MERGED_BASELINE_PASS1_CANDIDATE / SIMPLIFICATION_PENDING`
 
 ## 安全边界
 
