@@ -288,3 +288,19 @@ Candidate improvement:
 - partial sub-gates that completed successfully (for example exact Docker-volume deletion) should be formally accepted instead of rerun.
 
 Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
+
+
+## Candidate lesson from packaged-app LocalAppData virtualization
+
+Mini Craft K9B-R3R3 showed that `%LOCALAPPDATA%` is execution-context dependent for packaged Windows applications such as Codex.
+
+Candidate improvement:
+
+- never assume a protected artifact written by a packaged app will appear under the Owner's ordinary user-profile LocalAppData path;
+- packaged-app execution may virtualize LocalAppData into a package LocalCache namespace;
+- before declaring a protected artifact missing, search by exact filename under the relevant package LocalCache metadata-only;
+- distinguish `PATH_CONTEXT_MISMATCH` from `ARTIFACT_MISSING` and `ARTIFACT_DELETED`;
+- recovery evidence should record the concrete resolved path or execution-context namespace, not only `%LOCALAPPDATA%` shorthand;
+- do not move/devirtualize sensitive recovery artifacts merely to make their path look conventional unless there is a separate recovery-management Gate.
+
+Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
