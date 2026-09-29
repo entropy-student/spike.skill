@@ -1,6 +1,6 @@
 # Part 4 — 图片 / 资产执行（完整合并基线 Pass 1）
 
-状态：`MERGED_BASELINE_PASS1 / NOT_SIMPLIFIED / OWNER_REVIEW_PENDING`
+状态：`SAFE_SIMPLIFICATION_PASS1 / BEHAVIOR_PRESERVING / OWNER_REVIEW_PENDING`
 
 ## 0. 文档职责
 
@@ -90,7 +90,16 @@ Episode Asset Requirement Extraction
 
 ## 3. Episode Asset Requirement / Asset Manifest
 
-每集先识别可能出现的资产：
+### Safe simplification Pass 1
+
+本轮只做不改变流程与输出的去重：
+
+- `Asset Manifest` 继续作为本集资产需求的 canonical machine-readable truth；
+- `Asset Inventory` 如保留，仅是从 `Asset Manifest` 派生的人类可读视图，不再拥有独立事实；
+- 不改变资产发现、Beat 绑定、Reference Lock 或后续执行顺序；
+- 不删除历史 `Asset Inventory` snapshot，只取消“必须双份人工维护”的含义。
+
+因此当前仍先识别每集可能出现的资产：
 
 - CHARACTER；
 - SCENE；
@@ -112,9 +121,9 @@ Episode Asset Requirement Extraction
 
 重要边界：
 
-> Asset Inventory 只是候选资产清单，不代表所有被旁白提到的东西都必须进入某个 Beat。
+> `Asset Inventory` 若存在，只是 `Asset Manifest` 的展示视图；它不产生新事实，也不代表所有被旁白提到的东西都必须进入某个 Beat。
 
-真正绑定必须发生在帧意义和可见内容确定之后。
+真正绑定仍必须发生在帧意义和可见内容确定之后。
 
 缺失真实参考不得伪造路径，必须显式标为 missing / hold / to-generate。
 
@@ -129,6 +138,13 @@ Episode Asset Requirement Extraction
 - Style Bible；
 - Prop/UI Bible；
 - Reference Manifest。
+
+Safe simplification Pass 1 仅消除重复事实来源：
+
+- Part 3 已锁定的长期 Character Master 与 Style Reference 不在 episode-local Bible 中复制定义；
+- episode-local Bible 可以引用这些 canonical 上游，并只补充本集新增或变化的信息；
+- Reference Manifest 仍负责真实 reference path / availability 等执行可用性事实；
+- 本轮不合并、不删除任何可能影响连续性或执行输入的 Bible / Manifest。
 
 但当前项目的长期视觉基线由 Part 3 已封板：
 
@@ -807,7 +823,8 @@ Agent B：
 | 能力 / 旧规则 | 历史状态 | 当前 Part 4 Pass 1 |
 |---|---|---|
 | 独立 Frame Blueprint | canonical old G5 | 能力保留；是否独立文件待简化，当前不得覆盖 Part 3 Visual Beat |
-| Asset Manifest + Beat Matrix +多个 Bible | canonical / validated | 全部能力保留；重复层待后续讨论 |
+| Asset Manifest + Asset Inventory | canonical / validated | Asset Manifest 继续 canonical；Asset Inventory 降为可选派生展示视图，不再双份维护 |
+| Beat Matrix + 多个 Bible | canonical / validated | 能力与运行顺序不变；是否进一步合并待 Owner 审核 |
 | Image Generation Row + Execution Row | 双轨历史 | 两套字段能力均保留；最终 schema 待统一 |
 | COMPOSITE_CROP | 旧 G5 / portable allowed | 历史记录保留；当前默认禁止 |
 | POST_OVERLAY | 旧 G5 default | 历史记录保留；当前禁止恢复为默认 |
@@ -826,7 +843,7 @@ Agent B：
 
 下一轮才逐组讨论：
 
-1. Asset Manifest、Asset Inventory、Beat Asset Matrix 是否合并；
+1. `Asset Inventory` 已安全降为 `Asset Manifest` 的派生展示视图；`Beat Asset Matrix` 是否进一步并入执行层仍待决定；
 2. Character / Scene / Style / Prop-UI Bible 是否保留为独立文件，还是 episode reference section；
 3. 独立 Frame Blueprint 是否完全取消，只保留 Visual Beat；
 4. Frame Execution Row 与 Image Generation Row 如何统一；
@@ -848,10 +865,11 @@ Agent B：
 ```text
 PART4_SOURCE_COLLECTION_REAUDIT = PASS_CANDIDATE
 PART4_FULL_MERGED_BASELINE_PASS1 = PASS_CANDIDATE
-PART4_SIMPLIFICATION = NOT_STARTED
+PART4_SAFE_SIMPLIFICATION_PASS1 = PASS_CANDIDATE
+PART4_BEHAVIOR_CHANGING_SIMPLIFICATION = NOT_STARTED
 PART4_FINAL_CONTRACT = NOT_LOCKED
 ```
 
 下一步：
 
-> 按“重复数据层 → 执行模式 → Reference / Registry / Outputs → Executor 边界 → 最终输出格式”的顺序分组，逐组提出保留 / 合并 / 修改 / 降级 / 删除建议，由 Owner 决定后再改正式基线。
+> Safe Pass 1 已完成仅文档/事实源去重。下一步继续按“重复数据层 → 执行模式 → Reference / Registry / Outputs → Executor 边界 → 最终输出格式”审查；凡可能改变流程、执行输入或输出结果的调整，必须先提交 Owner 确认。
