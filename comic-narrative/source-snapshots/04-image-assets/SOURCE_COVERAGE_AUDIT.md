@@ -1,10 +1,10 @@
 # Part 4 — Source Coverage Audit
 
-状态：`SOURCE_COLLECTION_PASS / MERGED_BASELINE_NOT_STARTED`
+状态：`SOURCE_COLLECTION_REAUDIT_PASS / MERGED_BASELINE_NOT_STARTED`
 
 ## 结论
 
-本轮先完成“材料整理”，尚未建立 Part 4 正式规则。
+已完成第二轮反向覆盖复查；当前仍尚未建立 Part 4 正式规则。
 
 已覆盖的能力域：
 - G5 资产需求提取、Reference Lock、Beat Asset Binding；
@@ -20,6 +20,24 @@
 - Agent A → Owner → Agent B 图片批次交接；
 - portable Story Showrunner 对应 contracts / adapters / schemas；
 - G6 下游生产包中与图片执行直接相连的接口。
+
+## 第二轮反向覆盖复查
+
+重新从原 `ai-story-showrunner` 与 portable `story-showrunner` 的目录结构反查，而不是只依赖代码搜索。
+
+新增补入 4 份材料：
+- `ai-story-showrunner/README.md` → boundary：包含 G5/G6 执行位置、Antigravity 边界和当前生产状态总览；
+- `docs/GOVERNANCE_ADAPTATION.md` → boundary：补齐 Asset Evidence、Executor 权限与 Gate 治理语义；
+- `outputs/README.md` → boundary：补齐 outputs / run / retained artifacts 的职责；
+- `outputs/blind-search-answer/INDEX.md` → evidence：补齐真实图片生产 20/44 与下游阻塞状态证据。
+
+复查到但继续明确排除出 Part 4 正文的 portable 文件：
+- `DIRECTOR_LANGUAGE.md`、`VIEWPOINT_GRAMMAR.md`、`WRITER_CONTRACT.md`：已由 Part 2–3 承接；
+- `TIMELINE_RESOLVER.md`、`TIMING_COMPILER.md`、runtime：Part 5；
+- ffmpeg renderer：Part 6；
+- `shot.schema.json`：旧/上游镜头结构，不是 Part 4 资产执行主合同。
+
+结论：补入后，暂未发现新的 Part 4 能力域级遗漏。后续如在合并时出现引用缺口，仍按“疑似相关先收录、再归类”处理。
 
 ## 明确不在本轮作为 Part 4 正文处理
 
