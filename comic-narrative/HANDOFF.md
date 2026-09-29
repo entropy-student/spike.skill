@@ -642,6 +642,36 @@ Owner 决定新增 Part 4.5，用于历史图片复用与生产后素材入库�
 当前 Part 4 保持封板，本轮未修改 Part 4 正式文档。
 
 
+
+### Part 4.5 三部分结构收敛（2026-09-29）
+
+Owner 确认 Part 4.5 只保留三类信息：
+
+1. 唯一正式文档：`part4_5/ASSET_REUSE_LIBRARY.md`
+   - 当前规则；
+   - 最小字段合同；
+   - 生图前检索与四种复用结果；
+   - 生图后入库；
+   - 使用说明。
+
+2. 历史文档：`source-snapshots/045-asset-reuse/`
+   - 只用于追溯；
+   - 不参与当前运行；
+   - 已归档旧 Reference Library、Registry、复用工作流和真实运行记录。
+
+3. 当前素材库：`part4_5/library/`
+   - `catalog.jsonl`：唯一机器可读索引；
+   - `images/`：实际完整栅格图片，首批图片提交时创建；
+   - 不维护第二份 README、人工表格或重复索引。
+
+当前 active catalog 初始化为空。历史 catalog / registry 不自动转正；必须重新核对实际图片、去重、确认状态和复用边界后才能进入当前素材库。
+
+当前素材目录记录已按最小化原则压缩为：素材编号、实际路径、校验值、来源、画面描述、人物、场景、动作、镜头、关键状态、少量标签、状态、复用范围、复用方式。无用字段不得为了“完整”而保留。
+
+大图片包后续交由本地 Codex 批量梳理：只提交必要的唯一完整图片和最小 catalog 记录；失败尝试、重复二进制、明显无复用价值的中间图不进入 active library。处理完成后再由当前 Agent 做第二轮结构与复用质量审查。
+
+Part 4 继续保持封板，本轮未修改 Part 4 正式文档。
+
 ## 当前停止点
 
 `PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_SAFE_SIMPLIFICATION_PASS1_CANDIDATE / BEHAVIOR_CHANGING_SIMPLIFICATION_PENDING`
