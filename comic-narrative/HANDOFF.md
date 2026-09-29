@@ -502,6 +502,38 @@ Owner 已批准按最小化原则将以下四项写入 Part 4 正式规则：
 
 已开始用封板后的 H015 天气预报与 H019 酒店价格 Part 3 参考包编译 Part 4 图片执行包，作为新合同的第一轮实际回归。
 
+### Part 4 首轮执行包回归（2026-09-29）
+
+已基于封板后的两份 Part 3 参考产出，编译两份 Part 4 图片执行包并完成结构校验：
+
+- H015 天气预报：36 / 36 Visual Beat 全覆盖；
+  - GENERATE：33；
+  - DERIVE_EDIT：1；
+  - EXACT full-frame reuse：2；
+  - exact native text task：2；
+  - 预生成临时资产：0。
+- H019 酒店价格：41 / 41 Visual Beat 全覆盖；
+  - GENERATE：38；
+  - DERIVE_EDIT：3；
+  - exact native text task：2；
+  - 预生成临时资产：0。
+
+两份包均包含：
+- `PACKAGE_MANIFEST.json`
+- `EPISODE_ASSET_SPEC.json`
+- `REFERENCE_MANIFEST.json`
+- `IMAGE_EXECUTION_ROWS.json`
+- `README.md`
+- 原 Part 3 三份 upstream 文件
+
+长期角色 / 画风图片不复制进 ZIP，使用明确 repository / branch / path 的 canonical reference 解析；不可用时返回 `RETURN_REFERENCE_UNAVAILABLE`，执行 Agent 不得自行替换。
+
+本轮采用最小临时资产策略：不预生成独立临时参考图；重复 UI / 场景优先把已通过 QA 的早期最终帧作为后续 continuity reference / edit source。
+
+Library 留存：
+- `/comic-narrative/part4/examples/H015_天气预报_Part4_图片执行包.zip`
+- `/comic-narrative/part4/examples/H019_酒店价格_Part4_图片执行包.zip`
+
 ## 当前停止点
 
 `PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_SAFE_SIMPLIFICATION_PASS1_CANDIDATE / BEHAVIOR_CHANGING_SIMPLIFICATION_PENDING`
