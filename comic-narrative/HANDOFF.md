@@ -489,6 +489,19 @@ Owner 提供两份 Part 3 参考产出 ZIP，已按原始内容留存到 Library
 4. 已完成 Safe simplification Pass 1；下一步只审查**可能影响结构/流程的优化项**，先提出建议，Owner 确认后再修改；
 5. 所有原始快照持续保留。
 
+
+### Part 4 执行包合同确认（2026-09-29）
+
+Owner 已批准按最小化原则将以下四项写入 Part 4 正式规则：
+- Part 4 最终交付物明确为完整“图片执行包”，跨 Agent 时可使用 ZIP transport snapshot；
+- 每个 Visual Beat 在交付执行前编译为一条自包含图片执行任务；
+- 单集临时资产只在重复出现、连续性重要、承担关键因果或易明显漂移时建立，一次性低风险元素直接在最终图处理；
+- Part 4 完成图片执行规划，执行 Agent 只按包执行，不补充创意决策。
+
+本轮没有删除 Frame Blueprint、Asset Manifest、Beat Asset Matrix、各类 Bible、Reference Manifest、Registry / Reference Library / Outputs，也没有修改 Part 3。
+
+已开始用封板后的 H015 天气预报与 H019 酒店价格 Part 3 参考包编译 Part 4 图片执行包，作为新合同的第一轮实际回归。
+
 ## 当前停止点
 
 `PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_SAFE_SIMPLIFICATION_PASS1_CANDIDATE / BEHAVIOR_CHANGING_SIMPLIFICATION_PENDING`
