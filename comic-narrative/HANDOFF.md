@@ -398,10 +398,18 @@ Owner 已确认：
 - 长期固定场景 / UI / 道具作为默认资产库；
 - executor 自行导演或改变 Beat 意义。
 
+### Safe simplification Pass 1
+
+已完成一轮**不改变流程、执行输入或输出结果**的安全去重：
+- `Asset Manifest` 继续作为本集资产需求的 canonical machine-readable truth；
+- `Asset Inventory` 若保留，仅作为从 `Asset Manifest` 派生的人类可读视图，不再拥有独立事实，也不要求双份人工维护；
+- Part 3 已锁定的长期 Character Master / Style Reference 不在 episode-local Bible 中重复定义，只允许引用并补充本集新增/变化信息；
+- 未删除 Beat Asset Matrix、Character/Scene/Style/Prop-UI Bible、Reference Manifest，也未改变 Beat 绑定或图片执行顺序。
+
 ### 当前未决问题
 
-Pass 1 只完成完整合并，尚未简化。下一轮需逐组给 Owner 选择：
-1. Asset Manifest / Inventory / Beat Asset Matrix 如何合并；
+以下可能影响结构或流程，继续等待 Owner 逐项确认：
+1. Beat Asset Matrix 是否并入执行层；
 2. 多个 Bible 是否保留独立文件；
 3. legacy Frame Blueprint 是否保留独立文件；
 4. Frame Execution Row / Image Generation Row 如何统一；
@@ -417,12 +425,12 @@ Pass 1 只完成完整合并，尚未简化。下一轮需逐组给 Owner 选择
 1. Part 3 保持封板；
 2. Part 4 Source Re-audit 暂按 PASS_CANDIDATE；
 3. Part 4 Full Merged Baseline Pass 1 暂按 PASS_CANDIDATE；
-4. 下一步开始**分组简化审查**，只提出保留 / 合并 / 修改 / 降级 / 删除建议，不擅自拍板；
+4. 已完成 Safe simplification Pass 1；下一步只审查**可能影响结构/流程的优化项**，先提出建议，Owner 确认后再修改；
 5. 所有原始快照持续保留。
 
 ## 当前停止点
 
-`PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_MERGED_BASELINE_PASS1_CANDIDATE / SIMPLIFICATION_PENDING`
+`PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_SAFE_SIMPLIFICATION_PASS1_CANDIDATE / BEHAVIOR_CHANGING_SIMPLIFICATION_PENDING`
 
 ## 安全边界
 
