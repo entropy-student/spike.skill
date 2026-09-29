@@ -2,9 +2,9 @@
 name: comic-narrative
 title: 漫画叙事
 description: 面向“选题 → 剧本 → 分镜 → 漫画图片资产 → 配音/时间轴 → 成片”的漫画叙事生产 Skill。当前按模块逐步从 ai-story-showrunner / story-showrunner 简化迁移，并通过历史 Case 与源快照复查避免能力丢失。
-version: 0.0.11-draft
+version: 0.0.12-draft
 language: zh-CN
-status: PART4_EXECUTION_PACKAGE_CONTRACT
+status: PART4_SEALED_PART4_5_BASELINE
 ---
 
 # 漫画叙事
@@ -15,7 +15,8 @@ status: PART4_EXECUTION_PACKAGE_CONTRACT
 1. 选题与内容策略
 2. 剧本与叙事
 3. 分镜与视觉导演
-4. 角色 / 图片 / 资产体系
+4. 角色 / 图片 / 资产执行
+4.5 素材库与图片复用
 5. 配音 / 时间轴 / 成片
 6. 执行与项目管理
 
@@ -40,8 +41,11 @@ Part 2 当前唯一合并基线：
 Part 3 当前唯一合并基线：
 - `part3/STORYBOARD_VISUAL_DIRECTOR.md`
 
-Part 4 当前完整合并基线：
+Part 4 当前封板基线：
 - `part4/IMAGE_ASSET_EXECUTION.md`
+
+Part 4.5 当前唯一正式文档：
+- `part4_5/ASSET_REUSE_LIBRARY.md`
 
 旧材料仅用于追溯与备份：
 
