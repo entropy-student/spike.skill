@@ -406,6 +406,21 @@ Owner 已确认：
 - Part 3 已锁定的长期 Character Master / Style Reference 不在 episode-local Bible 中重复定义，只允许引用并补充本集新增/变化信息；
 - 未删除 Beat Asset Matrix、Character/Scene/Style/Prop-UI Bible、Reference Manifest，也未改变 Beat 绑定或图片执行顺序。
 
+
+### 正式文档职责整理（2026-09-29）
+
+已将 Part 4 正式规则文档整理为“只保留当前有效规则、输入输出边界和 QA 合同”。
+
+从 `part4/IMAGE_ASSET_EXECUTION.md` 移出的内容统一留在本 HANDOFF：
+- 当前迁移进展 / Pass 状态；
+- Safe simplification 过程说明；
+- 历史能力与当前规则的冲突对照；
+- 尚未决定的结构问题；
+- 下一步优化顺序；
+- Gate / stop point。
+
+当前正式规则文档不再承担项目管理、迁移记录或规划职责。
+
 ### 当前未决问题
 
 以下可能影响结构或流程，继续等待 Owner 逐项确认：
