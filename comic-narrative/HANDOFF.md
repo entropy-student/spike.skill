@@ -534,6 +534,36 @@ Library 留存：
 - `/comic-narrative/part4/examples/H015_天气预报_Part4_图片执行包.zip`
 - `/comic-narrative/part4/examples/H019_酒店价格_Part4_图片执行包.zip`
 
+
+### Part 4 执行包精简与首轮回归（2026-09-29）
+
+Owner 要求优先修改执行包，不继续修改 Part 4 正式文档。本轮只调整 H015 / H019 两份 Part 4 示例执行包，并记录审计结论。
+
+已完成：
+- 执行包结构从“项目资料归档包”收缩为“执行成品包”；
+- 删除包内重复的 Part 3 原始三份文档副本；
+- 每份包仅保留：
+  1. `执行说明.md`
+  2. `图片任务.json`
+  3. `总清单.json`
+  4. `参考图片/`
+- 参考图片改为直接随 ZIP 交付，执行 Agent 不再需要访问仓库；
+- 当前两篇实际使用的长期参考只放入主角 + 两张画风参考，不为未出镜的长期配角额外塞图；
+- 参考图片在 `总清单.json` 中记录文件大小与 SHA-256 校验值；
+- H019 末尾“无房 / 售罄”修正为允许二选一，不再错误锁死“售罄”；
+- 清理“无”类空禁止项与重复句号等编译噪声；
+- H015 仍为 36 个 Visual Beat / 36 个最终画面位置；
+- H019 仍为 41 个 Visual Beat / 41 个最终画面位置；
+- 额外预生成临时参考图仍为 0。
+
+当前 Library 示例：
+- `/comic-narrative/part4/examples/H015_天气预报_Part4_精简图片执行包.zip`
+- `/comic-narrative/part4/examples/H019_酒店价格_Part4_精简图片执行包.zip`
+
+仍未修改：
+- “参考图绑定过多”问题暂未调整，等待 Owner 单独确认；
+- Part 4 正式规则文档未因本轮执行包精简发生新增修改。
+
 ## 当前停止点
 
 `PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_SAFE_SIMPLIFICATION_PASS1_CANDIDATE / BEHAVIOR_CHANGING_SIMPLIFICATION_PENDING`
