@@ -731,3 +731,34 @@ Review 结论：
 - Git 提交编号（35 张图片批次）：8ef400c4324e77ed2d797d116b903cbb83f715db
 - 本轮没有修改 Part 4 或 Part 4.5 正式规则文档。
 - Review 阶段指出的剧情推断式描述已在候选阶段修正完成。
+
+### Part 4 / Part 4.5 连接缺口待修（2026-09-30）
+
+本轮只记录待修改项，不改 Part 4 / Part 4.5 正式规则。
+
+当前确认：
+- Part 4 已具备历史 Reference Library / production Registry / accepted outputs 的检索、兼容性判断、复用决策与执行包编译能力；
+- Part 4.5 已建立当前正式素材库：`part4_5/library/catalog.jsonl` + `part4_5/library/images/`；
+- 两边逻辑上已能衔接，但正式接口还没有完全写死，后续 Agent 仍可能按旧的泛化 `Reference Library` 理解，而不是调用当前 Part 4.5 active library。
+
+建议后续仅做最小连接补丁，不重构：
+
+Part 4 待补：
+1. 明确当前正式历史素材库唯一来源为 `part4_5/library/catalog.jsonl` 及对应 `images/`；
+2. 明确每个 Visual Beat 在 GENERATE / DERIVE_EDIT / exact reuse 决策前，先做一次素材库候选检索；
+3. 明确由 Part 4 图片执行规划 Agent 选择具体 `asset_id` 并锁定“直接复用 / 基于旧图修改 / 仅作参考 / 新生成”；
+4. 明确选中的旧素材实际图片必须进入图片执行包，任务内记录素材编号、来源校验值、用途、preserve / delta；执行 Agent 不再查库或换图。
+
+Part 4.5 待补：
+1. 明确检索为“先查 `catalog.jsonl` 元数据召回候选，再只打开候选完整图片做兼容性检查”，不逐张遍历素材库；
+2. 明确不设置最低复用率或自动相似度阈值；复用优先，但找不到充分兼容候选时直接新生成；
+3. 明确本集图片 QA 通过不等于自动成为可复用素材；生产后仍需 Part 4.5 入库审核决定 `status / reuse_scope / reuse_modes`。
+
+保持不变：
+- 四种结果：直接复用 / 基于旧图修改 / 仅作参考 / 新生成；
+- 不为迁就旧图修改 Part 3 的故事意义、POV、人物、道具、时间天气或 reveal；
+- 执行 Agent 只执行已锁定图片任务，不承担素材选择；
+- 完整图优先，不恢复裁切拼装体系；
+- 当前无固定复用率目标。
+
+状态：待 Owner 后续确认后再修改正式规则。
