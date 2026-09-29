@@ -38,7 +38,8 @@ Part 4 负责把“应该画什么”编译为“如何稳定得到完整最终�
 - 图片执行器的确定性输入；
 - 图片级 QA；
 - 运行记录、输出映射、Registry / Reference Library 的生产后 reconciliation；
-- 校准例外与失败返回。
+- 校准例外与失败返回；
+- 将全部执行信息编译为一个完整的图片执行包，作为 Part 4 的最终交付物。
 
 ### Part 4 不拥有
 
@@ -174,12 +175,21 @@ QA 必须按可见范围判断。只看到手、袖口或背影时，不为了�
 
 ## 6. Scene / Prop / UI Continuity
 
-对本集真正重复且因果重要的对象，可建立 episode-local stable ID / mini master：
+对本集对象，只有满足以下至少一项时，才建立 episode-local stable ID / mini master：
+
+- 同一对象重复出现在多个 Visual Beat；
+- 前后状态需要稳定连续；
+- 对象承担关键因果证据；
+- 不锁定参考时容易产生明显漂移。
+
+典型对象包括：
 
 - recurring supporting character；
 - scene geometry；
 - causal prop；
 - UI shell / document shell。
+
+一次性、低连续性、低因果风险的场景 / 道具 / UI 不单独生成临时参考资产，直接在对应最终图片任务中处理。
 
 需要锁定的内容可包括：
 
@@ -237,13 +247,21 @@ Part 3 Visual Beat 是 canonical 上游。`Frame Blueprint` 若存在，只能�
 - 为了利用已有资产反向修改 Beat；
 - 把一堆候选参考交给执行器，让执行器自己导演。
 
-每个目标 Beat 必须在执行前明确：
+每个目标 Beat 必须在执行前编译为一条自包含图片执行任务，至少明确：
 
+- visual_beat_id；
 - primary execution decision；
 - primary source（如适用）；
 - supporting references 及各自用途；
-- 不匹配原因；
+- prompt 或 edit instruction；
+- continuity / preserve requirements；
+- forbidden changes / negative constraints；
+- exact required text（如适用）；
+- output name / delivery spec；
+- acceptance criteria；
 - fallback / HOLD。
+
+执行 Agent 不应再跨多个文件自行拼接创意或执行决定。
 
 ---
 
@@ -656,7 +674,20 @@ compiled image instructions
 
 ---
 
-## 21. 输出与可追溯记录
+## 21. 图片执行包、输出与可追溯记录
+
+Part 4 的最终交付物是一个完整的图片执行包。目录形式是正式逻辑结构；需要跨 Agent 转交时可打包为 ZIP transport snapshot。
+
+图片执行包必须让执行 Agent 在不补充创意决策的前提下完成批量图片生产，至少包含：
+
+- 本集资产需求与实际可用参考；
+- 每个 Visual Beat 的自包含图片执行任务；
+- GENERATE / DERIVE_EDIT / exact full-frame reuse 决策；
+- prompt / edit instruction；
+- continuity / preserve / forbidden constraints；
+- exact text（如适用）；
+- output naming / delivery spec；
+- acceptance criteria 与明确的 retry / return 条件。
 
 每个真实生产 run 至少需要能够回答：
 
@@ -698,53 +729,30 @@ compiled image instructions
 
 原则：
 
-> 上游思考充分，下游执行尽量无创意权限。
+> Part 4 完成全部图片执行规划；执行 Agent 按图片执行包执行，不补充创意决策。
 
-执行器可以：
+执行 Agent 只负责：
 
-- 解析逻辑资源；
-- 加载模型；
-- 调用 image generation / edit provider；
-- 技术性等价重试；
-- 输出指定 raster；
-- 执行明确声明的 fallback；
-- 写运行与 QA 记录。
+- 读取图片执行包并加载指定参考；
+- 按指定 GENERATE / DERIVE_EDIT / exact full-frame reuse 任务执行；
+- 按既定 QA 与 retry / return 条件处理；
+- 保存完整 raster、run / manifest / QA 记录。
 
-执行器不可以：
+不得自行改写 prompt、替换参考图、改变 POV / 镜头 / 人物 / 故事意义、增加临时资产或重新导演。
 
-- 改故事；
-- 改 Visual Beat；
-- 改 POV；
-- 换角色身份；
-- 因个人审美重写 prompt；
-- 删掉“看起来没必要”的 Beat；
-- 自行选一张候选图决定故事方向；
-- 补齐缺失的创意决定。
-
-缺少创意 / 语义输入：
+执行合同存在未定义的创意 / 语义决定时：
 `RETURN_EXECUTION_CONTRACT_UNRESOLVED`。
 
 ---
 
-## 24. Agent A → Owner → Agent B 批次兼容
+## 24. ZIP 交接
 
-当采用该批次方式时：
+需要跨 Agent 转交时，可将完整图片执行包打包为 ZIP。
 
-Agent A：
-- 读取正式规则与当前 episode；
-- 编译自包含图片执行包；
-- 不负责生图。
-
-Owner：
-- 可手工转交 ZIP；
-- ZIP 是 transport snapshot，不自动等于 repository outputs。
-
-Agent B：
-- 读取 package；
-- 按行生成 / 编辑完整图片；
-- 不重新导演；
-- 写 run / manifest / QA；
-- 只有真实 durable publication 后才能宣称 cross-run reusable。
+- ZIP 只作为 transport snapshot；
+- ZIP 内必须包含执行所需的完整任务与可用参考，或明确可解析的 canonical reference；
+- 执行 Agent 按包内任务逐项执行，不重新规划；
+- ZIP 本身不自动等于 repository outputs 或 cross-run reusable asset。
 
 ---
 
