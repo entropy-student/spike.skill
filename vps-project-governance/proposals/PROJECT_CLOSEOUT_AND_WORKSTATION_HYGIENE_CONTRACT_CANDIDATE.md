@@ -272,3 +272,19 @@ Candidate improvement:
 - this does not imply perfect disaster-recovery recency; it establishes that irreversible local cleanup does not destroy the only known recovery path.
 
 Status remains CANDIDATE / NOT ACTIVE pending K9 completion.
+
+
+## Candidate lesson from execution-policy blocked irreversible deletion
+
+Mini Craft K9B-R3R2 showed that a project can satisfy all safety prerequisites for exact local deletion while the Executor runtime policy still blocks the destructive command before launch.
+
+Candidate improvement:
+
+- do not bypass or work around an execution-policy denial by switching shells, languages, schedulers or alternate automation paths;
+- if the deletion target has already been exactly classified, recovery barriers are satisfied, and no partial deletion occurred, move the irreversible action to an explicit Owner-local checkpoint;
+- the Owner may perform the exact allowlisted filesystem deletion manually through the operating-system UI;
+- after the Owner action, the Executor should perform read-only absence verification and persist Evidence/Handoff;
+- distinguish `EXECUTION_POLICY_BLOCKED` from `SAFETY_CLASSIFICATION_FAILED`; the former is an execution-boundary limitation, not new project-state uncertainty;
+- partial sub-gates that completed successfully (for example exact Docker-volume deletion) should be formally accepted instead of rerun.
+
+Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
