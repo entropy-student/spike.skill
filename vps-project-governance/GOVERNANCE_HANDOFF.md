@@ -1,7 +1,7 @@
 # VPS Project Governance — GOVERNANCE HANDOFF
 
 > Maintainer: Governance Reviewer  
-> Last reviewed: 2026-09-26 (Asia/Shanghai)
+> Last reviewed: 2026-09-29 (Asia/Shanghai)
 
 ## Current baseline
 
@@ -35,6 +35,7 @@ No core role, Gate, Secret, Shared Infra, Owner-only, PASS/RETURN, or production
 - Target Host Reality rev2 closes the execution-environment/real-host ambiguity and also prevents documented/intended artifacts, partial scripts or broad ancestor ACLs from being mistaken for verified target-host state.
 - Production Provider Canary and Recovery rev2 separates Provider success, callback acknowledgement, local payment/order state, timing shape, timeout/post-expiry reconciliation and fulfillment semantics; it forbids blind second payment/recovery replay after ambiguous or committed outcomes and requires exact-cardinality selection, full-invariant restoration, diagnostic parity, and distinct proof of durable DB commit vs asynchronous fulfillment.
 - Governance Source Policy rev1 closes GitHub-vs-local Governance drift: GitHub latest is the default rule source, Reviewer pins are temporary explicit overrides, and stale local Governance copies must not remain competing authorities.
+- Project Closeout and Workstation Hygiene Contract rev1 closes post-production archive/decommission ambiguity: it defines remote hygiene, project-scoped archive barriers, protected recovery exceptions, Owner-local fallback for policy-blocked irreversible deletion, packaged-app path virtualization checks, final reconciliation, and audit-reference integrity.
 
 ## Latest validation results
 
