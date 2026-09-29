@@ -317,16 +317,51 @@ Owner 已确认：
 
 ---
 
+## Part 4 — 图片 / 资产执行
+
+当前分支：`codex/comic-narrative-part4-snapshot`
+
+### 材料整理阶段
+
+已按既定流程完成第一步材料整理与第一轮覆盖审计：
+
+- 新建 `source-snapshots/04-image-assets/`；
+- 备份 / 固定 **96 份文本源文件**：
+  - direct：15；
+  - cases：18；
+  - historical：5；
+  - boundary：49；
+  - evidence：6；
+  - suspected-external：3；
+- 原项目历史 Reference Library 的 **10 张 PNG** 不重复复制，只记录 path / SHA / size；原二进制继续保存在 `entropy-student/project`；
+- 当前 Part 3 已封板的 3 Character Master + 2 Style Reference 作为正式上游输入，只记录 blob SHA，不重复复制；
+- 已建立 `SNAPSHOT_INDEX.md`、`SOURCE_MANIFEST.json`、`BINARY_REFERENCE_INDEX.md`、`SOURCE_COVERAGE_AUDIT.md`。
+
+本轮没有：
+- 创建 Part 4 正式规则文档；
+- 删除 / 修改任何历史规则；
+- 修改 Part 0–3；
+- 修改 3+2 长期视觉资产。
+
+第一轮覆盖审计已标出后续需要 reconcile 的问题，但**尚未决定删改**：
+- G5 多层 Asset / Bible / Manifest / Blueprint / Execution Row 可能重复；
+- 原项目与 portable Skill 存在字段双轨；
+- 历史 `COMPOSITE_CROP` / `POST_OVERLAY` 与当前封板边界冲突；
+- Reference Library / Registry / outputs 职责有重叠；
+- G5 / G6 图片执行边界曾移动。
+
+下一步按原流程：**先建立完整合并基线，不做简化；之后再逐组向 Owner 提出保留 / 合并 / 修改 / 降级 / 删除建议。**
+
 ## 当前建议 / 下一步
 
-1. **Part 3 已封板**：三层结构与 C 方案已用 H019 / H015 两个不同 Case 回归；除回归发现硬缺陷外不再继续扩张规则；
-2. 后续如果建议删除、修改或补充 Part 3 规则，先由 Owner 确认；
-3. 下一阶段进入 Part 4 图片 / 资产模块，继续按“先备份与完整合并，再逐步简化”的流程执行；
+1. Part 3 保持封板；
+2. Part 4 下一步建立“完整合并基线”，先保留所有能力；
+3. 完整基线读懂后，再分小组讨论简化；
 4. 所有原始快照持续保留。
 
 ## 当前停止点
 
-`PART3_SEALED / PART4_PENDING`
+`PART4_SOURCE_COLLECTION_PASS / MERGED_BASELINE_PENDING`
 
 ## 安全边界
 
