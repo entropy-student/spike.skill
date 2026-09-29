@@ -1,6 +1,6 @@
 # Part 4 — Source Snapshot Index
 
-状态：`BACKUP_ONLY / NOT_RUNTIME / ORGANIZATION_PENDING_OWNER`
+状态：`BACKUP_ONLY / NOT_RUNTIME / SOURCE_REAUDIT_PASS`
 
 用途：在整理 Part 4「图片 / 资产执行」前保留所有直接相关或合理疑似相关材料。
 
@@ -56,9 +56,13 @@
 4. 完成第一轮覆盖审计；
 5. 完成第二轮反向覆盖复查，补入 4 份遗漏/疑似相关材料（项目 README、Governance Adaptation、Outputs README、blind-search-answer Output Index）。
 
-尚未开始：
-- Part 4 正式规则文档；
-- 完整合并基线；
-- 任何规则删除 / 修改 / 简化。
+已继续完成：
+6. 建立 `part4/IMAGE_ASSET_EXECUTION.md` 完整合并基线 Pass 1；
+7. 所有历史能力先保留，冲突显式标记，未做结构简化。
 
-下一步严格按既定流程：**完整合并基线 → 读懂与冲突标记 → 分小组提出简化建议 → Owner 确认后再修改。**
+尚未开始：
+- 最终 schema / 文件层简化；
+- Owner 逐组取舍；
+- Part 4 最终 runtime contract 封板。
+
+下一步严格按既定流程：**分小组提出简化建议 → Owner 确认 → 修改基线 → 回归审计。**
