@@ -318,6 +318,29 @@ Owner 已确认：
 ---
 
 
+
+### Part 3 Shotbook 结构统一（2026-09-29）
+
+Owner 选择“规则与示例彻底统一”的方案，并要求最小修改。
+
+本轮实际修改：
+- H019 酒店价格参考包不改，作为目标结构；
+- H015 天气预报参考包只修改 `SHOTBOOK.json` 的组织方式；
+- H015 原顶层 `visual_beats[]` 的 36 个完整对象，按原有 `semantic_shot_id` / 原顺序嵌入对应 `semantic_shots[].visual_beats[]`；
+- 删除 H015 重复的顶层 `visual_beats[]`；
+- H015 仍为 9 个 Semantic Shot / 36 个 Visual Beat；
+- `VISUAL_STRATEGY.md` 与 `DIRECTOR_SHOTBOARD.md` 未改；
+- 不改任何 Beat 文本、镜头、POV、时长、连续性、验收条件或 Part 4 边界。
+
+Part 3 正式文档只新增一条机器可读 Shotbook 结构约束：
+`semantic_shots[]` 为唯一正式入口；每个 Semantic Shot 内直接包含完整 Visual Beat 对象；不再维护重复的顶层 `visual_beats[]`。
+
+当前 Library 示例：
+- `/comic-narrative/part3/examples/H019_酒店价格_Part3_参考产出.zip`
+- `/comic-narrative/part3/examples/H015_天气预报_Part3_参考产出.zip`
+
+其余关于 Part 4 执行包、临时资产控制、执行 Agent 权限的已确认方向暂只记录在交接文档，后续如需具体删改正式规则，先提交 Owner 确认。
+
 ### Part 3 参考产出样例留存（2026-09-29）
 
 Owner 提供两份 Part 3 参考产出 ZIP，已按原始内容留存到 Library：
