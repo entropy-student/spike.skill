@@ -304,3 +304,19 @@ Candidate improvement:
 - do not move/devirtualize sensitive recovery artifacts merely to make their path look conventional unless there is a separate recovery-management Gate.
 
 Status remains CANDIDATE / NOT ACTIVE pending full K9 validation.
+
+
+## Candidate lesson from cumulative handoff reference integrity
+
+Mini Craft K9C showed that finalizing cumulative Evidence/Handoff documents can accidentally corrupt historical audit pointers when a broad commit-reference replacement is used.
+
+Candidate improvement:
+
+- treat historical Gate sections in cumulative Evidence/Handoff files as append-only audit records except for an explicitly scoped correction;
+- never globally replace commit IDs merely because a newer Evidence commit exists;
+- current-Gate references must be updated only inside the current Gate section, and historical references must remain bound to the Gate that produced them;
+- before final closeout PASS, perform a lightweight reference-integrity check on the current report/Evidence/Handoff pointers and any historical lines touched by the final commit;
+- if a reference-only error is found after all runtime checks pass, use a documentation-only repair Gate and do not replay runtime/deletion/payment checks;
+- distinguish `AUDIT_REFERENCE_INTEGRITY_ERROR` from runtime or project-state drift.
+
+Status remains CANDIDATE / NOT ACTIVE pending final K9 Reviewer closure.
