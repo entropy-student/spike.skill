@@ -7,6 +7,7 @@ Origin: Mini Craft Night Kit closeout
 Promotion decision: 2026-09-29 after full Mini Craft Night Kit K9 validation.
 Active addendum: `references/PROJECT_CLOSEOUT_AND_WORKSTATION_HYGIENE_CONTRACT.md`.
 This proposal is retained as the historical validation record and is no longer the operational source.
+All later `Status remains CANDIDATE / NOT ACTIVE` lines below are retained historical snapshots from the validation sequence; they are not the current operational status.
 Applies to: future Governance review only
 
 This document is a proposal. It does not modify VPS Project Governance v0.1.6 or any active addendum.
