@@ -1,20 +1,12 @@
-# Part 4 — 图片 / 资产执行（完整合并基线 Pass 1）
-
-状态：`SAFE_SIMPLIFICATION_PASS1 / BEHAVIOR_PRESERVING / OWNER_REVIEW_PENDING`
+# Part 4 — 图片 / 资产执行
 
 ## 0. 文档职责
 
-本文件是 Part 4「图片 / 资产执行」的第一版完整合并基线。
-
-目标不是立刻简化旧 G5，而是先把原 `ai-story-showrunner`、portable `story-showrunner`、历史 Case、真实图片执行证据与当前 Part 0–3 已封板边界放进同一个可审计模型中，避免后续简化时误删能力。
-
-规则：
+本文件只定义 Part 4 当前有效的图片 / 资产执行规则、输入输出边界与 QA 要求。
 
 - Part 0–3 是上游正式事实，Part 4 不得改写；
-- `source-snapshots/04-image-assets/` 只作来源、证据与追溯，不参与运行；
-- 历史能力必须先进入本基线再讨论去留；
-- 与 Owner / Part 3 已封板决定冲突的旧能力，保留为兼容/历史记录，但不得恢复为默认运行规则；
-- 当前尚不决定最终文件数量、最终 schema 数量或是否合并各记录层。
+- `source-snapshots/04-image-assets/` 仅用于来源、证据与追溯，不参与运行；
+- 迁移进展、历史决策、待决问题、下一步规划统一记录在 `HANDOFF.md`。
 
 ---
 
@@ -65,9 +57,9 @@ Part 4 不得：
 
 ---
 
-## 2. 完整能力链
+## 2. 当前执行链
 
-历史 G5 的能力完整保留为以下逻辑链：
+Part 4 当前逻辑链：
 
 ```text
 Episode Asset Requirement Extraction
@@ -84,22 +76,13 @@ Episode Asset Requirement Extraction
 → Registry / Reference Library Update
 ```
 
-这里的“逻辑链”不等于最终必须保留同样数量的文件或 schema。当前 Pass 1 只确认能力存在。
-
 ---
 
 ## 3. Episode Asset Requirement / Asset Manifest
 
-### Safe simplification Pass 1
+`Asset Manifest` 是本集资产需求的 canonical machine-readable truth。`Asset Inventory` 如存在，只是从 `Asset Manifest` 派生的人类可读视图，不拥有独立事实。
 
-本轮只做不改变流程与输出的去重：
-
-- `Asset Manifest` 继续作为本集资产需求的 canonical machine-readable truth；
-- `Asset Inventory` 如保留，仅是从 `Asset Manifest` 派生的人类可读视图，不再拥有独立事实；
-- 不改变资产发现、Beat 绑定、Reference Lock 或后续执行顺序；
-- 不删除历史 `Asset Inventory` snapshot，只取消“必须双份人工维护”的含义。
-
-因此当前仍先识别每集可能出现的资产：
+每集先识别可能出现的资产：
 
 - CHARACTER；
 - SCENE；
@@ -107,7 +90,7 @@ Episode Asset Requirement Extraction
 - UI_DOCUMENT；
 - STYLE。
 
-历史 `Asset Manifest` 能力保留：
+`Asset Manifest` 至少记录：
 
 - `asset_id`；
 - `asset_type`；
@@ -131,22 +114,13 @@ Episode Asset Requirement Extraction
 
 ## 4. Canonical Reference Lock
 
-历史 Bible / Manifest 能力全部保留：
-
-- Character Bible；
-- Scene Bible；
-- Style Bible；
-- Prop/UI Bible；
-- Reference Manifest。
-
-Safe simplification Pass 1 仅消除重复事实来源：
+当前资产参考体系可以使用 Character / Scene / Style / Prop-UI Bible 与 Reference Manifest，但遵循单一事实源：
 
 - Part 3 已锁定的长期 Character Master 与 Style Reference 不在 episode-local Bible 中复制定义；
-- episode-local Bible 可以引用这些 canonical 上游，并只补充本集新增或变化的信息；
-- Reference Manifest 仍负责真实 reference path / availability 等执行可用性事实；
-- 本轮不合并、不删除任何可能影响连续性或执行输入的 Bible / Manifest。
+- episode-local Bible 只补充本集新增或变化的信息；
+- Reference Manifest 负责真实 reference path / availability 等执行可用性事实。
 
-但当前项目的长期视觉基线由 Part 3 已封板：
+当前长期视觉基线由 Part 3 定义：
 
 ### 长期 Character Master
 
@@ -223,9 +197,9 @@ QA 必须按可见范围判断。只看到手、袖口或背影时，不为了�
 
 ---
 
-## 7. Frame Blueprint 历史能力与当前兼容边界
+## 7. Frame Blueprint 兼容边界
 
-旧系统存在独立 `Frame Blueprint` 层，曾锁定：
+`Frame Blueprint` 可承载：
 
 - dramatic job；
 - focus mode；
@@ -241,18 +215,7 @@ QA 必须按可见范围判断。只看到手、袖口或背影时，不为了�
 - withheld information；
 - acceptance criteria。
 
-这些能力不能丢失。
-
-但 Part 3 已将其核心单帧能力吸收到 Visual Beat 正式结构中。
-
-因此 Pass 1 的兼容结论是：
-
-- **能力保留**；
-- 当前 canonical 上游仍是 Part 3 Visual Beat；
-- 旧 `Frame Blueprint` 可作为兼容视图 / 编译中间态存在；
-- 它不得重新获得修改 Visual Beat 意义、POV 或镜头策略的权力。
-
-是否保留独立 Blueprint 文件，留到下一轮简化决定。
+Part 3 Visual Beat 是 canonical 上游。`Frame Blueprint` 若存在，只能作为兼容视图 / 编译中间态，不得修改 Visual Beat 的意义、POV 或镜头策略。
 
 ---
 
@@ -286,7 +249,7 @@ QA 必须按可见范围判断。只看到手、袖口或背影时，不为了�
 
 ## 9. Reference Library / Production Registry / Outputs
 
-三个记录层的历史职责全部保留，暂不合并。
+当前三个记录层职责如下：
 
 ### Outputs
 
@@ -350,7 +313,7 @@ QA 必须按可见范围判断。只看到手、袖口或背影时，不为了�
 - withheld / reveal state；
 - hash 与 storage availability。
 
-历史用途能力保留：
+允许以下用途：
 
 ### EXACT_FRAME / CARRY_OVER_FULL_FRAME
 
@@ -402,15 +365,7 @@ QA 必须按可见范围判断。只看到手、袖口或背影时，不为了�
 
 ## 11. Execution Mode — 当前运行边界
 
-历史系统曾存在：
-
-- `GENERATE`；
-- `DERIVE_EDIT`；
-- `COMPOSITE_CROP`。
-
-为保证历史能力不丢失，`COMPOSITE_CROP` 记录继续保留在来源与兼容说明中。
-
-但当前 Owner / Part 3 已封板规则为：
+当前规则为：
 
 ```text
 ACTIVE:
@@ -426,7 +381,7 @@ external layer composition
 SVG / HTML / Canvas / PIL text
 ```
 
-因此 `COMPOSITE_CROP` 是**历史兼容能力，不是当前可执行默认模式**。
+`COMPOSITE_CROP` 不属于当前可执行默认模式。
 
 ---
 
@@ -484,7 +439,7 @@ SVG / HTML / Canvas / PIL text
 
 ## 14. Prompt / Edit Compiler
 
-历史 Prompt / Edit Compiler 能力保留。
+Prompt / Edit Compiler 负责：
 
 职责：
 
@@ -512,13 +467,9 @@ SVG / HTML / Canvas / PIL text
 
 ---
 
-## 15. Text / UI Policy — 冲突保留与当前规则
+## 15. Text / UI Policy
 
-旧 G5 / portable Candidate 曾默认：
-
-`critical exact text → POST_OVERLAY`
-
-后续 Owner-approved production patch 与 Part 3 当前边界改为：
+当前 text render mode：
 
 ```text
 NONE
@@ -526,7 +477,7 @@ or
 IMAGE_NATIVE
 ```
 
-并明确禁止：
+禁止：
 
 - POST_OVERLAY 作为默认修复；
 - SVG；
@@ -537,8 +488,6 @@ IMAGE_NATIVE
 
 因此：
 
-- POST_OVERLAY 能力只保留为历史冲突记录；
-- 当前 Part 4 不允许恢复为默认；
 - 因果必要的 exact text 必须进入 `exact_required_text` / 同等约束并在最终 raster 中核对；
 - 若无法准确生成，返回 `UI_TEXT_FAILURE`，不得用 overlay 偷修。
 
@@ -644,7 +593,7 @@ DERIVE_EDIT source 与 target 兼容。
 
 ## 19. Hard Failure 与 Minor Deviation
 
-历史真实执行证据表明，QA 必须区分。
+QA 必须区分：
 
 ### Hard failure
 
@@ -724,7 +673,7 @@ compiled image instructions
 - return / retry 原因；
 - 哪些输出被 superseded。
 
-历史 `RUN_RECORD.json`、episode `INDEX.md`、`ASSET_OUTPUT_MANIFEST.json` 能力全部保留。
+可使用 `RUN_RECORD.json`、episode `INDEX.md`、`ASSET_OUTPUT_MANIFEST.json` 或等价结构记录。
 
 ---
 
@@ -777,9 +726,9 @@ compiled image instructions
 
 ---
 
-## 24. 与 Agent A → Owner → Agent B 批次流程的兼容
+## 24. Agent A → Owner → Agent B 批次兼容
 
-历史 IMAGE_BATCH_V1 能力保留：
+当采用该批次方式时：
 
 Agent A：
 - 读取正式规则与当前 episode；
@@ -787,7 +736,7 @@ Agent A：
 - 不负责生图。
 
 Owner：
-- 当前历史流程中可手工转交 ZIP；
+- 可手工转交 ZIP；
 - ZIP 是 transport snapshot，不自动等于 repository outputs。
 
 Agent B：
@@ -797,13 +746,11 @@ Agent B：
 - 写 run / manifest / QA；
 - 只有真实 durable publication 后才能宣称 cross-run reusable。
 
-现有历史 package 文件名只是兼容模板，不在 Pass 1 锁定为最终 Part 4 唯一格式。
-
 ---
 
 ## 25. 默认画幅与交付
 
-历史默认：
+默认：
 
 - 16:9；
 - 1920×1080 final delivery target。
@@ -815,61 +762,3 @@ Agent B：
 - 改变 focal structure；
 - 裁掉因果信息；
 - 使用多图拼接补画面。
-
----
-
-## 26. 当前明确冲突表（Pass 1 不做简化）
-
-| 能力 / 旧规则 | 历史状态 | 当前 Part 4 Pass 1 |
-|---|---|---|
-| 独立 Frame Blueprint | canonical old G5 | 能力保留；是否独立文件待简化，当前不得覆盖 Part 3 Visual Beat |
-| Asset Manifest + Asset Inventory | canonical / validated | Asset Manifest 继续 canonical；Asset Inventory 降为可选派生展示视图，不再双份维护 |
-| Beat Matrix + 多个 Bible | canonical / validated | 能力与运行顺序不变；是否进一步合并待 Owner 审核 |
-| Image Generation Row + Execution Row | 双轨历史 | 两套字段能力均保留；最终 schema 待统一 |
-| COMPOSITE_CROP | 旧 G5 / portable allowed | 历史记录保留；当前默认禁止 |
-| POST_OVERLAY | 旧 G5 default | 历史记录保留；当前禁止恢复为默认 |
-| long-term fixed scenes/UI | 旧生产基线存在 | 不恢复；当前长期资产以 Part 3 3+2 为准 |
-| Reference Library | validated | 保留 |
-| Production Registry | validated | 保留 |
-| Outputs ledger | validated | 保留 |
-| manual Pilot every episode | 早期实践 | 不恢复；仅 calibration exception |
-| 固定 DERIVE_EDIT 比例 | 曾讨论/使用 | 禁止 |
-| Beat / image 数量配额 | 历史出现 | 禁止 |
-| 一条 SRT 一张图 | 历史行为 | 禁止 |
-
----
-
-## 27. Pass 1 尚未决定的问题
-
-下一轮才逐组讨论：
-
-1. `Asset Inventory` 已安全降为 `Asset Manifest` 的派生展示视图；`Beat Asset Matrix` 是否进一步并入执行层仍待决定；
-2. Character / Scene / Style / Prop-UI Bible 是否保留为独立文件，还是 episode reference section；
-3. 独立 Frame Blueprint 是否完全取消，只保留 Visual Beat；
-4. Frame Execution Row 与 Image Generation Row 如何统一；
-5. Reference Manifest 是否并入 execution row / package manifest；
-6. production Registry 与 Reference Library 是否保留双记录；
-7. exact full-frame reuse 是否成为正式 execution mode enum，还是 manifest-level decision；
-8. Prompt / Edit Compiler 是独立产物还是 execution-row 字段；
-9. Part 4 到底在“编译包”结束，还是包含实际生图 + QA + catalog reconciliation；
-10. Agent A / Agent B 的 ZIP 工作流是否成为正式默认，还是一个 adapter。
-
-这些问题必须在完整基线通过后逐组给 Owner 选择，不在本轮擅自拍板。
-
----
-
-## 28. 当前 Gate
-
-本文件建立后：
-
-```text
-PART4_SOURCE_COLLECTION_REAUDIT = PASS_CANDIDATE
-PART4_FULL_MERGED_BASELINE_PASS1 = PASS_CANDIDATE
-PART4_SAFE_SIMPLIFICATION_PASS1 = PASS_CANDIDATE
-PART4_BEHAVIOR_CHANGING_SIMPLIFICATION = NOT_STARTED
-PART4_FINAL_CONTRACT = NOT_LOCKED
-```
-
-下一步：
-
-> Safe Pass 1 已完成仅文档/事实源去重。下一步继续按“重复数据层 → 执行模式 → Reference / Registry / Outputs → Executor 边界 → 最终输出格式”审查；凡可能改变流程、执行输入或输出结果的调整，必须先提交 Owner 确认。
