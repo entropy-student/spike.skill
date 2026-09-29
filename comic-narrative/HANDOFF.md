@@ -672,6 +672,38 @@ Owner 确认 Part 4.5 只保留三类信息：
 
 Part 4 继续保持封板，本轮未修改 Part 4 正式文档。
 
+
+### Part 4.5 第一批候选素材 Review 完成（2026-09-29）
+
+来源 episode：
+- `ep-ai-noodle-preference-20260927`
+
+候选整理结果：
+- 62 个最终画面位置；
+- 60 张不同最终图片；
+- 2 组完整整图复用：VB032/VB039、VB034/VB049；
+- 35 张进入候选 Review；
+- 三个候选压缩包已全部 Review 完成。
+
+Review 结论：
+- 35/35 图片本身通过；
+- 不需要重新生图；
+- 不需要修改像素、文件名或 SHA；
+- 不淘汰当前 35 张候选；
+- 当前仅需修正 `candidate_catalog.jsonl` 中少量“剧情推断式描述”，改成图片可直接观察到的事实；
+- `RL-NOODLE-007` 至 `RL-NOODLE-010` 的 `reuse_scope` 由“同一角色”收窄为“同一场景”；
+- 其余复用方式与候选暂停判断保持不变；
+- `RL-NOODLE-031/032/033/035` 继续保持“候选暂停”，正式入库前不扩大复用权限。
+
+下一步：
+1. Codex 在本地只修订候选 `candidate_catalog.jsonl`；
+2. 不重新生图；
+3. 不修改候选 PNG；
+4. 修订后返回新的候选目录与差异摘要；
+5. Review Agent 再做一次轻量核对；
+6. 通过后再执行 GitHub 正式素材库上传。
+
+
 ## 当前停止点
 
 `PART4_SOURCE_COLLECTION_REAUDIT_PASS_CANDIDATE / PART4_SAFE_SIMPLIFICATION_PASS1_CANDIDATE / BEHAVIOR_CHANGING_SIMPLIFICATION_PENDING`
