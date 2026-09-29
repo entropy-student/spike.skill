@@ -773,6 +773,11 @@ Part 3 不替 Part 4 选择具体执行资产，但必须给出足够语义，�
 2. 一份 Semantic Shot → Visual Beat Shotbook；
 3. 对应的人可读 Shotboard。
 
+Shotbook 的机器可读结构统一为：
+- `semantic_shots[]` 为唯一正式层级入口；
+- 每个 Semantic Shot 的 `visual_beats[]` 直接包含完整 Visual Beat 对象；
+- 不再额外维护重复的顶层 `visual_beats[]` 列表。
+
 ### 人可读 Shotboard 最少包含
 - Semantic Shot ID；
 - Beat ID；
