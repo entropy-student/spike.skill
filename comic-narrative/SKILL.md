@@ -2,9 +2,9 @@
 name: comic-narrative
 title: 漫画叙事
 description: 面向“选题 → 剧本 → 分镜 → 漫画图片资产 → 配音/时间轴 → 成片”的漫画叙事生产 Skill。当前按模块逐步从 ai-story-showrunner / story-showrunner 简化迁移，并通过历史 Case 与源快照复查避免能力丢失。
-version: 0.0.9-draft
+version: 0.0.10-draft
 language: zh-CN
-status: PART4_MERGED_BASELINE_PASS1
+status: PART4_SAFE_SIMPLIFICATION_PASS1
 ---
 
 # 漫画叙事
@@ -21,7 +21,7 @@ status: PART4_MERGED_BASELINE_PASS1
 
 ## 当前完成范围
 
-Part 0「历史选题库」与 Part 1「选题与内容策略」已完成；Part 2「剧本与叙事」已建立合并基线并完成已确认的最小补充；Part 3「分镜与视觉导演」已完成第一轮结构简化；Part 4「图片 / 资产执行」已完成第二轮源材料复查并建立完整合并基线 Pass 1，尚未开始简化。
+Part 0「历史选题库」与 Part 1「选题与内容策略」已完成；Part 2「剧本与叙事」已建立合并基线并完成已确认的最小补充；Part 3「分镜与视觉导演」已完成第一轮结构简化；Part 4「图片 / 资产执行」已完成第二轮源材料复查、完整合并基线 Pass 1，以及一轮不改变流程/输出的 Safe simplification Pass 1；可能改变结构或执行方式的优化仍待 Owner 确认。
 
 执行选题时按顺序读取：
 
@@ -52,7 +52,7 @@ Part 4 当前完整合并基线：
 
 ## 当前限制
 
-- Part 3 已形成当前正式视觉导演基线；Part 4 目前仅完成完整合并 Pass 1，重复层与最终 runtime contract 仍需逐组确认。Part 5–6 尚未迁移完成，仍不得用本 Draft 替代完整生产系统。
+- Part 3 已形成当前正式视觉导演基线；Part 4 已完成行为保持型安全去重，但 Beat Asset Matrix、多个 Bible、执行行、Registry/Reference Library 等可能影响结构的合并仍需逐组确认。Part 5–6 尚未迁移完成，仍不得用本 Draft 替代完整生产系统。
 - 不修改 `ai-story-showrunner`。
 - 不修改原 `story-showrunner`。
 
