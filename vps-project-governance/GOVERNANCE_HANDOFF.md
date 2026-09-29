@@ -13,8 +13,9 @@
 - Target Host Reality Contract: rev2, ACTIVE / VALIDATED-ON-DUJIAONEXT-WINDOWS-HOST; host-local claims require target-host identity, phase-aware execution evidence and host-local read-back.
 - Production Provider Canary and Recovery Contract: rev2, ACTIVE / VALIDATED-ON-DUJIAONEXT-ALIPAY-R16. Transaction recovery now covers exact-cardinality selection, fresh pre-mutation recheck, full-invariant restoration, durable-commit vs asynchronous-side-effect separation, no-blind-replay, diagnostic/recovery parity and incident-tool containment. Cross-provider assumptions remain PROVISIONAL until additional live Provider canaries exercise them.
 - Governance Source Policy: rev1, ACTIVE. GitHub `entropy-student/spike.skill/vps-project-governance` is the default canonical Governance source; local Skill copies are non-authoritative caches unless an active Reviewer explicitly pins/overrides a version/addendum.
+- Project Closeout and Workstation Hygiene Contract: rev1, ACTIVE / VALIDATED-ON-MINI-CRAFT-K9.
 
-The v0.1.6 core version remains unchanged. Storage, SSH/Secret, Target Host Reality, Production Provider Canary/Recovery and Governance Source Policy are operational addenda so project observations do not silently rewrite the validated core model.
+The v0.1.6 core version remains unchanged. Storage, SSH/Secret, Target Host Reality, Production Provider Canary/Recovery, Governance Source Policy and Project Closeout/Workstation Hygiene are operational addenda so project observations do not silently rewrite the validated core model.
 
 ## Documentation consistency reconciliation — 2026-09-26
 
@@ -106,6 +107,7 @@ Do not call a step "the last step" or "final step" while unresolved UNKNOWN, Pro
 - `references/TARGET_HOST_REALITY_CONTRACT.md`
 - `references/PRODUCTION_PROVIDER_CANARY_AND_RECOVERY_CONTRACT.md`
 - `references/GOVERNANCE_SOURCE_POLICY.md`
+- `references/PROJECT_CLOSEOUT_AND_WORKSTATION_HYGIENE_CONTRACT.md`
 - `templates/SHARED_VPS_HANDOFF_TEMPLATE.md`
 
 ## Addendum loading rule
@@ -114,6 +116,7 @@ Do not call a step "the last step" or "final step" while unresolved UNKNOWN, Pro
 - Any real host path/ACL/service/Owner-local action: read `TARGET_HOST_REALITY_CONTRACT.md`.
 - Any real Provider/payment/webhook/callback/refund/reconciliation/fulfillment Canary: read `PRODUCTION_PROVIDER_CANARY_AND_RECOVERY_CONTRACT.md` before authorizing a real buyer action.
 - At session/project start or whenever Governance version/source is uncertain: read `GOVERNANCE_SOURCE_POLICY.md`; default to GitHub canonical latest unless the active Reviewer explicitly pins/overrides a bounded version/addendum.
+- Any project closeout, workstation decommission, GitHub archive barrier, protected recovery exception or final closeout reconciliation: read `PROJECT_CLOSEOUT_AND_WORKSTATION_HYGIENE_CONTRACT.md`.
 
 ## Canonical Governance source
 
