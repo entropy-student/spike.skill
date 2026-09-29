@@ -9,10 +9,10 @@
 - direct：15
 - cases：18
 - historical：5
-- boundary：49
-- evidence：6
+- boundary：52
+- evidence：7
 - suspected-external：3
-- 文本源文件合计：96
+- 文本源文件合计：100
 - 历史 Reference Library PNG：10 个，只做 SHA / path 索引
 
 ## 来源
@@ -53,7 +53,8 @@
 1. 建立 Part 4 独立快照分支；
 2. 收集 / 备份文本规则、Case、边界与执行证据；
 3. 建立来源清单与二进制索引；
-4. 完成第一轮覆盖审计。
+4. 完成第一轮覆盖审计；
+5. 完成第二轮反向覆盖复查，补入 4 份遗漏/疑似相关材料（项目 README、Governance Adaptation、Outputs README、blind-search-answer Output Index）。
 
 尚未开始：
 - Part 4 正式规则文档；
