@@ -186,3 +186,24 @@ A future structure is better only if a new Reviewer can answer these questions q
 8. Where is the accepted new state recorded?
 
 If the Reviewer needs to reconcile multiple overlapping "master" documents to answer these, the architecture is still too complex.
+
+
+## vNext target architecture
+
+Normal Governance loading is intentionally compressed to:
+
+```text
+VNEXT.md
+  = complete shadow operational rule surface
+  = Core + specialist trigger scan + compact specialist rules
+```
+
+Non-operational support:
+```text
+HANDOFF.md    = shadow-refactor continuity
+COVERAGE.md   = migration audit only
+RULE_MATRIX.md / CONFLICT_REGISTER.md / DECISION_LOG.md
+              = design/audit history only
+```
+
+Normal project Agents must not load design/audit history as policy.
