@@ -220,7 +220,12 @@ Why risky:
 
 A rule change can update one location but leave another stale. Reviewer also has to decide which copy is authoritative.
 
-Status: **CONFIRMED DUPLICATION — no deletion decision yet.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- remove duplicated specialist detail from Core;
+- Core keeps only universal rules plus compact references to specialist rules;
+- apply compression-first design rather than creating more documents by default.
 
 ## R09 — README, SKILL, Core Reference and Governance Handoff all behave partly like master documents
 
@@ -240,7 +245,13 @@ Why risky:
 
 There is no single visually obvious normative Core document even though Source Policy defines GitHub as the canonical *directory*.
 
-Status: **CONFIRMED INFORMATION-ARCHITECTURE PROBLEM.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- reduce competing master documents;
+- keep one compact operational entry surface where practical;
+- other files must not repeat the same version/rule/loading/state information;
+- prefer consolidation over creating additional navigation documents.
 
 ## R10 — Governance Handoff mixes release state, changelog, incident lessons, loading rules and policy summaries
 
@@ -774,3 +785,20 @@ Status: **SHADOW DECISION ACCEPTED.**
 
 Accepted direction:
 Each Gate must state the maximum endpoint for the round and the mandatory review stop. If the Owner did not authorize crossing the next material stage/risk boundary, the Agent stops at the declared endpoint.
+
+
+## R33 — Governance verbosity and document sprawl
+
+**Class:** C6 / usability-maintenance problem
+
+Owner pain:
+Governance becomes too verbose and fragmented. Owner prefers the shortest safe form and a one-page operational surface where practical.
+
+Accepted direction:
+- compress before split;
+- merge whenever responsibilities can coexist clearly;
+- create a new Governance file only when separation is necessary for clarity, conditional loading, or safety;
+- prefer short rules, compact tables, and schemas over repeated prose;
+- historical explanations/examples stay outside the normal loading path.
+
+Status: **SHADOW DECISION ACCEPTED.**
