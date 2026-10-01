@@ -1197,3 +1197,140 @@ Part 4 Reviewer 文档继续按同一原则放在独立 `reviews/part4/` 区域�
 - 修复完成后再做一轮完整 H019 重跑，对比旧样板与新结果，之后才决定正式规则是否还需调整。
 
 状态：`H019_SAMPLE_DIAGNOSIS_COMPLETE / SECOND_RERUN_DEFERRED / FORMAL_RULES_UNCHANGED`。
+
+
+
+### H019 样板诊断：完整问题归纳与第二轮准备完成（2026-10-01）
+
+Owner 要求：本轮一口气完成所有不需要实际重跑的诊断 / 返修规划 / 规则覆盖核对；随后再逐项讨论。继续保持：**不启动第二轮生图，不修改 Part 3 / Part 4 / Part 4.5 / SKILL 正式规则。**
+
+#### Reviewer 最终计数修正
+
+36 张已生成画面的统一 Reviewer 状态：
+- PASS：19；
+- PASS WITH NOTE：7；
+- HOLD / 依赖：2；
+- RETURN：8；
+- 未生成：C-VB35、C-VB36、C-VB37、C-VB39、C-VB40。
+
+此前第三包口头统计曾写成“7 PASS + 4 NOTE + 1 RETURN”；复核后正确应为：
+- 第三包：6 PASS + 5 PASS WITH NOTE + 1 RETURN。
+后续以本记录为准。
+
+明确 RETURN：
+- C-VB02；
+- C-VB09；
+- C-VB10；
+- C-VB11；
+- C-VB12；
+- C-VB22；
+- C-VB24；
+- C-VB33。
+
+依赖 HOLD：
+- C-VB05；
+- C-VB08。
+
+#### 完成的系统性诊断
+
+1. **Style Reference 内容污染**
+   - 多个镜头继承辅助画风参考中的白天木桌、条纹杯、餐饮空间、窗光与构图。
+   - 说明旧执行包只定义“画风锁定”，但没有把“继承什么 / 明确不继承什么”编译得足够强。
+   - 下一轮优先验证“style only；scene / prop / lighting / pose / composition excluded”的用途隔离，不先修改正式规则。
+
+2. **旧 C 样板 Scene System 只有场景类别，没有逐段可执行 Scene anchor**
+   - 主角夜间生活空间、匿名酒店客房、later event 虽被列出，但任务没有稳定映射到 accepted current-run scene reference。
+   - 导致 C-VB09/11/12/24 等逐张可读但整段时空漂移。
+   - 当前正式 Part 3 已补 Scene System / 段落载体 / 前置重复检查；第二轮用于验证是否已解决。
+
+3. **局部 Beat 正确但整段视觉重复**
+   - C-VB13–17 与 C-VB25–31 是典型：故事意义推进，但长期停留在“主角 + 手机 + 夜间室内 + 类似越肩 UI”。
+   - 当前正式 Part 3 已覆盖前置段落视觉载体规划与全集验证；暂不继续加规则。
+
+4. **主观脑补合同不够可执行**
+   - C-VB10 只锁“明显主观想象气氛”，下游两次都退化为箭头 / 图解 / 额外人物。
+   - 下一轮必须由 Part 3 重新决定主观视觉语法；必要时允许重新拆 Beat，不机械重试旧 prompt。
+   - 当前正式规则已经保护“主观 ≠ 客观事实”，但具体视觉语法是否仍不足，需要第二轮实证。
+
+5. **matched before/after 的动作 delta 未实现**
+   - C-VB32→33 的故事意图清楚，但 DERIVE_EDIT 两次都没有把“刷新 → 查条件”画出可辨差异。
+   - 当前正式 Part 4 已有 main delta / source compatibility / fallback / HOLD；下一轮应验证执行，不先追加规则。
+
+6. **逐图 hard-failure QA 无法代替整集 QA**
+   - 原 run 有意把逐图 QA 限于硬失败，所以场景漂移 / 成段重复可以逐张 PASS。
+   - 当前正式 Part 4 已要求逐图 continuity + additional facts + 全集结果 QA；第二轮必须真正跑完而非仅存在文档。
+
+7. **UI 文本有三类问题**
+   - 未授权限定词：C-VB02 “六百多”被扩成“六百多 元起”；
+   - 未授权精确日期：C-VB21；
+   - 为解释相对状态而出现人工标签：C-VB25/29/34。
+   - 下一轮区分 exact required text / allowed set / 不需要文字三类；可用 matched UI 状态证明的，不再依赖说明性标签。
+
+#### Beat 级返修准备已完成
+
+不启动执行，仅完成设计方向：
+
+- C-VB02：如需要可读价格，只允许“六百多”语义；禁止“起 / 起价 / 精确房价 / 会员价”等新增条件。
+- C-VB09/11/12/24：必须回到主线夜间 scene anchor；style ref 不得决定场景内容。
+- C-VB10：返回 Part 3 重新规划 subjective 视觉语法；不机械重试旧 prompt。
+- C-VB22：旁白负责命名“收益管理”，画面只显示用户可见公开报价 / 方案，不显示解释性因果文字。
+- C-VB33：主要动作差异必须肉眼可辨；edit 不可行时 fallback GENERATE，保持 matched relation 但不强制同一 source。
+- C-VB05/08：只有新的 C-VB02 通过后才能继续用其页面连续参考。
+- C-VB21：禁止未锁定精确日期。
+- C-VB29：下一轮优先建立明确 before/setup，再用 matched reveal 证明列表顺序变化，避免“更高/稍贵”标签代替证据。
+- C-VB32/38：不得再让辅助 Style Reference 的餐饮空间成为实际 scene。
+
+#### 5 张未生成画面的预检查已完成
+
+- C-VB35：旧任务回跳 C-VB02 作为页面连续参考不理想；下一轮应承接当时最新 accepted page / scene state。
+- C-VB36：以完成预订状态为 continuity，人物反应优先，不需要重新堆复杂 UI。
+- C-VB37：方向合理，应保留“手机离开视觉中心 / 身体后靠”的现实行为回报。
+- C-VB39：later-event 内检查条件，禁止四项编号教程卡；是否一张能承载由下一轮 Part 3 重新判断。
+- C-VB40：继续 later-event，重点是“谨慎而非笃定”的人物状态，不再新增一页解释 UI。
+
+#### 当前正式规则覆盖核对
+
+大部分样板问题已经被刚完成的新正式规则覆盖：
+- 整段手机 / UI 重复：当前 Part 3 已覆盖；
+- Scene System / 时空连续：当前 Part 3 + Part 4 已覆盖大部分；
+- C-VB33 delta / source fallback：当前 Part 4 已覆盖；
+- failed source 传播：当前 Part 4 已禁止；
+- 额外金额 / 日期 / 因果文字：当前 Part 4 Text / Additional Facts QA 已覆盖；
+- Anti-PPT：当前 Part 3 / Part 4 已覆盖；
+- 逐图 PASS 但整集差：当前 Part 4 已有整集结果 QA。
+
+仍需第二轮实证，而不是现在直接改规则：
+1. Style Reference 的“内容隔离”是否需要升级为正式条文；
+2. 主观脑补的具体视觉语法是否还需要 Part 3 增加操作合同；
+3. C-VB29 这类比较状态是否需要更明确的 setup / reveal 可执行约束。
+
+#### 第二轮完整重跑入口（只定义，暂不执行）
+
+下一轮不在旧 41 张包上补丁续跑，按当前正式链重新开始：
+
+```text
+Part 2 锁稿保持
+→ Part 2.5 最终配音 + 真实 SRT 对齐
+→ Part 3 按当前正式规则重新规划
+→ Part 4 + Part 4.5 重新编译执行包
+→ 生图执行
+→ 逐图 QA
+→ 整集结果 QA
+→ 与第一轮样板对照
+```
+
+不锁死旧 12 Semantic Shot / 41 Visual Beat / C-VB ID / GENERATE-DERIVE 比例 / 场景数量。
+
+#### 下一步逐项讨论队列
+
+Owner 要求下一阶段逐个过。建议按以下顺序：
+1. Style Reference 内容隔离强度；
+2. 主线 Scene Anchor 的产生与复用；
+3. 主观脑补视觉语法；
+4. 比较状态（如旧 C-VB29）的 setup / reveal 合同；
+5. DERIVE_EDIT 失败后的 fallback；
+6. UI 文字 exact / allowed / no-text 边界；
+7. 第二轮是否严格从 Part 2.5 开始，而不是只重跑 Part 3 / Part 4。
+
+当前状态：
+`H019_SAMPLE_ANALYSIS_COMPLETE / RERUN_PREP_COMPLETE / SECOND_RERUN_DEFERRED / FORMAL_RULES_UNCHANGED / READY_FOR_OWNER_ITEM_REVIEW`。
