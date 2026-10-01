@@ -227,3 +227,12 @@ Principles:
 - a new Governance file requires a clear reason why it cannot be merged safely into an existing one.
 
 This decision resolves the design direction for R08 and R09 and establishes the anti-sprawl rule captured as R33.
+
+
+## D015 — Governance Handoff is continuity-only; history is non-authoritative
+
+**Decision:** ACCEPTED
+
+- Governance Handoff = current governance-refactor continuity only.
+- Historical/superseded proposals = archive/history only, never a current rule source.
+- Active Governance must not be reconstructed from historical snippets.
