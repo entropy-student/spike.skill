@@ -67,3 +67,19 @@ fresh authoritative evidence
 
 Reason:
 Rules answer "what should be followed"; evidence answers "what is actually true." Mixing them caused contradictory precedence behavior.
+
+
+## D004 — One authoritative active-governance manifest
+
+**Decision:** ACCEPTED
+
+Create one short manifest that answers:
+
+- what Core version is active;
+- what specialist rules/addenda are active;
+- what version/revision each active rule uses.
+
+README, SKILL, metadata and templates must not keep their own competing active-rule inventories.
+
+Reason:
+Current status drift across files can make different Reviewers load different rule sets.
