@@ -905,7 +905,7 @@ Shotbook 的机器可读结构统一为：
 ### 人可读 Shotboard 最少包含
 - Semantic Shot ID；
 - Beat ID；
-- 计划时间；
+- 正式时间（来自 Part 2.5 最终音频 / SRT）；
 - 对应口播；
 - 这一刻实际发生什么；
 - 故事变化；
