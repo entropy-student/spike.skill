@@ -7,15 +7,61 @@
 ## Result
 
 ```text
-OLD_RULE_ROWS=128
-MAPPED_ROWS=128
-UNMAPPED_ROWS=0
+OLD_MATRIX_RULE_ROWS=128
+MATRIX_MAPPED_ROWS=128
+MATRIX_UNMAPPED_ROWS=0
+
+ACTIVE_SOURCE_SEMANTIC_AUDIT=PASS_CANDIDATE
+KNOWN_UNRESTORED_SAFETY_GAPS=0
 SHADOW_OPERATIONAL_RULE_FILES=1
+PRODUCTION_GOVERNANCE_MODIFIED=NO
 ```
 
-Coverage result: **PASS_CANDIDATE**.
+Important correction: the earlier `128/128` result proved only that every `RULE_MATRIX` row had a destination. It did **not** prove full semantic coverage because the matrix did not enumerate every operational sentence in the old source files.
 
-The check maps every rule/concept inventoried from the current Governance into the compact shadow surface. "Mapped" means the safety/function is preserved, merged, or intentionally replaced by an Owner-accepted redesign decision; it does not mean old wording is copied.
+A second source-document-level audit was therefore performed against the current Core/SKILL, active Source/Storage/SSH-Secret/Target-Host/Provider/Closeout contracts, README/Usage material and templates. Missing or weakened safety semantics found in that audit were restored into `VNEXT.md` draft2.
+
+Current conclusion: **PASS_CANDIDATE for functional/safety coverage, not exact textual equivalence.** The shadow intentionally changes structure and several semantics already approved by the Owner.
+
+### Restored during source-level audit
+
+- full shared-host connection/trust state needed to recover SSH without Owner memory;
+- strict SSH host-key/non-interactive trust behavior;
+- Secret leakage prohibition across command args, env, stdout/stderr, shell history, transcripts, temp files and bundles;
+- atomic/fail-on-existing Secret provisioning plus runtime-access and unrelated-service denial proof;
+- two-phase Secret recovery artifact promotion, parser/serialization and ACL-scope safeguards;
+- Target-Host fail-closed script result, partial-object collision handling and required host-local proof;
+- minimum P0 Discovery inventory;
+- storage-state fields that had been over-compressed;
+- encrypted DB + matching-key recovery pairing and validation;
+- build-context Secret/live-data exclusion, reproducible build/candidate identity;
+- SAFE_MODE/browser-session/REAUTH lifecycle details;
+- Canary expiry/safe-end/restart/duplicate controls;
+- Provider permission/signing-rotation safeguards;
+- Provider recovery timing shapes, no direct SQL recovery, idempotent transaction/replay/requalification/diagnostic-parity rules;
+- Closeout deletion/archive barriers, protected-recovery and recovery-channel checks;
+- Governance pin/override version/scope/reason/expiry metadata.
+
+### Source-audit residual candidates
+
+Two low lexical-overlap items remain and are **not gaps**:
+
+1. old Provider sentence "do not collapse all late payments into one case" is implemented more explicitly by the two timing shapes in `VNEXT.md`;
+2. `SSH config alias` in the old Shared VPS template is an optional recording convenience, not an operational safety requirement.
+
+## Intentional Owner-approved differences from old Governance
+
+These are not omissions:
+
+- one mixed Source-of-Truth chain -> separate Rule Authority and Project Reality;
+- many operational rule files -> one compact `VNEXT.md` rule surface;
+- persistent `EXECUTOR_HANDOFF` -> Execution Evidence + short Executor completion packet;
+- mandatory standalone `PROJECT_STORAGE_MANIFEST.md` -> storage information remains mandatory, file form is optional;
+- Shared VPS connection/trust information remains a factual Shared VPS state/Handoff, but it is not a second policy source;
+- templates/examples/history cannot create policy;
+- historical incident narratives and superseded proposal text are excluded from normal loading;
+- status vocabulary and completion packets are standardized;
+- Gate maximum endpoint, persistent critical constraints, evidence-inspection PASS rule, one-round Governance edit authorization and persist-before-complete are new Owner-approved safeguards.
 
 ## Accepted structural/semantic replacements
 
