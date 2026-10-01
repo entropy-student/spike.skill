@@ -523,7 +523,13 @@ Each Gate should state a small relay contract:
 - artifacts that must be directly reviewable;
 - any Owner relay action.
 
-Status: UNRESOLVED.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- Reviewer owns complete current Governance resolution and Gate-relevant rule loading.
+- Executor does not independently reconstruct Governance; it executes the Gate.
+- Executor only needs to detect obvious contradictions inside the Gate itself.
+- Governance omissions from the Gate are primarily Reviewer responsibility.
 
 ## R23 — Reviewer and Executor completion formats are inconsistent
 
