@@ -545,7 +545,10 @@ ROLLBACK_PLAN
 
 The current Handoff should expose the latest verified rollback capability as current state, while detailed proof/history stays in Evidence/recovery records.
 
-Status: **UNRESOLVED — pulled forward by Owner during R06 discussion.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Represent rollback capability compactly with target, recovery artifacts, method, restore/compatibility proof and trigger/stop conditions. Reviewer Handoff exposes current rollback status; detailed proof stays in Evidence/recovery records.
 
 
 ## R22 — Owner relay package is undefined
@@ -565,7 +568,10 @@ Each Gate should state a small relay contract:
 - artifacts that must be directly reviewable;
 - any Owner relay action.
 
-Status: **UNRESOLVED — awaiting Owner review.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Every Gate explicitly states Reviewer-to-Executor and Executor-to-Reviewer relay requirements. Owner relay defaults to NONE when access already exists; inaccessible required artifacts must be explicitly requested from Owner.
 
 ## R23 — Reviewer and Executor completion formats are inconsistent
 
