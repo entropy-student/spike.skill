@@ -180,3 +180,18 @@ local/sandbox copy = avoid by default
 temporary local materialization = non-authoritative + ephemeral + version-pinned
 conflict between local and GitHub = GitHub wins
 ```
+
+
+## D012 — Reviewer interprets Governance; Executor executes the Gate
+
+**Decision:** ACCEPTED
+
+```text
+Reviewer:
+GitHub Governance -> understand applicable rules -> build Gate
+
+Executor:
+read Gate -> execute Gate -> stop on obvious internal contradiction
+```
+
+Executor is not a second Governance interpreter.
