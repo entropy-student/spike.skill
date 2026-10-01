@@ -710,3 +710,16 @@ Agreed:
 - each Gate defines Reviewer->Executor and Executor->Reviewer relay requirements;
 - Owner relay should be NONE whenever tools already provide access;
 - when a required file/image is not directly reviewable, the relay requirement must explicitly say what the Owner must upload/forward.
+
+
+### Decision 031 — Fixed completion packets and persistent critical constraints
+
+Owner decision: ACCEPTED for R23 and R24.
+
+Agreed:
+- Executor and Reviewer use fixed short completion packets rather than free-form endings.
+- Missing fields are explicitly NONE, not omitted.
+- Reviewer Handoff keeps a compact CRITICAL_CONSTRAINTS block for currently active project invariants.
+- Each Gate re-asserts the constraints relevant to that round immediately before execution.
+- Silent deviation is forbidden.
+- Changing a critical constraint requires an explicit reviewed change path and Owner involvement when it crosses Owner authority.
