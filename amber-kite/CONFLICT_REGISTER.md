@@ -638,7 +638,10 @@ REQUIRED_EVIDENCE
 
 Any required item that is MISSING / INACCESSIBLE / UNREADABLE / NOT_INSPECTED must block PASS and explicitly request the smallest needed relay/Owner action.
 
-Status: UNRESOLVED — high practical priority.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Reviewer PASS requires required evidence to be available, reviewable, actually inspected and sufficient for the acceptance criterion. Missing or unreviewable evidence blocks PASS.
 
 
 ## R26 — Gate granularity can become unnecessarily fine
@@ -662,7 +665,10 @@ Prefer one combined Gate when:
 
 Split only when one of those boundaries changes.
 
-Status: UNRESOLVED — related to existing C05, but current guidance may be too vague.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Combine adjacent work by default when target, rollback/evidence boundary and risk remain compatible. Split Gates only when a material risk, authority, rollback or acceptance boundary changes.
 
 
 ## R27 — Owner intervention / decision boundary is not predictable enough
