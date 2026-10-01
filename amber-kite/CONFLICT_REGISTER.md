@@ -331,7 +331,12 @@ Why risky:
 
 This is safe if the conditional authorization originates from the Owner and remains bounded. It is unsafe if a Reviewer can generate the preauthorization itself.
 
-Status: **APPARENT CONFLICT — likely needs explicit "Owner-issued" qualifier.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- technical continuation may be chained only inside the declared Gate boundary;
+- Owner-only consequential actions require Owner authorization;
+- conditional continuation never exceeds the Gate's explicit maximum endpoint.
 
 ## R16 — Broad "first real business action Canary" rule vs Provider-specific Canary
 
