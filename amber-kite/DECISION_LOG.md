@@ -254,3 +254,16 @@ first real-impact action -> smallest meaningful real-world test first.
 
 Details:
 belong to the current Gate/project/domain-specific procedure.
+
+
+## D018 — No blind retry; define material drift by invalidation impact
+
+**Decision:** ACCEPTED
+
+```text
+ambiguous consequential result
+-> inspect authoritative current state
+-> then decide whether retry is safe
+```
+
+Material drift = a change capable of invalidating prior judgment, authorization, evidence, accepted state, or rollback/recovery assumptions.
