@@ -297,3 +297,14 @@ Each Gate states exactly what must move between Reviewer and Executor. Owner rel
 Executor/Reviewer endings use fixed short fields.
 
 Current project invariants remain visible in Reviewer Handoff and are re-asserted in every applicable Gate. No silent substitution or drift.
+
+
+## D022 — Evidence-complete PASS and risk-boundary Gate sizing
+
+**Decision:** ACCEPTED
+
+PASS requires:
+required -> available -> reviewable -> inspected -> sufficient.
+
+Gate sizing:
+combine by default; split on material risk/authority/rollback/acceptance boundaries, not per operational step.
