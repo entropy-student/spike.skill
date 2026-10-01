@@ -124,3 +124,19 @@ Explicit scoped exception is required to waive a Governance rule.
 
 Reason:
 Normal project instructions had previously been interpreted as permission to skip backup, evidence, rollback or other safety steps.
+
+
+## D008 — Every Gate has a maximum advancement endpoint
+
+**Decision:** ACCEPTED
+
+A Gate must declare:
+```text
+CURRENT_OBJECTIVE
+MAX_ENDPOINT_THIS_ROUND
+MANDATORY_REVIEW_STOP
+```
+
+No Agent may continue beyond that endpoint merely because prior steps succeeded.
+
+Conditional preauthorization is valid only within the explicit Gate boundary and cannot silently cross into a new material stage or risk boundary.
