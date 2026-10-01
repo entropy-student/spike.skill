@@ -320,3 +320,32 @@ Short rule:
 > Evidence proves reality; Handoff preserves Reviewer-accepted reality.
 
 No production Governance text has been changed.
+
+
+### Process Decision 008 — Allow early issue pull-forward
+
+Owner feedback:
+- If discussion naturally reaches one of the registered conflict/issues before its scheduled turn, identify the corresponding Rxx immediately and include it in the current discussion.
+- Do not force the original review order when an earlier topic depends on a later issue.
+- Record the decision once resolved so the later scheduled review can skip or only verify it.
+
+Accepted process:
+```text
+natural discussion reaches registered issue
+→ identify Rxx
+→ pull it forward
+→ discuss/recommend/record Owner decision
+→ later review marks it already resolved
+```
+
+### New issue raised by Owner — rollback assurance
+
+Owner asked how the governance can guarantee rollback/recovery rather than merely recording history.
+
+Assessment:
+- Existing matrix contains rollback-related rules (for example D03 critical writes require rollback/recovery boundaries).
+- Existing conflict register R06/R07 touch document responsibility and history/evidence separation.
+- However, the current conflict register does not yet contain a dedicated information-architecture issue for proving rollback capability end-to-end.
+
+Action:
+- Add a new conflict item R21 for rollback/recovery assurance.
