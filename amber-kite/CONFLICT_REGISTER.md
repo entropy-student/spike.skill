@@ -32,7 +32,10 @@ Why risky:
 
 A Reviewer loading only SKILL/README/metadata can reasonably conclude Closeout is not part of the active rule set.
 
-Status: **UNRESOLVED — review needed.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Use one authoritative active-governance manifest for the Core and all active specialist rules. Other files reference it rather than maintaining separate active-rule lists.
 
 ## R02 — Source-of-truth model differs between old Core Reference and current Source Policy
 
@@ -260,7 +263,10 @@ Why risky:
 
 Any future machine/router logic relying on metadata receives an incomplete addendum set.
 
-Status: **UNRESOLVED — likely stale metadata.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+metadata must not act as an independent rule-status source. It should either be generated from, or strictly mirror, the single authoritative active-governance manifest.
 
 ## R13 — DPAPI status wording differs across files
 
