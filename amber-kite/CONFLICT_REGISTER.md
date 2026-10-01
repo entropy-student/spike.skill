@@ -133,7 +133,14 @@ Why risky:
 
 A literal Reviewer may RETURN merely for using existing SSH connectivity, while another Reviewer may treat all SSH actions as allowed.
 
-Status: **UNRESOLVED WORDING/SCOPE — behavior appears reconcilable but trigger needs precision.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- using the already verified server access channel is normal project execution;
+- modifying the server login/trust/account/permission mechanism is Shared Infrastructure change;
+- if the default channel fails, diagnose/repair first;
+- alternate channels require explicit reason and Reviewer-approved deviation;
+- temporary fallback does not silently become the new default.
 
 ## R06 — Evidence and Reviewer Handoff have unclear history/update semantics
 
