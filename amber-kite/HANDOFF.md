@@ -637,3 +637,14 @@ Agreed:
 - historical explanations and examples should stay out of the normal loading path.
 
 This resolves the design direction for R08 and R09 and adds a general anti-sprawl principle.
+
+
+### Decision 025 — Governance Handoff is continuity-only; historical proposals leave the active path
+
+Owner decision: ACCEPTED for R10 and R11.
+
+Agreed:
+- Governance Handoff records only current governance-refactor progress, accepted decisions, unresolved items and next continuation point.
+- It must not duplicate active rule text, active-rule inventories, loading instructions or long incident history.
+- Superseded proposals/history may be retained, but they are not part of the normal Governance loading path.
+- Historical files must be clearly marked as non-current/non-authoritative and point to the current rule when useful.
