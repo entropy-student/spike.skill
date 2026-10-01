@@ -483,3 +483,20 @@ Owner retains authority over:
 Executor may perform only the explicitly delegated technical actions within the bounded allowlist and must not expand scope.
 
 This resolves the apparent conflict between "Secret is Owner-only" and delegated Secret provisioning.
+
+
+### Decision 016 — Default execution channel and reviewed deviation
+
+Owner decision: ACCEPTED.
+
+Agreed model:
+
+- Each project records a default execution channel and, where useful, a recovery/backup channel.
+- The confirmed default channel must be used by default.
+- If the default channel fails, first diagnose and repair the normal path where practical.
+- A temporary alternative channel must not be silently substituted.
+- Any deviation must record reason, actual channel, Reviewer approval and whether the default channel changed.
+- Temporary recovery use does not automatically redefine the project default.
+- Ordinary technical repair remains Reviewer-owned; Owner intervention is only required when the deviation introduces Owner-only consequences such as new credentials, account authorization or material security changes.
+
+This decision resolves the practical execution-channel portion of R05 and R24.
