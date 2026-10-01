@@ -245,7 +245,7 @@ Created:
 Current inventory size:
 
 ```text
-RULE_CONCEPT_ROWS=112
+RULE_CONCEPT_ROWS=128
 CONFLICT_OR_AMBIGUITY_ITEMS=20
 EXISTING_GOVERNANCE_FILES_MODIFIED=0
 DELETIONS=0
@@ -748,3 +748,33 @@ Agreed:
 - the durable write must be read back/verified;
 - only then may Reviewer/Executor report the round as complete, PASS, or STOP;
 - this applies to Evidence, Reviewer Handoff, Decision Log, and other required state records according to the Gate.
+
+
+## Shadow vNext Build Completion
+
+Owner authorized one combined shadow-build round.
+
+Completed in this round:
+- designed the compressed vNext architecture;
+- wrote `amber-kite/VNEXT.md` as the single operational shadow rule surface;
+- kept specialist rules inside the same file behind a mandatory trigger scan;
+- wrote `amber-kite/COVERAGE.md` as audit-only old-to-new mapping;
+- corrected the rule inventory count from stale `112` to actual `128` unique rows;
+- mapped all 128 inventory rows to vNext with 0 unmapped;
+- did not modify production `vps-project-governance/`.
+
+Current phase:
+```text
+Phase 0 Freeze production Governance                 DONE
+Phase 1 Macro map                                    DONE
+Phase 2 Inventory/classification                     DONE
+Phase 3 Resolve conflicts/design decisions           DONE (33/33)
+Phase 4 Design new architecture                      DONE
+Phase 5 Write shadow version                         DONE
+Phase 6 Old-vs-new coverage verification             PASS_CANDIDATE (128/128 mapped)
+Phase 7 Owner trial/promotion decision               NEXT
+```
+
+Important:
+- `VNEXT.md` remains SHADOW / NON-OPERATIONAL.
+- Promotion or canonical replacement requires a new explicit Owner Governance-change authorization round.
