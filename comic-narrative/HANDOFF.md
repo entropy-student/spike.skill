@@ -1107,3 +1107,23 @@ Owner 已确认本轮已讨论项目全部通过，并要求同步正式文档�
 7. **Part 5 正式规范尚未建立**：SKILL 已把 Part 5 调整为视频时间轴 / 合成 / 成片，但尚无正式 Part 5 文档；未来建立时必须继承“不得重新首次配音 / 重算口播时间”的 Part 2.5 边界。
 
 以上仅为待讨论项，不代表已批准修改。
+
+
+
+### Reviewer 文档归档规则更新（2026-10-01）
+
+为避免独立审查材料与正式运行规则混在模块目录中，Reviewer 产物统一放入独立 `reviews/` 区域；正式 `part*/` 目录只保留当前有效规则与正式运行资产。
+
+当前 Part 3 Reviewer 两份文档已从 `comic-narrative/part3/` 移出，在独立审查分支 `codex/comic-part3-reaudit-20261001` 归档到：
+- `comic-narrative/reviews/part3/STORYBOARD_VISUAL_DIRECTOR_REAUDIT.md`
+- `comic-narrative/reviews/part3/STORYBOARD_VISUAL_DIRECTOR_MODIFICATION_SUGGESTIONS.md`
+
+最终清理 commit：`04325e8bc0719f94cc3ef1f8d298657c7dac38f5`。
+
+Part 4 Reviewer 文档继续按同一原则放在独立 `reviews/part4/` 区域，不进入正式 `part4/`。
+
+规则：
+- `part*/` = 当前正式运行规则；
+- `reviews/` = Reviewer / 独立审查 / 修改建议，不直接参与运行；
+- `source-snapshots/` = 历史原始证据与备份；
+- `HANDOFF.md` = Owner 决策、迁移、审查结论、当前状态与下一步。
