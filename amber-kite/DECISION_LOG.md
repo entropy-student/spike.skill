@@ -83,3 +83,16 @@ README, SKILL, metadata and templates must not keep their own competing active-r
 
 Reason:
 Current status drift across files can make different Reviewers load different rule sets.
+
+
+## D005 — Secret authority remains Owner-only; execution may be delegated
+
+**Decision:** ACCEPTED
+
+```text
+Owner controls Secret authority.
+Executor may perform explicitly delegated technical Secret operations only within the exact approved scope.
+```
+
+Reason:
+This preserves Owner control without requiring the Owner to personally perform every technical Secret operation.
