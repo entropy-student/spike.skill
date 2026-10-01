@@ -723,3 +723,16 @@ Agreed:
 - Each Gate re-asserts the constraints relevant to that round immediately before execution.
 - Silent deviation is forbidden.
 - Changing a critical constraint requires an explicit reviewed change path and Owner involvement when it crosses Owner authority.
+
+
+### Decision 032 — PASS requires inspected evidence; Gates split on risk boundaries
+
+Owner decision: ACCEPTED for R25 and R26.
+
+Agreed:
+- Reviewer PASS requires every required acceptance item to exist, be reviewable by the current Reviewer, actually be inspected, and satisfy the criterion.
+- Missing/inaccessible/unreadable/not-inspected required evidence blocks PASS and triggers the smallest necessary relay/action request.
+- PASS_CANDIDATE from Executor is never a substitute for evidence.
+- Gates are combined by default when target, rollback domain, evidence boundary and risk level remain compatible.
+- Gates split when a material risk/authority/rollback boundary changes.
+- Gate sizing follows risk boundaries, not individual operational steps.
