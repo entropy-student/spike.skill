@@ -56,7 +56,12 @@ Why risky:
 
 The old chain mixes rule authority with project factual state and can conflict with the newer Source Policy when the Core Reference is loaded as "full core rules."
 
-Status: **UNRESOLVED — likely supersession/annotation problem, not yet edited.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- abolish one mixed Source-of-Truth ranking;
+- separate Rule Authority from Project Reality;
+- old mixed precedence must not remain normative in the future shadow design.
 
 ## R03 — Factual precedence says Handoff first, but fresh host/provider read-back can supersede it
 
