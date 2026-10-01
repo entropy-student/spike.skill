@@ -726,7 +726,13 @@ Candidate direction for later review:
 - no project bundle should embed a competing Governance copy;
 - if temporary materialization is technically unavoidable, it must be explicitly non-authoritative, ephemeral, version-pinned, and not reused as the next session's source.
 
-Status: UNRESOLVED — high relevance to Source Policy redesign.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- GitHub canonical is the authoritative Governance source;
+- local/sandbox Governance copies are avoided by default;
+- unavoidable temporary copies are non-authoritative, ephemeral and version-pinned;
+- local copies must never silently become the next session's authority.
 
 
 ## R32 — No explicit maximum advancement boundary for a round
