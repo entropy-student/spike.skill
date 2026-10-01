@@ -230,7 +230,7 @@ Risk flags:
 
 ## Initial count
 
-This first semantic inventory contains **112 rule/concept rows**.
+This semantic inventory contains **128 unique rule/concept rows**. The earlier `112` count was a counting error; no duplicate IDs are present.
 
 It is intentionally conservative: related statements were kept separate when combining them could hide a conflict.
 
