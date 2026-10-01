@@ -349,3 +349,19 @@ Assessment:
 
 Action:
 - Add a new conflict item R21 for rollback/recovery assurance.
+
+
+### Owner Pain Points 009 — relay, return format, execution drift
+
+Owner added three recurring pain points for explicit review:
+
+1. Owner does not have a stable rule for what materials must be passed between Reviewer and Executor, including when repository references are insufficient for visual review.
+2. Reviewer/Executor completion messages are inconsistent, forcing repeated retraining for PASS/RETURN, problems, progress, next step and relay requirements.
+3. Agents may state that they read project rules but later execute with drift; example: an expected SSH operating route later changed to provider/panel operation.
+
+Registered as:
+- R22 Owner relay package contract
+- R23 role completion packet consistency
+- R24 critical invariant / execution-channel drift prevention
+
+Owner also authorized pulling registered issues forward whenever discussion naturally reaches them.
