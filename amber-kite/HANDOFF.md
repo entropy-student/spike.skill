@@ -804,3 +804,26 @@ SHADOW_READY_FOR_CONTROLLED_TRIAL=YES
 ```
 
 This Governance-edit authorization is consumed by this repair round. Any later shadow/canonical Governance modification requires fresh Owner authorization.
+
+
+### Final read-back — semantic repair round
+
+Verified after repair:
+```text
+VNEXT_VERSION=v0.2.0-draft2
+KEY_SAFETY_REPAIRS_READBACK=PASS
+MATRIX_COVERAGE=128/128
+SOURCE_LEVEL_STRONG_RULE_SCAN=PASS_CANDIDATE
+KNOWN_UNRESTORED_SAFETY_GAPS=0
+COVERAGE_OVERCLAIM_CORRECTED=YES
+FILES_CHANGED_OUTSIDE_AMBER_KITE=0
+PRODUCTION_GOVERNANCE_MODIFIED=NO
+```
+
+The remaining source-scan low-match items are classified as non-gaps:
+- "late payment" generic wording is replaced by explicit pre-expiry/post-expiry timing shapes;
+- SSH config alias is an optional factual convenience field, not policy.
+
+Old metadata contains version/status metadata only; the superseded Closeout proposal is historical/non-authoritative and has no reason to enter the operational loading path.
+
+This authorized shadow-Governance modification round is now CLOSED. Any further Governance edit requires fresh Owner authorization.
