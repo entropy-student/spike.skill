@@ -460,3 +460,26 @@ Agreed direction:
 - The manifest should be short and readable by both humans and tooling.
 
 This shadow decision resolves the design issue behind R01 and R12.
+
+
+### Decision 015 — Secret authority vs delegated execution
+
+Owner decision: ACCEPTED.
+
+Agreed model:
+
+```text
+SECRET AUTHORITY = Owner-only
+SECRET TECHNICAL EXECUTION = may be explicitly delegated
+```
+
+Owner retains authority over:
+- whether a Secret should exist;
+- which Secret/purpose is authorized;
+- target environment/location;
+- rotation/revocation decisions;
+- whether delegation is allowed.
+
+Executor may perform only the explicitly delegated technical actions within the bounded allowlist and must not expand scope.
+
+This resolves the apparent conflict between "Secret is Owner-only" and delegated Secret provisioning.
