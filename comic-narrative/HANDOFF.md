@@ -1433,3 +1433,85 @@ T3（服务内部开始生成）如工具仍不可观察，则继续标为不可
 
 当前状态：
 `IMAGEGEN_SPEED_DIAGNOSIS_REVIEWED / NEXT_BATCH_6 / CONCURRENCY_2_BASELINE / FORMAL_RULES_UNCHANGED / H019_RERUN_STILL_DEFERRED`。
+
+
+
+# CURRENT STATUS SNAPSHOT — H019 样板诊断 / 生图速度优化（2026-10-01）
+
+> 本节是当前状态总览，供下一位 Agent 优先读取。历史讨论与完整证据仍保留在上文；正式 Part 3 / Part 4 规则尚未按本轮样板结论继续修改。
+
+## 1. 当前项目状态
+
+- Part 4：仍为已封板正式基线；
+- Part 3：上一轮已批准项已落地，但 H019 样板本轮新增观察尚未正式写回；
+- H019 第一轮：仅作为诊断样板，不作为新版规则最终验证；
+- H019 已生成并 Reviewer 检查 36 张；5 张尚未生成；
+- 第二轮完整重跑：暂缓；
+- 正式 Part 3 / Part 4：本轮尚未按 H019 新发现继续修改；
+- Owner 已要求先审阅“具体改哪份文档 / 哪个章节 / 新增删改什么”，确认后再改正式正文。
+
+## 2. Owner 已确认方向
+
+### Part 3 相关
+- Scene Anchor：通过；
+- 主观脑补必须有可执行且可辨的视觉语法：通过；
+- 重要 before / after 状态变化需要可见证据：通过；
+- Style Reference 改为优先使用 1–2 张专用 Style Plate：方向通过。
+
+### Part 4 相关
+- Style Plate 只承担画风，不继承具体场景 / 道具 / 昼夜 / 姿态 / 构图：方向通过；
+- Part 4 负责把 Part 3 的 Scene Anchor 落成真实 continuity reference：通过；
+- DERIVE_EDIT 连续两次主要 delta 仍不可辨时，停止同类 edit，剩余尝试改 GENERATE：通过；
+- 单个 Visual Beat 最多 3 次有效生图（首次 + 最多 2 次重试）：通过；
+- 未真正产出图片的技术失败不计入这 3 次，但技术重试应另有上限；
+- UI 文字采用“关键事实严格、非关键文字宽松”：通过；
+- “第二轮必须从 Part 2.5 还是 Part 3 开始”本轮淘汰，不讨论。
+
+## 3. 生图速度排查结论
+
+当前证据支持：
+1. 网络与文件保存不是主要瓶颈；
+2. 图片工具 / 服务调用本身存在分钟级等待，是主要外部耗时；
+3. 图片返回后的队列 / 波次 / QA 等后续等待区间也很大，是目前最值得优化的可控部分；
+4. 现有日志不能把“QA 计算时间”和“排队 / 波次等待”完全拆开，因此不得把整个返回后区间都称为纯 QA 耗时；
+5. 简单 TEST-A 约 32 秒，而 H019 图片调用中位约 3 分 18 秒，说明真实 H019 工作负载明显更慢，但目前不能单独归因给参考图、网络或模型服务；
+6. 现阶段不优先调整 VPN / VPS / MTU。
+
+## 4. 下一次小规模执行建议（尚未启动）
+
+先做一个 **6 张图片的小批次**：
+- 并发基线：2；
+- 目的：同时验证新版执行调度、即时 QA、3 次上限、reference / scene / UI 新边界；
+- 不做大规模 H019 重跑；
+- 每张图返回后立即：保存 → 硬门 QA → 释放其依赖任务；
+- 无依赖任务不因其他图片失败而暂停；
+- 记录：submit / return / saved / QA start / QA end / dependency released；
+- 同一种语义错误连续 2 次：停止机械重试，返回重新编译 / 规划；
+- DERIVE_EDIT 连续 2 次 main delta 不可辨：剩余有效尝试切 GENERATE。
+
+### 时间预估
+
+按现有 H019 与 TEST-A/B 数据：
+- 无明显失败 / 重试：约 15–25 分钟完成 6 张；
+- 有 1–2 次内容重试：约 25–40 分钟；
+- 若服务进入 H019 的 P90 级慢调用，可能更久，因此以上仅作执行预算，不是 SLA。
+
+6 张足以观察：
+- 并发 2 的真实吞吐；
+- 图片返回后是否仍有长时间空等；
+- 即时 QA 是否能缩短依赖释放；
+- Style Plate / Scene Anchor / UI 文本策略是否减少返工。
+
+若这一批运行稳定，再决定是否比较并发 3 / 4；不预设并发 4 最优。
+
+## 5. 下一步顺序
+
+1. Owner 审阅正式 Part 3 / Part 4 修改位置清单；
+2. 经 Owner 明确批准后，再修改两份正式文档；
+3. Style Plate 需要先生成 / 选定并确认后，才写入长期视觉资产清单；
+4. 之后再决定是否启动 6 张小批次验证；
+5. 只有小批次验证后仍重复出现的问题，才继续升级正式规则；
+6. H019 第二轮完整重跑继续保持 DEFERRED。
+
+当前状态：
+`H019_SAMPLE_DIAGNOSIS_COMPLETE / SPEED_BOTTLENECK_REVIEWED / FORMAL_PART3_PART4_PENDING_OWNER_EDIT_MAP_APPROVAL / NEXT_PILOT_PLANNED_6_IMAGES_CONCURRENCY_2 / FULL_RERUN_DEFERRED`
