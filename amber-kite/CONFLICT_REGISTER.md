@@ -742,4 +742,7 @@ DO_NOT_CROSS_WITHOUT_OWNER=<boundary, if any>
 
 If the Owner has not stated an expectation, Reviewer should choose the next natural review boundary rather than assume unlimited continuation.
 
-Status: UNRESOLVED — pulled forward during R15 discussion.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Each Gate must state the maximum endpoint for the round and the mandatory review stop. If the Owner did not authorize crossing the next material stage/risk boundary, the Agent stops at the declared endpoint.
