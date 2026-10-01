@@ -45,3 +45,25 @@ If discussion reaches a registered issue before its planned review order:
 - record the decision;
 - later skip or only verify it.
 
+
+
+## D003 — Separate Rule Authority from Project Reality
+
+**Decision:** ACCEPTED
+
+Do not use one combined Source-of-Truth list for both rules and facts.
+
+```text
+RULE AUTHORITY:
+Owner explicit decision
+→ active bounded override
+→ current GitHub canonical Governance
+
+PROJECT REALITY:
+fresh authoritative evidence
+→ Reviewer reconciliation
+→ REVIEWER_HANDOFF stores accepted state
+```
+
+Reason:
+Rules answer "what should be followed"; evidence answers "what is actually true." Mixing them caused contradictory precedence behavior.
