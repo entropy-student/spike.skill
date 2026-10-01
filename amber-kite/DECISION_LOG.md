@@ -195,3 +195,20 @@ read Gate -> execute Gate -> stop on obvious internal contradiction
 ```
 
 Executor is not a second Governance interpreter.
+
+
+## D013 — Persistent Executor Handoff is removed; its responsibilities are split
+
+**Decision:** ACCEPTED
+
+```text
+Gate
+-> Executor
+-> Execution Evidence + short completion packet
+-> Reviewer
+-> Reviewer Handoff
+
+Rollback/Recovery Record remains separate.
+```
+
+The next Agent continues from Reviewer-accepted state, not an Executor self-declared completion state.
