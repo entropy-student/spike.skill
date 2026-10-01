@@ -525,3 +525,21 @@ Implication:
 Authority alone is not enough. Each Gate needs an explicit maximum advancement boundary so "technically allowed" does not become "unexpectedly progressed."
 
 Registered as R32 and linked to R15 conditional preauthorization / R26 Gate sizing.
+
+
+### Decision 018 — Explicit maximum advancement boundary per Gate
+
+Owner decision: ACCEPTED.
+
+Agreed model:
+
+Every Gate / round must declare:
+- current objective;
+- maximum endpoint allowed in this round;
+- the checkpoint where execution must stop for review.
+
+If the Owner did not explicitly authorize continuation beyond that endpoint, the Agent must not cross into the next material stage or risk boundary.
+
+Conditional continuation is allowed only when it is explicitly inside the declared round boundary. Technical permission alone is not permission to keep advancing indefinitely.
+
+This decision resolves R32 and constrains R15 conditional preauthorization.
