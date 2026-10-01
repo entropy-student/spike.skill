@@ -153,3 +153,18 @@ Reviewer escalation must include:
 - why escalation is necessary;
 - exact decision requested;
 - consequences/tradeoffs of the options.
+
+
+## D010 — Governance-edit authorization is explicit and single-round
+
+**Decision:** ACCEPTED
+
+```text
+project authority != governance-edit authority
+
+Governance edit allowed only when:
+Owner explicitly authorizes this Governance modification round.
+
+Authorization expires after that round.
+Next round = fresh Owner authorization required.
+```
