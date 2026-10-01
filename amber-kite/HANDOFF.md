@@ -648,3 +648,15 @@ Agreed:
 - It must not duplicate active rule text, active-rule inventories, loading instructions or long incident history.
 - Superseded proposals/history may be retained, but they are not part of the normal Governance loading path.
 - Historical files must be clearly marked as non-current/non-authoritative and point to the current rule when useful.
+
+
+### Decision 026 — Use a small canonical status vocabulary
+
+Owner decision: ACCEPTED for R13.
+
+Agreed:
+- use a small shared set of status values instead of each document inventing its own wording;
+- explanatory nuance belongs in a short reason field, not in the status label itself.
+
+Candidate vocabulary:
+PASS / PARTIAL / UNVERIFIED / BLOCKED / NOT_APPLICABLE.
