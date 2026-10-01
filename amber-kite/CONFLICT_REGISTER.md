@@ -415,3 +415,49 @@ We should review these one by one with:
 - resulting future placement.
 
 No source file should be changed during that review unless the Owner later explicitly authorizes a shadow rewrite.
+
+
+## R21 — Rollback is referenced widely, but end-to-end rollback assurance is not represented as one explicit state model
+
+**Class:** C6 / safety-model gap
+
+Observed:
+
+Governance repeatedly requires:
+- rollback definition before critical writes;
+- backup/recovery points;
+- pre-change baselines;
+- restore/read-back validation;
+- production rollback readiness.
+
+But these requirements are spread across Core, Storage, Provider, templates and Change Gate guidance.
+
+What is not yet cleanly represented is a single answer to:
+
+> For the current project/Gate, what exact rollback point exists, what artifacts make it recoverable, has restore compatibility been proven, and under what condition may that rollback be used?
+
+Why risky:
+
+A project can have excellent historical records but still be impossible to roll back if:
+- the old release no longer exists;
+- the backup is invalid;
+- the Secret/recovery pair is missing;
+- the rollback command/path was never tested;
+- the restore boundary is ambiguous.
+
+Historical documentation is therefore not itself rollback capability.
+
+Candidate direction for later review:
+
+```text
+ROLLBACK_PLAN
++ ROLLBACK_POINT
++ RECOVERY_ARTIFACTS
++ RESTORE/COMPATIBILITY_PROOF
++ TRIGGER/STOP_CONDITIONS
+= VERIFIED_ROLLBACK_CAPABILITY
+```
+
+The current Handoff should expose the latest verified rollback capability as current state, while detailed proof/history stays in Evidence/recovery records.
+
+Status: **UNRESOLVED — pulled forward by Owner during R06 discussion.**
