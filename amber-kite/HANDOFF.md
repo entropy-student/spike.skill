@@ -446,3 +446,17 @@ fresh authoritative evidence
 ```
 
 The older single mixed precedence model is considered unsuitable for the shadow redesign.
+
+
+### Decision 014 — Single active-governance manifest
+
+Owner decision: ACCEPTED.
+
+Agreed direction:
+
+- There must be exactly one authoritative manifest that lists the currently active Governance Core and specialist rules/addenda.
+- README, SKILL, metadata, templates and Handoffs must not independently maintain competing active-rule lists.
+- Other files may reference the manifest but must not become alternate version/status registries.
+- The manifest should be short and readable by both humans and tooling.
+
+This shadow decision resolves the design issue behind R01 and R12.
