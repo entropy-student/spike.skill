@@ -515,3 +515,104 @@ Candidate direction:
 Store critical project invariants explicitly in current project state and require every Gate preflight to re-assert the applicable ones immediately before mutation. Any deviation requires an explicit reviewed override; no silent substitution.
 
 Status: UNRESOLVED — high practical priority.
+
+
+## R25 — Completion claims and PASS can occur without complete reviewable evidence
+
+**Class:** C1/C6 / acceptance-integrity gap
+
+Owner pain:
+- Executor may say a Gate is done when required work is incomplete.
+- Executor may say PASS_CANDIDATE when evidence does not actually prove the acceptance criteria.
+- Reviewer may issue PASS even when key evidence is missing, inaccessible, unreadable or never inspected.
+- Missing visual evidence is a concrete example: if the Reviewer cannot actually inspect the required image/artifact, lack of access must not silently become PASS.
+
+Candidate direction:
+
+A Gate can only reach Reviewer PASS when all required acceptance evidence is classified:
+
+```text
+REQUIRED_EVIDENCE
+→ AVAILABLE
+→ REVIEWABLE_BY_CURRENT_REVIEWER
+→ ACTUALLY_INSPECTED
+→ SATISFIES_ACCEPTANCE_CRITERIA
+```
+
+Any required item that is MISSING / INACCESSIBLE / UNREADABLE / NOT_INSPECTED must block PASS and explicitly request the smallest needed relay/Owner action.
+
+Status: UNRESOLVED — high practical priority.
+
+
+## R26 — Gate granularity can become unnecessarily fine
+
+**Class:** C6 / workflow-efficiency gap
+
+Owner pain:
+Some adjacent Gates appear to be split into many small rounds even when they may share the same rollback domain, evidence boundary and risk level.
+
+Existing Governance allows Gate compression, but does not give a simple operational sizing rule that consistently prevents over-fragmentation.
+
+Candidate direction:
+
+Prefer one combined Gate when:
+- same target/system;
+- same rollback domain;
+- same evidence boundary;
+- no new Owner-only checkpoint between steps;
+- no materially higher-risk mutation is introduced;
+- failure of a later step does not make earlier accepted work unsafe.
+
+Split only when one of those boundaries changes.
+
+Status: UNRESOLVED — related to existing C05, but current guidance may be too vague.
+
+
+## R27 — Owner intervention / decision boundary is not predictable enough
+
+**Class:** C2/C6 / authority-usability gap
+
+Owner pain:
+Some questions are correctly Owner-only, while others appear to be ordinary technical choices that should have been decided by Reviewer. The Owner does not have a clear mental model for which is which.
+
+Candidate direction:
+
+Use a three-way decision model:
+
+```text
+OWNER
+= consequence/business/account/identity/payment/irreversible/material-risk choice
+
+REVIEWER
+= architecture, technical trade-offs, Gate design, rollback strategy, acceptance decision
+
+EXECUTOR
+= bounded implementation choices inside the approved Gate
+```
+
+When asking Owner for a decision, Reviewer must state why it cannot be safely resolved within Reviewer authority.
+
+Status: UNRESOLVED.
+
+
+## R28 — Durable project recording is not guaranteed before session loss
+
+**Class:** C1/C6 / continuity gap
+
+Owner pain:
+Reviewer/Executor may finish work in chat but fail to persist current state, decisions or evidence. Browser/chat failure can then leave the durable record behind reality, causing rediscovery, repeated work or stale handoffs.
+
+Candidate direction:
+
+Introduce a durable checkpoint invariant:
+
+```text
+execution/review result reached
+→ persist required Evidence / Decision / Handoff update
+→ read back durable record
+→ only then report round complete / STOP
+```
+
+For any consequential Gate, "done in chat" without durable write/read-back should not count as fully closed.
+
+Status: UNRESOLVED — high practical priority.
