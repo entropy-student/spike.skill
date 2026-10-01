@@ -673,10 +673,14 @@ Why risky:
 - multiple Agents can independently "improve" Governance and create drift;
 - current Governance becomes harder to audit because rule changes are mixed with normal project work.
 
-Candidate direction for later review:
-Governance mutation should require a distinct explicit authority boundary, separate from ordinary project Review/Execution authority. Project work may propose a Governance candidate, but must not directly alter canonical Governance without a specific Governance-change authorization.
+Accepted direction:
+- project execution/review authority never implies Governance-edit authority;
+- canonical Governance changes require explicit Owner authorization;
+- that authorization is valid for one modification round only;
+- each later modification round requires fresh Owner authorization;
+- Agents may propose or record issues without mutation authority.
 
-Status: UNRESOLVED.
+Status: **SHADOW DECISION ACCEPTED.**
 
 
 ## R30 — Governance reading responsibility is unclear and partial reading causes omissions
