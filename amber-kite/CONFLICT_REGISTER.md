@@ -721,7 +721,10 @@ execution/review result reached
 
 For any consequential Gate, "done in chat" without durable write/read-back should not count as fully closed.
 
-Status: UNRESOLVED — high practical priority.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Persist all required durable state first, read it back to verify success, and only then report the round as complete/PASS/STOP. Chat-only completion is not sufficient closure.
 
 
 ## R29 — Governance content can be modified without explicit Owner authorization
