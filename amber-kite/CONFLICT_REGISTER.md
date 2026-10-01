@@ -114,7 +114,12 @@ Why risky:
 
 Both statements are true only if the second is clearly modeled as a narrow exception to the first. Today that exception is repeated in several places, while the old Core Reference still reads as absolute.
 
-Status: **APPARENT CONFLICT WITH KNOWN EXCEPTION — needs one authoritative formulation.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted formulation:
+- Secret authority/authorization remains Owner-only.
+- Secret technical execution may be explicitly delegated within a bounded exact scope.
+- Delegation does not transfer ownership/authority or imply any other consequential authorization.
 
 ## R05 — "SSH is Shared Infrastructure" vs ordinary SSH read-only connection recovery
 
