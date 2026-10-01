@@ -1334,3 +1334,27 @@ Owner 要求下一阶段逐个过。建议按以下顺序：
 
 当前状态：
 `H019_SAMPLE_ANALYSIS_COMPLETE / RERUN_PREP_COMPLETE / SECOND_RERUN_DEFERRED / FORMAL_RULES_UNCHANGED / READY_FOR_OWNER_ITEM_REVIEW`。
+
+
+
+### H019 样板问题 Owner 决策收敛（2026-10-01）
+
+本轮只记录 Owner 已确认的修改方向；**正式 Part 3 / Part 4 尚未改动**，等待 Owner 审阅精简修改清单后再写入。
+
+已确认：
+- Style Reference：改为优先使用 1–2 张专用 Style Plate，减少具体场景 / 道具 / 构图污染；正式落点待写入 Part 3 长期视觉基线与 Part 4 reference 使用规则。
+- Scene Anchor：通过。Part 3 锁空间身份 / 时间状态 / 进入离开边界，Part 4 负责选择真实连续性参考，不恢复固定数量 Scene Master。
+- 主观脑补视觉语法：通过。Part 3 需要明确主观画面与客观现实的可辨边界，不能只写“主观气氛”。
+- before / after 证据：通过。重要状态变化需要能从画面本身辨认；必要时用 setup → matched reveal / before → after。
+- DERIVE_EDIT fallback：通过。若连续两次主要 delta 仍不可辨，不再继续同类 edit，剩余尝试切 GENERATE。
+- 单 Beat 生图上限：通过。每个 Beat 最多 3 次有效生图（首次 + 最多 2 次重试）；未真正产出图片的技术失败不计入这 3 次，但技术重试另受限制。
+- UI 文本：通过“关键事实严格、非关键文字宽松”。只把会改变观众理解 / 故事结论的 UI 文字或状态设为硬验收；非关键小字不因轻微偏差自动重生成，但不得新增会改变事实的金额、日期、品牌、订单状态等。
+- “第二轮从 Part 2.5 还是 Part 3 开始”本轮淘汰，暂不纳入规则讨论。
+
+待 Owner 下一步：
+1. 审阅仅包含“哪份正式文档 / 哪个章节 / 新增或删改什么内容”的精简修改清单；
+2. 通过后再分别更新 Part 3 与 Part 4；
+3. 在此之前不修改正式模块正文。
+
+当前状态：
+`H019_OWNER_DECISIONS_RECORDED / FORMAL_PART3_PART4_UNCHANGED / WAITING_EDIT_MAP_APPROVAL`。
