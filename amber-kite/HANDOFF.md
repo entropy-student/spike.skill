@@ -500,3 +500,17 @@ Agreed model:
 - Ordinary technical repair remains Reviewer-owned; Owner intervention is only required when the deviation introduces Owner-only consequences such as new credentials, account authorization or material security changes.
 
 This decision resolves the practical execution-channel portion of R05 and R24.
+
+
+### Decision 017 — Owner instruction changes goals/authorization, not safety rules by default
+
+Owner decision: ACCEPTED.
+
+Agreed model:
+
+- Owner may change project goals, priorities, business choices and consequential authorization.
+- A normal Owner instruction does not automatically waive backup, rollback, evidence, validation, Secret-safety or Shared-Infra boundaries.
+- If an exception to Governance is genuinely intended, it must be explicit, scoped and identifiable as a rule exception rather than inferred from a normal project instruction.
+- Agents must not treat vague urgency or "just do it" wording as permission to skip safety steps.
+
+Owner explicitly recognized that previous project work sometimes skipped steps after ordinary instructions, confirming this is a real operational failure mode.
