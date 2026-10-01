@@ -607,3 +607,18 @@ Agreed model:
 - Executor reads the Gate and executes within it.
 - Executor must stop only when the Gate itself contains an obvious contradiction or explicit self-conflict (for example, "do not publish" and later "publish now").
 - If Reviewer omitted a Governance rule from the Gate, that is primarily a Reviewer loading/design failure, not a requirement for Executor to reread all Governance.
+
+
+### Decision 023 — Remove persistent Executor Handoff; preserve its functions by separation
+
+Owner decision: ACCEPTED for R07.
+
+Agreed model:
+- Persistent EXECUTOR_HANDOFF is removed from the future design.
+- Executor still sends a short completion/relay packet to Reviewer after each Gate.
+- Execution facts, changes, validation, anomalies and evidence references live in EXECUTION_EVIDENCE.
+- Reviewer-accepted current project state and next continuation point live in REVIEWER_HANDOFF.
+- Rollback/recovery capability, recovery artifacts and restore method live in a dedicated rollback/recovery record.
+- The next Agent continues from Reviewer-accepted state, not directly from an Executor self-claim.
+
+This preserves auditability, cross-Agent continuity and rollback assurance while removing duplicate long-lived records.
