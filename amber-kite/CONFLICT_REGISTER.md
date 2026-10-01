@@ -718,3 +718,28 @@ Candidate direction for later review:
 - if temporary materialization is technically unavoidable, it must be explicitly non-authoritative, ephemeral, version-pinned, and not reused as the next session's source.
 
 Status: UNRESOLVED — high relevance to Source Policy redesign.
+
+
+## R32 — No explicit maximum advancement boundary for a round
+
+**Class:** C2/C6 / expectation-boundary gap
+
+Owner pain:
+An Agent may continue through several technically permitted steps and end in a project state farther than the Owner expected, especially when the Owner did not explicitly state a stopping point.
+
+Why risky:
+- technically reversible progress can still surprise the Owner;
+- a Reviewer may interpret "continue" too broadly;
+- Gate compression and conditional preauthorization can accidentally amplify this effect.
+
+Candidate direction:
+Every Gate should declare a maximum endpoint, for example:
+
+```text
+THIS_ROUND_MAX_ENDPOINT=<state/checkpoint>
+DO_NOT_CROSS_WITHOUT_OWNER=<boundary, if any>
+```
+
+If the Owner has not stated an expectation, Reviewer should choose the next natural review boundary rather than assume unlimited continuation.
+
+Status: UNRESOLVED — pulled forward during R15 discussion.
