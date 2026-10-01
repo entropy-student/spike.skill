@@ -82,7 +82,17 @@ Possible future distinction to review:
 
 No decision made.
 
-Status: **UNRESOLVED — high priority.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+
+```text
+Fresh authoritative evidence proves current reality
+→ Reviewer reconciles
+→ REVIEWER_HANDOFF becomes the updated canonical accepted state
+```
+
+The Handoff must not override stronger fresh reality evidence merely because it is the current document.
 
 ## R04 — Secret creation is Owner-only in Core, but delegated generation is active
 
