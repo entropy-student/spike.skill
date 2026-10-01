@@ -396,7 +396,10 @@ Why risky:
 
 The same safety principle is re-derived independently. Future domains may omit it.
 
-Status: **CANDIDATE CROSS-CUTTING CORE PRINCIPLE — not yet promoted.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Use one generic Core principle: when a consequential action's result is ambiguous, inspect current authoritative state before retrying. Do not duplicate the same no-blind-retry rule across domains.
 
 ## R18 — "Fresh material drift" lacks one canonical definition
 
@@ -415,7 +418,10 @@ Why risky:
 
 Reviewer judgment becomes inconsistent between projects.
 
-Status: **UNRESOLVED — candidate concept definition.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted definition:
+Material drift is any change that could invalidate a previous judgment, authorization, evidence set, accepted state, or rollback/recovery assumption. Irrelevant wording/history-only changes are not material drift.
 
 ## R19 — Usage Scenarios and templates can accidentally become policy sources
 
