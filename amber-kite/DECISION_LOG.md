@@ -140,3 +140,16 @@ MANDATORY_REVIEW_STOP
 No Agent may continue beyond that endpoint merely because prior steps succeeded.
 
 Conditional preauthorization is valid only within the explicit Gate boundary and cannot silently cross into a new material stage or risk boundary.
+
+
+## D009 — Clear Owner intervention boundary
+
+**Decision:** ACCEPTED
+
+Reviewer decides ordinary technical choices within the Gate.
+Owner decides whether to accept material consequences.
+
+Reviewer escalation must include:
+- why escalation is necessary;
+- exact decision requested;
+- consequences/tradeoffs of the options.
