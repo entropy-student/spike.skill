@@ -626,3 +626,67 @@ execution/review result reached
 For any consequential Gate, "done in chat" without durable write/read-back should not count as fully closed.
 
 Status: UNRESOLVED — high practical priority.
+
+
+## R29 — Governance content can be modified without explicit Owner authorization
+
+**Class:** C1/C2 / governance-authority gap
+
+Owner pain:
+Reviewer or Executor may write/update Governance documents without the Owner explicitly authorizing a Governance change.
+
+Why risky:
+- project-specific observations can silently become global rules;
+- multiple Agents can independently "improve" Governance and create drift;
+- current Governance becomes harder to audit because rule changes are mixed with normal project work.
+
+Candidate direction for later review:
+Governance mutation should require a distinct explicit authority boundary, separate from ordinary project Review/Execution authority. Project work may propose a Governance candidate, but must not directly alter canonical Governance without a specific Governance-change authorization.
+
+Status: UNRESOLVED.
+
+
+## R30 — Governance reading responsibility is unclear and partial reading causes omissions
+
+**Class:** C6 / loading-contract gap
+
+Owner pain:
+- Reviewer should understand the complete Governance but sometimes reads only part of it.
+- Executor prompts may also tell Executor to read Governance.
+- It is unclear whether both roles should read everything or whether each role should load a scoped subset.
+
+Why risky:
+- Reviewer may omit an active addendum while still issuing a Gate;
+- Executor may independently interpret Governance and create a second policy decision layer;
+- duplicated reading increases context while still not guaranteeing completeness.
+
+Candidate direction for later review:
+Define explicit role-based loading contracts:
+- Reviewer: must resolve the complete current Governance map/version and load all active Core + all specialist contracts applicable to the current Gate;
+- Executor: should not independently reconstruct Governance policy; it should read the current Gate package plus only the specific referenced rules/contracts needed to execute and detect prohibited scope.
+
+Status: UNRESOLVED.
+
+
+## R31 — Local/sandbox Governance copies can silently outrank GitHub latest
+
+**Class:** C2/C3 / source-drift gap
+
+Owner requirement:
+Reviewer and Executor should not download or maintain Governance copies in sandbox/local workspaces as working authorities. Owner only trusts GitHub canonical as current.
+
+Existing relation:
+This overlaps the current Source Policy statement that local copies are non-authoritative caches, but the Owner wants a stronger operational rule: avoid creating those copies in the first place where possible.
+
+Why risky:
+- later sessions may find the local copy first;
+- the copy may be stale;
+- an Agent may claim it read "the Governance" while actually reading an older snapshot;
+- duplicated files make provenance/version harder to prove.
+
+Candidate direction for later review:
+- Governance should be read directly from GitHub canonical whenever tooling permits;
+- no project bundle should embed a competing Governance copy;
+- if temporary materialization is technically unavoidable, it must be explicitly non-authoritative, ephemeral, version-pinned, and not reused as the next session's source.
+
+Status: UNRESOLVED — high relevance to Source Policy redesign.
