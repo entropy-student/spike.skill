@@ -400,3 +400,16 @@ Owner added four recurring problems:
 4. Reviewer or Executor sometimes fails to persist project state/evidence/decisions before stopping; if the chat/browser crashes, the durable record may lag reality and work may need to be rediscovered or repeated.
 
 Registered as R25-R28.
+
+
+### Owner Pain Points 012 — Governance self-write authority, read completeness, local-copy drift
+
+Owner added three governance-management concerns for later review:
+
+1. Reviewer/Executor has sometimes written to the Governance repository/content without explicit Owner authorization. Owner believes this contributed to current Governance disorder.
+2. Reviewer is expected to understand the full Governance, but may only read part of it and omit active rules; meanwhile Executor prompts often instruct the Executor to read Governance too. The correct reading responsibility for each role is unclear.
+3. Owner does not want Reviewer or Executor to download/copy Governance into sandbox/local storage because local historical copies may later be read instead of the latest GitHub canonical version.
+
+Registered as R29-R31.
+
+The previously opened Source-of-Truth discussion remains pending Owner response and is not resolved by this entry.
