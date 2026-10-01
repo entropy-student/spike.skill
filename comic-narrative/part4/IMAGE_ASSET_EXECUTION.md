@@ -23,23 +23,46 @@ Part 4 接收：
 5. Visual Beat 中已经确定的故事意义、可见事件、POV / 物理视角、景别、setup/reveal、连续性与单帧要求；
 6. Part 3 封板的 3 Character Master + 2 Style Reference；
 7. 当前集确有需要时产生的单集角色 / 场景 / 道具 / UI 参考；
-8. 可用的历史 Reference Library / production Registry / accepted outputs。
+8. Part 4.5 当前 active catalog 与对应完整图片。
 
-### Part 4 拥有
+### 图片规划 Agent：Part 4 + Part 4.5
 
-Part 4 负责把“应该画什么”编译为“如何稳定得到完整最终图片”：
+默认由同一个**图片规划 Agent**完成 Part 4 与 Part 4.5 的生图前工作；Part 4.5 是素材库 / 复用服务职责，不要求独立成另一个 Agent。
+
+图片规划 Agent 负责：
 
 - 单集资产需求发现；
 - canonical reference lock；
-- 参考图检索、兼容性判断与目标用途选择；
+- 调用 Part 4.5 检索历史完整图片，并判断兼容性、`status / reuse_scope / reuse_modes`；
+- 为每个 Visual Beat 锁定：新生成 / 基于旧图修改 / 完整图直接复用，以及仅作参考的历史图片用途；
 - Visual Beat → 可执行资产绑定；
-- GENERATE / DERIVE_EDIT / exact full-frame reuse 等执行决策；
 - Prompt / Edit 编译；
-- 图片执行器的确定性输入；
-- 图片级 QA；
-- 运行记录、输出映射、Registry / Reference Library 的生产后 reconciliation；
-- 校准例外与失败返回；
-- 将全部执行信息编译为一个完整的图片执行包，作为 Part 4 的最终交付物。
+- 前置依赖、fallback、验收与失败返回条件；
+- 执行包完整性 QA；
+- 将全部执行信息编译为一个自包含图片执行包。
+
+图片生成完成后，同一个图片规划 Agent 可以再次承担 Part 4.5 的生产后整理：把合格的最终完整图作为未来素材候选，核对并记录其复用资格。无需为此新增独立 Part 4.5 Agent。
+
+### 生图执行 Agent
+
+生图执行 Agent 是下一环节。它只按已锁图片执行包：
+
+- 生成 / 编辑 / 完整图复用；
+- 按既定验收条件完成逐图 QA；
+- 全部图片完成后按原 Beat 顺序做整集结果 QA；
+- 按既定 retry / return 条件处理失败；
+- 保存最终 raster、路径、hash 与运行记录。
+
+它不得重新查素材库、改变复用方式、替换参考图、改 POV / 镜头 / 人物 / 故事意义、增加临时资产或重新导演。
+
+### 两个完成状态
+
+必须区分：
+
+1. **Part 4 规划完成 / 执行包完成**：所有目标 Beat 已形成自包含任务，真实参考、执行方式、依赖、fallback、验收与包 QA 均完整；
+2. **Part 4 图片生产完成**：执行 Agent 已得到全部最终图片，逐图 QA、整集结果 QA、路径 / hash / 映射 reconciliation 均完成且无未处理 HOLD。
+
+交出执行包不等于全部图片已经生产完成。
 
 ### Part 4 不拥有
 
@@ -60,22 +83,28 @@ Part 4 不得：
 
 ## 2. 当前执行链
 
-Part 4 当前逻辑链：
-
 ```text
-Episode Asset Requirement Extraction
-→ Canonical Reference Lock
-→ Reference / Library Search
-→ Visual Acquisition / Style Calibration Check
-→ Frame-level Requirement Resolution
-→ Beat Asset Binding
-→ Execution Decision
-→ Prompt / Edit Compilation
-→ Image Execution
-→ Frame QA
-→ Episode Image Output Reconciliation
-→ Registry / Reference Library Update
+Part 3 锁定视觉规划
+→ 图片规划 Agent（Part 4 + Part 4.5）
+   → Episode Asset Requirement Extraction
+   → Canonical Reference Lock
+   → Part 4.5 历史素材检索 / 兼容性判断
+   → Execution Decision
+   → Beat Asset Binding
+   → Prompt / Edit Compilation
+   → 依赖 / fallback / acceptance 编译
+   → 执行包 QA
+→ 图片执行包
+→ 生图执行 Agent
+   → Image Execution
+   → Frame QA
+   → Episode Result QA
+   → Output / hash / mapping Reconciliation
+→ 图片规划 Agent（Part 4.5 生产后整理）
+   → 未来素材候选 / 复用资格登记
 ```
+
+这是职责链，不要求每一项对应独立 Agent、独立文件或审批环。
 
 ---
 
@@ -175,35 +204,29 @@ QA 必须按可见范围判断。只看到手、袖口或背影时，不为了�
 
 ## 6. Scene / Prop / UI Continuity
 
-对本集对象，只有满足以下至少一项时，才建立 episode-local stable ID / mini master：
+对本集对象，满足以下至少一项时，应锁定 episode-local stable ID 与必要连续性约束：
 
 - 同一对象重复出现在多个 Visual Beat；
 - 前后状态需要稳定连续；
 - 对象承担关键因果证据；
 - 不锁定参考时容易产生明显漂移。
 
-典型对象包括：
+典型对象包括 recurring supporting character、scene geometry、causal prop、UI shell / document shell。
 
-- recurring supporting character；
-- scene geometry；
-- causal prop；
-- UI shell / document shell。
+**锁定稳定约束不等于必须额外生成 mini master。** 可按风险依次使用：
 
-一次性、低连续性、低因果风险的场景 / 道具 / UI 不单独生成临时参考资产，直接在对应最终图片任务中处理。
+- 已有 canonical reference；
+- Part 4.5 中兼容且获准用于当前用途的完整旧图；
+- 本集较早生成并已通过 QA 的最终帧；
+- 只有确有必要时才预生成 episode-local mini master。
 
-需要锁定的内容可包括：
+若后续任务依赖本集较早最终帧，必须预先写明前置 task、用途和准入条件；只有前置图通过 QA、实际文件落盘并记录真实 hash 后，才能作为正式 source / reference。
 
-- silhouette / geometry；
-- color；
-- placement；
-- screen axis / camera side；
-- allowed state variants；
-- causal quantity；
-- reference path。
+一次性、低连续性、低因果风险的场景 / 道具 / UI 不单独生成临时参考资产，直接在最终图片任务中处理。
 
-连续性不是“看起来差不多”，而是：
+需要锁定的内容可包括 silhouette / geometry、color、placement、screen axis / camera side、allowed state variants、causal quantity 与 reference path。
 
-> 同一对象身份稳定，并且观众能认出来；状态变化只能改变故事事件要求改变的部分。
+连续性不是“看起来差不多”，而是同一对象身份稳定、观众能认出来；状态变化只改变故事事件要求改变的部分。
 
 ---
 
@@ -268,141 +291,93 @@ Part 3 Visual Beat 是 canonical 上游。`Frame Blueprint` 若存在，只能�
 
 ---
 
-## 9. Reference Library / Production Registry / Outputs
+## 9. Production Records 与 Part 4.5 Active Library
 
-当前三个记录层职责如下：
+当前需要区分“真实生产记录”和“未来可复用素材库”。
 
-### Outputs
+### Production Records
 
-`outputs/<episode>/runs/<run>/`
+`outputs/<episode>/runs/<run>/` 或等价记录负责保存真实生产事实，例如：
 
-记录真实生产运行与 retained artifacts。
-
-核心：
-
-- `RUN_RECORD.json`；
-- episode `INDEX.md`；
-- final complete raster frames；
-- `ASSET_OUTPUT_MANIFEST.json` 或同等 Visual Beat → final asset 映射。
-
-### Production Registry
-
-记录生产历史与 provenance：
-
+- run / input version；
 - execution mode；
-- source / derived-from；
+- source / supporting refs；
 - provider / model；
-- prompt；
-- QA；
-- run；
-- storage state；
-- reuse scope。
+- actual prompt / edit；
+- final path / hash；
+- QA / retry / return；
+- superseded 关系。
 
-“生产中过关”不自动等于“可跨集复用”。
+生产中过关不自动等于可跨集复用。
 
-### Reference Library
+### Part 4.5 Active Library
 
-是可检索的复用索引。
+当前正式历史素材复用入口是：
 
-每个 record 必须基于**完整 raster image**，而不是裁切素材。
+```text
+part4_5/library/catalog.jsonl
+part4_5/library/images/
+```
 
-`READY` 至少要求：
+`catalog.jsonl` 是当前 active 素材索引。历史 Reference Library / Registry / accepted outputs 仅作为来源证据；未经重新核对实际图片与当前复用权限，不得成为另一套平行 active 素材库。
 
-- 可读取的 durable binary；
-- file path 真实；
-- hash 匹配；
-- 已审核用途；
-- reuse scope 与 reuse modes 明确。
-
-历史上本地 ZIP 中的 member path 不得伪装成 GitHub file path。
+跨集复用必须同时满足：真实 binary 可读、hash 匹配、当前 `status` 有效、当前目标落在 `reuse_scope` 内，并且所采用方式被 `reuse_modes` 明确允许。
 
 ---
 
-## 10. Reference Search 与复用用途
+## 10. Part 4.5 检索与复用决策
 
-在编译新图片前允许搜索历史已接受图片，但检索结果只是候选。
+在为目标 Beat 锁定执行方式前，图片规划 Agent 必须做一次 Part 4.5 候选判断；可以对相同需求复用一次召回结果，不要求逐 Beat 全库遍历。
 
-必须打开 / 验证：
+推荐顺序：
 
-- viewer meaning；
-- observable event；
-- character identity；
-- props / quantity；
-- POV / camera / gaze / screen geometry；
-- time / weather；
-- exact text；
-- withheld / reveal state；
-- hash 与 storage availability。
+```text
+目标 Visual Beat
+→ 提取可见事件 / 人物 / 场景 / 动作 / POV / 道具 / UI / 时间天气 / 文字状态
+→ 查询 Part 4.5 metadata
+→ 只打开相关候选完整图片
+→ 核对 viewer meaning、事件、身份、主体集合、物理视角、场景、道具数量、UI、时间天气、exact text、withheld / reveal
+→ 同时核对 status / reuse_scope / reuse_modes / hash
+→ 锁定最终执行方式
+```
 
-允许以下用途：
+四种服务结果：
 
-### EXACT_FRAME / CARRY_OVER_FULL_FRAME
+- **直接复用**：目标与旧完整图在必要语义和物理状态上兼容，且权限允许；
+- **基于旧图修改**：选定一张兼容完整 source，权限允许 DERIVE_EDIT；
+- **仅作参考**：最终仍按 GENERATE 执行，只继承明确指定的身份 / 姿势 / 表情 / 构图 / 场景布局 / UI 壳体等；
+- **新生成**：没有充分兼容或获准候选时直接 GENERATE。
 
-当目标 Beat 与已有完整图片在必要语义和物理状态上完全兼容时，可复用完全相同的 binary。
+REFERENCE 是参考用途，不是独立图片执行模式。连续性参考也不自动等于 DERIVE_EDIT source。
 
-必须记录：
+图片规划 Agent 必须锁定具体 asset / source 与用途后再交付执行包；生图执行 Agent不再查库、不换候选、不重新选择模式。
 
-- source asset / frame；
-- source hash；
-- target Beat mapping。
-
-两个 Beat 可以故意指向同一完整帧。
-
-### REFERENCE
-
-旧图只提供指定方面参考：
-
-- identity；
-- pose；
-- expression；
-- gaze；
-- gesture；
-- scene layout；
-- composition；
-- UI shell。
-
-必须声明“参考什么”，而不是把整张图当作真相。
-
-### DERIVE_EDIT_SOURCE
-
-选定一张完整 source image，保持兼容的：
-
-- POV family；
-- camera side / crop；
-- visible subject set；
-- main geometry；
-- identity；
-- UI shell；
-
-只修改一个主要状态 delta。
-
-支持参考图不等于贴图层，最终仍输出一张完整新图片。
-
-### GENERATE
-
-没有合适 exact / edit source 时，根据 canonical refs 与执行要求直接生成新的完整图片。
+不设置最低复用率、自动相似度阈值或每集必须复用 N 张的配额。正确性优先于复用。
 
 ---
 
 ## 11. Execution Mode — 当前运行边界
 
-当前规则为：
+当前主执行操作为：
 
 ```text
 ACTIVE:
 GENERATE
 DERIVE_EDIT
 EXACT full-frame carry-over / reuse
-REFERENCE as generation guidance
 
-FORBIDDEN AS DEFAULT:
+REFERENCE:
+仅作为 GENERATE / DERIVE_EDIT 等任务的指定参考用途，不是独立执行模式
+
+FORBIDDEN:
 COMPOSITE_CROP
 cut-and-paste assembly
 external layer composition
 SVG / HTML / Canvas / PIL text
+POST_OVERLAY
 ```
 
-`COMPOSITE_CROP` 不属于当前可执行默认模式。
+未经新的 Owner 决定，不得由执行端自行启用历史禁止分支。
 
 ---
 
@@ -572,49 +547,44 @@ Part 4 必须继承 Part 3：
 
 ## 18. Image QA
 
-至少包含以下 Gate：
+### 18.1 逐图 QA
 
-### Story / Beat Fidelity
-图片表达当前 Beat，而不是相邻 Beat 或旁白抽象概念。
+至少检查：
 
-### Viewer Meaning
-观众能读到 `viewer_must_understand` / 同等目标。
+- **Story / Beat Fidelity**：图片表达当前 Beat，而不是相邻 Beat 或旁白抽象概念；
+- **Viewer Meaning**：观众能读到 `viewer_must_understand` / 同等目标；
+- **Focus / Causal Object**：主要焦点和关键食物、道具、UI / 因果对象不仅“存在”，而且观众能够辨认；
+- **Identity**：Recurring character 是同一个人；
+- **Anatomy**：手、手臂、肢体数量和连接合理；
+- **Physical Viewpoint**：camera / gaze / screen / object geometry 成立；
+- **Continuity**：角色、场景、prop、UI shell、时间 / 天气、数量不无故漂移；
+- **Main Delta**：对连续状态 / compatible DERIVE_EDIT，主要变化与 preserve 边界正确；独立 GENERATE 不强制“整张图只能有一个差异”；
+- **Setup / Reveal**：setup 不提前泄漏 reveal；
+- **Text / Additional Facts**：因果 exact text 正确，同时检查模型额外生成的姓名、金额、日期、订单状态、品牌 / logo 等可读内容没有新增或改变故事事实；
+- **Style**：符合当前 Style Reference / episode style lock；
+- **Full-frame Output**：每个 Beat 最终得到完整 raster，不依赖裁切拼装；
+- **Source Compatibility**：DERIVE_EDIT / exact source 与目标兼容且权限有效。
 
-### Identity
-Recurring character 是同一个人。
+### 18.2 整集结果 QA
 
-### Anatomy
-手、手臂、肢体数量和连接合理。
+全部目标图片完成后，生图执行 Agent 按原 Visual Beat 顺序连续检查一次最终结果，重点确认：
 
-### Physical Viewpoint
-camera / gaze / screen / object geometry 成立。
+- 跨帧 identity、场景、道具数量、UI、时间 / 天气与 setup → reveal / before → after 连续性；
+- 最终图片是否真实实现 Part 3 已锁定的动作、反应、世界后果和画面关系；
+- 复用 / 派生没有造成不合理重复、错误回忆或 source 缺陷传播；
+- Beat → final image 映射、路径、hash 与 QA 状态一致。
 
-### Continuity
-角色、场景、prop、UI shell、时间 / 天气、数量不无故漂移。
+整集 QA **只验证规划是否被正确实现，不在末端重新导演**：
 
-### One Main Delta
-连续状态只改变事件要求改变的主要内容。
+- 如果 Part 3 原规划本身就连续重复、场景系统或现实演绎不足，返回 Part 3；
+- 如果 Part 3 正确，但 Part 4 编译任务把不同画面错误压成同一种执行要求，返回图片规划 Agent修正 Part 4；
+- 如果执行包正确，但模型成图没有照任务实现，由生图执行 Agent按既定 retry / return 合同处理。
 
-### Setup / Reveal
-setup 不提前泄漏 reveal。
-
-### Text
-exact causal text 正确。
-
-### Style
-符合当前 Style Reference / episode style lock。
-
-### Full-frame Output
-每个 Beat 最终得到完整 raster，不依赖裁切拼装。
-
-### Source Compatibility
-DERIVE_EDIT source 与 target 兼容。
+不在此恢复固定秒数、固定镜数、固定场景数或 Tableau 比例。
 
 ---
 
-## 19. Hard Failure 与 Minor Deviation
-
-QA 必须区分：
+## 19. Hard Failure、Minor Deviation 与失败路由
 
 ### Hard failure
 
@@ -623,40 +593,54 @@ QA 必须区分：
 - 第三只手 / 多肢体；
 - 错误的 before / after；
 - 假装一个动作已经发生；
-- 因果 exact text 错误；
+- 因果 exact text 错误或额外可读事实改变故事；
 - 关键数量变化；
 - 人物身份漂移；
 - 不可能的屏幕 / 视线关系；
 - flashback 时间 / 天气与已建立事件冲突；
 - 抽象解释图取代故事事件；
 - 禁止的拼装 / overlay；
-- 不兼容的 DERIVE_EDIT source。
+- 不兼容或无权限的 DERIVE_EDIT / exact source。
 
 Hard failure 不得成为后续 reference / edit source。
 
 ### Minor deviation
 
-只有在不改变：
+只有在不改变事件、viewer meaning、因果事实、identity、continuity 时，才允许记录为 minor。无害背景纹理、小硬件细节、轻微 crop 差异可以是 minor。
 
-- 事件；
-- viewer meaning；
-- 因果事实；
-- identity；
-- continuity；
+### Retry / Return
 
-时，才允许记录为 minor。
-
-例如无害背景纹理、小硬件细节、轻微 crop 差异可以是 minor。
+- 网络超时、临时请求失败等技术问题，可在原合同不变的前提下按包内策略重试；
+- 内容 hard failure 按任务已声明策略重试，不设全项目统一次数；
+- source / reference 不兼容、缺失或权限不成立，不能靠重复生图解决，应执行已编译 fallback 或返回图片规划 Agent；
+- 上游事件、POV、场景规划本身有问题，返回拥有该决定的 Part 3；
+- 合同缺少创意 / 语义决定时，返回 `RETURN_EXECUTION_CONTRACT_UNRESOLVED`，执行 Agent不得自行补决策。
 
 Owner / Reviewer 可推翻 executor 的 QA；必须保留原判定和后续 adjudication，不能静默改历史。
 
 ---
 
-## 20. Calibration Exception
+## 20. 执行包 QA 与 Calibration Exception
+
+### 20.1 执行包 QA
+
+图片规划 Agent 在交给生图执行 Agent 前完成包级 QA，至少确认：
+
+- 所有目标 Visual Beat 一一覆盖，无漏项、重复 ID 或未知 Beat；
+- execution mode、source、supporting refs、prompt / edit、output、acceptance、fallback 等条件完整；
+- 所有已存在图片输入真实可读且 hash 匹配；
+- 本 run 前置依赖存在且无循环，等待条件与失败动作明确；
+- exact reuse 有确定 source；DERIVE_EDIT 有兼容 source、preserve、main delta 与 fallback；
+- 禁止模式没有可执行入口；
+- 执行 Agent无需访问仓库、重新查库或补充创意判断即可执行。
+
+包级结构检查可用普通脚本辅助，但不能代替语义兼容性判断。
+
+### 20.2 Calibration Exception
 
 Manual / high-risk Pilot 不属于每集必经 Gate。
 
-只有以下变化触发：
+只有以下变化触发有界校准：
 
 - 新长期 recurring character；
 - 新视觉风格；
@@ -665,53 +649,42 @@ Manual / high-risk Pilot 不属于每集必经 Gate。
 - Prompt/Edit Compiler material change；
 - 自动 QA 发现新的重复失败类型。
 
-否则：
-
-```text
-compiled image instructions
-→ automatic package QA
-→ production execution
-```
-
-不要求 Owner 每集先审 key frames。
+正常 episode 不要求 Owner 每集先审 key frames。参考创作者视频节奏研究 / 增长研究不属于 Part 4 每集正式运行链。
 
 ---
 
 ## 21. 图片执行包、输出与可追溯记录
 
-Part 4 的最终交付物是一个完整的图片执行包。目录形式是正式逻辑结构；需要跨 Agent 转交时可打包为 ZIP transport snapshot。
+### 21.1 Part 4 规划完成
 
-图片执行包必须让执行 Agent 在不补充创意决策的前提下完成批量图片生产，至少包含：
+Part 4 的规划阶段最终交付物是一个完整图片执行包。目录形式是正式逻辑结构；跨 Agent 转交时可打包为 ZIP transport snapshot。
 
-- 本集资产需求与实际可用参考；
-- 实际执行会使用的参考图片文件本身，执行 Agent 不应再依赖访问仓库或外部位置获取这些参考；
-- 每个 Visual Beat 的自包含图片执行任务；
-- GENERATE / DERIVE_EDIT / exact full-frame reuse 决策；
-- prompt / edit instruction；
-- continuity / preserve / forbidden constraints；
-- exact text（如适用）；
-- output naming / delivery spec；
-- acceptance criteria 与明确的 retry / return 条件。
+最小执行包保持精简：
 
-执行包不承担上游资料归档职责。若自包含图片执行任务已经完整承接执行所需信息，则不要求把 Part 3 的视觉策略、导演分镜或原始 Shotbook 副本继续塞入执行包。
-
-最小执行包可收敛为：
 - 执行说明；
-- 自包含图片任务；
+- 每个 Visual Beat 的自包含图片任务；
 - 总清单 / 完整性校验；
 - 实际使用的参考图片。
 
+但“精简”不能省掉可执行事实。每条任务必须足够明确执行方式、真实 source / reference、用途、prompt / edit、continuity / preserve / forbidden constraints、exact text（如适用）、output、acceptance、依赖、fallback 与 retry / return。
+
+所有**已经存在并会用于执行的图片输入**必须随包交付；canonical ID / 仓库路径只用于溯源，不能替代 binary。唯一可以不预装的是明确由本 run 前置任务产生的图片，此时必须完整声明前置 task 和准入条件。
+
+执行包不承担上游资料归档职责；自包含任务已经承接执行所需信息时，不要求继续塞入 Part 3 原始文档副本。
+
+### 21.2 Part 4 图片生产完成
+
+只有在生图执行 Agent完成全部最终图片、逐图 QA、整集结果 QA，并完成路径 / hash / Beat 映射 reconciliation 后，才可声明图片生产完成。
+
 每个真实生产 run 至少需要能够回答：
 
-- 哪个 episode / run；
-- 输入版本；
+- episode / run 与输入版本；
 - executor / backend；
 - 每个 Visual Beat 最终使用哪张完整图片；
 - actual mode；
 - source asset / source frame（如有）；
 - supporting refs；
-- final path；
-- final hash；
+- final path / final hash；
 - QA status；
 - return / retry 原因；
 - 哪些输出被 superseded。
@@ -720,9 +693,11 @@ Part 4 的最终交付物是一个完整的图片执行包。目录形式是正�
 
 ---
 
-## 22. Post-production Registry / Reference Library Gate
+## 22. Post-production → Part 4.5 素材候选
 
-只有最终图片经过 story / frame review、存储与 hash reconciliation 后，才进入跨 run 复用评估。
+图片生产完成后，同一个图片规划 Agent可以再次使用 Part 4.5 规则处理未来素材候选，不要求新增独立 Part 4.5 Agent。
+
+只有最终图片经过 story / frame review、存储与 hash reconciliation 后，才进入跨 run 复用评估。Part 4.5 负责确定最终 `status / reuse_scope / reuse_modes`；执行 Agent的 ACCEPTED 不自动提升为可跨集复用。
 
 原则：
 
@@ -731,9 +706,8 @@ Part 4 的最终交付物是一个完整的图片执行包。目录形式是正�
 - before / after 等不同状态仍是不同 asset record；
 - continuity group 只建立关系，不代表一张图技术上由另一张生成；
 - defective / replaced 版本保留 provenance，但不可 READY；
-- local-only / ZIP-only 文件在发布前不可宣称为跨 run READY。
-
-没有固定“每集必须沉淀 N 张资产”的配额。
+- local-only / ZIP-only 文件在发布前不可宣称为跨 run READY；
+- 没有固定“每集必须沉淀 N 张资产”的配额。
 
 ---
 
@@ -741,19 +715,28 @@ Part 4 的最终交付物是一个完整的图片执行包。目录形式是正�
 
 原则：
 
-> Part 4 完成全部图片执行规划；执行 Agent 按图片执行包执行，不补充创意决策。
+> 图片规划 Agent（Part 4 + Part 4.5）完成全部生图前决策；生图执行 Agent按图片执行包执行，不补充创意决策。
 
-执行 Agent 只负责：
+生图执行 Agent只负责：
 
-- 读取图片执行包并加载指定参考；
+- 读取并验证图片执行包，加载指定参考；
 - 按指定 GENERATE / DERIVE_EDIT / exact full-frame reuse 任务执行；
-- 按既定 QA 与 retry / return 条件处理；
-- 保存完整 raster、run / manifest / QA 记录。
+- 按既定 acceptance、QA 与 retry / return 条件处理；
+- 完成逐图 QA 与全部图片后的整集结果 QA；
+- 保存完整 raster、run / manifest / QA / path / hash 记录。
 
-不得自行改写 prompt、替换参考图、改变 POV / 镜头 / 人物 / 故事意义、增加临时资产或重新导演。
+不得自行：
 
-执行合同存在未定义的创意 / 语义决定时：
-`RETURN_EXECUTION_CONTRACT_UNRESOLVED`。
+- 重新查询 Part 4.5 或更换候选；
+- 改写 prompt 的故事 / 镜头意义；
+- 替换参考图或执行方式；
+- 改变 POV / 镜头 / 人物 / 故事意义；
+- 增加临时资产；
+- 为解决整集单调而重新导演。
+
+发现执行包自身规划问题时返回图片规划 Agent；发现 Part 3 视觉规划问题时返回 Part 3。执行合同存在未定义的创意 / 语义决定时：`RETURN_EXECUTION_CONTRACT_UNRESOLVED`。
+
+正常运行不要求另设独立 Review Agent；Owner / Reviewer 仍可在需要时做后续 adjudication。
 
 ---
 
@@ -762,8 +745,10 @@ Part 4 的最终交付物是一个完整的图片执行包。目录形式是正�
 需要跨 Agent 转交时，可将完整图片执行包打包为 ZIP。
 
 - ZIP 只作为 transport snapshot；
-- ZIP 内必须包含执行所需的完整任务与可用参考，或明确可解析的 canonical reference；
-- 执行 Agent 按包内任务逐项执行，不重新规划；
+- 所有已经存在、且执行会实际使用的图片输入必须包含在包内；
+- canonical ID / repository path 仅用于溯源，不能代替实际 binary；
+- 由本 run 前置任务产生的 source / reference 可以不预装，但必须在任务中明确依赖、用途与准入条件；
+- 生图执行 Agent按包内任务逐项执行，不重新规划或重新查库；
 - ZIP 本身不自动等于 repository outputs 或 cross-run reusable asset。
 
 ---
