@@ -168,3 +168,15 @@ Owner explicitly authorizes this Governance modification round.
 Authorization expires after that round.
 Next round = fresh Owner authorization required.
 ```
+
+
+## D011 — GitHub canonical is the only authoritative Governance source
+
+**Decision:** ACCEPTED
+
+```text
+GitHub canonical = authority
+local/sandbox copy = avoid by default
+temporary local materialization = non-authoritative + ephemeral + version-pinned
+conflict between local and GitHub = GitHub wins
+```
