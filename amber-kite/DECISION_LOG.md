@@ -96,3 +96,17 @@ Executor may perform explicitly delegated technical Secret operations only withi
 
 Reason:
 This preserves Owner control without requiring the Owner to personally perform every technical Secret operation.
+
+
+## D006 — Default execution channel is sticky; deviations are explicit
+
+**Decision:** ACCEPTED
+
+```text
+default channel works -> use it
+default channel fails -> diagnose/repair
+fallback needed -> state reason + Reviewer-approved deviation
+fallback used -> does not redefine default automatically
+```
+
+Using an existing verified connection path is normal execution. Changing login/trust/account/permission mechanics is a separate infrastructure-level change.
