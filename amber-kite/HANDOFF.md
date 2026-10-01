@@ -543,3 +543,29 @@ If the Owner did not explicitly authorize continuation beyond that endpoint, the
 Conditional continuation is allowed only when it is explicitly inside the declared round boundary. Technical permission alone is not permission to keep advancing indefinitely.
 
 This decision resolves R32 and constrains R15 conditional preauthorization.
+
+
+### Decision 019 — Owner intervention boundary
+
+Owner decision: ACCEPTED.
+
+Agreed model:
+
+Reviewer should independently decide ordinary technical implementation, testing, repair strategy, rollback design and Gate decomposition within the current authorized boundary.
+
+Owner intervention is required when the decision creates or accepts material consequences such as:
+- real payment/cost;
+- public production exposure;
+- deletion of real data;
+- account/permission authorization;
+- Secret authority changes;
+- materially irreversible or security-sensitive action;
+- product/business-direction change;
+- crossing the declared maximum Gate endpoint.
+
+When Reviewer escalates to Owner, Reviewer must state:
+1. why Reviewer cannot safely decide within existing authority;
+2. what exact decision the Owner must make;
+3. the material consequences/tradeoffs of the available choices.
+
+This resolves R27.
