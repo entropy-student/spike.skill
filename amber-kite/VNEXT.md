@@ -28,7 +28,7 @@ explicit Owner decision
 - GitHub canonical is authoritative.
 - Local/sandbox Governance copies are avoided. If unavoidable, they are non-authoritative, ephemeral, commit-pinned, and never reused as next-session authority.
 - A normal Owner instruction changes goals/authorization; it does not silently waive backup, evidence, rollback, Secret-safety, Shared-Infra, or other safety rules.
-- A Governance exception is explicit, scoped, and temporary.
+- A Governance exception/pin is explicit, scoped, and temporary. When pinning a version/addendum for reproducibility or incident containment, record the exact version/commit where practical, scope, reason, and expiry/close condition.
 
 ### Project reality
 ```text
