@@ -263,7 +263,10 @@ Why risky:
 
 A continuity document grows indefinitely and starts competing with normative Contracts.
 
-Status: **CONFIRMED RESPONSIBILITY OVERLAP — content still untouched.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Governance Handoff is continuity-only: current refactor progress, accepted decisions, unresolved items and next step. It must not duplicate current rule text, loading rules, active-rule inventories or long incident history.
 
 ## R11 — Closeout proposal is superseded but still contains many "CANDIDATE / NOT ACTIVE" lines
 
@@ -277,7 +280,10 @@ Why risky:
 
 A naïve Agent that searches snippets rather than reading the header may misclassify current status.
 
-Status: **KNOWN HISTORICAL-NOISE RISK.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Superseded proposals/history are retained only outside the normal loading path and must be visibly marked non-current/non-authoritative, with a pointer to the current rule where useful.
 
 ## R12 — metadata.yml does not fully represent current active Governance state
 
