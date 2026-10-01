@@ -288,3 +288,12 @@ target + recovery artifacts + method + proof + trigger/stop conditions.
 
 Relay:
 Each Gate states exactly what must move between Reviewer and Executor. Owner relay defaults to NONE unless a tool-access gap requires manual forwarding.
+
+
+## D021 — Fixed completion packets; critical constraints persist across Gates
+
+**Decision:** ACCEPTED
+
+Executor/Reviewer endings use fixed short fields.
+
+Current project invariants remain visible in Reviewer Handoff and are re-asserted in every applicable Gate. No silent substitution or drift.
