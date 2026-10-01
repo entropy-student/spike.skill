@@ -308,7 +308,12 @@ Why risky:
 
 The phrase "Owner latest instruction wins" can be read as an unlimited policy bypass unless it is scoped to valid explicit decisions within non-overridable safety boundaries.
 
-Status: **UNRESOLVED WORDING — semantic boundary should be reviewed.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- Owner controls goals, priorities, business choices and consequential authorization.
+- Ordinary Owner instructions do not silently waive execution-safety rules.
+- Governance exceptions must be explicit and scoped; they are never inferred from urgency or informal wording.
 
 ## R15 — Conditional preauthorization vs Owner-only production enablement
 
