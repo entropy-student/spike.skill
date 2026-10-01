@@ -267,3 +267,13 @@ ambiguous consequential result
 ```
 
 Material drift = a change capable of invalidating prior judgment, authorization, evidence, accepted state, or rollback/recovery assumptions.
+
+
+## D019 — Templates cannot create policy; Reviewer scans all specialist triggers every round
+
+**Decision:** ACCEPTED
+
+- Template = recording format, not rule source.
+- Reviewer reads the complete short Governance entry surface each round.
+- Reviewer checks every specialist-rule trigger.
+- Triggered or uncertain specialist rules are read in full.
