@@ -413,3 +413,36 @@ Owner added three governance-management concerns for later review:
 Registered as R29-R31.
 
 The previously opened Source-of-Truth discussion remains pending Owner response and is not resolved by this entry.
+
+
+### Decision 013 — Separate rule authority from project reality
+
+Owner decision: ACCEPTED.
+
+Agreed model:
+
+```text
+RULE AUTHORITY
+= which governance rule should be followed
+
+PROJECT REALITY
+= what is actually true in the project now
+```
+
+They must not share one combined Source-of-Truth ranking.
+
+Rule authority:
+```text
+Owner explicit decision
+→ active bounded override
+→ current GitHub canonical Governance
+```
+
+Project reality:
+```text
+fresh authoritative evidence
+→ Reviewer judgment/reconciliation
+→ REVIEWER_HANDOFF records accepted current state
+```
+
+The older single mixed precedence model is considered unsuitable for the shadow redesign.
