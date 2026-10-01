@@ -583,3 +583,14 @@ Agreed model:
 - Agents may always record/propose Governance issues without mutation authority.
 
 This resolves R29.
+
+
+### Decision 021 — GitHub canonical is the only authoritative Governance source
+
+Owner decision: ACCEPTED for R31.
+
+Agreed model:
+- Governance should be read directly from GitHub canonical whenever tooling permits.
+- Project/local/sandbox workspaces should not keep working Governance copies by default.
+- If temporary local materialization is technically unavoidable, it must be non-authoritative, ephemeral, version/commit-pinned, and must not be reused as the next session's Governance source.
+- If local/sandbox content differs from GitHub canonical, GitHub canonical wins.
