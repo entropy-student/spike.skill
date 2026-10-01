@@ -110,3 +110,17 @@ fallback used -> does not redefine default automatically
 ```
 
 Using an existing verified connection path is normal execution. Changing login/trust/account/permission mechanics is a separate infrastructure-level change.
+
+
+## D007 — Owner instructions do not silently waive safety rules
+
+**Decision:** ACCEPTED
+
+```text
+Owner decides what/why/authorization.
+Governance controls safe execution by default.
+Explicit scoped exception is required to waive a Governance rule.
+```
+
+Reason:
+Normal project instructions had previously been interpreted as permission to skip backup, evidence, rollback or other safety steps.
