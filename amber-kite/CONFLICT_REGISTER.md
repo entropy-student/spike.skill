@@ -377,7 +377,10 @@ Why risky:
 
 It is unclear which generic Canary fields are mandatory for every domain and which are Provider-only.
 
-Status: **UNRESOLVED LAYERING — likely Core principle + domain-specific implementation.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Core contains only the short universal Canary principle. Concrete Canary procedure belongs to the relevant Gate/project/domain-specific rule and must not be duplicated in Core.
 
 ## R17 — No-blind-retry principle is duplicated across several domains but has no single generic home
 
