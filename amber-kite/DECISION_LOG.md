@@ -236,3 +236,10 @@ This decision resolves the design direction for R08 and R09 and establishes the 
 - Governance Handoff = current governance-refactor continuity only.
 - Historical/superseded proposals = archive/history only, never a current rule source.
 - Active Governance must not be reconstructed from historical snippets.
+
+
+## D016 — Canonical status vocabulary
+
+**Decision:** ACCEPTED
+
+Use a small shared status set across Governance. Keep interpretation details in a separate reason field.
