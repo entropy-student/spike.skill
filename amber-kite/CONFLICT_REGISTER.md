@@ -192,7 +192,14 @@ Why risky:
 
 Two execution truth documents can drift and force Reviewer reconciliation without adding much safety.
 
-Status: **UNRESOLVED — likely structural simplification candidate.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+- remove persistent EXECUTOR_HANDOFF as a separate long-lived project document;
+- keep a short Executor-to-Reviewer completion packet;
+- Execution Evidence owns execution facts/proof;
+- Reviewer Handoff owns accepted current state/continuation;
+- rollback/recovery information has its own canonical record.
 
 ## R08 — Core repeats large parts of specialist Contracts
 
