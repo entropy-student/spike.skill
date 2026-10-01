@@ -365,3 +365,38 @@ Registered as:
 - R24 critical invariant / execution-channel drift prevention
 
 Owner also authorized pulling registered issues forward whenever discussion naturally reaches them.
+
+
+### Decision 010 — Current state, decision history, execution evidence are separated
+
+Owner decision: ACCEPTED.
+
+Agreed information model:
+
+```text
+REVIEWER_HANDOFF
+= current accepted project state
+
+DECISION_LOG
+= why key decisions were made, including Owner feedback, Reviewer recommendation and trade-offs
+
+EXECUTION_EVIDENCE
+= what was actually executed and what evidence proves the result
+```
+
+Implications:
+- Handoff is a current dashboard, not the full historical archive.
+- Historical reasoning is queryable through Decision Log.
+- Execution history/proof remains in Evidence.
+- Rollback capability remains a separate verified capability, not something guaranteed merely by historical records.
+
+### Owner Pain Points 011 — completion proof, Gate sizing, Owner boundary, durable recording
+
+Owner added four recurring problems:
+
+1. Executor may claim work is complete or passed when it is not; Reviewer may also PASS when required evidence is missing, unreadable, inaccessible or never actually inspected.
+2. Some Gates appear unnecessarily fragmented even when adjacent work could plausibly execute in one bounded batch and be reviewed together.
+3. Owner is sometimes asked to make technical decisions unexpectedly, and the boundary between Owner-only decisions and Reviewer-owned technical judgment is not predictable.
+4. Reviewer or Executor sometimes fails to persist project state/evidence/decisions before stopping; if the chat/browser crashes, the durable record may lag reality and work may need to be rediscovered or repeated.
+
+Registered as R25-R28.
