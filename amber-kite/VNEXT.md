@@ -39,7 +39,7 @@ fresh authoritative evidence
 
 Fresh reality may make Handoff stale. Executor output is not canonical until Reviewer accepts it.
 
-Historical Evidence is preserved; stronger new evidence supersedes current interpretation without rewriting history.
+Historical Evidence is preserved; EXECUTION_EVIDENCE is append-only except for explicitly scoped corrections. Stronger new evidence supersedes current interpretation without rewriting history.
 
 ## 2. Roles
 
@@ -71,6 +71,8 @@ Every round Reviewer must:
 4. apply every triggered specialist section; if uncertain, treat it as triggered;
 5. reconcile material drift before consequential work.
 
+If current project truth is missing/unreliable, the first Gate is read-only Discovery. Existing accepted projects use a bounded Change Gate; do not replay onboarding unless material drift invalidates the accepted baseline.
+
 Material drift = any change that could invalidate an earlier judgment, authorization, Evidence set, accepted state, critical constraint, or rollback/recovery assumption.
 
 ## 4. Current project state
@@ -97,6 +99,7 @@ EVIDENCE_POINTERS
 - If it fails: diagnose/repair first. A fallback requires reason + Reviewer approval and does not become the new default automatically.
 - Decision rationale/history belongs in `DECISION_LOG`.
 - Execution proof belongs in `EXECUTION_EVIDENCE`.
+- Shared-host trust/infrastructure facts and storage/recovery metadata, when needed, live as compact project-state blocks/attachments without Secret values; they do not require separate policy-bearing templates.
 
 ## 5. Gate
 
@@ -130,6 +133,7 @@ EXECUTOR_TO_REVIEWER_RELAY
 Before a write, prove the target, scope, constraints, required authority, rollback boundary, and expected Evidence.
 
 For consequential actions:
+- a native/non-zero execution failure fails closed until reconciled;
 - ambiguous prior result -> read-only reconciliation before retry;
 - do not blindly repeat an action whose commit/result is unknown;
 - classify partial execution before overwrite/replay.
@@ -243,6 +247,8 @@ Governance edit authority is separate from project authority.
 
 Templates/examples, if any, define recording format only. They cannot create unique policy.
 
+Canonical Governance changes should be cross-project reusable and reviewed; incident-specific lessons remain project/history until generalized deliberately. When maturity labels are needed, use `VALIDATED | PROVISIONAL | CANDIDATE`; shadow/historical status is separate from maturity.
+
 Historical/proposal files are non-authoritative and outside the normal loading path.
 
 ## 11. Specialist trigger scan
@@ -262,6 +268,7 @@ Reviewer checks every row each round.
 ### 11A. Shared VPS / Storage
 
 - Business projects do not casually mutate Shared Infra. Shared-Infra change gets a separate reviewed boundary.
+- Shared Infra includes host SSH trust/accounts, firewall/UFW, Docker daemon/shared networks, shared Caddy/80-443, cloudflared/shared ingress, and equivalent host-wide services.
 - Existing verified SSH use is normal execution; changing SSH accounts/keys/sshd/sudo/UFW/trust is Shared Infra.
 - Canonical shared layout remains `/srv/infra`, `/srv/apps`, `/srv/data`, `/srv/backups`.
 - Each project gets isolated app/data/backup namespaces and Compose project.
@@ -286,6 +293,7 @@ Reviewer checks every row each round.
 - Host-local write requires target identity before mutation and host-local read-back afterward.
 - If real-host execution cannot be proven, fail closed/RETURN rather than claiming success.
 - Owner-local recovery checkpoints are one-shot/minimal and emit bounded non-secret Evidence.
+- If one Owner-local script crosses multiple failure domains/phases, it emits explicit phase markers so partial execution can be reconciled.
 - On Windows, tighten ACLs without unnecessary ownership change.
 - Partial/ambiguous execution is reconciled before retry.
 
