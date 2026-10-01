@@ -698,3 +698,15 @@ Agreed:
 - if applicability is uncertain, default to reading the specialist rule.
 
 This avoids both context overload and silent rule omission.
+
+
+### Decision 030 — Verified rollback state and explicit Owner relay contract
+
+Owner decision: ACCEPTED for R21 and R22.
+
+Agreed:
+- rollback capability must answer five things: target, recovery artifacts, method, proof/compatibility, and trigger/stop condition;
+- Reviewer Handoff exposes only the latest rollback status compactly; detailed proof remains in Evidence/recovery records;
+- each Gate defines Reviewer->Executor and Executor->Reviewer relay requirements;
+- Owner relay should be NONE whenever tools already provide access;
+- when a required file/image is not directly reviewable, the relay requirement must explicitly say what the Owner must upload/forward.
