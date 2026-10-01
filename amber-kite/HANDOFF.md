@@ -660,3 +660,13 @@ Agreed:
 
 Candidate vocabulary:
 PASS / PARTIAL / UNVERIFIED / BLOCKED / NOT_APPLICABLE.
+
+
+### Decision 027 — Generic Canary principle stays short; domain details stay local
+
+Owner decision: ACCEPTED for R16.
+
+Agreed:
+- Core keeps only the universal principle: before the first action that has real user, money, or production impact, perform the smallest meaningful real-world test first.
+- Domain-specific details (payment amount, webhook checks, refund checks, deployment rollout details, etc.) stay in the relevant Gate/project/specialist rule.
+- Do not duplicate full Canary procedures in Core.
