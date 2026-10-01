@@ -461,3 +461,57 @@ ROLLBACK_PLAN
 The current Handoff should expose the latest verified rollback capability as current state, while detailed proof/history stays in Evidence/recovery records.
 
 Status: **UNRESOLVED — pulled forward by Owner during R06 discussion.**
+
+
+## R22 — Owner relay package is undefined
+
+**Class:** C6 / workflow usability gap
+
+Owner pain:
+- unclear what Reviewer must hand to Executor;
+- unclear what Executor must return to Reviewer;
+- some review artifacts need an actual uploaded file/image rather than only a repository reference;
+- capability/accessibility mismatches are discovered too late.
+
+Candidate direction:
+Each Gate should state a small relay contract:
+- Reviewer -> Executor required inputs;
+- Executor -> Reviewer required outputs;
+- artifacts that must be directly reviewable;
+- any Owner relay action.
+
+Status: UNRESOLVED.
+
+## R23 — Reviewer and Executor completion formats are inconsistent
+
+**Class:** C6 / interface-contract gap
+
+Owner repeatedly has to ask for:
+- PASS / RETURN;
+- current Gate result;
+- what changed;
+- unresolved problems and analysis;
+- overall project progress;
+- next step;
+- what must be relayed;
+- whether Owner action is required.
+
+Candidate direction:
+Define one fixed completion packet for Executor and one for Reviewer.
+
+Status: UNRESOLVED.
+
+## R24 — Reading project rules does not reliably prevent execution drift
+
+**Class:** C1/C6 / execution-discipline gap
+
+Owner pain:
+An Agent may say it read the project rules, but later execution can silently deviate from a frozen operating constraint.
+
+Concrete example:
+A project that was expected to operate through SSH later switched to a provider/panel path.
+
+Candidate direction:
+Store critical project invariants explicitly in current project state and require every Gate preflight to re-assert the applicable ones immediately before mutation. Any deviation requires an explicit reviewed override; no silent substitution.
+
+Status: UNRESOLVED — high practical priority.
