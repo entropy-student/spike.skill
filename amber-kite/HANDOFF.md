@@ -622,3 +622,18 @@ Agreed model:
 - The next Agent continues from Reviewer-accepted state, not directly from an Executor self-claim.
 
 This preserves auditability, cross-Agent continuity and rollback assurance while removing duplicate long-lived records.
+
+
+### Decision 024 — Compression-first Governance design
+
+Owner decision: ACCEPTED.
+
+Agreed:
+- prefer one-page / minimum-file Governance where practical;
+- compress before splitting;
+- do not create a new Governance file unless separation is necessary for clarity, conditional loading, or safety;
+- Core keeps only universal rules and points to specialist rules when needed;
+- README/SKILL/Core/Handoff must not duplicate the same master information;
+- historical explanations and examples should stay out of the normal loading path.
+
+This resolves the design direction for R08 and R09 and adds a general anti-sprawl principle.
