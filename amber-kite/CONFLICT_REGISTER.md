@@ -141,7 +141,17 @@ It is unclear whether `REVIEWER_HANDOFF.md` is:
 
 Trying to satisfy both can make Handoffs huge and error-prone.
 
-Status: **UNRESOLVED — high priority information-architecture issue.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+
+```text
+REVIEWER_HANDOFF = current accepted state
+DECISION_LOG = historical reasoning / Owner + Reviewer decisions
+EXECUTION_EVIDENCE = actual execution proof
+```
+
+The Handoff is a current dashboard, not the full historical audit log.
 
 ## R07 — EXECUTOR_HANDOFF and EXECUTION_EVIDENCE overlap materially
 
