@@ -212,3 +212,18 @@ Rollback/Recovery Record remains separate.
 ```
 
 The next Agent continues from Reviewer-accepted state, not an Executor self-declared completion state.
+
+
+## D014 — Compression-first Governance structure
+
+**Decision:** ACCEPTED
+
+Principles:
+- aim for one compact operational Governance surface where practical;
+- compress before splitting into more files;
+- Core contains only universal rules;
+- specialist detail lives only where conditionally needed;
+- avoid multiple master documents repeating the same information;
+- a new Governance file requires a clear reason why it cannot be merged safely into an existing one.
+
+This decision resolves the design direction for R08 and R09 and establishes the anti-sprawl rule captured as R33.
