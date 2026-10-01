@@ -681,3 +681,20 @@ Agreed:
 - do not blindly repeat an action whose prior execution state is unknown;
 - "material drift" means any change that could invalidate a prior judgment, authorization, evidence set, accepted state, or rollback/recovery assumption;
 - irrelevant wording/history-only changes are not material drift.
+
+
+### Decision 029 — Templates are record formats only; Reviewer uses full short-directory scanning
+
+Owner decision: ACCEPTED for R19 and R20.
+
+Agreed:
+- templates may define how information is recorded, but must not introduce unique behavioral rules;
+- if a template/example conflicts with Governance, Governance wins;
+- minimize standalone templates where compact inline schemas are sufficient;
+- every Reviewer round reads the complete short Governance entry surface;
+- that entry surface includes the full specialist-rule directory and trigger conditions;
+- Reviewer checks every specialist trigger each round;
+- triggered specialist rules are read in full;
+- if applicability is uncertain, default to reading the specialist rule.
+
+This avoids both context overload and silent rule omission.
