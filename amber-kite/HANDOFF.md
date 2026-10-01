@@ -670,3 +670,14 @@ Agreed:
 - Core keeps only the universal principle: before the first action that has real user, money, or production impact, perform the smallest meaningful real-world test first.
 - Domain-specific details (payment amount, webhook checks, refund checks, deployment rollout details, etc.) stay in the relevant Gate/project/specialist rule.
 - Do not duplicate full Canary procedures in Core.
+
+
+### Decision 028 — Ambiguous-result retry rule and material-drift definition
+
+Owner decision: ACCEPTED for R17 and R18.
+
+Agreed:
+- if the outcome of a consequential action is unclear, inspect current authoritative reality before any retry;
+- do not blindly repeat an action whose prior execution state is unknown;
+- "material drift" means any change that could invalidate a prior judgment, authorization, evidence set, accepted state, or rollback/recovery assumption;
+- irrelevant wording/history-only changes are not material drift.
