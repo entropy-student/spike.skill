@@ -293,3 +293,30 @@ For each item, present only:
 - consequences/trade-off.
 
 Then record Owner decision before moving to the next cluster.
+
+
+### Decision 007 — Reality vs Handoff precedence
+
+Owner decision: **ACCEPTED**
+
+Agreed model:
+
+```text
+Reality
+  -> fresh authoritative evidence
+  -> Reviewer reconciliation
+  -> REVIEWER_HANDOFF updated
+```
+
+Interpretation:
+
+- Fresh authoritative evidence determines what is actually true now.
+- `REVIEWER_HANDOFF.md` records the latest Reviewer-accepted canonical project state.
+- If fresh evidence contradicts the Handoff, the Handoff is treated as stale until Reviewer reconciliation.
+- Fresh Executor output does not itself become canonical merely because it is newer; Reviewer still accepts/reconciles it.
+
+Short rule:
+
+> Evidence proves reality; Handoff preserves Reviewer-accepted reality.
+
+No production Governance text has been changed.
