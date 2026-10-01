@@ -243,3 +243,14 @@ This decision resolves the design direction for R08 and R09 and establishes the 
 **Decision:** ACCEPTED
 
 Use a small shared status set across Governance. Keep interpretation details in a separate reason field.
+
+
+## D017 — Keep Canary generic in Core
+
+**Decision:** ACCEPTED
+
+Core:
+first real-impact action -> smallest meaningful real-world test first.
+
+Details:
+belong to the current Gate/project/domain-specific procedure.
