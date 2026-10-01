@@ -217,3 +217,79 @@ PRODUCTION_GOVERNANCE_FROZEN=YES
 OWNER_INTERVENTION_REQUIRED=NO
 NEXT_ACTION=RULE_LEVEL_INVENTORY
 ```
+
+
+---
+
+## 11. Phase 2 Update — Rule Classification and Conflict Capture
+
+### Owner instruction
+
+Owner approved starting classification with two constraints:
+
+1. do not delete or modify any existing Governance content;
+2. pay special attention to contradictions, front/back inconsistencies and ambiguous authority.
+
+Owner also requested that the next step review findings one by one, with:
+- Reviewer recommendation;
+- reason for the recommendation;
+- explicit Owner feedback/decision recorded before proceeding.
+
+### Work completed
+
+Created:
+
+- `RULE_MATRIX.md` — first rule-level semantic inventory;
+- `CONFLICT_REGISTER.md` — suspected conflicts/inconsistencies, kept unresolved.
+
+Current inventory size:
+
+```text
+RULE_CONCEPT_ROWS=112
+CONFLICT_OR_AMBIGUITY_ITEMS=20
+EXISTING_GOVERNANCE_FILES_MODIFIED=0
+DELETIONS=0
+SEMANTIC_RESOLUTIONS_MADE=0
+```
+
+Important initial finding:
+
+The main problem appears to be a combination of:
+- duplicated normative wording;
+- stale current-facing summaries after newer addenda;
+- unclear separation between fresh factual evidence and accepted canonical Handoff state;
+- unclear document responsibility boundaries;
+- historical material mixed with current operational material.
+
+Not every registered item is a true contradiction. The register deliberately separates direct conflicts, ambiguity, stale text, duplication and historical-noise risk so later review does not over-correct.
+
+### Current phase
+
+```text
+Phase 0  Freeze existing production Governance                  DONE
+Phase 1  Build macro map                                        DONE
+Phase 2  Inventory old content and classify each rule           PASS_CANDIDATE
+Phase 3  Review conflicts / duplication / semantic issues       NEXT
+Phase 4  Design new file architecture                           PENDING
+Phase 5  Write shadow version                                   PENDING
+Phase 6  Old-vs-new semantic coverage verification              PENDING
+Phase 7  Owner decision on trial / promotion                    PENDING
+```
+
+### Proposed next review order
+
+Start with the issues most likely to cause actual Reviewer errors:
+
+1. R03 — fresh factual evidence vs accepted Handoff precedence;
+2. R06 — current Handoff vs append-only audit semantics;
+3. R02 — old Core Source-of-Truth model vs newer Source Policy;
+4. R01/R12 — active addendum/status drift across SKILL/README/metadata.
+
+For each item, present only:
+- the conflict in plain language;
+- current behavior;
+- recommendation;
+- reason;
+- consequences/trade-off.
+
+Then record Owner decision before moving to the next cluster.
