@@ -318,7 +318,10 @@ Why risky:
 
 Likely not a behavior conflict, but different status vocabularies make machine/human interpretation harder.
 
-Status: **TERMINOLOGY DRIFT — low semantic risk, high maintenance noise.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Use one small canonical status vocabulary across Governance. Put nuance in a short reason field rather than inventing new status labels in each document.
 
 ## R14 — "Owner latest instruction wins" needs scope guard against accidental rule override
 
