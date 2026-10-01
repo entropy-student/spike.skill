@@ -594,3 +594,16 @@ Agreed model:
 - Project/local/sandbox workspaces should not keep working Governance copies by default.
 - If temporary local materialization is technically unavoidable, it must be non-authoritative, ephemeral, version/commit-pinned, and must not be reused as the next session's Governance source.
 - If local/sandbox content differs from GitHub canonical, GitHub canonical wins.
+
+
+### Decision 022 — Reviewer loads Governance; Executor executes the Gate
+
+Owner decision: ACCEPTED for R30.
+
+Agreed model:
+- Reviewer is responsible for resolving the current GitHub canonical Governance version/manifest and reading the active Core plus Gate-relevant specialist rules.
+- Reviewer translates those rules into the current Gate package.
+- Executor does not independently reconstruct or reinterpret the whole Governance.
+- Executor reads the Gate and executes within it.
+- Executor must stop only when the Gate itself contains an obvious contradiction or explicit self-conflict (for example, "do not publish" and later "publish now").
+- If Reviewer omitted a Governance rule from the Gate, that is primarily a Reviewer loading/design failure, not a requirement for Executor to reread all Governance.
