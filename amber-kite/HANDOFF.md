@@ -514,3 +514,14 @@ Agreed model:
 - Agents must not treat vague urgency or "just do it" wording as permission to skip safety steps.
 
 Owner explicitly recognized that previous project work sometimes skipped steps after ordinary instructions, confirming this is a real operational failure mode.
+
+
+### Owner Feedback 018 — Concern about agents advancing farther than expected
+
+Owner concern:
+Even when a sequence is technically safe and within Reviewer authority, the Agent may continue farther than the Owner expected. The Owner may not have explicitly stated the expected stopping point or may have forgotten to do so.
+
+Implication:
+Authority alone is not enough. Each Gate needs an explicit maximum advancement boundary so "technically allowed" does not become "unexpectedly progressed."
+
+Registered as R32 and linked to R15 conditional preauthorization / R26 Gate sizing.
