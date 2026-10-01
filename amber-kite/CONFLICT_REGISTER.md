@@ -695,7 +695,10 @@ EXECUTOR
 
 When asking Owner for a decision, Reviewer must state why it cannot be safely resolved within Reviewer authority.
 
-Status: UNRESOLVED.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Reviewer handles ordinary technical decisions inside the authorized Gate. Owner is involved for material consequence, business, account/permission, security, irreversible actions, or crossing the Gate maximum endpoint. Escalation must say why, what decision is needed, and the tradeoffs.
 
 
 ## R28 — Durable project recording is not guaranteed before session loss
@@ -762,7 +765,10 @@ Define explicit role-based loading contracts:
 - Reviewer: must resolve the complete current Governance map/version and load all active Core + all specialist contracts applicable to the current Gate;
 - Executor: should not independently reconstruct Governance policy; it should read the current Gate package plus only the specific referenced rules/contracts needed to execute and detect prohibited scope.
 
-Status: UNRESOLVED.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Reviewer resolves and understands current GitHub canonical Governance and translates applicable rules into the Gate. Executor executes the Gate and only stops for obvious internal contradictions; it does not independently reconstruct the whole Governance.
 
 
 ## R31 — Local/sandbox Governance copies can silently outrank GitHub latest
