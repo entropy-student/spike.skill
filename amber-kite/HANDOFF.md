@@ -778,3 +778,29 @@ Phase 7 Owner trial/promotion decision               NEXT
 Important:
 - `VNEXT.md` remains SHADOW / NON-OPERATIONAL.
 - Promotion or canonical replacement requires a new explicit Owner Governance-change authorization round.
+
+
+## Semantic Repair Round — draft2
+
+Owner explicitly authorized this shadow-Governance modification round.
+
+Work completed:
+- re-audited `VNEXT.md` against source documents rather than relying only on the 128-row matrix;
+- restored weakened/missing SSH trust, Secret containment, Target Host, storage/data recovery, build identity, automation/REAUTH, Provider recovery, and Closeout safeguards;
+- restored bounded Governance pin metadata;
+- corrected `COVERAGE.md` so 128/128 no longer falsely implies complete semantic equivalence;
+- repeated strong-rule source scanning after repair; no known unrestored safety gap remains;
+- classified the remaining low-match items as non-gaps (explicit late-payment timing split; optional SSH alias record field).
+
+Current status:
+```text
+VNEXT_VERSION=v0.2.0-draft2
+MATRIX_COVERAGE=128/128
+ACTIVE_SOURCE_SEMANTIC_AUDIT=PASS_CANDIDATE
+KNOWN_UNRESTORED_SAFETY_GAPS=0
+PRODUCTION_GOVERNANCE_MODIFIED=NO
+SHADOW_PROMOTED=NO
+SHADOW_READY_FOR_CONTROLLED_TRIAL=YES
+```
+
+This Governance-edit authorization is consumed by this repair round. Any later shadow/canonical Governance modification requires fresh Owner authorization.
