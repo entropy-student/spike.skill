@@ -433,7 +433,10 @@ Why risky:
 
 A future edit may update only a template or usage example, accidentally creating a unique rule not present in Core/Contract.
 
-Status: **STRUCTURAL RISK — needs future "no unique policy" invariant.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Templates/examples are record/usage aids only and may not contain unique behavioral policy. Governance wins on conflict. Prefer inline compact schemas when standalone templates add no value.
 
 ## R20 — Current loading rule still tends toward overloading Reviewer context
 
@@ -457,7 +460,10 @@ Why risky:
 
 Even though addenda are conditional, several common Gates trigger multiple long documents with overlapping rules. This matches the Owner's observed Reviewer failures.
 
-Status: **CONFIRMED DESIGN PROBLEM — one of the main refactor targets.**
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Reviewer reads the complete short Governance entry surface every round, including the full specialist directory and trigger conditions. Every trigger is checked; triggered specialist rules are read in full. Uncertain applicability defaults to reading the specialist rule.
 
 ## Review priority proposal
 
