@@ -569,3 +569,17 @@ When Reviewer escalates to Owner, Reviewer must state:
 3. the material consequences/tradeoffs of the available choices.
 
 This resolves R27.
+
+
+### Decision 020 — Governance mutation requires one-round Owner authorization
+
+Owner decision: ACCEPTED.
+
+Agreed model:
+- Project execution/review authority never implies Governance mutation authority.
+- Canonical Governance may be modified only when Owner gives explicit Governance-change authorization.
+- That authorization is valid for exactly one modification round.
+- A later modification round requires a fresh Owner authorization; prior approval cannot be carried forward.
+- Agents may always record/propose Governance issues without mutation authority.
+
+This resolves R29.
