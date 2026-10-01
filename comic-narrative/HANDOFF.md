@@ -1003,3 +1003,37 @@ C 方案明确不改：
 - Part 4 与 Part 4.5 的正式接口关系（历史素材检索、复用资格、执行方式锁定）需要用更通俗流程说明后再决定是否正式接入。
 - 整集图片 QA 的具体执行责任与问题归因需要澄清：规划本身单调属于 Part 3；Part 4 编译造成的重复属于 Part 4 规划 / 编译；执行结果偏离已锁任务属于执行 / 生图问题。整集 QA 负责识别来源并路由，不得在末端重新导演。
 - P1 / P2 / P3 属于 Part 3 的上游视觉规划审查，不属于 Part 4 Reviewer 的主要修改范围；后续需要单独继续审查。
+
+
+### Part 4 独立复查：Owner 最终确认并落地（2026-10-01）
+
+Owner 已确认本轮 Part 4 / Part 4.5 分工与执行边界，正式规则已更新。
+
+正式修改：
+- `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md` commit `1f10d1efabe6917e4af3db3ecdb47acc6b7246a5`；
+- `comic-narrative/part4_5/ASSET_REUSE_LIBRARY.md` commit `ef0af79c27a072c0679a4b812967666c4f46f145`。
+
+本轮确认的正式结构：
+1. **图片规划 Agent = Part 4 + Part 4.5 生图前职责**。默认由同一个 Agent 完成资产需求、Part 4.5 历史素材查询、复用兼容性判断、GENERATE / DERIVE_EDIT / exact reuse 决策、参考用途锁定、Prompt/Edit 编译、依赖 / fallback / acceptance 与执行包 QA。
+2. **生图执行 Agent是下一环节**。只按已锁图片执行包生成 / 编辑 / 完整复用图片，不重新查库、不换模式、不换参考、不改镜头、不补创意决策。
+3. **Part 4.5 不是必须独立成一个 Agent**。它是图片规划 Agent 使用的素材库 / 复用规则；图片生产完成后，同一规划 Agent可再次按 Part 4.5 规则登记未来素材候选。
+4. **QA 分工**：图片规划 Agent负责执行包 QA；生图执行 Agent负责逐图 QA 与全部图片完成后的整集结果 QA。正常流程不要求新增独立 Review Agent；Owner / Reviewer 仍可做后续 adjudication。
+5. **整集 QA 只检查是否忠实实现规划，不在末端重新导演**：
+   - Part 3 原规划本身重复 / 场景系统或现实演绎不足 → 返回 Part 3；
+   - Part 3 正确但 Part 4 编译把不同画面错误压成同类任务 → 返回图片规划 Agent修正 Part 4；
+   - 执行包正确但模型成图偏离任务 → 生图执行 Agent按 retry / return 合同修复。
+6. **完成状态拆分**：
+   - Part 4 规划完成 / 执行包完成；
+   - Part 4 图片生产完成 / 全部最终图 + 逐图 QA + 整集 QA + path/hash/mapping reconciliation 完成。
+7. **执行包继续严格但精简**：只保留执行说明、自包含任务、总清单 / 完整性校验、实际使用参考图；但真实 binary、hash、前置依赖、fallback、验收与失败条件不得省略。
+8. **Scene / UI / 道具稳定性**：需要稳定不等于必须额外生成 mini master；优先使用 canonical reference、Part 4.5 兼容完整旧图、本集已接受早期最终帧，只有真正必要时才预生成 mini master。
+9. **Part 4.5 正式接口接通**：执行方式锁定前由图片规划 Agent 查询当前 active catalog，并同时核对 binary/hash、status、reuse_scope、reuse_modes 与目标语义 / 物理兼容性。无充分兼容候选时直接新生成，不设固定复用率。
+10. **QA / 失败处理保持精简但更明确**：补关键对象可辨、额外可读事实、source权限 / 兼容性、明确 retry / fallback / return 路由；不扩张为庞大机械评分体系。
+
+H019 当前 P1 / P2 / P3 问题归因也已澄清：现有证据更支持其主要属于 Part 3 生图前视觉规划问题，而不是生图执行 Agent自由发挥：
+- P1 整体视觉分布 / 局部正确但整体重复 → Part 3；
+- P2 现实人物 / 真实场景演绎不足、UI易连续承担正文 → Part 3；
+- P3 Scene System 是否在生图前被整体规划 → Part 3；
+- Part 4 / 执行 Agent只在“Part 3已经规划正确但编译或成图没有实现”时承担对应责任。
+
+因此 Part 4 独立复查主线本轮可视为已完成落地；P1 / P2 / P3 及剩余旧 Skill → 当前 Part 3 迁移差异继续作为独立 Part 3 复查，不再混入 Part 4。
