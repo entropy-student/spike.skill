@@ -590,7 +590,10 @@ Owner repeatedly has to ask for:
 Candidate direction:
 Define one fixed completion packet for Executor and one for Reviewer.
 
-Status: UNRESOLVED.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Use fixed short completion packets for Executor and Reviewer. Required fields are always present; empty values are explicitly NONE.
 
 ## R24 — Reading project rules does not reliably prevent execution drift
 
@@ -605,7 +608,10 @@ A project that was expected to operate through SSH later switched to a provider/
 Candidate direction:
 Store critical project invariants explicitly in current project state and require every Gate preflight to re-assert the applicable ones immediately before mutation. Any deviation requires an explicit reviewed override; no silent substitution.
 
-Status: UNRESOLVED — high practical priority.
+Status: **SHADOW DECISION ACCEPTED.**
+
+Accepted direction:
+Reviewer Handoff carries a compact CRITICAL_CONSTRAINTS block. Each Gate re-asserts applicable constraints before execution. Silent deviation is forbidden; constraint changes require explicit review/authorization.
 
 
 ## R25 — Completion claims and PASS can occur without complete reviewable evidence
