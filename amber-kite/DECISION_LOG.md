@@ -308,3 +308,17 @@ required -> available -> reviewable -> inspected -> sufficient.
 
 Gate sizing:
 combine by default; split on material risk/authority/rollback/acceptance boundaries, not per operational step.
+
+
+## D023 — Persist and read back before completion
+
+**Decision:** ACCEPTED
+
+```text
+result reached
+-> write required durable records
+-> read back and verify
+-> only then declare PASS / STOP / round complete
+```
+
+Chat-only completion is not durable project state.
