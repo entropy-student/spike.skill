@@ -277,3 +277,14 @@ Material drift = a change capable of invalidating prior judgment, authorization,
 - Reviewer reads the complete short Governance entry surface each round.
 - Reviewer checks every specialist-rule trigger.
 - Triggered or uncertain specialist rules are read in full.
+
+
+## D020 — Rollback must be demonstrably usable; relay requirements are explicit
+
+**Decision:** ACCEPTED
+
+Rollback:
+target + recovery artifacts + method + proof + trigger/stop conditions.
+
+Relay:
+Each Gate states exactly what must move between Reviewer and Executor. Owner relay defaults to NONE unless a tool-access gap requires manual forwarding.
