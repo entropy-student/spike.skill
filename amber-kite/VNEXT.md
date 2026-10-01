@@ -356,6 +356,7 @@ Reviewer checks every row each round.
 - Before Shared-VPS deployment, the Storage state in section 4 must be complete enough to answer: "If this VPS vanished tomorrow, what must move and how is it restored?"
 - Existing production data is not migrated merely for neatness; migration is a Change Gate with consistency-safe backup, restore/read-back, regression, and rollback.
 - Database backup uses database-consistent mechanisms; writable rehearsal uses a copy, never the real migration DB.
+- Encrypted databases are recovered with the matching key/recovery material as one recovery pair; backup validation includes integrity/record-count/read compatibility and decrypt compatibility without plaintext output.
 - No broad Docker/system prune. Cleanup is exact/allowlisted with fresh reference checks, before/after Evidence, and shared/production regression.
 - Resource Evidence when relevant includes root capacity, project data/backups, production image, build/cache/browser runtime, deployment delta, and cleanup reclaimed bytes. 60/70/80% remain guidance, not universal PASS/FAIL.
 
@@ -392,7 +393,9 @@ Reviewer checks every row each round.
 - Owner-local checkpoints are one-shot/minimal, designed by Reviewer/Executor, and emit bounded non-secret Evidence; Owner is not responsible for debugging/design.
 - Multi-domain Owner-local scripts expose phase markers so failures before/after remote execution are distinguishable.
 - Windows ACL tightening avoids unnecessary owner changes; validate the protected leaf/subtree and inheritance path, not unrelated ancestors. Do not rewrite unrelated parent ACLs unless the Gate owns them.
-- Partial/ambiguous execution is reconciled before retry.
+- Scripts fail closed: native non-zero exit, runtime exception, or verification mismatch cannot be followed by an unconditional/static PASS; retain a non-secret failure class.
+- Partial/ambiguous execution is reconciled before retry. Existing partial objects are classified before repair: known bounded partial state may be repaired; unknown/non-empty objects fail closed. Unknown Secret-path contents are not deleted, overwritten, printed, hashed, or read merely to clear a collision.
+- Target-host Evidence for a host-local write includes host identity, execution proof, post-write path/state read-back, permission/ACL read-back when applicable, runtime/version compatibility when applicable, and explicit native-exit checking.
 
 ### 11C. Deployment / Network / Resources
 
@@ -454,6 +457,7 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 
 - Closeout sequence: remote hygiene -> reconstructible archive barrier -> local decommission -> final reconciliation.
 - Every deletion candidate is classified: reconstructible/durable/backup-recovery/Secret-recovery/local-rebuildable/local-disposable/shared/UNKNOWN. `UNKNOWN` fails closed.
+- Remote/local cleanup removes an artifact only when project ownership is proven, it is unreferenced, it is reconstructible/disposable or otherwise explicitly authorized, and retention allows deletion. Active manifests, durable business data, runtime Secrets, validated recovery points, and Shared Infra are kept by default.
 - Before deleting local source/docs/workspaces, require canonical remote read-back, no unpushed project commits, no untracked unique non-secret project files after archive, no sensitive data archived to Git, and reconstruction proof.
 - Git/canonical archive excludes live DB/dumps, Secrets, tokens/cookies/browser profiles, private keys, private customer/order data, Provider logs with private material, and Secret-recovery material unless a separately reviewed encrypted-storage design explicitly permits it.
 - In shared repositories, cleanliness is scoped to project-owned paths; do not mutate shared Git topology merely for cosmetic cleanliness.
@@ -461,6 +465,7 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 - Project Docker deletion is exact/allowlisted after fresh reference checks; shared resources remain unless separately reviewed.
 - A necessary protected recovery artifact may remain outside ordinary worktrees as an explicit exception; do not delete it for cosmetic zero-file goals.
 - Packaged-app/path virtualization is considered before declaring recovery material missing; distinguish path-context mismatch from actual missing/deleted state.
+- If the normal SSH path repeatedly fails before remote identity/output and an authenticated Provider/server console exists, a reviewed bounded metadata-only recovery checkpoint may use that channel to prove hostname/user/recovery-root/data presence. This is a recovery exception, not a new default execution channel.
 - If deletion is blocked by execution policy after safety classification, do not bypass through another shell/language/scheduler/tool. Move only the exact irreversible action to an explicit Owner-local checkpoint, then verify absence read-only.
 - Completed independent sub-Gates remain accepted; do not replay them merely because another closeout step was blocked.
 - Compare later probes with accepted baseline and equivalent probe semantics; distinguish known accepted property, new regression, and unproven drift.
