@@ -322,3 +322,25 @@ result reached
 ```
 
 Chat-only completion is not durable project state.
+
+
+## D024 — Source-level semantic audit is required before migration PASS
+
+**Decision:** ACCEPTED BY OWNER REQUEST / IMPLEMENTED IN AUTHORIZED REPAIR ROUND
+
+Matrix mapping alone is insufficient proof of semantic preservation.
+
+Required migration verification:
+```text
+rule-matrix mapping
++
+active source-document semantic audit
++
+explicit list of intentional Owner-approved differences
+=
+migration coverage assessment
+```
+
+The repaired shadow draft2 restores the safety semantics found missing from draft1 while preserving the compression-first architecture.
+
+Governance-edit authority for this round expires after durable write/read-back of the repair results.
