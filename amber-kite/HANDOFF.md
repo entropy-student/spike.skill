@@ -736,3 +736,15 @@ Agreed:
 - Gates are combined by default when target, rollback domain, evidence boundary and risk level remain compatible.
 - Gates split when a material risk/authority/rollback boundary changes.
 - Gate sizing follows risk boundaries, not individual operational steps.
+
+
+### Decision 033 — Persist and read back before declaring a round complete
+
+Owner decision: ACCEPTED for R28.
+
+Agreed:
+- a consequential Gate/result is not considered fully closed merely because the chat reached a conclusion;
+- required durable records must be written first;
+- the durable write must be read back/verified;
+- only then may Reviewer/Executor report the round as complete, PASS, or STOP;
+- this applies to Evidence, Reviewer Handoff, Decision Log, and other required state records according to the Gate.
