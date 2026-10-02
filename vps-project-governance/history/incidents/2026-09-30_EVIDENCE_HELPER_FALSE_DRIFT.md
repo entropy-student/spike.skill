@@ -1,7 +1,7 @@
 # Incident — Evidence helper/transcription failure looked like target drift
 
 STATUS: CLOSED
-DATE: 2026-09-30
+DATE: 2026-09-21 / 2026-09-30
 PROJECT: Shared VPS Infrastructure / Mini Craft migration
 CATEGORY: EVIDENCE_EXTRACTION / BASELINE_FINGERPRINT
 
@@ -14,6 +14,10 @@ First, parser/formatting/shell helper failures prevented complete network and Co
 ## Verified cause
 
 Evidence tooling/formatting failure was allowed to look like runtime instability, and a critical fingerprint was manually transcribed without validating it against the accepted machine-read source.
+
+## Recurrence
+
+An earlier Mini Craft PPCP reconciliation on 2026-09-21 showed the same class from a different probe: the WordPress admin UI presented the Sandbox merchant as connected, while an Executor helper reported `PPCP_MERCHANT_CONNECTED=NO`. Read-only reconciliation later proved the helper had parsed the wrong JSON path (`data.merchant` instead of the actual top-level state); there was no real connection-state mismatch. No disconnect/reconnect was allowed until the contradiction was reconciled.
 
 ## Impact
 
