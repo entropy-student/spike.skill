@@ -160,6 +160,7 @@ SECRET_LOCATIONS_METADATA_ONLY
 SECRET_RUNTIME_READER_AND_PERMISSIONS
 SECRET_RECOVERY_DESTINATION_AND_LIMITATION
 BACKUP_METHOD_AND_PATH
+BACKUP_SCOPE_TIMESTAMP_INTEGRITY_AND_SECRET_INCLUSION
 RESTORE_METHOD_AND_LAST_VALIDATION
 RETENTION
 MIGRATION_UNIT
@@ -355,6 +356,8 @@ Reviewer checks every row each round.
 - Build/cache/temp/disposable logs stay separable from durable business state.
 - Before Shared-VPS deployment, the Storage state in section 4 must be complete enough to answer: "If this VPS vanished tomorrow, what must move and how is it restored?"
 - Existing production data is not migrated merely for neatness; migration is a Change Gate with consistency-safe backup, restore/read-back, regression, and rollback.
+- Migration unit includes reconstructible app/release + durable data + validated backup/recovery material + secure Secret transfer procedure + canonical deployment manifest. Migration PASS proves fresh-target restore, DB integrity/read-back, uploads/state availability, Secret compatibility without value output, project health, and unambiguous old/new target identity.
+- Backups record source scope, timestamp, integrity/restore validation, whether Secrets are included, any matching encryption/recovery material, and retention. Distinguish scheduled, pre-change, and final/decommission recovery points when applicable.
 - Database backup uses database-consistent mechanisms; writable rehearsal uses a copy, never the real migration DB.
 - Encrypted databases are recovered with the matching key/recovery material as one recovery pair; backup validation includes integrity/record-count/read compatibility and decrypt compatibility without plaintext output.
 - No broad Docker/system prune. Cleanup is exact/allowlisted with fresh reference checks, before/after Evidence, and shared/production regression.
@@ -368,20 +371,20 @@ Reviewer checks every row each round.
 - Identity-file reference and public-key fingerprint may be recorded; private-key data never is.
 - A successful SSH connection proves reachability only, not write authorization.
 - If the default connection fails, verify recorded identity, permissions/fingerprint, host key, and bounded read-only identity probe before asking Owner or changing access.
-- Windows/OpenSSH/PowerShell/native tools are one transport boundary: quoting, CRLF/LF, SSH/SCP port options, and native exit codes must be validated rather than assumed.
+- Windows/OpenSSH/PowerShell/native tools are one transport boundary: keep SSH and SCP options distinct (`-p` vs `-P` where applicable), use explicit known-host file/trust, bounded connection timeout/keepalive as appropriate, validate quoting/argument cardinality, normalize reviewed line endings/encoding for multiline payloads, and explicitly check native exit codes. Remote cleanup failure is a failure.
 
 #### Secret handling
 - Secret values never enter chat, repo, ordinary Handoff/Evidence, README, bundles, command arguments, environment variables, stdout/stderr, shell history, transcripts, debug echo, ordinary temp files, or logs.
 - Secret-bearing transport prefers bounded reviewed stdin/process-memory handling; plaintext is not rendered to Owner console.
 - Exposed real credentials are compromised input and require an independent Owner-authorized rotation checkpoint before reuse.
 - Secret authority/custody is Owner-controlled; exact technical generation/install may be explicitly delegated only for a named project/environment/purpose/target/overwrite/recovery policy. It never implies Provider activation, payment, account authorization, or production enablement.
-- Delegated generation uses CSPRNG inside the protected target, exact allowlist, atomic restrictive creation, fail-on-existing unless a rotation Gate owns the exact file, and emits no value or value hash.
+- Delegated generation uses CSPRNG inside the protected target, exact allowlist, atomic restrictive creation, fail-on-existing unless a rotation Gate owns the exact file, and emits no value or value hash. Validate non-empty/format/uniqueness without printing values or hashes.
 - Freeze effective runtime reader/group and permissions before generation. Prove intended runtime access and prove unrelated services are denied/not-mounted where relevant.
-- Secret recovery is encrypted before leaving the protected runtime and exists in a different failure domain. Database backup and Secret recovery are separate artifacts.
+- Secret recovery is encrypted before leaving the protected runtime and exists in a different failure domain. Ciphertext stays outside ordinary repo/review artifacts unless an explicitly reviewed encrypted-storage design says otherwise. Database backup and Secret recovery are separate artifacts.
 - A profile-bound DPAPI/CurrentUser copy may be a low-operation first recovery copy, never sole disaster recovery.
 - Recovery creation must be proven on the real Owner host; a documented path or sandbox copy is not proof.
 - Credential-changing recovery uses two phases: create/verify pending recovery artifact -> perform/verify remote change -> then promote final artifact. Failed/ambiguous remote action does not publish a final recovery artifact.
-- Recovery serialization/parser compatibility is validated before remote mutation; successful decrypt alone does not prove payload/parser validity. Do not print decrypted payloads.
+- Recovery serialization/parser compatibility is validated before remote mutation, including reviewed encoding/line-ending/BOM behavior where relevant; successful decrypt alone does not prove payload/parser validity. Do not print decrypted payloads or plaintext checksums; clear sensitive plaintext buffers as soon as practical.
 - Restore over live Secrets is never implicit; restore is a separate explicit Gate.
 
 #### Target-host reality and ACL
@@ -392,7 +395,7 @@ Reviewer checks every row each round.
 - If real-host execution cannot be proven, fail closed with a precise RETURN instead of claiming success.
 - Owner-local checkpoints are one-shot/minimal, designed by Reviewer/Executor, and emit bounded non-secret Evidence; Owner is not responsible for debugging/design.
 - Multi-domain Owner-local scripts expose phase markers so failures before/after remote execution are distinguishable.
-- Windows ACL tightening avoids unnecessary owner changes; validate the protected leaf/subtree and inheritance path, not unrelated ancestors. Do not rewrite unrelated parent ACLs unless the Gate owns them.
+- Windows ACL tightening avoids unnecessary owner changes; validate the protected leaf/subtree and inheritance path, not unrelated ancestors. Protected Secret locations use an explicit principal allowlist and do not gain broad Everyone/Users/Authenticated-Users access for convenience. Do not rewrite unrelated parent ACLs unless the Gate owns them.
 - Scripts fail closed: native non-zero exit, runtime exception, or verification mismatch cannot be followed by an unconditional/static PASS; retain a non-secret failure class.
 - Partial/ambiguous execution is reconciled before retry. Existing partial objects are classified before repair: known bounded partial state may be repaired; unknown/non-empty objects fail closed. Unknown Secret-path contents are not deleted, overwritten, printed, hashed, or read merely to clear a collision.
 - Target-host Evidence for a host-local write includes host identity, execution proof, post-write path/state read-back, permission/ACL read-back when applicable, runtime/version compatibility when applicable, and explicit native-exit checking.
@@ -427,13 +430,13 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 - Account-side KYC/KYB, product signing, merchant binding, Provider authorization, 2FA/wallet signature, and equivalent account-side actions remain Owner checkpoints.
 - Do not rewrite application code to bypass a missing Provider/account permission.
 - Provider paid, local paid, order state, and fulfillment completion are separate proofs.
-- One real Canary enables only the intended channel where practical and authorizes one bounded buyer action. Provider success forbids a blind second payment.
-- Reconciliation/query paths are proven read-only and must not create/capture/refund/cancel or mutate local business state as a hidden side effect.
+- One real Canary enables only the intended channel where practical, keeps unrelated Providers/channels disabled where technically possible, freezes reviewed amount/currency bounds, and authorizes one bounded buyer action. Provider success forbids a blind second payment.
+- Reconciliation/query paths are proven read-only from actual implementation/endpoint semantics, not method names alone, and must not create/capture/refund/cancel or mutate local business state as a hidden side effect.
 
 #### Callback and signing
 - Callback/webhook success acknowledgement comes only after authenticity, expected app/environment, server-owned merchant correlation, durable order correlation, exact amount/currency, allowed Provider status, idempotency/replay handling, and durable local commit/already-committed recognition.
 - Never "fix" retries by returning success unconditionally.
-- Signature unit tests alone are insufficient when durable first-delivery/replay behavior is part of the acceptance boundary.
+- Signature unit tests alone are insufficient when durable first-delivery/replay behavior is part of the acceptance boundary; verify first delivery + same-event replay, exact Provider acknowledgement/body/content type where required, and downstream event/state identity.
 - Key/signing rotation is staged: configure new -> parse/read-back compatibility -> callback/query verification -> only then retire old material.
 
 #### Payment recovery
@@ -451,6 +454,8 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 - Diagnostic and recovery logic should share selector/facts/validation/guard ordering. Separate diagnostic logic requires parity/regression proof before its diagnosis can justify production recovery changes.
 - Incident-only recovery tooling remains narrowly scoped and does not become scheduled/startup/public/generic runtime policy automatically.
 - Canary fixture semantics must match the invariant being proven; manual fulfillment cannot prove automatic delivery.
+- Provider/payment Evidence separates at least: provider create, buyer action, provider remote terminal status, callback/webhook authenticity, acknowledgement, merchant/app/order/amount/currency correlation, local payment state, local order state, fulfillment state, duplicate side-effect count, real-payment retry count, and refund action when applicable.
+- Raw Provider payloads, buyer identities, transaction identifiers, and private business identifiers remain inside the protected execution/application boundary unless a specific non-secret identifier is required for review.
 - Refund or another real payment is a separately authorized consequential action.
 
 ### 11F. Closeout
@@ -466,12 +471,12 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 - A necessary protected recovery artifact may remain outside ordinary worktrees as an explicit exception; do not delete it for cosmetic zero-file goals.
 - Packaged-app/path virtualization is considered before declaring recovery material missing; distinguish path-context mismatch from actual missing/deleted state.
 - If the normal SSH path repeatedly fails before remote identity/output and an authenticated Provider/server console exists, a reviewed bounded metadata-only recovery checkpoint may use that channel to prove hostname/user/recovery-root/data presence. This is a recovery exception, not a new default execution channel.
-- If deletion is blocked by execution policy after safety classification, do not bypass through another shell/language/scheduler/tool. Move only the exact irreversible action to an explicit Owner-local checkpoint, then verify absence read-only.
+- If deletion is blocked by execution policy after safety classification, first prove the destructive command did not start and no partial deletion occurred. Then do not bypass through another shell/language/scheduler/tool; move only the exact irreversible allowlisted action to an explicit Owner-local checkpoint, then verify absence read-only.
 - Completed independent sub-Gates remain accepted; do not replay them merely because another closeout step was blocked.
 - Compare later probes with accepted baseline and equivalent probe semantics; distinguish known accepted property, new regression, and unproven drift.
 - When attaching to an authenticated browser, prefer neutral/admin landing pages. If unrelated sensitive text appears, navigate away, do not inspect/reproduce it, and record only a redacted boundary event. Accidental visibility alone is not automatic credential compromise; concrete exposure/misuse evidence controls rotation.
 - Deferred retention events require explicit reconciliation. Older recovery material is deleted only when replacement coverage, business/legal retention, Secret recovery, authorization, and incident dependencies permit.
-- Final reconciliation proves runtime truth, archive/reconstruction, local workstation state, recovery validity, exact exceptions, deferred obligations, and no shared/production regression.
+- Final reconciliation proves project/business stage, completed Gates, production/runtime truth, local workstation truth, recovery model, reconstruction path, mutation/deletion counters where applicable, exact exceptions, deferred obligations, and no shared/production regression.
 - Deferred business actions remain `DEFERRED_NOT_PASS`, not PASS.
 - Historical audit references are not globally rewritten when current pointers change; reference-only repair does not replay already-valid runtime checks.
 - Closeout does not authorize Secret deletion/disclosure, Shared Infra mutation, real payment/refund, Provider activation, destructive Git history rewrite, or other Owner-only actions.
