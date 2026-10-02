@@ -873,3 +873,21 @@ OWNER_ACTION_REQUIRED=NONE
 ```
 
 This authorized Governance modification round is CLOSED. Any later shadow or canonical Governance edit requires fresh Owner authorization.
+
+
+## Owner-facing Reviewer format update
+
+Owner approved the concise Reviewer response format.
+
+Applied to shadow Governance:
+- Chinese section titles;
+- short meaningful label + one plain-language sentence;
+- important terms may be bolded;
+- project progress uses one compact no-blank-line code block covering the full project path;
+- technical machine/state fields remain in durable records;
+- Executor completion format is intentionally unchanged pending separate review.
+
+VNEXT_VERSION=v0.2.0-draft3.1
+PRODUCTION_GOVERNANCE_MODIFIED=NO
+
+This format-change authorization is consumed by this round.
