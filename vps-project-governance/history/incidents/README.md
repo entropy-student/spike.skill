@@ -15,6 +15,18 @@ An incident record never creates or overrides policy. If an incident reveals a n
 
 Reviewer does not read this directory by default. Consult it only for recurrence diagnosis, rationale, prior resolution details, or explicit Owner request.
 
+## Incident index
+
+| Date | Incident | Main lesson |
+|---|---|---|
+| 2026-09-15 | `DUJIAONEXT_APPDATA_TARGET_HOST_FALSE_POSITIVE` | Same path outside the real Owner host is not proof of host-local state |
+| 2026-09-15 | `OWNER_WINDOWS_AUTOMATION_COMPATIBILITY_CHAIN` | Freeze the real shell/runtime; avoid reserved variables; validate serialization and preserve useful errors |
+| 2026-09-15 | `SSH_TRANSPORT_PAYLOAD_QUOTING_FAILURE` | Stable transport and complex payload must be separated |
+| 2026-09-15 | `FALSE_PASS_MARKERS_AFTER_FAILURE` | PASS text is not Evidence; Owner steps must fail closed and be atomic |
+| 2026-09-15 | `SHARED_PARENT_ACL_SCOPE_DRIFT` | Project scripts may protect their child path, not silently rewrite a shared parent |
+| 2026-09-15 | `CONTROL_PLANE_READBACK_ATTRIBUTION` | Owner report / public behavior / inference are not direct control-plane read-back |
+| 2026-09-15 | `REPEATED_PATCHING_BEFORE_DIAGNOSTIC_PROBE` | Repeated similar failure should trigger a bounded probe before another patch |
+
 ## Minimal incident record
 
 Keep only:
