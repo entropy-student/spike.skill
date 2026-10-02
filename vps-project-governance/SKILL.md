@@ -1,16 +1,16 @@
 ---
 name: vps-project-governance
 description: >
-  VPS/Docker/Shared VPS 项目治理 v0.2.4。用于 Owner-Reviewer-Executor、Gate、Evidence、
+  VPS/Docker/Shared VPS 项目治理 v0.2.5。用于 Owner-Reviewer-Executor、Gate、Evidence、
   rollback、SSH/Secret、部署、自动化、Provider/payment 与项目 closeout。
 ---
 
-# VPS Project Governance v0.2.4
+# VPS Project Governance v0.2.5
 
 > STATUS=ACTIVE_PROVISIONAL
 > CANONICAL_OPERATIONAL_RULES=main:vps-project-governance/VNEXT.md
-> PREVIOUS_VERSION=v0.2.3
-> PREVIOUS_VERSION_ARCHIVE=vps-project-governance/history/vnext/v0.2.3.md
+> PREVIOUS_VERSION=v0.2.4
+> PREVIOUS_VERSION_ARCHIVE=vps-project-governance/history/vnext/v0.2.4.md
 > INCIDENT_ARCHIVE=vps-project-governance/history/incidents/
 
 ## 加载要求
