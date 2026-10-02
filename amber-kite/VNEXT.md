@@ -4,6 +4,8 @@
 > VERSION=v0.2.0-draft2
 > CANONICAL_PRODUCTION_GOVERNANCE=main:vps-project-governance/
 > SHADOW_AUTHORITY=NONE
+> ACTIVE_RULESET_IF_PROMOTED=THIS_FILE_UNIVERSAL_SECTIONS_PLUS_TRIGGERED_11A_11F
+> EXTERNAL_OPERATIONAL_ADDENDA=NONE
 > Promotion requires a future explicit Owner authorization.
 
 This file is the complete operational rule surface for the shadow design. README, template, example, local copy, history file, or Handoff cannot add competing policy.
@@ -26,7 +28,7 @@ explicit Owner decision
 ```
 
 - GitHub canonical is authoritative.
-- Local/sandbox Governance copies are avoided. If unavoidable, they are non-authoritative, ephemeral, commit-pinned, and never reused as next-session authority.
+- Local/sandbox Governance copies are avoided. If unavoidable, they are non-authoritative, ephemeral, commit-pinned, and never reused as next-session authority. A discovered stale working copy is refreshed or removed so it cannot silently outrank GitHub.
 - A normal Owner instruction changes goals/authorization; it does not silently waive backup, evidence, rollback, Secret-safety, Shared-Infra, or other safety rules.
 - A Governance exception/pin is explicit, scoped, and temporary. When pinning a version/addendum for reproducibility or incident containment, record the exact version/commit where practical, scope, reason, and expiry/close condition.
 
@@ -65,11 +67,13 @@ Executes only the current Gate. It does not reconstruct Governance, expand scope
 
 Every round Reviewer must:
 
-1. read this complete file from GitHub;
+1. read the universal surface from GitHub: header + sections 0–10 + the section 11 trigger table + sections 12–13;
 2. read current `REVIEWER_HANDOFF`, current Gate, and accepted Evidence needed for the round;
-3. scan every specialist trigger in section 11;
-4. apply every triggered specialist section; uncertain applicability counts as triggered;
+3. check **every** specialist trigger in section 11;
+4. read in full only the triggered specialist subsection(s) 11A–11F; uncertain applicability counts as triggered and therefore must be read;
 5. reconcile material drift before consequential work.
+
+Do not skip the trigger scan, and do not load unrelated specialist sections merely because they exist in the same file.
 
 Material drift = any change that could invalidate an earlier judgment, authorization, Evidence set, accepted state, critical constraint, or rollback/recovery assumption.
 
@@ -102,7 +106,9 @@ Existing accepted projects use a bounded Change Gate; do not replay onboarding u
 Keep:
 
 ```text
+PROJECT_GOAL
 PROJECT_STAGE
+SYSTEM_MAP
 CURRENT_ACCEPTED_STATE
 CURRENT_GATE
 CRITICAL_CONSTRAINTS
@@ -114,6 +120,9 @@ OWNER_ACTION_REQUIRED
 EVIDENCE_POINTERS
 ```
 
+`SYSTEM_MAP` stays compact but preserves the currently relevant runtime/deployment/data/network/auth/Shared-Infra shape so a new Reviewer does not rediscover the project from scratch.
+
+- `REVIEWER_HANDOFF` is maintained by Reviewer only. Executor writes execution facts/Evidence and the completion packet; it does not promote its own output into canonical project state.
 - Critical constraints remain until explicitly changed.
 - A confirmed default execution channel is sticky.
 - If it fails: diagnose/repair first. A fallback requires reason + Reviewer approval and does not automatically become the new default.
@@ -139,7 +148,7 @@ INGRESS_80_443_OWNER
 REVERSE_PROXY_OR_TUNNEL
 FIREWALL
 SHARED_BACKUP_MONITORING
-LAST_VERIFIED_HOST_USER_OS
+LAST_VERIFIED_HOST_USER_OS_AND_TIME
 RECOVERY_ROUTE
 ```
 
