@@ -202,7 +202,7 @@ EXECUTOR_TO_REVIEWER_RELAY
 ```
 
 - Accepted work is not replayed unless material drift is proven.
-- Conditional continuation is valid only inside the declared maximum endpoint.
+- Conditional continuation is valid only inside the declared maximum endpoint. Any prerequisite FAIL/RETURN/ambiguity/material drift invalidates it; after a failed consequential production write, a later production write requires fresh consequential authorization rather than silently reusing the failed preauthorization.
 - Owner-only consequential actions require Owner authorization.
 - Failed normal execution returns/reconciles; it does not improvise a new architecture.
 
@@ -362,7 +362,7 @@ Reviewer checks every row each round.
 - Each project has isolated app/data/backup namespaces and Compose project; cross-project DB/uploads/secrets/backups are forbidden unless explicitly promoted to Shared Service.
 - Unique durable data does not live only in reconstructible app files, ephemeral cache, or anonymous volume.
 - Prefer explicit bind mounts for user-controlled durable data. Named volumes are namespaced, documented, backupable/restorable. Anonymous volumes cannot hold unique durable data.
-- Build/cache/temp/disposable logs stay separable from durable business state.
+- Build/cache/temp/disposable logs and browser download/cache are ephemeral only when reconstructible; if they carry unique business state they are reclassified as durable.
 - Before Shared-VPS deployment, the Storage state in section 4 must be complete enough to answer: "If this VPS vanished tomorrow, what must move and how is it restored?"
 - Existing production data is not migrated merely for neatness; migration is a Change Gate with consistency-safe backup, restore/read-back, regression, and rollback.
 - Migration unit includes reconstructible app/release + durable data + validated backup/recovery material + secure Secret transfer procedure + canonical deployment manifest. Migration PASS proves fresh-target restore, DB integrity/read-back, uploads/state availability, Secret compatibility without value output, project health, and unambiguous old/new target identity.
@@ -379,6 +379,7 @@ Reviewer checks every row each round.
 - Automated SSH uses strict non-interactive identity/trust behavior equivalent to `BatchMode=yes`, `IdentitiesOnly=yes`, and `StrictHostKeyChecking=yes`, with explicit known-host trust. Host-key mismatch is never auto-accepted.
 - Identity-file reference and public-key fingerprint may be recorded; private-key data never is.
 - A successful SSH connection proves reachability only, not write authorization.
+- A pre-existing SSH key may be reused for another project on the same host only when its server-side role is already the intended shared operations role; never copy a private key into a project/review bundle.
 - If the default connection fails, verify recorded identity, permissions/fingerprint, host key, and bounded read-only identity probe before asking Owner or changing access.
 - Windows/OpenSSH/PowerShell/native tools are one transport boundary: keep SSH and SCP options distinct (`-p` vs `-P` where applicable), use explicit known-host file/trust, bounded connection timeout/keepalive as appropriate, validate quoting/argument cardinality, normalize reviewed line endings/encoding for multiline payloads, and explicitly check native exit codes. Remote cleanup failure is a failure.
 
@@ -387,14 +388,14 @@ Reviewer checks every row each round.
 - Secret-bearing transport prefers bounded reviewed stdin/process-memory handling; plaintext is not rendered to Owner console.
 - Exposed real credentials are compromised input and require an independent Owner-authorized rotation checkpoint before reuse.
 - Secret authority/custody is Owner-controlled; exact technical generation/install may be explicitly delegated only for a named project/environment/purpose/target/overwrite/recovery policy. It never implies Provider activation, payment, account authorization, or production enablement.
-- Delegated generation uses CSPRNG inside the protected target, exact allowlist, atomic restrictive creation, fail-on-existing unless a rotation Gate owns the exact file, and emits no value or value hash. Validate non-empty/format/uniqueness without printing values or hashes.
+- Delegated generation freezes the reviewed format/entropy requirement and uses CSPRNG inside the protected target, exact allowlist, atomic restrictive creation, fail-on-existing unless a rotation Gate owns the exact file, and emits no value or value hash. Validate non-empty/format/uniqueness without printing values or hashes. Secret directories/files default to restrictive permissions (for example 0700/0600 where compatible) unless the reviewed runtime identity requires a different least-privilege owner/group/mode.
 - Freeze effective runtime reader/group and permissions before generation. Prove intended runtime access and prove unrelated services are denied/not-mounted where relevant.
 - Secret recovery is encrypted before leaving the protected runtime and exists in a different failure domain. Ciphertext stays outside ordinary repo/review artifacts unless an explicitly reviewed encrypted-storage design says otherwise. Database backup and Secret recovery are separate artifacts.
 - A profile-bound DPAPI/CurrentUser copy may be a low-operation first recovery copy, never sole disaster recovery.
 - Recovery creation must be proven on the real Owner host; a documented path or sandbox copy is not proof.
 - Credential-changing recovery uses two phases: create/verify pending recovery artifact -> perform/verify remote change -> then promote final artifact. Failed/ambiguous remote action does not publish a final recovery artifact.
-- Recovery serialization/parser compatibility is validated before remote mutation, including reviewed encoding/line-ending/BOM behavior where relevant; successful decrypt alone does not prove payload/parser validity. Do not print decrypted payloads or plaintext checksums; clear sensitive plaintext buffers as soon as practical.
-- Restore over live Secrets is never implicit; restore is a separate explicit Gate.
+- Recovery serialization/parser compatibility is validated before remote mutation, including reviewed encoding/line-ending/BOM behavior where relevant; successful decrypt alone does not prove payload/parser validity. Creation includes an immediate in-memory round-trip/identity check. Do not print decrypted payloads or plaintext checksums; clear sensitive plaintext buffers as soon as practical.
+- Restore over live Secrets is never implicit; restore is a separate explicit Gate and defaults to a fresh/empty project Secret location followed by permission, inventory, and runtime compatibility checks.
 
 #### Target-host reality and ACL
 - Prove which real host/runtime is being changed before claiming a host-local result.
@@ -416,6 +417,8 @@ Reviewer checks every row each round.
 - After public exposure, immediately verify anonymous/negative access boundaries; an unintended anonymous route is removed/contained and returned.
 - HTTPS WebSocket paths require WSS/upgrade verification when applicable.
 - Frontend deployed does not imply backend ready; validate relevant layers separately.
+- Health evidence distinguishes process/container, web/API, DB/persistence, and business worker/scheduler health when those layers exist; one healthy layer does not imply the others.
+- Architecture/storage/auth changes update dependent preflight, backup/restore, health, and exposure checks before PASS.
 - Functional PASS does not imply resource PASS.
 - Cleanup remains allowlisted/reference-checked; no broad prune.
 
@@ -434,10 +437,10 @@ Reviewer checks every row each round.
 Maturity note: rules proven on one Provider/project do not become cross-Provider `VALIDATED` automatically; cross-Provider generalization remains `PROVISIONAL` until independently exercised.
 
 #### Identity, permission, Canary
-- Keep account/login, merchant/seller/PID, application/client ID, product/contract permission, environment, signing/verification material, callback route/ack contract, interaction mode, amount/currency, and Canary fulfillment type distinct.
+- Keep account/login, merchant/seller/PID, application/client ID, product/contract permission, environment, signing/verification material, callback route/ack contract, interaction mode, amount/currency, and Canary fulfillment type distinct. A Provider-created new application/merchant identity remains distinct until explicitly correlated.
 - Do not infer merchant/application ownership merely because the same human can manage both.
 - Account-side KYC/KYB, product signing, merchant binding, Provider authorization, 2FA/wallet signature, and equivalent account-side actions remain Owner checkpoints.
-- Do not rewrite application code to bypass a missing Provider/account permission.
+- Treat `APPLICATION_CONFIGURED`, `PRODUCT_PERMISSION_ACTIVE`, and `MERCHANT_BINDING_CORRECT` as separate facts. Do not rewrite application code to bypass a missing Provider/account permission.
 - Provider paid, local paid, order state, and fulfillment completion are separate proofs.
 - One real Canary enables only the intended channel where practical, keeps unrelated Providers/channels disabled where technically possible, freezes reviewed amount/currency bounds, and authorizes one bounded buyer action. Provider success forbids a blind second payment.
 - Reconciliation/query paths are proven read-only from actual implementation/endpoint semantics, not method names alone, and must not create/capture/refund/cancel or mutate local business state as a hidden side effect.
@@ -456,12 +459,12 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 - Recovery occurs through application/domain transaction logic, not ad-hoc direct SQL status edits.
 - Recovery selector cardinality is exact: zero or multiple candidates fail closed.
 - Immediately before mutation, re-read/re-lock critical payment/order/inventory facts inside the transaction/equivalent consistency boundary.
-- Recovery preserves idempotency and restores the full invariant set: payment/order/child-order truth, inventory, fulfillment eligibility, duplicate prevention, contradictory terminal/refund checks, and downstream dispatch eligibility.
+- Recovery preserves idempotency and restores the full invariant set: payment/order/child-order truth, inventory, fulfillment eligibility, duplicate prevention, contradictory terminal/refund checks, and downstream dispatch eligibility; fulfillment dispatch follows the product/order's original fulfillment type rather than changing business semantics to make recovery pass.
 - Durable DB commit and queue/outbox/worker/fulfillment completion are separate proofs. If DB recovery committed but downstream dispatch is pending/ambiguous, reconcile downstream durable state; do not rerun recovery just to fire the worker.
 - Before replay classify previous attempt: `NOT_COMMITTED | COMMITTED | PARTIAL_OR_PENDING | AMBIGUOUS`. Replay is forbidden except where `NOT_COMMITTED` or explicit reviewed replay-safety is proven.
 - After a proven non-committed production failure: identify/reproduce the narrow cause, add regression/negative guard, build/qualify a new immutable candidate, run fresh production preflight/backup as required, then authorize only the bounded next attempt.
 - Diagnostic and recovery logic should share selector/facts/validation/guard ordering. Separate diagnostic logic requires parity/regression proof before its diagnosis can justify production recovery changes.
-- Incident-only recovery tooling remains narrowly scoped and does not become scheduled/startup/public/generic runtime policy automatically.
+- Incident-only recovery tooling remains narrowly scoped and does not become scheduled/startup/public/generic runtime policy automatically. Incident closeout records whether the normal runtime/application was actually changed so a one-shot recovery is not misdocumented as a steady-state capability.
 - Canary fixture semantics must match the invariant being proven; manual fulfillment cannot prove automatic delivery.
 - Provider/payment Evidence separates at least: provider create, buyer action, provider remote terminal status, callback/webhook authenticity, acknowledgement, merchant/app/order/amount/currency correlation, local payment state, local order state, fulfillment state, duplicate side-effect count, real-payment retry count, and refund action when applicable.
 - Raw Provider payloads, buyer identities, transaction identifiers, and private business identifiers remain inside the protected execution/application boundary unless a specific non-secret identifier is required for review.
@@ -471,7 +474,7 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 
 - Closeout sequence: remote hygiene -> reconstructible archive barrier -> local decommission -> final reconciliation.
 - Every deletion candidate is classified: reconstructible/durable/backup-recovery/Secret-recovery/local-rebuildable/local-disposable/shared/UNKNOWN. `UNKNOWN` fails closed.
-- Remote/local cleanup removes an artifact only when project ownership is proven, it is unreferenced, it is reconstructible/disposable or otherwise explicitly authorized, and retention allows deletion. Active manifests, durable business data, runtime Secrets, validated recovery points, and Shared Infra are kept by default.
+- Remote/local cleanup removes an artifact only when project ownership is proven, it is unreferenced, it is reconstructible/disposable or otherwise explicitly authorized, and retention allows deletion. A failed helper/preflight identifies the exact safety invariant that failed; unrelated serialized/runtime fields do not become accidental deletion blockers. Active manifests, durable business data, runtime Secrets, validated recovery points, and Shared Infra are kept by default.
 - Before deleting local source/docs/workspaces, require canonical remote read-back, no unpushed project commits, no untracked unique non-secret project files after archive, no sensitive data archived to Git, and reconstruction proof.
 - Git/canonical archive excludes live DB/dumps, Secrets, tokens/cookies/browser profiles, private keys, private customer/order data, Provider logs with private material, and Secret-recovery material unless a separately reviewed encrypted-storage design explicitly permits it.
 - In shared repositories, cleanliness is scoped to project-owned paths; do not mutate shared Git topology merely for cosmetic cleanliness.
