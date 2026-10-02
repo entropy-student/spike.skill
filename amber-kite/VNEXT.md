@@ -1,7 +1,7 @@
 # Amber Kite vNext
 
 > STATUS=SHADOW_NON_OPERATIONAL
-> VERSION=v0.2.0-draft3
+> VERSION=v0.2.0-draft3.1
 > CANONICAL_PRODUCTION_GOVERNANCE=main:vps-project-governance/
 > SHADOW_AUTHORITY=NONE
 > ACTIVE_RULESET_IF_PROMOTED=THIS_FILE_UNIVERSAL_SECTIONS_PLUS_TRIGGERED_11A_11F
@@ -303,20 +303,34 @@ FOR_REVIEWER
 OWNER_RELAY_REQUIRED
 ```
 
-Reviewer:
+Reviewer -> Owner uses a short, human-readable fixed structure:
+
 ```text
-DECISION
-CURRENT_GATE
-THIS_ROUND_RESULT
-PROBLEMS
-PROJECT_PROGRESS
-CURRENT_STATE
-NEXT_STEP
-OWNER_RELAY_REQUIRED
-OWNER_ACTION_REQUIRED
+本轮结果
+当前状态
+当前问题
+项目进度
+下一步
+你需要做什么
 ```
 
-Empty fields are `NONE`.
+Formatting rules:
+- section titles are Chinese;
+- each normal line uses **short label: one plain-language sentence**;
+- the label must summarize the meaning, not use generic names such as "内容1/问题1";
+- important states, risks, objects, or proper nouns are bolded when helpful;
+- avoid unexplained technical jargon in Owner-facing text; translate it into plain language unless the exact technical term is necessary;
+- `当前问题` is omitted only when there is genuinely nothing useful to report; otherwise each problem is written as **problem phrase: plain-language explanation**;
+- `项目进度` is the only section that uses a compact code block. It shows the whole project path from start to finish, one stage per line, with no blank lines, and marks each stage as PASS / RETURN->FIXED / IN_PROGRESS / NEXT / PENDING;
+- keep the progress list short: merge substeps that do not represent meaningful Owner-visible stages;
+- `下一步` explains what happens next and what will be observed, in plain language;
+- `你需要做什么` states Owner action and relay needs directly; use **NONE** when nothing is required.
+
+The Reviewer still preserves the underlying machine/state fields in durable project records; the Owner-facing response is a concise presentation layer, not the canonical data model.
+
+Executor completion format is not changed by this rule.
+
+Empty machine-state fields remain `NONE` in durable records.
 
 ## 10. Durability and Governance change
 
