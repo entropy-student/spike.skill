@@ -344,3 +344,21 @@ migration coverage assessment
 The repaired shadow draft2 restores the safety semantics found missing from draft1 while preserving the compression-first architecture.
 
 Governance-edit authority for this round expires after durable write/read-back of the repair results.
+
+
+## D025 — Reviewer Owner-facing return format
+
+**Decision:** ACCEPTED
+
+Reviewer responses to Owner use a concise Chinese-titled presentation layer:
+
+- sections: 本轮结果 / 当前状态 / 当前问题 / 项目进度 / 下一步 / 你需要做什么;
+- ordinary lines use **meaningful short label: one plain-language sentence**;
+- important terms/states may be bolded;
+- avoid unexplained technical jargon;
+- project progress alone uses a compact code block showing the full project path with one stage per line and no blank lines;
+- progress stages use PASS / RETURN->FIXED / IN_PROGRESS / NEXT / PENDING;
+- keep Owner-visible stages compressed and meaningful;
+- this presentation format does not replace the canonical machine/state fields stored in project records.
+
+Executor completion format remains unchanged pending separate Owner review.
