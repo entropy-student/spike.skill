@@ -4,7 +4,7 @@ category: engineering-governance
 language: zh-CN + en
 version: 0.2.1
 status: active-provisional
-canonical_operational_rules: v0.2.1/VNEXT.md
+canonical_operational_rules: VNEXT.md
 incident_archive: history/incidents/
 previous_version: 0.2.0
 previous_version_archive: history/v0.2.0/

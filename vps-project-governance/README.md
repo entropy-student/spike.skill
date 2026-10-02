@@ -9,8 +9,7 @@ vps-project-governance/
 ├─ SKILL.md
 ├─ README.md
 ├─ metadata.yml
-├─ v0.2.1/
-│  └─ VNEXT.md                   # 唯一正式运行规则
+├─ VNEXT.md                      # 唯一正式运行规则
 └─ history/
    ├─ README.md
    ├─ incidents/                 # 具体历史事故；默认不读取
@@ -26,4 +25,4 @@ vps-project-governance/
 - 历史事故不会自动成为规则；只有 Owner 授权的 Governance 修改轮次才能改变 `VNEXT.md`。
 - Reviewer 日常不读 history；需要复盘类似问题或追溯规则来源时才查。
 
-上一版 `v0.2.0/VNEXT.md` 已原样归档到 `history/v0.2.0/VNEXT.md`。
+当前正式规则固定为根目录 `VNEXT.md`；上一版 `v0.2.0/VNEXT.md` 已原样归档到 `history/v0.2.0/VNEXT.md`。

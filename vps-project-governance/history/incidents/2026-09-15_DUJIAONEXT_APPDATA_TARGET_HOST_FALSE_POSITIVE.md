@@ -37,8 +37,8 @@ The execution/documentation flow promoted a planned/expected path or a same-name
 
 The operational prevention/diagnosis path is normative only in:
 
-- `vps-project-governance/v0.2.1/VNEXT.md` §10.1 — standard rule vs incident history;
-- `vps-project-governance/v0.2.1/VNEXT.md` §11B — Target-host reality and ACL.
+- `vps-project-governance/VNEXT.md` §10.1 — standard rule vs incident history;
+- `vps-project-governance/VNEXT.md` §11B — Target-host reality and ACL.
 
 This incident file is historical evidence/rationale only and does not create policy.
 
