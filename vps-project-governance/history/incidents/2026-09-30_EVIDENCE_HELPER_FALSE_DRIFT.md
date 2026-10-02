@@ -1,7 +1,7 @@
 # Incident — Evidence helper/transcription failure looked like target drift
 
 STATUS: CLOSED
-DATE: 2026-09-21 / 2026-09-30
+DATE: 2026-09-21 / 2026-09-30 / 2026-10-02
 PROJECT: Shared VPS Infrastructure / Mini Craft migration
 CATEGORY: EVIDENCE_EXTRACTION / BASELINE_FINGERPRINT
 
@@ -18,6 +18,8 @@ Evidence tooling/formatting failure was allowed to look like runtime instability
 ## Recurrence
 
 An earlier Mini Craft PPCP reconciliation on 2026-09-21 showed the same class from a different probe: the WordPress admin UI presented the Sandbox merchant as connected, while an Executor helper reported `PPCP_MERCHANT_CONNECTED=NO`. Read-only reconciliation later proved the helper had parsed the wrong JSON path (`data.merchant` instead of the actual top-level state); there was no real connection-state mismatch. No disconnect/reconnect was allowed until the contradiction was reconciled.
+
+The class recurred again in `vpn-network-optimization` on 2026-10-02. The first G2-B Owner runner passed the Administrator/High checks but failed inside its own route/adapter precheck with `CimJobException` before any benchmark sample. Reviewer reconciliation classified current network reality as healthy and the blocker as runner/precheck implementation rather than route/adapter drift.
 
 ## Impact
 

@@ -30,7 +30,7 @@ Reviewer does not read this directory by default. Consult it only for recurrence
 | 2026-09-21 | `PROVIDER_LOG_SECRET_OUTPUT` | Raw provider/plugin logs must be redacted before diagnostic output leaves the protected boundary |
 | 2026-09-22 | `SOURCE_BASELINE_AND_GIT_ROOT_CONFUSION` | Prove canonical source/root and isolate dirty shared repositories before project edits |
 | 2026-09-28 / 09-30 | `EVIDENCE_PERSISTENCE_GAP_AFTER_EXECUTION` | If execution happened but durable Evidence did not persist, freeze mutation and reconcile without replay |
-| 2026-09-21 / 09-30 | `EVIDENCE_HELPER_FALSE_DRIFT` | Parser/helper/transcription failure is not target drift without target evidence |
+| 2026-09-21 / 09-30 / 10-02 | `EVIDENCE_HELPER_FALSE_DRIFT` | Parser/helper/transcription failure is not target drift without target evidence |
 | 2026-09-30 / 10-01 | `SINGLE_FILE_BIND_MOUNT_STALE_REFERENCE` | Host config + live reload can PASS while a stale single-file bind makes restart persistence unsafe |
 | 2026-10-01 | `UNIFIED_PAY_RECOVERY_ASSET_DRIFT` | Unexpected recovery loss after decommission freezes destructive cleanup and triggers read-only forensics |
 | 2026-10-02 | `WINDOWS_SECURITY_VALIDATOR_FALSE_NEGATIVE` | Validate security semantics, not incidental ACL/token representation |
