@@ -245,3 +245,18 @@ The two residual low lexical-overlap items remain non-gaps:
 1. generic "late payment" wording is replaced by explicit pre-expiry vs post-expiry timing states;
 2. SSH config alias remains optional connection metadata, not Governance behavior.
 
+
+
+## Final draft3 seal
+
+```text
+FINAL_STRONG_RULE_SCAN_CANDIDATES=2
+FINAL_STRONG_RULE_SCAN_TRUE_GAPS=0
+RESIDUAL_1=late-payment generic wording -> explicitly represented by pre-expiry/post-expiry timing states
+RESIDUAL_2=SSH config alias -> optional factual convenience, not policy
+OWNER_DECISION_ALIGNMENT=24/24_PASS
+KNOWN_UNRESTORED_SAFETY_GAPS=0
+FILES_CHANGED_OUTSIDE_AMBER_KITE=0
+```
+
+Draft3 is therefore accepted as the current **shadow** candidate for controlled trial. This is functional/safety coverage, not byte-for-byte textual equivalence with the old multi-file Governance.
