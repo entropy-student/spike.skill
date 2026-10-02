@@ -19,6 +19,10 @@ The recovered set included the rollback metadata and both pending/final protecte
 
 The files had not been deleted or lost. Windows packaged-app path virtualization redirected the write into the app package's `LocalCache\Local` view, while a normal PowerShell process inspected the ordinary `%LOCALAPPDATA%` path.
 
+## Recurrence
+
+The same failure class recurred in `vpn-network-optimization` on 2026-10-02. The canonical Owner path under ordinary `%LOCALAPPDATA%\vpn-network-optimization\...` was absent, while the intended DPAPI artifact was found under the OpenAI Codex packaged-app `LocalCache\Local\vpn-network-optimization\...` namespace. The artifact was subsequently validated and then realized into the canonical Owner path without re-fetching/rotating the VPS Secret.
+
 ## Resolution used
 
 - Before declaring a Windows/AppData artifact missing, identify the process/runtime that performed the write.

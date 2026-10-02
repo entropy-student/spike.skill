@@ -13,6 +13,10 @@ A long Owner PowerShell sequence was run interactively in pieces. Earlier SQL/cr
 
 The step was not atomic; PASS markers were not structurally tied to verified invariants; line-by-line interactive execution defeated the intended fail-stop behavior across the whole operation.
 
+## Recurrence
+
+A later `ai-story-showrunner` G6A fine-tuning run exposed the same failure class in a different surface: several Windows-side runtime failures were presented by the WebUI as “training completed”. The UI completion label was therefore treated as a claim, not proof; accepted state required checking the actual runtime/output artifacts and downstream inference behavior.
+
 ## Resolution used
 
 - One Owner step is delivered/executed atomically.

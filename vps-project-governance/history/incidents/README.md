@@ -22,11 +22,18 @@ Reviewer does not read this directory by default. Consult it only for recurrence
 | 2026-09-15 / 09-18 | `DUJIAONEXT_APPDATA_TARGET_HOST_FALSE_POSITIVE` | Same path outside the real Owner host is not proof of host-local state; repeat occurrences stay in the same failure-class record |
 | 2026-09-15 | `OWNER_WINDOWS_AUTOMATION_COMPATIBILITY_CHAIN` | Freeze the real shell/runtime; avoid reserved variables; validate serialization and preserve useful errors |
 | 2026-09-15 | `SSH_TRANSPORT_PAYLOAD_QUOTING_FAILURE` | Stable transport and complex payload must be separated |
-| 2026-09-15 | `FALSE_PASS_MARKERS_AFTER_FAILURE` | PASS text is not Evidence; Owner steps must fail closed and be atomic |
+| 2026-09-15 / later G6A | `FALSE_PASS_MARKERS_AFTER_FAILURE` | PASS/completion labels are not Evidence; Owner scripts and UIs must be verified against real outputs/invariants |
 | 2026-09-15 | `SHARED_PARENT_ACL_SCOPE_DRIFT` | Project scripts may protect their child path, not silently rewrite a shared parent |
 | 2026-09-15 | `CONTROL_PLANE_READBACK_ATTRIBUTION` | Owner report / public behavior / inference are not direct control-plane read-back |
 | 2026-09-15 | `REPEATED_PATCHING_BEFORE_DIAGNOSTIC_PROBE` | Repeated similar failure should trigger a bounded probe before another patch |
-| 2026-09-29 | `PACKAGED_APP_APPDATA_PATH_VIRTUALIZATION` | A missing ordinary AppData path may be redirected packaged-app storage rather than data loss |
+| 2026-09-29 / 10-02 | `PACKAGED_APP_APPDATA_PATH_VIRTUALIZATION` | A missing ordinary AppData path may be redirected packaged-app storage rather than data loss |
+| 2026-09-21 | `PROVIDER_LOG_SECRET_OUTPUT` | Raw provider/plugin logs must be redacted before diagnostic output leaves the protected boundary |
+| 2026-09-22 | `SOURCE_BASELINE_AND_GIT_ROOT_CONFUSION` | Prove canonical source/root and isolate dirty shared repositories before project edits |
+| 2026-09-28 / 09-30 | `EVIDENCE_PERSISTENCE_GAP_AFTER_EXECUTION` | If execution happened but durable Evidence did not persist, freeze mutation and reconcile without replay |
+| 2026-09-30 | `EVIDENCE_HELPER_FALSE_DRIFT` | Parser/helper/transcription failure is not target drift without target evidence |
+| 2026-09-30 / 10-01 | `SINGLE_FILE_BIND_MOUNT_STALE_REFERENCE` | Host config + live reload can PASS while a stale single-file bind makes restart persistence unsafe |
+| 2026-10-01 | `UNIFIED_PAY_RECOVERY_ASSET_DRIFT` | Unexpected recovery loss after decommission freezes destructive cleanup and triggers read-only forensics |
+| 2026-10-02 | `WINDOWS_SECURITY_VALIDATOR_FALSE_NEGATIVE` | Validate security semantics, not incidental ACL/token representation |
 
 ## Organization rule
 
