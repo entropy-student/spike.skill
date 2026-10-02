@@ -8,5 +8,6 @@ canonical_operational_rules: v0.2.0/VNEXT.md
 source_snapshot_commit: eb6b45f8dac2594293be02fa7996387e96fa292b
 source_snapshot_branch: lab/amber-kite-27
 operational_content_rewritten_on_promotion: false
+refactor_audit_archive: history/v0.2.0-refactor/
 previous_version: 0.1.6
 previous_version_archive: history/v0.1.6/
