@@ -891,3 +891,20 @@ VNEXT_VERSION=v0.2.0-draft3.1
 PRODUCTION_GOVERNANCE_MODIFIED=NO
 
 This format-change authorization is consumed by this round.
+
+
+## Executor return format update
+
+Owner approved the concise Executor -> Reviewer completion format.
+
+Applied:
+- result / changes / validation / problems / rollback / Reviewer check / Owner relay;
+- each item uses a meaningful short label plus one plain-language sentence;
+- detailed proof stays in EXECUTION_EVIDENCE;
+- PASS_CANDIDATE remains non-final until Reviewer review;
+- generic FAILED wording is not sufficient for RETURN.
+
+VNEXT_VERSION=v0.2.0-draft3.2
+PRODUCTION_GOVERNANCE_MODIFIED=NO
+
+This format-change authorization is consumed by this round.
