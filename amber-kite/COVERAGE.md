@@ -213,3 +213,35 @@ These are not omissions:
 - Templates/examples cannot supply unique policy.
 - GitHub canonical remains the only authority if this shadow is ever promoted.
 - Production Governance under `vps-project-governance/` was not modified by this coverage exercise.
+
+## Draft3 re-audit — active-source and decision alignment
+
+A fresh repair/audit round was performed after draft2.
+
+```text
+VNEXT_VERSION=v0.2.0-draft3
+OWNER_DECISION_ALIGNMENT=24/24_PASS
+MATRIX_COVERAGE=128/128
+LOW_LEXICAL_MATCH_CANDIDATES=2
+LOW_MATCH_CLASSIFIED_AS_TRUE_GAPS=0
+KNOWN_UNRESTORED_SAFETY_GAPS=0
+LOADING_MODEL=UNIVERSAL_SURFACE_PLUS_FULL_TRIGGER_SCAN_PLUS_TRIGGERED_SPECIALIST_SECTIONS
+```
+
+Additional safeguards restored in draft3:
+- backup scope/timestamp/integrity/Secret-inclusion metadata and migration restore proof;
+- SSH/SCP Windows transport details that had operational safety value;
+- Secret format/entropy, restrictive-mode baseline, recovery round-trip and fresh-location restore;
+- Provider full Canary/payment evidence chain and protected raw-identifier boundary;
+- execution-policy deletion precondition that the destructive command did not start/no partial deletion occurred;
+- project goal/system map and Reviewer-only canonical Handoff ownership;
+- single-file **conditional** specialist loading, correcting draft2's accidental "read every specialist every round" behavior;
+- conditional-preauthorization invalidation after FAIL/RETURN/ambiguity/drift;
+- Provider identity/permission distinctions, original fulfillment semantics and incident-tool steady-state labeling;
+- health-layer separation and dependent-check refresh after architecture/storage/auth changes;
+- stale local Governance copy refresh/removal rule.
+
+The two residual low lexical-overlap items remain non-gaps:
+1. generic "late payment" wording is replaced by explicit pre-expiry vs post-expiry timing states;
+2. SSH config alias remains optional connection metadata, not Governance behavior.
+
