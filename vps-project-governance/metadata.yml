@@ -2,12 +2,12 @@ slug: vps-project-governance
 display_name: VPS Project Governance（VPS 项目管理规范）
 category: engineering-governance
 language: zh-CN + en
-version: 0.2.5
+version: 0.2.6
 status: active-provisional
 canonical_operational_rules: VNEXT.md
 incident_archive: history/incidents/
 version_history_root: history/vnext/
-previous_version: 0.2.4
-previous_version_archive: history/vnext/v0.2.4.md
+previous_version: 0.2.5
+previous_version_archive: history/vnext/v0.2.5.md
 refactor_audit_archive: history/v0.2.0-refactor/
 legacy_package_archive: history/v0.1.6/
