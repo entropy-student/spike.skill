@@ -19,7 +19,7 @@ Inspect shared parents unless a separate Shared/authority Gate owns them. A proj
 
 ## Current standard rule
 
-See active `VNEXT.md` §11B “Target-host reality and ACL” and §11A Shared VPS/Storage boundary principles.
+See active `VNEXT.md` §11B “Target-host reality and ACL”.
 
 ## Source pointers
 

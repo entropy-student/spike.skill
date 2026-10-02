@@ -19,13 +19,20 @@ Reviewer does not read this directory by default. Consult it only for recurrence
 
 | Date | Incident | Main lesson |
 |---|---|---|
-| 2026-09-15 | `DUJIAONEXT_APPDATA_TARGET_HOST_FALSE_POSITIVE` | Same path outside the real Owner host is not proof of host-local state |
+| 2026-09-15 / 09-18 | `DUJIAONEXT_APPDATA_TARGET_HOST_FALSE_POSITIVE` | Same path outside the real Owner host is not proof of host-local state; repeat occurrences stay in the same failure-class record |
 | 2026-09-15 | `OWNER_WINDOWS_AUTOMATION_COMPATIBILITY_CHAIN` | Freeze the real shell/runtime; avoid reserved variables; validate serialization and preserve useful errors |
 | 2026-09-15 | `SSH_TRANSPORT_PAYLOAD_QUOTING_FAILURE` | Stable transport and complex payload must be separated |
 | 2026-09-15 | `FALSE_PASS_MARKERS_AFTER_FAILURE` | PASS text is not Evidence; Owner steps must fail closed and be atomic |
 | 2026-09-15 | `SHARED_PARENT_ACL_SCOPE_DRIFT` | Project scripts may protect their child path, not silently rewrite a shared parent |
 | 2026-09-15 | `CONTROL_PLANE_READBACK_ATTRIBUTION` | Owner report / public behavior / inference are not direct control-plane read-back |
 | 2026-09-15 | `REPEATED_PATCHING_BEFORE_DIAGNOSTIC_PROBE` | Repeated similar failure should trigger a bounded probe before another patch |
+| 2026-09-29 | `PACKAGED_APP_APPDATA_PATH_VIRTUALIZATION` | A missing ordinary AppData path may be redirected packaged-app storage rather than data loss |
+
+## Organization rule
+
+Prefer one incident record per verified failure class. If the same root failure recurs, append a recurrence to the existing record instead of creating duplicate files. Create a new incident when the verified root cause or standard prevention path is materially different.
+
+Source pointers may live in the originating project or another archive; each Governance-side incident must still be self-contained enough to understand the symptom, verified cause, resolution, and current rule without opening those sources.
 
 ## Minimal incident record
 

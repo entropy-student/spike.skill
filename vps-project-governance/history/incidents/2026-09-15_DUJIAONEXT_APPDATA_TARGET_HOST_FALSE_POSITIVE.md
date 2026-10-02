@@ -10,7 +10,7 @@ CATEGORY: TARGET_HOST_REALITY / WINDOWS_APPDATA
 Project documentation stated that the Owner recovery artifact existed at:
 
 ```text
-C:\Users\34707\AppData\Local\DujiaoNext\recovery\dujiao-next\admin-bootstrap.dpapi
+%LOCALAPPDATA%\DujiaoNext\recovery\dujiao-next\admin-bootstrap.dpapi
 ```
 
 A later check from the actual Owner Windows session proved that the artifact was not present on that target host.
@@ -24,6 +24,12 @@ The execution/documentation flow promoted a planned/expected path or a same-name
 - Owner recovery material was not actually available where documentation claimed.
 - Handoff/storage state temporarily disagreed with reality.
 - An additional Admin Access Recovery flow was required.
+
+## Recurrence
+
+The same failure class recurred on 2026-09-18 in DujiaoNext R13: execution records claimed an Owner-only handoff file had been created under `%LOCALAPPDATA%\DujiaoNext\R13\`, but fresh inspection on the real Owner Windows host found that file absent. The claim was treated as another non-authoritative Executor-environment false positive.
+
+The remediation changed the delivery boundary instead of pretending the write succeeded: stage the protected handoff on the verified remote side, let an Owner-local PowerShell step pull it onto the actual Windows host, and count success only after local read-back/Owner confirmation.
 
 ## Resolution used
 
