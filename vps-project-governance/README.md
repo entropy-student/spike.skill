@@ -1,6 +1,6 @@
-# VPS Project Governance v0.2.1
+# VPS Project Governance v0.2.2
 
-当前正式版本：**v0.2.1 / ACTIVE_PROVISIONAL**
+当前正式版本：**v0.2.2 / ACTIVE_PROVISIONAL**
 
 ## 当前文件结构
 
@@ -13,7 +13,8 @@ vps-project-governance/
 └─ history/
    ├─ README.md
    ├─ incidents/                 # 具体历史事故；默认不读取
-   ├─ v0.2.0/                    # 上一正式规则版本
+   ├─ v0.2.1/                    # 上一正式规则版本
+   ├─ v0.2.0/                    # 更早正式规则版本
    ├─ v0.2.0-refactor/           # v0.2.0 重构审计材料
    └─ v0.1.6/                    # 更早正式版本完整回滚包
 ```
@@ -25,4 +26,4 @@ vps-project-governance/
 - 历史事故不会自动成为规则；只有 Owner 授权的 Governance 修改轮次才能改变 `VNEXT.md`。
 - Reviewer 日常不读 history；需要复盘类似问题或追溯规则来源时才查。
 
-当前正式规则固定为根目录 `VNEXT.md`；上一版 `v0.2.0/VNEXT.md` 已原样归档到 `history/v0.2.0/VNEXT.md`。
+当前正式规则固定为根目录 `VNEXT.md`；上一版 `v0.2.1` 的 `VNEXT.md` 已原样归档到 `history/v0.2.1/VNEXT.md`。

@@ -1,11 +1,11 @@
-# VPS Project Governance v0.2.2
+# VPS Project Governance v0.2.1
 
 > STATUS=ACTIVE_PROVISIONAL
-> VERSION=v0.2.2
-> CANONICAL_OPERATIONAL_RULES=main:vps-project-governance/VNEXT.md
+> VERSION=v0.2.1
+> CANONICAL_PRODUCTION_GOVERNANCE=main:vps-project-governance/
 > ACTIVE_RULESET=THIS_FILE_UNIVERSAL_SECTIONS_PLUS_TRIGGERED_11A_11F
 > EXTERNAL_OPERATIONAL_ADDENDA=NONE
-> BASE_VERSION=v0.2.1
+> BASE_VERSION=v0.2.0
 
 This file is the complete operational rule surface. README, template, example, local copy, history file, incident record, or Handoff cannot add competing policy.
 
@@ -67,18 +67,16 @@ Executes only the current Gate. It does not reconstruct Governance, expand scope
 Every round Reviewer must:
 
 1. read the universal surface from GitHub: header + sections 0–10 + the section 11 trigger table + sections 12–13;
-2. read the current `REVIEWER_HANDOFF`, current Gate, and accepted Evidence needed for the round **when they exist and are reliable**;
+2. read current `REVIEWER_HANDOFF`, current Gate, and accepted Evidence needed for the round;
 3. check **every** specialist trigger in section 11;
 4. read in full only the triggered specialist subsection(s) 11A–11F; uncertain applicability counts as triggered and therefore must be read;
 5. reconcile material drift before consequential work.
 
 Do not skip the trigger scan, and do not load unrelated specialist sections merely because they exist in the same file.
 
-The current Gate is a logical accepted work boundary, not a mandatory standalone file; it may be stored in the current Handoff or a separate Gate/prompt record. Missing/unreliable Handoff or Gate is never reconstructed from guesswork.
-
 Material drift = any change that could invalidate an earlier judgment, authorization, Evidence set, accepted state, critical constraint, or rollback/recovery assumption.
 
-If current project truth or current Gate is missing/unreliable, the first Gate is read-only Discovery. At minimum identify:
+If current project truth is missing/unreliable, the first Gate is read-only Discovery. At minimum identify:
 
 ```text
 goal + current runtime
@@ -381,8 +379,6 @@ history/incidents/ = what actually happened before
 - Recording an incident does **not** create or change Governance. If the incident only violated an existing rule, keep the rule unchanged and link the incident to it.
 - If the incident exposes a genuine cross-project rule gap, a separate Owner-authorized Governance edit may add the **smallest generalized rule or standard path** to `VNEXT.md`; do not copy the incident narrative into the operational rule.
 - Reviewer normal loading excludes `history/incidents/`. When diagnosing a problem, search in this order: `VNEXT.md` -> current project `REVIEWER_HANDOFF` / Gate / relevant Evidence -> `history/incidents/` only when recurrence, rationale, or prior resolution details are needed.
-- Any write inside this Governance package requires a fresh Owner-authorized modification round. An incident-only addition is non-normative and does **not** bump the operational version.
-- A change to `VNEXT.md` changes operational Governance: before editing, archive the exact current `VNEXT.md` under `history/<current-version>/VNEXT.md` if not already archived; then make the smallest patch, bump the operational version, update only the version/entry metadata that must stay consistent, and perform fresh read-back. Historical files are not rewritten to match the new version.
 
 ## 11. Specialist trigger scan
 
@@ -444,7 +440,6 @@ Reviewer checks every row each round.
 #### Target-host reality and ACL
 - Prove which real host/runtime is being changed before claiming a host-local result.
 - Same absolute path in sandbox/container/WSL/remote runner does not prove real-host state.
-- On Windows or packaged-app runtimes, path virtualization/redirected app storage must be ruled in or out before declaring a host-local artifact missing or successfully written; distinguish path-context mismatch from actual missing/deleted state.
 - Host-local write requires machine/user/effective privilege + target identity before mutation and same-target host-local read-back afterward.
 - Script/runtime/API compatibility and native exit status are part of preflight where relevant.
 - If real-host execution cannot be proven, fail closed with a precise RETURN instead of claiming success.
@@ -526,6 +521,7 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 - Local runtime/workspace deletion requires current remote/production health, no unique business data only locally, exact project ownership, proven recovery/reconstruction, and proof that local runtime is not still required for rollback.
 - Project Docker deletion is exact/allowlisted after fresh reference checks; shared resources remain unless separately reviewed.
 - A necessary protected recovery artifact may remain outside ordinary worktrees as an explicit exception; do not delete it for cosmetic zero-file goals.
+- Packaged-app/path virtualization is considered before declaring recovery material missing; distinguish path-context mismatch from actual missing/deleted state.
 - If the normal SSH path repeatedly fails before remote identity/output and an authenticated Provider/server console exists, a reviewed bounded metadata-only recovery checkpoint may use that channel to prove hostname/user/recovery-root/data presence. This is a recovery exception, not a new default execution channel.
 - If deletion is blocked by execution policy after safety classification, first prove the destructive command did not start and no partial deletion occurred. Then do not bypass through another shell/language/scheduler/tool; move only the exact irreversible allowlisted action to an explicit Owner-local checkpoint, then verify absence read-only.
 - Completed independent sub-Gates remain accepted; do not replay them merely because another closeout step was blocked.
