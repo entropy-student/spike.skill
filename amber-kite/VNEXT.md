@@ -1,7 +1,7 @@
 # Amber Kite vNext
 
 > STATUS=SHADOW_NON_OPERATIONAL
-> VERSION=v0.2.0-draft3.1
+> VERSION=v0.2.0-draft3.2
 > CANONICAL_PRODUCTION_GOVERNANCE=main:vps-project-governance/
 > SHADOW_AUTHORITY=NONE
 > ACTIVE_RULESET_IF_PROMOTED=THIS_FILE_UNIVERSAL_SECTIONS_PLUS_TRIGGERED_11A_11F
@@ -292,16 +292,27 @@ Owner relay defaults to `NONE`.
 
 If a required artifact is not directly accessible/reviewable, the Gate states the smallest exact Owner relay action.
 
-Executor:
+Executor -> Reviewer uses a short fixed completion format:
+
 ```text
-RESULT
-WHAT_CHANGED
-EVIDENCE
-PROBLEMS
-ROLLBACK_STATUS
-FOR_REVIEWER
-OWNER_RELAY_REQUIRED
+结果：PASS_CANDIDATE / RETURN_*
+改动：一句话说明实际改了什么。
+验证：一句话总结关键检查结果；详细证据仍写入 EXECUTION_EVIDENCE。
+问题：NONE，或用“短语概括：一句通俗解释”说明阻塞点。
+回滚：一句话说明是否可恢复、恢复到哪里。
+请 Reviewer 检查：一句话说明需要 Reviewer 核对什么。
+Owner 转交：NONE，或写明最小必要转交动作。
 ```
+
+Executor-facing formatting rules:
+- one line answers one question;
+- use a meaningful short label before the colon;
+- prefer plain language over unexplained jargon;
+- do not paste long logs, raw Provider payloads, Secret values, or full evidence into the completion packet;
+- detailed technical proof belongs in `EXECUTION_EVIDENCE`;
+- `PASS_CANDIDATE` remains only an Executor claim; Reviewer alone decides formal PASS;
+- when RETURNing, the problem line must state the actual blocking reason, not generic `FAILED`;
+- `Owner 转交` defaults to `NONE`.
 
 Reviewer -> Owner uses a short, human-readable fixed structure:
 
