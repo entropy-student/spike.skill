@@ -20,7 +20,7 @@
 
 | Skill | 主要解决什么问题 | 状态 | 入口 |
 |---|---|---:|---|
-| ⭐ **VPS Project Governance（VPS 项目管理规范）** | 把新项目接管、VPS/Shared VPS 部署、生产变更、Evidence、回滚、Secret、资源与 Owner 介入时机统一成可复用的 Reviewer / Executor 治理闭环 | **v0.1.6 Active / Validated** | [进入](./vps-project-governance/) |
+| ⭐ **VPS Project Governance（VPS 项目管理规范）** | 把新项目接管、VPS/Shared VPS 部署、生产变更、Evidence、回滚、Secret、资源与 Owner 介入时机统一成可复用的 Reviewer / Executor 治理闭环 | **v0.2.0 Active / Provisional** | [进入](./vps-project-governance/) |
 | 📈 **Acquisition Growth Radar（获客增长雷达）** | 判断项目为什么还没挣到钱、当前卡在哪层证据、下一步最值得验证什么 | v0.2 Frozen | [进入](./acquisition-growth-radar/) |
 | 📣 **Creator Sponsorship Cold Start（自媒体品牌商单冷启动）** | 从开放发现到真实账号证据，验证哪些 Account Model 最可能形成可持续品牌商单收入，再叠加 User Fit 并设计冷启动验证 | **v0.5.0 Calibrating** | [进入](./creator-sponsorship-cold-start/) |
 | 🧭 **Independent Store Product Opportunity（独立站选品决策系统）** | 从实物、虚拟与 SaaS 候选中区分发现信号与决策证据，筛出最值得真实验证的 DTC 产品机会 | **v2.1.0 Active** | [进入](./independent-store-product-opportunity/) |
@@ -114,7 +114,7 @@ display_name: Acquisition Growth Radar（获客增长雷达）
 例如：
 
 ```text
-按 VPS Project Governance v0.1.6 接管这个项目。
+按 VPS Project Governance v0.2.0 接管这个项目。
 先读现有 Handoff；没有可靠 Handoff 就进入只读 P0 Discovery。
 能安全合并的 Gate 自行压缩，已 PASS 的阶段不要重复跑；
 除 Owner-only 事项外，技术判断由 Reviewer 自行完成。

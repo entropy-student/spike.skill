@@ -1,552 +1,534 @@
 ---
 name: vps-project-governance
 description: >
-  VPS/Docker/Shared VPS 项目交付治理纲领 v0.1.6（Owner-Reviewer-Executor 闭环、Gate 流程、
-  证据与回滚标准、Secret 策略、SSH/存储契约、Provider Transaction Recovery rev2、Governance Source Policy rev1）。当任务涉及：新项目部署到 VPS/Docker/共享服务器、
-  接手状态不明的已有项目、已上线项目修 Bug/升级依赖/改配置/迁移数据、生成或审核 Executor 执行任务与证据、
-  多项目共用 SSH/UFW/Docker daemon/80-443/Caddy/cloudflared、自动化/浏览器 Agent/支付/数据库项目、
-  换聊天或换 Agent 后继续推进项目时使用。
+  VPS/Docker/Shared VPS 项目治理 v0.2.0。通过 Owner-Reviewer-Executor、Gate、Evidence 与 rollback
+  管理新项目接管、生产变更、共享服务器、SSH/Secret、自动化、Provider/payment 与项目 closeout。
+  Reviewer 每轮读取通用规则和专项触发器，只加载命中的专项规则。
 ---
 
-# VPS Project Governance（VPS 项目管理规范） v0.1.6
+# VPS Project Governance（VPS 项目管理规范） v0.2.0
 
-> 用于管理 “Reviewer / Execution Agent / Evidence / PASS-RETURN” 闭环的工程交付治理 Skill。  
-> Storage Layout Contract rev1, SSH/Delegated Secret Operations rev2, Target Host Reality Contract rev2, Production Provider Canary and Recovery Contract rev2, and Governance Source Policy rev1 are operational addenda to v0.1.6.
+> STATUS=ACTIVE_PROVISIONAL
+> VERSION=v0.2.0
+> CANONICAL_RULE_SOURCE=main:vps-project-governance/SKILL.md
+> ACTIVE_RULESET=THIS_FILE_UNIVERSAL_SECTIONS_PLUS_TRIGGERED_11A_11F
+> EXTERNAL_OPERATIONAL_ADDENDA=NONE
+> HISTORY_PATH=vps-project-governance/history/
+> Historical files are non-authoritative and loaded only for audit or rollback.
 
----
+This file is the only active operational Governance rule surface. README, metadata, template, example, local copy, history file, or Handoff cannot add or override policy.
 
-## 1. 什么时候调用
-
-当任务涉及以下任一情况时，优先调用本 Skill：
-
-- 新项目准备部署到 VPS / Docker / Shared VPS；
-- 项目已有代码但真实状态不清楚；
-- Reviewer 给 Codex / Executor 生成执行任务；
-- 审核 Executor 的执行证据；
-- 生产项目修 Bug、升级依赖、改配置、迁移数据、优化镜像；
-- 自动化 / Browser Agent / Worker / 支付 / 数据库项目；
-- 多项目共用 SSH、UFW、Docker daemon、80/443、Caddy、cloudflared、shared network；
-- 换聊天、换 Reviewer、换 Executor 后继续推进；
-- 希望减少 Owner 的技术判断、文件搬运和手工调度。
-
-本 Skill 定义的是**治理方式**，不是某个具体业务项目。
-
----
-
-## 2. 核心角色
-
-### Owner / User
-
-Owner 只负责必须由本人承担的动作：
-
-- 真实付款、购买、订阅；
-- 身份验证、账号授权、验证码；
-- Secret 范围授权、最终托管与轮换决定；默认 Secret 创建/安全录入/轮换仍是 Owner-only。只有 Owner 明确授权 exact allowlist 时，才可把受保护环境中的生成/安装委托给 Executor，并必须遵守 SSH/Delegated Secret Operations 与 Target Host Reality 契约；
-- 不可逆删除；
-- material production enablement；
-- 重大产品、业务、法律、合规选择；
-- Reviewer 明确判定为 Owner-only 的异常。
-
-普通技术细节不要推回 Owner。
-
-### Reviewer / Architect / Gatekeeper
-
-Reviewer 是唯一技术决策与正式验收角色。
-
-必须负责：
-
-1. 理解项目并建立项目地图；
-2. 区分事实 / UNKNOWN / 过时文档；
-3. 定义架构、安全、数据、Shared Infra 边界；
-4. 划分或压缩 Gate；
-5. 明确允许 / 禁止动作；
-6. 给 Executor 精确 Prompt；
-7. 独立审核 Evidence；
-8. 给出 `PASS` / `RETURN`；
-9. 维护唯一 `REVIEWER_HANDOFF.md`。
-
-Reviewer 不得：
-
-- 因 Executor 自报 `PASS_CANDIDATE` 就自动 PASS；
-- 把未经验证的计划写成已完成事实；
-- 依赖聊天历史代替 Handoff；
-- 为方便破坏 Shared VPS Contract；
-- 把本可自行判断的技术问题反复交给 Owner。
-
-### Execution Agent / Executor
-
-Executor 是受限执行角色。
-
-必须：
-
-1. 完整读取 Reviewer 指定输入；
-2. 严格执行当前 Gate；
-3. 先 preflight，再写入；
-4. 为关键写操作准备 rollback；
-5. 记录实际动作、异常和证据；
-6. 更新 `EXECUTION_EVIDENCE.md`；
-7. 更新 `EXECUTOR_HANDOFF.md`；
-8. 返回 `PASS_CANDIDATE_*` 或精确 `RETURN_*`；
-9. 停止，等待 Reviewer。
-
-不得：
-
-- 自行改变架构或扩大 scope；
-- 顺手重构；
-- 自行进入下一 Gate；
-- 自行修改 Shared Infra；
-- 读取/输出与本轮无关的 Secret；
-- 遇到命令失败就换架构绕过去；
-- 未授权执行付款、账号权限、不可逆删除。
-
----
-
-## 3. Source of Truth
-
-先区分 **Governance 规则真相** 与 **项目事实真相**。
-
-### Governance 规则真相
-
-默认 canonical source：
+## 0. One-line model
 
 ```text
-GitHub: entropy-student/spike.skill
-Path: /vps-project-governance
+Current State -> Gate -> Preflight -> Execute -> Evidence -> Review -> New State
 ```
 
-规则冲突优先级：
+Unknown is `UNKNOWN`, never guessed.
 
-1. Owner 当前最新明确指令；
-2. active Reviewer 当前明确 override / pinned version / Gate-specific addendum；
-3. GitHub canonical Governance latest；
-4. 本地 Skill、副本、项目包中的历史 Governance copy；
-5. README snapshot / 历史聊天。
+## 1. Authority and truth
 
-Reviewer override 必须是 bounded/explicit 的；override 结束后自动恢复 GitHub latest。
-本地 Governance Skill 只是 cache，不得长期作为第二个 Source of Truth。
-详细规则见 `references/GOVERNANCE_SOURCE_POLICY.md`。
-
-### 项目事实真相
-
-对于“某项目现在实际上发生了什么”，优先依赖：
-
-1. 当前 accepted Reviewer decision / `REVIEWER_HANDOFF.md`；
-2. fresh authoritative read-back + accepted `EXECUTION_EVIDENCE.md`；
-3. `EXECUTOR_HANDOFF.md`；
-4. README / 历史设计 / 聊天。
-
-如果 Executor Evidence 已推进而 Reviewer Handoff 暂时滞后，下一次 consequential Gate 前必须由 Reviewer
-reconcile/synchronize current truth；不得通过删除历史 Evidence 来制造一致性。
-
-`PROJECT_HANDOFF.md` 仅作为 legacy compatibility name；current 项目统一收敛到 `REVIEWER_HANDOFF.md`，不得维护两份竞争的 Reviewer truth。
-
----
-
-## 4. 没有可靠 Handoff：Gate P0 Discovery
-
-任何没有可靠交接、文档严重过时、项目结构不完整的项目，都先进入 **P0 Discovery / Intake**，默认只读。
-
-至少建立：
-
-- 项目目标与当前运行状态；
-- 入口、runtime、framework；
-- frontend / backend / worker / scheduler；
-- database / persistence；
-- Secret 类型与存放；
-- account / Cookie / Token；
-- ports / domain；
-- Docker / Compose；
-- external APIs；
-- browser automation；
-- uploads / object storage；
-- tests；
-- backup / restore；
-- 当前线上资源；
-- 已知风险；
-- license / third-party constraints；
-- Shared Infra 冲突；
-- Storage Layout / durable-data 位置（如部署到 VPS）。
-
-未知项写 `UNKNOWN`，禁止猜。
-
-完成后 Reviewer 先创建最小 `REVIEWER_HANDOFF.md`，才允许进入写操作。
-
----
-
-## 5. 标准 Gate 闭环
-
+### Rule authority
 ```text
-DISCOVER
-  ↓
-REVIEW
-  ↓
-PLAN / DEFINE GATE
-  ↓
-EXECUTOR PREFLIGHT
-  ↓
-EXECUTE
-  ↓
-RAW / REDACTED EVIDENCE
-  ↓
-CLEANUP / REGRESSION
-  ↓
-PASS_CANDIDATE
-  ↓
-REVIEWER INDEPENDENT REVIEW
-  ├─ PASS   → next Gate / closeout
-  └─ RETURN → remediation Gate
+explicit Owner decision
+-> active bounded exception explicitly allowed by Owner/Governance
+-> current GitHub canonical Governance
 ```
 
-`PASS_CANDIDATE != PASS`。
+- GitHub canonical is authoritative.
+- Local/sandbox Governance copies are avoided. If unavoidable, they are non-authoritative, ephemeral, commit-pinned, and never reused as next-session authority. A discovered stale working copy is refreshed or removed so it cannot silently outrank GitHub.
+- A normal Owner instruction changes goals/authorization; it does not silently waive backup, evidence, rollback, Secret-safety, Shared-Infra, or other safety rules.
+- A Governance exception/pin is explicit, scoped, and temporary. When pinning a version/addendum for reproducibility or incident containment, record the exact version/commit where practical, scope, reason, and expiry/close condition.
 
-一轮 Gate 应尽量满足：目标单一、可验证、可回滚、失败不会拖垮其他项目、证据能明确证明成败。
-
-v0.1.6 允许在以下条件满足时压缩相邻 Gate：
-
-- 同一 rollback domain；
-- 同一 evidence boundary；
-- 失败不会扩大风险；
-- 允许动作与 STOP 条件写清楚。
-
-压缩 Gate 不能降低证据标准。
-
----
-
-## 6. 变更分级
-
-### A — Project-local / Reversible
-
-项目代码、Compose service 参数、项目 health check、项目 backup script、临时测试对象等。Reviewer Prompt 明确授权后，Executor 可执行。
-
-### B — Shared Infrastructure
-
-SSH、UFW、Docker daemon、宿主机 80/443、Shared Caddy、shared cloudflared、shared network、Shared Infra backup/monitoring。
-
-业务项目不得自行修改。如确需修改：
-
+### Project reality
 ```text
-RETURN_SHARED_INFRA_CHANGE_REQUIRED
+fresh authoritative evidence
+-> Reviewer reconciliation
+-> REVIEWER_HANDOFF records accepted current state
 ```
 
-读取已登记的 SSH 连接契约并执行 bounded read-only probe 不属于写入；新建
-账号/密钥、修改 `authorized_keys`、sshd、sudo、UFW 或其他 host 权限仍属于 B。
+Fresh reality may make Handoff stale. Executor output is not canonical until Reviewer accepts it.
 
-切换到独立 Infra Review。
+`EXECUTION_EVIDENCE` is append-only except explicit scoped corrections. Stronger new evidence supersedes current interpretation without rewriting history.
 
-### C — Owner-only / Consequential
+## 2. Roles
 
-付款、身份、Secret、不可逆删除、material production enablement 或重大业务/合规选择必须等待 Owner。
+### Owner
+Decides consequences: business direction, real money/cost, public production enablement, irreversible real-data deletion, account/permission/Secret authority, materially irreversible/security-sensitive actions, and crossing the declared round boundary.
 
----
+### Reviewer
+Owns technical judgment, Governance interpretation, Gate design, rollback strategy, evidence review, PASS/RETURN, and ordinary repair choices inside the authorized boundary.
 
-## 7. Evidence Standard
-
-证据优先记录可复核事实，而不是长篇日志。按任务至少选择：
-
-- command exit status；
-- target-host identity + host-local read-back（当声称修改真实宿主机时）；
-- file permission / ownership；
-- process/container state；
-- restart count；
-- ports / network membership；
-- HTTP positive + negative checks；
-- image/release identity；
-- checksums；
-- DB integrity；
-- backup/restore compatibility；
-- before/after counts；
-- cleanup result；
-- disk/resource delta。
-
-安全边界要做正、反验证。例如：
-
-- “Access 后能访问” + “匿名不能直达”；
-- “目标 account 可动作” + “非目标 account delta=0”；
-- “backup 可恢复” + “Secret 未进入 archive/log”；
-- “Agent 声称写入宿主机” + “目标宿主机自身 read-back 证明同一事实”。
-
-Sandbox/container/WSL/remote runner 中的同名绝对路径不得单独作为真实宿主机写入证据；详见 `references/TARGET_HOST_REALITY_CONTRACT.md`。
-
-Cleanup 是 Gate 的一部分。
-
----
-
-## 8. Secret Policy
-
-以下内容不得进入聊天、普通 Handoff、Evidence、README、源码或日志：
-
-- private key；
-- password；
-- Cookie / Token；
-- webhook URL；
-- access credential；
-- encryption key；
-- buyer/order/account 私密标识；
-- decrypted private data。
-
-Evidence 只记录必要 metadata，例如：secret file exists、path、mode、read-only mount、compatibility PASS、value not recorded。
-
-任何真实 credential 一旦以明文进入 chat、普通附件、仓库、Evidence、Handoff 或日志，应视为 compromised input；不得继续作为 production/canary credential，必须通过独立 Owner-authorized rotation checkpoint 更换。
-
-当 Owner 明确表示无能力自行创建/录入时，可按
-`references/SSH_AND_DELEGATED_SECRET_OPERATIONS.md` 委托 Executor 生成精确
-allowlist。授权必须绑定项目、主机、文件/用途、禁止覆盖和恢复策略；值直接在
-受保护目标生成，不回显，并先形成可验证的加密异机恢复副本。该授权不包含
-Provider 启用、付款、账号授权或 production enablement。
-
----
-
-## 9. Data / Database 额外规则
-
-- 测试不得直接写真实迁移 DB；
-- writable rehearsal 使用工作副本；
-- SQLite backup 优先使用 SQLite backup API，而不是 live file copy；
-- PostgreSQL 等数据库使用其一致性备份机制；
-- 加密 DB 的恢复集必须与匹配 encryption key 同步治理；
-- backup 后验证 integrity / counts / decrypt compatibility（不得输出明文）；
-- migration 前后保留可比较 baseline。
-
----
-
-## 10. Frontend + Backend 额外规则
-
-- public route 之前先证明 private app 可运行；
-- 外部 route 创建后立即做匿名 negative test；
-- private admin 不允许因为 convenience 直接发布随机 host port；
-- HTTPS 页面涉及 WebSocket 时必须验证 `wss://` / protocol upgrade；
-- frontend deployed != backend ready；两者分别验证。
-
----
-
-## 11. 自动化 / Browser Agent 额外规则
-
-自动化项目首次真实运行前必须具备 fail-closed SAFE_MODE 或等效中央安全开关。
-
-至少证明：
-
-- safe mode 实际 wiring 到 worker / scheduler / business actions；
-- restart/recreate 后仍安全；
-- browser profile / Cookie / session lifecycle 清晰；
-- 幂等 / duplicate prevention；
-- 首次真实动作可限制 target / count / expiry。
-
-首次真实业务动作必须用 bounded Canary：single target、max action count、short expiry、central guard、Reviewer explicit authorization、完成后恢复安全状态、non-target delta=0、restart/duplicate prevention。
-
----
-
-## 12. Auth / REAUTH 生命周期
-
+Escalation to Owner states:
 ```text
-auth invalid
-  → pause affected account only
-  → persist REAUTH_REQUIRED
-  → notify once per transition
-  → notification failure must not resume
-  → Owner full reauth on original account
-  → identity match fail-closed
-  → encrypted in-place credential update
-  → read-only seller/session/order validation
-  → reauth success != business resume
-  → explicit controlled resume
+WHY_REVIEWER_CANNOT_DECIDE
+EXACT_OWNER_DECISION_NEEDED
+MATERIAL_TRADEOFFS
 ```
 
-不要因为 reauth 成功自动恢复业务。
+### Executor
+Executes only the current Gate. It does not reconstruct Governance, expand scope/architecture, or enter the next Gate. It stops on an obvious contradiction inside the Gate.
 
----
+`PASS_CANDIDATE != PASS`.
 
-## 13. Owner Operation Minimization
+## 3. Reviewer startup and Discovery
 
-Owner 不是文件搬运员或技术调度员。
+Every round Reviewer must:
 
-Reviewer 默认：
+1. read the universal surface from GitHub: header + sections 0–10 + the section 11 trigger table + sections 12–13;
+2. read current `REVIEWER_HANDOFF`, current Gate, and accepted Evidence needed for the round;
+3. check **every** specialist trigger in section 11;
+4. read in full only the triggered specialist subsection(s) 11A–11F; uncertain applicability counts as triggered and therefore must be read;
+5. reconcile material drift before consequential work.
 
-1. 安全可合并的相邻 Gate 优先合并；
-2. 一个 execution package 尽量跨多个 checkpoint 使用；
-3. 已 PASS Gate 不重复执行，除非 fresh preflight 发现 material drift；
-4. 技术细节由 Reviewer 决定；
-5. Executor 常规错误优先 rollback / RETURN；
-6. 只有 Owner-only 事项才中断 Owner。
+Do not skip the trigger scan, and do not load unrelated specialist sections merely because they exist in the same file.
 
-### Conditional Preauthorization
+Material drift = any change that could invalidate an earlier judgment, authorization, Evidence set, accepted state, critical constraint, or rollback/recovery assumption.
 
-允许：
+If current project truth is missing/unreliable, the first Gate is read-only Discovery. At minimum identify:
 
 ```text
-IF Phase A PASS THEN authorize Phase B production enablement
+goal + current runtime
+entrypoints/framework
+frontend/backend/worker/scheduler
+database/persistence + uploads/object storage
+Secret/account/token classes and storage mechanism
+ports/domains/network exposure
+Docker/Compose/runtime services
+external APIs/providers/browser automation
+tests
+backup/restore/recovery
+current online resources
+licenses/third-party constraints
+Shared Infra dependencies/conflicts
+durable-data/storage locations
+known risks + UNKNOWN
 ```
 
-前提：条件、允许动作、回滚、STOP 条件都明确且 bounded。
+Existing accepted projects use a bounded Change Gate; do not replay onboarding unless material drift invalidates the baseline.
 
-任一 prerequisite FAIL / RETURN / ambiguity / state drift 自动取消预授权；失败后的下一次 production-write retry 需要 fresh explicit authorization。
+## 4. Current project state
 
----
+`REVIEWER_HANDOFF` is the current dashboard, not a historical diary.
 
-## 14. Canonical Deployment Manifest Invariant
-
-生产 deploy / recreate 不依赖当前目录默认文件。
-
-必须：
-
-1. 显式指定 canonical manifest；Docker Compose 必须 `-f <production-compose>`；
-2. 写操作前 render / validate resolved config；
-3. sealed image 场景优先 `--no-build --pull never` 或等效约束；
-4. recreate 后立即验证 running image / release identity；
-5. manifest 或 image identity mismatch 立即 rollback / RETURN。
-
----
-
-## 15. Resource / Disk Governance
-
-功能 PASS 不等于资源 PASS。
-
-Docker 项目至少记录：
-
-- host root `df` baseline；
-- project source / data / backups；
-- production image size；
-- BuildKit / cache；
-- browser runtime；
-- deployment before/after delta；
-- cleanup actual reclaimed bytes。
-
-默认禁止：
-
-- `docker system prune -a`；
-- `docker image prune -a`；
-- volume/network broad prune。
-
-Cleanup 必须 allowlist + reference check + before/after evidence + production/shared regression。
-
-参考 host 容量线：60% 关注，70% 计划清理，80% 紧急处理；项目可定义更严格值。
-
----
-
-## 16. Storage Layout Contract rev1
-
-任何新项目进入 Shared VPS 前，必须先冻结数据位置，而不是上线后再整理。
-
-Canonical layout：
+Keep:
 
 ```text
-/srv/infra                  # Shared Infra only
-/srv/apps/<project>         # 可重建代码 / Compose / 非秘密配置
-/srv/data/<project>         # DB / uploads / durable state / secret files
-/srv/backups/<project>      # 项目独立恢复材料
+PROJECT_GOAL
+PROJECT_STAGE
+SYSTEM_MAP
+CURRENT_ACCEPTED_STATE
+CURRENT_GATE
+CRITICAL_CONSTRAINTS
+DEFAULT_EXECUTION_CHANNEL
+CURRENT_ROLLBACK_STATUS
+UNRESOLVED
+NEXT_STEP
+OWNER_ACTION_REQUIRED
+EVIDENCE_POINTERS
 ```
 
-强制规则：
+`SYSTEM_MAP` stays compact but preserves the currently relevant runtime/deployment/data/network/auth/Shared-Infra shape so a new Reviewer does not rediscover the project from scratch.
 
-- one project → one apps/data/backups namespace；
-- 不同项目不得共用 DB、uploads、secrets 或 backup directory；
-- 用户可控的 durable data 优先显式 bind mount 到 `/srv/data/<project>/...`；
-- named volume 允许，但必须 project-namespaced、登记、可备份/恢复；
-- anonymous volume 不得保存唯一业务数据；
-- build cache / temp / disposable logs 与 durable data 分离；
-- `/srv/apps/<project>` 应是可从 Git/release 重建的 application layer；
-- 项目上线前建立 `PROJECT_STORAGE_MANIFEST.md`；
-- 历史生产项目不因本规则强制搬迁，迁移必须独立 Change Gate。
+- `REVIEWER_HANDOFF` is maintained by Reviewer only. Executor writes execution facts/Evidence and the completion packet; it does not promote its own output into canonical project state.
+- Critical constraints remain until explicitly changed.
+- A confirmed default execution channel is sticky.
+- If it fails: diagnose/repair first. A fallback requires reason + Reviewer approval and does not automatically become the new default.
+- Decision rationale/history -> `DECISION_LOG`.
+- Execution proof -> `EXECUTION_EVIDENCE`.
 
-Storage Manifest 必须让 Reviewer 能回答：
+### Shared host state
 
-> 如果明天换 VPS，这个项目真正需要搬走哪些东西？
-
-若 durable-data location / backup / restore / secret metadata 无法确定：
+A managed shared host keeps one factual Shared VPS state/Handoff, separate from Governance policy:
 
 ```text
-RETURN_STORAGE_LAYOUT_UNRESOLVED
+HOSTNAME_OR_IP
+SSH_PORT
+LOGIN_ROLE
+IDENTITY_FILE_REFERENCE
+CLIENT_PUBLIC_KEY_FINGERPRINT
+EXPECTED_HOST_KEY_FINGERPRINTS
+KNOWN_HOSTS_REFERENCE
+CANONICAL_READ_ONLY_PROBE
+PRIVILEGE_MODEL
+SHARED_NETWORKS
+INGRESS_80_443_OWNER
+REVERSE_PROXY_OR_TUNNEL
+FIREWALL
+SHARED_BACKUP_MONITORING
+LAST_VERIFIED_HOST_USER_OS_AND_TIME
+RECOVERY_ROUTE
 ```
 
-详细契约：`references/STORAGE_LAYOUT_CONTRACT.md`  
-模板：`templates/PROJECT_STORAGE_MANIFEST_TEMPLATE.md`
+No password, private-key value, token, passphrase, or other Secret value.
 
----
+### Storage state
 
-## 17. Production Change Gate
-
-项目已经 production sealed 后：
+For a Shared-VPS project, current state must answer:
 
 ```text
-Owner change request
-  ↓
-Reviewer reads current REVIEWER_HANDOFF
-  ↓
-impact / risk / Shared Infra boundary
-  ↓
-Change Gate
-  ↓
-Executor
-  ↓
-Evidence
-  ↓
-Reviewer PASS / RETURN
-  ↓
-update REVIEWER_HANDOFF
+COMPOSE_PROJECT
+APP_RELEASE_PATH
+DURABLE_DATA_PATHS
+DATABASE_ENGINE_AND_LOCATION
+UPLOADS_OR_OBJECT_DATA
+PERSISTENT_MOUNTS_OR_NAMED_VOLUMES
+SECRET_LOCATIONS_METADATA_ONLY
+SECRET_RUNTIME_READER_AND_PERMISSIONS
+SECRET_RECOVERY_DESTINATION_AND_LIMITATION
+BACKUP_METHOD_AND_PATH
+BACKUP_SCOPE_TIMESTAMP_INTEGRITY_AND_SECRET_INCLUSION
+RESTORE_METHOD_AND_LAST_VALIDATION
+RETENTION
+MIGRATION_UNIT
+DECOMMISSION_RULE
+EXPECTED_FOOTPRINT_OR_GROWTH
 ```
 
-小型低风险变更可以简化 Gate，但仍必须保留：current baseline、actual change、validation、rollback point。
+A separate Storage Manifest file is optional; the information is not.
 
-Bug fix、dependency upgrade、image slimming、storage migration 等**不重新打开 initial onboarding**。
+## 5. Gate
 
----
+Prefer one combined Gate when target, rollback domain, evidence boundary, authority boundary, and risk are compatible. Split on material risk/authority/rollback/acceptance boundaries, not per operational step.
 
-## 18. Handoff 模型
+Every Gate states:
 
 ```text
-GOVERNANCE_HANDOFF.md             # 通用治理自身
-SHARED_VPS_HANDOFF.md             # 基础设施（如适用）
-<project>/REVIEWER_HANDOFF.md     # Reviewer 当前项目真相
-<project>/EXECUTOR_HANDOFF.md     # Executor 执行事实
-<project>/EXECUTION_EVIDENCE.md   # 详细脱敏证据
-<project>/PROJECT_STORAGE_MANIFEST.md # Shared VPS 项目存储地图（如适用）
+GATE_ID
+OBJECTIVE
+MAX_ENDPOINT_THIS_ROUND
+MANDATORY_REVIEW_STOP
+TARGET_AND_SCOPE
+APPLICABLE_CRITICAL_CONSTRAINTS
+PREFLIGHT
+REQUIRED_EVIDENCE
+ACCEPTANCE_CRITERIA
+ROLLBACK_STATUS_OR_PLAN
+OWNER_ONLY_ACTIONS
+REVIEWER_TO_EXECUTOR_RELAY
+EXECUTOR_TO_REVIEWER_RELAY
 ```
 
-规则：
+- Accepted work is not replayed unless material drift is proven.
+- Conditional continuation is valid only inside the declared maximum endpoint. Any prerequisite FAIL/RETURN/ambiguity/material drift invalidates it; after a failed consequential production write, a later production write requires fresh consequential authorization rather than silently reusing the failed preauthorization.
+- Owner-only consequential actions require Owner authorization.
+- Failed normal execution returns/reconciles; it does not improvise a new architecture.
 
-- `REVIEWER_HANDOFF.md` 只由 Reviewer 更新；
-- `EXECUTOR_HANDOFF.md` 只记录 Executor 实际事实；
-- `EXECUTION_EVIDENCE.md` 保存详细 evidence；
-- Storage Manifest 只记录位置/恢复/权限 metadata，不记录 Secret value；
-- per-gate decision/prompt 是附件，不代替 continuity Handoff；
-- 换聊天/Agent 时优先读这些文件，不要求 Owner 重述历史。
-- `SHARED_VPS_HANDOFF.md` 必须记录可复用 SSH trust/identity/privilege metadata
-  与最后一次只读验证，不得记录 private key、密码或 Token；已有连接优先按
-  Handoff 恢复，不让 Owner 回忆命令。
+## 6. Preflight, execution, build and retry
 
----
+Before a write, prove target, scope, constraints, required authority, rollback boundary, and expected Evidence.
 
-## 19. Reviewer 最低输出
+For consequential actions:
+- native/non-zero execution failure fails closed until reconciled;
+- ambiguous prior result -> read-only reconciliation before retry;
+- classify the previous attempt before overwrite/replay;
+- do not blindly repeat an action whose commit/result is unknown.
 
-每轮最少让 Owner 看清：
+For critical writes, rollback/recovery is defined before mutation.
+
+Security/access boundaries require positive and negative checks where applicable.
+
+Cleanup/regression is part of Gate completion.
+
+### Build/deploy identity
+
+- Build context excludes live data, Secrets, private recovery material, and other non-build artifacts.
+- Formal build chain must be reproducible enough to identify the candidate.
+- The tested artifact, reviewed/handoff artifact, and production candidate must be proven the same candidate or immutably correlated.
+- Production deploy/recreate explicitly selects the canonical manifest and validates resolved configuration before write.
+- Sealed-image deployment prevents accidental rebuild/pull of a different candidate where applicable.
+- Verify running release/image identity after deploy; mismatch returns/rolls back.
+
+## 7. Evidence and PASS
+
+Executor self-report is a claim, not proof.
+
+`EXECUTION_EVIDENCE` records:
 
 ```text
-整体进展
-最终目标
-当前 Gate
-已确认事实
-UNKNOWN
-本轮完成
-本轮允许 / 禁止
-验收结果
-风险 / rollback
+AUTHORIZED_GATE
+PREFLIGHT_FACTS
+ACTUAL_CHANGES
+OBJECTIVE_READBACK
+VALIDATION
+ANOMALIES
+EVIDENCE_ARTIFACTS_AND_PURPOSE
+ROLLBACK_EFFECT
+RESOURCE_OR_BUSINESS_DELTA_WHEN_RELEVANT
+EXECUTOR_RESULT
+```
+
+Evidence may point to logs, diffs, screenshots, files, provider read-back, or other artifacts rather than embedding everything.
+
+Reviewer PASS requires each required item to be:
+
+```text
+REQUIRED
+-> AVAILABLE
+-> REVIEWABLE_BY_CURRENT_REVIEWER
+-> ACTUALLY_INSPECTED
+-> SATISFIES_ACCEPTANCE_CRITERIA
+```
+
+Missing, inaccessible, unreadable, or uninspected required Evidence blocks PASS.
+
+Status vocabulary:
+`PASS | PARTIAL | UNVERIFIED | BLOCKED | NOT_APPLICABLE`.
+Gate decisions additionally use `PASS_CANDIDATE | PASS | RETURN_*`.
+
+## 8. Rollback and recovery
+
+Historical records alone are not rollback capability.
+
+A verified rollback state answers:
+
+```text
+TARGET
+RECOVERY_ARTIFACTS
+METHOD
+RESTORE_OR_COMPATIBILITY_PROOF
+TRIGGER_OR_STOP_CONDITIONS
+```
+
+`REVIEWER_HANDOFF` exposes current rollback status; detailed proof remains in Evidence/recovery records.
+
+Rollback/recovery must respect current Secret, data, target-host, Provider, and Shared-Infra boundaries.
+
+## 9. Relay and completion packets
+
+Owner relay defaults to `NONE`.
+
+If a required artifact is not directly accessible/reviewable, the Gate states the smallest exact Owner relay action.
+
+Executor -> Reviewer uses a short fixed completion format:
+
+```text
+结果：PASS_CANDIDATE / RETURN_*
+改动：一句话说明实际改了什么。
+验证：一句话总结关键检查结果；详细证据仍写入 EXECUTION_EVIDENCE。
+问题：NONE，或用“短语概括：一句通俗解释”说明阻塞点。
+回滚：一句话说明是否可恢复、恢复到哪里。
+请 Reviewer 检查：一句话说明需要 Reviewer 核对什么。
+Owner 转交：NONE，或写明最小必要转交动作。
+```
+
+Executor-facing formatting rules:
+- one line answers one question;
+- use a meaningful short label before the colon;
+- prefer plain language over unexplained jargon;
+- do not paste long logs, raw Provider payloads, Secret values, or full evidence into the completion packet;
+- detailed technical proof belongs in `EXECUTION_EVIDENCE`;
+- `PASS_CANDIDATE` remains only an Executor claim; Reviewer alone decides formal PASS;
+- when RETURNing, the problem line must state the actual blocking reason, not generic `FAILED`;
+- `Owner 转交` defaults to `NONE`.
+
+Reviewer -> Owner uses a short, human-readable fixed structure:
+
+```text
+本轮结果
+当前状态
+当前问题
+项目进度
 下一步
-注意事项
-是否需要 Owner 介入
+你需要做什么
 ```
 
-不要为了格式写得很长；状态必须清楚。
+Formatting rules:
+- section titles are Chinese;
+- each normal line uses **short label: one plain-language sentence**;
+- the label must summarize the meaning, not use generic names such as "内容1/问题1";
+- important states, risks, objects, or proper nouns are bolded when helpful;
+- avoid unexplained technical jargon in Owner-facing text; translate it into plain language unless the exact technical term is necessary;
+- `当前问题` is omitted only when there is genuinely nothing useful to report; otherwise each problem is written as **problem phrase: plain-language explanation**;
+- `项目进度` is the only section that uses a compact code block. It shows the whole project path from start to finish, one stage per line, with no blank lines, and marks each stage as PASS / RETURN->FIXED / IN_PROGRESS / NEXT / PENDING;
+- keep the progress list short: merge substeps that do not represent meaningful Owner-visible stages;
+- `下一步` explains what happens next and what will be observed, in plain language;
+- `你需要做什么` states Owner action and relay needs directly; use **NONE** when nothing is required.
 
----
+The Reviewer still preserves the underlying machine/state fields in durable project records; the Owner-facing response is a concise presentation layer, not the canonical data model.
 
-## 20. Executor 返回格式
+Executor completion format is not changed by this rule.
 
-成功：
+Empty machine-state fields remain `NONE` in durable records.
+
+## 10. Durability and Governance change
+
+A consequential round is not closed in chat:
 
 ```text
-PASS_CANDIDATE_<GATE>
-STOP_AT_REVIEWER: YES
+result reached
+-> write required durable records
+-> read back and verify
+-> then report PASS / RETURN / STOP / complete
 ```
 
-失败必须精确，例如：
+Governance edit authority is separate from project authority.
+
+- Canonical Governance changes require explicit Owner authorization.
+- Authorization is valid for one modification round only.
+- A later Governance modification round requires fresh Owner authorization.
+- Agents may propose/record Governance issues without edit authority.
+- Cross-project rules should be deliberately generalized; incident-specific lessons remain project/history until promoted.
+- Maturity labels when needed: `VALIDATED | PROVISIONAL | CANDIDATE`.
+
+Templates/examples only define recording/usage format; they cannot create policy. Historical/proposal files are non-authoritative and outside normal loading.
+
+## 11. Specialist trigger scan
+
+Reviewer checks every row each round.
+
+| Specialist | Trigger |
+|---|---|
+| Shared VPS / Storage | shared host layout/runtime, durable data, backups, Docker resources |
+| SSH / Secret / Target Host | server login/trust/privilege, credential lifecycle, host-local write/proof |
+| Deployment / Network / Resources | deploy/recreate, public route, network exposure, cleanup/resource validation |
+| Automation / Auth | automated real actions, SAFE_MODE, browser/session, reauthentication/resume |
+| Provider / Payment | provider/account/payment/refund/callback/recovery/fulfillment |
+| Closeout | archive, deletion, decommission, retention, reconstruction |
+
+### 11A. Shared VPS / Storage
+
+- Business projects do not casually mutate Shared Infra. Shared-Infra change gets a separate reviewed boundary.
+- Shared Infra includes host SSH trust/accounts, UFW/firewall, Docker daemon/shared networks, shared Caddy/80-443, cloudflared/shared ingress, and equivalent host-wide backup/monitoring.
+- Existing verified SSH use is normal project execution; changing SSH accounts/keys/authorized_keys/sshd/sudo/UFW/trust is Shared Infra.
+- Canonical layout: `/srv/infra`, `/srv/apps/<project>`, `/srv/data/<project>`, `/srv/backups/<project>`.
+- Each project has isolated app/data/backup namespaces and Compose project; cross-project DB/uploads/secrets/backups are forbidden unless explicitly promoted to Shared Service.
+- Unique durable data does not live only in reconstructible app files, ephemeral cache, or anonymous volume.
+- Prefer explicit bind mounts for user-controlled durable data. Named volumes are namespaced, documented, backupable/restorable. Anonymous volumes cannot hold unique durable data.
+- Build/cache/temp/disposable logs and browser download/cache are ephemeral only when reconstructible; if they carry unique business state they are reclassified as durable.
+- Before Shared-VPS deployment, the Storage state in section 4 must be complete enough to answer: "If this VPS vanished tomorrow, what must move and how is it restored?"
+- Existing production data is not migrated merely for neatness; migration is a Change Gate with consistency-safe backup, restore/read-back, regression, and rollback.
+- Migration unit includes reconstructible app/release + durable data + validated backup/recovery material + secure Secret transfer procedure + canonical deployment manifest. Migration PASS proves fresh-target restore, DB integrity/read-back, uploads/state availability, Secret compatibility without value output, project health, and unambiguous old/new target identity.
+- Backups record source scope, timestamp, integrity/restore validation, whether Secrets are included, any matching encryption/recovery material, and retention. Distinguish scheduled, pre-change, and final/decommission recovery points when applicable.
+- Database backup uses database-consistent mechanisms; writable rehearsal uses a copy, never the real migration DB.
+- Encrypted databases are recovered with the matching key/recovery material as one recovery pair; backup validation includes integrity/record-count/read compatibility and decrypt compatibility without plaintext output.
+- No broad Docker/system prune. Cleanup is exact/allowlisted with fresh reference checks, before/after Evidence, and shared/production regression.
+- Resource Evidence when relevant includes root capacity, project data/backups, production image, build/cache/browser runtime, deployment delta, and cleanup reclaimed bytes. 60/70/80% remain guidance, not universal PASS/FAIL.
+
+### 11B. SSH / Secret / Target Host
+
+#### Connection and trust
+- Shared-host state in section 4 records connection/trust metadata; do not ask Owner to rediscover a previously verified connection.
+- Automated SSH uses strict non-interactive identity/trust behavior equivalent to `BatchMode=yes`, `IdentitiesOnly=yes`, and `StrictHostKeyChecking=yes`, with explicit known-host trust. Host-key mismatch is never auto-accepted.
+- Identity-file reference and public-key fingerprint may be recorded; private-key data never is.
+- A successful SSH connection proves reachability only, not write authorization.
+- A pre-existing SSH key may be reused for another project on the same host only when its server-side role is already the intended shared operations role; never copy a private key into a project/review bundle.
+- If the default connection fails, verify recorded identity, permissions/fingerprint, host key, and bounded read-only identity probe before asking Owner or changing access.
+- Windows/OpenSSH/PowerShell/native tools are one transport boundary: keep SSH and SCP options distinct (`-p` vs `-P` where applicable), use explicit known-host file/trust, bounded connection timeout/keepalive as appropriate, validate quoting/argument cardinality, normalize reviewed line endings/encoding for multiline payloads, and explicitly check native exit codes. Remote cleanup failure is a failure.
+
+#### Secret handling
+- Secret values never enter chat, repo, ordinary Handoff/Evidence, README, bundles, command arguments, environment variables, stdout/stderr, shell history, transcripts, debug echo, ordinary temp files, or logs.
+- Secret-bearing transport prefers bounded reviewed stdin/process-memory handling; plaintext is not rendered to Owner console.
+- Exposed real credentials are compromised input and require an independent Owner-authorized rotation checkpoint before reuse.
+- Secret authority/custody is Owner-controlled; exact technical generation/install may be explicitly delegated only for a named project/environment/purpose/target/overwrite/recovery policy. It never implies Provider activation, payment, account authorization, or production enablement.
+- Delegated generation freezes the reviewed format/entropy requirement and uses CSPRNG inside the protected target, exact allowlist, atomic restrictive creation, fail-on-existing unless a rotation Gate owns the exact file, and emits no value or value hash. Validate non-empty/format/uniqueness without printing values or hashes. Secret directories/files default to restrictive permissions (for example 0700/0600 where compatible) unless the reviewed runtime identity requires a different least-privilege owner/group/mode.
+- Freeze effective runtime reader/group and permissions before generation. Prove intended runtime access and prove unrelated services are denied/not-mounted where relevant.
+- Secret recovery is encrypted before leaving the protected runtime and exists in a different failure domain. Ciphertext stays outside ordinary repo/review artifacts unless an explicitly reviewed encrypted-storage design says otherwise. Database backup and Secret recovery are separate artifacts.
+- A profile-bound DPAPI/CurrentUser copy may be a low-operation first recovery copy, never sole disaster recovery.
+- Recovery creation must be proven on the real Owner host; a documented path or sandbox copy is not proof.
+- Credential-changing recovery uses two phases: create/verify pending recovery artifact -> perform/verify remote change -> then promote final artifact. Failed/ambiguous remote action does not publish a final recovery artifact.
+- Recovery serialization/parser compatibility is validated before remote mutation, including reviewed encoding/line-ending/BOM behavior where relevant; successful decrypt alone does not prove payload/parser validity. Creation includes an immediate in-memory round-trip/identity check. Do not print decrypted payloads or plaintext checksums; clear sensitive plaintext buffers as soon as practical.
+- Restore over live Secrets is never implicit; restore is a separate explicit Gate and defaults to a fresh/empty project Secret location followed by permission, inventory, and runtime compatibility checks.
+
+#### Target-host reality and ACL
+- Prove which real host/runtime is being changed before claiming a host-local result.
+- Same absolute path in sandbox/container/WSL/remote runner does not prove real-host state.
+- Host-local write requires machine/user/effective privilege + target identity before mutation and same-target host-local read-back afterward.
+- Script/runtime/API compatibility and native exit status are part of preflight where relevant.
+- If real-host execution cannot be proven, fail closed with a precise RETURN instead of claiming success.
+- Owner-local checkpoints are one-shot/minimal, designed by Reviewer/Executor, and emit bounded non-secret Evidence; Owner is not responsible for debugging/design.
+- Multi-domain Owner-local scripts expose phase markers so failures before/after remote execution are distinguishable.
+- Windows ACL tightening avoids unnecessary owner changes; validate the protected leaf/subtree and inheritance path, not unrelated ancestors. Protected Secret locations use an explicit principal allowlist and do not gain broad Everyone/Users/Authenticated-Users access for convenience. Do not rewrite unrelated parent ACLs unless the Gate owns them.
+- Scripts fail closed: native non-zero exit, runtime exception, or verification mismatch cannot be followed by an unconditional/static PASS; retain a non-secret failure class.
+- Partial/ambiguous execution is reconciled before retry. Existing partial objects are classified before repair: known bounded partial state may be repaired; unknown/non-empty objects fail closed. Unknown Secret-path contents are not deleted, overwritten, printed, hashed, or read merely to clear a collision.
+- Target-host Evidence for a host-local write includes host identity, execution proof, post-write path/state read-back, permission/ACL read-back when applicable, runtime/version compatibility when applicable, and explicit native-exit checking.
+
+### 11C. Deployment / Network / Resources
+
+- Prove private runtime before public routing.
+- Private/admin services are not published on random host ports merely for convenience.
+- After public exposure, immediately verify anonymous/negative access boundaries; an unintended anonymous route is removed/contained and returned.
+- HTTPS WebSocket paths require WSS/upgrade verification when applicable.
+- Frontend deployed does not imply backend ready; validate relevant layers separately.
+- Health evidence distinguishes process/container, web/API, DB/persistence, and business worker/scheduler health when those layers exist; one healthy layer does not imply the others.
+- Architecture/storage/auth changes update dependent preflight, backup/restore, health, and exposure checks before PASS.
+- Functional PASS does not imply resource PASS.
+- Cleanup remains allowlisted/reference-checked; no broad prune.
+
+### 11D. Automation / Authentication
+
+- Before first real automated action, fail-closed SAFE_MODE/equivalent must be wired to real worker/scheduler/business actions, persist across restart/recreate, and default safe.
+- Browser profile/Cookie/session lifecycle must be explicit when automation depends on them.
+- Automation proves persistence/idempotency/duplicate prevention before real smoke.
+- First real user/money/production-impact action uses the smallest meaningful real Canary with: single/bounded target, max count, short expiry, central guard, explicit authorization, safe end state, non-target delta check, and restart/duplicate prevention when relevant.
+- Auth invalid -> pause affected scope -> persist `REAUTH_REQUIRED` -> notify once per transition -> full target-bound reauth -> identity match fail-closed -> encrypted in-place credential update -> read-only validation.
+- Notification failure does not resume business.
+- Reauthentication success does not automatically resume business actions; resume is an explicit controlled step.
+
+### 11E. Provider / Payment
+
+Maturity note: rules proven on one Provider/project do not become cross-Provider `VALIDATED` automatically; cross-Provider generalization remains `PROVISIONAL` until independently exercised.
+
+#### Identity, permission, Canary
+- Keep account/login, merchant/seller/PID, application/client ID, product/contract permission, environment, signing/verification material, callback route/ack contract, interaction mode, amount/currency, and Canary fulfillment type distinct. A Provider-created new application/merchant identity remains distinct until explicitly correlated.
+- Do not infer merchant/application ownership merely because the same human can manage both.
+- Account-side KYC/KYB, product signing, merchant binding, Provider authorization, 2FA/wallet signature, and equivalent account-side actions remain Owner checkpoints.
+- Treat `APPLICATION_CONFIGURED`, `PRODUCT_PERMISSION_ACTIVE`, and `MERCHANT_BINDING_CORRECT` as separate facts. Do not rewrite application code to bypass a missing Provider/account permission.
+- Provider paid, local paid, order state, and fulfillment completion are separate proofs.
+- One real Canary enables only the intended channel where practical, keeps unrelated Providers/channels disabled where technically possible, freezes reviewed amount/currency bounds, and authorizes one bounded buyer action. Provider success forbids a blind second payment.
+- Reconciliation/query paths are proven read-only from actual implementation/endpoint semantics, not method names alone, and must not create/capture/refund/cancel or mutate local business state as a hidden side effect.
+
+#### Callback and signing
+- Callback/webhook success acknowledgement comes only after authenticity, expected app/environment, server-owned merchant correlation, durable order correlation, exact amount/currency, allowed Provider status, idempotency/replay handling, and durable local commit/already-committed recognition.
+- Never "fix" retries by returning success unconditionally.
+- Signature unit tests alone are insufficient when durable first-delivery/replay behavior is part of the acceptance boundary; verify first delivery + same-event replay, exact Provider acknowledgement/body/content type where required, and downstream event/state identity.
+- Key/signing rotation is staged: configure new -> parse/read-back compatibility -> callback/query verification -> only then retire old material.
+
+#### Payment recovery
+- Provider terminal success + local timeout/cancel is recovery, not another payment.
+- Distinguish at least: `PRE_EXPIRY_PAID_LATE_CALLBACK` vs `POST_EXPIRY_PROVIDER_PAYMENT`.
+- Generic automatic recovery is allowed only for timing/cancellation shapes explicitly accepted by the reviewed product/runtime contract.
+- Manual cancellation, payment after accepted expiry, ambiguous ownership/order/amount/currency, or unrecoverable inventory/fulfillment invariants fail closed by default.
+- Recovery occurs through application/domain transaction logic, not ad-hoc direct SQL status edits.
+- Recovery selector cardinality is exact: zero or multiple candidates fail closed.
+- Immediately before mutation, re-read/re-lock critical payment/order/inventory facts inside the transaction/equivalent consistency boundary.
+- Recovery preserves idempotency and restores the full invariant set: payment/order/child-order truth, inventory, fulfillment eligibility, duplicate prevention, contradictory terminal/refund checks, and downstream dispatch eligibility; fulfillment dispatch follows the product/order's original fulfillment type rather than changing business semantics to make recovery pass.
+- Durable DB commit and queue/outbox/worker/fulfillment completion are separate proofs. If DB recovery committed but downstream dispatch is pending/ambiguous, reconcile downstream durable state; do not rerun recovery just to fire the worker.
+- Before replay classify previous attempt: `NOT_COMMITTED | COMMITTED | PARTIAL_OR_PENDING | AMBIGUOUS`. Replay is forbidden except where `NOT_COMMITTED` or explicit reviewed replay-safety is proven.
+- After a proven non-committed production failure: identify/reproduce the narrow cause, add regression/negative guard, build/qualify a new immutable candidate, run fresh production preflight/backup as required, then authorize only the bounded next attempt.
+- Diagnostic and recovery logic should share selector/facts/validation/guard ordering. Separate diagnostic logic requires parity/regression proof before its diagnosis can justify production recovery changes.
+- Incident-only recovery tooling remains narrowly scoped and does not become scheduled/startup/public/generic runtime policy automatically. Incident closeout records whether the normal runtime/application was actually changed so a one-shot recovery is not misdocumented as a steady-state capability.
+- Canary fixture semantics must match the invariant being proven; manual fulfillment cannot prove automatic delivery.
+- Provider/payment Evidence separates at least: provider create, buyer action, provider remote terminal status, callback/webhook authenticity, acknowledgement, merchant/app/order/amount/currency correlation, local payment state, local order state, fulfillment state, duplicate side-effect count, real-payment retry count, and refund action when applicable.
+- Raw Provider payloads, buyer identities, transaction identifiers, and private business identifiers remain inside the protected execution/application boundary unless a specific non-secret identifier is required for review.
+- Refund or another real payment is a separately authorized consequential action.
+
+### 11F. Closeout
+
+- Closeout sequence: remote hygiene -> reconstructible archive barrier -> local decommission -> final reconciliation.
+- Every deletion candidate is classified: reconstructible/durable/backup-recovery/Secret-recovery/local-rebuildable/local-disposable/shared/UNKNOWN. `UNKNOWN` fails closed.
+- Remote/local cleanup removes an artifact only when project ownership is proven, it is unreferenced, it is reconstructible/disposable or otherwise explicitly authorized, and retention allows deletion. A failed helper/preflight identifies the exact safety invariant that failed; unrelated serialized/runtime fields do not become accidental deletion blockers. Active manifests, durable business data, runtime Secrets, validated recovery points, and Shared Infra are kept by default.
+- Before deleting local source/docs/workspaces, require canonical remote read-back, no unpushed project commits, no untracked unique non-secret project files after archive, no sensitive data archived to Git, and reconstruction proof.
+- Git/canonical archive excludes live DB/dumps, Secrets, tokens/cookies/browser profiles, private keys, private customer/order data, Provider logs with private material, and Secret-recovery material unless a separately reviewed encrypted-storage design explicitly permits it.
+- In shared repositories, cleanliness is scoped to project-owned paths; do not mutate shared Git topology merely for cosmetic cleanliness.
+- Local runtime/workspace deletion requires current remote/production health, no unique business data only locally, exact project ownership, proven recovery/reconstruction, and proof that local runtime is not still required for rollback.
+- Project Docker deletion is exact/allowlisted after fresh reference checks; shared resources remain unless separately reviewed.
+- A necessary protected recovery artifact may remain outside ordinary worktrees as an explicit exception; do not delete it for cosmetic zero-file goals.
+- Packaged-app/path virtualization is considered before declaring recovery material missing; distinguish path-context mismatch from actual missing/deleted state.
+- If the normal SSH path repeatedly fails before remote identity/output and an authenticated Provider/server console exists, a reviewed bounded metadata-only recovery checkpoint may use that channel to prove hostname/user/recovery-root/data presence. This is a recovery exception, not a new default execution channel.
+- If deletion is blocked by execution policy after safety classification, first prove the destructive command did not start and no partial deletion occurred. Then do not bypass through another shell/language/scheduler/tool; move only the exact irreversible allowlisted action to an explicit Owner-local checkpoint, then verify absence read-only.
+- Completed independent sub-Gates remain accepted; do not replay them merely because another closeout step was blocked.
+- Compare later probes with accepted baseline and equivalent probe semantics; distinguish known accepted property, new regression, and unproven drift.
+- When attaching to an authenticated browser, prefer neutral/admin landing pages. If unrelated sensitive text appears, navigate away, do not inspect/reproduce it, and record only a redacted boundary event. Accidental visibility alone is not automatic credential compromise; concrete exposure/misuse evidence controls rotation.
+- Deferred retention events require explicit reconciliation. Older recovery material is deleted only when replacement coverage, business/legal retention, Secret recovery, authorization, and incident dependencies permit.
+- Final reconciliation proves project/business stage, completed Gates, production/runtime truth, local workstation truth, recovery model, reconstruction path, mutation/deletion counters where applicable, exact exceptions, deferred obligations, and no shared/production regression.
+- Deferred business actions remain `DEFERRED_NOT_PASS`, not PASS.
+- Historical audit references are not globally rewritten when current pointers change; reference-only repair does not replay already-valid runtime checks.
+- Closeout does not authorize Secret deletion/disclosure, Shared Infra mutation, real payment/refund, Provider activation, destructive Git history rewrite, or other Owner-only actions.
+
+## 12. Common precise returns
+
+Use a precise reason, not generic FAILED. Common stable examples:
 
 ```text
 RETURN_PREFLIGHT_DRIFT
@@ -561,62 +543,19 @@ RETURN_SECRET_COLLISION
 RETURN_SECRET_ACCESS_MISMATCH
 RETURN_SECRET_RECOVERY_UNAVAILABLE
 RETURN_SECRET_RISK
+RETURN_PROVIDER_IDENTITY_OR_PERMISSION_UNRESOLVED
 RETURN_OWNER_ACTION_REQUIRED
 ```
 
-不要只写 `FAILED`。
+## 13. End condition
 
----
+The loop repeats until closeout.
 
-## 21. Governance 升级规则
+Owner-facing output should normally contain only:
+- current result;
+- problems that matter;
+- project progress;
+- next step;
+- exact Owner action/relay if truly required.
 
-不要因为每个小事故改 Governance。
-
-只有重复出现、能跨项目复用、且经过真实项目验证的模式才进入下一版。
-
-状态可标：
-
-- `VALIDATED`：真实项目验证；
-- `PROVISIONAL`：理由充分但未完整验证；
-- `CANDIDATE`：单次观察，不急于固化。
-
-当前 v0.1.6 仍是 core baseline。Storage Layout Contract rev1、SSH/Delegated Secret Operations rev2、Target Host Reality Contract rev2、Production Provider Canary and Recovery Contract rev2、Governance Source Policy rev1 均作为 operational addenda，不因单次 incident 频繁改主版本。Provider Recovery rev2 已在 DujiaoNext Alipay R16 真实恢复链路验证 exact-cardinality、fresh recheck、full-invariant recovery、no-blind-replay、diagnostic parity 与 incident-tool containment；跨 Provider 泛化仍按 Contract 标为 PROVISIONAL。
-
----
-
-## 22. 加载顺序
-
-真正执行本 Skill 时：
-
-1. 先按 `references/GOVERNANCE_SOURCE_POLICY.md` 确认 canonical Governance source；默认读取 GitHub latest，除非 active Reviewer 明确 pin/override；
-2. 读本 `SKILL.md`；
-3. 读 `GOVERNANCE_HANDOFF.md`，确认 active core baseline/addenda；
-4. 需要完整 core 规则时读 `references/GOVERNANCE_V0_1_6.md`；
-5. 只要项目将部署/已经部署到 Shared VPS，必须读 `references/STORAGE_LAYOUT_CONTRACT.md`；
-6. 涉及 SSH 连接恢复、Secret 创建/注入/备份/恢复时，必须读 `references/SSH_AND_DELEGATED_SECRET_OPERATIONS.md`；
-7. 只要 Gate 声称修改真实宿主机绝对路径、ACL、service、Docker daemon、端口或 Secret staging，必须读 `references/TARGET_HOST_REALITY_CONTRACT.md`；
-8. 只要涉及真实 Provider/payment/webhook/callback/refund/reconciliation/fulfillment 或 consequential transaction recovery，必须读 `references/PRODUCTION_PROVIDER_CANARY_AND_RECOVERY_CONTRACT.md`；
-9. 需要用户话术时读 `references/USAGE_SCENARIOS.md`；
-10. 新项目按需使用 `templates/`，Shared VPS 项目必须建立 `PROJECT_STORAGE_MANIFEST.md` 与读取唯一 `SHARED_VPS_HANDOFF.md`；
-11. 最后读当前项目 Handoff、最新 accepted Evidence 和当前 Gate Prompt。
-
-不要先从聊天历史或 stale local Governance copy 猜当前状态。
-
-
----
-
-## 23. Target Host Reality Contract rev2
-
-当 Executor 与 Owner 真实主机可能不在同一 execution environment 时，**目标宿主机真实性本身就是 Evidence boundary**。
-
-强制规则：
-
-- `C:\\...`、`/srv/...` 等绝对路径在 sandbox/container/WSL/remote runner 中同名存在，不证明目标宿主机已修改；
-- host-local write 必须有目标 host identity + write 后 host-local read-back；
-- 无法证明当前 runtime 就是目标 host 时，不得宣称创建/修改成功，必须 `RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE`；
-- 必须由 Owner 本机完成的动作，由 Executor 给一次性最小 host-local 命令，Owner 只负责执行，不负责设计/排错；
-- Windows ACL 收紧默认不要强行 `SetOwner()`；`SetOwner()` / 部分 `Set-Acl` 组合可能触发 `SeSecurityPrivilege`；对 Owner-owned staging 目录优先只处理 DACL/inheritance，并用 host-native read-back 验证；
-- native command non-zero、PowerShell exception、ACL/path mismatch 任一出现，都不得继续无条件打印 PASS；
-- partial execution 后再次运行先 classify existing state，不盲删、不覆盖未知 Secret 内容。
-
-详细契约：`references/TARGET_HOST_REALITY_CONTRACT.md`
+Everything else stays as short as safety permits.

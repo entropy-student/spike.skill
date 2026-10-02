@@ -2,16 +2,15 @@ slug: vps-project-governance
 display_name: VPS Project Governance（VPS 项目管理规范）
 category: engineering-governance
 language: zh-CN + en
-version: 0.1.6
-status: active-validated
-storage_contract_revision: 1
-storage_contract_status: active-validated-by-shared-vps-pattern
-ssh_secret_operations_revision: 2
-ssh_connection_contract_status: active-validated
-delegated_secret_provisioning_status: active-validated-on-unified-pay
-dpapi_recovery_pattern_status: validated-with-target-host-and-pending-artifact-boundary
-target_host_reality_contract_revision: 2
-target_host_reality_contract_status: active-validated-on-dujiaonext-windows-host
-production_provider_canary_contract_revision: 2
-production_provider_canary_contract_status: active-validated-on-dujiaonext-alipay
-cross_provider_canary_clauses_status: provisional-pending-additional-live-provider-validation
+version: 0.2.0
+status: active-provisional
+canonical_rule_file: SKILL.md
+active_rule_model: universal-core-plus-triggered-specialists
+external_operational_addenda: none
+persistent_executor_handoff: false
+history_path: history/
+previous_version: 0.1.6
+previous_version_archive: history/v0.1.6/
+pre_migration_main_commit: a2de260ffbff6c1978d71545308289b40e339ac3
+promotion_source_ref: lab/amber-kite-27
+promotion_source_commit: eb6b45f8dac2594293be02fa7996387e96fa292b
