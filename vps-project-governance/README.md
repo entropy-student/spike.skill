@@ -1,41 +1,32 @@
 # VPS Project Governance v0.2.0
 
-当前正式 Governance：**v0.2.0 / ACTIVE_PROVISIONAL**。
+当前正式版本：**v0.2.0 / ACTIVE_PROVISIONAL**
 
-## 唯一规则入口
+## 当前文件结构
 
-- Canonical rule source: `SKILL.md`
-- 不再维护独立 active addenda。
-- `history/` 仅用于审计和回滚，**不是当前规则来源**。
+```text
+vps-project-governance/
+├─ SKILL.md              # Skill 入口；不重复治理规则
+├─ README.md             # 本说明
+├─ metadata.yml          # 版本状态
+├─ v0.2.0/               # 当前完整原始治理包
+│  ├─ VNEXT.md           # 唯一完整运行规则
+│  ├─ HANDOFF.md
+│  ├─ DECISION_LOG.md
+│  ├─ COVERAGE.md
+│  ├─ RULE_MATRIX.md
+│  ├─ CONFLICT_REGISTER.md
+│  ├─ INVENTORY.md
+│  └─ MAP.md
+└─ history/
+   └─ v0.1.6/            # 上一正式版本完整回滚包
+```
 
-## Reviewer 每轮怎么读
+## 关键原则
 
-1. 读 `SKILL.md` 的 header、§0–§10、§11 trigger table、§12–§13。
-2. 检查 §11 的全部专项触发条件。
-3. 只完整读取被触发的 §11A–§11F；不确定是否触发时按触发处理。
-4. 再读取当前项目的 `REVIEWER_HANDOFF`、当前 Gate 和需要的 accepted Evidence。
+- **不要重新加工 VNEXT.md。** 当前 v0.2.0 直接使用已审计通过的原始文件。
+- Reviewer 的实际读取方式、Gate、Evidence、Handoff、专项触发等规则全部定义在 `v0.2.0/VNEXT.md`。
+- 其余 v0.2.0 文件用于审计和追溯，不是第二套 Governance。
+- 旧 v0.1.6 完整保留在 `history/v0.1.6/`。
 
-Executor 不需要重新解释整套 Governance；它只执行 Reviewer 给出的当前 Gate 和明确输入。
-
-## 项目运行时核心记录
-
-- `REVIEWER_HANDOFF`：Reviewer 接受的当前项目状态。
-- `EXECUTION_EVIDENCE`：实际执行和验证证据。
-- 当前 Gate：本轮允许做什么、做到哪里、怎么验收。
-- 不再要求长期维护 `EXECUTOR_HANDOFF`。
-
-## 历史与回滚
-
-旧正式版 v0.1.6 已完整归档到：
-
-`history/v0.1.6/`
-
-迁移前 main commit：
-
-`a2de260ffbff6c1978d71545308289b40e339ac3`
-
-详细回滚说明见 `history/v0.1.6/ROLLBACK.md`。
-
-本次 v0.2.0 来源于 shadow ref：
-
-`lab/amber-kite-27@eb6b45f8dac2594293be02fa7996387e96fa292b`
+来源快照：`lab/amber-kite-27@eb6b45f8dac2594293be02fa7996387e96fa292b`

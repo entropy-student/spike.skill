@@ -4,13 +4,9 @@ category: engineering-governance
 language: zh-CN + en
 version: 0.2.0
 status: active-provisional
-canonical_rule_file: SKILL.md
-active_rule_model: universal-core-plus-triggered-specialists
-external_operational_addenda: none
-persistent_executor_handoff: false
-history_path: history/
+canonical_operational_rules: v0.2.0/VNEXT.md
+source_snapshot_commit: eb6b45f8dac2594293be02fa7996387e96fa292b
+source_snapshot_branch: lab/amber-kite-27
+operational_content_rewritten_on_promotion: false
 previous_version: 0.1.6
 previous_version_archive: history/v0.1.6/
-pre_migration_main_commit: a2de260ffbff6c1978d71545308289b40e339ac3
-promotion_source_ref: lab/amber-kite-27
-promotion_source_commit: eb6b45f8dac2594293be02fa7996387e96fa292b
