@@ -8,5 +8,5 @@ canonical_operational_rules: VNEXT.md
 incident_archive: history/incidents/
 previous_version: 0.2.1
 previous_version_archive: history/v0.2.1/
-older_version_archive: history/v0.1.6/
+version_history_root: history/
 refactor_audit_archive: history/v0.2.0-refactor/
