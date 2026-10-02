@@ -827,3 +827,28 @@ The remaining source-scan low-match items are classified as non-gaps:
 Old metadata contains version/status metadata only; the superseded Closeout proposal is historical/non-authoritative and has no reason to enter the operational loading path.
 
 This authorized shadow-Governance modification round is now CLOSED. Any further Governance edit requires fresh Owner authorization.
+
+
+## Semantic Repair Round — draft3
+
+Owner explicitly authorized another shadow-Governance repair/re-audit round.
+
+Repairs completed:
+- restored remaining active-contract safeguards found by section-by-section audit;
+- corrected the loading model to honor R20: universal surface + complete trigger scan + only triggered specialist sections;
+- restored PROJECT_GOAL and SYSTEM_MAP continuity and Reviewer-only canonical Handoff ownership;
+- rechecked all accepted design decisions against the implemented vNext surface;
+- reran strong normative-source scanning after repair.
+
+Verified state before final seal:
+```text
+VNEXT_VERSION=v0.2.0-draft3
+OWNER_DECISION_ALIGNMENT=24/24_PASS
+MATRIX_COVERAGE=128/128
+KNOWN_UNRESTORED_SAFETY_GAPS=0
+RESIDUAL_LOW_MATCH_TRUE_GAPS=0
+PRODUCTION_GOVERNANCE_MODIFIED=NO
+SHADOW_PROMOTED=NO
+```
+
+This round still requires final compare/read-back before it is closed.
