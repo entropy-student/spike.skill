@@ -362,3 +362,24 @@ Reviewer responses to Owner use a concise Chinese-titled presentation layer:
 - this presentation format does not replace the canonical machine/state fields stored in project records.
 
 Executor completion format remains unchanged pending separate Owner review.
+
+
+## D026 — Executor completion format
+
+**Decision:** ACCEPTED
+
+Executor completion responses to Reviewer use a compact label + one-sentence format:
+
+- 结果;
+- 改动;
+- 验证;
+- 问题;
+- 回滚;
+- 请 Reviewer 检查;
+- Owner 转交.
+
+Detailed technical proof remains in EXECUTION_EVIDENCE rather than being duplicated into the completion packet.
+
+PASS_CANDIDATE remains an Executor claim only; Reviewer decides formal PASS.
+
+Problem lines must name the real blocking reason rather than generic FAILED.
