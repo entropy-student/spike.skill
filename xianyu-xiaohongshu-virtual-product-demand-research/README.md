@@ -1,44 +1,18 @@
-# 闲鱼 / 小红书虚拟商品需求研究 v2.1
+# 闲鱼 / 小红书虚拟商品需求研究 v2.2.0
 
-用于长期反复执行的轻量需求研究 Skill。
+长期复用的轻量市场研究方法：发现具体商品/Offer，把买方证据、供给、风险和实验准备度分开，输出可以回看的目录。
 
-## 默认回答
+从 [SKILL.md](SKILL.md) 开始。默认 MARKET_MAP；只有实际售卖/测试决策才用 TEST。D2线索保留发现价值，弱信号重复不自动升级；历史成交不当成当前；测试允许安全、有边界的探索，不要求先证成需求。
 
-> **平台上哪些具体商品类型 / SKU / Offer 有买方需求证据？证据强到什么程度？**
+执行文档保持9个文件：入口、README、handoff、metadata、两份引用、两份模板和一个校准案例。reviews/另存本次审查证据，不参与日常加载。单一 Research Ledger 即可容纳来源、时间、对象、覆盖和结论，无需新建评分或审批体系。
 
-核心流程：
+- [Evidence Rules](references/EVIDENCE_RULES.md)
+- [Test Mode](references/OPTIONAL_TEST_MODE.md)
+- [Research Ledger](templates/RESEARCH_LEDGER_TEMPLATE.md)
+- [Final Catalog](templates/FINAL_CATALOG_TEMPLATE.md)
+- [案例](examples/XIANYU_2026_10_CASE.md)
+- [最终独立Review与验证](reviews/XIANYU_DEMAND_V2_2_FINAL_REVIEW.md)
 
-~~~text
-平台市场
-→ 具体商品 / SKU
-→ 买方证据 + 供给观察分开
-→ Evidence Scope + Signal Lineage
-→ D4 / D3 / D2 / D1 / U
-→ Demand Status + Risk Status
-→ 可复核需求目录
-~~~
+历史：v1.0.0（完整商业机会方法）、v2.0.1（轻量目录）、v2.1.0（买方证据与底稿修订）完整保留在 history/。它们只用于追溯，不参与当前执行。
 
-## v2.1 最重要的修正
-
-- 多卖家/多挂单只算 Supply，不能单独升级 D3/D4。
-- 商品族交易证据不得下传到更细 SKU/Bundle。
-- CONFIRMED_DEMAND 仅限 D4；PROBABLE_DEMAND = D3。
-- Demand 与 Risk 两条轴分开。
-- 新增单一轻量 Research Ledger，保留日期、原始事实、Scope、Lineage、覆盖与访问限制。
-- 重复调用优先刷新旧底稿。
-- Test Mode 区分 RESEARCH_NEXT 和 TEST_READY。
-
-## 文件
-
-~~~text
-SKILL.md
-references/EVIDENCE_RULES.md
-references/OPTIONAL_TEST_MODE.md
-templates/RESEARCH_LEDGER_TEMPLATE.md
-templates/FINAL_CATALOG_TEMPLATE.md
-examples/XIANYU_2026_10_CASE.md
-history/v1.0.0/
-history/v2.0.1/
-~~~
-
-v1.0 保留完整商业机会决策历史；v2.0.1 保留第一次轻量化版本；当前正式版本为 v2.1.0。
+当前正式版本：**2.2.0 / ACTIVE**。Review PASS 指本轮方法与边界验证通过，不承诺任意市场研究的事实必然准确。

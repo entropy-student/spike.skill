@@ -1,43 +1,34 @@
-# Research Ledger Template
+# Research Ledger
 
-一轮研究只需要这一张轻量底稿。已有底稿时优先更新，不要每次从零开始。
+## Run
 
-## A. Run
+- Run ID / Skill Version：
+- Platform / Scope / Mode：
+- As of / Buyer Evidence Window（默认最近90天）：
+- Search / Access / Time Budget：
+- Previous Run / Reused Facts：
+- 本轮之外的新探索入口（定向复核可不适用）：
+- Stop Reason / Unresolved Gaps：
 
-~~~text
-RUN_ID=
-RUN_DATE=
-PLATFORM=
-SCOPE=
-MODE=MARKET_MAP
-PREVIOUS_RUN=
-REFRESH_REASON=
-CRITICAL_UNKNOWN=
-~~~
+## Coverage
 
-## B. Coverage
+| 市场面/买方问题 | 查询/入口与样本量 | SCANNED/PARTIAL/BLOCKED/EXCLUDED | 本轮/继承 | 限制/排除理由 |
+|---|---|---|---|---|
 
-| Market Surface | Status | Entry points / Queries | Last checked | New candidate / evidence | Stop / limitation | Refresh trigger |
+## Observations
+
+可用一张宽表或逐条记录；字段含义固定，不要求额外文件。
+
+| ID | Observed At | Evidence Period / CURRENT-HISTORICAL-UNKNOWN | Platform / Query | URL / Item ID | Public Seller / Source | Raw Fact | Signal Type / Value | Named Supported Unit / Scope | Source Nature / Provenance | Lineage ID | Access / Attribution Limit |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+
+Source Nature：直接平台记录/第一方数据/媒体转述/卖家自述/推导。
+Provenance：PLATFORM_TRANSACTION / PLATFORM_CATEGORY / DIRECT_SKU / RELATED_RESULTS_CLUSTER / DERIVED_ADJACENT。
+Signal Type：TRANSACTION / PURCHASE_INTENT / INTEREST / SUPPLY / CLAIM。
+
+## Candidate Decisions
+
+| Candidate ID / Named Unit | Supporting Observation IDs | Buyer Evidence vs Supply | D-Level / Period / Confidence | Demand Status | Risk Status / Basis | Counterevidence / Next Step |
 |---|---|---|---|---|---|---|
-|  | SCANNED / PARTIAL / BLOCKED / EXCLUDED |  |  |  |  |  |
 
-## C. Observations
-
-| ID | Date | Platform | Query/Surface | URL / Item ID | Seller/Source | Raw fact | Signal type | Value | Supported unit | Scope | Provenance | Lineage ID | Access limitation |
-|---|---|---|---|---|---|---|---|---:|---|---|---|---|---|
-| O-001 |  |  |  |  |  |  | TRANSACTION / INTENT / ATTENTION / SUPPLY |  |  | FAMILY / PRODUCT_TYPE / SKU / BUNDLE |  |  |  |
-
-## D. Candidate State
-
-| Candidate | Buyer evidence summary | Supply observation | D-Level | Confidence | Demand Status | Risk Status | Counterevidence | Critical Unknown | Next action |
-|---|---|---|---|---|---|---|---|---|---|
-|  |  |  | D4/D3/D2/D1/U | HIGH/MEDIUM/LOW | CONFIRMED/PROBABLE/WATCHLIST | NO_FLAG_OBSERVED/REVIEW_REQUIRED/HIGH_RISK/UNKNOWN |  |  |  |
-
-## E. Stop Check
-
-- [ ] Relevant market surfaces all have coverage status.
-- [ ] Critical Unknowns that could change top candidate status are resolved or explicitly blocked.
-- [ ] At least two materially different remaining search/entry paths produced no new candidate or status-changing buyer evidence.
-- [ ] Access limitations are explicit.
-- [ ] No supply-only pattern was promoted to D3/D4.
-- [ ] No family evidence was inherited downward to a narrower SKU/Bundle.
+注明直接支持、向宽范围汇总或相邻推导；不能只写“多个商品”。保留旧观察与新判断的关联，动态数值标日期。导入旧报告但无底层定位时，标待复核，不能声称本轮重新观察。

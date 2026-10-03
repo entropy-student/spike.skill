@@ -1,50 +1,13 @@
-# Final Catalog Template v2.1
+# Market Map
 
-## Research Contract
+- Skill / Run / As of：
+- Platform / Scope / Evidence Window：
+- 覆盖与样本：新观察 / 继承 / 未复核；局部目录不代表全集。
+- 停止依据与主要缺口：
 
-~~~text
-PLATFORM=
-SCOPE=
-MODE=MARKET_MAP
-DATE_WINDOW=
-LEDGER=
-IMPORTANT_UNKNOWN=
-~~~
+| Candidate / 商品或Offer | 平台 | 价格/实际规格与日期 | Buyer Evidence | Supply Observation | Named Scope | D-Level / Period | Confidence | Demand Status | Risk Status / Basis | Observation IDs | 限制 / 下一步 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
 
-## Coverage Boundary
+如需计数，分别统计当前、历史、时期未知，不能混成当前确认数。D2/D1/U 保留发现价值；未发现强证据不等于无需求。目录不自动给出售卖建议。
 
-| Market Surface | Coverage | Limitation |
-|---|---|---|
-|  | SCANNED / PARTIAL / BLOCKED / EXCLUDED |  |
-
-## Final Catalog
-
-| 商品类型 / SKU | 平台 | 价格带 | Buyer Evidence | Supply Observation | Scope | D-Level | Confidence | Demand Status | Risk Status | Counterevidence | Source IDs |
-|---|---|---:|---|---|---|---|---|---|---|---|---|
-|  |  |  |  |  | FAMILY / PRODUCT_TYPE / SKU / BUNDLE | D4/D3/D2/D1/U | HIGH/MEDIUM/LOW | CONFIRMED_DEMAND / PROBABLE_DEMAND / WATCHLIST | NO_FLAG_OBSERVED / REVIEW_REQUIRED / HIGH_RISK / UNKNOWN |  |  |
-
-## Interpretation
-
-- CONFIRMED_DEMAND = D4 only.
-- PROBABLE_DEMAND = D3.
-- WATCHLIST = D2/D1/U.
-- Risk Status 独立于 Demand Status。
-- Supply repetition 不可单独升级 Demand。
-- Evidence 不得向更细 Scope 下传。
-
-## Key Limitations
-
-必须说明：
-- 哪些只是 Supply / Attention / Intent；
-- 哪些来源动态或无法稳定复现；
-- 哪些是 DERIVED_ADJACENT；
-- 哪些 Critical Unknown 仍未解决；
-- 本轮没有覆盖到哪些市场面。
-
-## Optional Test Mode
-
-只有用户明确要求实际售卖/测试决策时，再追加：
-- TEST_READY
-- RESEARCH_NEXT
-- HOLD / KILL / NO_PICK
-- 必要时 PRIORITY_TEST / BACKUP
+TEST 时另附特定实验准备度、验证目标与预算/时间/成功/失败/停止/授权边界。不要把 TEST_READY 当需求状态。

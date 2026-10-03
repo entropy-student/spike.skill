@@ -1,97 +1,46 @@
-# Optional Test Mode v2.1
+# Optional Test Mode v2.2
 
-只在用户明确要求“哪个值得卖 / 测 / 优先做”时读取。
+仅在用户要求实际售卖/测试/投入决策时读取。问“值得继续研究哪个”在 MARKET_MAP 给 RESEARCH_NEXT 即可。
 
-## 1. 先路由问题
+## 测试准备度针对具体实验
 
-### RESEARCH_NEXT
-用户问：
-- 哪个值得继续研究？
-- 哪个最值得补证？
+TEST_READY 表示**具备实施某个有边界的验证实验的条件**，不表示付费需求、规模或利润已经确认。每个标签旁写明“验证什么、准备做什么”。可以多个 TEST_READY；只在用户要求选一个时，从中选 PRIORITY_TEST/BACKUP。
 
-此时可以在存在 Critical Unknown 时给出 `RESEARCH_NEXT`。
+允许 D1/D2/U 的探索实验；用实验补需求证据，不能先要求需求已经 D3。D4 也不能免除实施条件。
 
-它只表示**下一步研究优先级**，不表示应该真实发布、收款或投入。
+检查与实际实验相关的准备度：
 
-### TEST_READY
-用户问：
-- 哪个已经值得真实测试？
-- 哪个值得卖？
+1. 当前平台规则、资格、权利、隐私与交易路径可用，没有未处理关键阻断。
+2. 能诚实展示/交付本次测试 Offer，完成必要 Proof/交付演练；不能以不可交付商品收款。
+3. 价格、关键已知成本与最大现金/人工/退款损失可约束；不确定转化率、退款率、维护量可以是实验目标，但不得用乐观估计掩盖无上限责任。
+4. 了解与本次假设相称的同质/免费替代，实验有明确可证伪问题，成本与学习价值相称；低成本探索不要求完整竞品调研。
+5. 仅使用本次用户提供的资源/约束，实施所需授权已具备或明确待授权。
 
-只有候选通过 readiness gate 才能标 `TEST_READY`。
+缺失交易授权时，可交付“方案具备条件，待授权实施”，不能擅自执行。政策/权利/交付路径未知会阻止相关发布/收款实验；可改成不触及该阻断的桌面研究或安全研究实验，写清边界，不把它包装为售卖准备完成。
 
-## 2. Readiness Gate
+## 输出标签
 
-至少检查：
+- TEST_READY：特定实验条件具备；注明验证目标、需求等级和未知项。
+- RESEARCH_NEXT：下一步补哪条证据/准备条件。
+- HOLD：等待具体条件，暂不投入。
+- KILL：有明确反证或阻断，停止对应 Offer/实验。
+- NO_PICK：本次没有适合的实际实验候选。
 
-1. **Demand**：D3 或 D4；纯供给/单一弱 Intent 不够。
-2. **Policy / Trade Path**：当前平台规则、类目资格、交易路径没有 Critical Unknown。
-3. **Competition / Substitute**：知道主要同质化和免费替代。
-4. **Trust / Proof**：有可执行的证明方案。
-5. **Economics**：价格、关键成本、人工、退款/维护至少能做粗算，且没有明显负单元经济。
-6. **Delivery / Rights / Risk**：版权、隐私、账号、争议、更新和人工依赖没有未处理关键阻断。
-7. **Operator Fit**：只使用用户本次明确提供的资源/约束。
-8. **Counterevidence**：明确什么新证据会 KILL。
+不强制赢家。比较下一条有效证据的时间/现金成本，以及选错后的现金、账号、退款/声誉损失；不要求百分制。
 
-任一关键项为 UNKNOWN：
-- 不能叫 TEST_READY；
-- 改为 `RESEARCH_NEXT` 或 `HOLD`。
+## 每个真实实验的最小计划
 
-## 3. 输出标签
-
-允许：
-
-~~~text
-TEST_READY        = 已具备真实最小测试条件，可有多个
-RESEARCH_NEXT     = 需求值得继续研究，但还没准备好真实测试
-HOLD              = 当前不值得继续推进，等待特定条件
-KILL              = 已有明确反证/阻断
-NO_PICK           = 没有候选达到要求
-~~~
-
-只有用户明确要求“只选一个”时，才可以从 TEST_READY 中再标：
-
-~~~text
-PRIORITY_TEST
-BACKUP
-~~~
-
-因此 `PRIORITY_TEST` 永远表示：
-> 已经 TEST_READY，并且是在多个可测试候选中的优先项。
-
-不能把“最值得补证”叫 PRIORITY_TEST。
-
-## 4. Test Priority
-
-候选都接近时，再比较：
-- `Cost-to-Learn`：下一条有效证据的时间/现金成本；
-- `Cost-of-Being-Wrong`：选错后的现金、时间、账号、退款/声誉和合规代价。
-
-不要求百分制，也不强制唯一赢家。
-
-## 5. Minimum Validation
-
-只对 TEST_READY 设计真实验证。
-
-任何真实测试开始前，必须先写：
-
-~~~text
-BUDGET_CAP=
+```text
+OFFER_AND_HYPOTHESIS=
+DEMAND_LEVEL_AND_UNKNOWNS=
+BUDGET_CAP=现金+人工+最大损失边界
 TIMEBOX=
-SUCCESS_SIGNAL=
+SUCCESS_SIGNAL=明确观测和阈值
 FAIL_OR_KILL_SIGNAL=
 STOP_CONDITION=
-~~~
+AUTHORIZATION=已授权范围/待授权动作
+```
 
-没有预算上限、时间盒和停止条件，不进入真实测试。
+成功标准须和待证命题匹配：测试付费意愿时，付款/订单承诺或针对价格与交付的合格询盘优先；浏览/收藏只说明兴趣，不能宣布需求实验成功。无足够曝光/访问属于实验不充分，不能直接推出无市场。
 
-优先信号：
-
-~~~text
-payment > deposit / committed order > qualified inquiry > click/search > collect/like
-~~~
-
-闲鱼：清晰 Offer → 合格询盘 / 议价 / 付款 / 退款争议。  
-小红书：不同问题与 Proof → 商品动作 / 合格私信 / 搜索进入 / 收藏点赞。
-
-RESEARCH_NEXT 的下一步应是“补哪条证据”，而不是直接发布/收款。
+实验结束回写实际行为、日期、Scope 与 Lineage；只按新增事实升级，失败也保留原因和剩余未知。达到预算/时间/损失或出现关键权利、交付、平台风险时停止。
