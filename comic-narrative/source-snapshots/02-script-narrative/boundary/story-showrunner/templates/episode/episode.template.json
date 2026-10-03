@@ -1,0 +1,59 @@
+{
+  "episode_id": "YYYYMMDD-slug",
+  "status": "TOPIC_RESOLUTION",
+  "runtime_profile": {
+    "domain_adapter": "domains/ai",
+    "editorial_profile": "bilibili-first-person-story",
+    "visual_profile": "simplified-flat-narrative-comic",
+    "character_profile": "char-ip-001",
+    "voice_profile": "cosyvoice-300m-v2.1",
+    "executor_adapter": "antigravity",
+    "image_adapter": "nano-banana",
+    "tts_adapter": "cosyvoice"
+  },
+  "topic": {
+    "source": null,
+    "topic_id": null,
+    "why_now": null,
+    "human_problem": null,
+    "content_job": null
+  },
+  "knowledge": {
+    "artifact_ref": null,
+    "status": "PENDING"
+  },
+  "story": {
+    "artifact_ref": null,
+    "status": "PENDING"
+  },
+  "script": {
+    "artifact_ref": null,
+    "status": "PENDING"
+  },
+  "timing": {
+    "production_srt_ref": null,
+    "tts_manifest_ref": null,
+    "status": "PENDING"
+  },
+  "director": {
+    "artifact_ref": null,
+    "status": "PENDING"
+  },
+  "assets": {
+    "artifact_ref": null,
+    "status": "PENDING"
+  },
+  "production": {
+    "package_ref": null,
+    "status": "PENDING"
+  },
+  "execution": {
+    "result_ref": null,
+    "status": "PENDING"
+  },
+  "qa": {
+    "result_ref": null,
+    "status": "PENDING"
+  },
+  "provenance": []
+}

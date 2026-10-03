@@ -1,0 +1,860 @@
+{
+  "status": "SOURCE_COLLECTION_REAUDIT_PASS / BACKUP_ONLY / NOT_RUNTIME",
+  "part": "Part 4 — image / asset execution",
+  "target_repository": "entropy-student/spike.skill",
+  "target_branch": "codex/comic-narrative-part4-snapshot",
+  "snapshot_base_part3_sealed_commit": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+  "source_project_repository": "entropy-student/project",
+  "source_project_commit": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+  "counts": {
+    "direct": 15,
+    "evidence": 7,
+    "boundary": 52,
+    "cases": 18,
+    "suspected-external": 3,
+    "historical": 5
+  },
+  "copied_text_source_files": 100,
+  "historical_reference_library_binary_count": 10,
+  "historical_binaries_duplicated": false,
+  "locked_upstream": [
+    {
+      "path": "comic-narrative/part0/TOPIC_LIBRARY.md",
+      "blob_sha": "26f66a0072691d2a1dcec966f073dd30daafdb81"
+    },
+    {
+      "path": "comic-narrative/part1/TOPIC_STRATEGY.md",
+      "blob_sha": "89dbbd6a69b854dda2f8dee5987f4a9e5257abe4"
+    },
+    {
+      "path": "comic-narrative/part2/SCRIPT_NARRATIVE.md",
+      "blob_sha": "4c4874649f5baa00d5c269c94c41d7037b53c1c2"
+    },
+    {
+      "path": "comic-narrative/part3/STORYBOARD_VISUAL_DIRECTOR.md",
+      "blob_sha": "556b408ffe52255470cdf239c2a17580b2125be2"
+    },
+    {
+      "path": "comic-narrative/part3/assets/characters/MAIN_CHARACTER_MASTER.png",
+      "blob_sha": "c03775dff6852cafb5d9284bd72fb05378e7dc9c"
+    },
+    {
+      "path": "comic-narrative/part3/assets/characters/MALE_FRIEND_ROOMMATE_MASTER.png",
+      "blob_sha": "011e338c6ef454791d5818512c82bab508131674"
+    },
+    {
+      "path": "comic-narrative/part3/assets/characters/FEMALE_FRIEND_COLLEAGUE_MASTER.png",
+      "blob_sha": "54aaff31cf2cc35b415f7e210479fd7acf080722"
+    },
+    {
+      "path": "comic-narrative/part3/assets/style/STYLE_PRIMARY_TWO_PERSON_DINING.png",
+      "blob_sha": "88e7b3b959f4f190c1abbb95071cdba9f780e6ed"
+    },
+    {
+      "path": "comic-narrative/part3/assets/style/STYLE_SECONDARY_SINGLE_PERSON_DINING.png",
+      "blob_sha": "aa8e79b2e205479594a7c9f8b9808d0c9e9ee10e"
+    }
+  ],
+  "files": [
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/CHARACTER_REFERENCE_STRATEGY_NOTE.md",
+      "source_blob_sha": "da488e11de58d7478c8259ccfe236dca3d3b3076",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/CHARACTER_REFERENCE_STRATEGY_NOTE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v1/00_EXECUTION_ORDER.md",
+      "source_blob_sha": "10a50cdccf4d07427970ab19b5b8dcc380075a11",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v1_00_EXECUTION_ORDER.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v1/13_OUTPUT_SPEC.md",
+      "source_blob_sha": "cd8c3290d14627e3608150ae780f26c8c5d66272",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v1_13_OUTPUT_SPEC.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v1/14_QA_RULES.md",
+      "source_blob_sha": "09ead5784a68f331bb78535559e701a904c706ca",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v1_14_QA_RULES.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v1/ANTIGRAVITY_E2E_TASK.md",
+      "source_blob_sha": "151afb31b6a5dc4a6484bd732f9a33243ff6fa65",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v1_ANTIGRAVITY_E2E_TASK.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v1/PACKAGE_MANIFEST.json",
+      "source_blob_sha": "6236cf0908abfc2356a90393ac28206798d1a273",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v1_PACKAGE_MANIFEST.json"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v1/README_FIRST.md",
+      "source_blob_sha": "a615375f02674dee02051e289a0e55bae6f99205",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v1_README_FIRST.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v2/00_EXECUTION_ORDER.md",
+      "source_blob_sha": "eae2ac2fdb84029429ec88814e4f56a54c24e514",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v2_00_EXECUTION_ORDER.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v2/05_VISUAL_BEATS.json",
+      "source_blob_sha": "49e68e7d13d6b7a6230ceb8db5acb3185bdddd97",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v2_05_VISUAL_BEATS.json"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v2/ANTIGRAVITY_ASSET_GATE_TASK.md",
+      "source_blob_sha": "bbb61664fd8ee462223589fac651690a28e98453",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v2_ANTIGRAVITY_ASSET_GATE_TASK.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g6/blind-search-answer/production-package-v2/PACKAGE_MANIFEST.json",
+      "source_blob_sha": "9b2bb7d2427860d57f748b4b7c9f7d93cc4464a1",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/g6-image-handoff/v2_PACKAGE_MANIFEST.json"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/skill-migration-review/CONFLICT_REGISTER_V1.md",
+      "source_blob_sha": "40dbe0edf63f4b18011355eb3f372d72ba709096",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/migration-review/CONFLICT_REGISTER_V1.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/skill-migration-review/MIGRATION_MAP_V1.md",
+      "source_blob_sha": "b01740931cb24a4492253b10a84b09e6c744f1bd",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/migration-review/MIGRATION_MAP_V1.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/skill-migration-review/R1_CANONICAL_RECONCILIATION_REVIEW.md",
+      "source_blob_sha": "f82aa3cb102884ffb1978323541242b83fee1ab5",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/migration-review/R1_CANONICAL_RECONCILIATION_REVIEW.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/skill-migration-review/R2_CANDIDATE_MIGRATION_REVIEW.md",
+      "source_blob_sha": "62f5618b9be6e3d808059dabbc07e6a18b0868ac",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/migration-review/R2_CANDIDATE_MIGRATION_REVIEW.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/skill-migration-review/REVIEW_SUMMARY_V1.md",
+      "source_blob_sha": "17d8fd5b3588c9daf56735bb44bfafc004730e9f",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/migration-review/REVIEW_SUMMARY_V1.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/adapters/executors/antigravity/ADAPTER.md",
+      "source_blob_sha": "129704875473814b67ffaedea7f0c31ee158885b",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/adapters/executors/antigravity/ADAPTER.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/adapters/image/nano-banana/ADAPTER.md",
+      "source_blob_sha": "c2f1449e62a445e41724221929dee88403c7a883",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/adapters/image/nano-banana/ADAPTER.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/CANDIDATE_STATUS.md",
+      "source_blob_sha": "ebea149e523b829d0f421512f828a1a7dcffe681",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/CANDIDATE_STATUS.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/MIGRATION_MANIFEST.md",
+      "source_blob_sha": "d958867376a8837254df1e308f3aeb0884f34cdb",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/MIGRATION_MANIFEST.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/profiles/character/char-ip-001/PROFILE.md",
+      "source_blob_sha": "54cd083179a3b39d6ecb7a169cde2714cc449f90",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/profiles/character/char-ip-001/PROFILE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/profiles/visual/simplified-flat-narrative-comic/PROFILE.md",
+      "source_blob_sha": "503ef6f8853756cbe6e2684f2334898c3caa4c99",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/profiles/visual/simplified-flat-narrative-comic/PROFILE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/references/ARCHITECTURE.md",
+      "source_blob_sha": "10b34abcd31bb73f1416bbe776cdd36c509d637f",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/references/ARCHITECTURE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/references/ASSET_COMPILER.md",
+      "source_blob_sha": "74fca738def279b78023a89738ece98fbf3b92b5",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/references/ASSET_COMPILER.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/references/CHARACTER_IDENTITY_CONTRACT.md",
+      "source_blob_sha": "802232bdb5525a8c3ffbcb2166b9defb85a22250",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/references/CHARACTER_IDENTITY_CONTRACT.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/references/EXECUTOR_CONTRACT.md",
+      "source_blob_sha": "4103620088a7f7cfcc93495a94cd778d1a48f6a3",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/references/EXECUTOR_CONTRACT.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/references/FRAME_BLUEPRINT.md",
+      "source_blob_sha": "9f8b26aea47d83f75b80c918fd4cd04e70864c7c",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/references/FRAME_BLUEPRINT.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/references/PIPELINE.md",
+      "source_blob_sha": "532a7768bf2c77d6e215148fccaf84a4089e6471",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/references/PIPELINE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/references/QA_AND_RETURN_CODES.md",
+      "source_blob_sha": "81fc50d3b6a18629e08b951bc662b9062a8304cc",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/references/QA_AND_RETURN_CODES.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/references/RUNTIME_STATE_LOCATOR.md",
+      "source_blob_sha": "524f967097d41bd6877e8703f324774e4569ecb2",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/references/RUNTIME_STATE_LOCATOR.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/schemas/frame-blueprint.schema.json",
+      "source_blob_sha": "40980759085fce7c9151be8136bac10d588f1a69",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/schemas/frame-blueprint.schema.json"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/schemas/frame-execution-row.schema.json",
+      "source_blob_sha": "0052e95fe5f7269deae12cf8673f5e5d275f4025",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/schemas/frame-execution-row.schema.json"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/schemas/semantic-shot.schema.json",
+      "source_blob_sha": "f7d033c7d4ef8866c3590963ef68e721cf09d12a",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/schemas/semantic-shot.schema.json"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/schemas/visual-beat.schema.json",
+      "source_blob_sha": "68325251282cf41404501f29df9d4d216cb62a56",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/schemas/visual-beat.schema.json"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/SKILL.md",
+      "source_blob_sha": "2820f621c4e4beb6ca954ea593f8060fe8459064",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/SKILL.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "story-showrunner/templates/production-package/README.md",
+      "source_blob_sha": "94a587d2df4f7221d057df00ff3b72fa4fb280bd",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/portable-skill/templates/production-package/README.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/ADAPTER_FIELD_MAPPINGS.md",
+      "source_blob_sha": "7d4c620f29b4be6a36ad090b8884b8835f167d98",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/ADAPTER_FIELD_MAPPINGS.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/ARCHITECTURE.md",
+      "source_blob_sha": "88a520fc762ce8399b8157b39034f337c386b5a1",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/ARCHITECTURE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/CURRENT_DOC_INDEX.md",
+      "source_blob_sha": "06a6df8d8798e6517fdd63156dc653016dccacb1",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/CURRENT_DOC_INDEX.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/G4_DIRECTOR_COMPILER_CONTRACT.md",
+      "source_blob_sha": "77bdd92f6d1f0c2f4eade7c9fc7f08560c4d579d",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/G4_DIRECTOR_COMPILER_CONTRACT.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/G6_POC_PLAN.md",
+      "source_blob_sha": "958ced772a0e2e267bd70741ef71a6b820469a4e",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/G6_POC_PLAN.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/LOW_LEVEL_EXECUTION_PACKAGE.md",
+      "source_blob_sha": "a5366c37369458bd005d950d5921754b2c922904",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/LOW_LEVEL_EXECUTION_PACKAGE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/PIPELINE_AND_GATES.md",
+      "source_blob_sha": "58723e4b40999884c62180d7da9a235d7f64d928",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/PIPELINE_AND_GATES.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/TOOL_INVENTORY.md",
+      "source_blob_sha": "38579db319dfca21bc8b0baa06627d7172766beb",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/TOOL_INVENTORY.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/VISUAL_FRAME_BLUEPRINT_RULES.md",
+      "source_blob_sha": "a470afa3119b33a1b5598e7532fa144513d3a33f",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/VISUAL_FRAME_BLUEPRINT_RULES.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/WORKER_ADAPTER_PLAN.md",
+      "source_blob_sha": "e23fee31ac9cf012478ab79a453ff330361c4a37",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/WORKER_ADAPTER_PLAN.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/WORKER_CONTRACTS.md",
+      "source_blob_sha": "1f5df0288818e6358d9eb75263615176bf2d11fb",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/WORKER_CONTRACTS.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/schemas/frame_blueprint.schema.json",
+      "source_blob_sha": "3024ddecabe575a9fcf18bfbc554ec745489cae9",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-schemas/frame_blueprint.schema.json"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/schemas/visual_beat.schema.json",
+      "source_blob_sha": "876af17e7d6c8c0146de813d917caf2c707a141a",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-schemas/visual_beat.schema.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/01_ASSET_MANIFEST.json",
+      "source_blob_sha": "3c4def78ed93a1a0015f7e6a3b54f5c9c6d4ef4a",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/01_ASSET_MANIFEST.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/02_BEAT_ASSET_MATRIX.json",
+      "source_blob_sha": "ab6e3daf656f61e7f2d1ed6e948d79b64bfc0e54",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/02_BEAT_ASSET_MATRIX.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/03_ASSET_INVENTORY.md",
+      "source_blob_sha": "5b69130aa3fbf8dd026e5e62e5e41994823d3167",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/03_ASSET_INVENTORY.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/04_CHARACTER_BIBLE.md",
+      "source_blob_sha": "5634837c30cdaacac7ed935993653735d0815324",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/04_CHARACTER_BIBLE.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/05_SCENE_BIBLE.md",
+      "source_blob_sha": "77849b9ffa70a360576f8b635d770d6d838fb113",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/05_SCENE_BIBLE.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/06_STYLE_BIBLE.md",
+      "source_blob_sha": "edb204f2568a9591826b701cec9f06cb7e9e66c9",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/06_STYLE_BIBLE.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/07_PROP_UI_BIBLE.md",
+      "source_blob_sha": "cace4707a2862bc5607f35ebaf30321d206729b6",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/07_PROP_UI_BIBLE.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/08_REFERENCE_MANIFEST.json",
+      "source_blob_sha": "ea92af695d49aa89411ee38ab470d41d267bc2ad",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/08_REFERENCE_MANIFEST.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/09_CALIBRATION_REVIEW.md",
+      "source_blob_sha": "8546d2a52673426fcbcbaba2c43e66bbab30b8a7",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/09_CALIBRATION_REVIEW.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/10_IMAGE_GENERATION_ROWS.json",
+      "source_blob_sha": "a95ef383578d7409a7ff6feaf096ff769fadf1ff",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/10_IMAGE_GENERATION_ROWS.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/11_IMAGE_GENERATION_PLAN.md",
+      "source_blob_sha": "ed49f0665b0cf0b1d42435103563a76cba3efeb2",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/11_IMAGE_GENERATION_PLAN.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/12_PILOT_BATCH.json",
+      "source_blob_sha": "9ecc84a959480e9c616b2a8bc99f5d0a2fec63fc",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/12_PILOT_BATCH.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/13_FRAME_BLUEPRINTS_V04.json",
+      "source_blob_sha": "2749fd5bc5772dc7c720a562cec00cc59d6822b0",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/13_FRAME_BLUEPRINTS_V04.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/14_EXECUTION_ROWS_V02.json",
+      "source_blob_sha": "ce7605c4d4a9d3731bc1778a9889a21119ac8b29",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/14_EXECUTION_ROWS_V02.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/15_FRAME_BLUEPRINT_RECOMPILE_REVIEW.md",
+      "source_blob_sha": "cfd35fff55989d880132957acc06c7d52d281a77",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/15_FRAME_BLUEPRINT_RECOMPILE_REVIEW.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/16_PILOT_BATCH_V02.json",
+      "source_blob_sha": "572bf7d41734fc380f3fc4de2801e8b0dd12b9cd",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/16_PILOT_BATCH_V02.json"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/17_HIGH_RISK_PILOT_REVIEW.md",
+      "source_blob_sha": "69da27b91757972c4e3620ede2f7788e2c6e37a4",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/17_HIGH_RISK_PILOT_REVIEW.md"
+    },
+    {
+      "category": "cases",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/experiments/g5/blind-search-answer/18_REFERENCE_PATH_VALIDATION.md",
+      "source_blob_sha": "e7f6c6179b0a9091418f4733fbdfb54d1032b070",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/cases/g5-blind-search-answer/18_REFERENCE_PATH_VALIDATION.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/assets/reference-library/catalog.jsonl",
+      "source_blob_sha": "bfdacb3aae5a60755e60b151e49de5867f03f738",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-assets/reference-library/catalog.jsonl"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/assets/reference-library/README.md",
+      "source_blob_sha": "121672fd968b8aee63aaf6b5013a1c8454b1c971",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-assets/reference-library/README.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/assets/registry/assets.jsonl",
+      "source_blob_sha": "379f9a89e2516d6f154be558aff2ab9f081e372a",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-assets/registry/assets.jsonl"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/assets/registry/README.md",
+      "source_blob_sha": "fdb3064a417d88ac25df61517d35e44fdd55dc81",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-assets/registry/README.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/AGENT_A_B_HANDOFF_CONTRACT.md",
+      "source_blob_sha": "7fb587bc0480e5c617ba8afc01cacaacf96750a0",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-docs/AGENT_A_B_HANDOFF_CONTRACT.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/CHARACTER_IDENTITY_LOCK.md",
+      "source_blob_sha": "5ac4090df8b15df8b250cf70098f9237b3006f41",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-docs/CHARACTER_IDENTITY_LOCK.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/G5_IMAGE_ASSET_PACKAGE_CONTRACT.md",
+      "source_blob_sha": "18a2c8c110b3ead8763e782c97f8d78760ad694d",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-docs/G5_IMAGE_ASSET_PACKAGE_CONTRACT.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/OUTPUT_RECORD_STANDARD.md",
+      "source_blob_sha": "543b702e80909fe866c071c59c1a4a4384904721",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-docs/OUTPUT_RECORD_STANDARD.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/PRODUCTION_VISUAL_STYLE.md",
+      "source_blob_sha": "e9ee993633e7da2fe682371b66f100c93914e177",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-docs/PRODUCTION_VISUAL_STYLE.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/REFERENCE_LIBRARY_PRODUCTION_WORKFLOW.md",
+      "source_blob_sha": "8610675bf47daf81c669c1a500f13a79937c8ae8",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-docs/REFERENCE_LIBRARY_PRODUCTION_WORKFLOW.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/STORY_EVENT_FRAME_PRODUCTION_PATCH_20260926.md",
+      "source_blob_sha": "b7fa61a3d070cfc580ac37c26e3f8dd7fcb426e7",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-docs/STORY_EVENT_FRAME_PRODUCTION_PATCH_20260926.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/VISUAL_ACQUISITION_REVIEW_GATE.md",
+      "source_blob_sha": "229a7bbe52704e3d19d1a018c7f8bf70e9a3364b",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-docs/VISUAL_ACQUISITION_REVIEW_GATE.md"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/schemas/asset_manifest.schema.json",
+      "source_blob_sha": "bbef7b7695ff9990fabeefac8ceeffbeb3092488",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-schemas/asset_manifest.schema.json"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/schemas/frame_execution_row.schema.json",
+      "source_blob_sha": "b2778d12154ae2e9969ff35c0c293abcec29ef36",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-schemas/frame_execution_row.schema.json"
+    },
+    {
+      "category": "direct",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/schemas/image_generation_row.schema.json",
+      "source_blob_sha": "8ffe95c8d31035e0b7dd25e4b8cf2d7971fca32d",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/direct/project-schemas/image_generation_row.schema.json"
+    },
+    {
+      "category": "evidence",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/G5_GATE_REVIEW.md",
+      "source_blob_sha": "632dd2e478c969e4bc55c6921c24a78bcea95fb1",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/evidence/G5_GATE_REVIEW.md"
+    },
+    {
+      "category": "evidence",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/ep-agent-permission-boundary-20260926/runs/20260926-1522-images-r1/ASSET_OUTPUT_MANIFEST.json",
+      "source_blob_sha": "9a67fdfd594a9902eaaea6bb4d441a0c32a2e53a",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/evidence/latest-image-run/ASSET_OUTPUT_MANIFEST.json"
+    },
+    {
+      "category": "evidence",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/ep-agent-permission-boundary-20260926/INDEX.md",
+      "source_blob_sha": "f7a02876600c1b8899eb7052d2b151dfc0fcb413",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/evidence/latest-image-run/INDEX.md"
+    },
+    {
+      "category": "evidence",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/ep-agent-permission-boundary-20260926/runs/20260926-1522-images-r1/QA_REPORT.md",
+      "source_blob_sha": "51e7bac9e39bd639cfb42b9b9c02e59b1b8f0476",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/evidence/latest-image-run/QA_REPORT.md"
+    },
+    {
+      "category": "evidence",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/ep-agent-permission-boundary-20260926/runs/20260926-1522-images-r1/REVIEW_INDEX.md",
+      "source_blob_sha": "9ddbe39a0155078531d0f7c00569315fed55d572",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/evidence/latest-image-run/REVIEW_INDEX.md"
+    },
+    {
+      "category": "evidence",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/ep-agent-permission-boundary-20260926/runs/20260926-1522-images-r1/RUN_RECORD.json",
+      "source_blob_sha": "8b02b64cf57b845003833f1eece20c31ebeedc78",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/evidence/latest-image-run/RUN_RECORD.json"
+    },
+    {
+      "category": "historical",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/ANTIGRAVITY_POC.md",
+      "source_blob_sha": "f4ee59e8a1369bdff6f77d5e65d6c538122b9ef4",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/historical/project-docs/ANTIGRAVITY_POC.md"
+    },
+    {
+      "category": "historical",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/CURRENT_STATUS.json",
+      "source_blob_sha": "40c68a0b2181284a60a254f2937c05eb80469ac1",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/historical/project-root/CURRENT_STATUS.json"
+    },
+    {
+      "category": "historical",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/EXECUTION_EVIDENCE.md",
+      "source_blob_sha": "4b2f44b88947ed74ac17d897f459806237f0c922",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/historical/project-root/EXECUTION_EVIDENCE.md"
+    },
+    {
+      "category": "historical",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/PROJECT_RECORD.md",
+      "source_blob_sha": "035b1d2894cfe546034c4ade7150b6c883b6e3fb",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/historical/project-root/PROJECT_RECORD.md"
+    },
+    {
+      "category": "historical",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/REVIEWER_HANDOFF.md",
+      "source_blob_sha": "36fc903f5f4ce38459c77141b3c32b6e78687f83",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/historical/project-root/REVIEWER_HANDOFF.md"
+    },
+    {
+      "category": "suspected-external",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "jingsui-story-video-director/references/IMAGE_GENERATION_PROTOCOL.md",
+      "source_blob_sha": "e61d99ab2bafd3aea47f1a190eaa2f3239b3fecf",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/suspected-external/jingsui-story-video-director/references/IMAGE_GENERATION_PROTOCOL.md"
+    },
+    {
+      "category": "suspected-external",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "jingsui-story-video-director/references/QUALITY_GATES.md",
+      "source_blob_sha": "ccda32c6ae10f5b9035538b9472d8e657989a5b0",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/suspected-external/jingsui-story-video-director/references/QUALITY_GATES.md"
+    },
+    {
+      "category": "suspected-external",
+      "source_repo": "entropy-student/spike.skill",
+      "source_ref": "dcf304fc77902a40e8bdf338c30ab2f383229776",
+      "source_path": "jingsui-story-video-director/references/VISUAL_IP_BIBLE.md",
+      "source_blob_sha": "dbfff938eacd31e3a725f0fa4c67d33b8e4b5fd0",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/suspected-external/jingsui-story-video-director/references/VISUAL_IP_BIBLE.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/README.md",
+      "source_blob_sha": "78faf392b4a2fac6fb19878b6be44424bbfd5823",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-root/README.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/docs/GOVERNANCE_ADAPTATION.md",
+      "source_blob_sha": "e7e98f2dbccf716e764d70258b6faf8e7af172fa",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-docs/GOVERNANCE_ADAPTATION.md"
+    },
+    {
+      "category": "boundary",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/README.md",
+      "source_blob_sha": "3efaa0f12d327a93687d60260a0bdc3693f59339",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/boundary/project-outputs/README.md"
+    },
+    {
+      "category": "evidence",
+      "source_repo": "entropy-student/project",
+      "source_ref": "c2503bd186bd764764113cc72e6ad13d4d37bba4",
+      "source_path": "ai-story-showrunner/outputs/blind-search-answer/INDEX.md",
+      "source_blob_sha": "9d9b3c49d0d9bf5fe8543f472cb2c7482f670e3a",
+      "snapshot_path": "comic-narrative/source-snapshots/04-image-assets/evidence/BLIND_SEARCH_ANSWER_OUTPUT_INDEX.md"
+    }
+  ]
+}
