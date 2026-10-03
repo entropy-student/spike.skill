@@ -1,18 +1,52 @@
-# 唯一交接文档 — Xianyu & Xiaohongshu Virtual Product Opportunity v1.0
+# 唯一交接文档 — Xianyu & Xiaohongshu Virtual Product Opportunity v2.0
 
-## 当前状态
-- Skill v1.0.0 已建立。
-- 上游方法：完整吸收 `independent-store-product-opportunity` v2.1 的 Discovery ≠ Decision、Signal Lineage、Quick Kill、Critical Unknown、Evidence Confidence、Operator Fit、Counterevidence、Cost-to-Learn / Cost-of-Being-Wrong 与 Test Priority。
-- 本 Skill 仅针对 **闲鱼 + 小红书的虚拟产品/数字服务机会筛选**，不负责实际发布、引流、交付系统或账号自动化。
-- 首轮建立 Skill，不执行真实选品。
+## 当前版本
 
-## 核心框架
-Current Rules Snapshot → Pre-Selection Intake → Broad Discovery → Candidate Normalization → Signal Ledger/Lineage → Platform Eligibility Gate → Quick Kill → Critical Unknown → E1–E10 Decision Evidence → 双平台 Opportunity Score + Confidence → Operator Fit / Objective / Horizon / Failure Cost → Counterevidence → Minimum Validation → PRIORITY TEST / BACKUP / HOLD / KILL / NO PICK。
+- VERSION=`2.0.0`
+- STATUS=`ACTIVE`
+- 主入口：`SKILL.md`
+- 默认模式：`MARKET_MAP`
+- 可选模式：`TEST`
 
-## 双平台原则
-- 闲鱼：偏 **搜索/明确需求/即时询价/平台内交易**。
-- 小红书：偏 **内容种草 + 搜索发现 + 信任构建 + 合规转化路径**。
-- 同一产品必须分别判断两个平台，不允许把一个平台的热度、询盘或交易直接外推到另一个平台。
+## 核心变化
 
-## 唯一主入口
-`SKILL.md`
+v1.0 的终点是“1 个 Priority Test + 最多 2 个 Backup + Minimum Validation”。
+
+v2.0 默认终点改为：
+
+~~~text
+平台原生市场
+→ 具体商品 / SKU / Offer
+→ 证据分级
+→ 最终需求目录
+~~~
+
+只有用户明确要求“最值得卖/测试哪个”时才进入 Test Mode。
+
+## 保留的核心
+
+- Discovery ≠ Decision
+- Transaction > Intent > Attention
+- Evidence before conclusion
+- Signal Lineage
+- 双平台分开判断
+- Evidence Confidence
+- Counterevidence
+- No forced winner
+- UNKNOWN 不猜
+
+## 新增/强化
+
+- Platform-first discovery
+- DIRECT_SKU / PLATFORM_CATEGORY / PLATFORM_TRANSACTION / RELATED_RESULTS_CLUSTER / DERIVED_ADJACENT
+- D4 / D3 / D2 / D1 / U
+- CONFIRMED_DEMAND / PROBABLE_DEMAND / WATCHLIST / MARKET_SIGNAL_ONLY
+- 货源 UNKNOWN 不作为需求淘汰理由
+- 推荐页不得冒充搜索深度
+- 相邻需求不得冒充直接 SKU 需求
+
+## 历史版本
+
+v1.0 全部原文件已原样归档：`history/v1.0.0/`
+
+日常执行不要读取 history，除非需要追溯旧设计。
