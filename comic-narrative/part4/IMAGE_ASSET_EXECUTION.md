@@ -758,6 +758,7 @@ Part 4 的规划阶段最终交付物是一个完整图片执行包。目录形�
 默认：
 
 - 16:9；
+- 1792×1008 default native image-generation target；
 - 1920×1080 final delivery target。
 
 当前 Part 3 长期 Master 原图尺寸不等于最终成片输出尺寸。
