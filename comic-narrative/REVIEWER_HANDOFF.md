@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / R2R1N_OWNER_DECISION`
+`ACTIVE_REVIEW / R2R1O_SIZE_POLICY_REGRESSION`
 
 并行状态：
-- 主执行线：R2R1M 已正式 `RETURN_EXECUTION_CONTRACT_UNRESOLVED`；R2R1N 等待 Owner 选择 exact-native 执行通道。
+- 主执行线：R2R1N 已按 Owner 决策取消 exact-native 像素硬门；R2R1O 仅做零生图回归，防止旧尺寸检查重新进入任务/QA。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -65,7 +65,8 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1J：**PASS**（live output_hint strict parse → source hash → local copy → QA 链已证明；C-VB01 图片 QA FAIL 不作为最终素材接受）；
   - R2R1K：**RETURN_IMPLEMENTATION_DRIFT（Reviewer 接受，但纠正故障归因）**：Executor 使用 stale snapshot，且历史 task generator provenance 未保留；尺寸合同债被确认；
   - R2R1L：**PASS / OWNER APPROVED**：图片生产与交付唯一正式画幅锁定为 16:9；默认 native image-generation target = 1792×1008；final delivery target 保持 1920×1080；
-  - R2R1M：**RETURN_EXECUTION_CONTRACT_UNRESOLVED — REVIEWER ACCEPTED**：完整 ZIP 已由 Reviewer 实际检查；当前 Windows/Codex `image_gen.imagegen` callable 不暴露结构化 size/width/height/resolution 参数，故无法证明 native `1792×1008`；`IMAGEGEN_CALLS=0`、retries=0、fallback=0，fail-closed 正确。
+  - R2R1M：**RETURN_EXECUTION_CONTRACT_UNRESOLVED — REVIEWER ACCEPTED**：完整 ZIP 已由 Reviewer 实际检查；当前 Windows/Codex `image_gen.imagegen` callable 不暴露结构化 size/width/height/resolution 参数，故无法证明 native `1792×1008`；`IMAGEGEN_CALLS=0`、retries=0、fallback=0，fail-closed 正确；
+  - R2R1N：**PASS / OWNER APPROVED**：继续使用 Codex 内置生图；16:9 保持唯一正式画幅；1920×1080 改为唯一默认目标画布 / final delivery target；取消独立 native pixel target；native 像素不精确本身不判失败、不触发重生。
 - **H019 完整第二轮重跑**：`DEFERRED`。
 - **6 Beat R2 完整复测**：未授权；先完成 R2R1M native-size propagation live canary，再由 Reviewer 决定是否恢复双并发 live fast-path canary。
 - **Part 5 / Part 6**：未正式迁移。
@@ -74,152 +75,173 @@ Part 6  执行与项目管理               [未正式迁移]
 
 ### GATE_ID
 
-`IMAGEGEN_EXACT_NATIVE_EXECUTION_CHANNEL_OWNER_DECISION_R2R1N`
+`IMAGEGEN_SIZE_POLICY_NO_IMAGE_REGRESSION_R2R1O`
 
 ### OBJECTIVE
 
-在不再次调用 imagegen 的前提下，确定如何满足 Owner 已批准的 exact native `1792×1008` 规则。
+在 **0 次 imagegen** 前提下，证明未来任务与 QA 已经采用新的简化尺寸规则，不再因为 provider-native raster 不是精确像素值而失败或重试。
 
-已确认事实：
+正式尺寸规则：
 
-- 当前 Windows/Codex 内置 `image_gen.imagegen` 不暴露结构化尺寸参数；
-- OpenAI 当前官方 Image API / Responses image-generation 接口支持结构化 `size` 与自定义 `WIDTHxHEIGHT`；
-- API Platform 与 ChatGPT 订阅分开计费；
-- 因此继续 exact-native 需要执行通道 / 计费授权选择，不能由 Reviewer 代替 Owner 决定。
+- 16:9 = 唯一正式画幅；
+- 1920×1080 = 默认目标画布 / final delivery target；
+- 无 separate native pixel target；
+- native width × height 只记录真实值；
+- native 像素不等于 1920×1080，本身不构成失败 / retry；
+- 不为 exact pixel dimensions 重新生图或修改图片。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
-1. 记录 R2R1M 正式 Reviewer RETURN；
-2. 保持 imagegen 调用 = 0；
-3. 向 Owner 提供两个可执行方向及 tradeoff；
-4. 获取 Owner 最小决策；
-5. STOP；不提前创建任何 API credential、不启用 API billing、不修改 Part 4 exact-native 规则。
+1. fresh-read current GitHub main + Part 4 §25；
+2. 创建一个新的 R2R1O task / QA fixture；
+3. fixture 必须只包含：
+   - `aspect_ratio = 16:9`
+   - `target_canvas = 1920×1080`
+   - `native_pixel_target = NONE`
+   - `retry_on_native_pixel_mismatch = false`
+4. 使用 preserved 1672×941 fixture 做 no-image regression；
+5. 证明 1672×941 不会仅因 pixel dimensions 被判失败 / retry；
+6. 仍允许内容 / 构图 / 明显非 16:9 画面独立失败；
+7. fresh readback；
+8. STOP at Reviewer。
 
 ### MANDATORY_REVIEW_STOP
 
-`STOP_AT_OWNER_DECISION=YES`
+`STOP_AT_REVIEWER=YES`
 
-Owner 决策前：
-- 不 imagegen；
-- 不 API generate；
-- 不创建 / 读取 / 输出 API Secret；
-- 不修改正式 Part 4；
-- 不恢复双并发 / 6 Beat / H019。
+本 Gate：
+- `IMAGEGEN_CALLS=0`；
+- 不运行双并发；
+- 不运行 6 Beat；
+- 不运行 H019；
+- 不修改图片；
+- 不修改 Part 2 / Part 3 / Part 4.5 / SKILL。
 
 ### TARGET_AND_SCOPE
 
-本 Gate 只处理 exact-native 执行通道决策。
+允许读取：
 
-已审阅来源：
+1. 当前 `REVIEWER_HANDOFF.md` 的本 Gate / Relay；
+2. `part4/IMAGE_ASSET_EXECUTION.md` §25；
+3. `IMAGEGEN_SIZE_POLICY_SIMPLIFICATION_R2R1N_REVIEW.md`；
+4. R2R1J / R2R1M 中 preserved 的 1672×941 size evidence；
+5. 当前 future-task / QA 入口中与 output-size 判定直接相关的最小文件；若 exact active path 不存在，则只创建全新 R2R1O fixture，不追查历史不存在的 compiler。
 
-- R2R1M uploaded evidence ZIP；
-- R2R1M Reviewer decision；
-- current Part 4 §25；
-- OpenAI 当前官方 image-generation / API reference；
-- OpenAI 当前 ChatGPT/API billing documentation。
+禁止：
 
-不处理：
-- 内容 QA；
-- hotel-search miss；
-- Style Plate；
-- Part 2 edit map；
-- Part 5/6；
-- 生产级 API 集成。
+- 重开 exact-native 参数调查；
+- API fallback 调研 / 接入；
+- imagegen；
+- 为尺寸修改图片；
+- broad history scan；
+- 改 parser / output_hint fast-path；
+- 改内容 prompt / hotel-search QA。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
-- explicit Owner decision outranks ordinary Reviewer choice；
-- real money / billing / credential authority is Owner-owned；
-- current default execution channel is sticky, but a fallback may be proposed after proven failure；
-- prompt text cannot substitute for a missing structured exact-size control；
-- `1792×1008` exact-native rule remains active until Owner changes it；
-- historical evidence is preserved；
-- no Secret values in chat/repo/evidence。
+- `PASS_CANDIDATE != PASS`；
+- current GitHub main / fresh evidence 优先；
+- 未证明事实保持 `UNKNOWN`；
+- 不得把旧 R2R1L / R2R1M exact-native 规则重新带入新 fixture；
+- preserved historical evidence 不重写；
+- 1672×941 preserved raster 只用于证明 size-policy semantics，不代表内容 QA PASS；
+- 内容 QA 与尺寸 QA 保持分离。
 
 ### PREFLIGHT
 
-Already satisfied for this decision Gate:
+在任何本地 fixture / QA 执行前证明：
 
-1. R2R1M evidence is reviewable and inspected；
-2. R2R1M fail-closed result is formally accepted；
-3. current Part 4 blob remains `7487138f06dc5ed99916d4b02d9a8753cbe6ba18`；
-4. external official documentation confirms structured API `size` capability；
-5. external official billing documentation confirms API billing is separate from ChatGPT subscription。
-
-No execution preflight beyond these facts is authorized before Owner chooses a path.
+1. current main 已 fresh-read；
+2. Part 4 §25 不再包含 `1792×1008 native target`；
+3. Part 4 §25 明确 1920×1080 是 target canvas/final target，而非 native guarantee；
+4. preserved 1672×941 fixture / size evidence 可读且来源可追溯；
+5. 新 fixture 与 regression output 使用 fresh 路径；
+6. `IMAGEGEN_CALLS=0` guard 生效；
+7. 不会修改正式图片或历史 evidence。
 
 ### REQUIRED_EVIDENCE
 
-- `IMAGEGEN_NATIVE_SIZE_CONTRACT_PROPAGATION_R2R1M_REVIEW.md`
-- R2R1M ZIP SHA-256 and inspected artifact hashes
-- current Part 4 blob/hash
-- official OpenAI exact-size API capability references
-- official OpenAI billing-separation reference
-- Owner decision recorded verbatim enough to disambiguate Path A vs Path B
+- `IMAGEGEN_SIZE_POLICY_NO_IMAGE_REGRESSION_R2R1O.md`
+- `PREFLIGHT_EVIDENCE_R2R1O.md`
+- current main SHA
+- Part 4 §25 pointer + blob SHA
+- new task / QA fixture + hash
+- preserved 1672×941 evidence pointer
+- regression result proving native pixel mismatch alone = non-failure / no-retry
+- negative case proving materially wrong aspect/composition may still fail independently
+- `IMAGEGEN_CALLS=0`
+- retries = 0
+- project-scoped diff / non-target delta
+- fresh readback
 
 ### ACCEPTANCE_CRITERIA
 
-This Gate closes only when Owner selects one of:
+`PASS_CANDIDATE_SIZE_POLICY_NO_IMAGE_REGRESSION_R2R1O` 需要：
 
-**PATH_A_EXACT_NATIVE_API**
-- preserve exact native `1792×1008`;
-- authorize Reviewer to design a bounded OpenAI API/structured-size execution path;
-- any actual paid API image call remains a separately bounded Owner-authorized canary;
-- Secret handling follows Governance 11B.
+1. imagegen = 0；
+2. new fixture contains no exact native pixel target；
+3. 1920×1080 仅作为 target canvas / final target；
+4. preserved 1672×941 不因 native pixel mismatch alone fail；
+5. no retry is triggered by native pixel mismatch alone；
+6. output/content QA can still independently reject a materially wrong composition；
+7. no production image mutation；
+8. no historical evidence rewrite；
+9. no unrelated formal-rule changes；
+10. fresh readback matches evidence。
 
-**PATH_B_KEEP_CODEX_NATIVE_BEST_EFFORT**
-- keep the current plan-native Codex built-in imagegen channel;
-- authorize Reviewer to revise the exact-native rule because this channel cannot prove `1792×1008`;
-- 16:9 remains the only aspect ratio;
-- final delivery remains `1920×1080`;
-- exact native pixel size becomes non-guaranteed / requires a new Owner-approved wording.
+允许结果：
 
-No implicit default is permitted.
+- `PASS_CANDIDATE_SIZE_POLICY_NO_IMAGE_REGRESSION_R2R1O`
+- `RETURN_PREFLIGHT_DRIFT`
+- `RETURN_IMPLEMENTATION_DRIFT`
+- `RETURN_TEST_FAILURE`
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-No production mutation occurs in this decision Gate.
-
-- Path A does not change current production rules until a later reviewed implementation Gate.
-- Path B requires a later formal-rule change Gate; the current Part 4 rule remains unchanged until that Gate passes.
-- No rollback action is currently needed.
+- 本 Gate 不修改 production images；
+- 新 fixture / test output 与正式生产资产隔离；
+- 若意外修改正式源码，恢复到 preflight source/hash 后 RETURN；
+- 不通过 imagegen 补证据。
 
 ### OWNER_ONLY_ACTIONS
 
-`REQUIRED`
-
-### WHY_REVIEWER_CANNOT_DECIDE
-
-The remaining choice trades **separate API billing / credential authority** against changing an explicit Owner-approved production rule. Both are Owner-owned consequences.
-
-### EXACT_OWNER_DECISION_NEEDED
-
-Choose exactly one:
-
-- `A — 保留原生 1792×1008，允许后续设计 OpenAI API 精确尺寸通道`
-- `B — 保留当前 Codex 内置生图，不再要求原生像素必须精确 1792×1008`
-
-### MATERIAL_TRADEOFFS
-
-**A：**
-- exact-native contract preserved；
-- official API supports structured size；
-- requires separate API billing / credential handling；
-- next Gate remains no-image preflight before any paid canary。
-
-**B：**
-- keeps current ChatGPT/Codex execution channel and its plan usage；
-- no new API billing path；
-- exact native `1792×1008` cannot be guaranteed by the current callable；
-- requires changing the Owner-approved native-size rule, while 16:9 / 1920×1080 final delivery can remain。
+`NONE`
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-`NONE — OWNER DECISION REQUIRED BEFORE EXECUTOR WORK`
+从 current GitHub main 开始，只执行 R2R1O。
+
+读取：
+
+1. `comic-narrative/REVIEWER_HANDOFF.md` → CURRENT_GATE / Relay；
+2. `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md` §25；
+3. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_SIZE_POLICY_SIMPLIFICATION_R2R1N_REVIEW.md`；
+4. R2R1J / R2R1M preserved 1672×941 size evidence。
+
+执行：
+
+1. fresh-read main + Part 4 §25；
+2. 创建全新 R2R1O task / QA fixture；
+3. 明确 `aspect_ratio=16:9`、`target_canvas=1920×1080`、`native_pixel_target=NONE`、`retry_on_native_pixel_mismatch=false`；
+4. 用 preserved 1672×941 做 zero-image regression；
+5. 验证 size mismatch alone 不失败 / 不 retry；
+6. 加一个明显错误画幅 / 构图的 synthetic negative case，证明真正 output-format 问题仍可失败；
+7. fresh readback；
+8. STOP。
+
+不要 imagegen，不要 API fallback，不要找历史 compiler，不要修改 Part 4 正式规则。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
-`NONE — NO EXECUTOR RUN AUTHORIZED`
+```text
+结果：PASS_CANDIDATE_SIZE_POLICY_NO_IMAGE_REGRESSION_R2R1O / RETURN_*
+改动：一句话说明仅新增哪些 R2R1O fixture/evidence，或说明 NONE。
+验证：一句话说明 1672×941 size regression、negative case、IMAGEGEN_CALLS=0、retries=0、fresh readback。
+问题：NONE，或“阻塞短语：一句通俗解释”。
+回滚：一句话说明正式规则/图片/历史 evidence 是否保持不变。
+请 Reviewer 检查：核对新尺寸合同、size mismatch no-retry、negative case 与 fresh readback。
+Owner 转交：NONE。
+```
 
 ## CRITICAL_CONSTRAINTS
 
@@ -233,7 +255,7 @@ Choose exactly one:
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R1M：既有 Owner/Codex Windows 本地执行链；必须从 current main 读取尺寸合同后先做 no-image preflight；
+- 当前 R2R1O：既有 Owner/Codex Windows 本地执行链；本轮仅做 no-image fixture / QA regression；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -244,8 +266,8 @@ Choose exactly one:
 
 ## UNRESOLVED
 
-1. **R2R1N Owner decision**：exact native `1792×1008` 与 current Codex built-in channel 无法同时满足；等待 Owner 选择 API exact-size path 或修改 exact-native rule。
-2. **Final delivery normalization implementation**：final `1920×1080` 仍待后续实现。
+1. **R2R1O size-policy regression**：需确认 future task / QA 不再把 native exact pixels 当失败 / retry 条件。
+2. **Final video 1920×1080 adaptation implementation**：标准画布已确定，具体视频阶段适配仍待 Part 5 正式迁移时实现。
 3. **C-VB01 content QA**：R2R1J 图片没有明确呈现酒店搜索；旧 PNG 不接受为 final production asset。
 4. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 5. **Style Plate / Part 3→Part 4 Style contract / Part 4 H019 refinements**：仍待独立 Gate。
@@ -253,20 +275,15 @@ Choose exactly one:
 
 ## NEXT_STEP
 
-等待 Owner 对 R2R1N 做 A / B 最小决策。
+执行并 Review `R2R1O`：
 
-Owner 决策前保持：
-- `IMAGEGEN_CALLS=0`；
-- 不启用 API billing；
-- 不读取 / 创建 API Secret；
-- 不修改 Part 4；
-- 不进入双并发 / 6 Beat / H019。
+`current main → fresh-read Part 4 §25 → new zero-image fixture → preserved 1672×941 size regression → wrong-aspect negative case → fresh readback → STOP`
+
+R2R1O 正式 PASS 后，Reviewer 再决定恢复双并发 live fast-path canary；不再单独开启 exact-pixel 调查。
 
 ## OWNER_ACTION_REQUIRED
 
-- **R2R1N：请选择 A 或 B。**
-  - **A：**保留原生 `1792×1008`，允许后续设计 OpenAI API 精确尺寸通道；实际付费 canary 仍会单独征得授权。
-  - **B：**继续当前 Codex 内置生图，允许后续修改 exact-native 规则，不再保证原生像素必须精确 `1792×1008`。
+- **R2R1O 执行转交：**将当前 `REVIEWER_HANDOFF.md` 的 R2R1O Relay 交给既有 Windows / Codex Executor；无需额外决策。
 - Part 2 正式修改仍 DEFERRED。
 
 ## EVIDENCE_POINTERS
@@ -280,6 +297,7 @@ Owner 决策前保持：
 - R2R1L Owner size decision / R2R1M Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_NATIVE_SIZE_OWNER_DECISION_R2R1L_REVIEW.md`
 - R2R1M evidence pending review: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_NATIVE_SIZE_CONTRACT_PROPAGATION_R2R1M_EVIDENCE_PENDING_REVIEW.md`
 - R2R1M formal Reviewer decision / R2R1N: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_NATIVE_SIZE_CONTRACT_PROPAGATION_R2R1M_REVIEW.md`
+- R2R1N simplified size policy / R2R1O Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_SIZE_POLICY_SIMPLIFICATION_R2R1N_REVIEW.md`
 - Part 2 pending edit map: `comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
 - Current formal Part 3: `comic-narrative/part3/STORYBOARD_VISUAL_DIRECTOR.md`
 - Current formal Part 4: `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md`
