@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / R2R1U_FILE_HANDOFF_TWO_CONCURRENT_LIVE_CANARY`
+`ACTIVE_REVIEW / R2R1U_DIRECT_OUTPUT_HINT_TWO_CONCURRENT_LIVE_CANARY`
 
 并行状态：
-- 主执行线：R2R1T 已证明两路 imagegen 并发调用均正常返回且各有 1 个 output_hint；失败仅发生在返回后 saver 的 closed-stdin 交接。R2R1U 改为 per-task 小 JSON 文件交接，并同一轮重新跑两路 live canary。
+- 主执行线：R2R1T 已证明两路 imagegen 并发调用均正常返回且各有 1 个 output_hint；结合当前 upstream Codex 实现，R2R1U 改为 orchestrator 直接消费 output_hint/本地路径，只有当前架构确实不能直传 SourcePath 时才同轮退到小 JSON source_path 交接。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -81,37 +81,44 @@ Part 6  执行与项目管理               [未正式迁移]
 
 ### GATE_ID
 
-IMAGEGEN_FILE_HANDOFF_TWO_CONCURRENT_LIVE_CANARY_R2R1U
+IMAGEGEN_DIRECT_OUTPUT_HINT_TWO_CONCURRENT_LIVE_CANARY_R2R1U
 
 ### OBJECTIVE
 
-修复 R2R1T 已确认的唯一阻塞：**不要再通过 stdin 把 output_hint 交给 saver**。
+按当前 Codex 官方内置生图保存语义，直接消费 live result 的 output_hint / 已保存本地 PNG 路径，完成两路并发 end-to-end 验证。
 
-改为：
+首选路径：
 
-live result → 每任务独立的小 JSON handoff 文件 → saver 从文件读取 output_hint → allowed local PNG → hash/copy → QA
+image_gen result → orchestrator 读取 output_hint → 提取唯一 PNG 路径 → allowed-root / exists → local copy/hash → dimensions → QA
 
-在 transport smoke PASS 后，同一轮直接重新执行两路并发生图，快速得到完整 end-to-end 结果。
+不再把 raw output_hint 交给一个等待 stdin 的 saver。
+
+只有当当前 orchestrator **确实不能在同一轮把已提取的 SourcePath 直接传给本地 helper** 时，才允许同一 Gate 内退到 task-scoped 小 JSON：
+
+{ task_id, source_path }
+
+而不是重新开 Gate。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
 1. fresh-read current main + Part 4 §25；
-2. 创建 fresh R2R1U run directory；
-3. 创建 2 个 distinct 16:9 tasks + call guard=2；
-4. 创建 file-handoff saver：
-   - 必须接受 HintFile；
-   - 禁止从 stdin 读取；
-   - handoff JSON 仅允许 task_id + output_hint；
-   - handoff 文件大小有上限；
-5. 做 0-image transport smoke，证明 saver 已经真正读到 handoff 文件内容；
-6. smoke PASS 后同一轮继续，不回 Reviewer；
-7. 同时提交 2 次 Codex 内置 imagegen；
-8. 每个 live result 返回后，把 bounded output_hint 写到各自 fresh handoff JSON；
-9. saver 从对应 handoff JSON 读取；
-10. 每路完成 allowed-path → source SHA → copy SHA → dimensions → QA；
-11. 记录 generation timing 与 post-return handoff/save/QA timing；
-12. fresh readback；
-13. STOP at Reviewer。
+2. fresh-read R2R1T Reviewer decision + R2R1U upstream-alignment review；
+3. 创建 fresh R2R1U run directory；
+4. 创建 2 个 distinct 16:9 tasks + global call guard=2；
+5. 创建最小 local-copy helper，只接受 TaskId / SourcePath / Destination / QA path；
+6. 0-image smoke：用 allowed-root 下刻意不存在的 synthetic SourcePath 调 helper，必须到达 SOURCE_MISSING 类错误；
+7. smoke PASS 后同一轮继续；
+8. 同时提交 exactly 2 次 Codex 内置 imagegen；
+9. 每个 live result 返回后：
+   - orchestrator 直接读取该 task 的 output_hint；
+   - 提取 exactly one absolute PNG path；
+   - 校验路径位于 allowed generated_images root；
+   - 优先直接把 SourcePath 交给 helper；
+10. 若当前 orchestrator 无法安全直传 SourcePath，允许同轮创建 task-scoped 小 JSON {task_id, source_path}，helper 从文件读取；
+11. 每路完成 exists → source SHA → copy SHA → dimensions → QA；
+12. 记录 generation timing 与 post-return path-extract/copy/QA timing；
+13. fresh readback；
+14. STOP at Reviewer。
 
 总 imagegen 调用上限 = 2。
 
@@ -119,15 +126,15 @@ live result → 每任务独立的小 JSON handoff 文件 → saver 从文件读
 
 STOP_AT_REVIEWER=YES
 
-live 前只有以下情况才停止：
+live 前仅以下情况停止：
 
-- current main / Part 4 drift；
-- file-handoff saver static check失败；
-- transport smoke仍不能读到文件输入；
+- current main / Part 4 contract drift；
+- local-copy helper smoke失败；
 - fresh paths 冲突；
-- call guard不满足。
+- call guard不满足；
+- 发现当前 result 根本没有 output_hint。
 
-若 transport smoke PASS，则不得为 repair 本身单独停一次，必须继续两路 live canary。
+若 helper smoke PASS，则不要为了 transport 方案选择单独停一次；优先 direct SourcePath，必要时同轮退到小 JSON source_path handoff，然后继续本轮两图 canary。
 
 ### TARGET_AND_SCOPE
 
@@ -136,24 +143,31 @@ live 前只有以下情况才停止：
 1. current REVIEWER_HANDOFF 当前 Gate / Relay；
 2. current Part 4 §25；
 3. R2R1T Reviewer decision；
-4. fresh R2R1U files only。
+4. R2R1U upstream-alignment review；
+5. fresh R2R1U files only。
 
 允许继承：
 
-- R2R1J 单路 output_hint/local-cache fast path PASS；
-- R2R1O simplified size policy PASS；
-- R2R1T concurrency-at-submit=2 且两路 live calls 均返回、每路 output_hint_count=1。
+- R2R1J：单路 output_hint → local PNG → hash/copy → QA 已正式 PASS；
+- R2R1O：16:9 / no exact-native-pixel retry 已正式 PASS；
+- R2R1T：concurrency-at-submit=2、两路 live calls 均返回、每路 output_hint_count=1 已实测成立。
 
-本轮 repair 只针对 fresh saver input transport。
+当前 upstream Codex 设计参考：
+
+- openai/codex tool.rs blob d2777fb2023782ad7508fc4bddc097d33fb96359；
+- artifact.rs blob 6c6fce0f9812d88daf5a53880a77485c6eea6cb3；
+- imagegen SKILL.md blob c39b1f921ce679f08416ab16ceb01945835bb950。
+
+这些 upstream blobs 不是 Owner 本机 binary byte-identity 证明；本地兼容性由 R2R1T 的 live output_hint 事实补足。
 
 禁止：
 
-- R2R1J/R2R1T 历史目录重放；
-- broad history；
+- stdin / write_stdin transport；
+- saver 等待式 receiver；
+- TTY/base64 image payload transfer；
 - broad generated_images scan；
-- stdin / write_stdin 传 output_hint；
-- TTY/base64 image bulk；
-- exact-pixel 议题；
+- R2R1J/R2R1T 历史目录重放；
+- exact-pixel 研究；
 - API fallback；
 - retry / replacement / 第 3 次 imagegen；
 - 6 Beat / H019；
@@ -162,18 +176,19 @@ live 前只有以下情况才停止：
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
 - PASS_CANDIDATE != PASS；
-- accepted capability inheritance 继续生效；
-- R2R1T 新证据只触发 output_hint→saver transport 的局部复验，不重验无关历史能力；
+- accepted capability inheritance 生效；
+- upstream 设计用于指导当前未执行 Gate，不替代本机 live evidence；
 - global imagegen calls = 2；
 - per-task attempt = 1；
-- retries/replacements/fallback = 0；
-- 任一路失败后不得补发；
+- retries/replacements/fallback-imagegen = 0；
+- 任一路失败不得补发；
 - 另一路若已 in-flight 可自然完成；
-- handoff JSON 只保存 bounded metadata，不包含 image/base64 payload；
-- handoff 文件必须 task-scoped，task_id 必须与 saver invocation 一致；
-- output_hint 仍需 exact-one PNG candidate；
-- source 必须位于当前用户 .codex/generated_images allowed root；
+- output_hint 每路独立解析；
+- exactly one PNG path required；
+- SourcePath 必须位于 current-user generated_images allowed root；
 - no broad cache scan；
+- local helper 只做 path/filesystem/hash/copy/dimensions/QA，不接 image bytes；
+- small JSON fallback 仅在 direct SourcePath transport 不可用时允许，且只能含 task_id + source_path；
 - native pixel mismatch 不失败/不重试；
 - QA 只记录，不触发 retry；
 - canary images 不自动进入 production library。
@@ -186,40 +201,43 @@ live 前只有以下情况才停止：
 2. Part 4 §25 仍为 16:9 only、1920×1080 target canvas/final target、无 exact native target；
 3. 两个 fresh task IDs 唯一、prompt 只要求 16:9；
 4. call guard=2 / per-task max attempt=1；
-5. fresh handoff/output/QA paths 均互不冲突；
-6. saver 不包含 Console.In / stdin / ReadLine 输入路径；
-7. saver required 参数至少包括 TaskId、RunRoot、Destination、HintFile；
-8. handoff JSON 最大字节数 <= 65536；
-9. saver 读取 JSON 后必须校验：
-   - task_id == invocation TaskId；
-   - output_hint 为非空字符串；
-10. transport smoke 使用 synthetic handoff JSON：
-   - task_id 正确；
-   - output_hint 含 exactly one 位于 allowed-root 下但刻意不存在的 PNG 路径；
-   - 预期结果必须到达 SOURCE_MISSING / SOURCE_NOT_FOUND 类错误；
-   - **不得再出现 INPUT_MISSING**；
+5. fresh output/QA/evidence paths 不冲突；
+6. helper required 参数至少包括 TaskId / SourcePath / Destination；
+7. helper 不含 Console.In / stdin / ReadLine；
+8. helper 对 SourcePath 做：
+   - absolute path；
+   - real/normalized path；
+   - allowed-root containment；
+   - existing regular PNG；
+   - source SHA；
+   - copy；
+   - copied SHA equality；
+9. synthetic SourcePath smoke：
+   - 路径在 allowed-root 下；
+   - 文件刻意不存在；
+   - 结果必须是 SOURCE_MISSING / SOURCE_NOT_FOUND 类；
+   - 不得出现 INPUT_MISSING；
+10. 若预先使用 JSON fallback helper，JSON 仅允许 task_id + source_path，<=65536 bytes；
 11. logger / RUN_RECORD / fresh-readback 路径就绪。
-
-transport smoke 只证明“文件交接已进入 parser/path stage”，不需要真实 PNG。
 
 若 1–11 PASS，立即进入 LIVE_CANARY。
 
-### FILE_HANDOFF_CONTRACT
+### LIVE_RESULT_PATH_CONTRACT
 
-每个 live result 返回后：
+每个 imagegen result 返回后：
 
-1. 在 fresh handoff 目录创建该 task 独立 JSON；
-2. JSON 仅包含：
+1. 绑定 task id；
+2. 读取该 result 的 output_hint；
+3. output_hint 必须存在且为非空 bounded string；
+4. 从 hint 提取 exactly one absolute .png path；
+5. 不通过 broad scan 寻找“最新 PNG”；
+6. path 必须位于 allowed generated_images root；
+7. preferred：orchestrator 直接调用 helper，并传 SourcePath；
+8. bounded fallback：若 direct SourcePath transport 在当前 orchestrator 实际不可用，则写 task-scoped JSON：
    - task_id
-   - output_hint
-3. UTF-8 no BOM；
-4. 文件写完后 read-back parse；
-5. task_id 必须匹配；
-6. file bytes <= 65536；
-7. 不把完整 output_hint 写进 ordinary event log；
-8. saver 通过 HintFile 读取，不用 stdin。
-
-handoff JSON 属于当前 canary evidence，不是生产长期资产。
+   - source_path
+9. fallback JSON write/read-back 后 task_id 必须匹配；
+10. 不把 image_url/base64 写普通日志或 handoff 文件。
 
 ### LIVE_CANARY
 
@@ -230,23 +248,19 @@ handoff JSON 属于当前 canary evidence，不是生产长期资产。
 
 每个 result：
 
-1. bind task id；
-2. record call start / return timing；
-3. capture bounded output_hint in-memory；
-4. serialize per-task handoff JSON；
-5. invoke saver with HintFile；
-6. saver requires exactly one PNG path；
-7. require allowed generated-images root；
-8. require existing regular PNG；
-9. source SHA-256；
-10. copy to fresh task destination；
-11. copied SHA-256 == source SHA；
-12. record native dimensions；
-13. reach QA；
-14. record QA；
-15. record return→handoff-write→copy→QA timing。
+1. record call start / return timing；
+2. direct parse output_hint → SourcePath；
+3. record transport mode = DIRECT_SOURCE_PATH 或 JSON_SOURCE_PATH_FALLBACK；
+4. helper validates SourcePath；
+5. source SHA-256；
+6. copy to fresh task destination；
+7. copied SHA-256 == source SHA；
+8. record native dimensions；
+9. reach QA；
+10. record QA；
+11. record return→path-extract→copy→QA timing。
 
-任一路 handoff/path/hash 失败：
+任一路 hint/path/hash 失败：
 
 - fail closed；
 - no broad scan；
@@ -257,26 +271,28 @@ handoff JSON 属于当前 canary evidence，不是生产长期资产。
 
 ### REQUIRED_EVIDENCE
 
-- IMAGEGEN_FILE_HANDOFF_TWO_CONCURRENT_LIVE_CANARY_R2R1U.md
+- IMAGEGEN_DIRECT_OUTPUT_HINT_TWO_CONCURRENT_LIVE_CANARY_R2R1U.md
 - PREFLIGHT_EVIDENCE_R2R1U.md
 - current main + Part 4 blob
+- R2R1T Reviewer + R2R1U upstream-alignment pointers
 - two fresh task fixtures
-- saver source/hash
+- local-copy helper source/hash
 - proof no stdin read path
-- transport-smoke synthetic handoff + result
-- proof smoke reaches SOURCE_MISSING class, not INPUT_MISSING
+- synthetic SourcePath smoke result
 - call guard
 - concurrency-at-submit
 - IMAGEGEN_CALLS=2
 - attempts=1 each
-- retries/replacements/fallback=0
-- per-task handoff file bytes/hash
-- per-task bounded hint diagnostics
+- retries/replacements/fallback-imagegen=0
+- per-task output_hint_count
+- per-task extracted SourcePath
+- per-task transport mode
+- if JSON fallback used: file bytes/hash + task_id/source_path only
 - per-task source/copy path + SHA
 - per-task native dimensions
 - per-task QA reachability/result
 - generation timing
-- handoff/save/QA timing
+- post-return path-extract/copy/QA timing
 - RUN_EVENTS.jsonl
 - RUN_RECORD.json
 - fresh readback
@@ -284,29 +300,34 @@ handoff JSON 属于当前 canary evidence，不是生产长期资产。
 
 ### ACCEPTANCE_CRITERIA
 
-PASS_CANDIDATE_FILE_HANDOFF_TWO_CONCURRENT_LIVE_R2R1U requires：
+PASS_CANDIDATE_DIRECT_OUTPUT_HINT_TWO_CONCURRENT_LIVE_R2R1U requires：
 
 1. lightweight preflight PASS；
-2. saver no longer uses stdin；
-3. transport smoke proves file input reaches path-validation stage；
+2. helper has no stdin dependency；
+3. synthetic SourcePath smoke reaches path-validation/filesystem stage；
 4. exactly 2 concurrent imagegen calls；
 5. two task identities correctly attributed；
 6. per-task attempts=1；
-7. retries/replacements/fallback=0；
-8. both live handoff JSON files valid and task-scoped；
-9. both hints yield exactly one allowed local PNG；
-10. each source SHA = copied SHA；
-11. both images reach QA；
-12. native dimensions recorded without exact-pixel retry；
-13. no bulk TTY image transfer；
-14. event chain reconstructable；
-15. generation vs post-return handoff/save timing separated；
-16. no formal-rule changes；
-17. fresh readback consistent。
+7. retries/replacements/fallback-imagegen=0；
+8. both live results expose exactly one output_hint/path；
+9. no broad cache scan；
+10. both SourcePaths pass allowed-root + existence checks；
+11. each source SHA = copied SHA；
+12. both images reach QA；
+13. native dimensions recorded without exact-pixel retry；
+14. no bulk TTY/base64 image transfer；
+15. event chain reconstructable；
+16. generation vs post-return path/copy timing separated；
+17. no formal-rule changes；
+18. fresh readback consistent。
+
+Preferred acceptance uses DIRECT_SOURCE_PATH for both tasks.
+
+If one or both tasks require JSON_SOURCE_PATH_FALLBACK but all other criteria pass, the Gate may still be PASS_CANDIDATE; Reviewer must record the actual transport mode and decide whether further simplification is necessary before 6 Beat.
 
 Allowed results：
 
-- PASS_CANDIDATE_FILE_HANDOFF_TWO_CONCURRENT_LIVE_R2R1U
+- PASS_CANDIDATE_DIRECT_OUTPUT_HINT_TWO_CONCURRENT_LIVE_R2R1U
 - RETURN_PREFLIGHT_DRIFT
 - RETURN_IMPLEMENTATION_DRIFT
 - RETURN_TEST_FAILURE
@@ -315,10 +336,10 @@ Allowed results：
 
 - 只修改 fresh R2R1U harness；
 - 正式规则无需回滚；
-- transport smoke失败则 0 imagegen STOP；
+- helper smoke失败则 0 imagegen STOP；
 - live失败不 retry；
-- handoff/canary evidence 保留；
-- 不回头修改历史 R2R1T evidence。
+- fresh canary evidence 保留；
+- 不修改历史 R2R1T evidence。
 
 ### OWNER_ONLY_ACTIONS
 
@@ -332,7 +353,8 @@ NONE
 
 1. current REVIEWER_HANDOFF 当前 R2R1U Gate / Relay；
 2. current Part 4 §25；
-3. R2R1T Reviewer decision。
+3. R2R1T Reviewer decision；
+4. R2R1U upstream-alignment review。
 
 不要读 broad history，不要复验历史目录。
 
@@ -341,23 +363,26 @@ NONE
 1. fresh run directory；
 2. 2 个 distinct 16:9 tasks；
 3. call guard=2；
-4. saver 改为 HintFile 文件输入，彻底取消 stdin；
-5. synthetic transport smoke，必须到达 SOURCE_MISSING 类错误而不是 INPUT_MISSING；
+4. 建只接受 SourcePath 的 local-copy helper，不使用 stdin；
+5. synthetic missing SourcePath smoke；
 6. smoke PASS 后同一轮并发提交 2 tasks；
-7. 每路 live result → task-scoped handoff JSON → saver → allowed PNG → source/copy hash → dimensions → QA；
-8. 不 retry、不 replacement、不第 3 张；
-9. 记录 generation 与 post-return timing；
-10. fresh readback；
-11. STOP。
+7. 每路 live result 直接读取 output_hint 并提取唯一 SourcePath；
+8. 优先直接 SourcePath → helper；
+9. 只有 current orchestrator 实际无法直传 SourcePath 时，才同轮 fallback 到小 JSON {task_id, source_path}；
+10. helper → allowed path / exists / source hash / copy hash / dimensions / QA；
+11. 不 retry、不 replacement、不第 3 张；
+12. 记录 generation 与 post-return timing；
+13. fresh readback；
+14. STOP。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
-结果：PASS_CANDIDATE_FILE_HANDOFF_TWO_CONCURRENT_LIVE_R2R1U / RETURN_*
-改动：仅新增/修复 R2R1U fresh file-handoff saver/task/evidence；正式规则和历史 evidence 未修改。
-验证：一句话说明 transport smoke、2 路并发、IMAGEGEN_CALLS、每路 handoff/path/hash/dimensions/QA、zero retry/fallback、timing 与 fresh readback。
+结果：PASS_CANDIDATE_DIRECT_OUTPUT_HINT_TWO_CONCURRENT_LIVE_R2R1U / RETURN_*
+改动：仅新增 R2R1U fresh task/helper/evidence；正式规则和历史 evidence 未修改。
+验证：一句话说明 helper smoke、2 路并发、IMAGEGEN_CALLS、每路 output_hint→SourcePath、transport mode、path/hash/dimensions/QA、zero retry/fallback-imagegen、timing 与 fresh readback。
 问题：NONE，或“阻塞短语：一句通俗解释”。
 回滚：正式规则无需回滚；fresh evidence/canary outputs 保留。
-请 Reviewer 检查：file handoff 是否彻底绕开 stdin、两路 task/result attribution、source/copy hash、zero retry/fallback、timing/readback。
+请 Reviewer 检查：是否真正 direct consume output_hint/source path、是否避免 stdin/TTY/base64/broad scan、两路 source/copy hash、QA、timing/readback。
 Owner 转交：NONE。
 
 ## CRITICAL_CONSTRAINTS
@@ -373,7 +398,7 @@ Owner 转交：NONE。
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R1U：既有 Owner/Codex Windows 执行链；file-handoff transport smoke 后，同一轮最多 2 次并发 Codex 内置 imagegen；
+- 当前 R2R1U：既有 Owner/Codex Windows 执行链；优先 direct output_hint→SourcePath，本轮最多 2 次并发 Codex 内置 imagegen；仅当直传 SourcePath 实际不可用时，同轮允许 task-scoped JSON source_path fallback；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -384,7 +409,7 @@ Owner 转交：NONE。
 
 ## UNRESOLVED
 
-1. **R2R1U file-handoff two-concurrent live canary**：绕开 closed stdin，用每任务小 JSON 文件把 output_hint 交给 saver，并完成两路 end-to-end 并发验证。
+1. **R2R1U direct-output-hint two-concurrent live canary**：按 Codex upstream 语义直接消费 output_hint/SourcePath，完成两路 end-to-end 并发验证；JSON 仅作为同轮 bounded fallback。
 2. **6 Beat R2 完整复测**：R2R1U PASS 后由 Reviewer 决定是否直接进入。
 3. **Final video 1920×1080 adaptation implementation**：标准画布已确定，具体视频阶段适配仍待 Part 5 正式迁移时实现。
 4. **C-VB01 historical content QA**：旧 PNG 不接受为 final production asset。
@@ -396,11 +421,11 @@ Owner 转交：NONE。
 
 直接执行并 Review R2R1U：
 
-current main → file-handoff saver → synthetic transport smoke → smoke PASS → 同一轮 2 路同时 imagegen → per-task handoff JSON → local path/hash/copy/QA → timing/readback → STOP
+current main → SourcePath-only helper → synthetic missing-path smoke → smoke PASS → 同一轮 2 路同时 imagegen → direct output_hint→SourcePath → local hash/copy/QA → timing/readback → STOP
 
 ## OWNER_ACTION_REQUIRED
 
-- **R2R1U 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R1U Relay 交给 Windows / Codex Executor；先把 saver 改为每任务小 JSON 文件输入并做 transport smoke，PASS 后同一轮直接并发 2 张图；最多 2 次调用、禁止重试。
+- **R2R1U 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R1U Relay 交给 Windows / Codex Executor；优先直接消费 live `output_hint` 提取 `SourcePath` 后本地 copy/hash/QA；只有直传 SourcePath 实际不可用时才同轮退到小 JSON `{task_id, source_path}`；最多 2 次生图、禁止重试。
 - 不需要整理、恢复或核验任何 R2R1J 历史本地文件。
 - Part 2 正式修改仍 DEFERRED。
 
@@ -422,6 +447,7 @@ current main → file-handoff saver → synthetic transport smoke → smoke PASS
 - R2R1R superseded / R2R1S fast-test simplification: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1R_SUPERSEDED_AND_FAST_TEST_SIMPLIFICATION_REVIEW.md`
 - R2R1S RETURN / R2R1T logger repair + live Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_TWO_CONCURRENT_LIGHTWEIGHT_LIVE_CANARY_R2R1S_REVIEW.md`
 - R2R1T RETURN / R2R1U file-handoff live Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_TWO_CONCURRENT_LOGGER_REPAIR_AND_LIVE_CANARY_R2R1T_REVIEW.md`
+- R2R1U upstream output_hint alignment: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1U_UPSTREAM_OUTPUT_HINT_ALIGNMENT_REVIEW.md`
 - Part 2 pending edit map: `comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
 - Current formal Part 3: `comic-narrative/part3/STORYBOARD_VISUAL_DIRECTOR.md`
 - Current formal Part 4: `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md`
