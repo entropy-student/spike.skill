@@ -36,7 +36,7 @@
 | **Independent Store Product Opportunity（独立站选品决策系统）** | 从实物、数字与 SaaS 候选中筛选最值得真实测试的 DTC 机会 | [进入](./independent-store-product-opportunity/) |
 | **Independent Store Operations（独立站运营系统）** | 定位独立站运营阶段、转化漏损、信任、结账、履约与留存问题 | [进入](./independent-store-operations/) |
 | **Product Business Teardown（产品商业拆解）** | 拆解产品服务谁、为何存在、谁付钱、如何赚钱与最难复制的部分 | [进入](./product-business-teardown/) |
-| **Xianyu & Xiaohongshu Virtual Product Opportunity（闲鱼/小红书虚拟产品选品决策系统）** | 筛选闲鱼/小红书虚拟产品机会、平台适配、Proof、合规与最低成本验证 | [进入](./xianyu-xiaohongshu-virtual-product-opportunity/) |
+| **Xianyu & Xiaohongshu Virtual Product Demand Research（闲鱼/小红书虚拟商品需求研究）** | 发现具体商品与买方需求证据，分开供给、风险与有边界的验证实验 | [进入](./xianyu-xiaohongshu-virtual-product-demand-research/) |
 
 ### 内容、趋势与表达
 

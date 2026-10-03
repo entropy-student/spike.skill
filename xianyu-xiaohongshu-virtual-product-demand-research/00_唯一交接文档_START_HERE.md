@@ -1,53 +1,11 @@
-# 唯一交接文档 — 闲鱼 / 小红书虚拟商品需求研究 v2.1
+# 唯一交接入口 — v2.2.0
 
-## 当前版本
+当前执行基线：本目录 [SKILL.md](SKILL.md)，metadata版本2.2.0，默认 MARKET_MAP。
 
-- VERSION=`2.1.0`
-- STATUS=`ACTIVE`
-- 主入口：`SKILL.md`
-- 默认模式：`MARKET_MAP`
-- 可选模式：`TEST`
+目标是发现有价值的市场候选并标清证据边界，不把弱兴趣或供给重复升级成强需求。旧目录及 v2.1 重跑数量不是校准真值。
 
-## v2.1 Reviewer Fix
+日常只读入口、证据规则及两个模板；实际测试决策再读 OPTIONAL_TEST_MODE。历史不作执行规则。沿用单一底稿，区分具名对象、观察日/行为期间、继承/新观察，刷新时保留目录外小规模探索并按预算停止。
 
-独立 Reviewer 对 v2.0.1 的核心结论被接受：
+正式闲鱼结果：[project canonical目录](https://github.com/entropy-student/project/blob/main/xianyu/docs/FINAL_SKU_CATALOG_2026-10.md)；完整限制见对应 Ledger，不可把历史D4、时期未知的想要、未复核导入行包装为当前强需求。
 
-1. 供给重复不能制度化地升级为需求；
-2. 商品族证据不能向更细 SKU/Bundle 下传；
-3. “可复核”需要最低 Observation 记录；
-4. 需要轻量 Coverage / Refresh / Stop；
-5. Demand 与 Risk 必须分列；
-6. Test Mode 必须区分“继续补证”和“已经可真实测试”。
-
-## 当前规则摘要
-
-~~~text
-Transaction > Intent > Attention > Supply
-D4 = same-scope transaction
-D3 = replicated independent buyer-side evidence
-D2 = one buyer-side signal
-D1 = supply/category only
-U  = unknown
-~~~
-
-~~~text
-CONFIRMED_DEMAND = D4
-PROBABLE_DEMAND  = D3
-WATCHLIST        = D2/D1/U
-~~~
-
-Risk 独立：
-`NO_FLAG_OBSERVED / REVIEW_REQUIRED / HIGH_RISK / UNKNOWN`
-
-## Test Mode
-
-- `RESEARCH_NEXT`：值得继续补证，不代表该真实测试。
-- `TEST_READY`：需求、规则、经济性、交付/权利风险等关键项已过门槛。
-- `PRIORITY_TEST`：仅当用户明确要求只选一个时，从 TEST_READY 中选择。
-
-## 历史
-
-- `history/v1.0.0/`：完整 v1。
-- `history/v2.0.1/`：独立 Reviewer 修订前的轻量版，原样归档。
-
-日常不要读取 history，除非做设计追溯。
+最终Reviewer记录：[Review与行为验证](reviews/XIANYU_DEMAND_V2_2_FINAL_REVIEW.md)。

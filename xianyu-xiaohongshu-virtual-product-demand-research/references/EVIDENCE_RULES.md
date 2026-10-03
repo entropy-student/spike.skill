@@ -1,135 +1,40 @@
-# Evidence Rules v2.1
+# Evidence Rules v2.2
 
-## 1. 四种不同的事实
+日常规则以 [SKILL.md](../SKILL.md) 为准；这里说明难判边界。
 
-研究时先区分：
+## 信号含义与独立性
 
-1. **Supply**：有人在卖、卖家多、挂单多、官方类目存在。
-2. **Attention**：浏览、点赞、曝光。
-3. **Intent**：想要、收藏、搜索、求购、有效询盘、明确购买动作。
-4. **Transaction**：订单、付款、平台第一方交易数据。
-
-默认强度：
-
-~~~text
-Transaction > Intent > Attention > Supply
-~~~
-
-Supply 很重要，但**不能独立证明 Demand**。
-
-## 2. Demand Level
-
-| Level | 最低要求 | 不能由什么单独触发 |
+| Signal Type | 实际含义 | 上限/条件 |
 |---|---|---|
-| D4 | 同一 Scope 上的交易/付款证据，或第一方交易数据 | 想要、浏览、多卖家 |
-| D3 | 同一 Scope 上多个独立买方侧信号复现 | 多卖家/多挂单 |
-| D2 | 同一 Scope 上一个买方侧信号 | 单纯商品存在 |
-| D1 | 只看到供给/类目/商品存在 | — |
-| U | 无法判断或无法归属 | — |
+| TRANSACTION | 已发生付款/成交，记录或平台数据可归属 | D4；保留直接/转述性质及期间 |
+| PURCHASE_INTENT | 针对具名付费 Offer 的价格、交付、购买条件询盘，明确有偿求购/订单承诺 | 一个 D2；多个独立买方/行为可 D3 |
+| INTEREST | 想要、收藏、搜索、浏览、点赞、免费索取、泛问怎么做 | 无论复现数量，单独最多 D2 |
+| SUPPLY | 平台上商品/类目/供给存在；不含内部原型或演练 | D1 |
+| CLAIM | 卖家无证明自述销量/收益/“回头客”等 | 不自动算成交或购买意图；可定位商品本身仍可 D1 |
 
-### 独立买方侧信号
+不凭标签“问价”“商品动作”自动升级：免费问教程、索取赠品、单个加购、系统推荐、卖家自己问答须按原文含义与归属判断。站内“想要”没有经过本轮验证的含义，不假定每次都是付费意图或独立买方。
 
-“独立”至少要避免：
-- 同一卖家矩阵；
-- 同一商品被多个推荐页重复展示；
-- 同一数据源被重复转述；
-- 同一买方行为被多个页面镜像。
+独立是不同 underlying 买方/行为。记录 Lineage ID，合并镜像、转载、重复卡片和同一事件。不得采集非必要个人信息；可用匿名买方编号及可复核摘录。不同卖家不等于独立，同卖家也可有独立买方。不能确立独立性时保留弱证据与缺口。
 
-多个不同卖家商品，如果全部没有任何买方行为，只能是 D1。
+一个真实订单可以证明该 Offer 曾有人买，不能证明稳定市场。D3/D4 都不是规模或盈利评级。
 
-## 3. Evidence Scope
+## 对象与时间
 
-每条证据必须标：
+每条 Supported Unit 写具名对象及 Scope。不能只因两行都是 PRODUCT_TYPE 就认为匹配。混合推荐簇中的软件许可、租号、代操作、按次生成服务，要按实际 Offer 分开。
 
-- FAMILY
-- PRODUCT_TYPE
-- SKU
-- BUNDLE
+- 向宽范围汇总只说明其中存在需求。
+- 禁止向窄 SKU、不同平台或新增 Bundle 部件自动下传。
+- Bundle 直接成交可证明这个完整组合；部件成交不能代替组合成交。
+- 免费教程的兴趣不证明收费模板，除非买方明确针对那个付费 Offer。
 
-规则：
+OBSERVED_AT 是读取日；EVIDENCE_PERIOD 是行为/统计日期或区间。累计计数不知起止就 UNKNOWN。时间窗外 D4 保留为 HISTORICAL；区间跨越时间窗而未拆分时不能声称近期成交。分类 CURRENT/HISTORICAL/UNKNOWN 必须按买方事实的期间，而非页面更新时间。
 
-> Evidence 可以支持它明确对应的 Scope，并在说明转换的前提下向更宽范围汇总；不能向更细范围下传。
+## 来源质量与反证
 
-例：
+平台第一方数据（含可定位的媒体明确转述）可作 reported D4；不能把来源仅为卖家无证明口号的转述洗成 D4。写清来源链、报道日期、数据期间、口径。若具体卖家案例无法判断交易归属，单列 CLAIM/待补证，不能继承报道中其他平台总量。
 
-~~~text
-证据：AI 漫剧教程卖出 17k
-支持：AI 漫剧教程（PRODUCT_TYPE）
-不自动支持：AI 漫剧教程 + 项目文件 + Workflow（BUNDLE）
-~~~
+推荐结果保存商品 ID、标题、卖家公共标识与当时计数；没有定位的“多商品”概述只作待核验线索。旧报告是二手来源，不是本轮重新观察。引用同一文章的多个网站不构成独立复现。
 
-Bundle 多出的每个组成部分都需要自己的证据，否则标为 DERIVED_ADJACENT / UNKNOWN。
+Confidence 不升级等级。发现重复、错配、卖家总销量、免费信号冒充付费或历史冒充当前，须修正所影响的等级/时期/状态。访问失败是缺口，不是市场反证。
 
-## 4. 最低可复核记录
-
-每条 Observation 至少保留：
-
-~~~text
-OBSERVATION_ID
-OBSERVED_AT
-PLATFORM
-MARKET_SURFACE_OR_QUERY
-SOURCE_URL_OR_ITEM_ID
-SELLER_OR_SOURCE_ID_IF_PUBLIC
-RAW_FACT
-SIGNAL_TYPE = TRANSACTION / INTENT / ATTENTION / SUPPLY
-SIGNAL_VALUE
-SUPPORTED_UNIT
-EVIDENCE_SCOPE
-PROVENANCE
-LINEAGE_ID
-ACCESS_LIMITATION
-~~~
-
-不要只写“多个商品”“很多人想要”而不留下可回看的定位信息。
-
-动态推荐页如果无法稳定复现：
-- 记录观察日期；
-- 尽量记录商品 ID / 卖家标识 / 当时数值；
-- 无法复核的部分降低 Confidence。
-
-## 5. Confidence
-
-Confidence 不等于 Demand：
-
-- HIGH：可定位、时间明确、粒度匹配、Lineage 清楚、访问完整。
-- MEDIUM：存在一个重要复核限制。
-- LOW：动态/部分访问/粒度或 Lineage 不清/推导较多。
-
-高 Confidence 的 D1 仍然只是“高置信度地知道有人在卖”。
-
-## 6. Counterevidence
-
-至少检查：
-- 供给很多但没有买方信号；
-- 想要是否来自一个异常爆款；
-- 低价引流；
-- 热点短峰；
-- 推荐机制偏差；
-- 商品族证据被错误下传；
-- 相邻需求误投射；
-- 免费替代；
-- 旧证据已过时。
-
-Counterevidence 若破坏原结论的独立性、粒度匹配或买方归属，应直接降 D-Level / Demand Status。
-
-## 7. Risk 与 Demand 分开
-
-Demand：
-- CONFIRMED_DEMAND = D4
-- PROBABLE_DEMAND = D3
-- WATCHLIST = D2/D1/U
-
-Risk：
-- NO_FLAG_OBSERVED
-- REVIEW_REQUIRED
-- HIGH_RISK
-- UNKNOWN
-
-Risk 不改变已经观察到的需求事实，但会影响 Test Mode 是否能进入真实测试。
-
-## 8. 平台差异
-
-**闲鱼**：优先直接商品、平台内购买结构、买方信号、求购/询价和多商品上的独立 Intent。
-
-**小红书**：优先重复搜索问题、明确求购/合格私信、店铺/商品动作。点赞/收藏必须按实际信号级别记录，不可自动写成付费需求。
+优先核验会改变结论的限制：引流最低价与实际规格、免费替代、热点短峰、推荐偏差、异常单品、退款/交付争议。风险单列；不把高风险改写成低需求。
