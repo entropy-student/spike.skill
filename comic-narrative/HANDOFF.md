@@ -1720,3 +1720,52 @@ R2R1A 只做一次 instrumentation：
 
 当前状态：
 `R2R1_RETURN_IMPLEMENTATION_DRIFT / NEXT_RAW_RESULT_CAPTURE_R2R1A / CANARY_NOT_AUTHORIZED_YET`。
+
+
+
+### IMAGEGEN_EXECUTOR_RESULT_CAPTURE_R2R1A — Reviewer PASS（2026-10-03）
+
+Reviewer 按 `vps-project-governance/VNEXT.md` v0.2.6 完成 fresh readback。
+
+证据包：
+- `_imagegen-result-capture-r2r1a.zip`
+- SHA-256：`483c45c8284bb883cd86abc66b98b2a1f21da0facf68efd1e6f98afb7db3f7a7`
+
+正式 Reviewer verdict：**`PASS`**。
+
+已直接核验：
+- raw JavaScript result 顶层仅有 `image_url`、`output_hint`；
+- `image_url` 为 PNG data URI；
+- 解码后 923,749 bytes，PNG signature 有效；
+- payload SHA-256：`bf622d490194e90f4587b4d90869e6f5d4c792d6b52f7e6e2471cfcf44f3ff5d`；
+- `output_hint` 仅作为 opaque metadata，不作为 machine path contract；
+- legacy adapter 只保留 `structuredContent` / text `content`，而真实 raw object 不含这两个字段，因此会丢失真正的图片 payload。
+
+同一次调用内未继续执行 legacy projection 的限制已披露；Reviewer 接受，因为本 Gate 只要求获得可复核的 pre-adapter raw shape。legacy projection 后续 replay 是确定性验证，不影响 raw shape 结论。
+
+证据质量 NOTE：
+- R2R1A 两份 Markdown 中有未展开的 `$rawPath/$rawHash/$rawUtc` 与少量控制字符；
+- 不阻塞本 Gate，因为 Reviewer 已从真实文件重新计算关键 hash；
+- 后续不得把这些占位字段继续当 canonical evidence。
+
+下一 Gate：
+**`IMAGEGEN_EXECUTOR_INTEGRATION_R2R1B`**
+
+最大终点：
+`真实 raw fixture → 修 live JS adapter → 修统一 JSONL append → 同 runtime 无生图 preflight → C-VB01/C-VB02 attempt1 concurrency=2 → 2/2 自动保存/hash/QA → fresh readback → STOP → Reviewer`。
+
+关键执行合同：
+- 直接使用 `image_url` data URI 解码并保存；
+- 不解析 `output_hint` 或其他自然语言文本寻找路径；
+- 所有 event writer 走同一 append API，sequence allocate + append + flush 同锁；
+- 本轮两张 canary 不做 retry；
+- content QA PASS/FAIL 不影响 integration Gate，只要 plumbing 完整；
+- 不启动另外 4 Beat；
+- 不测 concurrency=3；
+- 不启动 H019 完整重跑；
+- 不修改正式 Part 2 / Part 3 / Part 4 / Part 4.5 / SKILL。
+
+只有 Executor 返回 `PASS_CANDIDATE_EXECUTOR_INTEGRATION_R2R1B` 且 Reviewer fresh readback 正式 PASS 后，才允许恢复完整 6 Beat R2 复测。
+
+当前状态：
+`R2R1A_PASS / NEXT_R2R1B_INTEGRATION_CANARY / CONCURRENCY_2_ONLY / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
