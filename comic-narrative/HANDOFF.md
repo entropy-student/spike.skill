@@ -1769,3 +1769,50 @@ Reviewer 按 `vps-project-governance/VNEXT.md` v0.2.6 完成 fresh readback。
 
 当前状态：
 `R2R1A_PASS / NEXT_R2R1B_INTEGRATION_CANARY / CONCURRENCY_2_ONLY / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
+
+
+
+### IMAGEGEN_EXECUTOR_INTEGRATION_R2R1B — Reviewer RETURN（2026-10-03）
+
+Reviewer 按 `vps-project-governance/VNEXT.md` v0.2.6 完成 fresh readback。
+
+证据包：
+- `_imagegen-executor-integration-r2r1b-evidence.zip`
+- SHA-256：`f463c97d2e6123f38c6dbbabde87076adad36946dd121aef4442c3dcd118027d`
+
+正式 verdict：**`RETURN_TEST_FAILURE`**。
+
+已核验：
+- Preflight 在生图前全部 PASS；
+- full-size R2R1A fixture 可由正式 adapter 正确解码 / 保存，hash 匹配；
+- logger 32-process stress PASS，R2R1B 正式事件日志 16 条，sequence 1–16 连续唯一；
+- 实际只调用 C-VB01 / C-VB02 attempt1，两张均在 concurrency=2 下返回；
+- C-VB01 T2→T4 69.886s；C-VB02 136.175s；
+- 但两份 full-size raw result 经 live terminal/input bridge 传入 adapter receiver 时均未完成；
+- 0 canary PNG、0 destination hash、0 QA、0 retry；
+- 没有人工缓存恢复，没有再次调用 imagegen。
+
+当前故障域已收敛为：
+**大尺寸 raw imagegen result 从 tool/orchestration return 到本地 JS adapter receiver 的传输边界。**
+
+由于自动落盘链已经多轮出现相近失败，按 Governance §6 不再直接继续真实生图重试，下一 Gate 改为纯本地 bounded diagnostic：
+
+**`IMAGEGEN_LARGE_PAYLOAD_TRANSPORT_DIAGNOSTIC_R2R1C`**
+
+R2R1C：
+- 0 次 imagegen；
+- 用已保存的 1,232,262-byte R2R1A raw fixture；
+- 先通过与 R2R1B live 相同 transport 做单路 full-size replay；
+- 单路通过后再做两路 concurrent full-size replay；
+- 记录 sender / receiver byte counts、完成状态、耗时与保存 hash；
+- 若复现失败，只允许一个基于证据的 transport repair，再各复测一次；
+- STOP_AT_REVIEWER。
+
+仍禁止：
+- 6 Beat；
+- concurrency=3；
+- H019 完整重跑；
+- 修改正式 Part 2 / Part 3 / Part 4 / Part 4.5 / SKILL。
+
+当前状态：
+`R2R1B_RETURN_TEST_FAILURE / NEXT_R2R1C_TRANSPORT_DIAGNOSTIC / IMAGEGEN_CALLS_NEXT_GATE_0 / FULL_RETEST_NOT_AUTHORIZED`。
