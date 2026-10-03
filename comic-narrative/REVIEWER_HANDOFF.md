@@ -21,7 +21,7 @@
 `ACTIVE_REVIEW / IMAGEGEN_EXECUTOR_RELIABILITY`
 
 并行状态：
-- 主执行线：R2R1K 输出尺寸合同对账（0 次生图）；
+- 主执行线：R2R1L 最终交付尺寸归一化 policy（等待 Owner 最小决策，0 次生图）；
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -62,142 +62,49 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1G：PASS（TTY bulk bridge 为主要大 payload 瓶颈）；
   - R2R1H：PASS（preserved sample 上 optional local-cache fast path 成立）；
   - R2R1I：`RETURN_IMPLEMENTATION_DRIFT`（pre-parser guard 漂移 + evidence completeness 缺口）；
-  - R2R1J：**PASS**（live output_hint strict parse → source hash → local copy → QA 链已证明；C-VB01 图片 QA FAIL 不作为最终素材接受）。
+  - R2R1J：**PASS**（live output_hint strict parse → source hash → local copy → QA 链已证明；C-VB01 图片 QA FAIL 不作为最终素材接受）；
+  - R2R1K：**RETURN_IMPLEMENTATION_DRIFT（Reviewer 接受，但纠正故障归因）**：Executor 使用 stale snapshot，且历史 task generator provenance 未保留；尺寸合同债被确认。
 - **H019 完整第二轮重跑**：`DEFERRED`。
-- **6 Beat R2 完整复测**：未授权；先完成 R2R1K，再由 Reviewer 决定是否进入双并发 live fast-path canary。
+- **6 Beat R2 完整复测**：未授权；先完成 R2R1L policy 决策及其后续 formalization/regression，再由 Reviewer 决定是否恢复双并发 live fast-path canary。
 - **Part 5 / Part 6**：未正式迁移。
 
 ## CURRENT_GATE
 
 ### GATE_ID
 
-`IMAGEGEN_OUTPUT_SIZE_CONTRACT_RECONCILIATION_R2R1K`
+`IMAGEGEN_FINAL_DELIVERY_NORMALIZATION_POLICY_R2R1L`
 
 ### OBJECTIVE
 
-对账反复出现的 **1672×941 native image output** 与当前 **1920×1080 final delivery target / C-VB01 task requirement**，在继续任何 live imagegen 前，明确 native generation size 与 final delivery size 的职责和合同语义。
+明确 provider-native raster 与 `1920×1080 final delivery target` 的正式关系，解决 R2R1F / R2R1J 重复出现的 1672×941 输出如何进入最终交付的问题。
+
+### CURRENT_REVIEWER_RECOMMENDATION
+
+建议 Owner 批准以下原则：
+
+1. `1920×1080` 保持 **final delivery target**；
+2. provider native image 不要求天然精确等于 1920×1080；
+3. native raster 必须记录真实尺寸，但“不等于 1920×1080”本身不再自动等同内容/生成失败；
+4. 通过内容 QA 后，允许独立、确定性的 delivery normalization 生成 1920×1080；
+5. normalization 不得改变故事意义、focal structure 或裁掉因果信息；
+6. 本 Gate 不凭空定义 minimum native resolution，后续如需要以 calibration evidence 决定。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
+在 Owner 批准前：
+
 1. `IMAGEGEN_CALLS=0`；
-2. 找到并固定 R2R1J 使用的 exact C-VB01 task input；
-3. 找到生成 1920×1080 requirement 的 exact compiler/schema/source；
-4. fresh-read Part 4 §25；
-5. 对照 R2R1F + R2R1J accepted observed outputs；
-6. 判定 1920×1080 属于 native hard requirement、final-delivery-only，或仍 unresolved；
-7. 若仅为 implementation/compiler drift，允许一个不改变 Part 4 policy 的 bounded repair；
-8. 用 preserved outputs 做 no-image regression；
-9. fresh readback；
-10. `STOP_AT_REVIEWER=YES`。
+2. 不修改 formal Part 4；
+3. 不修改 preserved C-VB01 task；
+4. 只使用 R2R1F / R2R1J preserved 1672×941 fixtures；
+5. 可准备 normalization implementation/test plan；
+6. `STOP_AT_REVIEWER=YES`。
 
-### TARGET_AND_SCOPE
-
-只处理**输出尺寸合同**这一故障域：
-
-- `part4/IMAGE_ASSET_EXECUTION.md` §25；
-- 当前 C-VB01 locked task input；
-- 当前 task compiler/schema/source；
-- R2R1F accepted evidence；
-- R2R1J evidence + copied PNG。
-
-不处理 C-VB01 酒店搜索内容 FAIL，不启动内容 retry。
-
-### APPLICABLE_CRITICAL_CONSTRAINTS
-
-- 不调用 imagegen；
-- 不修改 Part 2 / Part 3 / Part 4 / Part 4.5 / SKILL 正式规则；
-- 不把 final delivery target 无证据升级成 native model-output guarantee；
-- 不因为 1672×941 接近 16:9 就宣称 final delivery PASS；
-- 不发明未被当前规则支持的 native minimum resolution / upscale contract；
-- 不运行双并发 live canary；
-- 不运行 6 Beat；
-- 不启动 H019；
-- 如果 formal Part 4 本身不足以裁决，RETURN，不通过执行器 patch 偷偷创造新 policy。
-
-### PREFLIGHT
-
-1. 证明 exact C-VB01 task input path/content/hash；
-2. 证明 exact compiler/schema/source path/content/hash；
-3. fresh-read Part 4 §25；
-4. 用 R2R1J preserved PNG/hash 证明 1672×941；
-5. 用 accepted R2R1F evidence 证明此前同类 observed size；
-6. 在任何修改前先分类 mismatch 来源。
-
-### REQUIRED_EVIDENCE
-
-- `IMAGEGEN_OUTPUT_SIZE_CONTRACT_RECONCILIATION_R2R1K.md`
-- C-VB01 task input pointer/hash
-- task compiler/schema/source pointer/hash
-- Part 4 §25 fresh-read pointer
-- R2R1F + R2R1J observed-size matrix
-- bounded repair 的 before/after diff（如发生）
-- no-image regression
-- fresh-readback summary
-- `IMAGEGEN_CALLS=0`
-
-矩阵至少包含：
-
-`FORMAL_FINAL_DELIVERY_TARGET | TASK_NATIVE_REQUIREMENT | OBSERVED_NATIVE_SIZE | SOURCE_ACCEPTANCE_STATUS | FINAL_DELIVERY_STATUS`
-
-### ACCEPTANCE_CRITERIA
-
-`PASS_CANDIDATE_OUTPUT_SIZE_CONTRACT_RECONCILED_R2R1K` 要求：
-
-- 1920×1080 requirement 的来源被精确证明；
-- Part 4 §25 与 task/compiler 行为被明确对账；
-- native generation size 与 final delivery size 不再混为同一状态；
-- 若发生 implementation repair，必须保持现有正式 policy 不变；
-- preserved evidence 不被改写；
-- imagegen=0；
-- content retry=0；
-- fresh readback 一致。
-
-允许结果：
-
-- `PASS_CANDIDATE_OUTPUT_SIZE_CONTRACT_RECONCILED_R2R1K`
-- `RETURN_IMPLEMENTATION_DRIFT`
-- `RETURN_EXECUTION_CONTRACT_UNRESOLVED`
-- `RETURN_OWNER_ACTION_REQUIRED`
-
-### ROLLBACK_STATUS_OR_PLAN
-
-若修改 task/compiler implementation：
-
-- 先记录 pre-change source/hash；
-- 只允许一个 bounded patch；
-- no-image fixture regression 通过后才能交 Reviewer；
-- 出现新歧义时恢复原 source。
-
-Formal Part 4 policy 本轮不得修改。
+Owner 批准后，另起 bounded formal-rule / implementation Gate，不在本 Gate 偷跑。
 
 ### OWNER_ONLY_ACTIONS
 
-`NONE`。只有当诊断证明必须改变 formal Part 4 policy 时，才 STOP 并返回最小 Owner 决策。
-
-### REVIEWER_TO_EXECUTOR_RELAY
-
-默认只读：
-
-1. `comic-narrative/REVIEWER_HANDOFF.md` CURRENT_GATE；
-2. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J_REVIEW.md`；
-3. `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md` §25；
-4. accepted R2R1F Reviewer evidence；
-5. R2R1J evidence package；
-6. exact C-VB01 task input + exact compiler/schema/source。
-
-不得 broad-read legacy `HANDOFF.md`，不得调用 imagegen，不得修改内容 prompt。
-
-### EXECUTOR_TO_REVIEWER_RELAY
-
-```text
-结果：PASS_CANDIDATE_OUTPUT_SIZE_CONTRACT_RECONCILED_R2R1K / RETURN_*
-改动：NONE，或一句话说明 bounded task/compiler contract repair。
-验证：一句话说明 1920×1080 来源、Part 4 §25 解释、R2R1F/R2R1J observed size、no-image regression。
-问题：NONE，或说明是否需要 formal Part 4 / Owner decision。
-回滚：说明 pre-change source/hash 与恢复状态。
-请 Reviewer 检查：核对 contract classification、repair boundary、IMAGEGEN_CALLS=0、fresh readback。
-Owner 转交：NONE，或最小必要决策。
-```
+需要 Owner 对 CURRENT_REVIEWER_RECOMMENDATION 做 **批准 / 不批准**。
 
 ## CRITICAL_CONSTRAINTS
 
@@ -211,7 +118,7 @@ Owner 转交：NONE，或最小必要决策。
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R1K execution/diagnostic harness：既有 Owner/Codex Windows 本地执行链；
+- 当前 R2R1L：policy decision / preserved-fixture diagnostic；若 Owner 批准后进入实现 Gate，再使用既有 Owner/Codex Windows 本地执行链；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -222,33 +129,30 @@ Owner 转交：NONE，或最小必要决策。
 
 ## UNRESOLVED
 
-1. **R2R1K output-size contract**：1920×1080 在 formal Part 4 中写作 final delivery target，但当前 C-VB01 task 将其作为 output requirement；R2R1F / R2R1J 均观察到 1672×941 native raster，需先对账。
-2. **C-VB01 content QA**：R2R1J 图片没有明确呈现酒店搜索；该 PNG 不接受为 final production asset。模型 miss / task contract 问题尚未在本 Gate 分类，禁止借 R2R1K 顺手改 prompt。
-3. **Part 2**：11 项 edit map 等待 Owner 逐项批准；正式 Part 2 未改。
-4. **Style Plate**：具体长期 Style Plate 图片尚未确认。
-5. **Part 3 → Part 4 Style contract**：Part 3 已改为 1–2 张中性 Style Plate；Part 4 仍引用 2 张具体生活场景 Style Reference，等待独立 Part 4 Gate 对齐。
-6. **Part 4 H019 refinements**：部分 Owner 已认可方向仍等待独立正式修改 Gate。
+1. **R2R1L final-delivery normalization policy**：Part 4 已明确 1920×1080 是 final delivery target，但没有定义 provider native raster → final delivery 的 normalization contract；等待 Owner 最小 policy 决策。
+2. **Historical task packet drift**：preserved C-VB01 task 把 1920×1080 写进 native generation instruction；保留为历史证据，不回写。
+3. **Historical generator provenance**：旧 task packet 的 exact compiler/template/generator 未保留；不得继续把“找不存在的 compiler 文件”作为无限阻塞项。
+4. **C-VB01 content QA**：R2R1J 图片没有明确呈现酒店搜索；该 PNG 不接受为 final production asset。
+5. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
+6. **Style Plate / Part 3→Part 4 Style contract / Part 4 H019 refinements**：仍待独立 Gate。
 7. **Part 5 / Part 6**：尚未正式迁移。
 
 ## NEXT_STEP
 
-先执行并 Review `R2R1K`，**不调用 imagegen**。
+等待 Owner 对 R2R1L 推荐 policy 做最小决策。
 
-目标是先把：
-`Part 4 final delivery target → C-VB01 task requirement → actual native raster → delivery status`
-四层事实分开。
+若批准：
+- 下一 Gate formalize native-vs-final-delivery contract；
+- 用 preserved 1672×941 fixtures 做 no-image normalization regression；
+- 仍不立即恢复 6 Beat。
 
-R2R1K PASS 后，Reviewer 才决定：
-- 是否进入 2 张并发 live fast-path canary；
-- output normalization 是否需要独立 Gate；
-- C-VB01 内容 FAIL 在后续 retry-capable Gate 中如何处理。
-
-完整 6 Beat 与 H019 仍保持未授权。
+若不批准：
+- Reviewer 按 Owner 指定方向重写尺寸合同 Gate。
 
 ## OWNER_ACTION_REQUIRED
 
-- **当前 R2R1K：NONE**。若诊断证明必须修改 formal Part 4 policy，再返回最小 Owner 决策。
-- **Part 2 正式修改：DEFERRED — 需要 Owner 后续逐项批准时再开启该 Gate。**
+- **R2R1L：需要 Owner 批准 / 不批准 Reviewer 推荐的 native-vs-final-delivery policy split。**
+- Part 2 正式修改仍 DEFERRED。
 
 ## EVIDENCE_POINTERS
 
@@ -257,6 +161,7 @@ R2R1K PASS 后，Reviewer 才决定：
 - R2R1H PASS: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_LOCAL_CACHE_DIAGNOSTIC_R2R1H_REVIEW.md`
 - R2R1I RETURN / R2R1J Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_LOCAL_CACHE_LIVE_CANARY_R2R1I_REVIEW.md`
 - R2R1J PASS / R2R1K Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J_REVIEW.md`
+- R2R1K RETURN / R2R1L Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_SIZE_CONTRACT_RECONCILIATION_R2R1K_REVIEW.md`
 - Part 2 pending edit map: `comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
 - Current formal Part 3: `comic-narrative/part3/STORYBOARD_VISUAL_DIRECTOR.md`
 - Current formal Part 4: `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md`
