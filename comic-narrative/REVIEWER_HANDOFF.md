@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / IMAGEGEN_EXECUTOR_RELIABILITY`
+`ACTIVE_REVIEW / R2R1M_EVIDENCE_RECONCILIATION`
 
 并行状态：
-- 主执行线：R2R1M 16:9 / 1792×1008 native-size contract propagation + one-live-canary；
+- 主执行线：R2R1M Executor 已 RETURN，Reviewer 因证据仅在 Windows 本地而暂不能正式裁决；当前冻结进一步 imagegen / 下一 Gate。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -64,7 +64,8 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1I：`RETURN_IMPLEMENTATION_DRIFT`（pre-parser guard 漂移 + evidence completeness 缺口）；
   - R2R1J：**PASS**（live output_hint strict parse → source hash → local copy → QA 链已证明；C-VB01 图片 QA FAIL 不作为最终素材接受）；
   - R2R1K：**RETURN_IMPLEMENTATION_DRIFT（Reviewer 接受，但纠正故障归因）**：Executor 使用 stale snapshot，且历史 task generator provenance 未保留；尺寸合同债被确认；
-  - R2R1L：**PASS / OWNER APPROVED**：图片生产与交付唯一正式画幅锁定为 16:9；默认 native image-generation target = 1792×1008；final delivery target 保持 1920×1080。
+  - R2R1L：**PASS / OWNER APPROVED**：图片生产与交付唯一正式画幅锁定为 16:9；默认 native image-generation target = 1792×1008；final delivery target 保持 1920×1080；
+  - R2R1M：**UNVERIFIED / REVIEWER EVIDENCE PENDING**：Executor 自报 `RETURN_EXECUTION_CONTRACT_UNRESOLVED`，并自报 `IMAGEGEN_CALLS=0`、retries=0；但 required evidence 目前只存在 Owner Windows 本地路径，尚未进入 Reviewer 可直接访问的 canonical / conversation surface，因此不得正式接受 RETURN 或推进下一 Gate。
 - **H019 完整第二轮重跑**：`DEFERRED`。
 - **6 Beat R2 完整复测**：未授权；先完成 R2R1M native-size propagation live canary，再由 Reviewer 决定是否恢复双并发 live fast-path canary。
 - **Part 5 / Part 6**：未正式迁移。
@@ -315,20 +316,18 @@ Owner 转交：NONE。
 
 ## NEXT_STEP
 
-执行并 Review `R2R1M`：
+保持当前 R2R1M Reviewer stop，不运行新的 imagegen、不进入下一 Gate。
 
-`current main → fresh-read Part 4 §25 → new task contract preflight → 最多 1 次 1792×1008 live imagegen → actual raster/hash/readback → STOP`
+下一步仅做证据 relay / review：
 
-在 R2R1M 正式 PASS 前：
-- 不恢复双并发；
-- 不恢复 6 Beat；
-- 不运行 H019。
-
+1. 将完整 R2R1M evidence 目录作为一个 ZIP 上传到当前会话，或提交到 Reviewer 可直接读取的 GitHub 非 Secret 路径；
+2. Reviewer 实际检查至少：执行报告、Preflight、fresh readback、task fixture、structured dry-render/request record、RUN_EVENTS、RUN_RECORD、source/hash/non-target-delta；
+3. 若证据确认 Executor 自报事实，Reviewer 再正式裁决 R2R1M `RETURN_EXECUTION_CONTRACT_UNRESOLVED`，并设计下一 bounded Gate；
+4. 在正式裁决前不重跑任何 consequential action。
 ## OWNER_ACTION_REQUIRED
 
-- **R2R1M 执行转交：**将当前 `REVIEWER_HANDOFF.md` 的 R2R1M Gate 交给既有 Windows / Codex Executor 执行；无需额外决策。
+- **R2R1M 最小转交：**将目录 `C:\Users\34707\Documents\ChatGPT\批量生图\_imagegen-native-size-contract-propagation-live-canary-r2r1m\` 整体压缩为 ZIP 并上传到当前会话；不要重跑 imagegen。
 - Part 2 正式修改仍 DEFERRED。
-
 ## EVIDENCE_POINTERS
 
 - Discovery baseline commit: `3bdf6e390426c5ba33193020927857fe6cdc7bfc`
@@ -338,6 +337,7 @@ Owner 转交：NONE。
 - R2R1J PASS / R2R1K Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J_REVIEW.md`
 - R2R1K RETURN / R2R1L Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_SIZE_CONTRACT_RECONCILIATION_R2R1K_REVIEW.md`
 - R2R1L Owner size decision / R2R1M Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_NATIVE_SIZE_OWNER_DECISION_R2R1L_REVIEW.md`
+- R2R1M evidence pending review: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_NATIVE_SIZE_CONTRACT_PROPAGATION_R2R1M_EVIDENCE_PENDING_REVIEW.md`
 - Part 2 pending edit map: `comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
 - Current formal Part 3: `comic-narrative/part3/STORYBOARD_VISUAL_DIRECTOR.md`
 - Current formal Part 4: `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md`
