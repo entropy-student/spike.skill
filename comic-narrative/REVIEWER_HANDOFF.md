@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / R2R1T_LOGGER_REPAIR_AND_TWO_CONCURRENT_LIVE_CANARY`
+`ACTIVE_REVIEW / R2R1U_FILE_HANDOFF_TWO_CONCURRENT_LIVE_CANARY`
 
 并行状态：
-- 主执行线：R2R1S 因 fresh harness logger 写错 RUN_EVENTS 路径而在 preflight 停止，`IMAGEGEN_CALLS=0`；R2R1T 允许同一轮做一次 bounded logger repair，smoke PASS 后直接并发 2 张图。
+- 主执行线：R2R1T 已证明两路 imagegen 并发调用均正常返回且各有 1 个 output_hint；失败仅发生在返回后 saver 的 closed-stdin 交接。R2R1U 改为 per-task 小 JSON 文件交接，并同一轮重新跑两路 live canary。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -72,6 +72,7 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1Q：**RETURN_PREFLIGHT_DRIFT — REVIEWER ACCEPTED**：ZIP 身份/路径安全 PASS，但 recorded root 已有 9 个顶层条目，按 R2R1Q 禁止覆盖规则立即停止；未解压、未覆盖、未回归、`IMAGEGEN_CALLS=0`；
   - R2R1R：**SUPERSEDED BEFORE EXECUTION / OWNER DIRECTION**：取消“全量历史目录/hash + 旧正负样本复验”要求；正式 PASS 的能力默认继承，除非相关实现/接口/运行环境变化，或出现与旧 PASS 冲突的新证据。
   - R2R1S：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED**：两个 fresh task、16:9 contract、call guard、save helper 均通过轻量检查；仅临时 `append_event.ps1` 因使用 `PSScriptRoot` 把 smoke event 写入 `source/RUN_EVENTS.jsonl` 而非 run-root log；按 Gate 停止，`IMAGEGEN_CALLS=0`、outputs=0。
+  - R2R1T：**RETURN_TEST_FAILURE — REVIEWER ACCEPTED**：logger / preflight PASS；恰好并发 2 次 imagegen，均约 60.136s 返回且各有 1 个 output_hint；但 saver 依赖 `[Console]::In.ReadLine()`，启动时 stdin 已关闭，两路均 `INPUT_MISSING`，PNG=0、QA=`NOT_REACHED`、retries/replacements/fallback=0。
 - **H019 完整第二轮重跑**：`DEFERRED`。
 - **6 Beat R2 完整复测**：未授权；先完成 R2R1P 两路并发 live fast-path canary，再由 Reviewer 决定是否进入 6 Beat。
 - **Part 5 / Part 6**：未正式迁移。
@@ -80,41 +81,53 @@ Part 6  执行与项目管理               [未正式迁移]
 
 ### GATE_ID
 
-IMAGEGEN_TWO_CONCURRENT_LOGGER_REPAIR_AND_LIVE_CANARY_R2R1T
+IMAGEGEN_FILE_HANDOFF_TWO_CONCURRENT_LIVE_CANARY_R2R1U
 
 ### OBJECTIVE
 
-快速修复 R2R1S 唯一已知的 fresh harness 缺陷——事件日志路径——并在**同一轮**直接完成两路并发生图测试。
+修复 R2R1T 已确认的唯一阻塞：**不要再通过 stdin 把 output_hint 交给 saver**。
 
-目标不是再做一轮日志研究，而是尽快得到两张并发 live 结果。
+改为：
+
+live result → 每任务独立的小 JSON handoff 文件 → saver 从文件读取 output_hint → allowed local PNG → hash/copy → QA
+
+在 transport smoke PASS 后，同一轮直接重新执行两路并发生图，快速得到完整 end-to-end 结果。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
 1. fresh-read current main + Part 4 §25；
-2. 在全新的 R2R1T run directory 创建 fresh 两个 16:9 tasks；
-3. 创建 fresh fast-path helper 与 call guard=2；
-4. 创建 fresh logger，显式接收 EventLogPath / run-root，不得只用 PSScriptRoot 推导 canonical log；
-5. smoke test 必须证明事件写入 run-root RUN_EVENTS.jsonl，且 source/RUN_EVENTS.jsonl 不存在；
-6. smoke PASS 后**同一轮继续**，不回 Reviewer；
-7. 两个 tasks 同时提交；
-8. exactly 2 次 Codex 内置 imagegen；
-9. 每路独立完成 task attribution → bounded output_hint → local PNG → source hash → copy hash → dimensions → QA；
-10. 记录 generation timing 与 local-persist timing；
-11. fresh readback；
-12. STOP at Reviewer。
+2. 创建 fresh R2R1U run directory；
+3. 创建 2 个 distinct 16:9 tasks + call guard=2；
+4. 创建 file-handoff saver：
+   - 必须接受 HintFile；
+   - 禁止从 stdin 读取；
+   - handoff JSON 仅允许 task_id + output_hint；
+   - handoff 文件大小有上限；
+5. 做 0-image transport smoke，证明 saver 已经真正读到 handoff 文件内容；
+6. smoke PASS 后同一轮继续，不回 Reviewer；
+7. 同时提交 2 次 Codex 内置 imagegen；
+8. 每个 live result 返回后，把 bounded output_hint 写到各自 fresh handoff JSON；
+9. saver 从对应 handoff JSON 读取；
+10. 每路完成 allowed-path → source SHA → copy SHA → dimensions → QA；
+11. 记录 generation timing 与 post-return handoff/save/QA timing；
+12. fresh readback；
+13. STOP at Reviewer。
+
+总 imagegen 调用上限 = 2。
 
 ### MANDATORY_REVIEW_STOP
 
 STOP_AT_REVIEWER=YES
 
-但只有以下情况需要在 live 前停止：
+live 前只有以下情况才停止：
 
-- current main / Part 4 contract drift；
-- logger repair smoke 仍失败；
-- helper/call-guard static check 失败；
-- fresh output/evidence paths 冲突。
+- current main / Part 4 drift；
+- file-handoff saver static check失败；
+- transport smoke仍不能读到文件输入；
+- fresh paths 冲突；
+- call guard不满足。
 
-若 logger smoke PASS，则**不得仅因为“修过 logger”而中间停一次**；必须继续到两路 live canary。
+若 transport smoke PASS，则不得为 repair 本身单独停一次，必须继续两路 live canary。
 
 ### TARGET_AND_SCOPE
 
@@ -122,123 +135,148 @@ STOP_AT_REVIEWER=YES
 
 1. current REVIEWER_HANDOFF 当前 Gate / Relay；
 2. current Part 4 §25；
-3. R2R1S 当前轮新 evidence 中对 logger defect 的最小说明；
-4. fresh R2R1T task/helper/logger/evidence files。
+3. R2R1T Reviewer decision；
+4. fresh R2R1U files only。
 
-不允许：
+允许继承：
 
+- R2R1J 单路 output_hint/local-cache fast path PASS；
+- R2R1O simplified size policy PASS；
+- R2R1T concurrency-at-submit=2 且两路 live calls 均返回、每路 output_hint_count=1。
+
+本轮 repair 只针对 fresh saver input transport。
+
+禁止：
+
+- R2R1J/R2R1T 历史目录重放；
 - broad history；
-- R2R1J ZIP/root/fixtures；
-- exact-pixel 重新研究；
+- broad generated_images scan；
+- stdin / write_stdin 传 output_hint；
+- TTY/base64 image bulk；
+- exact-pixel 议题；
 - API fallback；
+- retry / replacement / 第 3 次 imagegen；
 - 6 Beat / H019；
-- 第 3 次 imagegen；
-- retry / replacement；
 - 修改 Part 2/3/4/4.5/SKILL 正式规则。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
 - PASS_CANDIDATE != PASS；
-- accepted R2R1J fast-path / R2R1O size policy 继续继承；
-- R2R1S defect 只归类为 fresh harness logger path；
-- bounded repair 只允许触碰 fresh R2R1T harness；
-- global imagegen call limit=2；
-- per-task attempt=1；
-- retries/replacements/fallback=0；
-- 任一路失败不得补第 3 次调用；
-- output_hint 每路独立 fail-closed；
-- no broad generated_images scan；
-- no TTY/base64 bulk；
-- native pixel mismatch 不失败、不重试；
-- content QA 只记录，不触发重试；
-- canary outputs 不自动进入生产素材库。
+- accepted capability inheritance 继续生效；
+- R2R1T 新证据只触发 output_hint→saver transport 的局部复验，不重验无关历史能力；
+- global imagegen calls = 2；
+- per-task attempt = 1；
+- retries/replacements/fallback = 0；
+- 任一路失败后不得补发；
+- 另一路若已 in-flight 可自然完成；
+- handoff JSON 只保存 bounded metadata，不包含 image/base64 payload；
+- handoff 文件必须 task-scoped，task_id 必须与 saver invocation 一致；
+- output_hint 仍需 exact-one PNG candidate；
+- source 必须位于当前用户 .codex/generated_images allowed root；
+- no broad cache scan；
+- native pixel mismatch 不失败/不重试；
+- QA 只记录，不触发 retry；
+- canary images 不自动进入 production library。
 
 ### PREFLIGHT
 
-只做当前轮最小检查：
+必须满足：
 
 1. current main fresh-read；
 2. Part 4 §25 仍为 16:9 only、1920×1080 target canvas/final target、无 exact native target；
-3. 两个 task IDs 唯一、内容明显不同、prompt 只要求 16:9；
-4. global call guard=2，per-task max attempt=1；
-5. fresh outputs/QA/evidence directories 不冲突；
-6. save helper static checks通过；
-7. logger 显式接收 EventLogPath 或 run-root；
-8. logger smoke event 必须：
-   - 写入 run-root RUN_EVENTS.jsonl；
-   - parseable；
-   - sequence 连续；
-   - source/RUN_EVENTS.jsonl 不存在；
-9. smoke 完成后可清理或标记 smoke event，但必须保留可重建 evidence；
-10. RUN_RECORD / fresh-readback 路径就绪。
+3. 两个 fresh task IDs 唯一、prompt 只要求 16:9；
+4. call guard=2 / per-task max attempt=1；
+5. fresh handoff/output/QA paths 均互不冲突；
+6. saver 不包含 Console.In / stdin / ReadLine 输入路径；
+7. saver required 参数至少包括 TaskId、RunRoot、Destination、HintFile；
+8. handoff JSON 最大字节数 <= 65536；
+9. saver 读取 JSON 后必须校验：
+   - task_id == invocation TaskId；
+   - output_hint 为非空字符串；
+10. transport smoke 使用 synthetic handoff JSON：
+   - task_id 正确；
+   - output_hint 含 exactly one 位于 allowed-root 下但刻意不存在的 PNG 路径；
+   - 预期结果必须到达 SOURCE_MISSING / SOURCE_NOT_FOUND 类错误；
+   - **不得再出现 INPUT_MISSING**；
+11. logger / RUN_RECORD / fresh-readback 路径就绪。
 
-若 1–10 PASS，立即进入 LIVE_CANARY，不另开 Gate。
+transport smoke 只证明“文件交接已进入 parser/path stage”，不需要真实 PNG。
 
-### BOUNDED_LOGGER_REPAIR
+若 1–11 PASS，立即进入 LIVE_CANARY。
 
-允许一次 fresh harness repair：
+### FILE_HANDOFF_CONTRACT
 
-推荐：
+每个 live result 返回后：
 
-- append_event.ps1 增加 required EventLogPath 参数；
-- caller 显式传入 run-root RUN_EVENTS.jsonl；
-- logger 对 parent directory / append / encoding 做最小校验；
-- 禁止通过 PSScriptRoot 猜 run root。
+1. 在 fresh handoff 目录创建该 task 独立 JSON；
+2. JSON 仅包含：
+   - task_id
+   - output_hint
+3. UTF-8 no BOM；
+4. 文件写完后 read-back parse；
+5. task_id 必须匹配；
+6. file bytes <= 65536；
+7. 不把完整 output_hint 写进 ordinary event log；
+8. saver 通过 HintFile 读取，不用 stdin。
 
-这项 repair 只存在于 R2R1T fresh evidence 目录。
+handoff JSON 属于当前 canary evidence，不是生产长期资产。
 
 ### LIVE_CANARY
 
 1. concurrency-at-submit=2；
 2. exactly 2 imagegen calls；
-3. task A/B 各 attempt=1；
-4. 不 retry / replacement。
+3. task A/B each attempt=1；
+4. no retry / replacement。
 
 每个 result：
 
-1. 明确绑定 task id；
-2. 记录 call start / return timing；
-3. 读取 bounded output_hint metadata；
-4. exact one PNG candidate；
-5. require allowed generated-images root；
-6. require existing regular PNG；
-7. source SHA-256；
-8. copy to task fresh destination；
-9. copied SHA-256 = source SHA；
-10. 记录 native dimensions；
-11. reach QA；
-12. record QA result；
-13. 记录 result-return → local persist/QA timing。
+1. bind task id；
+2. record call start / return timing；
+3. capture bounded output_hint in-memory；
+4. serialize per-task handoff JSON；
+5. invoke saver with HintFile；
+6. saver requires exactly one PNG path；
+7. require allowed generated-images root；
+8. require existing regular PNG；
+9. source SHA-256；
+10. copy to fresh task destination；
+11. copied SHA-256 == source SHA；
+12. record native dimensions；
+13. reach QA；
+14. record QA；
+15. record return→handoff-write→copy→QA timing。
 
-任一路 hint/path/hash 失败：
+任一路 handoff/path/hash 失败：
 
 - fail closed；
-- 不 bulk fallback；
-- 不 replacement；
-- 另一路若已 in-flight 可自然完成；
-- 整轮 RETURN_*。
+- no broad scan；
+- no TTY fallback；
+- no replacement；
+- preserve other in-flight result；
+- whole Gate RETURN_*。
 
 ### REQUIRED_EVIDENCE
 
-- IMAGEGEN_TWO_CONCURRENT_LOGGER_REPAIR_AND_LIVE_CANARY_R2R1T.md
-- PREFLIGHT_EVIDENCE_R2R1T.md
+- IMAGEGEN_FILE_HANDOFF_TWO_CONCURRENT_LIVE_CANARY_R2R1U.md
+- PREFLIGHT_EVIDENCE_R2R1U.md
 - current main + Part 4 blob
 - two fresh task fixtures
-- repaired logger source/hash
-- logger smoke result
-- proof root RUN_EVENTS receives event
-- proof source/RUN_EVENTS does not exist
+- saver source/hash
+- proof no stdin read path
+- transport-smoke synthetic handoff + result
+- proof smoke reaches SOURCE_MISSING class, not INPUT_MISSING
 - call guard
 - concurrency-at-submit
 - IMAGEGEN_CALLS=2
-- per-task attempts=1
+- attempts=1 each
 - retries/replacements/fallback=0
-- per-task output_hint diagnostics
+- per-task handoff file bytes/hash
+- per-task bounded hint diagnostics
 - per-task source/copy path + SHA
 - per-task native dimensions
 - per-task QA reachability/result
 - generation timing
-- post-return local-persist timing
+- handoff/save/QA timing
 - RUN_EVENTS.jsonl
 - RUN_RECORD.json
 - fresh readback
@@ -246,39 +284,41 @@ STOP_AT_REVIEWER=YES
 
 ### ACCEPTANCE_CRITERIA
 
-PASS_CANDIDATE_TWO_CONCURRENT_LOGGER_REPAIRED_LIVE_R2R1T requires：
+PASS_CANDIDATE_FILE_HANDOFF_TWO_CONCURRENT_LIVE_R2R1U requires：
 
-1. fresh lightweight preflight PASS；
-2. logger smoke writes canonical root log；
-3. no misplaced source log；
+1. lightweight preflight PASS；
+2. saver no longer uses stdin；
+3. transport smoke proves file input reaches path-validation stage；
 4. exactly 2 concurrent imagegen calls；
-5. two distinct task/result identities correctly attributed；
-6. attempts=1 each；
+5. two task identities correctly attributed；
+6. per-task attempts=1；
 7. retries/replacements/fallback=0；
-8. no TTY bulk transfer；
-9. both hints produce exactly one allowed local PNG；
+8. both live handoff JSON files valid and task-scoped；
+9. both hints yield exactly one allowed local PNG；
 10. each source SHA = copied SHA；
-11. both reach QA；
+11. both images reach QA；
 12. native dimensions recorded without exact-pixel retry；
-13. event chain reconstructable；
-14. generation vs local-persist timing separated；
-15. no formal-rule changes；
-16. fresh readback consistent。
+13. no bulk TTY image transfer；
+14. event chain reconstructable；
+15. generation vs post-return handoff/save timing separated；
+16. no formal-rule changes；
+17. fresh readback consistent。
 
 Allowed results：
 
-- PASS_CANDIDATE_TWO_CONCURRENT_LOGGER_REPAIRED_LIVE_R2R1T
+- PASS_CANDIDATE_FILE_HANDOFF_TWO_CONCURRENT_LIVE_R2R1U
 - RETURN_PREFLIGHT_DRIFT
 - RETURN_IMPLEMENTATION_DRIFT
 - RETURN_TEST_FAILURE
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-- 只修改 fresh R2R1T harness；
+- 只修改 fresh R2R1U harness；
 - 正式规则无需回滚；
-- 若 logger repair smoke 失败，保留证据并 STOP；
-- 若 live 失败，不 retry；
-- canary outputs 保留为 evidence，不自动进入 production library。
+- transport smoke失败则 0 imagegen STOP；
+- live失败不 retry；
+- handoff/canary evidence 保留；
+- 不回头修改历史 R2R1T evidence。
 
 ### OWNER_ONLY_ACTIONS
 
@@ -286,38 +326,38 @@ NONE
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-从 current GitHub main 开始，只执行 R2R1T。
+从 current GitHub main 开始，只执行 R2R1U。
 
 读取：
 
-1. current REVIEWER_HANDOFF 当前 R2R1T Gate / Relay；
+1. current REVIEWER_HANDOFF 当前 R2R1U Gate / Relay；
 2. current Part 4 §25；
-3. R2R1S 报告中 logger defect 的最小结论。
+3. R2R1T Reviewer decision。
 
-不要读 broad history，不要碰 R2R1J 历史目录。
+不要读 broad history，不要复验历史目录。
 
 执行：
 
-1. fresh R2R1T run directory；
+1. fresh run directory；
 2. 2 个 distinct 16:9 tasks；
-3. fresh save helper + call guard；
-4. 修 logger：显式 EventLogPath / run-root；
-5. smoke 验证 root RUN_EVENTS 正确、source log 不存在；
-6. smoke PASS 后同一轮直接并发提交 2 个 tasks；
-7. 每路 output_hint → allowed PNG → source hash → copy hash → dimensions → QA；
+3. call guard=2；
+4. saver 改为 HintFile 文件输入，彻底取消 stdin；
+5. synthetic transport smoke，必须到达 SOURCE_MISSING 类错误而不是 INPUT_MISSING；
+6. smoke PASS 后同一轮并发提交 2 tasks；
+7. 每路 live result → task-scoped handoff JSON → saver → allowed PNG → source/copy hash → dimensions → QA；
 8. 不 retry、不 replacement、不第 3 张；
-9. 记录 timing；
+9. 记录 generation 与 post-return timing；
 10. fresh readback；
 11. STOP。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
-结果：PASS_CANDIDATE_TWO_CONCURRENT_LOGGER_REPAIRED_LIVE_R2R1T / RETURN_*
-改动：仅新增/修复 R2R1T fresh logger/helper/task/evidence；正式规则和历史 evidence 未修改。
-验证：一句话说明 logger smoke、2 路并发、IMAGEGEN_CALLS、每路 path/hash/dimensions/QA、zero retry/fallback、timing 与 fresh readback。
+结果：PASS_CANDIDATE_FILE_HANDOFF_TWO_CONCURRENT_LIVE_R2R1U / RETURN_*
+改动：仅新增/修复 R2R1U fresh file-handoff saver/task/evidence；正式规则和历史 evidence 未修改。
+验证：一句话说明 transport smoke、2 路并发、IMAGEGEN_CALLS、每路 handoff/path/hash/dimensions/QA、zero retry/fallback、timing 与 fresh readback。
 问题：NONE，或“阻塞短语：一句通俗解释”。
 回滚：正式规则无需回滚；fresh evidence/canary outputs 保留。
-请 Reviewer 检查：logger canonical path、两路并发、task attribution、fast-path hashes、zero retry/fallback、timing/readback。
+请 Reviewer 检查：file handoff 是否彻底绕开 stdin、两路 task/result attribution、source/copy hash、zero retry/fallback、timing/readback。
 Owner 转交：NONE。
 
 ## CRITICAL_CONSTRAINTS
@@ -333,7 +373,7 @@ Owner 转交：NONE。
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R1S：既有 Owner/Codex Windows 执行链；lightweight preflight 后最多 2 次并发 Codex 内置 imagegen；
+- 当前 R2R1U：既有 Owner/Codex Windows 执行链；file-handoff transport smoke 后，同一轮最多 2 次并发 Codex 内置 imagegen；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -344,8 +384,8 @@ Owner 转交：NONE。
 
 ## UNRESOLVED
 
-1. **R2R1T logger-repair + two-concurrent live canary**：一次 bounded fresh-harness logger 修复后，同一轮直接获得两路并发生图结果。
-2. **6 Beat R2 完整复测**：R2R1S PASS 后由 Reviewer 决定是否直接进入。
+1. **R2R1U file-handoff two-concurrent live canary**：绕开 closed stdin，用每任务小 JSON 文件把 output_hint 交给 saver，并完成两路 end-to-end 并发验证。
+2. **6 Beat R2 完整复测**：R2R1U PASS 后由 Reviewer 决定是否直接进入。
 3. **Final video 1920×1080 adaptation implementation**：标准画布已确定，具体视频阶段适配仍待 Part 5 正式迁移时实现。
 4. **C-VB01 historical content QA**：旧 PNG 不接受为 final production asset。
 5. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
@@ -354,13 +394,13 @@ Owner 转交：NONE。
 
 ## NEXT_STEP
 
-直接执行并 Review R2R1T：
+直接执行并 Review R2R1U：
 
-current main → fresh logger bounded repair → smoke PASS → 同一轮 2 路同时 imagegen → each result output_hint/local path/hash/copy/QA → timing/readback → STOP
+current main → file-handoff saver → synthetic transport smoke → smoke PASS → 同一轮 2 路同时 imagegen → per-task handoff JSON → local path/hash/copy/QA → timing/readback → STOP
 
 ## OWNER_ACTION_REQUIRED
 
-- **R2R1T 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R1T Relay 交给 Windows / Codex Executor；先修 fresh logger 路径并 smoke，PASS 后同一轮直接并发 2 张图；最多 2 次调用、禁止重试。
+- **R2R1U 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R1U Relay 交给 Windows / Codex Executor；先把 saver 改为每任务小 JSON 文件输入并做 transport smoke，PASS 后同一轮直接并发 2 张图；最多 2 次调用、禁止重试。
 - 不需要整理、恢复或核验任何 R2R1J 历史本地文件。
 - Part 2 正式修改仍 DEFERRED。
 
@@ -381,6 +421,7 @@ current main → fresh logger bounded repair → smoke PASS → 同一轮 2 路�
 - R2R1Q RETURN / R2R1R read-only qualification Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1J_EVIDENCE_RESTORE_AND_PREFLIGHT_REQUALIFICATION_R2R1Q_REVIEW.md`
 - R2R1R superseded / R2R1S fast-test simplification: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1R_SUPERSEDED_AND_FAST_TEST_SIMPLIFICATION_REVIEW.md`
 - R2R1S RETURN / R2R1T logger repair + live Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_TWO_CONCURRENT_LIGHTWEIGHT_LIVE_CANARY_R2R1S_REVIEW.md`
+- R2R1T RETURN / R2R1U file-handoff live Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_TWO_CONCURRENT_LOGGER_REPAIR_AND_LIVE_CANARY_R2R1T_REVIEW.md`
 - Part 2 pending edit map: `comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
 - Current formal Part 3: `comic-narrative/part3/STORYBOARD_VISUAL_DIRECTOR.md`
 - Current formal Part 4: `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md`
