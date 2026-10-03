@@ -65,7 +65,7 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1J：**PASS**（live output_hint strict parse → source hash → local copy → QA 链已证明；C-VB01 图片 QA FAIL 不作为最终素材接受）；
   - R2R1K：**RETURN_IMPLEMENTATION_DRIFT（Reviewer 接受，但纠正故障归因）**：Executor 使用 stale snapshot，且历史 task generator provenance 未保留；尺寸合同债被确认。
 - **H019 完整第二轮重跑**：`DEFERRED`。
-- **6 Beat R2 完整复测**：未授权；先完成 R2R1K，再由 Reviewer 决定是否进入双并发 live fast-path canary。
+- **6 Beat R2 完整复测**：未授权；先完成 R2R1L policy 决策及其后续 formalization/regression，再由 Reviewer 决定是否恢复双并发 live fast-path canary。
 - **Part 5 / Part 6**：未正式迁移。
 
 ## CURRENT_GATE
@@ -118,7 +118,7 @@ Owner 批准后，另起 bounded formal-rule / implementation Gate，不在本 G
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R1K execution/diagnostic harness：既有 Owner/Codex Windows 本地执行链；
+- 当前 R2R1L：policy decision / preserved-fixture diagnostic；若 Owner 批准后进入实现 Gate，再使用既有 Owner/Codex Windows 本地执行链；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
