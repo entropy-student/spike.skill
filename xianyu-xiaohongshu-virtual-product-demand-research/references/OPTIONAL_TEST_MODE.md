@@ -71,7 +71,21 @@ BACKUP
 
 ## 5. Minimum Validation
 
-只对 TEST_READY 设计真实验证：
+只对 TEST_READY 设计真实验证。
+
+任何真实测试开始前，必须先写：
+
+~~~text
+BUDGET_CAP=
+TIMEBOX=
+SUCCESS_SIGNAL=
+FAIL_OR_KILL_SIGNAL=
+STOP_CONDITION=
+~~~
+
+没有预算上限、时间盒和停止条件，不进入真实测试。
+
+优先信号：
 
 ~~~text
 payment > deposit / committed order > qualified inquiry > click/search > collect/like
