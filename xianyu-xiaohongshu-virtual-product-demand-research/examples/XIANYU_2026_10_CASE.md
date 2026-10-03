@@ -92,3 +92,90 @@ Demand Status = WATCHLIST
 7. Counterevidence 可以降低 D-Level，不只是降低 Confidence。
 8. 重复调用优先刷新底稿，不从零研究。
 9. “值得继续研究”与“已经 TEST_READY”是两回事。
+
+
+## 4. Boundary behavior checks
+
+以下是 v2.1 的最小行为验收：
+
+### Case A — 供给很多，没有买方信号
+
+~~~text
+8 个独立卖家
+每个都在挂同类商品
+0 个可见想要
+0 个询盘/求购
+0 个交易证据
+~~~
+
+必须得到：
+
+~~~text
+Supply Observation = replicated
+Demand Level = D1
+Demand Status = WATCHLIST
+~~~
+
+**不得因为 8 个卖家而升级 D3 / PROBABLE。**
+
+### Case B — 商品族成交，SKU 组合更细
+
+~~~text
+Evidence = “AI 漫剧教程卖出 17k”
+Candidate = “AI 漫剧教程 + 项目文件 + Workflow”
+~~~
+
+必须拆开：
+
+~~~text
+AI 漫剧教程 → 可按原证据评估 D4
+额外的项目文件 + Workflow → UNKNOWN / DERIVED_ADJACENT
+完整 Bundle → 不能继承 D4
+~~~
+
+### Case C — 单个商品高想要
+
+~~~text
+1 个直接商品
+603 个想要
+无第二个独立买方信号
+无交易证据
+~~~
+
+必须得到：
+
+~~~text
+Demand Level = D2
+Demand Status = WATCHLIST
+~~~
+
+高数值增强重要性，不改变独立性。
+
+### Case D — 需求强，但风险高
+
+可以同时：
+
+~~~text
+Demand Level = D4
+Demand Status = CONFIRMED_DEMAND
+Risk Status = HIGH_RISK
+~~~
+
+不能为了风险高而声称“没有需求”，也不能因为需求强就忽略风险。
+
+### Case E — 值得研究，但还不能真实测试
+
+~~~text
+Demand Level = D3
+Policy = UNKNOWN
+Economics = UNKNOWN
+Delivery/Rights = UNKNOWN
+~~~
+
+必须得到：
+
+~~~text
+RESEARCH_NEXT
+NOT TEST_READY
+NOT PRIORITY_TEST
+~~~
