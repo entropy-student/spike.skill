@@ -1684,3 +1684,39 @@ R2R1 期间：
 
 当前状态：
 `R2_RETURN_IMPLEMENTATION_DRIFT / NEXT_R2R1_INTEGRATION_CANARY / CONCURRENCY_2_ONLY / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
+
+
+
+### IMAGEGEN_EXECUTOR_RELIABILITY_R2R1 — Reviewer Decision（2026-10-03）
+
+R2R1 Preflight 返回 `RETURN_IMPLEMENTATION_DRIFT`，未调用生图。
+
+Reviewer 复核后区分两个阻塞：
+
+1. **Reviewer 文件本机缺失不是 canonical blocker。**
+   两份文件均存在于 GitHub 正式分支：
+   - `comic-narrative/reviews/imagegen-speed/IMAGEGEN_EXECUTOR_RELIABILITY_R2_REVIEW.md`
+   - `comic-narrative/reviews/imagegen-speed/IMAGEGEN_SPEED_BATCH_R1_REVIEW.md`
+   后续执行应从 canonical repo fetch，不再依赖本机旧 worktree 是否带有副本。
+
+2. **R2 原始 JavaScript imagegen 返回对象缺失是真实 blocker。**
+   R2 没有保存 adapter 变形前的 raw result，也没有等价结构化 capture，因此不能诚实构造“与真实返回完全同形”的 adapter fixture。
+
+下一 Gate 改为：
+**`IMAGEGEN_EXECUTOR_RESULT_CAPTURE_R2R1A`**
+
+R2R1A 只做一次 instrumentation：
+`在 JS adapter 之前加 raw capture → 仅调用 1 次 imagegen → 立即保存真实返回对象 / 结构 → 标出 direct asset/source 字段 → STOP → Reviewer`。
+
+该 instrumentation 图片不算 R2R1 canary attempt，不做内容 QA / retry。
+
+只有 R2R1A 经 Reviewer 接受后，才继续：
+`真实 shape → 修 JS adapter → 同 runtime no-image preflight → C-VB01/C-VB02 concurrency=2 两张 canary`。
+
+仍禁止：
+- concurrency=3；
+- H019 完整重跑；
+- 修改正式 Part 3 / Part 4 / Part 4.5 / SKILL。
+
+当前状态：
+`R2R1_RETURN_IMPLEMENTATION_DRIFT / NEXT_RAW_RESULT_CAPTURE_R2R1A / CANARY_NOT_AUTHORIZED_YET`。
