@@ -1515,3 +1515,29 @@ T3（服务内部开始生成）如工具仍不可观察，则继续标为不可
 
 当前状态：
 `H019_SAMPLE_DIAGNOSIS_COMPLETE / SPEED_BOTTLENECK_REVIEWED / FORMAL_PART3_PART4_PENDING_OWNER_EDIT_MAP_APPROVAL / NEXT_PILOT_PLANNED_6_IMAGES_CONCURRENCY_2 / FULL_RERUN_DEFERRED`
+
+
+
+### Part 3：H019 已批准规则补强正式落地（2026-10-03）
+
+Owner 已明确要求先完成 Part 3 修改；本轮仅修改正式 `part3/STORYBOARD_VISUAL_DIRECTOR.md`，Part 4 暂不动。
+
+正式 Part 3 已落地：
+- 长期画风基线由“2 张具体生活场景 Style Reference”改为“1–2 张经确认的 Style Plate”；
+- Style Plate 只锁线条、上色、人物比例、阴影/材质、色彩关系与整体完成度，不定义具体场景、道具、昼夜、姿势或构图；
+- 主观脑补 / 假设 / 计划必须具备可执行的主观视觉语法，不能只写“主观气氛”；
+- Scene System 对关键重复空间增加 Scene Anchor：空间身份、时间/昼夜/天气、故事用途、延续范围与允许切换边界；具体 reference 绑定仍归 Part 4；
+- 当结论依赖 before → after 变化时，必须提供可见证据；必要时采用 setup → matched reveal / before → after，不依赖解释标签证明变化；
+- Part 3 QA 已同步增加 Scene Anchor、主观视觉语法和 before/after 可见证据检查。
+
+正式修改 commit：
+- `b9c561a6368a5f21c3cfd5076b574f3964b41a3e`
+
+当前边界：
+- Part 3：本轮 H019 已批准补强已落地；
+- Part 4：仍保持原正式基线，等待后续单独修改；
+- Style Plate 的具体图片资产尚未生成 / 确认，不在本轮创建；
+- H019 第二轮完整重跑仍未启动。
+
+当前状态：
+`PART3_H019_REFINEMENTS_APPLIED / PART4_PENDING / STYLE_PLATE_ASSET_PENDING / FULL_RERUN_DEFERRED`。
