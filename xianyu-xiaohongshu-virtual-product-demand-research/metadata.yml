@@ -1,8 +1,8 @@
-slug: xianyu-xiaohongshu-virtual-product-opportunity
-display_name: 闲鱼 / 小红书虚拟商品选品
+slug: xianyu-xiaohongshu-virtual-product-demand-research
+display_name: 闲鱼 / 小红书虚拟商品需求研究
 category: product-research
 language: zh-CN
-version: 2.0.0
+version: 2.0.1
 status: active
 scope: xianyu-xiaohongshu-virtual-products
 default_mode: MARKET_MAP

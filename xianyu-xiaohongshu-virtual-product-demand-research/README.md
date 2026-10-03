@@ -1,6 +1,6 @@
-# Xianyu & Xiaohongshu Virtual Product Opportunity v2.0
+# 闲鱼 / 小红书虚拟商品需求研究 v2.0.1
 
-用于反复执行的 **闲鱼 / 小红书虚拟商品选品与市场映射 Skill**。
+用于反复执行的 **闲鱼 / 小红书虚拟商品需求研究 Skill**。
 
 ## 默认做什么
 
