@@ -77,95 +77,210 @@ Part 6  执行与项目管理               [未正式迁移]
 
 ### OBJECTIVE
 
-验证 Owner 新批准的唯一画幅 / native-size 合同是否真正进入**新编译任务与实际 imagegen 调用层**，而不是只停留在 Part 4 文档或 prompt 文本中。
+验证 Owner 已批准的尺寸合同是否真正进入**新任务编译层与实际 imagegen 调用参数**，而不是只停留在 Part 4 文档或 prompt 文本中。
 
-当前正式尺寸合同：
+当前正式合同：
 
-- 唯一正式画幅：`16:9`（生产与交付均不得切换其他长宽比）；
+- 唯一正式画幅：`16:9`；
 - default native image-generation target：`1792×1008`；
 - final delivery target：`1920×1080`。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
-1. 从当前 GitHub `main` fresh-read Part 4 §25；
-2. 新建一个 R2R1M test task / execution fixture，不改历史 C-VB01 evidence；
-3. task 必须把：
-   - `aspect_ratio = 16:9`
-   - `native_generation_target = 1792×1008`
-   - `final_delivery_target = 1920×1080`
-   分成三个明确语义；
-4. 证明 generation prompt / tool-call mapping 不再把 `1920×1080` 当 native generation request；
-5. 在 imagegen 前完成 no-image contract preflight；
-6. preflight PASS 后，最多允许 **1 次 live imagegen** 验证实际调用与返回 raster；
-7. 不做 retry；
-8. 记录 tool-call requested size / returned raster / path / hash / QA reachability；
-9. fresh readback；
-10. `STOP_AT_REVIEWER=YES`。
+1. fresh-read 当前 GitHub `main` 与 Part 4 §25；
+2. 建立一个新的 R2R1M test task / fixture，不改历史 C-VB01；
+3. 证明 task compiler / tool-call mapping 把 `1792×1008` 作为 native request，把 `1920×1080` 仅作为 final delivery target；
+4. 完成 no-image preflight；
+5. 只有 preflight 全 PASS 后，最多允许 **1 次** live imagegen；
+6. 记录 actual requested size、actual returned raster、path/hash、QA reachability；
+7. 不 retry、不 fallback 到其他尺寸；
+8. fresh readback；
+9. STOP at Reviewer。
+
+### MANDATORY_REVIEW_STOP
+
+`STOP_AT_REVIEWER=YES`
+
+本 Gate 不得自动进入：
+- 第二次 imagegen；
+- 双并发；
+- 6 Beat；
+- H019；
+- Part 5 / Part 6；
+- 任何新尺寸策略或正式规则改动。
+
+### TARGET_AND_SCOPE
+
+允许读取 / 使用：
+
+1. 当前 `comic-narrative/REVIEWER_HANDOFF.md` 的本 Gate 与 Relay；
+2. `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md` §25；
+3. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_NATIVE_SIZE_OWNER_DECISION_R2R1L_REVIEW.md`；
+4. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J_REVIEW.md`；
+5. preserved R2R1J evidence package 中**仅与当前执行链直接相关**的 receiver / runtime hash helper / strict parser / run-record 路径；
+6. 新建的 R2R1M test fixture、preflight、run/evidence 目录；
+7. 最多 1 次 live imagegen。
+
+明确禁止：
+
+- 修改 Part 2 / Part 3 / Part 4 / Part 4.5 / SKILL 正式规则；
+- 修改 R2R1F / R2R1J / C-VB01 历史 evidence；
+- 广泛扫描历史 Handoff / 全仓库 / generated-images；
+- 改 parser/path-policy；
+- 重新设计 transport；
+- 用 prompt 文字冒充 structured size 参数证据；
+- 自动换成其他 native size；
+- 第二次调用、内容 retry、双并发、6 Beat、H019。
+
+### APPLICABLE_CRITICAL_CONSTRAINTS
+
+- `PASS_CANDIDATE != PASS`；
+- 未证明事实保持 `UNKNOWN`；
+- GitHub current `main` 与 fresh authoritative evidence 优先；
+- 16:9 是生产与交付唯一正式画幅；
+- native target 仅为 `1792×1008`；
+- final delivery target 仅为 `1920×1080`；
+- actual returned raster 必须记录真实值，不得按 requested size 代填；
+- R2R1J fast-path accepted state 可继承，但 `output_hint` 仍按每次结果独立验证；
+- 不通过 TTY 搬运完整 base64；
+- one-live-canary 上限 = 1，任何失败均不得 replay；
+- 新 canary 图片仅作 Gate evidence，未经后续内容验收不得进入正式素材库或 production mapping。
 
 ### PREFLIGHT
 
-必须先证明：
+在任何 imagegen 调用前必须全部证明：
 
-1. canonical ref = current `main`；
-2. Part 4 §25 fresh-read 与上述三层合同一致；
-3. 新 test task 明确只有 16:9；
-4. native target 只使用 `1792×1008`；
-5. final target 只使用 `1920×1080`；
-6. generation prompt / structured call 中不存在把 `1920×1080` 误作 native request 的路径；
-7. event/run/fresh-readback 记录机制可用。
+1. 当前 Git root / project scope / branch-revision 已确认，且本项目目标文件没有被无关 worktree 改动污染；
+2. GitHub current `main` 中 Part 4 §25 fresh-read 仍明确：
+   - `16:9 only`
+   - native `1792×1008`
+   - final `1920×1080`；
+3. Part 4 当前 blob SHA 与 fresh-read 结果已记录；
+4. preserved R2R1J 中将继续复用的 receiver / hash helper / strict parser exact local path 与 hash 已证明；若 exact path 无法从 preserved evidence 证明，RETURN，不猜路径；
+5. 新 R2R1M test task / fixture 已建立并计算 hash，且三个字段语义分离：
+   - `aspect_ratio = 16:9`
+   - `native_generation_target = 1792×1008`
+   - `final_delivery_target = 1920×1080`；
+6. 在**不调用 imagegen**的情况下，生成并检查实际 structured tool-call / request arguments；必须能直接证明 native request 是 `1792×1008`，不能只靠 prompt 中出现该文本；
+7. structured call / prompt 中不存在把 `1920×1080` 当 native request 的路径；
+8. 若当前工具 / provider 不提供可证明的 `1792×1008` native-size 参数表达方式，立即 `RETURN_EXECUTION_CONTRACT_UNRESOLVED`，`IMAGEGEN_CALLS=0`；
+9. one-call guard、fresh destination、`RUN_EVENTS.jsonl`、`RUN_RECORD.json`、fresh-readback 输出路径已就绪；
+10. 普通日志不会写入完整 `image_url` / base64 / full hint。
 
 任一 preflight failure：
-`RETURN_IMPLEMENTATION_DRIFT / IMAGEGEN_CALLS=0 / STOP`。
+`IMAGEGEN_CALLS=0 / RETURN_* / STOP`。
 
-### LIVE CANARY
-
-仅在 preflight PASS 后：
-
-- 最多 1 次 imagegen；
-- requested native target 必须是 `1792×1008`；
-- aspect ratio 只允许 `16:9`；
-- 不允许 second attempt；
-- 不允许 C-VB02 / 双并发 / 6 Beat / H019；
-- returned raster 必须按实际值记录，不得伪装成 requested size；
-- 如果 provider / tool 不接受或不返回 1792×1008，记录真实行为并 RETURN，不得自动换尺寸。
-
-### REQUIRED EVIDENCE
+### REQUIRED_EVIDENCE
 
 - `IMAGEGEN_NATIVE_SIZE_CONTRACT_PROPAGATION_LIVE_CANARY_R2R1M.md`
-- Part 4 §25 fresh-read pointer/hash
-- new R2R1M test task / fixture + hash
-- generation prompt / structured tool-call mapping
-- preflight report
+- `PREFLIGHT_EVIDENCE_R2R1M.md`
+- GitHub current main SHA
+- Part 4 §25 fresh-read pointer + blob SHA
+- R2R1J reused local source paths + hashes
+- new R2R1M test task / fixture + SHA-256
+- actual structured tool-call / request argument record（不得含 base64）
 - `IMAGEGEN_CALLS=0 or 1`
-- requested size
-- actual returned raster size（若 live call 发生）
-- source/copy path + hash（若生成成功）
-- event/run record
+- retry count = 0
+- requested aspect ratio / native size / final delivery size
+- actual returned raster width × height（若 live call 发生）
+- runtime decoded-image SHA-256（若可得）
+- hinted source / destination path + SHA-256（若 fast-path 成功）
+- QA reachability / QA result（若图片落盘）
+- `RUN_EVENTS.jsonl`
+- `RUN_RECORD.json`
+- project-scoped diff / non-target-delta check
 - fresh-readback summary
+- `EXECUTOR_RESULT`
 
-### ACCEPTANCE
+### ACCEPTANCE_CRITERIA
 
-Candidate PASS 需要：
+`PASS_CANDIDATE_NATIVE_SIZE_CONTRACT_LIVE_R2R1M` 需要全部满足：
 
-- 16:9 是唯一任务画幅；
-- native target 与 final target 已彻底分离；
-- actual imagegen request 可证明请求的是 `1792×1008`；
-- 最多 1 次 imagegen；
-- 无 retry；
-- 返回尺寸按真实值记录；
-- 无历史 evidence 改写；
-- fresh readback 一致。
+1. preflight 在 imagegen 前 PASS；
+2. 新任务只有 16:9；
+3. native / final delivery 语义已分离；
+4. actual structured imagegen request 可直接证明请求 native `1792×1008`，不是仅 prompt 文本；
+5. `1920×1080` 没有进入 native generation request；
+6. imagegen 调用总数 = 1；
+7. retry = 0；
+8. 无 fallback 到其他 requested size；
+9. actual returned raster 按真实值记录；
+10. 若 fast-path 使用，source hash / runtime hash / copy hash 的 accepted R2R1J 验证链仍成立；
+11. copied image 可到达 QA；内容 QA PASS 不是本 Gate 的 PASS 前提，也不得触发 retry；
+12. 无正式 Part 2/3/4/4.5/SKILL 改动；
+13. 无历史 evidence 改写；
+14. event/run 记录可重建；
+15. fresh readback 与证据一致。
 
 允许结果：
 
 - `PASS_CANDIDATE_NATIVE_SIZE_CONTRACT_LIVE_R2R1M`
+- `RETURN_PREFLIGHT_DRIFT`
 - `RETURN_IMPLEMENTATION_DRIFT`
 - `RETURN_TEST_FAILURE`
 - `RETURN_EXECUTION_CONTRACT_UNRESOLVED`
 
+### ROLLBACK_STATUS_OR_PLAN
+
+- 本 Gate 不修改正式生产规则或历史 evidence，因此不存在 production rollback。
+- 新 test fixture / 临时 harness 文件必须与正式源码分离；发生异常时删除临时文件并保留 evidence。
+- 若发现任何非预期正式源码修改，恢复到 preflight 记录的 source/hash 后 RETURN。
+- live canary 成图作为 evidence 保留，但不得自动进入 Part 4.5 active library 或 production output mapping。
+- 任一失败后不得通过第二次 imagegen“补证据”。
+
 ### OWNER_ONLY_ACTIONS
 
 `NONE`。
+
+Owner 已批准当前唯一画幅 / native-size 方向；本 Gate 不包含新的费用、公开发布、不可逆数据删除、Secret 或账号权限动作。
+
+### REVIEWER_TO_EXECUTOR_RELAY
+
+从**当前 GitHub main**开始，只执行本 Gate，不重读 Governance、不扫描 broad history。
+
+允许读取：
+
+1. `comic-narrative/REVIEWER_HANDOFF.md` → CURRENT_GATE / REVIEWER_TO_EXECUTOR_RELAY；
+2. `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md` → §25；
+3. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_NATIVE_SIZE_OWNER_DECISION_R2R1L_REVIEW.md`；
+4. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J_REVIEW.md`；
+5. preserved R2R1J evidence package 中为 receiver / runtime hash helper / strict parser / run-record 明确指向的 exact files；
+6. 你创建的全新 R2R1M test/evidence 目录。
+
+可依赖的 accepted facts：
+
+- R2R1L：16:9 是生产与交付唯一正式画幅；
+- native target = `1792×1008`；
+- final delivery target = `1920×1080`；
+- R2R1J：output_hint strict parse → source hash → copy → QA 的 live fast-path 已正式 PASS；
+- 历史 C-VB01 的 `1920×1080` generation instruction 已过时，只作历史 evidence，不得复用为新任务合同。
+
+执行顺序：
+
+1. fresh-read current main + Part 4 §25；
+2. prove exact local R2R1J execution source paths/hashes；
+3. create new R2R1M test task / fixture；
+4. dry-render actual structured imagegen request；
+5. 若不能在调用前直接证明 native request = `1792×1008`，立即 RETURN，imagegen=0；
+6. preflight 全 PASS 后最多调用 imagegen 1 次；
+7. 不 retry、不 fallback；
+8. 记录 actual returned raster、hash/path、QA reachability；
+9. fresh readback；
+10. STOP，返回 Reviewer。
+
+禁止修改正式 Part 4 规则、历史 C-VB01、R2R1J evidence、parser/path-policy；禁止双并发 / 6 Beat / H019。
+
+### EXECUTOR_TO_REVIEWER_RELAY
+
+```text
+结果：PASS_CANDIDATE_NATIVE_SIZE_CONTRACT_LIVE_R2R1M / RETURN_*
+改动：一句话说明仅新增了哪些 R2R1M test/evidence，或说明 NONE。
+验证：一句话说明 preflight、actual requested native size、imagegen 调用数、actual returned raster、hash/QA/readback。
+问题：NONE，或“阻塞短语：一句通俗解释”。
+回滚：一句话说明临时文件/正式源码/历史 evidence 是否保持安全。
+请 Reviewer 检查：核对 structured request、IMAGEGEN_CALLS、returned raster、hash/QA、fresh readback 与非目标改动。
+Owner 转交：NONE。
+```
 
 ## CRITICAL_CONSTRAINTS
 
@@ -211,7 +326,7 @@ Candidate PASS 需要：
 
 ## OWNER_ACTION_REQUIRED
 
-- 当前 R2R1M：**NONE**。
+- **R2R1M 执行转交：**将当前 `REVIEWER_HANDOFF.md` 的 R2R1M Gate 交给既有 Windows / Codex Executor 执行；无需额外决策。
 - Part 2 正式修改仍 DEFERRED。
 
 ## EVIDENCE_POINTERS
