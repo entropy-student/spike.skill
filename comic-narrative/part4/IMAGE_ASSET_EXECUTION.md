@@ -6,7 +6,7 @@
 
 - Part 0–3 是上游正式事实，Part 4 不得改写；
 - `source-snapshots/04-image-assets/` 仅用于来源、证据与追溯，不参与运行；
-- 迁移进展、历史决策、待决问题、下一步规划统一记录在 `HANDOFF.md`。
+- 当前状态、当前 Gate、待决问题与下一步统一记录在 `../REVIEWER_HANDOFF.md`；历史迁移、Owner 决策与旧执行记录保留在 `../HANDOFF.md`，默认不作为执行启动面。
 
 ---
 
