@@ -1642,3 +1642,45 @@ Owner 当前尚未逐项批准正式写入；下一步应继续逐项审阅 / �
 
 当前状态：
 `PART2_EDIT_MAP_OVERVIEW_RECORDED / FORMAL_PART2_UNCHANGED / WAITING_OWNER_ITEM_APPROVAL`。
+
+
+
+### IMAGEGEN_EXECUTOR_RELIABILITY_R2 — Reviewer Decision（2026-10-03）
+
+Reviewer 对 Owner 提供的 `_imagegen-executor-reliability-r2.zip` 做了 fresh readback。证据包 SHA-256：
+`39121fbda7232162e9734281cf60f4b2eee46846789117ac692e41c0c88a31ce`。
+
+Reviewer verdict：**`RETURN_IMPLEMENTATION_DRIFT`**。
+
+直接核验：
+- 目标仍为 6 Beat / concurrency=2；
+- 实际只提交 C-VB01、C-VB02；
+- 两个请求均在执行路径返回图片，但 R2 中 0 张成功保存；
+- 0 QA、0 retry、0 dependency release，另外 4 Beat 未启动；
+- RUN_EVENTS.jsonl 共 14 条可解析记录，sequence `10` 重复、`11` 缺失；
+- C-VB02 的 T2→T4 为 65.726s，但 source-path resolver 未找到实际 PNG；
+- C-VB01 的 IMAGE_RETURNED 日志因并发文件锁冲突丢失。
+
+Preflight PASS 不足以放行：其路径 fixture 与真实 image-result adapter 的数据形状不一致；真实 JavaScript adapter 没有转发实际所需的 top-level result 字段。停止后 PowerShell resolver 与 named-mutex 日志压力测试均通过，但只属于 `LOCAL_COMPONENT_PASS / END_TO_END_NOT_VERIFIED`。
+
+R2 本地未找到 standalone R1 reviewer 文件不是阻塞项；canonical 文件在仓库：
+`comic-narrative/reviews/imagegen-speed/IMAGEGEN_SPEED_BATCH_R1_REVIEW.md`。
+
+下一 Gate：
+**`IMAGEGEN_EXECUTOR_RELIABILITY_R2R1`**
+
+R2R1 不再直接跑 6 Beat，而是：
+`修真实 JS adapter + 统一锁内 append → 同 runtime path 无生图 preflight → C-VB01/C-VB02 两张真实并发 canary → 自动保存/hash/log/QA fresh readback → STOP → Reviewer`。
+
+R2R1 期间：
+- concurrency 固定 2；
+- 两张 canary 不做内容 retry；
+- 不启动另外 4 Beat；
+- 不测 concurrency=3；
+- 不启动 H019 完整重跑；
+- 不修改正式 Part 3 / Part 4 / Part 4.5 / SKILL。
+
+只有 R2R1 获得 `PASS_CANDIDATE_EXECUTOR_INTEGRATION_R2R1` 并经 Reviewer 接受后，才进入完整 6 Beat 的后续 R2 复测。
+
+当前状态：
+`R2_RETURN_IMPLEMENTATION_DRIFT / NEXT_R2R1_INTEGRATION_CANARY / CONCURRENCY_2_ONLY / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
