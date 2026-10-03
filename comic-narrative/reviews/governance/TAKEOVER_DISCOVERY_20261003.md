@@ -43,6 +43,8 @@ The legacy `HANDOFF.md` still contains a stale development-branch header and has
 
 This is a documentation/governance drift, not evidence that Part 0–4.5 runtime rules are invalid.
 
+A separate cross-module rule mismatch is also visible but is **not repaired in this takeover Gate**: current Part 3 defines the long-term style baseline as 1–2 neutral Style Plates, while current Part 4 still names 2 concrete Style References as input/reference baseline. This remains an explicit pending Part 4 reconciliation item.
+
 ## 5. Specialist trigger scan
 
 - Shared VPS / Storage: **NOT_TRIGGERED**
