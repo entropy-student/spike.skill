@@ -757,11 +757,16 @@ Part 4 的规划阶段最终交付物是一个完整图片执行包。目录形�
 
 正式生产与交付统一画幅：
 
-- 16:9 是唯一正式画幅；生产与交付均不得切换为其他长宽比；
-- 1792×1008 default native image-generation target；
-- 1920×1080 final delivery target。
+- 16:9 是唯一正式画幅；任务 / prompt 应明确要求 16:9 横屏构图，最终交付也保持 16:9；
+- 1920×1080 是默认目标画布与 final delivery target；
+- Codex 内置 imagegen 的 provider-native raster 由当前工具 / provider 决定，不要求天然精确等于 1920×1080，也不再设置第二个 native pixel target；
+- native width × height 必须记录真实值，但“不是 1920×1080”本身不构成生成失败、内容失败或重试理由；
+- 仅当实际画面明显偏离 16:9 横屏构图并影响后续画面语义 / 构图时，才作为 output-format / content QA 问题处理；接近 16:9 的像素取整差异不单独判失败；
+- 禁止仅为了追求 exact pixel dimensions 重新生图或修改图片。
 
 当前 Part 3 长期 Master 原图尺寸不等于最终成片输出尺寸。
+
+最终进入视频 / 交付阶段时，以 1920×1080 作为统一标准画布；原始 PNG 保留，不要求先生成第二份“精确 1920×1080 原图”。
 
 禁止为了交付尺寸：
 
