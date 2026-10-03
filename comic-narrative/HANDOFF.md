@@ -2068,3 +2068,32 @@ R2R1H 边界：
 
 当前状态：
 R2R1G_PASS / TTY_BULK_BRIDGE_CONFIRMED_BOTTLENECK / NEXT_R2R1H_LOCAL_CACHE_HINT_DIAGNOSTIC / IMAGEGEN_CALLS_NEXT_GATE_0 / FULL_6_BEAT_RETEST_NOT_AUTHORIZED。
+
+### IMAGEGEN_OUTPUT_HINT_LOCAL_CACHE_DIAGNOSTIC_R2R1H — Reviewer PASS（2026-10-03）
+
+正式 verdict：**`PASS`**。
+
+证据包 Reviewer-computed SHA-256：`892d627f00795d664b55cf2d8fd921d5d924c0eb725a1a632269f0b08761fb36`。
+
+直接核验：
+- `IMAGEGEN_CALLS=0`；
+- decoded `image_url`、hint 指向的本地 PNG、R2R1H copy 均为 923,749 bytes；
+- 三者 SHA-256 均为 `bf622d490194e90f4587b4d90869e6f5d4c792d6b52f7e6e2471cfcf44f3ff5d`；
+- strict parser 仅接受 allowed generated-images root 内唯一明确 PNG；
+- outside-root / missing / non-PNG / ambiguous / traversal 五项均 fail-closed，0 copy；
+- 无 generated-images broad scan；
+- 无 TTY bulk transfer；
+- 本地 parse / verify+hash / copy+hash 仅为毫秒级。
+
+结论：R2R1A 这一真实样本证明 `output_hint` 指向的 local generated-image file 可以作为 exact-byte optional fast path；但 `output_hint` **仍不是保证性 API contract**。
+
+下一 Gate：**`IMAGEGEN_OUTPUT_HINT_LOCAL_CACHE_LIVE_CANARY_R2R1I`**。
+
+R2R1I 只允许一次真实 imagegen：`C-VB01 attempt1`。核心验证：
+`live imagegen return → 在返回上下文内计算 decoded image_url SHA（不搬 base64）→ 仅传 bounded metadata + output_hint → strict local path verify → hinted PNG hash 对比 → local copy → QA → fresh readback → STOP`。
+
+若 hint 缺失 / 非法 / 歧义 / 文件不存在 / hash 不一致：fail-closed，不允许 bulk TTY fallback，也不允许重放 imagegen。
+
+仍禁止：attempt2、C-VB02、另外 4 Beat、concurrency=3、H019、正式 Part 2/3/4/4.5/SKILL 修改。
+
+当前状态：`R2R1H_PASS / OPTIONAL_LOCAL_CACHE_FAST_PATH_PROVEN_ON_PRESERVED_SAMPLE / NEXT_R2R1I_ONE_LIVE_CANARY / ONE_IMAGEGEN_CALL_MAX / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
