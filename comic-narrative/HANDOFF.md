@@ -1926,3 +1926,53 @@ R2R1E：
 
 当前状态：
 `R2R1D_PASS / NEXT_R2R1E_LIVE_INTEGRATION_CANARY / TWO_IMAGEGEN_CALLS_MAX / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
+
+
+
+### IMAGEGEN_EXECUTOR_INTEGRATION_CANARY_R2R1E — Reviewer RETURN（2026-10-03）
+
+Reviewer 按 `vps-project-governance/VNEXT.md` v0.2.6 完成 fresh readback。
+
+正式 verdict：**`RETURN_IMPLEMENTATION_DRIFT`**。
+
+直接核验：
+- canonical HANDOFF / R2R1D Reviewer source 与预期一致；
+- runtime source hash 匹配；
+- preflight receiver 启动后约 15.16 秒收到 0 bytes / 0 delimiter，以 exit code=2 结束；
+- 此时 orchestration 仍在准备完整 fixture wire；
+- 后续 write 面向已关闭 session，没有 delivery confirmation；
+- adapter 未调用；
+- `IMAGEGEN_CALLS=0`；
+- C-VB01 / C-VB02 未提交；
+- 没有 canary PNG / SHA / QA / retry；
+- Executor 按 Gate 正确 fail-closed。
+
+Reviewer 当前故障定位：
+**不是 R2R1D one-shot transport 回归，而是 pre-send orchestration ordering / readiness drift。**
+
+R2R1D 已证明 full-size one-shot path 可用；R2R1E 在 payload 尚未准备完成时先启动 receiver，导致 receiver 的 15 秒 no-input timeout 在真正发送前到期。
+
+下一 Gate：
+**`IMAGEGEN_EXECUTOR_INTEGRATION_CANARY_R2R1F`**
+
+核心修复：
+- fixture：先完整读取 / serialize outbound wire，再启动 receiver，再立即发送；
+- live imagegen：先等 raw result 返回并完整准备 outbound wire，再启动 receiver，再立即发送；
+- 不通过放宽 15 秒 idle timeout 来掩盖 orchestration latency；
+- 保留外部 watchdog；
+- no-image fixture preflight PASS 后，才允许 C-VB01/C-VB02 attempt1 两次真实 imagegen；
+- 两张不 retry，失败不得重放 imagegen。
+
+R2R1F 最大终点：
+`pre-send ordering repair → full-size fixture preflight → C-VB01/C-VB02 attempt1 concurrency<=2 → auto save/hash → QA → fresh readback → STOP → Reviewer`。
+
+仍禁止：
+- transport redesign / chunk+ACK；
+- attempt2；
+- 另外 4 Beat；
+- concurrency=3；
+- H019；
+- 正式 Part 2/3/4/4.5/SKILL 修改。
+
+当前状态：
+`R2R1E_RETURN_IMPLEMENTATION_DRIFT / NEXT_R2R1F_PREPARE_BEFORE_RECEIVER / TWO_IMAGEGEN_CALLS_MAX_AFTER_PREFLIGHT / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
