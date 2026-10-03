@@ -1615,3 +1615,30 @@ Owner 已同意先形成正式修改位置清单，再决定是否写入 Part 2 
 
 当前状态：
 `PART2_REAUDIT_REVIEWED / FORMAL_EDIT_MAP_READY / FORMAL_PART2_UNCHANGED / WAITING_OWNER_APPROVAL`。
+
+
+
+### Part 2 正式修改清单：Owner 整体概览确认记录（2026-10-03）
+
+Owner 已先完成对 Part 2 修改清单的整体概览；**本轮仅记录，不修改正式 Part 2**。
+
+当前 11 个拟修改点：
+1. Part 1 输入承接 + 来源 / scope；
+2. 证据 / 故事身份边界；
+3. 机制核 → 故事前提 → Writer 的锁定 / 重锁权限；
+4. “推进”按主要叙事单元检查，避免逐句机械化；
+5. 第一人称默认入口与真实性冲突处理；
+6. Hook 承诺强度不得超过机制 / 正文可兑现范围；
+7. 术语默认后置，但必要时允许早提名称；
+8. Part 2.5 真实成音后的返修回路；
+9. 最终交接补充事实身份、关键非口播事件、说话者 / 轮次、语义锚点与不可改事实；
+10. 整稿 QA 增加发现依据、承诺兑现、信息释放、最终策略覆盖与连读检查；
+11. RETURN 按失败真相路由到 Part 1 / Part 2 机制核 / 故事前提 / Writer / Part 2.5 / Part 3。
+
+整体可压缩为五类：
+`输入别丢 → 事实别混 → 权限别乱 → 交接别猜 → QA / RETURN 别修错层`。
+
+Owner 当前尚未逐项批准正式写入；下一步应继续逐项审阅 / 确认，确认后再修改 `part2/SCRIPT_NARRATIVE.md`。
+
+当前状态：
+`PART2_EDIT_MAP_OVERVIEW_RECORDED / FORMAL_PART2_UNCHANGED / WAITING_OWNER_ITEM_APPROVAL`。
