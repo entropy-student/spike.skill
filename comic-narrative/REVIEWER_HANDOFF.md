@@ -66,7 +66,7 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1K：**RETURN_IMPLEMENTATION_DRIFT（Reviewer 接受，但纠正故障归因）**：Executor 使用 stale snapshot，且历史 task generator provenance 未保留；尺寸合同债被确认；
   - R2R1L：**PASS / OWNER APPROVED**：图片生产与交付唯一正式画幅锁定为 16:9；默认 native image-generation target = 1792×1008；final delivery target 保持 1920×1080。
 - **H019 完整第二轮重跑**：`DEFERRED`。
-- **6 Beat R2 完整复测**：未授权；先完成 R2R1L policy 决策及其后续 formalization/regression，再由 Reviewer 决定是否恢复双并发 live fast-path canary。
+- **6 Beat R2 完整复测**：未授权；先完成 R2R1M native-size propagation live canary，再由 Reviewer 决定是否恢复双并发 live fast-path canary。
 - **Part 5 / Part 6**：未正式迁移。
 
 ## CURRENT_GATE
@@ -184,7 +184,7 @@ Candidate PASS 需要：
 
 ## CURRENT_ROLLBACK_STATUS
 
-- GitHub 正式 Part 0–4.5 当前基线保持可追溯；本 takeover 不修改生产规则。
+- GitHub 正式 Part 0–4.5 当前基线保持可追溯；R2R1L 已按 Owner 明确授权仅修改 Part 4 §25 的画幅 / 尺寸合同。
 - R2R1J receiver patch 必须保留 pre-repair source/hash，可在 preflight failure 时恢复。
 - H019 完整重跑尚未发生，不存在因 takeover 需要回滚的 H019 新生产状态。
 
