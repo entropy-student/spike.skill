@@ -17,6 +17,10 @@
 7. **Delivery / Risk**：版权、隐私、争议、更新、人工依赖。
 8. **Counterevidence**：什么新证据会直接 KILL。
 
+候选接近时，再比较：
+- `Cost-to-Learn`：获得下一条有效证据需要多少时间/钱；
+- `Cost-of-Being-Wrong`：选错后的现金、时间、账号、退款/声誉与合规代价。
+
 Market Opportunity 与 Operator Fit 分开。Operator Fit 只使用用户本次明确提供的资源/约束。
 
 ## 输出
