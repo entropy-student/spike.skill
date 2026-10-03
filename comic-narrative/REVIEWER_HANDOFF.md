@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / R2R1R_EXISTING_ROOT_READONLY_QUALIFICATION`
+`ACTIVE_REVIEW / R2R1S_TWO_CONCURRENT_LIGHTWEIGHT_LIVE_CANARY`
 
 并行状态：
-- 主执行线：R2R1Q 因 recorded R2R1J root 已非空而按 Gate 停止；现有 root 的 9 个顶层名称与 accepted ZIP 完全一致。R2R1R 改为只读完整路径/hash 对照，不覆盖、不删除。
+- 主执行线：Owner 明确要求停止历史证据反复复验、优先快速得到 live 结果；R2R1R 在执行前被取代。R2R1S 直接做两路并发生图轻量 canary。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -69,7 +69,8 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1N：**PASS / OWNER APPROVED**：继续使用 Codex 内置生图；16:9 保持唯一正式画幅；1920×1080 改为唯一默认目标画布 / final delivery target；取消独立 native pixel target；native 像素不精确本身不判失败、不触发重生；
   - R2R1O：**PASS**：零生图回归确认 preserved 1672×941 不因 native pixel mismatch 失败或 retry；1024×1536 明显错误画幅仍可独立 QA FAIL；`IMAGEGEN_CALLS=0`、retries=0；
   - R2R1P：**RETURN_PREFLIGHT_DRIFT — REVIEWER ACCEPTED**：本机 recorded R2R1J evidence root 与六个 mandatory items 缺失；因此 positive/negative preflight 未运行，`IMAGEGEN_CALLS=0`。Reviewer 已从 ChatGPT Library 找回原始 R2R1J ZIP，SHA-256 与 R2R1J formal PASS 记录完全一致；
-  - R2R1Q：**RETURN_PREFLIGHT_DRIFT — REVIEWER ACCEPTED**：ZIP 身份/路径安全 PASS，但 recorded root 已有 9 个顶层条目，按 R2R1Q 禁止覆盖规则立即停止；未解压、未覆盖、未回归、`IMAGEGEN_CALLS=0`。Reviewer 核对后确认这 9 个顶层名称与 accepted ZIP 的 9 个顶层名称完全一致，下一步改为只读资格认证。
+  - R2R1Q：**RETURN_PREFLIGHT_DRIFT — REVIEWER ACCEPTED**：ZIP 身份/路径安全 PASS，但 recorded root 已有 9 个顶层条目，按 R2R1Q 禁止覆盖规则立即停止；未解压、未覆盖、未回归、`IMAGEGEN_CALLS=0`；
+  - R2R1R：**SUPERSEDED BEFORE EXECUTION / OWNER DIRECTION**：取消“全量历史目录/hash + 旧正负样本复验”要求；正式 PASS 的能力默认继承，除非相关实现/接口/运行环境变化，或出现与旧 PASS 冲突的新证据。
 - **H019 完整第二轮重跑**：`DEFERRED`。
 - **6 Beat R2 完整复测**：未授权；先完成 R2R1P 两路并发 live fast-path canary，再由 Reviewer 决定是否进入 6 Beat。
 - **Part 5 / Part 6**：未正式迁移。
@@ -78,279 +79,273 @@ Part 6  执行与项目管理               [未正式迁移]
 
 ### GATE_ID
 
-`IMAGEGEN_R2R1J_EXISTING_ROOT_READONLY_QUALIFICATION_R2R1R`
+IMAGEGEN_TWO_CONCURRENT_LIGHTWEIGHT_LIVE_CANARY_R2R1S
 
 ### OBJECTIVE
 
-在 **0 次 imagegen、0 次覆盖、0 次删除**前提下，证明 Windows 上现存的 R2R1J root 是否与已正式 PASS 的原始 R2R1J ZIP **逐文件完全一致**。
+快速回答当前唯一问题：
 
-如果完全一致，再运行既有 positive final-receiver 与五个 negative path-policy no-image 回归，重新满足 R2R1P 的本地 preflight 依赖。
+当前 Codex 内置 imagegen 能否同时提交 2 个不同任务，并让两个结果各自通过已接受的 output_hint 本地快路径正确落盘、归属、hash/copy 并到达 QA？
+
+本 Gate 不再重放 R2R1J 历史 fixture，不依赖任何旧本地 evidence 目录。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
-1. fresh-read current GitHub main / R2R1Q Review / R2R1J Review；
-2. prove real Windows host/user/path；
-3. verify accepted ZIP exact identity；
-4. read-only inventory existing root；
-5. compare ZIP regular-file relative path set vs root regular-file relative path set；
-6. require zero missing / zero extra files；
-7. for every file, compare byte length + SHA-256；
-8. require complete 1:1 equality before executing any historical fixture；
-9. run accepted positive final-receiver replay；
-10. run five negative path-policy cases；
-11. verify receiver/parser/runtime-helper hashes；
-12. `IMAGEGEN_CALLS=0`；
-13. fresh readback；
-14. STOP at Reviewer。
+1. fresh-read current GitHub main + 当前 Part 4 §25；
+2. 创建 2 个 fresh、内容明显不同的 16:9 canary task；
+3. 建立 fresh evidence/output 目录与 global call guard = 2；
+4. 同时提交 2 次 Codex 内置 imagegen；
+5. 每个 result 独立读取其 bounded output_hint；
+6. 每个 result 从 hint 取得唯一合法本地 PNG 路径；
+7. 每个 result 复制到各自 task destination，验证 source/copy SHA-256 相等；
+8. 记录 native width × height；
+9. 两张图都进入 QA；QA 只记录，不触发 retry；
+10. 记录 generation timing 与 post-return local persist timing；
+11. fresh readback；
+12. STOP at Reviewer。
+
+总 imagegen 调用上限 = 2。
 
 ### MANDATORY_REVIEW_STOP
 
-`STOP_AT_REVIEWER=YES`
+STOP_AT_REVIEWER=YES
 
-本 Gate 不得：
-- imagegen；
-- live canary；
-- create R2R1P tasks；
-- extract over existing root；
-- delete / rename / overwrite root files；
-- modify historical R2R1J files；
-- copy reconstructed replacements into root；
-- modify Part 2/3/4/4.5/SKILL；
-- run 6 Beat / H019。
+明确禁止：
+
+- 第 3 次 imagegen；
+- attempt 2 / retry / replacement；
+- 6 Beat；
+- H019；
+- concurrency 3；
+- API fallback；
+- TTY / write_stdin 搬运完整 base64 大图；
+- 历史 R2R1J ZIP/root 比对；
+- 历史 positive / five-negative replay；
+- exact-pixel 议题；
+- 修改 Part 2/3/4/4.5/SKILL。
 
 ### TARGET_AND_SCOPE
 
-Immutable reference ZIP：
+允许读取：
 
-`C:\Users\34707\Documents\ChatGPT\批量生图\_imagegen-output-hint-guard-repair-live-canary-r2r1j.zip`
+1. 当前 comic-narrative/REVIEWER_HANDOFF.md 当前 Gate / Relay；
+2. 当前 comic-narrative/part4/IMAGE_ASSET_EXECUTION.md §25；
+3. 当前 R2R1S 新建 task/evidence/output 文件。
 
-Accepted ZIP identity：
+允许继承为 accepted facts，不要求重读或重放历史本地 evidence：
 
-- bytes = `4,866,984`
-- SHA-256 = `760fe40a9debd990bde48bf9f673a37457f7367cc90be51986862f0816dcd5b4`
-- entries = 25
-- top-level names = 9
-- path traversal / absolute entries = 0
+- R2R1J：单路 output_hint → local PNG → hash/copy → QA fast path 已正式 PASS；
+- R2R1O：16:9 + native pixel mismatch 不失败 / 不 retry 已正式 PASS。
 
-Existing root：
+本轮允许在 R2R1S fresh evidence 目录创建最小临时 fast-path helper，仅负责：
 
-`C:\Users\34707\Documents\ChatGPT\批量生图\_imagegen-output-hint-guard-repair-live-canary-r2r1j\`
+- 接收当前 result 的 bounded output_hint；
+- 提取唯一 .png 路径；
+- require 路径位于当前用户 .codex/generated_images 根下；
+- require 文件存在且为 regular PNG；
+- source SHA-256；
+- copy 到当前 task 的 fresh destination；
+- copied SHA-256 equality。
 
-R2R1Q observed immediate entries：
+该 helper 是本轮测试 harness，不自动升级为正式生产源码。
 
-- `outputs`
-- `preflight`
-- `source`
-- `FRESH_READBACK_R2R1J.json`
-- `IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J.md`
-- `PREFLIGHT_EVIDENCE_R2R1J.md`
-- `QA_REPORT.md`
-- `RUN_EVENTS.jsonl`
-- `RUN_RECORD.json`
+不允许依赖：
 
-These exactly match the ZIP's nine top-level names, but full byte identity remains unproven until R2R1R.
-
-Allowed：
-- read-only root traversal；
-- read-only ZIP entry traversal；
-- byte length + SHA-256 computation；
-- positive/negative no-image execution using existing files after identity PASS；
-- new R2R1R evidence directory only。
-
-Forbidden：
-- any repair/mutation of existing R2R1J root；
-- partial acceptance when missing/extra/mismatched files exist；
-- using filename match alone as identity proof。
+- R2R1J 旧本地目录；
+- R2R1J ZIP；
+- 旧 receiver/parser/hash-helper 文件；
+- 任何历史测试 PNG。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
-- `PASS_CANDIDATE != PASS`；
-- Governance 11B real-host proof applies；
-- target root is treated as unknown until full read-only qualification；
-- unknown/non-identical historical evidence must not be overwritten merely to make the Gate pass；
-- ZIP is immutable accepted reference；
-- path-set equality + per-file hash equality are both required；
-- any missing / extra / mismatch => fail closed；
-- only after full identity PASS may historical positive/negative fixtures execute；
-- `IMAGEGEN_CALLS=0` throughout；
-- historical evidence remains immutable。
+- PASS_CANDIDATE != PASS；
+- explicit Owner direction 优先；
+- accepted PASS capability 默认继承，只有出现 revalidation trigger 才重验；
+- 本轮没有 revalidation trigger 证明 R2R1J / R2R1O 已接受事实失效；
+- global imagegen call limit = 2；
+- per-task attempt limit = 1；
+- 两个任务失败后都不得 replacement；
+- 任一路失败时，已经 in-flight 的另一路允许自然完成并保留 evidence，不得启动新 call；
+- output_hint 仍按当前 result 独立 fail-closed，不做 broad generated_images 扫描；
+- 不通过 TTY 搬完整 image bytes；
+- native pixel mismatch 本身不失败 / 不 retry；
+- content QA 与 integration result 分离；
+- canary 图片不自动进入 production asset library；
+- 无账号/支付/公开发布/真实业务副作用。
 
 ### PREFLIGHT
 
-Before root hashing：
+Preflight 只检查当前执行是否能安全开始，不复验历史 PASS。
 
-1. prove Windows OS / user / filesystem / exact working path；
-2. verify ZIP exists；
-3. verify ZIP bytes + SHA-256 = accepted identity；
-4. list archive and confirm path-safety；
-5. verify existing root exists and is directory；
-6. arm no-write discipline:
-   - no extraction；
-   - no delete；
-   - no overwrite；
-   - no rename；
-7. `IMAGEGEN_CALLS=0` guard active；
-8. create only a fresh separate R2R1R evidence directory。
+必须满足：
 
-Failure => RETURN / STOP.
+1. current GitHub main fresh-read；
+2. Part 4 §25 fresh-read，仍为：
+   - 16:9 only；
+   - 1920×1080 = target canvas / final target；
+   - no exact native pixel target；
+   - native mismatch alone != fail/retry；
+3. 两个 fresh task IDs 唯一；
+4. 两个 prompt 内容明显不同；
+5. 两个 prompt 都明确要求 16:9 横屏；
+6. prompt 不包含 exact pixel dimensions；
+7. global call guard = 2；
+8. each task max attempt = 1；
+9. 两个 fresh output/evidence path 不冲突；
+10. 最小 fast-path helper 已静态检查：
+    - 只读当前 hint；
+    - exact one PNG candidate；
+    - allowed-root check；
+    - existence / regular-file check；
+    - source/copy SHA equality；
+    - no broad scan；
+    - no TTY fallback；
+11. RUN_EVENTS.jsonl / RUN_RECORD.json / fresh-readback 路径已就绪。
 
-### READONLY_IDENTITY_QUALIFICATION
+任一 preflight failure：
 
-Build two normalized manifests.
+IMAGEGEN_CALLS=0 / RETURN_* / STOP
 
-**ZIP manifest**
-- include regular file entries only；
-- normalized relative path；
-- uncompressed byte length；
-- SHA-256 of entry bytes。
+### LIVE_CANARY
 
-**Root manifest**
-- include regular files recursively；
-- normalized relative path from root；
-- byte length；
-- SHA-256。
+仅在轻量 preflight PASS 后：
 
-Require：
+1. 两个 fresh tasks 以 concurrency-at-submit = 2 提交；
+2. 总调用 exactly 2；
+3. 每 task attempt 1；
+4. 不 retry / replacement。
 
-1. exact relative-path set equality；
-2. missing files = 0；
-3. extra files = 0；
-4. per-path byte length equality；
-5. per-path SHA-256 equality；
-6. directory names may be listed for diagnostics but file-set identity is authoritative。
+每个 result：
 
-If any mismatch：
+1. 绑定到其 task id；
+2. 记录 imagegen call start / return timing；
+3. 只保留 bounded hint metadata；不把完整 image/base64 写普通日志；
+4. 用当前 result 的 output_hint 找唯一 allowed-root PNG；
+5. source SHA-256；
+6. copy 到该 task fresh destination；
+7. copied SHA-256 必须等于 source SHA；
+8. 记录 native dimensions；
+9. 到达 QA；
+10. QA 结果记录但不触发 retry；
+11. 记录 result-return → local-copy/QA 完成耗时。
 
-- `RETURN_PREFLIGHT_DRIFT`
-- do not run positive/negative fixtures；
-- do not repair root；
-- report bounded mismatch paths only。
+若 hint 缺失 / 多义 / 越界 / 文件不存在 / copy hash mismatch：
 
-### POSITIVE_NEGATIVE_REQUALIFICATION
-
-Only after full identity PASS：
-
-1. run the accepted R2R1J final receiver positive fixture through the exact receiver entry point；
-2. require expected positive PNG/hash behavior；
-3. run the five accepted path-policy negative cases；
-4. require all five fail closed with no copy；
-5. verify receiver/parser/runtime helper exact file hashes still match accepted package；
-6. ordinary logs must not expose full base64 payload。
-
-This proves local executability only; it does not rerun historical imagegen or change R2R1J history.
+- 对应 task fail closed；
+- 不 TTY fallback；
+- 不 replacement call；
+- 保留另一路真实结果；
+- 整轮返回精确 RETURN_*。
 
 ### REQUIRED_EVIDENCE
 
-- `IMAGEGEN_R2R1J_EXISTING_ROOT_READONLY_QUALIFICATION_R2R1R.md`
-- `PREFLIGHT_EVIDENCE_R2R1R.md`
-- current main SHA
-- R2R1Q Review + R2R1J Review pointers/hashes
-- Windows host/user/path proof
-- ZIP bytes/SHA/path-safety
-- ZIP file manifest
-- root file manifest
-- path-set comparison summary
-- missing/extra/mismatch counts
-- per-file hash comparison result
-- positive final-receiver result, if identity PASS
-- five negative results, if identity PASS
-- receiver/parser/runtime helper hashes
-- `IMAGEGEN_CALLS=0`
+只需要与本轮 live 结果直接相关的证据：
+
+- IMAGEGEN_TWO_CONCURRENT_LIGHTWEIGHT_LIVE_CANARY_R2R1S.md
+- PREFLIGHT_EVIDENCE_R2R1S.md
+- current main SHA + Part 4 §25 blob
+- two fresh task fixtures + hashes
+- global call guard
+- concurrency-at-submit evidence
+- IMAGEGEN_CALLS=2
+- per-task attempt count = 1
 - retries=0
-- root mutations=0
-- production/formal-rule changes=0
-- `RUN_EVENTS.jsonl`
-- `RUN_RECORD.json`
+- replacements=0
+- fallback=0
+- per-task bounded hint diagnostics
+- per-task source path + source SHA
+- per-task copy path + copied SHA
+- per-task native dimensions
+- per-task QA reachability/result
+- per-task generation timing
+- per-task post-return local-persist timing
+- RUN_EVENTS.jsonl
+- RUN_RECORD.json
 - fresh readback
+- formal project-rule delta = 0
+
+不要求历史 R2R1J ZIP/root/fixture evidence。
 
 ### ACCEPTANCE_CRITERIA
 
-`PASS_CANDIDATE_R2R1J_EXISTING_ROOT_QUALIFIED_R2R1R` requires：
+PASS_CANDIDATE_TWO_CONCURRENT_LIGHTWEIGHT_LIVE_R2R1S 需要：
 
-1. exact accepted ZIP identity；
-2. zero unsafe archive paths；
-3. root file relative-path set exactly equals ZIP regular-file set；
-4. missing=0 / extra=0；
-5. every file byte length + SHA-256 matches；
-6. root mutations=0；
-7. positive receiver replay PASS；
-8. five negative path-policy cases all fail closed；
-9. receiver/parser/runtime helper hashes match；
-10. `IMAGEGEN_CALLS=0`；
-11. no historical/formal-rule changes；
-12. fresh readback matches evidence。
+1. lightweight preflight PASS；
+2. exactly 2 imagegen calls；
+3. concurrency-at-submit = 2；
+4. two distinct task identities correctly attributed；
+5. per-task attempts = 1；
+6. retries/replacements/fallback = 0；
+7. no bulk TTY image transfer；
+8. both output_hints yield exactly one allowed local PNG；
+9. each task source SHA = copied SHA；
+10. both images reach QA；
+11. native dimensions recorded and do not trigger exact-pixel fail/retry；
+12. content QA failure, if any, does not trigger retry；
+13. event/run record reconstructable；
+14. generation timing and local-persist timing separated；
+15. no formal-rule changes；
+16. fresh readback matches。
 
 Allowed results：
 
-- `PASS_CANDIDATE_R2R1J_EXISTING_ROOT_QUALIFIED_R2R1R`
-- `RETURN_PREFLIGHT_DRIFT`
-- `RETURN_TEST_FAILURE`
-- `RETURN_IMPLEMENTATION_DRIFT`
-- `RETURN_TARGET_HOST_EXECUTION_UNAVAILABLE`
+- PASS_CANDIDATE_TWO_CONCURRENT_LIGHTWEIGHT_LIVE_R2R1S
+- RETURN_PREFLIGHT_DRIFT
+- RETURN_IMPLEMENTATION_DRIFT
+- RETURN_TEST_FAILURE
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-No target-root mutation is authorized, therefore no root rollback should be necessary.
-
-Only fresh R2R1R evidence may be created.
-
-If qualification fails：
-- preserve current root unchanged；
-- preserve ZIP unchanged；
-- do not repair / overwrite / delete；
-- STOP for Reviewer classification。
+- 本 Gate 不修改正式规则；
+- fresh canary outputs 只作为 evidence，不自动进生产素材库；
+- 不通过 retry 补证据；
+- 不修改/清理历史测试目录；
+- 如 fresh helper 本身有问题，只保留本轮 evidence 并 RETURN，不回头重做历史 Gate。
 
 ### OWNER_ONLY_ACTIONS
 
-`NONE`
+NONE
 
-ZIP and populated root are already present. Owner should not extract, delete, rename, or copy anything.
+Owner 已明确授权本轮快速两图 canary 方向；本 Gate 最多消耗 2 次现有 Codex 内置生图调用。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-Start from current GitHub main. Execute only R2R1R.
+从 current GitHub main 开始，只执行 R2R1S。
 
-Read only：
+只读：
 
-1. current `comic-narrative/REVIEWER_HANDOFF.md` CURRENT_GATE / Relay；
-2. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1J_EVIDENCE_RESTORE_AND_PREFLIGHT_REQUALIFICATION_R2R1Q_REVIEW.md`；
-3. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J_REVIEW.md`。
+1. comic-narrative/REVIEWER_HANDOFF.md → 当前 R2R1S Gate / Relay；
+2. comic-narrative/part4/IMAGE_ASSET_EXECUTION.md §25。
 
-Do not read broad history.
+不要读 broad history，不要读取/恢复/校验 R2R1J 旧目录或 ZIP。
 
-Execution：
+执行：
 
-1. prove real Windows host/user/path；
-2. verify exact accepted ZIP；
-3. verify archive path-safety；
-4. recursively hash ZIP regular-file entries into normalized manifest；
-5. recursively hash existing root regular files into normalized manifest；
-6. compare full path sets + lengths + hashes；
-7. any mismatch => RETURN, no repair；
-8. only if exact match, run positive receiver fixture；
-9. run five negative path-policy fixtures；
-10. verify receiver/parser/runtime helper hashes；
-11. `IMAGEGEN_CALLS=0`；
-12. fresh readback；
-13. STOP。
-
-Do not imagegen. Do not modify existing root.
+1. fresh-read main + Part 4 §25；
+2. 建 2 个 distinct 16:9 fresh tasks；
+3. 建最小 current-run fast-path helper 与 call guard=2；
+4. lightweight preflight；
+5. 两任务同时提交；
+6. 每路 result：task attribution → bounded output_hint → allowed local PNG → source hash → copy hash → dimensions → QA；
+7. 不 TTY bulk、不 retry、不 replacement；
+8. 记录 generation vs local-persist timing；
+9. fresh readback；
+10. STOP。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
-```text
-结果：PASS_CANDIDATE_R2R1J_EXISTING_ROOT_QUALIFIED_R2R1R / RETURN_*
-改动：仅新增 R2R1R read-only qualification evidence；R2R1J root/ZIP 均未修改。
-验证：一句话说明 ZIP/root 全量 path+hash 对照、positive、5 negatives、IMAGEGEN_CALLS=0 与 fresh readback。
-问题：NONE，或“mismatch/fixture failure：一句通俗解释”。
-回滚：无需 root 回滚；说明 root mutations=0。
-请 Reviewer 检查：核对完整 manifest equality、positive/negative requalification、zero mutation/zero imagegen 与 fresh readback。
+结果：PASS_CANDIDATE_TWO_CONCURRENT_LIGHTWEIGHT_LIVE_R2R1S / RETURN_*
+改动：仅新增 R2R1S fresh task/helper/evidence；正式规则和历史 evidence 未修改。
+验证：一句话说明 lightweight preflight、2 路并发、IMAGEGEN_CALLS、每路 output_hint/path/hash/native size/QA、retries/fallback、timing 与 fresh readback。
+问题：NONE，或“阻塞短语：一句通俗解释”。
+回滚：正式规则无需回滚；fresh canary evidence 保留，不进入 production library。
+请 Reviewer 检查：核对两路并发、task/result attribution、fast-path source/copy hash、zero retry/fallback、timing 与 fresh readback。
 Owner 转交：NONE。
-```
 
 ## CRITICAL_CONSTRAINTS
 
 - `PASS_CANDIDATE != PASS`；正式 PASS 只由 Reviewer fresh readback 后给出。
+- **Accepted capability inheritance**：本项目已正式 PASS 的能力默认由后续 Gate 继承；只有相关实现/接口/运行环境发生可能影响该能力的变化，或新证据与旧 PASS 冲突，才要求重验。旧本地 evidence 目录缺失本身不构成重验触发。
 - 未证明的事实保持 `UNKNOWN`，不得从旧 Handoff 推断。
 - Part 2 edit map 不得在 Owner 逐项批准前进入正式正文。
 - Style Plate 具体资产必须经 Owner 确认后才进入长期视觉资产。
@@ -360,7 +355,7 @@ Owner 转交：NONE。
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R1R：Owner Windows 对现有 R2R1J root 做只读全量 qualification；本轮 `IMAGEGEN_CALLS=0`、root mutations=0；
+- 当前 R2R1S：既有 Owner/Codex Windows 执行链；lightweight preflight 后最多 2 次并发 Codex 内置 imagegen；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -371,8 +366,8 @@ Owner 转交：NONE。
 
 ## UNRESOLVED
 
-1. **R2R1R existing-root qualification**：需证明现有 R2R1J root 与 accepted ZIP 全量路径 / bytes / SHA-256 完全一致，并重新通过 positive + five-negative no-image 回归。
-2. **R2R1P two-concurrent fast-path canary**：R2R1R PASS 后再重新授权；当前仍没有并发 live evidence。
+1. **R2R1S two-concurrent lightweight live canary**：需快速证明两路 fresh imagegen 同时提交时，task/result attribution 与 output_hint 本地快路径都可靠。
+2. **6 Beat R2 完整复测**：R2R1S PASS 后由 Reviewer 决定是否直接进入。
 3. **Final video 1920×1080 adaptation implementation**：标准画布已确定，具体视频阶段适配仍待 Part 5 正式迁移时实现。
 4. **C-VB01 historical content QA**：旧 PNG 不接受为 final production asset。
 5. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
@@ -381,16 +376,16 @@ Owner 转交：NONE。
 
 ## NEXT_STEP
 
-执行并 Review `R2R1R`：
+直接执行并 Review R2R1S：
 
-`current main → Windows identity → accepted ZIP verify → ZIP/root full manifest comparison → exact-match only → positive + 5 negatives → fresh readback → STOP`
+current main → lightweight preflight → 2 路同时 imagegen → each result output_hint/local path/hash/copy/QA → timing/readback → STOP
 
-R2R1R PASS 后，再恢复 R2R1P 两路 live canary。
+不再经过 R2R1R 历史证据资格认证。
 
 ## OWNER_ACTION_REQUIRED
 
-- **NONE。** ZIP 与现有 root 都已经在 Windows 上；请不要手工解压、删除、覆盖或重命名。
-- 将当前 `REVIEWER_HANDOFF.md` 的 R2R1R Relay 交给 Windows / Codex Executor 即可。
+- **R2R1S 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R1S Relay 交给 Windows / Codex Executor；本轮最多 2 次 Codex 内置生图、两路同时提交、禁止重试。
+- 不需要整理、恢复或核验任何 R2R1J 历史本地文件。
 - Part 2 正式修改仍 DEFERRED。
 
 ## EVIDENCE_POINTERS
@@ -408,6 +403,7 @@ R2R1R PASS 后，再恢复 R2R1P 两路 live canary。
 - R2R1O PASS / R2R1P Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_SIZE_POLICY_NO_IMAGE_REGRESSION_R2R1O_REVIEW.md`
 - R2R1P RETURN / R2R1Q recovery Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_TWO_CONCURRENT_LIVE_CANARY_R2R1P_REVIEW.md`
 - R2R1Q RETURN / R2R1R read-only qualification Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1J_EVIDENCE_RESTORE_AND_PREFLIGHT_REQUALIFICATION_R2R1Q_REVIEW.md`
+- R2R1R superseded / R2R1S fast-test simplification: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1R_SUPERSEDED_AND_FAST_TEST_SIMPLIFICATION_REVIEW.md`
 - Part 2 pending edit map: `comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
 - Current formal Part 3: `comic-narrative/part3/STORYBOARD_VISUAL_DIRECTOR.md`
 - Current formal Part 4: `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md`
