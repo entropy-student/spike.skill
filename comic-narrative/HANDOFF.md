@@ -1868,3 +1868,61 @@ R2R1D：
 
 当前状态：
 `R2R1C_RETURN_TEST_FAILURE / NEXT_R2R1D_RECEIVER_COMPLETION_DIAGNOSTIC / IMAGEGEN_CALLS_NEXT_GATE_0 / FULL_RETEST_NOT_AUTHORIZED`。
+
+
+
+### IMAGEGEN_RECEIVER_COMPLETION_DIAGNOSTIC_R2R1D — Reviewer PASS（2026-10-03）
+
+Reviewer 按 `vps-project-governance/VNEXT.md` v0.2.6 完成 fresh readback。
+
+证据包：
+- `_imagegen-receiver-completion-diagnostic-r2r1d.zip`
+- Reviewer-computed SHA-256：`06fd29dd27aff99eb65e71ac7d33ac12ccd382204c65ef7b2adf828cd6199438`
+
+正式 verdict：**`PASS`**。
+
+直接核验：
+- `IMAGEGEN_CALLS=0`；
+- 未做 completion-path repair；
+- Test A 原 one-shot full-size path clean PASS：
+  - 1,232,262 payload bytes；
+  - PNG 923,749 bytes；
+  - SHA-256 `bf622d490194e90f4587b4d90869e6f5d4c792d6b52f7e6e2471cfcf44f3ff5d`；
+  - durable receiver report 存在；
+  - exit code=0；
+- Test B 仅在 Test A PASS 后启动，两路 concurrent one-shot 均完整接收、保存相同正确 hash、写 report、exit code=0；
+- 三个有效 phase trace 均完整经过 PNG hash、final append、report、stdout、cleanup / exit；
+- 无 uncaught exception / unhandled rejection / process error；
+- RUN_EVENTS 28 条，sequence 1–28 连续；
+- 三张实际 PNG fresh hash 均匹配预期。
+
+一次 pre-send abort 已单独保留：
+- receiver 实际收到 0 bytes；
+- sender orchestration 在真实发送前 ReferenceError；
+- 之后对已关闭 session 的写入无 delivery confirmation；
+- append-only correction 已明确将旧 `TEST_A_SENDER_SUBMITTED` 记录从 transfer accounting 中作废；
+- Reviewer 接受其为 pre-test orchestration abort，不算 Test A、不算隐藏重试。
+
+R2R1C 历史 exit-1 / missing-report 症状本轮未复现，因此**具体历史根因仍为 UNVERIFIED**，不得事后猜测归因。
+
+非阻塞观察：
+receiver 内部存在 nominal 90-second deadline，但三个有效 full-size run 实际约 123–130 秒且未触发该 timer。本 Gate 不改 timer；下一真实 canary 增加外部 orchestration watchdog，避免把该内部 timer 当成可靠 wall-clock guard。
+
+下一 Gate：
+**`IMAGEGEN_EXECUTOR_INTEGRATION_CANARY_R2R1E`**
+
+最大终点：
+`no-image preflight → C-VB01/C-VB02 attempt1 only → concurrency=2 → raw return → one-shot receiver → auto save/hash → QA → fresh readback → STOP → Reviewer`。
+
+R2R1E：
+- 只允许 2 次 imagegen；
+- 不做 attempt2；
+- content QA PASS/FAIL 都不触发 retry；
+- receiver/session 失败也不得重放 imagegen；
+- 不启动另外 4 Beat；
+- 不测 concurrency=3；
+- 不启动 H019；
+- 不修改正式 Part 2/3/4/4.5/SKILL。
+
+当前状态：
+`R2R1D_PASS / NEXT_R2R1E_LIVE_INTEGRATION_CANARY / TWO_IMAGEGEN_CALLS_MAX / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
