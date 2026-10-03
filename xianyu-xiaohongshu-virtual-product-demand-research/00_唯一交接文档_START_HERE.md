@@ -1,8 +1,8 @@
-# 唯一交接文档 — Xianyu & Xiaohongshu Virtual Product Opportunity v2.0
+# 唯一交接文档 — 闲鱼 / 小红书虚拟商品需求研究 v2.0.1
 
 ## 当前版本
 
-- VERSION=`2.0.0`
+- VERSION=`2.0.1`
 - STATUS=`ACTIVE`
 - 主入口：`SKILL.md`
 - 默认模式：`MARKET_MAP`

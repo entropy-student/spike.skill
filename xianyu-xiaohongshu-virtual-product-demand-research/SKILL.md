@@ -1,12 +1,12 @@
 ---
-name: xianyu-xiaohongshu-virtual-product-opportunity
-title: 闲鱼 / 小红书虚拟商品选品
+name: xianyu-xiaohongshu-virtual-product-demand-research
+title: 闲鱼 / 小红书虚拟商品需求研究
 description: 高频调用的闲鱼/小红书虚拟商品市场研究 Skill。默认从平台真实市场出发，发现并整理具体商品类型、SKU 或 Offer，区分成交、购买意图与曝光，输出可复核的需求目录；只有用户明确要求“选一个去卖/测试”时才进入商业测试模式。
-version: 2.0.0
+version: 2.0.1
 language: zh-CN
 ---
 
-# 闲鱼 / 小红书虚拟商品选品 v2.0
+# 闲鱼 / 小红书虚拟商品需求研究 v2.0.1
 
 ## 1. 默认目标
 
