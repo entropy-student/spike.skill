@@ -1,0 +1,9 @@
+# v2.0.1 Archive Manifest
+
+ARCHIVE_TYPE=ACTIVE_PACKAGE_BLOB_COPY
+SOURCE_COMMIT=42244ee9610513b2c82a598064f66669675d337b
+ARCHIVED_ON=2026-10-03
+SUCCESSOR_VERSION=2.1.0
+
+本目录保存独立 Reviewer 修订前的 v2.0.1 活跃包。
+除本 Manifest 外，各文件直接复用 SOURCE_COMMIT 的原始 Git blob，内容未改写。
