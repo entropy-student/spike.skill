@@ -232,7 +232,7 @@ Part 6  执行与项目管理               [未正式迁移]
 
 `NONE`。
 
-Owner 已批准当前唯一画幅 / native-size 方向；本 Gate 不包含新的费用、公开发布、不可逆数据删除、Secret 或账号权限动作。
+Owner 已批准当前唯一画幅 / native-size 方向，并在本轮明确要求按 Governance 继续推进；本 Gate 只授权上述单次有界 canary，不包含公开发布、不可逆数据删除、Secret 或账号权限动作。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
