@@ -54,7 +54,7 @@ Part 6  执行与项目管理               [未正式迁移]
 - **Part 2.5**：正式配音 / SRT 对齐基线已建立。
 - **Part 3**：H019 已批准补强已进入正式规则；Scene Anchor、主观视觉语法、before/after 可见证据与 Style Plate 方向有效。
 - **Style Plate 资产**：具体 1–2 张长期 Style Plate 尚未生成 / Owner 确认，状态 `PENDING`。
-- **Part 4**：正式基线保持封板；图片规划 Agent 与生图执行 Agent 职责已分离。
+- **Part 4**：正式基线保持封板；图片规划 Agent 与生图执行 Agent 职责已分离。已知存在 Part 3「1–2 张 Style Plate」与 Part 4 仍写「2 张具体 Style Reference」的跨模块合同待对齐；当前 R2R1J 不修该项。
 - **Part 4.5**：active catalog / library 已建立并与 Part 4 连接。
 - **Imagegen R2 链**：
   - R2R1A：PASS（真实 raw result shape 已确认）；
@@ -209,9 +209,10 @@ Owner 转交：NONE。
 1. **R2R1J**：output_hint 是否能在 live current result 上通过既有 strict parser 并实现 verified local-copy fast path。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准；正式 Part 2 未改。
 3. **Style Plate**：具体长期 Style Plate 图片尚未确认。
-4. **Part 4 H019 refinements**：部分 Owner 已认可方向仍等待独立正式修改 Gate。
-5. **Part 5 / Part 6**：尚未正式迁移。
-6. **1920×1080 contract**：R2R1F 已观察 native image output 1672×941，与 Part 4 final delivery target 的关系仍待后续 reconcile；当前不阻塞 R2R1J。
+4. **Part 3 → Part 4 Style contract**：Part 3 已改为 1–2 张中性 Style Plate；Part 4 仍引用 2 张具体生活场景 Style Reference，等待独立 Part 4 Gate 对齐。
+5. **Part 4 H019 refinements**：部分 Owner 已认可方向仍等待独立正式修改 Gate。
+6. **Part 5 / Part 6**：尚未正式迁移。
+7. **1920×1080 contract**：R2R1F 已观察 native image output 1672×941，与 Part 4 final delivery target 的关系仍待后续 reconcile；当前不阻塞 R2R1J。
 
 ## NEXT_STEP
 
