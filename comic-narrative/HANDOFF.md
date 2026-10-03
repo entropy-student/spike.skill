@@ -1541,3 +1541,37 @@ Owner 已明确要求先完成 Part 3 修改；本轮仅修改正式 `part3/STOR
 
 当前状态：
 `PART3_H019_REFINEMENTS_APPLIED / PART4_PENDING / STYLE_PLATE_ASSET_PENDING / FULL_RERUN_DEFERRED`。
+
+
+
+### Imagegen Speed Batch R1 — Reviewer Decision（2026-10-03）
+
+Reviewer 对 Owner 提供的 `_imagegen-speed-batch-r1.zip` 做了 fresh readback。证据包 SHA-256：
+`12c011dc0be8d93824f71dd076a50c645077fb82007aa526faaa607bfa9c26b0`。
+
+Reviewer verdict：**`RETURN_IMPLEMENTATION_DRIFT`**。
+
+已直接核验：
+- 6 个目标 Beat；
+- 11 个 manifest attempt 图片 + 1 个重复副本；
+- CSV 11 行 attempt 与图片 manifest 一致，11 个 SHA-256 均与实际文件匹配；
+- 最终 3 PASS / 3 FAIL；
+- 9/11 有可用 image-call timing；
+- 最后 2 次 retry 因日志持久化失败缺 T0/T1/T2。
+
+RETURN 原因：
+1. 前 9 张图片 output-path 解析失败，必须人工从缓存恢复，导致 return→save / return→QA 指标失真；
+2. 完整 RUN_RECORD 通过超长 Windows 命令写入，后期发生持久化失败；
+3. C-VB01 在 QA 尚未及时完成时继续发出第三次同策略生成，没有真正执行“同类语义错误两次即停”；
+4. 因此本轮没有证明“返回即保存 → 立即 QA → 立即释放/续跑”的新编排，也不能据此升 concurrency=3。
+
+该 RETURN 路由为**执行器 / 测试 harness 缺陷**，不升级为 Part 3 / Part 4 正式规则问题；本轮三个内容 FAIL 不作为新版 Part 3 的回归结论。
+
+下一 Gate：
+`IMAGEGEN_EXECUTOR_RELIABILITY_R2`
+
+顺序：
+`保留 R1 证据 → 修 output path → append-only durable event log → 解耦无依赖生图槽与 QA → 无生图 preflight → 同 6 Beat / concurrency=2 复测 → fresh readback → Reviewer 再决定是否测试 concurrency=3`。
+
+正式 Part 3 / Part 4 / Part 4.5 / SKILL：本轮不改。
+H019 第二轮完整重跑：继续 DEFERRED。
