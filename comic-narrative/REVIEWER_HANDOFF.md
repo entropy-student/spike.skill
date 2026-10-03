@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / R2R1Q_R2R1J_EVIDENCE_RESTORE`
+`ACTIVE_REVIEW / R2R1R_EXISTING_ROOT_READONLY_QUALIFICATION`
 
 并行状态：
-- 主执行线：R2R1P 因本机缺少 R2R1J preserved evidence 在 preflight fail-closed；原始已验收 R2R1J ZIP 已从 ChatGPT Library 找回，R2R1Q 只做恢复与零生图再认证。
+- 主执行线：R2R1Q 因 recorded R2R1J root 已非空而按 Gate 停止；现有 root 的 9 个顶层名称与 accepted ZIP 完全一致。R2R1R 改为只读完整路径/hash 对照，不覆盖、不删除。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -68,7 +68,8 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1M：**RETURN_EXECUTION_CONTRACT_UNRESOLVED — REVIEWER ACCEPTED**：完整 ZIP 已由 Reviewer 实际检查；当前 Windows/Codex `image_gen.imagegen` callable 不暴露结构化 size/width/height/resolution 参数，故无法证明 native `1792×1008`；`IMAGEGEN_CALLS=0`、retries=0、fallback=0，fail-closed 正确；
   - R2R1N：**PASS / OWNER APPROVED**：继续使用 Codex 内置生图；16:9 保持唯一正式画幅；1920×1080 改为唯一默认目标画布 / final delivery target；取消独立 native pixel target；native 像素不精确本身不判失败、不触发重生；
   - R2R1O：**PASS**：零生图回归确认 preserved 1672×941 不因 native pixel mismatch 失败或 retry；1024×1536 明显错误画幅仍可独立 QA FAIL；`IMAGEGEN_CALLS=0`、retries=0；
-  - R2R1P：**RETURN_PREFLIGHT_DRIFT — REVIEWER ACCEPTED**：本机 recorded R2R1J evidence root 与六个 mandatory items 缺失；因此 positive/negative preflight 未运行，`IMAGEGEN_CALLS=0`。Reviewer 已从 ChatGPT Library 找回原始 R2R1J ZIP，SHA-256 与 R2R1J formal PASS 记录完全一致。
+  - R2R1P：**RETURN_PREFLIGHT_DRIFT — REVIEWER ACCEPTED**：本机 recorded R2R1J evidence root 与六个 mandatory items 缺失；因此 positive/negative preflight 未运行，`IMAGEGEN_CALLS=0`。Reviewer 已从 ChatGPT Library 找回原始 R2R1J ZIP，SHA-256 与 R2R1J formal PASS 记录完全一致；
+  - R2R1Q：**RETURN_PREFLIGHT_DRIFT — REVIEWER ACCEPTED**：ZIP 身份/路径安全 PASS，但 recorded root 已有 9 个顶层条目，按 R2R1Q 禁止覆盖规则立即停止；未解压、未覆盖、未回归、`IMAGEGEN_CALLS=0`。Reviewer 核对后确认这 9 个顶层名称与 accepted ZIP 的 9 个顶层名称完全一致，下一步改为只读资格认证。
 - **H019 完整第二轮重跑**：`DEFERRED`。
 - **6 Beat R2 完整复测**：未授权；先完成 R2R1P 两路并发 live fast-path canary，再由 Reviewer 决定是否进入 6 Beat。
 - **Part 5 / Part 6**：未正式迁移。
@@ -77,28 +78,30 @@ Part 6  执行与项目管理               [未正式迁移]
 
 ### GATE_ID
 
-`IMAGEGEN_R2R1J_EVIDENCE_RESTORE_AND_PREFLIGHT_REQUALIFICATION_R2R1Q`
+`IMAGEGEN_R2R1J_EXISTING_ROOT_READONLY_QUALIFICATION_R2R1R`
 
 ### OBJECTIVE
 
-在 **0 次 imagegen** 前提下，把已正式 PASS 的原始 R2R1J evidence package 恢复到 Owner Windows recorded root，并重新证明 R2R1P 所需的 receiver / parser / runtime hash / positive+negative no-image preflight 全部可用。
+在 **0 次 imagegen、0 次覆盖、0 次删除**前提下，证明 Windows 上现存的 R2R1J root 是否与已正式 PASS 的原始 R2R1J ZIP **逐文件完全一致**。
 
-本 Gate 不执行并发生图；只恢复已验收 evidence 并再认证。
+如果完全一致，再运行既有 positive final-receiver 与五个 negative path-policy no-image 回归，重新满足 R2R1P 的本地 preflight 依赖。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
-1. Owner 将已找回的 exact R2R1J ZIP 放到指定 Windows 本地路径；
-2. Executor 先证明 real Windows host / user / target path；
-3. 验证 ZIP SHA-256 精确等于 accepted R2R1J package；
-4. 若 target root 不存在或为空，解压到 fresh staging 后校验关键文件 hash，再原子/受控放置到 recorded root；
-5. 若 target root 已存在且非空，禁止覆盖/删除，直接 RETURN；
-6. 运行 R2R1J positive final-receiver sample；
-7. 运行五个 R2R1H/R2R1J negative path-policy cases；
-8. 验证 runtime helper / parser / receiver exact hashes；
-9. 重新验证 R2R1P no-image preflight 所需条件；
-10. fresh readback；
-11. `IMAGEGEN_CALLS=0`；
-12. STOP at Reviewer。
+1. fresh-read current GitHub main / R2R1Q Review / R2R1J Review；
+2. prove real Windows host/user/path；
+3. verify accepted ZIP exact identity；
+4. read-only inventory existing root；
+5. compare ZIP regular-file relative path set vs root regular-file relative path set；
+6. require zero missing / zero extra files；
+7. for every file, compare byte length + SHA-256；
+8. require complete 1:1 equality before executing any historical fixture；
+9. run accepted positive final-receiver replay；
+10. run five negative path-policy cases；
+11. verify receiver/parser/runtime-helper hashes；
+12. `IMAGEGEN_CALLS=0`；
+13. fresh readback；
+14. STOP at Reviewer。
 
 ### MANDATORY_REVIEW_STOP
 
@@ -106,130 +109,180 @@ Part 6  执行与项目管理               [未正式迁移]
 
 本 Gate 不得：
 - imagegen；
-- 创建 R2R1P live canary task；
-- 并发提交；
-- retry；
-- TTY bulk image transfer；
-- 修改 Part 2/3/4/4.5/SKILL；
-- 修改 historical R2R1J evidence 内容；
-- 重建或重新生成 R2R1J 图片。
+- live canary；
+- create R2R1P tasks；
+- extract over existing root；
+- delete / rename / overwrite root files；
+- modify historical R2R1J files；
+- copy reconstructed replacements into root；
+- modify Part 2/3/4/4.5/SKILL；
+- run 6 Beat / H019。
 
 ### TARGET_AND_SCOPE
 
-Source package：
-
-`_imagegen-output-hint-guard-repair-live-canary-r2r1j.zip`
-
-Accepted package identity：
-
-- bytes = `4,866,984`
-- SHA-256 = `760fe40a9debd990bde48bf9f673a37457f7367cc90be51986862f0816dcd5b4`
-- ZIP entries = 25
-- unsafe absolute/traversal entries = 0
-
-Owner-local ZIP input path：
+Immutable reference ZIP：
 
 `C:\Users\34707\Documents\ChatGPT\批量生图\_imagegen-output-hint-guard-repair-live-canary-r2r1j.zip`
 
-Recorded extraction root：
+Accepted ZIP identity：
+
+- bytes = `4,866,984`
+- SHA-256 = `760fe40a9debd990bde48bf9f673a37457f7367cc90be51986862f0816dcd5b4`
+- entries = 25
+- top-level names = 9
+- path traversal / absolute entries = 0
+
+Existing root：
 
 `C:\Users\34707\Documents\ChatGPT\批量生图\_imagegen-output-hint-guard-repair-live-canary-r2r1j\`
 
-Required critical members + accepted SHA-256：
+R2R1Q observed immediate entries：
 
-- `source\r2r1j_receiver.cjs` = `311be53e5b2b738e0242a12f2915dad59078bc976fba3d2572cf3a0ebbcc85bd`
-- `source\r2r1j_strict_parser.cjs` = `4cebf5426e13155beb9f53ac19fac9a943f2c37d02ca8f6ed300912b750d21ce`
-- `source\r2r1j_runtime_datauri_helpers.js` = `655eceb2f232bb96ac86faf4ce870440f62401102cdcb803ff0efebd5f74416f`
-- `source\r2r1j_run_log.cjs` = `092dd4acce986ac31f31bb35e8c907535aae4f72ab9ec2a7ce06391c120aa3f4`
-- `outputs\C-VB01.png` = `a15eb872f24f29edcdbef9bf645cfe0b835ead19663f6517f5a92538bd3811e1`
-- `PREFLIGHT_EVIDENCE_R2R1J.md` = `48c956f8a9da09f882803838a65486282ff7ab2150813ae71010f0a72007ccea`
-- `FRESH_READBACK_R2R1J.json` = `c131eb7bc3effc4d9c18117802fbbe2bc9ce179d094f972b97cd6f612a53bb18`
+- `outputs`
+- `preflight`
+- `source`
+- `FRESH_READBACK_R2R1J.json`
+- `IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J.md`
+- `PREFLIGHT_EVIDENCE_R2R1J.md`
+- `QA_REPORT.md`
+- `RUN_EVENTS.jsonl`
+- `RUN_RECORD.json`
+
+These exactly match the ZIP's nine top-level names, but full byte identity remains unproven until R2R1R.
 
 Allowed：
-- exact package verification；
-- staging extraction；
-- exact target-root restore when absent/empty；
-- no-image positive/negative receiver/parser regression；
-- bounded restoration evidence / readback。
+- read-only root traversal；
+- read-only ZIP entry traversal；
+- byte length + SHA-256 computation；
+- positive/negative no-image execution using existing files after identity PASS；
+- new R2R1R evidence directory only。
 
-Not allowed：
-- overwrite non-empty target root；
-- edit extracted historical files；
-- replace any accepted file with reconstructed equivalents；
-- regenerate R2R1J PNG；
-- any live imagegen。
+Forbidden：
+- any repair/mutation of existing R2R1J root；
+- partial acceptance when missing/extra/mismatched files exist；
+- using filename match alone as identity proof。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
 - `PASS_CANDIDATE != PASS`；
-- real-host write follows Governance 11B target-host proof；
-- same path in sandbox/WSL does not prove Windows host state；
-- target-root non-empty / ambiguous => fail closed, no delete / overwrite；
-- restored files must be byte-identical to accepted package；
-- package recovery is evidence restoration, not production-rule change；
-- R2R1P live canary remains unauthorized in this Gate；
-- no Secret content is involved or permitted；
-- historical accepted evidence must remain immutable。
+- Governance 11B real-host proof applies；
+- target root is treated as unknown until full read-only qualification；
+- unknown/non-identical historical evidence must not be overwritten merely to make the Gate pass；
+- ZIP is immutable accepted reference；
+- path-set equality + per-file hash equality are both required；
+- any missing / extra / mismatch => fail closed；
+- only after full identity PASS may historical positive/negative fixtures execute；
+- `IMAGEGEN_CALLS=0` throughout；
+- historical evidence remains immutable。
 
 ### PREFLIGHT
 
-Before extraction：
+Before root hashing：
 
-1. prove Windows host / user / shell context；
-2. prove ZIP exists at exact Owner-local input path；
-3. compute ZIP bytes + SHA-256 and require exact accepted identity；
-4. list archive entries without extracting and reject absolute path / traversal；
-5. inspect recorded target root：
-   - absent => allowed；
-   - empty directory => allowed；
-   - non-empty => `RETURN_PREFLIGHT_DRIFT`, no overwrite/delete；
-6. prepare fresh staging directory；
-7. `IMAGEGEN_CALLS=0` guard active。
+1. prove Windows OS / user / filesystem / exact working path；
+2. verify ZIP exists；
+3. verify ZIP bytes + SHA-256 = accepted identity；
+4. list archive and confirm path-safety；
+5. verify existing root exists and is directory；
+6. arm no-write discipline:
+   - no extraction；
+   - no delete；
+   - no overwrite；
+   - no rename；
+7. `IMAGEGEN_CALLS=0` guard active；
+8. create only a fresh separate R2R1R evidence directory。
 
-Any failure => STOP with zero imagegen.
+Failure => RETURN / STOP.
+
+### READONLY_IDENTITY_QUALIFICATION
+
+Build two normalized manifests.
+
+**ZIP manifest**
+- include regular file entries only；
+- normalized relative path；
+- uncompressed byte length；
+- SHA-256 of entry bytes。
+
+**Root manifest**
+- include regular files recursively；
+- normalized relative path from root；
+- byte length；
+- SHA-256。
+
+Require：
+
+1. exact relative-path set equality；
+2. missing files = 0；
+3. extra files = 0；
+4. per-path byte length equality；
+5. per-path SHA-256 equality；
+6. directory names may be listed for diagnostics but file-set identity is authoritative。
+
+If any mismatch：
+
+- `RETURN_PREFLIGHT_DRIFT`
+- do not run positive/negative fixtures；
+- do not repair root；
+- report bounded mismatch paths only。
+
+### POSITIVE_NEGATIVE_REQUALIFICATION
+
+Only after full identity PASS：
+
+1. run the accepted R2R1J final receiver positive fixture through the exact receiver entry point；
+2. require expected positive PNG/hash behavior；
+3. run the five accepted path-policy negative cases；
+4. require all five fail closed with no copy；
+5. verify receiver/parser/runtime helper exact file hashes still match accepted package；
+6. ordinary logs must not expose full base64 payload。
+
+This proves local executability only; it does not rerun historical imagegen or change R2R1J history.
 
 ### REQUIRED_EVIDENCE
 
-- `IMAGEGEN_R2R1J_EVIDENCE_RESTORE_AND_PREFLIGHT_REQUALIFICATION_R2R1Q.md`
-- `PREFLIGHT_EVIDENCE_R2R1Q.md`
-- Windows host/user/shell evidence
-- ZIP path / bytes / SHA-256
-- archive path-safety result
-- pre-restore target-root state
-- staging extraction result
-- seven critical member hashes listed above
-- restored-root post-write readback
-- positive final-receiver result
-- five negative path-policy results
-- receiver / parser / runtime helper exact paths + hashes
+- `IMAGEGEN_R2R1J_EXISTING_ROOT_READONLY_QUALIFICATION_R2R1R.md`
+- `PREFLIGHT_EVIDENCE_R2R1R.md`
+- current main SHA
+- R2R1Q Review + R2R1J Review pointers/hashes
+- Windows host/user/path proof
+- ZIP bytes/SHA/path-safety
+- ZIP file manifest
+- root file manifest
+- path-set comparison summary
+- missing/extra/mismatch counts
+- per-file hash comparison result
+- positive final-receiver result, if identity PASS
+- five negative results, if identity PASS
+- receiver/parser/runtime helper hashes
 - `IMAGEGEN_CALLS=0`
 - retries=0
-- production-rule delta=0
-- historical-file mutation=0
+- root mutations=0
+- production/formal-rule changes=0
 - `RUN_EVENTS.jsonl`
 - `RUN_RECORD.json`
-- fresh readback summary
+- fresh readback
 
 ### ACCEPTANCE_CRITERIA
 
-`PASS_CANDIDATE_R2R1J_EVIDENCE_RESTORE_R2R1Q` requires all：
+`PASS_CANDIDATE_R2R1J_EXISTING_ROOT_QUALIFIED_R2R1R` requires：
 
-1. exact accepted ZIP identity matched；
-2. archive path-safe；
-3. target root was absent/empty before restore；
-4. restored files byte-match accepted critical hashes；
-5. positive R2R1J final-receiver replay PASS；
-6. five negative path-policy cases fail closed；
-7. no historical file was edited after extraction；
-8. R2R1P no-image preflight dependencies are again locally available；
-9. `IMAGEGEN_CALLS=0`；
-10. no production/formal-rule modification；
-11. event/run record reconstructable；
-12. fresh readback consistent。
+1. exact accepted ZIP identity；
+2. zero unsafe archive paths；
+3. root file relative-path set exactly equals ZIP regular-file set；
+4. missing=0 / extra=0；
+5. every file byte length + SHA-256 matches；
+6. root mutations=0；
+7. positive receiver replay PASS；
+8. five negative path-policy cases all fail closed；
+9. receiver/parser/runtime helper hashes match；
+10. `IMAGEGEN_CALLS=0`；
+11. no historical/formal-rule changes；
+12. fresh readback matches evidence。
 
 Allowed results：
 
-- `PASS_CANDIDATE_R2R1J_EVIDENCE_RESTORE_R2R1Q`
+- `PASS_CANDIDATE_R2R1J_EXISTING_ROOT_QUALIFIED_R2R1R`
 - `RETURN_PREFLIGHT_DRIFT`
 - `RETURN_TEST_FAILURE`
 - `RETURN_IMPLEMENTATION_DRIFT`
@@ -237,62 +290,61 @@ Allowed results：
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-- No production state is changed；
-- restore only into absent/empty historical evidence root；
-- if extraction/hash verification fails before promotion, delete only fresh staging；
-- if post-promotion readback fails, do not mutate files to repair them in place；return precise failure and preserve evidence；
-- never overwrite an existing non-empty historical root。
+No target-root mutation is authorized, therefore no root rollback should be necessary.
+
+Only fresh R2R1R evidence may be created.
+
+If qualification fails：
+- preserve current root unchanged；
+- preserve ZIP unchanged；
+- do not repair / overwrite / delete；
+- STOP for Reviewer classification。
 
 ### OWNER_ONLY_ACTIONS
 
-`ONE MINIMAL FILE PLACEMENT REQUIRED`
+`NONE`
 
-Owner only needs to place the exact recovered ZIP at：
-
-`C:\Users\34707\Documents\ChatGPT\批量生图\_imagegen-output-hint-guard-repair-live-canary-r2r1j.zip`
-
-No extraction/debugging is required from Owner; Executor performs all validation and restore steps.
+ZIP and populated root are already present. Owner should not extract, delete, rename, or copy anything.
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-Start from current GitHub main. Execute only R2R1Q.
+Start from current GitHub main. Execute only R2R1R.
 
-Read：
+Read only：
 
 1. current `comic-narrative/REVIEWER_HANDOFF.md` CURRENT_GATE / Relay；
-2. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_TWO_CONCURRENT_LIVE_CANARY_R2R1P_REVIEW.md`；
+2. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1J_EVIDENCE_RESTORE_AND_PREFLIGHT_REQUALIFICATION_R2R1Q_REVIEW.md`；
 3. `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J_REVIEW.md`。
 
-Do not scan broad history.
+Do not read broad history.
 
-Required sequence：
+Execution：
 
-1. prove real Windows host/user/shell；
-2. verify exact ZIP at specified input path；
-3. verify ZIP SHA/bytes + path safety；
-4. inspect target root；non-empty => STOP；
-5. extract to fresh staging；
-6. verify critical hashes；
-7. promote to recorded root only after all hashes PASS；
-8. fresh readback restored root；
-9. run positive final-receiver no-image sample；
-10. run five negative cases；
-11. verify R2R1P local preflight dependencies now available；
-12. `IMAGEGEN_CALLS=0`；
-13. fresh readback；
-14. STOP。
+1. prove real Windows host/user/path；
+2. verify exact accepted ZIP；
+3. verify archive path-safety；
+4. recursively hash ZIP regular-file entries into normalized manifest；
+5. recursively hash existing root regular files into normalized manifest；
+6. compare full path sets + lengths + hashes；
+7. any mismatch => RETURN, no repair；
+8. only if exact match, run positive receiver fixture；
+9. run five negative path-policy fixtures；
+10. verify receiver/parser/runtime helper hashes；
+11. `IMAGEGEN_CALLS=0`；
+12. fresh readback；
+13. STOP。
 
-Do not create live canary tasks and do not imagegen.
+Do not imagegen. Do not modify existing root.
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
 ```text
-结果：PASS_CANDIDATE_R2R1J_EVIDENCE_RESTORE_R2R1Q / RETURN_*
-改动：一句话说明 exact R2R1J accepted ZIP 是否恢复到 recorded root。
-验证：一句话说明 ZIP identity、critical hashes、positive/5 negatives、IMAGEGEN_CALLS=0 与 fresh readback。
-问题：NONE，或“阻塞短语：一句通俗解释”。
-回滚：一句话说明 target root 原始状态、staging/restore 状态，以及是否发生覆盖。
-请 Reviewer 检查：核对 accepted ZIP identity、host-local restore、hashes、positive/negative regression 与 zero imagegen。
+结果：PASS_CANDIDATE_R2R1J_EXISTING_ROOT_QUALIFIED_R2R1R / RETURN_*
+改动：仅新增 R2R1R read-only qualification evidence；R2R1J root/ZIP 均未修改。
+验证：一句话说明 ZIP/root 全量 path+hash 对照、positive、5 negatives、IMAGEGEN_CALLS=0 与 fresh readback。
+问题：NONE，或“mismatch/fixture failure：一句通俗解释”。
+回滚：无需 root 回滚；说明 root mutations=0。
+请 Reviewer 检查：核对完整 manifest equality、positive/negative requalification、zero mutation/zero imagegen 与 fresh readback。
 Owner 转交：NONE。
 ```
 
@@ -308,7 +360,7 @@ Owner 转交：NONE。
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R1Q：Owner Windows 本地恢复 exact accepted R2R1J evidence package；本轮 `IMAGEGEN_CALLS=0`；
+- 当前 R2R1R：Owner Windows 对现有 R2R1J root 做只读全量 qualification；本轮 `IMAGEGEN_CALLS=0`、root mutations=0；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -319,8 +371,8 @@ Owner 转交：NONE。
 
 ## UNRESOLVED
 
-1. **R2R1Q evidence restore**：需把已找回的 exact accepted R2R1J ZIP 恢复到 Owner Windows recorded root，并重新通过 positive / five-negative no-image preflight。
-2. **R2R1P two-concurrent fast-path canary**：R2R1Q PASS 后再恢复；当前没有任何并发 live evidence。
+1. **R2R1R existing-root qualification**：需证明现有 R2R1J root 与 accepted ZIP 全量路径 / bytes / SHA-256 完全一致，并重新通过 positive + five-negative no-image 回归。
+2. **R2R1P two-concurrent fast-path canary**：R2R1R PASS 后再重新授权；当前仍没有并发 live evidence。
 3. **Final video 1920×1080 adaptation implementation**：标准画布已确定，具体视频阶段适配仍待 Part 5 正式迁移时实现。
 4. **C-VB01 historical content QA**：旧 PNG 不接受为 final production asset。
 5. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
@@ -329,16 +381,16 @@ Owner 转交：NONE。
 
 ## NEXT_STEP
 
-执行并 Review `R2R1Q`：
+执行并 Review `R2R1R`：
 
-`exact R2R1J ZIP → Windows host identity → ZIP/hash/path-safety → absent/empty target check → staging extract → critical hashes → restore → positive + 5 negatives → fresh readback → STOP`
+`current main → Windows identity → accepted ZIP verify → ZIP/root full manifest comparison → exact-match only → positive + 5 negatives → fresh readback → STOP`
 
-R2R1Q 正式 PASS 后，再重新授权 R2R1P 两路 live canary；不重做 R2R1J 生图。
+R2R1R PASS 后，再恢复 R2R1P 两路 live canary。
 
 ## OWNER_ACTION_REQUIRED
 
-- **R2R1Q 最小动作：**下载已找回的 `_imagegen-output-hint-guard-repair-live-canary-r2r1j.zip`，保存到 `C:\Users\34707\Documents\ChatGPT\批量生图\`；不要解压、不要修改。
-- 保存完成后，将当前 `REVIEWER_HANDOFF.md` 的 R2R1Q Relay 交给 Windows / Codex Executor。
+- **NONE。** ZIP 与现有 root 都已经在 Windows 上；请不要手工解压、删除、覆盖或重命名。
+- 将当前 `REVIEWER_HANDOFF.md` 的 R2R1R Relay 交给 Windows / Codex Executor 即可。
 - Part 2 正式修改仍 DEFERRED。
 
 ## EVIDENCE_POINTERS
@@ -355,6 +407,7 @@ R2R1Q 正式 PASS 后，再重新授权 R2R1P 两路 live canary；不重做 R2R
 - R2R1N simplified size policy / R2R1O Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_SIZE_POLICY_SIMPLIFICATION_R2R1N_REVIEW.md`
 - R2R1O PASS / R2R1P Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_SIZE_POLICY_NO_IMAGE_REGRESSION_R2R1O_REVIEW.md`
 - R2R1P RETURN / R2R1Q recovery Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OUTPUT_HINT_TWO_CONCURRENT_LIVE_CANARY_R2R1P_REVIEW.md`
+- R2R1Q RETURN / R2R1R read-only qualification Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_R2R1J_EVIDENCE_RESTORE_AND_PREFLIGHT_REQUALIFICATION_R2R1Q_REVIEW.md`
 - Part 2 pending edit map: `comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
 - Current formal Part 3: `comic-narrative/part3/STORYBOARD_VISUAL_DIRECTOR.md`
 - Current formal Part 4: `comic-narrative/part4/IMAGE_ASSET_EXECUTION.md`
