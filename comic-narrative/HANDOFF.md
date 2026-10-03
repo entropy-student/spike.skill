@@ -1575,3 +1575,43 @@ RETURN 原因：
 
 正式 Part 3 / Part 4 / Part 4.5 / SKILL：本轮不改。
 H019 第二轮完整重跑：继续 DEFERRED。
+
+
+
+### Part 2 独立 Reviewer 审查与正式修改清单（2026-10-03）
+
+独立 Reviewer 已在分支 `codex/comic-part2-reaudit-20261003` 完成 Part 2 复查，commit：
+`1366c53d0277ce2d30d970c68031664df9239ef1`。
+
+Reviewer 产物：
+- `comic-narrative/reviews/part2/SCRIPT_NARRATIVE_REAUDIT.md`
+- `comic-narrative/reviews/part2/SCRIPT_NARRATIVE_MODIFICATION_SUGGESTIONS.md`
+
+主 Reviewer 复核结论：
+- 当前 Part 2 的叙事骨架不需要推倒；
+- 主要缺口位于证据 / 事实身份、锁定 / 重锁权限、下游交接、RETURN 路由和整稿 QA；
+- 不建议整篇替换候选方案；
+- 优先吸收 R1 / R2 / R3 / R5 / R8 / R15；
+- R4 / R6 / R7 / R9 / R10 / R11 / R12 / R13 / R14 仅以必要澄清方式并入现有章节，不扩成新体系；
+- R16 全文重构暂不做；
+- R17 历史溯源 / 证据修正留在 Reviewer / HANDOFF，不写入每次运行的正式规则。
+
+Owner 已同意先形成正式修改位置清单，再决定是否写入 Part 2 正文。
+
+已新增：
+`comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
+
+该清单只记录：
+`正式 Part 2 哪一节 → 新增 / 修改 / 删除什么`，
+不包含问题背景、历史论证或长篇解释。
+
+当前正式 `part2/SCRIPT_NARRATIVE.md` **尚未修改**。
+
+下一步：
+1. Owner 审阅 `PART2_FORMAL_EDIT_MAP.md`；
+2. Owner 明确批准后，再一次性修改正式 Part 2；
+3. 修改后由 Reviewer fresh readback，确认没有把候选全文、历史审计或新配额误写入 runtime 规则；
+4. 再决定是否进入 Part 2 小范围回归。
+
+当前状态：
+`PART2_REAUDIT_REVIEWED / FORMAL_EDIT_MAP_READY / FORMAL_PART2_UNCHANGED / WAITING_OWNER_APPROVAL`。
