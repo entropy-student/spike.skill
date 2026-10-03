@@ -1816,3 +1816,55 @@ R2R1C：
 
 当前状态：
 `R2R1B_RETURN_TEST_FAILURE / NEXT_R2R1C_TRANSPORT_DIAGNOSTIC / IMAGEGEN_CALLS_NEXT_GATE_0 / FULL_RETEST_NOT_AUTHORIZED`。
+
+
+
+### IMAGEGEN_LARGE_PAYLOAD_TRANSPORT_DIAGNOSTIC_R2R1C — Reviewer RETURN（2026-10-03）
+
+Reviewer 按 `vps-project-governance/VNEXT.md` v0.2.6 完成 fresh readback。
+
+证据包：
+- `_imagegen-large-payload-transport-diagnostic-r2r1c.zip`
+- Reviewer-computed SHA-256：`e01619fbaa14ef83fc4512ee28d40e03aaf97faa7d12a8f627510168237fb542`
+
+正式 verdict：**`RETURN_TEST_FAILURE`**。
+
+直接核验：
+- `IMAGEGEN_CALLS=0`；
+- RUN_EVENTS 66 条、sequence 1–66 连续可解析；
+- baseline Test A 的原始 one-shot TTY/write_stdin transport 实际已成功把完整 fixture 交给 adapter，并保存出正确 PNG：
+  - 923,749 bytes
+  - SHA-256 `bf622d490194e90f4587b4d90869e6f5d4c792d6b52f7e6e2471cfcf44f3ff5d`；
+- 但 receiver 没有 durable completion report，session exit code=1；
+- 唯一一次 chunk+ACK repair 在 180 秒内只确认 851,968 / 1,232,262 bytes，未进入 adapter save；
+- Test B 按 Gate 正确未启动。
+
+Reviewer 修正当前故障定位：
+**不能再概括为“大 payload 无法通过 transport”。**
+baseline 已证明 one-shot full-size payload 能到达并成功保存图片。当前最窄未解故障是：
+**receiver 在成功保存之后的 final event/report/stdout/cleanup/clean-exit 链。**
+
+chunk+ACK 方案增加大量 round-trip 开销且失败，不作为下一默认方案。
+
+下一 Gate：
+**`IMAGEGEN_RECEIVER_COMPLETION_DIAGNOSTIC_R2R1D`**
+
+R2R1D：
+- `IMAGEGEN_CALLS=0`；
+- 回到已证明能传完整 payload 的原始 one-shot transport；
+- 在 adapter save 后的 completion path 增加独立 crash-safe phase trace；
+- 精确定位 final append / report write / stdout / stdin cleanup / process exit 哪一步失败；
+- 最多一次基于证据的 completion-path repair；
+- 单路 clean PASS 后才运行两路 concurrent one-shot fixture；
+- STOP_AT_REVIEWER。
+
+仍禁止：
+- 新 transport 架构；
+- 真实生图；
+- 6 Beat；
+- concurrency=3；
+- H019；
+- 正式 Part 2/3/4/4.5/SKILL 修改。
+
+当前状态：
+`R2R1C_RETURN_TEST_FAILURE / NEXT_R2R1D_RECEIVER_COMPLETION_DIAGNOSTIC / IMAGEGEN_CALLS_NEXT_GATE_0 / FULL_RETEST_NOT_AUTHORIZED`。
