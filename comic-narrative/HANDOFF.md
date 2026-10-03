@@ -1976,3 +1976,64 @@ R2R1F 最大终点：
 
 当前状态：
 `R2R1E_RETURN_IMPLEMENTATION_DRIFT / NEXT_R2R1F_PREPARE_BEFORE_RECEIVER / TWO_IMAGEGEN_CALLS_MAX_AFTER_PREFLIGHT / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
+
+
+
+### IMAGEGEN_EXECUTOR_INTEGRATION_CANARY_R2R1F — Reviewer RETURN（2026-10-03）
+
+Reviewer 按 `vps-project-governance/VNEXT.md` v0.2.6 完成 fresh readback。
+
+证据包：
+- `_imagegen-executor-integration-canary-r2r1f.zip`
+- SHA-256：`bec299edecce82514ff0abb59f459940e2d1033264ee1ebb125745091e0c7d61`
+
+正式 verdict：**`RETURN_TEST_FAILURE`**。
+
+本轮关键进展：
+- no-image preflight PASS；
+- 仅调用 C-VB01 / C-VB02 attempt1，共 2 次 imagegen，无 retry；
+- 2/2 live image result 均通过 one-shot receiver **自动保存成功**；
+- 2/2 receiver exit code=0；
+- 2/2 hash fresh readback 匹配；
+- 2/2 均进入 QA；
+- RUN_EVENTS 68 条，sequence 1–68 连续；
+- 无人工缓存恢复。
+
+保存结果：
+- C-VB01：2,198,823 bytes，1672×941，SHA-256 `cfac82636b286a03e0e75a4dd273655b38e867e1e134f1d013bae77ebcb68f70`；
+- C-VB02：2,104,273 bytes，1672×941，SHA-256 `259eaee261b171ba285d1284085a7521801ba91db0377a8fc3599ba20046b515`。
+
+本 Gate 未 PASS 的主要集成原因：
+- live receiver 分别耗时约 311.210s / 300.591s；
+- 240s 外部 watchdog 两路均触发；
+- Ctrl-C 未能终止已在途 `write_stdin`；
+- watchdog 触发后 payload 仍继续传输并最终成功保存；
+- 因此当前 watchdog 既与真实传输时长不匹配，也没有形成预期的 fail-closed 硬截止。
+
+当前活动故障域收敛为：
+**one-shot TTY/write_stdin transfer timing + watchdog contract**。
+
+QA 另有两项后续问题，但不作为下一集成阻塞：
+1. 两张 raw 输出均为 1672×941；正式 Part 4 §25 当前写的是 `1920×1080 final delivery target`，而任务包把 1920×1080 当成 native exact output。该差异先记为 `OUTPUT_SIZE_CONTRACT_RECONCILIATION_PENDING`，执行器稳定前不为此消耗重试；
+2. C-VB02 的同酒店 / 同日期在画面中不可充分核验，保留为后续 retry-capable 内容 QA 问题。
+
+下一 Gate：
+**`IMAGEGEN_ONESHOT_TTY_TIMING_DIAGNOSTIC_R2R1G`**
+
+R2R1G：
+- `IMAGEGEN_CALLS=0`；
+- 用已保存 C-VB01 PNG 重建 live-size raw fixture；
+- Test A 保持当前 one-shot sender：`yield_time_ms=30000`；
+- Test B 对同一 payload **只修改 `yield_time_ms`** 为工具允许的最小短 / nonblocking 值；
+- 直接比较完整 receiver duration / throughput / hash / exit；
+- 不改变 framing / chunking / receiver / adapter；
+- 不引入新 transport；
+- STOP_AT_REVIEWER。
+
+只有该诊断回答“30 秒 yield 是否造成当前约 5 分钟传输”之后，再决定：
+- 采用更短 yield 并重新设计 watchdog；
+或
+- 若无改善，则单独立项评审 TTY/write_stdin transport 替代方案。
+
+当前状态：
+`R2R1F_RETURN_TEST_FAILURE / LIVE_AUTO_SAVE_2_OF_2_PROVEN / NEXT_R2R1G_TTY_TIMING_DIAGNOSTIC / IMAGEGEN_CALLS_NEXT_GATE_0 / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
