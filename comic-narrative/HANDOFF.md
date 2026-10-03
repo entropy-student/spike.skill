@@ -2037,3 +2037,34 @@ R2R1G：
 
 当前状态：
 `R2R1F_RETURN_TEST_FAILURE / LIVE_AUTO_SAVE_2_OF_2_PROVEN / NEXT_R2R1G_TTY_TIMING_DIAGNOSTIC / IMAGEGEN_CALLS_NEXT_GATE_0 / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
+
+
+### IMAGEGEN_ONESHOT_TTY_TIMING_DIAGNOSTIC_R2R1G — Reviewer PASS（2026-10-03）
+
+正式 verdict：**PASS**。
+
+证据包 SHA-256：48002fe744e02754108fafa21cd3514dd5ead78f19f1f0b63f3d95fdb84c1277。
+
+关键结论：
+- IMAGEGEN_CALLS=0；
+- 同一 2,931,881-byte wire 下，yield_time_ms=30000 与 0 的 receiver duration 为 289.455s / 283.182s；
+- sender API return 从 30.591s 降到 0.838s，但 bulk delivery 仍约 283s；
+- 2/2 自动保存、hash 相同、receiver exit 0；
+- 单组 A/B 不支持稳定 2.17% 性能提升结论；
+- 当前主要瓶颈仍是 TTY / write_stdin bulk-payload bridge。
+
+下一 Gate：**IMAGEGEN_OUTPUT_HINT_LOCAL_CACHE_DIAGNOSTIC_R2R1H**。
+
+R2R1H 边界：
+- IMAGEGEN_CALLS=0；
+- 仅使用保存的 R2R1A RAW_IMAGEGEN_RESULT.json；
+- 严格解析 output_hint 中的 generated-image local path；
+- hinted PNG hash 必须等于同一 raw object 的 decoded image_url hash；
+- 验证 local-file copy 与 hash；
+- 对越界 / 缺失 / 非 PNG / 多路径歧义 / traversal 做 fail-closed negative tests；
+- 不扫描整个 generated-images 目录；
+- output_hint 仍不是保证性 API contract，只测试 optional verified fast path；
+- STOP_AT_REVIEWER。
+
+当前状态：
+R2R1G_PASS / TTY_BULK_BRIDGE_CONFIRMED_BOTTLENECK / NEXT_R2R1H_LOCAL_CACHE_HINT_DIAGNOSTIC / IMAGEGEN_CALLS_NEXT_GATE_0 / FULL_6_BEAT_RETEST_NOT_AUTHORIZED。
