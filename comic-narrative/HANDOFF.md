@@ -2097,3 +2097,37 @@ R2R1I 只允许一次真实 imagegen：`C-VB01 attempt1`。核心验证：
 仍禁止：attempt2、C-VB02、另外 4 Beat、concurrency=3、H019、正式 Part 2/3/4/4.5/SKILL 修改。
 
 当前状态：`R2R1H_PASS / OPTIONAL_LOCAL_CACHE_FAST_PATH_PROVEN_ON_PRESERVED_SAMPLE / NEXT_R2R1I_ONE_LIVE_CANARY / ONE_IMAGEGEN_CALL_MAX / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
+
+### IMAGEGEN_OUTPUT_HINT_LOCAL_CACHE_LIVE_CANARY_R2R1I — Reviewer RETURN（2026-10-03）
+
+正式 verdict：**`RETURN_IMPLEMENTATION_DRIFT`**。
+
+证据包 Reviewer-computed SHA-256：`913980defd2ef0b93a3ac5601c9d752afc4948fdc02774168a1f4cae7f0421aa`。
+
+直接核验：
+- preflight 报告 PASS；
+- 仅调用 `C-VB01 attempt1` 一次，无 retry；
+- live PNG 已在返回 runtime 内解码并计算 SHA，2,151,682 bytes，SHA-256 `c3ff84ff7cce4ea7fb72e390bb9777951318a11852a576cd06047e646960f929`；
+- 未通过 TTY 传输 base64；
+- live `output_hint` 是 string，但在进入 R2R1H strict parser 前被 R2R1I receiver 新增 guard 拦截；
+- source 明确显示该 guard 为 `length > 1024 OR CR/LF present`；
+- 本轮未记录具体触发分支，也未保存 hint，因此无法事后判断 live hint 本身能否通过 strict parser；
+- 0 local path resolution / 0 copy / 0 QA / 0 retry；
+- 当前证据包缺少 Gate 要求的 `RUN_EVENTS.jsonl` 与 fresh-readback summary，事件链独立重建不完整。
+
+Reviewer 定位：当前故障是 **R2R1I 新增的 pre-parser guard 比已审核 strict parser 更严格，且 preflight 没有以最终 receiver entry point 做端到端正样本验证**，不是 R2R1H parser 已被证明失效。
+
+下一 Gate：**`IMAGEGEN_OUTPUT_HINT_GUARD_REPAIR_LIVE_CANARY_R2R1J`**。
+
+R2R1J：
+- 允许一次 bounded receiver-guard repair；
+- 去掉 parser 前 blanket CR/LF rejection；
+- 1024 字符限制改为仅用于资源保护的较宽 ceiling，不承担路径语义判断；
+- 路径/格式是否合法仍只由 R2R1H strict parser 决定；
+- 增加 bounded diagnostics：hint length/hash、CR/LF flags、parser result/error，不记录完整 hint；
+- 先让保存的 R2R1A positive sample 和负测通过 **最终 receiver entry point**；
+- preflight PASS 后才允许 `C-VB01 attempt1` 一次真实 imagegen；
+- live hint 若到达 parser 后被 parser 拒绝，则 `RETURN_TEST_FAILURE`，本轮不得继续放宽 parser；
+- 不允许 TTY bulk fallback / retry / C-VB02 / 6 Beat / H019 / concurrency=3。
+
+当前状态：`R2R1I_RETURN_IMPLEMENTATION_DRIFT / LIVE_RUNTIME_HASH_PROVEN / PRE_PARSER_GUARD_DRIFT_IDENTIFIED / NEXT_R2R1J_GUARD_REPAIR_ONE_LIVE_CANARY / FULL_6_BEAT_RETEST_NOT_AUTHORIZED`。
