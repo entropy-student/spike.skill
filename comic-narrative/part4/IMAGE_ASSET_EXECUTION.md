@@ -213,7 +213,7 @@ QA 必须按可见范围判断。只看到手、袖口或背影时，不为了�
 
 典型对象包括 recurring supporting character、scene geometry、causal prop、UI shell / document shell。
 
-**锁定稳定约束不等于必须额外生成 mini master。** 可按风险依次使用：
+**锁定稳定约束不等于必须额外生成 mini master。** 对单集高频、连续性重要、且身份漂移风险高的临时角色，必须在正式批量生图前判断是否需要 episode-local mini master；一次性、低连续性角色不强制建立。可按风险依次使用：
 
 - 已有 canonical reference；
 - Part 4.5 中兼容且获准用于当前用途的完整旧图；
@@ -632,7 +632,8 @@ Owner / Reviewer 可推翻 executor 的 QA；必须保留原判定和后续 adju
 - 本 run 前置依赖存在且无循环，等待条件与失败动作明确；
 - exact reuse 有确定 source；DERIVE_EDIT 有兼容 source、preserve、main delta 与 fallback；
 - 禁止模式没有可执行入口；
-- 执行 Agent无需访问仓库、重新查库或补充创意判断即可执行。
+- 执行 Agent无需访问仓库、重新查库或补充创意判断即可执行；
+- 宣布素材包完成前，重新对照当前正式要求做一次跨模块整体复查，至少覆盖 Part 2 / Part 2.5 的文本与时间来源、Part 3 的 Scene System / Semantic Shot / Visual Beat / 事实与连续性、Part 4 的执行合同与包完整性、Part 4.5 的素材复用兼容性，以及当前 imagegen 执行与输出要求；不能只检查图片数量和 prompt 是否齐全。
 
 包级结构检查可用普通脚本辅助，但不能代替语义兼容性判断。
 
