@@ -48,8 +48,8 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：正式基线已建立。
-- **New confirmed topics H021–H023**：Part 1 五项硬检查 + Part 0 D1–D5 复查均 PASS，已写入 `part0/TOPIC_LIBRARY.md`；三题分别为降噪耳机、手机夜景、AI 修老照片。尚未自动进入 Part 2。
+- **Part 0 / Part 1**：正式基线已建立。Part 0 选题库已扩充至 **H001–H100，共 100 个 PASS Case**；H024–H100 为本轮新增 EVERGREEN 选题，已按 Part 1 五项硬检查与 D1–D5 做题意级复查，不自动进入 Part 2。
+- **Topic library**：H001–H100 均已写入 `part0/TOPIC_LIBRARY.md`；H021–H023 原确认状态保持，H024–H100 为新增候选储备。所有题仍需在正式进入 Part 2 时锁定事实 / 机制证据，内部题面不自动等于最终发布标题。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
