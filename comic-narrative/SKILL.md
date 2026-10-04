@@ -4,7 +4,7 @@ title: 漫画叙事
 description: 面向“选题 → 剧本 → 最终配音/SRT → 分镜 → 漫画图片资产 → 视频时间轴/成片”的漫画叙事生产 Skill。当前按模块逐步从 ai-story-showrunner / story-showrunner 简化迁移，并通过历史 Case 与源快照复查避免能力丢失。
 version: 0.0.12-draft
 language: zh-CN
-status: ACTIVE_MAINTENANCE_LOCAL_DEEP_CLEANUP
+status: ACTIVE_READY_NEXT_TARGET
 ---
 
 # 漫画叙事
