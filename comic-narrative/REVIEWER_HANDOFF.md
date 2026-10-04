@@ -126,7 +126,7 @@ Canonical files：
 - `official_hint_parser.ps1` blob `094ffe536063921cd923de09d05c1edff3da408b`；
 - `local_copy.ps1` blob `7774168abde8019d6f2c50936c89ef1dc67c28f2`；
 - `append_event.ps1` blob `e6b31a4597c997fff6993d4dcc0abe8b855e09ac`；
-- fast-path README blob `4f1958adce6eb23bb1a0535a38b2ea1902cf9ad2`；
+- fast-path README blob `33cb757a85d4889c271a4fd91f9d8d32f1565e08`；
 - fixed R2R2 fixture blob `494ee334ade104f635e00c80999ba1fa025926fa`。
 
 Allowed reads：
