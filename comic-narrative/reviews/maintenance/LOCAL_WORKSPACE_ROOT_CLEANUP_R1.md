@@ -1,5 +1,9 @@
 # LOCAL_WORKSPACE_ROOT_CLEANUP_R1
 
+> Status: **SUPERSEDED_BEFORE_EXECUTION / OWNER EXPANDED SCOPE**  
+> Superseded by: `LOCAL_WORKSPACE_DEEP_CLEANUP_R2.md`  
+> R1 only moved root-level items and prohibited deletion. Owner explicitly expanded scope to recursive cleanup including disposable test images/programs/history, so R1 must not be executed.
+
 > Date: 2026-10-04  
 > Scope: Owner Windows workspace only  
 > Production: PAUSED  
