@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / R2R2R2_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT`
+`ACTIVE_REVIEW / R2R2R3_SYNTHETIC_SOURCE_CLEANUP_CLOSEOUT`
 
 并行状态：
-- 主执行线：R2R2R1 已证明 repaired consumer、6/6 imagegen 返回、三波调度与并发 2；4 张完成全链，2 张仅因 flat Destination 不符合 canonical helper 的嵌套输出合同而失败。R2R2R2 不再调用 imagegen，只做 destination contract closeout。
+- 主执行线：R2R2R2 已证明 6/6 nested destination 正例与 flat destination fail-closed；IMAGEGEN_CALLS=0。唯一未满足项是 fresh synthetic source 在 fresh readback 时仍存在。R2R2R3 只做 exact-source cleanup/readback，不再重跑任何测试。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -77,6 +77,7 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1V：**PASS**：official-hint parser fixtures 6/6 PASS；恰好并发 2 次 imagegen，55.333s / 55.334s 返回；两路均 `DIRECT_SOURCE_PATH`，source/copy SHA 一致，native=1672×941，视觉 QA 均 PASS；19 条事件连续；zero retry/replacement/fallback。该能力已提升到 `comic-narrative/tools/imagegen-fast-path/`。
   - R2R2：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED / CLASSIFICATION CORRECTED**：no-image preflight PASS；Wave 1 恰好提交 2 次 imagegen，max in-flight=2；Beat 01 返回在内存观察到后，fresh `consume_output_hint.ps1` 的 child-process 参数交接导致 child logger 缺失 `EventLogPath/EventJson`，故 durable `IMAGE_RETURNED` 前中止；Beat 02 状态保持 UNKNOWN；0 PNG/0 QA；无 retry/replacement/fallback；Wave 2/3 未提交。
   - R2R2R1：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED / CLASSIFICATION CORRECTED**：consumer 0-image end-to-end smoke PASS；恰好 6 次 imagegen / 三波 / max in-flight=2 / 6 IMAGE_RETURNED；Beat 03–06 全链保存/hash/dimensions/QA PASS，Beat 01–02 因 flat `outputs/<file>.png` 被 canonical local-copy 以 `DESTINATION_OUTSIDE_RUN_OUTPUTS` 拒绝。根因是 caller/tool destination contract gap，不是 imagegen 失败。batch wall clock=668s。repaired consumer 已提升为 canonical tool。
+  - R2R2R2：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED / CLOSEOUT INCOMPLETE**：IMAGEGEN_CALLS=0；6/6 `outputs/<task_id>/<task_id>.png` 正例均 save/hash/96×54/QA_QUEUED；flat negative 返回 `DESTINATION_OUTSIDE_RUN_OUTPUTS` 且未落文件；33 条事件连续。唯一缺口：fresh readback 时 exact synthetic source 仍存在，未提供后续 cleanup 证据。
 - **H019 完整第二轮重跑**：`DEFERRED`。
 - **6-task reliability retest**：R2R2R1 已授权；仅修 consumer binding 后重跑固定六任务三波。
 - **Part 5 / Part 6**：未正式迁移。
@@ -85,163 +86,118 @@ Part 6  执行与项目管理               [未正式迁移]
 
 ### GATE_ID
 
-IMAGEGEN_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2
+IMAGEGEN_SYNTHETIC_SOURCE_CLEANUP_CLOSEOUT_R2R2R3
 
 ### OBJECTIVE
 
-不用任何新的 imagegen 调用，封板当前 fast-path 的唯一剩余集成合同：scheduler/caller 生成的 Destination 必须与 canonical `local_copy.ps1` 的嵌套输出目录规则一致。
+只完成 R2R2R2 尚未证明的 exact synthetic source cleanup。
 
-R2R2R2 通过后，Reviewer 使用 R2R1V + R2R2R1 + R2R2R2 的组合证据关闭 imagegen executor reliability 线，不再重复 synthetic live-image batch。
+不得重跑任何 positive/negative destination test，不得调用 imagegen，不得修改 canonical tools。
+
+Exact owned source：
+
+`C:\Users\34707\.codex\generated_images\R2R2R2-SYNTH-7b286bc9518546e099ee53634f683a2c\synthetic.png`
+
+Expected SHA-256：
+
+`680826c5ea1a898f0c7b80043923dbb94e6d06d828eb556bcf25bf51e1454751`
 
 ### MAX_ENDPOINT_THIS_ROUND
 
 1. fresh-read current main + current Gate；
-2. verify canonical fast-path tool blobs；
-3. fresh R2R2R2 run directory；
-4. create one fresh synthetic PNG source under a unique current-user `.codex/generated_images` child directory；
-5. build exact official output_hint for that source；
-6. use fixed six R2R2 task IDs to construct six production-style destinations：
-   `<run_root>\outputs\<task_id>\<task_id>.png`；
-7. pre-create exactly those six task bucket directories；
-8. run canonical `consume_output_hint.ps1` six times with `-Smoke` and IMAGEGEN_CALLS=0；
-9. each call must traverse canonical logger → parser → local-copy → SHA/dimensions → QA_QUEUED → DEPENDENCY_RELEASED；
-10. run one negative flat-destination check using `<run_root>\outputs\flat-negative.png` and require fail-closed `DESTINATION_OUTSIDE_RUN_OUTPUTS`；
-11. fresh readback；
-12. remove only the fresh synthetic source after exact-path verification；
-13. STOP at Reviewer。
-
-Imagegen call budget = **0**。
+2. prove real Windows host/user/effective path context；
+3. inspect only the exact synthetic source path；
+4. if absent: record cleanup already satisfied；
+5. if present: validate normalized allowed-root containment / regular file / not reparse point / exact SHA；
+6. only after all checks PASS, delete only that exact file；
+7. fresh-read exact path = absent；
+8. IMAGEGEN_CALLS=0；
+9. STOP at Reviewer。
 
 ### MANDATORY_REVIEW_STOP
 
 `STOP_AT_REVIEWER=YES`
 
-Any imagegen call is a Gate violation。
-
 ### TARGET_AND_SCOPE
 
-Canonical files：
+Allowed read/write scope is only:
 
-- `comic-narrative/tools/imagegen-fast-path/consume_output_hint.ps1` blob `5b38a46694cfe50b78613c4c070645cecf87fe7d`；
-- `official_hint_parser.ps1` blob `094ffe536063921cd923de09d05c1edff3da408b`；
-- `local_copy.ps1` blob `7774168abde8019d6f2c50936c89ef1dc67c28f2`；
-- `append_event.ps1` blob `e6b31a4597c997fff6993d4dcc0abe8b855e09ac`；
-- fast-path README blob `33cb757a85d4889c271a4fd91f9d8d32f1565e08`；
-- fixed R2R2 fixture blob `494ee334ade104f635e00c80999ba1fa025926fa`。
+- current REVIEWER_HANDOFF R2R2R3 Gate / Relay；
+- R2R2R2 Reviewer decision；
+- exact synthetic source path above；
+- fresh R2R2R3 evidence directory。
 
-Allowed reads：
+Do not read/delete the parent generated_images directory broadly。
 
-1. current REVIEWER_HANDOFF R2R2R2 Gate / Relay；
-2. R2R2R1 Reviewer decision；
-3. canonical fast-path tools/README；
-4. fixed R2R2 fixture task IDs；
-5. fresh R2R2R2 files。
-
-Do not read or restore historical local imagegen evidence directories。
+Do not touch R2R2R2 outputs, QA files, run evidence, canonical tools, fixture, production assets, or historical evidence directories。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
 - PASS_CANDIDATE != PASS；
-- accepted capability inheritance applies；
-- imagegen calls = 0；
-- canonical scripts are read-only during execution；
-- production destination convention = `<run_root>\outputs\<task_id>\<task_id>.png`；
-- task bucket directory must exist before local-copy；
-- QA path remains contained under `<run_root>\qa\`；
-- no flat destination accepted；
-- no broad scan / stdin / TTY/base64 image transport；
-- no production-library mutation；
-- only fresh synthetic source/output/evidence may be created/deleted。
+- IMAGEGEN_CALLS=0；
+- exact-path ownership only；
+- prove real Windows host/user before local mutation；
+- absent exact file = cleanup satisfied；
+- if present, hash/type/path checks are mandatory before delete；
+- mismatch/unknown/non-regular/reparse = fail closed, no delete；
+- parent directory cleanup is not required and is not authorized；
+- no canonical tool/fixture/formal-rule mutation。
 
 ### PREFLIGHT
 
-Before smoke：
-
 1. current main fresh-read；
-2. all canonical tool/README/fixture blobs match Gate；
-3. six fixture task IDs are exactly unique；
-4. fresh run root is empty；
-5. create `outputs` and `qa` roots；
-6. construct six destination paths from task IDs using exactly one task bucket level；
-7. all six bucket directories are fresh and created；
-8. destination normalization confirms each path is inside `<run_root>\outputs\<task_id>\`；
-9. negative flat destination is inside `<run_root>\outputs\` but has no bucket；
-10. IMAGEGEN_CALLS=0。
+2. Windows hostname + username + PowerShell runtime recorded；
+3. normalize exact source path；
+4. verify normalized path is under `<USERPROFILE>\.codex\generated_images\`；
+5. IMAGEGEN_CALLS=0。
 
-### NO_IMAGE_CLOSEOUT
+If exact source is absent, skip deletion and continue to fresh readback。
 
-Positive six-task smoke：
+If exact source exists, require:
 
-1. one fresh synthetic PNG source under allowed generated_images root；
-2. one official output_hint referencing that source；
-3. invoke canonical consumer once per fixed task ID；
-4. each invocation uses its own nested destination and QA path；
-5. all six must produce:
-   - IMAGE_RETURNED；
-   - HINT_PARSED；
-   - IMAGE_SAVED；
-   - QA_QUEUED；
-   - DEPENDENCY_RELEASED；
-6. source SHA == each copied SHA；
-7. dimensions recorded for all six；
-8. outputs/QA mappings are task-unique；
-9. event sequence parseable, unique, contiguous。
+- PathType Leaf；
+- FileInfo regular file；
+- ReparsePoint bit not set；
+- SHA-256 exact expected value。
 
-Negative flat destination：
-
-- call canonical local-copy or canonical consumer with a fresh flat destination `<run_root>\outputs\flat-negative.png`；
-- expected error = `DESTINATION_OUTSIDE_RUN_OUTPUTS`；
-- no flat PNG may be created。
+Any mismatch => RETURN and do not delete。
 
 ### REQUIRED_EVIDENCE
 
-- `IMAGEGEN_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2.md`
+- `IMAGEGEN_SYNTHETIC_SOURCE_CLEANUP_CLOSEOUT_R2R2R3.md`
 - current main
-- canonical tool/README/fixture blobs
-- synthetic source exact path + SHA
-- six constructed destination paths
-- six positive consumer outputs
-- six copied PNG SHA/dimensions
-- six QA metadata files
-- negative flat-destination result
-- RUN_EVENTS.jsonl
-- fresh readback
-- synthetic source cleanup confirmation
+- hostname / username / PowerShell version
+- exact normalized source path
+- pre-delete existence
+- if present: type/reparse/hash checks
+- delete native/PowerShell exit result
+- post-delete exact-path existence=false
 - IMAGEGEN_CALLS=0
-- formal project-rule delta=0
+- repository/canonical delta=0
 
 ### ACCEPTANCE_CRITERIA
 
-`PASS_CANDIDATE_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2` requires：
+`PASS_CANDIDATE_SYNTHETIC_SOURCE_CLEANUP_R2R2R3` requires:
 
 1. IMAGEGEN_CALLS=0；
-2. canonical tool/README/fixture blobs match；
-3. six fixed task IDs map to six nested task-bucket destinations；
-4. all six canonical consumer invocations reach IMAGE_SAVED + QA_QUEUED + DEPENDENCY_RELEASED；
-5. all six copied SHA values equal synthetic source SHA；
-6. all six dimensions recorded；
-7. six outputs/QA mappings are unique；
-8. flat negative returns exact `DESTINATION_OUTSIDE_RUN_OUTPUTS`；
-9. flat output does not exist；
-10. event chain parseable, unique, contiguous；
-11. only exact fresh synthetic source is cleaned；
-12. canonical tools unchanged；
-13. fresh readback consistent。
+2. real Windows host/user context recorded；
+3. exact path normalized under allowed generated_images root；
+4. either source was already absent, or present source passed regular/not-reparse/exact-hash checks before delete；
+5. final exact-path readback = absent；
+6. no parent/broad deletion；
+7. no canonical/repository mutation；
+8. fresh evidence internally consistent。
 
 Allowed results：
 
-- PASS_CANDIDATE_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2
+- PASS_CANDIDATE_SYNTHETIC_SOURCE_CLEANUP_R2R2R3
 - RETURN_PREFLIGHT_DRIFT
 - RETURN_IMPLEMENTATION_DRIFT
 - RETURN_TEST_FAILURE
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-- no imagegen calls；
-- canonical files remain unchanged；
-- synthetic source/output/evidence isolated to fresh paths；
-- cleanup only owns the exact fresh synthetic source；
-- no production-library mutation。
+This is cleanup of an explicitly synthetic test source. No rollback is required after verified deletion. R2R2R2 output/evidence remains preserved。
 
 ### OWNER_ONLY_ACTIONS
 
@@ -249,34 +205,33 @@ NONE
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-从 current GitHub main 开始，只执行 R2R2R2。
+从 current GitHub main 开始，只执行 R2R2R3。不要重跑 R2R2R2。
 
-读取 current R2R2R2 Gate / Relay、R2R2R1 Reviewer decision、canonical fast-path tools/README、fixed R2R2 fixture。不要读 broad history，不要恢复旧本地 evidence。
+本轮 `IMAGEGEN_CALLS=0`。
 
-本轮 **禁止调用 imagegen**。
+只处理这个 exact path：
 
-执行：
+`C:\Users\34707\.codex\generated_images\R2R2R2-SYNTH-7b286bc9518546e099ee53634f683a2c\synthetic.png`
 
-1. fresh run root；
-2. fresh synthetic PNG under unique `.codex/generated_images` child；
-3. 用六个 fixed task IDs 建 `outputs/<task_id>/<task_id>.png`；
-4. 预建六个 task bucket；
-5. 用 canonical consumer + official hint 对六个任务逐个做 0-image smoke；
-6. 六个都必须 save/hash/dimensions/QA_QUEUED/DEPENDENCY_RELEASED；
-7. 再做一个 flat destination negative，必须 `DESTINATION_OUTSIDE_RUN_OUTPUTS` 且不产生文件；
-8. fresh readback；
-9. 只清理 exact fresh synthetic source；
-10. STOP。
+先记录真实 Windows hostname / username / PowerShell version，并验证路径位于当前用户 `.codex\generated_images` 下。
+
+若文件已不存在：记录 cleanup satisfied，fresh readback absent，STOP。
+
+若存在：必须先确认 regular file、非 reparse point、SHA-256=`680826c5ea1a898f0c7b80043923dbb94e6d06d828eb556bcf25bf51e1454751`；全部 PASS 后只删除该文件，不删 parent；再 fresh readback absent。
+
+任何 mismatch 立即 RETURN，不删除。
+
+完成后 STOP_AT_REVIEWER=YES。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
 ```text
-结果：PASS_CANDIDATE_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2 / RETURN_*
-改动：仅新增 R2R2R2 fresh synthetic/evidence；canonical tools、fixture、正式规则未修改。
-验证：一句话说明 IMAGEGEN_CALLS=0、六个 nested destinations 全部 save/hash/dimensions/QA_QUEUED、flat negative fail-closed、event continuity、cleanup 与 fresh readback。
-问题：NONE，或“阻塞短语：一句通俗解释”。
-回滚：正式规则无需回滚；fresh synthetic outputs/evidence 可保留，synthetic source 已按 exact path 清理。
-请 Reviewer 检查：destination construction、六路 canonical consumer positive、flat negative、hash/readback、zero imagegen。
+结果：PASS_CANDIDATE_SYNTHETIC_SOURCE_CLEANUP_R2R2R3 / RETURN_*
+改动：仅处理 R2R2R2 exact synthetic source；未修改仓库、canonical tools、fixture 或 R2R2R2 evidence。
+验证：一句话说明 real host/user、pre-delete state、hash/type checks（如适用）、post-delete absent、IMAGEGEN_CALLS=0 与 fresh readback。
+问题：NONE，或“短语：一句通俗解释”。
+回滚：synthetic source cleanup 无需回滚；R2R2R2 evidence 保留。
+请 Reviewer 检查：exact-path ownership、pre-delete checks、final absent、zero imagegen、zero repo delta。
 Owner 转交：NONE。
 ```
 ## CRITICAL_CONSTRAINTS
@@ -293,7 +248,7 @@ Owner 转交：NONE。
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R2R2：Owner/Codex Windows 执行链；IMAGEGEN_CALLS=0，只验证 canonical consumer/local-copy 的 nested destination contract；
+- 当前 R2R2R3：Owner/Codex Windows 执行链；IMAGEGEN_CALLS=0，只清理并回读 R2R2R2 exact synthetic source；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -304,8 +259,8 @@ Owner 转交：NONE。
 
 ## UNRESOLVED
 
-1. **R2R2R2 destination-contract no-image closeout**：不再生图；用六个 fixed task IDs 验证 `outputs/<task_id>/<task_id>.png` 与 canonical consumer/local-copy 的完整本地链路。
-2. **H019 / production rerun**：R2R2R2 PASS 后直接转生产级验证；不再做 synthetic live-image reliability batch。
+1. **R2R2R3 synthetic-source cleanup closeout**：只处理 R2R2R2 exact synthetic source，最终 readback 必须 absent。
+2. **H019 / production rerun**：R2R2R3 PASS 后关闭 imagegen executor reliability，直接转生产级验证。
 3. **Final video 1920×1080 adaptation implementation**：标准画布已确定，具体视频阶段适配仍待 Part 5 正式迁移时实现。
 4. **C-VB01 historical content QA**：旧 PNG 不接受为 final production asset。
 5. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
@@ -314,16 +269,16 @@ Owner 转交：NONE。
 
 ## NEXT_STEP
 
-执行并 Review R2R2R2：
+执行并 Review R2R2R3：
 
-current main → zero-image six nested destination positive smokes + one flat negative → readback → STOP
+current main → exact synthetic-source ownership/hash check → delete only exact file if present → final absent readback → STOP
 
-R2R2R2 PASS 后，以 R2R1V + R2R2R1 + R2R2R2 组合证据关闭 imagegen executor reliability，直接回正式图片生产验证。
+R2R2R3 PASS 后，关闭 imagegen executor reliability，下一步直接回 H019 / 正式图片生产验证。
 ## OWNER_ACTION_REQUIRED
 
-- **R2R2R2 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R2R2 Relay 交给 Windows / Codex Executor。
-- 本轮 `IMAGEGEN_CALLS=0`，不再生成任何测试图片。
-- 不需要整理、恢复或核验任何历史 imagegen 本地目录。
+- **R2R2R3 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R2R3 Relay 交给 Windows / Codex Executor。
+- 本轮 `IMAGEGEN_CALLS=0`，只做 exact synthetic source cleanup/readback。
+- 不重跑任何 R2R2R2 positive/negative 测试。
 - Part 2 正式修改仍 DEFERRED。
 ## EVIDENCE_POINTERS
 
@@ -348,6 +303,7 @@ R2R2R2 PASS 后，以 R2R1V + R2R2R1 + R2R2R2 组合证据关闭 imagegen execut
 - R2R1V formal PASS / R2R2 Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OFFICIAL_HINT_PARSER_TWO_CONCURRENT_LIVE_CANARY_R2R1V_REVIEW.md`
 - R2R2 RETURN / R2R2R1 consumer-binding repair Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_EXECUTOR_SIX_TASK_RELIABILITY_R2R2_REVIEW.md`
 - R2R2R1 RETURN / R2R2R2 destination closeout Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_RESULT_CONSUMER_REPAIR_AND_SIX_TASK_RELIABILITY_R2R2R1_REVIEW.md`
+- R2R2R2 destination proof / R2R2R3 cleanup Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2_REVIEW.md`
 - Canonical result consumer: `comic-narrative/tools/imagegen-fast-path/consume_output_hint.ps1`
 - Canonical fast-path tools: `comic-narrative/tools/imagegen-fast-path/`
 - R2R2 fixed fixture: `comic-narrative/reviews/imagegen-speed/fixtures/IMAGEGEN_SIX_TASK_RELIABILITY_R2R2_TASKS.json`
