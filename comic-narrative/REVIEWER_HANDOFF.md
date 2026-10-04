@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / R2R2R1_RESULT_CONSUMER_BINDING_REPAIR_AND_SIX_TASK_RELIABILITY`
+`ACTIVE_REVIEW / R2R2R2_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT`
 
 并行状态：
-- 主执行线：R2R2 在第一波因 fresh 临时 result-consumer 的 PowerShell 参数绑定错误中止；canonical parser/copy/logger 未被推翻。R2R2R1 只修 consumer 子进程参数交接，0-image 端到端 smoke 通过后同轮重跑六任务三波。
+- 主执行线：R2R2R1 已证明 repaired consumer、6/6 imagegen 返回、三波调度与并发 2；4 张完成全链，2 张仅因 flat Destination 不符合 canonical helper 的嵌套输出合同而失败。R2R2R2 不再调用 imagegen，只做 destination contract closeout。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -76,6 +76,7 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R1U：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED**：preflight PASS；恰好并发 2 次 imagegen，58.409s / 58.408s 返回且每路 output_hint_count=1；generic path regex 将 `output_dir as output_path.png` 拼成单一假路径，两路均 `SOURCE_MISSING`，PNG=0、QA=`NOT_REACHED`，无 retry/replacement/fallback。
   - R2R1V：**PASS**：official-hint parser fixtures 6/6 PASS；恰好并发 2 次 imagegen，55.333s / 55.334s 返回；两路均 `DIRECT_SOURCE_PATH`，source/copy SHA 一致，native=1672×941，视觉 QA 均 PASS；19 条事件连续；zero retry/replacement/fallback。该能力已提升到 `comic-narrative/tools/imagegen-fast-path/`。
   - R2R2：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED / CLASSIFICATION CORRECTED**：no-image preflight PASS；Wave 1 恰好提交 2 次 imagegen，max in-flight=2；Beat 01 返回在内存观察到后，fresh `consume_output_hint.ps1` 的 child-process 参数交接导致 child logger 缺失 `EventLogPath/EventJson`，故 durable `IMAGE_RETURNED` 前中止；Beat 02 状态保持 UNKNOWN；0 PNG/0 QA；无 retry/replacement/fallback；Wave 2/3 未提交。
+  - R2R2R1：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED / CLASSIFICATION CORRECTED**：consumer 0-image end-to-end smoke PASS；恰好 6 次 imagegen / 三波 / max in-flight=2 / 6 IMAGE_RETURNED；Beat 03–06 全链保存/hash/dimensions/QA PASS，Beat 01–02 因 flat `outputs/<file>.png` 被 canonical local-copy 以 `DESTINATION_OUTSIDE_RUN_OUTPUTS` 拒绝。根因是 caller/tool destination contract gap，不是 imagegen 失败。batch wall clock=668s。repaired consumer 已提升为 canonical tool。
 - **H019 完整第二轮重跑**：`DEFERRED`。
 - **6-task reliability retest**：R2R2R1 已授权；仅修 consumer binding 后重跑固定六任务三波。
 - **Part 5 / Part 6**：未正式迁移。
@@ -84,74 +85,57 @@ Part 6  执行与项目管理               [未正式迁移]
 
 ### GATE_ID
 
-IMAGEGEN_RESULT_CONSUMER_BINDING_REPAIR_AND_SIX_TASK_RELIABILITY_R2R2R1
+IMAGEGEN_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2
 
 ### OBJECTIVE
 
-修复 R2R2 唯一确认的新故障：fresh result-consumer 的 PowerShell child-process 参数交接。
+不用任何新的 imagegen 调用，封板当前 fast-path 的唯一剩余集成合同：scheduler/caller 生成的 Destination 必须与 canonical `local_copy.ps1` 的嵌套输出目录规则一致。
 
-不修改、不重写已正式接受的：
-
-- official hint parser；
-- local-copy helper；
-- append-event logger；
-- fixed six-task fixture；
-- imagegen callable；
-- concurrency=2。
-
-修复后先用 **0 imagegen** 的 synthetic consumer smoke 走通：
-
-`result metadata → repaired consumer → child logger → child parser → child local-copy → hash/dimensions → QA metadata`
-
-smoke PASS 后同一轮重新执行固定 6 tasks / 3 waves / concurrency=2。
+R2R2R2 通过后，Reviewer 使用 R2R1V + R2R2R1 + R2R2R2 的组合证据关闭 imagegen executor reliability 线，不再重复 synthetic live-image batch。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
 1. fresh-read current main + current Gate；
-2. fresh-read R2R2 Reviewer decision；
-3. verify canonical tool/fixture blobs unchanged；
-4. fresh R2R2R1 run directory；
-5. create one repaired fresh `consume_output_hint.ps1` only；
-6. 0-image consumer smoke；
-7. smoke PASS 后同一轮执行 exactly 6 fixed tasks；
-8. three FIFO waves at concurrency=2；
-9. each live result → repaired consumer → canonical parser → SourcePath → canonical local-copy → hash/dimensions → QA；
-10. fresh readback；
-11. STOP at Reviewer。
+2. verify canonical fast-path tool blobs；
+3. fresh R2R2R2 run directory；
+4. create one fresh synthetic PNG source under a unique current-user `.codex/generated_images` child directory；
+5. build exact official output_hint for that source；
+6. use fixed six R2R2 task IDs to construct six production-style destinations：
+   `<run_root>\outputs\<task_id>\<task_id>.png`；
+7. pre-create exactly those six task bucket directories；
+8. run canonical `consume_output_hint.ps1` six times with `-Smoke` and IMAGEGEN_CALLS=0；
+9. each call must traverse canonical logger → parser → local-copy → SHA/dimensions → QA_QUEUED → DEPENDENCY_RELEASED；
+10. run one negative flat-destination check using `<run_root>\outputs\flat-negative.png` and require fail-closed `DESTINATION_OUTSIDE_RUN_OUTPUTS`；
+11. fresh readback；
+12. remove only the fresh synthetic source after exact-path verification；
+13. STOP at Reviewer。
 
-Maximum imagegen calls = 6。
+Imagegen call budget = **0**。
 
 ### MANDATORY_REVIEW_STOP
 
 `STOP_AT_REVIEWER=YES`
 
-Before live, stop only if：
-
-- current main / canonical blobs / fixture drift；
-- repaired consumer static contract fails；
-- 0-image consumer smoke fails；
-- fresh path collision；
-- call guard invalid。
-
-If the consumer smoke PASS, do not stop for another Reviewer round-trip；continue directly to all six live tasks。
+Any imagegen call is a Gate violation。
 
 ### TARGET_AND_SCOPE
 
-Read only：
+Canonical files：
 
-1. current REVIEWER_HANDOFF R2R2R1 Gate / Relay；
-2. R2R2 Reviewer decision；
-3. current Part 4 §25；
-4. canonical `comic-narrative/tools/imagegen-fast-path/`；
-5. fixed `IMAGEGEN_SIX_TASK_RELIABILITY_R2R2_TASKS.json`；
-6. fresh R2R2R1 files。
+- `comic-narrative/tools/imagegen-fast-path/consume_output_hint.ps1` blob `5b38a46694cfe50b78613c4c070645cecf87fe7d`；
+- `official_hint_parser.ps1` blob `094ffe536063921cd923de09d05c1edff3da408b`；
+- `local_copy.ps1` blob `7774168abde8019d6f2c50936c89ef1dc67c28f2`；
+- `append_event.ps1` blob `e6b31a4597c997fff6993d4dcc0abe8b855e09ac`；
+- fast-path README blob `33cb757a85d4889c271a4fd91f9d8d32f1565e08`；
+- fixed R2R2 fixture blob `494ee334ade104f635e00c80999ba1fa025926fa`。
 
-Inherited accepted facts：
+Allowed reads：
 
-- R2R1V official-hint parser / direct SourcePath / copy-hash / QA PASS；
-- R2R2 parser 6/6, direct missing-path smoke, 8-writer logger stress PASS；
-- R2R2 exactly two submissions with max in-flight=2；
-- R2R2 stop-on-ambiguous-state behavior was correct。
+1. current REVIEWER_HANDOFF R2R2R2 Gate / Relay；
+2. R2R2R1 Reviewer decision；
+3. canonical fast-path tools/README；
+4. fixed R2R2 fixture task IDs；
+5. fresh R2R2R2 files。
 
 Do not read or restore historical local imagegen evidence directories。
 
@@ -159,187 +143,104 @@ Do not read or restore historical local imagegen evidence directories。
 
 - PASS_CANDIDATE != PASS；
 - accepted capability inheritance applies；
-- concurrency fixed at 2；
-- do not test 3+；
-- canonical tools immutable；
-- fixed six-task fixture immutable；
-- only fresh consumer may be repaired；
-- max imagegen calls=6；
-- per-task max attempt=1；
-- retry/replacement/fallback-imagegen=0；
-- no broad generated_images scan；
-- no stdin / write_stdin；
-- no TTY/base64 image payload transport；
-- no recovery/replay of R2R2 image results；
-- native pixel mismatch alone != failure/retry；
-- content QA does not trigger retry in this reliability Gate；
-- no production-library mutation。
-
-### RESULT_CONSUMER_REPAIR_CONTRACT
-
-The repaired fresh consumer must remove the R2R2 ambiguous parameter shape。
-
-Required subprocess wrapper shape：
-
-- parameter names use `ScriptPath` and `ArgumentList` or equivalent explicit names；
-- **must not declare a formal parameter named `Args`**；
-- wrapper invocation uses named binding, not the R2R2 positional-array call shape；
-- every child argument is added individually to `ProcessStartInfo.ArgumentList`；
-- stdout/stderr/exit code are captured；
-- child non-zero exit is handled fail-closed；
-- no shell-string concatenation / nested quoting transport。
-
-Equivalent example：
-
-```powershell
-function Invoke-ChildScript {
-    param(
-        [Parameter(Mandatory=$true)][string]$ScriptPath,
-        [Parameter(Mandatory=$true)][string[]]$ArgumentList
-    )
-    ...
-}
-
-$childArgs = @('-EventLogPath', $eventLog, '-EventJson', $json)
-$r = Invoke-ChildScript -ScriptPath $logger -ArgumentList $childArgs
-```
-
-The exact implementation may differ if it preserves the same explicit argument contract。
+- imagegen calls = 0；
+- canonical scripts are read-only during execution；
+- production destination convention = `<run_root>\outputs\<task_id>\<task_id>.png`；
+- task bucket directory must exist before local-copy；
+- QA path remains contained under `<run_root>\qa\`；
+- no flat destination accepted；
+- no broad scan / stdin / TTY/base64 image transport；
+- no production-library mutation；
+- only fresh synthetic source/output/evidence may be created/deleted。
 
 ### PREFLIGHT
 
-All live-call count remains 0 until all items PASS：
+Before smoke：
 
 1. current main fresh-read；
-2. canonical tool blobs match current Gate；
-3. fixture blob matches current Gate；
-4. repaired consumer is fresh and isolated from canonical tool files；
-5. static consumer check：
-   - no formal parameter named Args；
-   - no positional array invocation of child wrapper；
-   - no stdin / Console.In / ReadLine；
-   - no broad scan；
-6. create fresh synthetic PNG source under a fresh unique directory inside current-user `.codex/generated_images` without calling imagegen；
-7. form exact official output_hint pointing at that source；
-8. invoke the **same repaired consumer entry path used by live results** with synthetic task id ending in numeric suffix, HintCount=1, synthetic T2/T4；
-9. smoke must prove through durable readback：
-   - child logger received EventLogPath + EventJson；
-   - IMAGE_RETURNED appended；
-   - canonical parser returned the exact synthetic SourcePath；
-   - canonical local-copy succeeded；
-   - source SHA == copy SHA；
-   - native dimensions recorded；
-   - QA_QUEUED reached；
-   - DEPENDENCY_RELEASED reached；
-10. remove only the fresh synthetic source under generated_images after successful readback；do not delete unknown/nonempty paths；
-11. reset live guard counters from a separately initialized live guard, not by mutating ambiguous R2R2 state；
-12. live guard = max_calls 6 / max_in_flight 2；
-13. live output/task paths fresh。
+2. all canonical tool/README/fixture blobs match Gate；
+3. six fixture task IDs are exactly unique；
+4. fresh run root is empty；
+5. create `outputs` and `qa` roots；
+6. construct six destination paths from task IDs using exactly one task bucket level；
+7. all six bucket directories are fresh and created；
+8. destination normalization confirms each path is inside `<run_root>\outputs\<task_id>\`；
+9. negative flat destination is inside `<run_root>\outputs\` but has no bucket；
+10. IMAGEGEN_CALLS=0。
 
-Any failure：
+### NO_IMAGE_CLOSEOUT
 
-`IMAGEGEN_CALLS=0 / RETURN_* / STOP`
+Positive six-task smoke：
 
-### SCHEDULER_CONTRACT
+1. one fresh synthetic PNG source under allowed generated_images root；
+2. one official output_hint referencing that source；
+3. invoke canonical consumer once per fixed task ID；
+4. each invocation uses its own nested destination and QA path；
+5. all six must produce:
+   - IMAGE_RETURNED；
+   - HINT_PARSED；
+   - IMAGE_SAVED；
+   - QA_QUEUED；
+   - DEPENDENCY_RELEASED；
+6. source SHA == each copied SHA；
+7. dimensions recorded for all six；
+8. outputs/QA mappings are task-unique；
+9. event sequence parseable, unique, contiguous。
 
-Fixed task order remains：
+Negative flat destination：
 
-- Wave 1: Beat 01 + 02；
-- Wave 2: Beat 03 + 04；
-- Wave 3: Beat 05 + 06。
-
-Rules：
-
-1. max imagegen in-flight=2；
-2. submit both tasks of a wave together where runtime permits；
-3. after a result is durably parsed/saved and QA_QUEUED, release that imagegen slot；
-4. next unrelated task may submit without waiting for prior QA_FINISHED；
-5. no retry/replacement exists；
-6. any ambiguous scheduler state after live failure stops new submissions after current in-flight calls settle。
-
-### LIVE_TASK_CONTRACT
-
-For all six tasks：
-
-1. TASK_PREPARED；
-2. IMAGE_SUBMITTED；
-3. IMAGE_RETURNED；
-4. output_hint_count=1；
-5. repaired consumer invokes canonical parser；
-6. exact SourcePath under allowed root；
-7. canonical local-copy；
-8. source SHA == copy SHA；
-9. native width×height；
-10. QA_QUEUED；
-11. DEPENDENCY_RELEASED；
-12. QA_STARTED；
-13. QA_FINISHED；
-14. TASK_END。
-
-Transport = `DIRECT_SOURCE_PATH`。
+- call canonical local-copy or canonical consumer with a fresh flat destination `<run_root>\outputs\flat-negative.png`；
+- expected error = `DESTINATION_OUTSIDE_RUN_OUTPUTS`；
+- no flat PNG may be created。
 
 ### REQUIRED_EVIDENCE
 
-- `IMAGEGEN_RESULT_CONSUMER_BINDING_REPAIR_AND_SIX_TASK_RELIABILITY_R2R2R1.md`
-- `PREFLIGHT_EVIDENCE_R2R2R1.md`
-- repaired consumer source/hash
-- consumer static check
-- synthetic source path/hash
-- synthetic consumer smoke event/readback
-- cleanup confirmation for only fresh synthetic source
-- current main / canonical tool blobs / fixture blob
-- exactly 6 IMAGE_SUBMITTED / IMAGE_RETURNED
-- max observed in-flight <=2
-- three-wave submission timeline
-- per-task attempt=1
-- retries/replacements/fallback-imagegen=0
-- per-task output_hint_count / SourcePath
-- per-task source/copy SHA
-- per-task dimensions
-- per-task QA
+- `IMAGEGEN_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2.md`
+- current main
+- canonical tool/README/fixture blobs
+- synthetic source exact path + SHA
+- six constructed destination paths
+- six positive consumer outputs
+- six copied PNG SHA/dimensions
+- six QA metadata files
+- negative flat-destination result
 - RUN_EVENTS.jsonl
-- RUN_RECORD.json
 - fresh readback
+- synthetic source cleanup confirmation
+- IMAGEGEN_CALLS=0
 - formal project-rule delta=0
 
 ### ACCEPTANCE_CRITERIA
 
-`PASS_CANDIDATE_RESULT_CONSUMER_REPAIR_AND_SIX_TASK_RELIABILITY_R2R2R1` requires：
+`PASS_CANDIDATE_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2` requires：
 
-1. 0-image consumer smoke PASS end-to-end；
-2. repaired consumer uses explicit child argument binding；
-3. exactly 6 live imagegen calls；
-4. max in-flight <=2；
-5. all six calls return；
-6. all six durable IMAGE_RETURNED events exist；
-7. all six output_hint_count=1；
-8. all six canonical parses return valid SourcePath；
-9. all six source/copy SHA match；
-10. all six dimensions recorded；
-11. all six reach QA；
-12. all six TASK_END recorded；
-13. event JSONL parseable, unique and contiguous；
-14. retries/replacements/fallback-imagegen=0；
-15. no manual cache recovery / broad scan / stdin / TTY/base64 payload；
-16. canonical tools/fixture unchanged；
-17. fresh readback consistent。
-
-Content QA may PASS or FAIL without failing executor reliability if the pipeline reached QA normally and no retry occurred。
+1. IMAGEGEN_CALLS=0；
+2. canonical tool/README/fixture blobs match；
+3. six fixed task IDs map to six nested task-bucket destinations；
+4. all six canonical consumer invocations reach IMAGE_SAVED + QA_QUEUED + DEPENDENCY_RELEASED；
+5. all six copied SHA values equal synthetic source SHA；
+6. all six dimensions recorded；
+7. six outputs/QA mappings are unique；
+8. flat negative returns exact `DESTINATION_OUTSIDE_RUN_OUTPUTS`；
+9. flat output does not exist；
+10. event chain parseable, unique, contiguous；
+11. only exact fresh synthetic source is cleaned；
+12. canonical tools unchanged；
+13. fresh readback consistent。
 
 Allowed results：
 
-- PASS_CANDIDATE_RESULT_CONSUMER_REPAIR_AND_SIX_TASK_RELIABILITY_R2R2R1
+- PASS_CANDIDATE_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2
 - RETURN_PREFLIGHT_DRIFT
 - RETURN_IMPLEMENTATION_DRIFT
 - RETURN_TEST_FAILURE
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-- canonical tools/fixture remain unchanged；
-- only fresh R2R2R1 consumer/evidence/outputs are mutable；
-- synthetic source uses a fresh unique generated_images child path and is cleaned only after exact-path readback；
-- live failure gets no retry；
-- R2R2 evidence remains immutable；
+- no imagegen calls；
+- canonical files remain unchanged；
+- synthetic source/output/evidence isolated to fresh paths；
+- cleanup only owns the exact fresh synthetic source；
 - no production-library mutation。
 
 ### OWNER_ONLY_ACTIONS
@@ -348,40 +249,34 @@ NONE
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-从 current GitHub main 开始，只执行 R2R2R1。
+从 current GitHub main 开始，只执行 R2R2R2。
 
-读取：
+读取 current R2R2R2 Gate / Relay、R2R2R1 Reviewer decision、canonical fast-path tools/README、fixed R2R2 fixture。不要读 broad history，不要恢复旧本地 evidence。
 
-1. current REVIEWER_HANDOFF R2R2R1 Gate / Relay；
-2. R2R2 Reviewer decision；
-3. current Part 4 §25；
-4. canonical fast-path tools；
-5. fixed six-task R2R2 fixture。
-
-不要读 broad history，不要恢复或扫描旧 imagegen 本地目录。
+本轮 **禁止调用 imagegen**。
 
 执行：
 
-1. fresh R2R2R1 run；
-2. 只修 fresh result consumer 的 child-process 参数交接；
-3. 禁止 formal parameter Args；child wrapper 用明确命名参数；
-4. 用 fresh synthetic PNG + official hint 做 0-image consumer end-to-end smoke；
-5. smoke 必须实际走 child logger → parser → local-copy → hash/dimensions → QA_QUEUED / DEPENDENCY_RELEASED；
-6. smoke PASS 后，同一轮从新 live guard 开始执行固定六任务；
-7. 固定 concurrency=2，三波 FIFO，最多 6 calls；
-8. zero retry/replacement/fallback；
-9. fresh readback；
+1. fresh run root；
+2. fresh synthetic PNG under unique `.codex/generated_images` child；
+3. 用六个 fixed task IDs 建 `outputs/<task_id>/<task_id>.png`；
+4. 预建六个 task bucket；
+5. 用 canonical consumer + official hint 对六个任务逐个做 0-image smoke；
+6. 六个都必须 save/hash/dimensions/QA_QUEUED/DEPENDENCY_RELEASED；
+7. 再做一个 flat destination negative，必须 `DESTINATION_OUTSIDE_RUN_OUTPUTS` 且不产生文件；
+8. fresh readback；
+9. 只清理 exact fresh synthetic source；
 10. STOP。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
 ```text
-结果：PASS_CANDIDATE_RESULT_CONSUMER_REPAIR_AND_SIX_TASK_RELIABILITY_R2R2R1 / RETURN_*
-改动：只修 fresh R2R2R1 result consumer 并新增 fresh run/evidence；canonical tools、fixture、正式规则、R2R2 evidence 未修改。
-验证：一句话说明 synthetic consumer smoke、6 calls/3 waves/max-inflight、六路 IMAGE_RETURNED→SourcePath/hash/dimensions/QA/TASK_END、event continuity、zero retry/fallback 与 fresh readback。
+结果：PASS_CANDIDATE_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2 / RETURN_*
+改动：仅新增 R2R2R2 fresh synthetic/evidence；canonical tools、fixture、正式规则未修改。
+验证：一句话说明 IMAGEGEN_CALLS=0、六个 nested destinations 全部 save/hash/dimensions/QA_QUEUED、flat negative fail-closed、event continuity、cleanup 与 fresh readback。
 问题：NONE，或“阻塞短语：一句通俗解释”。
-回滚：正式规则无需回滚；fresh evidence/canary outputs 保留，不进入 production library。
-请 Reviewer 检查：consumer argument binding、synthetic smoke、六任务调度、六路 path/hash/QA、event chain/readback。
+回滚：正式规则无需回滚；fresh synthetic outputs/evidence 可保留，synthetic source 已按 exact path 清理。
+请 Reviewer 检查：destination construction、六路 canonical consumer positive、flat negative、hash/readback、zero imagegen。
 Owner 转交：NONE。
 ```
 ## CRITICAL_CONSTRAINTS
@@ -398,7 +293,7 @@ Owner 转交：NONE。
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R2R1：Owner/Codex Windows 执行链；canonical fast-path tools/fixture 保持只读，只修 fresh result-consumer 参数绑定，0-image smoke 后同轮六任务三波；
+- 当前 R2R2R2：Owner/Codex Windows 执行链；IMAGEGEN_CALLS=0，只验证 canonical consumer/local-copy 的 nested destination contract；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -409,8 +304,8 @@ Owner 转交：NONE。
 
 ## UNRESOLVED
 
-1. **R2R2R1 result-consumer repair + six-task reliability**：修复 fresh consumer 参数绑定，0-image end-to-end smoke 后以固定并发=2 重跑六个独立 canary。
-2. **H019 / production rerun**：R2R2R1 PASS 后直接转生产级验证；不再做基础 imagegen transport 研究。
+1. **R2R2R2 destination-contract no-image closeout**：不再生图；用六个 fixed task IDs 验证 `outputs/<task_id>/<task_id>.png` 与 canonical consumer/local-copy 的完整本地链路。
+2. **H019 / production rerun**：R2R2R2 PASS 后直接转生产级验证；不再做 synthetic live-image reliability batch。
 3. **Final video 1920×1080 adaptation implementation**：标准画布已确定，具体视频阶段适配仍待 Part 5 正式迁移时实现。
 4. **C-VB01 historical content QA**：旧 PNG 不接受为 final production asset。
 5. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
@@ -419,16 +314,16 @@ Owner 转交：NONE。
 
 ## NEXT_STEP
 
-执行并 Review R2R2R1：
+执行并 Review R2R2R2：
 
-current main → repair fresh consumer binding → 0-image synthetic end-to-end consumer smoke → PASS → same-round 6 tasks / 3 waves / concurrency=2 → readback → STOP
+current main → zero-image six nested destination positive smokes + one flat negative → readback → STOP
 
-R2R2R1 PASS 后，imagegen executor reliability 线 closeout，转回 H019 / 正式图片生产验证。
+R2R2R2 PASS 后，以 R2R1V + R2R2R1 + R2R2R2 组合证据关闭 imagegen executor reliability，直接回正式图片生产验证。
 ## OWNER_ACTION_REQUIRED
 
-- **R2R2R1 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R2R1 Relay 交给 Windows / Codex Executor。
-- 本轮先 0-image 修 consumer；smoke PASS 后同一轮最多 6 次 imagegen，固定并发 2。
-- 禁止 retry / replacement / fallback / 历史目录恢复或扫描。
+- **R2R2R2 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R2R2 Relay 交给 Windows / Codex Executor。
+- 本轮 `IMAGEGEN_CALLS=0`，不再生成任何测试图片。
+- 不需要整理、恢复或核验任何历史 imagegen 本地目录。
 - Part 2 正式修改仍 DEFERRED。
 ## EVIDENCE_POINTERS
 
@@ -452,6 +347,8 @@ R2R2R1 PASS 后，imagegen executor reliability 线 closeout，转回 H019 / 正
 - R2R1U RETURN / R2R1V official hint parser Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_DIRECT_OUTPUT_HINT_TWO_CONCURRENT_LIVE_CANARY_R2R1U_REVIEW.md`
 - R2R1V formal PASS / R2R2 Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_OFFICIAL_HINT_PARSER_TWO_CONCURRENT_LIVE_CANARY_R2R1V_REVIEW.md`
 - R2R2 RETURN / R2R2R1 consumer-binding repair Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_EXECUTOR_SIX_TASK_RELIABILITY_R2R2_REVIEW.md`
+- R2R2R1 RETURN / R2R2R2 destination closeout Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_RESULT_CONSUMER_REPAIR_AND_SIX_TASK_RELIABILITY_R2R2R1_REVIEW.md`
+- Canonical result consumer: `comic-narrative/tools/imagegen-fast-path/consume_output_hint.ps1`
 - Canonical fast-path tools: `comic-narrative/tools/imagegen-fast-path/`
 - R2R2 fixed fixture: `comic-narrative/reviews/imagegen-speed/fixtures/IMAGEGEN_SIX_TASK_RELIABILITY_R2R2_TASKS.json`
 - Part 2 pending edit map: `comic-narrative/reviews/part2/PART2_FORMAL_EDIT_MAP.md`
