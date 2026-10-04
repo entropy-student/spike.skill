@@ -7,6 +7,7 @@ Accepted flow:
 ```text
 image_gen result
 → output_hint
+→ consume_output_hint.ps1
 → official_hint_parser.ps1
 → explicit SourcePath under %USERPROFILE%\.codex\generated_images
 → local_copy.ps1
@@ -32,6 +33,8 @@ R2R1V proved:
 - no stdin, TTY/base64 image transfer, broad cache scan, retry, replacement, or fallback.
 
 The repository copy is the durable reusable implementation. Future Gates should use these files rather than reconstructing helpers from historical local evidence directories.
+
+R2R2R1 additionally proved the repaired `consume_output_hint.ps1` subprocess boundary with named `ScriptPath / ArgumentList`, a zero-image end-to-end smoke, and six real imagegen return objects. The consumer is therefore stored here as the durable result-consumer implementation; future runs should not recreate a temporary consumer.
 
 ## Current operating limits
 
