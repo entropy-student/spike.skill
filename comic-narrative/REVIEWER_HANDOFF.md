@@ -160,7 +160,7 @@ Canonical tool blobs：
 
 Fixture blob：
 
-- IMAGEGEN_SIX_TASK_RELIABILITY_R2R2_TASKS.json = `367f22ce455da877a432838118ba8aaead82ac44`
+- IMAGEGEN_SIX_TASK_RELIABILITY_R2R2_TASKS.json = `494ee334ade104f635e00c80999ba1fa025926fa`
 
 Fixture contains exactly 6 independent 16:9 canaries, no references and no production dependencies.
 
