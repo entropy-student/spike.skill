@@ -1,11 +1,11 @@
 # Part 0 — 历史选题库
 
-本文件是漫画叙事的历史选题库。  
-当前包含 **100 个按 Part 1 选题策略跑出的 Case**。
+本文件是漫画叙事的历史选题库与扩展候选储备。  
+当前包含 **100 个 Case：H001–H023 为已接受 PASS 基线；H024–H100 为扩展候选，需完成事实证据 Gate 后才可升级为正式 PASS**。
 
 规则：
-- 只记录已经通过选题策略检查、可作为历史参照的题；
-- 新候选在最终 PASS 前必须与本库做 D1–D5 复查；
+- H001–H023 保留为已接受历史 PASS 基线；H024–H100 允许作为扩展候选储备留在同一文件中，但不得把 `EVIDENCE_PENDING` 候选描述成正式 PASS；
+- 新候选在最终 PASS 前必须与本库全部已接受题和候选题做 D1–D5 复查，并完成 Part 1 要求的事实证据 Gate；
 - 正式进入制作的选题应继续追加到本文件；
 - HOT 题未来应在 Source / Signal 中保存真实来源或事件标识，便于 D1 复查；
 - 题面优先使用普通人自然会说的话；
@@ -524,9 +524,9 @@
 
 ## H024–H100 扩库说明
 
-- 本批新增 77 个 EVERGREEN Case，均按 Part 1 五项硬检查与 D1–D5 做题意级复查后进入历史库；
-- 扩库优先增加不同 Human Process / Human Tension / 主机制，不以“换领域复述旧意义”凑数；
-- 本批 PASS 表示选题层通过，不豁免 Part 2 的事实 / 机制证据锁定；技术性事实在正式写稿前仍必须补齐可追溯来源；
+- 本批新增 77 个 EVERGREEN 候选；本轮复查纠正了此前将其直接描述为“77 个正式 PASS”的过度结论。
+- H024–H100 已完成题意级五项检查与 D1–D5 第一轮复查，但 `Source / Signal` 尚未为每个事实型题保存可追溯证据，因此统一保持 `CANDIDATE / EVIDENCE_PENDING`；正式进入 Part 2 前必须先完成证据 Gate，再升级为 PASS / PASS_REVISIT 或按规则 RETURN / HOLD_DUPLICATE。
+- 本轮另对实质重复与低价值机制题做第二轮人工复查，替换 10 个问题较明显的候选，不以 Fingerprint 字符串不同代替语义去重。
 - 发布标题仍由 Part 2 锁稿后的发布包装编译，不把本文件内部题面自动视为最终社交媒体标题。
 ---
 
@@ -547,8 +547,8 @@
 - Meaning Fingerprint：`SELF_SERVICE_VS_EXCEPTION_HANDLING`
 - Motif：一路自己扫码很顺 → 某件商品触发异常 → 等工作人员处理 → 回看系统真正自动化了什么
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -569,8 +569,8 @@
 - Meaning Fingerprint：`FRICTIONLESS_PAYMENT_VS_RISK_VERIFICATION`
 - Motif：连续几次闪付成功 → 某次突然要求密码 → 主角怀疑机器坏了 → 发现便捷与验证是两层规则
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -591,8 +591,8 @@
 - Meaning Fingerprint：`AVAILABILITY_VIEW_VS_INVENTORY_RESERVATION`
 - Motif：刷到余票 → 选中座位 → 付款页提示售罄 → 回看多人同时竞争同一库存
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -613,8 +613,8 @@
 - Meaning Fingerprint：`LOCAL_COPY_VS_ACCESS_ENTITLEMENT`
 - Motif：提前下载一整季 → 出门发现会员到期 → 文件还在却播不了 → 理解本地数据与授权的分离
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -635,8 +635,8 @@
 - Meaning Fingerprint：`REFUND_DECISION_VS_SETTLEMENT_DELAY`
 - Motif：退货完成 → 商家显示已退款 → 余额没变 → 沿支付链路追到最终入账
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -657,8 +657,8 @@
 - Meaning Fingerprint：`INSTALLMENT_SALIENCE_VS_TOTAL_COST`
 - Motif：看到总价犹豫 → 页面切成月付数字 → 突然觉得能接受 → 再把所有期数重新加回来
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -679,8 +679,8 @@
 - Meaning Fingerprint：`SHIPPING_SAVING_VS_TOTAL_SPEND`
 - Motif：购物车差一点免邮 → 加一件不需要的东西 → 获得“省了运费”的满足 → 对比整单总额
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -701,8 +701,8 @@
 - Meaning Fingerprint：`CONTINUITY_CONVENIENCE_VS_ACTIVE_RECONSENT`
 - Motif：随手开试用 → 很久没再想起 → 扣款提醒出现 → 回看“继续”从未需要再次点确认
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -723,8 +723,8 @@
 - Meaning Fingerprint：`CAPACITY_CERTAINTY_VS_NO_SHOW_UTILIZATION`
 - Motif：航班满座 → 仍有人拿到票 → 登机口出现座位不足 → 展开销售量与实际到场人数的差异
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -745,8 +745,8 @@
 - Meaning Fingerprint：`CONVERSION_CONVENIENCE_VS_RATE_CONTROL`
 - Motif：海外结账弹出人民币 / 当地货币 → 直觉选人民币 → 后来比较两条换汇链路
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -767,8 +767,8 @@
 - Meaning Fingerprint：`FREE_CHOICE_VS_INTERFACE_NUDGE`
 - Motif：原本准备直接付款 → 屏幕弹出几个醒目比例 → 手停在按钮上 → 对比现金时代的决策过程
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -789,31 +789,30 @@
 - Meaning Fingerprint：`FRAUD_PROTECTION_VS_FALSE_POSITIVE`
 - Motif：异地第一次刷卡 → 被拒 → 主角证明是本人 → 回看系统为什么觉得这笔交易不像平时
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H036 — 转账处理中
+## H036 — 文档自动保存
 
-- 最终选题：**钱都从余额里扣了，为什么对方还可能暂时没收到？**
+- 最终选题：**文档明明一直在自动保存，为什么误删以后还是需要“版本历史”？**
 - 选题类型：机制 / 实用
 - Entry：HUMAN_WORLD_FIRST
-- X：支付 / 转账
-- Human Process：资金转移
-- Human Problem：用户把自己账户余额减少理解成转账已经最终完成，但支付系统内部还存在处理、清算或入账状态
-- 反常：付款方已经少了钱，收款方却还没有增加
-- Human Tension：可见扣款 vs 最终入账
-- Controlling Question：钱离开你的账户以后，为什么不一定立刻出现在对方账户里？
-- 科技改变的过程：一些支付 / 转账链路会先更新付款侧可用余额或记录处理中状态，再完成后续网络处理与收款侧入账
-- 主机制：用户看到的账户状态只是整个资金生命周期中的一个视图
-- Audience Payoff：理解“我这边扣了”与“对方那边已最终到账”可以不是同一时刻
-- Meaning Fingerprint：`VISIBLE_DEBIT_VS_SETTLEMENT_FINALITY`
-- Motif：转账成功提示 → 自己余额减少 → 对方说没收到 → 展开处理中与最终入账两个状态
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- X：工作 / 云文档
+- Human Process：写作 / 保存 / 撤销错误
+- Human Problem：用户把“自动保存”理解成系统会永久保留正确版本，但自动保存也会把错误和误删快速写成当前状态
+- 反常：文件几乎不可能因为忘记按保存而丢失，却仍可能因为一次错误操作把正确内容一起覆盖掉
+- Human Tension：当前状态持久化 vs 历史可恢复
+- Controlling Question：自动保存解决了“忘记保存”，为什么没有自动解决“我刚才保存错了”？
+- 科技改变的过程：云文档持续把当前编辑状态同步保存，同时另用版本历史保留部分过去状态
+- 主机制：自动保存负责减少当前状态丢失；版本历史负责在当前状态本身已经出错时提供历史恢复点，两者解决的是不同失败模式
+- Audience Payoff：理解“保存得更勤”与“能够回到过去”不是同一种数据安全能力
+- Meaning Fingerprint：`CURRENT_PERSISTENCE_VS_HISTORICAL_RECOVERY`
+- Motif：写文档从不手动保存 → 一次误删被立刻同步 → 撤销已来不及 → 从版本历史找回昨天的状态
+- Content Job：SOLUTION
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H037 — 云相册同步
@@ -833,8 +832,8 @@
 - Meaning Fingerprint：`SYNC_CONVENIENCE_VS_BACKUP_EXPECTATION`
 - Motif：手机空间不足开始删照片 → 平板和网页端同步消失 → 主角才发现自己用的是同步而不是独立备份
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -855,8 +854,8 @@
 - Meaning Fingerprint：`UNIQUE_PASSWORDS_VS_RECOVERY_CONCENTRATION`
 - Motif：所有网站改成随机密码 → 用起来很轻松 → 某天忘记主凭证 → 才意识到新的关键点在哪里
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -877,8 +876,8 @@
 - Meaning Fingerprint：`READ_CERTAINTY_VS_RESPONSE_FREEDOM`
 - Motif：发消息后一直猜 → 看到已读 → 猜测从“看没看”变成“为什么不回”
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -899,31 +898,30 @@
 - Meaning Fingerprint：`REASSURANCE_VS_MONITORING`
 - Motif：家人出门开启位置共享 → 第一次只是确认到没到 → 后来开始盯每个停留点
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H041 — 阅后即焚
+## H041 — 音量标准化
 
-- 最终选题：**消息设置成阅后即焚，为什么还是不能等于“什么都没留下”？**
-- 选题类型：机制 / 判断
+- 最终选题：**音乐 App 都把音量“拉齐”了，为什么有些歌听起来还是更炸？**
+- 选题类型：机制 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
-- X：隐私 / 聊天
-- Human Process：敏感信息分享
-- Human Problem：界面可以让消息在会话里自动消失，但接收者已经看到、复制或截图的信息无法被同一个按钮彻底控制
-- 反常：聊天记录消失了，内容本身却可能已经出现在别处
-- Human Tension：短暂显示 vs 可复制性
-- Controlling Question：让一条消息从聊天界面消失，和让它从世界上消失，是不是一回事？
-- 科技改变的过程：阅后消失控制的是应用内消息生命周期，而屏幕截图、通知预览、转述或外部副本属于另一条信息复制路径
-- 主机制：发送方能控制界面状态，不等于能完全控制接收后的所有副本
-- Audience Payoff：理解“自动消失”是一种界面 / 存储规则，不是绝对的信息撤销能力
-- Meaning Fingerprint：`EPHEMERAL_INTERFACE_VS_COPYABILITY`
-- Motif：发一条阅后即焚 → 对话里消失 → 对方却早已截屏 → 回看信息离开设备后的控制边界
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- X：音乐 / 流媒体
+- Human Process：连续听歌 / 调整音量
+- Human Problem：用户容易把“响度标准化”理解成每首歌的听感强度都会完全一致
+- 反常：两首歌切换时整体音量已经接近，鼓点、低频和高潮带来的冲击感仍可能非常不同
+- Human Tension：整体响度一致 vs 动态冲击感
+- Controlling Question：把两首歌调到差不多响，为什么不等于把它们调成同一种听感？
+- 科技改变的过程：流媒体可依据整首音频的响度测量对播放增益做整体调整
+- 主机制：响度标准化主要调整整体播放增益，不会自动抹平动态范围、频谱、瞬态和编曲差异
+- Audience Payoff：理解“音量差不多”与“听起来一样有冲击力”是两个不同维度
+- Meaning Fingerprint：`LOUDNESS_NORMALIZATION_VS_DYNAMIC_IMPACT`
+- Motif：歌单切歌不再忽大忽小 → 某首副歌仍突然很有冲击力 → 拆开整体响度与动态/频谱差异
+- Content Job：DISCOVERY
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H042 — 好友推荐
@@ -943,8 +941,8 @@
 - Meaning Fingerprint：`RECONNECTION_VS_BOUNDARY_CONTROL`
 - Motif：刷到熟悉旧名字 → 惊讶平台怎么知道 → 回忆为什么多年没联系 → 意识到关系相关性与关系意愿不同
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -965,8 +963,8 @@
 - Meaning Fingerprint：`FACE_GROUPING_VS_IDENTITY_DISTINCTION`
 - Motif：相册自动分好人物 → 两个家人照片被混到一起 → 手动纠正 → 看见算法依赖的只是视觉特征
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -987,8 +985,8 @@
 - Meaning Fingerprint：`SCHEDULE_UTILIZATION_VS_DEEP_FOCUS`
 - Motif：一天会议被排成很多小块 → 每个空隙都想做正事 → 刚进入状态又被下一场打断
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1009,8 +1007,8 @@
 - Meaning Fingerprint：`AWARENESS_VS_UNINTERRUPTED_ATTENTION`
 - Motif：开始专心工作 → 各种通知不断弹出 → 一天都在回应 → 原本任务还停在开头
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1031,8 +1029,8 @@
 - Meaning Fingerprint：`CAPTURE_COMPLETENESS_VS_ACTIVE_PRESENCE`
 - Motif：开会时放心走神 → 会后收到完美总结 → 真要做决定时才发现自己没经历中间的推理
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1053,8 +1051,8 @@
 - Meaning Fingerprint：`REMINDER_PERSISTENCE_VS_HABITUATION`
 - Motif：第一次提醒马上去做 → 后来不断延后 → 最后通知出现时手指自动划掉
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1075,8 +1073,8 @@
 - Meaning Fingerprint：`RETRIEVAL_VS_DECISION_CONTEXT`
 - Motif：新人搜索旧项目 → 文件一份不少 → 追问为什么这么做却没人记得 → 找到资料与找到理由分开
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1097,8 +1095,8 @@
 - Meaning Fingerprint：`DIGITAL_PRESENCE_VS_HUMAN_AVAILABILITY`
 - Motif：看到绿点立刻发消息 → 对方半天不回 → 后来发现正在会议 → 回看在线状态真正测到什么
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1119,8 +1117,8 @@
 - Meaning Fingerprint：`EDITING_CONCURRENCY_VS_DECISION_OWNERSHIP`
 - Motif：十个人一起改 → 文档迅速变好 → 临近发布没人敢按最终确认 → 回到权限与责任问题
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1141,8 +1139,8 @@
 - Meaning Fingerprint：`MAP_ABSTRACTION_VS_PHYSICAL_EDGE_CASES`
 - Motif：机器人顺利跑完全屋 → 一根线把它困住 → 对比地图里的房间和真实地面的细节
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1163,8 +1161,8 @@
 - Meaning Fingerprint：`CENTRAL_MEASUREMENT_VS_LOCAL_COMFORT`
 - Motif：客厅恒温器显示达标 → 走进卧室却很冷 → 找到传感器位置和不同房间状态
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1185,8 +1183,8 @@
 - Meaning Fingerprint：`TIME_EFFICIENCY_VS_RESOURCE_EFFICIENCY`
 - Motif：看到 ECO 模式耗时最长 → 怀疑名字写反 → 对比时间、加热与资源消耗的目标
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1207,8 +1205,8 @@
 - Meaning Fingerprint：`COUNTDOWN_CERTAINTY_VS_ADAPTIVE_PROCESS`
 - Motif：看到 1 分钟准备等结束 → 几分钟后还是 1 → 机器重新平衡衣物 → 时间估计被修正
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1229,8 +1227,8 @@
 - Meaning Fingerprint：`WAKE_SENSITIVITY_VS_FALSE_ACTIVATION`
 - Motif：客厅电视播放 → 音箱突然回应 → 所有人都没叫它 → 回看唤醒词识别只做了快速模式判断
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1251,8 +1249,8 @@
 - Meaning Fingerprint：`AUTOMATION_CONVENIENCE_VS_STATE_UNCERTAINTY`
 - Motif：一路回家期待自动开门 → 到门口没反应 → 掏出手机 → 发现系统依赖的状态还没更新到位
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1273,31 +1271,30 @@
 - Meaning Fingerprint：`PARTICLE_SCORE_VS_ODOR_REALITY`
 - Motif：净化器显示绿色 → 房间仍有味道 → 主角怀疑设备失灵 → 区分颗粒物和其他气体来源
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H058 — 家庭摄像头提醒
+## H058 — 视频会议降噪
 
-- 最终选题：**家里摄像头越灵敏，为什么手机反而越容易被一堆没用的提醒淹没？**
-- 选题类型：机制 / 判断
+- 最终选题：**视频会议能把键盘声消掉，为什么弹吉他时也可能把琴声一起“消掉”？**
+- 选题类型：机制 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
-- X：家庭安防
-- Human Process：异常监控 / 提醒
-- Human Problem：为了不漏掉真正事件，系统可以降低检测阈值，但树影、宠物或普通移动也更容易被当成值得提醒的变化
-- 反常：几乎什么都能检测到以后，真正重要的那条提醒反而埋在几十条通知里
-- Human Tension：检测灵敏度 vs 提醒价值
-- Controlling Question：一个安防系统应该尽量什么都不漏，还是应该尽量只叫你真正需要处理的事？
-- 科技改变的过程：检测阈值与分类规则越偏向高召回，通常会把更多边界事件一起送进提醒队列
-- 主机制：发现更多事件和产生更有用的通知不是同一个优化目标
-- Audience Payoff：理解告警系统真正难的不是“看见变化”，而是控制误报与漏报
-- Meaning Fingerprint：`DETECTION_SENSITIVITY_VS_ALERT_USEFULNESS`
-- Motif：刚装摄像头每次都看通知 → 一天几十条树影宠物 → 后来真正有人经过时反而差点忽略
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- X：视频会议 / 音频
+- Human Process：远程说话 / 分享环境声音
+- Human Problem：用户把“降噪”理解成只删除讨厌的声音，但会议算法往往首先保护的是人声清晰度
+- 反常：敲键盘时降噪很好用，真正想让别人听一段乐器时同一功能却可能伤害声音
+- Human Tension：语音清晰 vs 非语音保真
+- Controlling Question：会议软件怎么知道一个声音是“噪声”，还是你本来就想让别人听见的内容？
+- 科技改变的过程：实时音频处理根据声音特征强化或保留语音，同时抑制被判断为背景的非语音成分
+- 主机制：面向语音通信优化的噪声抑制目标不是完整保真环境声，因此有意的非语音内容也可能被一起削弱
+- Audience Payoff：理解“更干净的会议声音”与“忠实传递所有声音”不是同一个目标
+- Meaning Fingerprint：`SPEECH_CLARITY_VS_NONSPEECH_FIDELITY`
+- Motif：键盘声被漂亮消掉 → 主角拿起吉他演示 → 对方却说几乎听不见 → 切换到原声/音乐模式
+- Content Job：SOLUTION
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H059 — 智能温控日程
@@ -1317,8 +1314,8 @@
 - Meaning Fingerprint：`AUTOMATION_CONSISTENCY_VS_ROUTINE_VARIABILITY`
 - Motif：平日自动温控完美 → 周末睡懒觉却被系统提前降温 → 主角一路手动改回去
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1339,8 +1336,8 @@
 - Meaning Fingerprint：`ETA_OPTIMIZATION_VS_ROUTE_COMFORT`
 - Motif：接受最快路线 → 被带进狭窄复杂道路 → 真的更早到 → 却发誓下次宁愿多五分钟
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1361,8 +1358,8 @@
 - Meaning Fingerprint：`AVERAGE_ETA_VS_LOCAL_FRICTION`
 - Motif：地图显示五分钟 → 到十字路口连续等灯 → 最后总用时翻倍 → 发现短距离里一个等待点就能主导结果
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1383,31 +1380,30 @@
 - Meaning Fingerprint：`GEOMETRIC_CLOSENESS_VS_DRIVABLE_ACCESS`
 - Motif：看见车在马路对面 → 司机继续开走 → 绕几个路口回来 → 对比直线与道路路径
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H063 — 共享单车库存
+## H063 — 招聘系统重复填表
 
-- 最终选题：**共享单车 App 明明显示还有车，为什么走到那里却一辆都没有？**
-- 选题类型：机制 / 惊奇
+- 最终选题：**简历都上传了，为什么招聘网站还要你把工作经历重新填一遍？**
+- 选题类型：机制 / 体验
 - Entry：HUMAN_WORLD_FIRST
-- X：城市 / 共享出行
-- Human Process：找车 / 实时库存判断
-- Human Problem：地图展示的是某个时间点的车辆状态，但从看到地图到走到车点之间，其他人也在持续骑走和归还车辆
-- 反常：打开 App 时有三辆，五分钟后到现场却空了
-- Human Tension：实时显示 vs 持续变化的库存
-- Controlling Question：一个“实时地图”为什么还是不能保证你走过去时东西还在那里？
-- 科技改变的过程：共享库存会在用户查询之后继续被其他用户改变，状态同步与人的移动存在时间差
-- 主机制：实时数据只描述此刻，不会替未来几分钟锁定资源
-- Audience Payoff：理解“现在有”与“等我到了还有”是两个问题
-- Meaning Fingerprint：`LIVE_MAP_VS_CHANGING_INVENTORY`
-- Motif：地图看到三辆车 → 开始步行 → 车辆图标一个个消失 → 到现场正好最后一辆被骑走
+- X：求职 / 招聘系统
+- Human Process：投简历 / 提交经历
+- Human Problem：求职者已经把信息写进自由排版简历，但招聘系统还需要稳定的结构化字段用于搜索、筛选和后续流程
+- 反常：同一份教育和工作经历明明已经在 PDF 里写得很清楚，却还要再手工录入一次
+- Human Tension：自由表达 vs 结构化处理
+- Controlling Question：一份人能看懂的简历，为什么不一定等于系统已经拿到了可直接处理的数据？
+- 科技改变的过程：招聘系统尝试解析简历，同时要求候选人确认或补充职位、公司、日期等结构化字段
+- 主机制：自由版式文档的解析存在歧义，而结构化字段更适合统一搜索、过滤、排序和工作流处理
+- Audience Payoff：理解“重复填表”背后真正重复的是内容，而不是数据形态
+- Meaning Fingerprint：`HUMAN_READABLE_DOCUMENT_VS_STRUCTURED_WORKFLOW_DATA`
+- Motif：上传精心排版简历 → 系统解析出一半 → 页面再次要求逐项填写 → 对比 PDF 与数据库字段
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H064 — 导航集体拥堵
@@ -1427,31 +1423,30 @@
 - Meaning Fingerprint：`INDIVIDUAL_ROUTING_VS_COLLECTIVE_FEEDBACK`
 - Motif：主路堵车 → 所有人被推荐同一小路 → 小路迅速排队 → 下一轮导航再次重算
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H065 — 登机分组
+## H065 — 动态电子登机牌
 
-- 最终选题：**登机明明分了那么多组，为什么看起来反而比所有人一起排队更乱？**
-- 选题类型：机制 / 判断
+- 最终选题：**手机钱包里的登机牌为什么有时会自己换登机口，而截图不会？**
+- 选题类型：机制 / 实用
 - Entry：HUMAN_WORLD_FIRST
-- X：航空 / 排队
-- Human Process：登机 / 队列管理
-- Human Problem：旅客看到的是候机口前队伍是否整齐，航空公司管理的却是不同优先级、座位区域、行李与通道占用
-- 反常：队伍被切成很多组后视觉上更复杂，却不代表登机过程没有秩序
-- Human Tension：运营秩序 vs 视觉秩序
-- Controlling Question：一个队伍看起来整齐，和整个系统真的更快、更好管理，是不是一回事？
-- 科技改变的过程：登机分组通过规则控制不同旅客进入登机流程的顺序，目标可以包含优先权、通道冲突与行李管理，而非让候机口形成一条最整齐的队
-- 主机制：队列的外观与系统吞吐 / 权益规则不是同一指标
-- Audience Payoff：理解排队系统的秩序可能藏在规则里，而不一定体现在一条直线队伍上
-- Meaning Fingerprint：`OPERATIONAL_ORDER_VS_PERCEIVED_ORDER`
-- Motif：所有人挤在登机口附近 → 广播一组组放行 → 主角觉得更乱 → 进入机舱后看到规则管理的是另一种冲突
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- X：航空 / 手机钱包
+- Human Process：找登机口 / 使用登机牌
+- Human Problem：用户把“保存到手机”理解成保存了一张静态图片，但数字凭证可以继续接收运营状态更新
+- 反常：同一张登机牌放进钱包后能出现新登机口，截成图片后却永远停在旧信息
+- Human Tension：已保存副本 vs 实时运营状态
+- Controlling Question：手机里看起来都是一张登机牌，为什么一个还能继续变化、另一个却不能？
+- 科技改变的过程：数字钱包中的 pass 可保留结构化字段并通过服务端更新；截图只保存某一时刻的像素
+- 主机制：动态凭证与后端状态仍保持关联，而静态截图切断了后续状态同步
+- Audience Payoff：理解“保存一张凭证”和“保存一个仍连接服务的数字凭证”并不相同
+- Meaning Fingerprint：`SAVED_CREDENTIAL_VS_LIVE_OPERATIONAL_STATE`
+- Motif：提前截图登机牌 → 机场突然换登机口 → 钱包版本更新、截图不变 → 主角差点走错
+- Content Job：SOLUTION
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H066 — 旅行 eSIM
@@ -1471,8 +1466,8 @@
 - Meaning Fingerprint：`DATA_CONNECTIVITY_VS_NUMBER_CONTINUITY`
 - Motif：落地后 eSIM 秒联网 → 登录账号需要短信 → 才想起旧号码状态 → 把两种连接拆开
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1493,8 +1488,8 @@
 - Meaning Fingerprint：`NETWORK_LOCATION_VS_PRECISE_FINDING`
 - Motif：落地看到定位器在附近 → 走到行李转盘 → 地图已经没有更多帮助 → 切换近距离寻找
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1515,31 +1510,30 @@
 - Meaning Fingerprint：`BIOMETRIC_CONVENIENCE_VS_MATCH_UNCERTAINTY`
 - Motif：走到自助闸机 → 第一次识别失败 → 调整角度后通过 → 对比人的身份与机器看到的图像
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H069 — 冥想打卡
+## H069 — 隐藏点赞数
 
-- 最终选题：**冥想 App 连续打卡一百天，为什么有一天没打卡会比没冥想本身更难受？**
-- 选题类型：判断 / 反思
+- 最终选题：**同一条内容，把点赞数藏起来以后，为什么你可能会突然觉得它没那么好看了？**
+- 选题类型：判断 / 体验
 - Entry：HUMAN_WORLD_FIRST
-- X：健康习惯 / App
-- Human Process：习惯建立
-- Human Problem：连续记录本来是帮助建立行为的反馈，久而久之数字本身也可能变成需要被保护的目标
-- 反常：最开始为了冥想而打卡，后来却为了不断掉数字而冥想
-- Human Tension：习惯支持 vs 指标依恋
-- Controlling Question：当一个工具用连续天数鼓励你坚持，什么时候“保持连续”会变成另一件要完成的任务？
-- 科技改变的过程：streak 设计把过去连续行为压成一个不断累积、断掉会清零或中断的显著指标
-- 主机制：衡量行为的指标会参与塑造行为本身
-- Audience Payoff：理解激励指标既能帮助开始，也可能悄悄替换原本目标
-- Meaning Fingerprint：`CONSISTENCY_SUPPORT_VS_METRIC_ATTACHMENT`
-- Motif：一百天连续记录 → 某天很累只想休息 → 因为不想断 streak 勉强完成 → 开始问自己在维护什么
+- X：社交媒体 / 内容判断
+- Human Process：浏览内容 / 判断喜好
+- Human Problem：人以为自己只在看内容本身，但公开的点赞量也会成为一种社会信息
+- 反常：画面和文字一个字都没变，只隐藏一个数字，主观评价却可能发生变化
+- Human Tension：独立判断 vs 社会证明
+- Controlling Question：我们说“我喜欢这条内容”时，有多少判断来自内容本身，又有多少来自别人已经喜欢它？
+- 科技改变的过程：平台把聚合互动量直接展示在内容旁边，让他人的选择成为实时可见的判断线索
+- 主机制：公开的群体反馈会提供社会证明信号，改变用户在不确定情况下形成判断的环境
+- Audience Payoff：理解点赞数不仅记录反应，也可能参与塑造下一批人的反应
+- Meaning Fingerprint：`INDEPENDENT_JUDGMENT_VS_SOCIAL_PROOF`
+- Motif：先看一条高赞内容觉得很不错 → 隐藏互动数字重新看 → 开始分不清自己最初被什么说服
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H070 — 运动圆环
@@ -1559,8 +1553,8 @@
 - Meaning Fingerprint：`DAILY_GOAL_VS_RECOVERY_VARIABILITY`
 - Motif：连续闭环很多天 → 休息日圆环缺一块 → 主角为了数字想再出去运动 → 重新看目标和身体状态
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1581,8 +1575,8 @@
 - Meaning Fingerprint：`NUMERIC_PRECISION_VS_INPUT_UNCERTAINTY`
 - Motif：认真称重录入 → App 给出极精确数字 → 换一个数据库条目结果明显变化 → 回看精度来自哪里
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1603,8 +1597,8 @@
 - Meaning Fingerprint：`AUTOMATIC_ADAPTATION_VS_VISUAL_STABILITY`
 - Motif：室内看手机 → 手指偶尔挡住传感器 / 转向窗边 → 屏幕来回变化 → 发现系统只看到局部光线
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1625,8 +1619,8 @@
 - Meaning Fingerprint：`WAKE_WINDOW_OPTIMIZATION_VS_SLEEP_QUANTITY`
 - Motif：熬夜后依赖智能闹钟 → 它按计划在窗口内叫醒 → 起床仍很累 → 回看工具真正能优化的范围
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1647,31 +1641,30 @@
 - Meaning Fingerprint：`MATHEMATICAL_RANDOMNESS_VS_HUMAN_RANDOMNESS_EXPECTATION`
 - Motif：开随机播放 → 连续几首同歌手 → 主角怀疑算法造假 → 用简单抽签复现同样的聚集
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H075 — 动态难度
+## H075 — 云游戏延迟
 
-- 最终选题：**用了动态难度的游戏越会照顾玩家，为什么有时胜利反而没那么爽？**
-- 选题类型：判断 / 探索
+- 最终选题：**测速明明很快，为什么玩云游戏还是会觉得操作慢半拍？**
+- 选题类型：机制 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
-- X：游戏 / 体验
-- Human Process：挑战 / 成就感
-- Human Problem：系统通过玩家表现调整挑战，减少卡关，但当玩家察觉难度被照顾时，胜利可能不再完全归因于自己的进步
-- 反常：游戏变得更顺，却让人开始怀疑到底是自己变强还是系统让步
-- Human Tension：平滑挑战 vs 成就可信度
-- Controlling Question：一个游戏一直把难度调到刚好适合你，胜利还会不会有同样的意义？
-- 科技改变的过程：动态难度根据玩家表现改变部分挑战参数，使失败和卡关概率保持在设计目标附近
-- 主机制：优化体验曲线和保留固定挑战标准是不同设计目标
-- Audience Payoff：理解游戏“更懂你”可能同时改变玩家对成功来源的解释
-- Meaning Fingerprint：`SMOOTH_CHALLENGE_VS_PERCEIVED_FAIRNESS`
-- Motif：连续失败后突然顺利过关 → 主角高兴又怀疑 → 发现游戏在根据表现调整挑战
+- X：游戏 / 云服务
+- Human Process：实时操作 / 获得画面反馈
+- Human Problem：用户把下载速度理解成网络体验的全部，但云游戏需要输入和视频画面持续进行低延迟往返
+- 反常：测速显示带宽很高，按下按键后角色仍能感觉晚一点才动
+- Human Tension：高吞吐量 vs 低交互延迟
+- Controlling Question：网络一次能传很多数据，为什么不代表一次操作能很快来回一趟？
+- 科技改变的过程：游戏在远端服务器运行，本地输入要上传，服务器完成计算后再编码并传回画面
+- 主机制：带宽决定单位时间可传多少数据，端到端交互延迟取决于往返时延、处理和编码等多段时间
+- Audience Payoff：区分“网速快”和“反应快”，理解云游戏为什么尤其敏感于延迟
+- Meaning Fingerprint：`THROUGHPUT_VS_INTERACTION_LATENCY`
+- Motif：测速几百兆 → 本地游戏操作立即响应 → 云游戏同样网络却慢半拍 → 沿输入到画面的往返链路展开
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H076 — 隐藏分匹配
@@ -1691,8 +1684,8 @@
 - Meaning Fingerprint：`FAIR_MATCHING_VS_STABLE_DIFFICULTY`
 - Motif：连续赢几局 → 下一局对手明显更强 → 怀疑系统惩罚 → 展开隐藏评分如何跟着结果移动
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1713,8 +1706,8 @@
 - Meaning Fingerprint：`MOTION_SMOOTHNESS_VS_CINEMATIC_CADENCE`
 - Motif：打开电视增强功能 → 电影突然像现场节目 → 关闭插帧后电影感回来 → 对比帧间运动
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1735,8 +1728,8 @@
 - Meaning Fingerprint：`SPEED_TEST_VS_SUSTAINED_DELIVERY`
 - Motif：测速结果很好 → 播放器突然变糊 → 几秒后恢复 → 查看缓冲与实时吞吐变化
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1757,8 +1750,8 @@
 - Meaning Fingerprint：`LITERAL_SUBTITLE_VS_READABLE_ADAPTATION`
 - Motif：暂停逐字对照原声 → 发现字幕少了很多词 → 放回正常速度后才发现完整逐字根本来不及读
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1779,8 +1772,8 @@
 - Meaning Fingerprint：`SYNC_CONVENIENCE_VS_CONFLICT_RESOLUTION`
 - Motif：电脑玩到一半离线 → 主机继续推进 → 两边重新联网 → 弹出两个存档让人选择
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1801,8 +1794,8 @@
 - Meaning Fingerprint：`TIMBRE_SIMILARITY_VS_EXPRESSIVE_IDENTITY`
 - Motif：朋友听克隆语音第一句惊讶 → 一句熟悉口头语却觉得别扭 → 拆开音色与说话方式
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1823,8 +1816,8 @@
 - Meaning Fingerprint：`TRANSCRIPT_ACCURACY_VS_REVEAL_TIMING`
 - Motif：角色准备抖包袱 → 字幕整句提前出现 → 观众已经知道答案 → 调整分段后笑点回来
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1845,8 +1838,8 @@
 - Meaning Fingerprint：`STABILITY_VS_FIELD_OF_VIEW`
 - Motif：不开防抖画面很宽但晃 → 打开后变稳也变窄 → 用边缘安全区解释输出窗口如何移动
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1867,8 +1860,8 @@
 - Meaning Fingerprint：`DEPTH_ESTIMATION_VS_FINE_BOUNDARIES`
 - Motif：拍完第一眼很像相机 → 放大头发和眼镜 → 发现虚化边界 → 看见系统背后的深度遮罩
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1889,31 +1882,30 @@
 - Meaning Fingerprint：`AUTO_COLOR_CORRECTION_VS_LIGHTING_AMBIGUITY`
 - Motif：同一白物体换三种灯拍摄 → 颜色来回变化 → 主角用灰卡让系统终于有明确参考
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H086 — 搜索答案摘要
+## H086 — 评分可信度
 
-- 最终选题：**搜索结果已经把答案直接写在最上面了，为什么你有时反而更该点进去看原文？**
-- 选题类型：判断 / 实用
+- 最终选题：**两家店都是 4.8 分，为什么这两个 4.8 可能根本不是一回事？**
+- 选题类型：机制 / 判断
 - Entry：HUMAN_WORLD_FIRST
-- X：搜索 / 信息
-- Human Process：快速查答案
-- Human Problem：摘要把最相关的几句话直接抽到结果页，降低阅读成本，也更容易把条件、例外与上下文一起省掉
-- 反常：一句话答案看起来完整，进入原文才发现后面还有重要限定
-- Human Tension：答案便利 vs 来源语境
-- Controlling Question：一个答案越短越直接，我们失去的通常是什么？
-- 科技改变的过程：搜索摘要 / answer box 从原始页面抽取或重组局部信息，展示空间有限，不能保证保留完整论证与适用条件
-- 主机制：信息压缩提高获取速度，但会减少上下文
-- Audience Payoff：理解快速答案适合定位，不应自动替代需要边界与证据的原文阅读
-- Meaning Fingerprint：`ANSWER_CONVENIENCE_VS_SOURCE_CONTEXT`
-- Motif：看到搜索页一句答案 → 直接准备照做 → 点开来源发现关键“仅适用于……”
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- X：消费 / 评分
+- Human Process：看评分 / 做选择
+- Human Problem：用户容易把平均分当成完整质量信号，却忽略评价数量、分布和样本来源也影响这个数字能说明多少
+- 反常：两家店页面上都是同样的 4.8 分，一个只有十几条评价，一个已经积累上万条
+- Human Tension：简单分数 vs 证据强度
+- Controlling Question：当两个平均分完全一样时，我们凭什么判断哪个数字更稳定、更值得参考？
+- 科技改变的过程：平台把大量独立评价压缩成一个显眼的平均分，同时另外保留评价数量与分布等信息
+- 主机制：相同平均值在不同样本量和评价分布下具有不同的不确定性，单个平均分不能表达全部证据强度
+- Audience Payoff：学会把“分数是多少”和“这个分数有多少证据支撑”分开看
+- Meaning Fingerprint：`AVERAGE_SCORE_VS_EVIDENCE_STRENGTH`
+- Motif：两家店都显示 4.8 → 主角准备随便选 → 注意到一边 18 条、一边 18000 条 → 开始重新理解同一个数字
+- Content Job：SOLUTION
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H087 — AI 长文总结
@@ -1933,8 +1925,8 @@
 - Meaning Fingerprint：`COMPRESSION_VS_QUALIFICATION`
 - Motif：读 AI 十句总结 → 形成明确结论 → 打开原文发现作者花一半篇幅讨论例外 → 重新理解压缩损失
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1955,8 +1947,8 @@
 - Meaning Fingerprint：`EASY_FAMILIARITY_VS_DURABLE_RETRIEVAL`
 - Motif：刚背会希望天天复习 → 软件几天不再出现 → 快忘时突然回来 → 发现系统在管理遗忘而不是刷存在感
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1977,8 +1969,8 @@
 - Meaning Fingerprint：`RANDOMIZED_ASSESSMENT_VS_SCORE_COMPARABILITY`
 - Motif：两个人考完互相对题 → 发现题目完全不同 → 分数一样却体验差很大 → 引出题目等值问题
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -1999,8 +1991,8 @@
 - Meaning Fingerprint：`CAPTURE_EASE_VS_CONSUMPTION_COMMITMENT`
 - Motif：看到好文章马上收藏 → 数量快速破百 → 真想找时间读时发现队列比时间增长得更快
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -2021,8 +2013,8 @@
 - Meaning Fingerprint：`CITATION_PRESENCE_VS_CLAIM_SUPPORT`
 - Motif：AI 回答看起来很可靠 → 点开脚注 → 搜遍原文没找到那个结论 → 开始逐句核引用
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -2043,31 +2035,30 @@
 - Meaning Fingerprint：`INTERFACE_IMPROVEMENT_VS_MOTOR_MEMORY`
 - Motif：更新前操作行云流水 → 按钮位置改变 → 每一步都下意识点错 → 几天后又重新变快
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H093 — Cookie 同意弹窗
+## H093 — 日历跨时区
 
-- 最终选题：**网站明明说你可以拒绝追踪，为什么“全部接受”总是更容易点？**
-- 选题类型：判断 / 机制
+- 最终选题：**会议明明约的是下午 3 点，飞到另一个时区后为什么日历里的时间会自己变？**
+- 选题类型：机制 / 实用
 - Entry：HUMAN_WORLD_FIRST
-- X：隐私 / 网站
-- Human Process：授权 / 同意
-- Human Problem：法律或产品层面提供多个选择，不代表界面对每个选择提供同样显眼和同样短的操作路径
-- 反常：接受只要一个大按钮，拒绝却可能需要展开设置
-- Human Tension：形式选择权 vs 选择摩擦
-- Controlling Question：当两个选项理论上都存在，但一个只要一次点击、另一个需要五次，这还能算同样容易的选择吗？
-- 科技改变的过程：按钮显著性、默认值、层级与点击成本构成 choice architecture，会改变用户完成不同选项所需的注意与操作
-- 主机制：提供选项和以对称方式呈现选项是不同问题
-- Audience Payoff：理解数字同意不仅看“有没有拒绝按钮”，还要看做出不同选择的实际摩擦
-- Meaning Fingerprint：`FORMAL_CONSENT_VS_CHOICE_FRICTION`
-- Motif：弹窗挡住页面 → 一键接受特别醒目 → 主角尝试拒绝却连进多层菜单 → 对比两条操作路径
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- X：日历 / 旅行 / 时区
+- Human Process：约会议 / 跨时区出行
+- Human Problem：用户把“下午 3 点”理解成事件本身，但跨时区日历需要区分同一个绝对时刻与它在不同地点的本地显示
+- 反常：会议没有被任何人改期，手机换到另一个时区后显示的钟点却变了
+- Human Tension：同一时刻 vs 本地钟表表示
+- Controlling Question：一个会议真正被固定下来的，到底是“下午 3 点”这几个字，还是世界上的某一个时刻？
+- 科技改变的过程：数字日历保存事件时间和时区信息，并按设备当前时区重新显示本地钟点
+- 主机制：同一个绝对时间点在不同时区对应不同的本地时间表示，时区感知日历会进行转换
+- Audience Payoff：理解跨时区约会为什么必须同时关心“哪个时刻”和“按哪个地方的钟表显示”
+- Meaning Fingerprint：`ABSOLUTE_INSTANT_VS_LOCAL_CLOCK_REPRESENTATION`
+- Motif：在家约好下午 3 点会议 → 飞到海外后日历变成清晨 → 以为会议被改 → 最后发现只是本地时间换算
+- Content Job：SOLUTION
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H094 — 买完还被追投广告
@@ -2087,8 +2078,8 @@
 - Meaning Fingerprint：`INFERRED_INTEREST_VS_COMPLETED_INTENT`
 - Motif：搜索一双鞋 → 买下 → 接下来几天网页继续追同款 → 广告系统仍把旧兴趣当成当前意图
 - Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -2109,8 +2100,8 @@
 - Meaning Fingerprint：`LOCAL_PRIVACY_VS_NETWORK_VISIBILITY`
 - Motif：开启无痕访问网站 → 关闭后历史为空 → 公司网络日志仍显示访问 → 拆开本地与网络两层
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -2131,8 +2122,8 @@
 - Meaning Fingerprint：`VISIBLE_CONTENT_VS_HIDDEN_METADATA`
 - Motif：准备发一张普通照片 → 朋友查看文件信息看到地点 → 主角发现画面外还有一层数据
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -2153,8 +2144,8 @@
 - Meaning Fingerprint：`LOCAL_REMOVAL_VS_SERVER_STATE`
 - Motif：厌烦一个 App 直接卸载 → 几个月后重装 → 所有历史仍在 → 才意识到账号从未被删除
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
@@ -2175,31 +2166,30 @@
 - Meaning Fingerprint：`SHARING_CONVENIENCE_VS_ACCESS_CONTROL`
 - Motif：把资料链接发给一个人 → 链接被转发 → 第三个人也能打开 → 回看权限条件其实只是“有链接”
 - Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
 ---
 
-## H099 — 二维码跳转
+## H099 — 网页缓存
 
-- 最终选题：**同一个二维码印在纸上没变，为什么扫出来的页面以后却能完全不一样？**
-- 选题类型：机制 / 惊奇
+- 最终选题：**网站明明已经更新了，为什么你的电脑上还可能一直显示旧页面？**
+- 选题类型：机制 / 实用
 - Entry：HUMAN_WORLD_FIRST
-- X：二维码 / 网页
-- Human Process：扫码访问信息
-- Human Problem：人把二维码当成把页面内容固定印在纸上，但很多二维码只编码一个 URL 或重定向入口
-- 反常：海报上的黑白格完全没改，半年后扫出来却变成了新活动页
-- Human Tension：物理固定 vs 数字目的地可变
-- Controlling Question：纸上的二维码到底保存了网页，还是只保存了去网页的路？
-- 科技改变的过程：二维码可以编码 URL，服务器端页面或重定向目标能够在二维码本身不变的情况下更新
-- 主机制：物理载体固定不代表它指向的在线资源固定
-- Audience Payoff：理解二维码常常是持久入口，而不是把最终内容永久封存在图案里
-- Meaning Fingerprint：`PHYSICAL_CODE_VS_MUTABLE_DESTINATION`
-- Motif：旧海报重新被翻出来 → 扫码却进入新页面 → 拆开二维码里的地址和服务器上的内容
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
-
+- X：网页 / 浏览器 / CDN
+- Human Process：打开网页 / 获取最新内容
+- Human Problem：为了让页面加载更快，浏览器和网络节点会复用已经保存过的资源，但用户又期待每次打开都立刻看到最新版本
+- 反常：网站管理员已经改完并发布，另一台电脑刷新后却仍然看到之前的图片或样式
+- Human Tension：加载速度 vs 内容新鲜度
+- Controlling Question：网页想要秒开，又想每一次都确认所有文件是不是最新，这两个目标为什么会冲突？
+- 科技改变的过程：浏览器、CDN 等按缓存规则在一定时间内复用已有资源，减少重复网络请求
+- 主机制：缓存用可接受的短期陈旧风险换取更低延迟和更少传输，更新是否立即可见取决于缓存失效与重新验证规则
+- Audience Payoff：理解“刷新了还没变”为什么不一定是发布失败，也理解缓存解决的真正问题
+- Meaning Fingerprint：`LOAD_SPEED_VS_CONTENT_FRESHNESS`
+- Motif：开发者刚换网站图片 → 自己电脑还显示旧图 → 换设备却已经更新 → 找到中间那份缓存副本
+- Content Job：SOLUTION
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
 ## H100 — 消息撤回
@@ -2219,6 +2209,6 @@
 - Meaning Fingerprint：`REVOCATION_VS_PRIOR_DELIVERY`
 - Motif：手滑发错 → 几秒后撤回 → 对方回复“我已经看到了” → 回看信息传递与界面删除的时间顺序
 - Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；正式进入 Part 2 前按对应机制补足可追溯来源
-- Status：PASS
+- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
+- Status：CANDIDATE / EVIDENCE_PENDING
 
