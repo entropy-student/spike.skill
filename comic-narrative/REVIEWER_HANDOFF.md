@@ -18,10 +18,10 @@
 
 ## PROJECT_STAGE
 
-`ACTIVE_REVIEW / R2R2R3_SYNTHETIC_SOURCE_CLEANUP_CLOSEOUT`
+`ACTIVE_REVIEW / H019_PRODUCTION_PACKAGE_RECONCILIATION_R1`
 
 并行状态：
-- 主执行线：R2R2R2 已证明 6/6 nested destination 正例与 flat destination fail-closed；IMAGEGEN_CALLS=0。唯一未满足项是 fresh synthetic source 在 fresh readback 时仍存在。R2R2R3 只做 exact-source cleanup/readback，不再重跑任何测试。
+- 主执行线：R2R2R3 已正式 PASS，imagegen executor reliability 已 CLOSED。下一步转真实生产：先将 H019 酒店价格的 41-task 精简 Part 4 执行包与当前 canonical assets / fast-path / size / destination 合同对齐；本 Gate 不生图。
 - 内容规则线：Part 2 正式修改清单已准备，等待 Owner 逐项批准；
 - Part 5–6：PENDING。
 
@@ -78,160 +78,220 @@ Part 6  执行与项目管理               [未正式迁移]
   - R2R2：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED / CLASSIFICATION CORRECTED**：no-image preflight PASS；Wave 1 恰好提交 2 次 imagegen，max in-flight=2；Beat 01 返回在内存观察到后，fresh `consume_output_hint.ps1` 的 child-process 参数交接导致 child logger 缺失 `EventLogPath/EventJson`，故 durable `IMAGE_RETURNED` 前中止；Beat 02 状态保持 UNKNOWN；0 PNG/0 QA；无 retry/replacement/fallback；Wave 2/3 未提交。
   - R2R2R1：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED / CLASSIFICATION CORRECTED**：consumer 0-image end-to-end smoke PASS；恰好 6 次 imagegen / 三波 / max in-flight=2 / 6 IMAGE_RETURNED；Beat 03–06 全链保存/hash/dimensions/QA PASS，Beat 01–02 因 flat `outputs/<file>.png` 被 canonical local-copy 以 `DESTINATION_OUTSIDE_RUN_OUTPUTS` 拒绝。根因是 caller/tool destination contract gap，不是 imagegen 失败。batch wall clock=668s。repaired consumer 已提升为 canonical tool。
   - R2R2R2：**RETURN_IMPLEMENTATION_DRIFT — REVIEWER ACCEPTED / CLOSEOUT INCOMPLETE**：IMAGEGEN_CALLS=0；6/6 `outputs/<task_id>/<task_id>.png` 正例均 save/hash/96×54/QA_QUEUED；flat negative 返回 `DESTINATION_OUTSIDE_RUN_OUTPUTS` 且未落文件；33 条事件连续。唯一缺口：fresh readback 时 exact synthetic source 仍存在，未提供后续 cleanup 证据。
-- **H019 完整第二轮重跑**：`DEFERRED`。
-- **6-task reliability retest**：R2R2R1 已授权；仅修 consumer binding 后重跑固定六任务三波。
+  - R2R2R3：**PASS**：真实 Windows host/user 已证明；exact synthetic source 删除前 regular/non-reparse/hash 与预期一致；只删除 exact PNG，parent 未删；final fresh readback=absent；IMAGEGEN_CALLS=0；repo clean。
+  - **Imagegen executor reliability：CLOSED**：正式生产默认继承 `concurrency=2 → built-in imagegen → canonical consumer → official hint parser → SourcePath → local copy/hash/dimensions → QA`，输出路径固定 `outputs/<task_id>/<task_id>.png`。
+- **H019 正式生产**：已进入生产包 reconciliation；live 41-task run 尚未授权，先完成 current-contract package compile。
+- **Imagegen reliability synthetic testing**：CLOSED；除触发正式 revalidation 条件外，不再重复 synthetic live-image batch。
 - **Part 5 / Part 6**：未正式迁移。
 
 ## CURRENT_GATE
 
 ### GATE_ID
 
-IMAGEGEN_SYNTHETIC_SOURCE_CLEANUP_CLOSEOUT_R2R2R3
+H019_PRODUCTION_PACKAGE_RECONCILIATION_R1
 
 ### OBJECTIVE
 
-只完成 R2R2R2 尚未证明的 exact synthetic source cleanup。
+把现有 H019 酒店价格精简 Part 4 图片执行包编译成 **当前可直接生产的 41-task package**，不修改故事、Visual Beat、POV、镜头或因果事实。
 
-不得重跑任何 positive/negative destination test，不得调用 imagegen，不得修改 canonical tools。
+Source package：
 
-Exact owned source：
-
-`C:\Users\34707\.codex\generated_images\R2R2R2-SYNTH-7b286bc9518546e099ee53634f683a2c\synthetic.png`
+`H019_酒店价格_Part4_精简图片执行包.zip`
 
 Expected SHA-256：
 
-`680826c5ea1a898f0c7b80043923dbb94e6d06d828eb556bcf25bf51e1454751`
+`e4e2f3ce2a29f06eb08ee2995fff95e6e8ac7ae2f6c5267072fd3d904a9a6d97`
+
+Expected size：`8,199,407 bytes`。
+
+本 Gate `IMAGEGEN_CALLS=0`。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
-1. fresh-read current main + current Gate；
-2. prove real Windows host/user/effective path context；
-3. inspect only the exact synthetic source path；
-4. if absent: record cleanup already satisfied；
-5. if present: validate normalized allowed-root containment / regular file / not reparse point / exact SHA；
-6. only after all checks PASS, delete only that exact file；
-7. fresh-read exact path = absent；
-8. IMAGEGEN_CALLS=0；
-9. STOP at Reviewer。
+1. fresh-read current main / Part 3 / Part 4 / Part 4.5 / current fast-path README；
+2. receive exact source ZIP and verify SHA/size before extraction；
+3. fresh reconciliation workdir；
+4. verify source package facts: 41 tasks / 38 GENERATE / 3 DERIVE_EDIT-equivalent；
+5. copy fresh current canonical protagonist + two style references from GitHub worktree into the reconciled package and record SHA-256；
+6. rewrite execution-only metadata/path contracts to current baseline；
+7. preserve all story/beat/POV/camera/viewer-meaning fields unchanged；
+8. compile current dependency graph and production destination map；
+9. package-level QA；
+10. emit one fresh self-contained reconciled H019 ZIP + manifest + reconciliation report；
+11. fresh readback；
+12. STOP at Reviewer。
 
 ### MANDATORY_REVIEW_STOP
 
 `STOP_AT_REVIEWER=YES`
 
+No live imagegen is authorized in this Gate。
+
 ### TARGET_AND_SCOPE
 
-Allowed read/write scope is only:
+Source package identity：
 
-- current REVIEWER_HANDOFF R2R2R3 Gate / Relay；
-- R2R2R2 Reviewer decision；
-- exact synthetic source path above；
-- fresh R2R2R3 evidence directory。
+- Library path: `/comic-narrative/part4/examples/H019_酒店价格_Part4_精简图片执行包.zip`;
+- SHA-256: `e4e2f3ce2a29f06eb08ee2995fff95e6e8ac7ae2f6c5267072fd3d904a9a6d97`;
+- 41 tasks;
+- 38 generate / 3 derive-edit;
+- package refs: 主角 / 主画风 / 辅助画风。
 
-Do not read/delete the parent generated_images directory broadly。
+Current canonical references：
 
-Do not touch R2R2R2 outputs, QA files, run evidence, canonical tools, fixture, production assets, or historical evidence directories。
+- `comic-narrative/part3/assets/characters/MAIN_CHARACTER_MASTER.png`;
+- `comic-narrative/part3/assets/style/STYLE_PRIMARY_TWO_PERSON_DINING.png`;
+- `comic-narrative/part3/assets/style/STYLE_SECONDARY_SINGLE_PERSON_DINING.png`。
+
+Current fast-path tools：
+
+- `comic-narrative/tools/imagegen-fast-path/consume_output_hint.ps1`;
+- `official_hint_parser.ps1`;
+- `local_copy.ps1`;
+- `append_event.ps1`。
+
+Reconciliation prep evidence：
+
+`comic-narrative/reviews/production/H019_PRODUCTION_PACKAGE_RECONCILIATION_PREP_20261004.md`
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
 - PASS_CANDIDATE != PASS；
+- imagegen executor reliability is inherited / not re-tested；
 - IMAGEGEN_CALLS=0；
-- exact-path ownership only；
-- prove real Windows host/user before local mutation；
-- absent exact file = cleanup satisfied；
-- if present, hash/type/path checks are mandatory before delete；
-- mismatch/unknown/non-regular/reparse = fail closed, no delete；
-- parent directory cleanup is not required and is not authorized；
-- no canonical tool/fixture/formal-rule mutation。
+- no story/Beat/POV/camera/semantic edits；
+- current canonical references outrank binaries embedded in the historical package；
+- current Part 4 execution-mode and size contracts outrank historical package wording；
+- concurrency remains 2 for the later live Gate；
+- no POST_OVERLAY / COMPOSITE_CROP / external layer assembly；
+- exact text remains native image requirement；
+- native pixel mismatch alone is not failure/retry；
+- destination convention = `outputs/<task_id>/<task_id>.png`；
+- DERIVE_EDIT source must be an actually accepted earlier output；
+- no live output or production-library mutation in this Gate。
+
+### RECONCILIATION_RULES
+
+Package facts that must remain unchanged：
+
+- task count = 41；
+- task IDs/order = C-VB01 ... C-VB41；
+- execution modes = 38 GENERATE + 3 DERIVE_EDIT-equivalent；
+- DERIVE_EDIT:
+  - C-VB05 ← C-VB02；
+  - C-VB19 ← C-VB18；
+  - C-VB33 ← C-VB32；
+- exact-text tasks:
+  - C-VB04 = `可以`；
+  - C-VB41 = exactly one of `无房` / `售罄`；
+- all existing narration/timing/acceptance/story constraints remain verbatim unless a purely mechanical field normalization is required。
+
+Required current-contract changes：
+
+1. every task:
+   - aspect_ratio = 16:9；
+   - target_canvas = 1920x1080；
+   - native_pixel_target = NONE；
+   - retry_on_native_pixel_mismatch = false；
+2. output destination:
+   - `<run_root>/outputs/<visual_beat_id>/<visual_beat_id>.png`；
+3. QA destination:
+   - `<run_root>/qa/<visual_beat_id>.QA.json` or equivalent under qa root；
+4. historical `已完成图片/C-VBxx.png` source/reference paths become resolved nested production outputs；
+5. C-VB02 is the main continuity anchor and may only release dependent tasks after its accepted output exists；
+6. C-VB18 and C-VB32 similarly gate their respective DERIVE_EDIT children；
+7. reference binaries are replaced from current canonical Part 3 assets and fresh SHA-256 values are written into the new manifest；
+8. historical `1920x1080` wording is normalized to target canvas semantics, not native raster requirement；
+9. technical retry is bounded to at most one retry for a transient tool/network/no-usable-image failure; no automatic retry for content hard failure in the first production run；
+10. exact native text failure is content hard failure / HOLD-RETURN, never POST_OVERLAY fallback。
 
 ### PREFLIGHT
 
 1. current main fresh-read；
-2. Windows hostname + username + PowerShell runtime recorded；
-3. normalize exact source path；
-4. verify normalized path is under `<USERPROFILE>\.codex\generated_images\`；
-5. IMAGEGEN_CALLS=0。
-
-If exact source is absent, skip deletion and continue to fresh readback。
-
-If exact source exists, require:
-
-- PathType Leaf；
-- FileInfo regular file；
-- ReparsePoint bit not set；
-- SHA-256 exact expected value。
-
-Any mismatch => RETURN and do not delete。
+2. source ZIP exact SHA/size PASS；
+3. archive contains only expected package tree; no path traversal / absolute archive entries；
+4. source JSON parses；
+5. exactly 41 unique ordered task IDs；
+6. current canonical reference files exist as regular PNGs in worktree；
+7. record current reference SHA-256 / dimensions；
+8. confirm source package protagonist binary differs from current canonical and is not reused；
+9. no imagegen call path is invoked；
+10. fresh output package path does not already exist。
 
 ### REQUIRED_EVIDENCE
 
-- `IMAGEGEN_SYNTHETIC_SOURCE_CLEANUP_CLOSEOUT_R2R2R3.md`
-- current main
-- hostname / username / PowerShell version
-- exact normalized source path
-- pre-delete existence
-- if present: type/reparse/hash checks
-- delete native/PowerShell exit result
-- post-delete exact-path existence=false
-- IMAGEGEN_CALLS=0
-- repository/canonical delta=0
+- `H019_PRODUCTION_PACKAGE_RECONCILIATION_R1.md`；
+- source ZIP SHA/size；
+- source task statistics；
+- current main + relevant formal blobs；
+- current reference file paths/SHA/dimensions；
+- old→new field/path mapping；
+- dependency graph；
+- 41 production destination mappings；
+- execution-mode count；
+- exact-text task list；
+- forbidden-mode scan；
+- reconciled package ZIP SHA/size；
+- reconciled manifest；
+- package QA result；
+- IMAGEGEN_CALLS=0；
+- repository formal-rule delta=0。
 
 ### ACCEPTANCE_CRITERIA
 
-`PASS_CANDIDATE_SYNTHETIC_SOURCE_CLEANUP_R2R2R3` requires:
+`PASS_CANDIDATE_H019_PRODUCTION_PACKAGE_RECONCILED_R1` requires：
 
-1. IMAGEGEN_CALLS=0；
-2. real Windows host/user context recorded；
-3. exact path normalized under allowed generated_images root；
-4. either source was already absent, or present source passed regular/not-reparse/exact-hash checks before delete；
-5. final exact-path readback = absent；
-6. no parent/broad deletion；
-7. no canonical/repository mutation；
-8. fresh evidence internally consistent。
-
-Allowed results：
-
-- PASS_CANDIDATE_SYNTHETIC_SOURCE_CLEANUP_R2R2R3
-- RETURN_PREFLIGHT_DRIFT
-- RETURN_IMPLEMENTATION_DRIFT
-- RETURN_TEST_FAILURE
+1. exact source ZIP identity matches；
+2. 41/41 tasks retained exactly once and in order；
+3. 38 GENERATE + 3 DERIVE_EDIT；
+4. no story/POV/camera/semantic drift；
+5. current canonical reference binaries embedded and hashed；
+6. stale package protagonist binary not used；
+7. all output/source/dependency paths resolve to current nested convention；
+8. size contract = 16:9 + target_canvas 1920x1080 + native target NONE；
+9. native mismatch retry disabled；
+10. exact text C-VB04/C-VB41 preserved as native-image requirements；
+11. no forbidden execution modes / POST_OVERLAY；
+12. retry contract is explicit and bounded；
+13. package is self-contained for the later image executor；
+14. package QA PASS；
+15. IMAGEGEN_CALLS=0；
+16. formal rules unchanged；
+17. fresh readback consistent。
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-This is cleanup of an explicitly synthetic test source. No rollback is required after verified deletion. R2R2R2 output/evidence remains preserved。
+- source ZIP immutable；
+- formal Part 3/4/4.5 unchanged；
+- only fresh reconciled package/evidence may be created；
+- pre-existing production outputs are not touched；
+- reconciliation failure deletes nothing outside its fresh workdir。
 
 ### OWNER_ONLY_ACTIONS
 
-NONE
+Owner must provide the exact source H019 ZIP to the Windows/Codex Executor if it is not already present locally. No other Owner action。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-从 current GitHub main 开始，只执行 R2R2R3。不要重跑 R2R2R2。
+从 current GitHub main 开始，只执行 H019_PRODUCTION_PACKAGE_RECONCILIATION_R1。
+
+输入必须是 exact `H019_酒店价格_Part4_精简图片执行包.zip`，SHA-256=`e4e2f3ce2a29f06eb08ee2995fff95e6e8ac7ae2f6c5267072fd3d904a9a6d97`。
 
 本轮 `IMAGEGEN_CALLS=0`。
 
-只处理这个 exact path：
+按 Gate 将 41-task 历史执行包机械对齐到 current canonical Part 3 refs、Part 4 §25、canonical fast-path、nested destination 和 dependency contract。不要改故事、Beat、POV、镜头、口播或 viewer meaning。
 
-`C:\Users\34707\.codex\generated_images\R2R2R2-SYNTH-7b286bc9518546e099ee53634f683a2c\synthetic.png`
-
-先记录真实 Windows hostname / username / PowerShell version，并验证路径位于当前用户 `.codex\generated_images` 下。
-
-若文件已不存在：记录 cleanup satisfied，fresh readback absent，STOP。
-
-若存在：必须先确认 regular file、非 reparse point、SHA-256=`680826c5ea1a898f0c7b80043923dbb94e6d06d828eb556bcf25bf51e1454751`；全部 PASS 后只删除该文件，不删 parent；再 fresh readback absent。
-
-任何 mismatch 立即 RETURN，不删除。
-
-完成后 STOP_AT_REVIEWER=YES。
+最终返回 fresh reconciled ZIP + manifest + reconciliation report；STOP_AT_REVIEWER=YES。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
 ```text
-结果：PASS_CANDIDATE_SYNTHETIC_SOURCE_CLEANUP_R2R2R3 / RETURN_*
-改动：仅处理 R2R2R2 exact synthetic source；未修改仓库、canonical tools、fixture 或 R2R2R2 evidence。
-验证：一句话说明 real host/user、pre-delete state、hash/type checks（如适用）、post-delete absent、IMAGEGEN_CALLS=0 与 fresh readback。
+结果：PASS_CANDIDATE_H019_PRODUCTION_PACKAGE_RECONCILED_R1 / RETURN_*
+改动：仅新增 fresh H019 reconciled production package/evidence；正式规则、source ZIP、已有 production outputs 未修改。
+验证：一句话说明 source identity、41 tasks/modes、current refs、nested paths/dependencies、size/retry/text contract、package QA、IMAGEGEN_CALLS=0 与 fresh readback。
 问题：NONE，或“短语：一句通俗解释”。
-回滚：synthetic source cleanup 无需回滚；R2R2R2 evidence 保留。
-请 Reviewer 检查：exact-path ownership、pre-delete checks、final absent、zero imagegen、zero repo delta。
+回滚：source ZIP/正式规则无需回滚；fresh reconciled package 可丢弃重建。
+请 Reviewer 检查：41-task 无语义漂移、reference freshness、dependency/source paths、size/retry/exact-text contract、package completeness。
 Owner 转交：NONE。
 ```
 ## CRITICAL_CONSTRAINTS
@@ -248,7 +308,7 @@ Owner 转交：NONE。
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`；
-- 当前 R2R2R3：Owner/Codex Windows 执行链；IMAGEGEN_CALLS=0，只清理并回读 R2R2R2 exact synthetic source；
+- 当前 H019 reconciliation：Owner/Codex Windows 执行链；IMAGEGEN_CALLS=0，只编译 current-contract 41-task production package；
 - exact local target path：必须由 preserved Gate evidence 证明，未证明则 `UNKNOWN` / RETURN。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -259,8 +319,8 @@ Owner 转交：NONE。
 
 ## UNRESOLVED
 
-1. **R2R2R3 synthetic-source cleanup closeout**：只处理 R2R2R2 exact synthetic source，最终 readback 必须 absent。
-2. **H019 / production rerun**：R2R2R3 PASS 后关闭 imagegen executor reliability，直接转生产级验证。
+1. **H019 production package reconciliation R1**：将现有 41-task H019 精简图片执行包机械对齐 current refs / fast-path / nested paths / size contract，形成可直接生产的新包。
+2. **H019 41-task live production run**：reconciled package Reviewer PASS 后执行；并发固定 2。
 3. **Final video 1920×1080 adaptation implementation**：标准画布已确定，具体视频阶段适配仍待 Part 5 正式迁移时实现。
 4. **C-VB01 historical content QA**：旧 PNG 不接受为 final production asset。
 5. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
@@ -269,16 +329,16 @@ Owner 转交：NONE。
 
 ## NEXT_STEP
 
-执行并 Review R2R2R3：
+执行并 Review H019_PRODUCTION_PACKAGE_RECONCILIATION_R1：
 
-current main → exact synthetic-source ownership/hash check → delete only exact file if present → final absent readback → STOP
+exact historical H019 ZIP → current canonical references/contracts → fresh self-contained 41-task production package → package QA → STOP
 
-R2R2R3 PASS 后，关闭 imagegen executor reliability，下一步直接回 H019 / 正式图片生产验证。
+Reviewer PASS 后，下一 Gate 才开始 H019 41-task live production。
 ## OWNER_ACTION_REQUIRED
 
-- **R2R2R3 执行转交：**将当前 REVIEWER_HANDOFF.md 的 R2R2R3 Relay 交给 Windows / Codex Executor。
-- 本轮 `IMAGEGEN_CALLS=0`，只做 exact synthetic source cleanup/readback。
-- 不重跑任何 R2R2R2 positive/negative 测试。
+- **H019 source ZIP 转交：**把 exact `H019_酒店价格_Part4_精简图片执行包.zip` 交给 Windows / Codex Executor；期望 SHA-256=`e4e2f3ce2a29f06eb08ee2995fff95e6e8ac7ae2f6c5267072fd3d904a9a6d97`。
+- 然后让 Executor 只执行当前 REVIEWER_HANDOFF.md 的 H019_PRODUCTION_PACKAGE_RECONCILIATION_R1 Relay。
+- 本轮 `IMAGEGEN_CALLS=0`。
 - Part 2 正式修改仍 DEFERRED。
 ## EVIDENCE_POINTERS
 
@@ -304,6 +364,8 @@ R2R2R3 PASS 后，关闭 imagegen executor reliability，下一步直接回 H019
 - R2R2 RETURN / R2R2R1 consumer-binding repair Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_EXECUTOR_SIX_TASK_RELIABILITY_R2R2_REVIEW.md`
 - R2R2R1 RETURN / R2R2R2 destination closeout Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_RESULT_CONSUMER_REPAIR_AND_SIX_TASK_RELIABILITY_R2R2R1_REVIEW.md`
 - R2R2R2 destination proof / R2R2R3 cleanup Gate: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_DESTINATION_CONTRACT_NO_IMAGE_CLOSEOUT_R2R2R2_REVIEW.md`
+- R2R2R3 formal PASS / reliability closeout: `comic-narrative/reviews/imagegen-speed/IMAGEGEN_SYNTHETIC_SOURCE_CLEANUP_CLOSEOUT_R2R2R3_REVIEW.md`
+- H019 production package reconciliation prep: `comic-narrative/reviews/production/H019_PRODUCTION_PACKAGE_RECONCILIATION_PREP_20261004.md`
 - Canonical result consumer: `comic-narrative/tools/imagegen-fast-path/consume_output_hint.ps1`
 - Canonical fast-path tools: `comic-narrative/tools/imagegen-fast-path/`
 - R2R2 fixed fixture: `comic-narrative/reviews/imagegen-speed/fixtures/IMAGEGEN_SIX_TASK_RELIABILITY_R2R2_TASKS.json`
