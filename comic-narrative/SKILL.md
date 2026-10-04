@@ -4,7 +4,7 @@ title: 漫画叙事
 description: 面向“选题 → 剧本 → 最终配音/SRT → 分镜 → 漫画图片资产 → 视频时间轴/成片”的漫画叙事生产 Skill。当前按模块逐步从 ai-story-showrunner / story-showrunner 简化迁移，并通过历史 Case 与源快照复查避免能力丢失。
 version: 0.0.12-draft
 language: zh-CN
-status: ACTIVE_REVIEW_R2R1J_PART2_PENDING
+status: ACTIVE_MAINTENANCE_LOCAL_ROOT_CLEANUP
 ---
 
 # 漫画叙事
@@ -67,6 +67,6 @@ Part 4.5 当前唯一正式文档：
 ## 当前交接入口
 
 - `REVIEWER_HANDOFF.md`：当前唯一状态仪表盘、当前 Gate、约束与下一步；Reviewer / Executor 默认从这里进入。
-- `HANDOFF.md`：历史迁移、Owner 决策、旧执行记录与审计材料；保留追溯价值，但不再作为默认启动面。
+- `history/HANDOFF.md`：历史迁移、Owner 决策、旧执行记录与审计材料；只用于追溯，不作为默认启动面。
 
-当前状态、当前 Gate 与下一步以 `REVIEWER_HANDOFF.md` 为准；需要追溯来源时再查 `HANDOFF.md`。
+当前状态、当前 Gate 与下一步以 `REVIEWER_HANDOFF.md` 为准；需要追溯来源时再查 `history/HANDOFF.md`。
