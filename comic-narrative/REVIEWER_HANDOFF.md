@@ -161,6 +161,21 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 - 本地 deep cleanup R2 已完成：confirmed disposable 已删除，H019 已归档，可按 exact mapping 恢复 archive 项。
 - H019 未开始新的 41-task production run，因此无新生产输出需要回滚。
 
+## OWNER_DISCUSSION_CONTINUATION
+
+Owner 于 2026-10-04 要求把本轮长对话整理进 `main`，用于下一 Reviewer 续接，但暂不修改 Part 0–4.5 / `SKILL.md` 正式正文。
+
+续接入口：
+
+- `reviews/continuity/OWNER_DISCUSSION_HANDOFF_20261004.md`
+- `reviews/continuity/MATERIAL_PACKAGE_FOUR_SUPPLEMENTAL_CHECKS_20261004.md`
+
+当前对话层下一议题是：调研短视频标题 / Hook / 社交媒体发布标题的方法、Skill 或开源项目，提炼核心思想，解决“内部 WHY 选题题面过度外显、部分题目滑向科技科普”的问题；**先讨论最小接入方案，不直接修改 Part 1**。
+
+Owner 已确认后续批量素材包固定补查四项：Scene System 剧情状态、长 hold、episode-local 高频角色一致性、完成前跨 Part 2.5/3/4/4.5/imagegen 的整体复查。详情见上述独立清单。
+
+H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚本、分镜和 ZIP 本轮未提交为 GitHub canonical production package。
+
 ## UNRESOLVED
 
 1. **下一测试目标**：H021 / H022 / H023 已确认，等待 Owner 从三题中选择要先进入 Part 2 的一个或多个。
@@ -168,6 +183,7 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
 5. **Final video 1920×1080 adaptation**：留待 Part 5 实现。
+6. **发布标题层 / 防科普化**：内部 WHY 题面与社交媒体发布标题的分离方案待调研；当前只讨论，未授权修改 Part 1。
 
 ## NEXT_STEP
 
