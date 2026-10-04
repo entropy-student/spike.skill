@@ -23,9 +23,8 @@
 
 - imagegen executor reliability 已正式封板；
 - H019 酒店价格 41 图生产 **DEFERRED_BY_OWNER**，当前不测试该剧本；
-- 当前没有正在执行的 live production Gate；
-- 等 Owner 之后选择下一篇正式生产目标，再从 current Part 3 / Part 4 / Part 4.5 合同编译新的生产 Gate。
-
+- 当前唯一执行任务是 Windows 本地 `批量生图` 根目录 maintenance cleanup；
+- 本轮 `IMAGEGEN_CALLS=0 / DELETE_CALLS=0`，只归档明确历史项；完成后恢复 idle，再等 Owner 选择下一正式生产目标。
 ## SYSTEM_MAP
 
 ```text
