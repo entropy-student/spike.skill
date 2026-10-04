@@ -52,8 +52,8 @@ Part 6  执行与项目管理               [PENDING]
 - **New confirmed topics H021–H023**：Part 1 五项硬检查 + Part 0 D1–D5 复查均 PASS，已写入 `part0/TOPIC_LIBRARY.md`；三题分别为降噪耳机、手机夜景、AI 修老照片。尚未自动进入 Part 2。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
-- **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。
-- **Part 4**：`part4/IMAGE_ASSET_EXECUTION.md` 保持封板；图片规划 Agent 与生图执行 Agent 职责分离。
+- **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
+- **Part 4**：`part4/IMAGE_ASSET_EXECUTION.md` 保持封板；图片规划 Agent 与生图执行 Agent 职责分离。单集高频且连续性重要、漂移风险高的临时角色须在批量生图前判断是否需要 episode-local mini master；素材包完成前须跨 Part 2/2.5/3/4/4.5 与当前 imagegen 合同做整体复查。
 - **Part 4.5**：`part4_5/ASSET_REUSE_LIBRARY.md` 为当前素材复用与入库基线。
 - **Imagegen executor reliability**：正式 **PASS / CLOSED**。生产默认继承：
   - Codex built-in imagegen；
@@ -172,7 +172,7 @@ Owner 于 2026-10-04 要求把本轮长对话整理进 `main`，用于下一 Rev
 
 发布标题 / Hook 调研已完成，Owner 已批准最小接入方案并正式写入 Part 2：Part 1 继续保留内部 WHY 题面，最终发布包装在 Part 2 剧本锁定后编译；**Part 1 未修改，也未引入标题公式库**。23 个现有选题的发布标题已在对话中完成一轮候选复查，但未写入题库作为永久标题，因为最终发布标题仍应以对应 Part 2 锁稿后的真实故事为准。
 
-Owner 已确认后续批量素材包固定补查四项：Scene System 剧情状态、长 hold、episode-local 高频角色一致性、完成前跨 Part 2.5/3/4/4.5/imagegen 的整体复查。详情见上述独立清单。
+Owner 已确认的四项批量素材包补查现已完成正式对齐：Scene System 剧情状态已明确写入 Part 3；长 hold 原规则已完整覆盖、未重复修改；高频临时角色 Mini Master 判断与完成前跨模块整体复查已写入 Part 4。独立清单继续保留为来源记录。
 
 H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚本、分镜和 ZIP 本轮未提交为 GitHub canonical production package。
 
