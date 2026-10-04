@@ -22,7 +22,12 @@
         "brick wall and autumn path are visible",
         "wide landscape composition",
         "no people/text/logo/watermark"
-      ]
+      ],
+      "aspect_ratio": "16:9",
+      "target_canvas": "1920x1080",
+      "native_pixel_target": "NONE",
+      "max_attempts": 1,
+      "retry_on_native_pixel_mismatch": false
     },
     {
       "task_id": "R2R2-BEAT-02",
@@ -32,7 +37,12 @@
         "rocky cliff and ocean are visible",
         "sunrise lighting is readable",
         "no people/text/logo/watermark"
-      ]
+      ],
+      "aspect_ratio": "16:9",
+      "target_canvas": "1920x1080",
+      "native_pixel_target": "NONE",
+      "max_attempts": 1,
+      "retry_on_native_pixel_mismatch": false
     },
     {
       "task_id": "R2R2-BEAT-03",
@@ -42,7 +52,12 @@
         "rain/wet path and warm interior glow are visible",
         "wide landscape composition",
         "no people/text/logo/watermark"
-      ]
+      ],
+      "aspect_ratio": "16:9",
+      "target_canvas": "1920x1080",
+      "native_pixel_target": "NONE",
+      "max_attempts": 1,
+      "retry_on_native_pixel_mismatch": false
     },
     {
       "task_id": "R2R2-BEAT-04",
@@ -52,7 +67,12 @@
         "rainy street reflections are visible",
         "blue-hour city setting is readable",
         "no readable text/logo/watermark"
-      ]
+      ],
+      "aspect_ratio": "16:9",
+      "target_canvas": "1920x1080",
+      "native_pixel_target": "NONE",
+      "max_attempts": 1,
+      "retry_on_native_pixel_mismatch": false
     },
     {
       "task_id": "R2R2-BEAT-05",
@@ -62,7 +82,12 @@
         "mountain lake and mist are visible",
         "wide calm composition",
         "no people/text/logo/watermark"
-      ]
+      ],
+      "aspect_ratio": "16:9",
+      "target_canvas": "1920x1080",
+      "native_pixel_target": "NONE",
+      "max_attempts": 1,
+      "retry_on_native_pixel_mismatch": false
     },
     {
       "task_id": "R2R2-BEAT-06",
@@ -72,7 +97,12 @@
         "fresh snow and pine trees are visible",
         "warm window light and dawn are readable",
         "no people/text/logo/watermark"
-      ]
+      ],
+      "aspect_ratio": "16:9",
+      "target_canvas": "1920x1080",
+      "native_pixel_target": "NONE",
+      "max_attempts": 1,
+      "retry_on_native_pixel_mismatch": false
     }
   ]
 }
