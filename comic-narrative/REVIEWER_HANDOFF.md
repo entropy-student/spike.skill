@@ -49,6 +49,7 @@ Part 6  执行与项目管理               [PENDING]
 ## CURRENT_ACCEPTED_STATE
 
 - **Part 0 / Part 1**：正式基线已建立。
+- **New confirmed topics H021–H023**：Part 1 五项硬检查 + Part 0 D1–D5 复查均 PASS，已写入 `part0/TOPIC_LIBRARY.md`；三题分别为降噪耳机、手机夜景、AI 修老照片。尚未自动进入 Part 2。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。
@@ -162,7 +163,7 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 
 ## UNRESOLVED
 
-1. **下一正式生产目标**：尚未选择。
+1. **下一测试目标**：H021 / H022 / H023 已确认，等待 Owner 从三题中选择要先进入 Part 2 的一个或多个。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
@@ -170,14 +171,16 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 
 ## NEXT_STEP
 
-NONE 当前不执行。
+Owner 从已确认的 H021 / H022 / H023 中选择下一轮测试目标。
 
-Owner 后续选择下一篇正式剧本 / 执行包后：
+选中后：
 
-`选择 production target → fresh-read current contracts → compile production Gate/package → Reviewer approval → live imagegen`
+`Part 2 剧本 → Part 2.5 配音/SRT → Part 3 分镜 → Part 4/4.5 图片执行包 → live imagegen`
+
+本轮不自动启动剧本、分镜或生图。
 ## OWNER_ACTION_REQUIRED
 
-NONE
+- 从 H021 / H022 / H023 中告诉 Reviewer 哪一个或哪几个要继续测试；也可以先只看三题再决定。
 ## EVIDENCE_POINTERS
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
