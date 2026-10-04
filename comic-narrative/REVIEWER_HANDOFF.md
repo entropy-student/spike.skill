@@ -17,14 +17,14 @@
 
 ## PROJECT_STAGE
 
-`READY / OWNER_PAUSED_PRODUCTION_TARGET_SELECTION`
+`MAINTENANCE / LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3`
 
 当前状态：
 
 - imagegen executor reliability 已正式封板；
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - H019 酒店价格 41 图生产 **DEFERRED_BY_OWNER**，当前不测试该剧本；
-- 当前无 Executor/live production 任务，等待 Owner 选择下一正式目标。
+- 当前唯一任务：删除本地已被 GitHub 正式 Review/当前 canonical 状态替代的冗余文档、日志、证据副本和重复 reviewer ZIP；H019 仍暂停，不执行剧本。
 ## SYSTEM_MAP
 
 ```text
@@ -71,20 +71,25 @@ Part 6  执行与项目管理               [PENDING]
 
 ### GATE_ID
 
-PROJECT_IDLE_OWNER_TARGET_SELECTION
+LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3
 
 ### OBJECTIVE
 
-保持项目在可恢复、可生产、已清理状态；不自动启动 H019 或其他剧本。
+对 `C:\Users\34707\Documents\ChatGPT\批量生图` 做本地文档/证据去冗余，不再只是归档。
 
-Owner 选择下一正式生产目标后，由 Reviewer 基于 current Part 3 / Part 4 / Part 4.5 和已封板 imagegen fast-path 新建对应 production Gate。
+删除已经由 GitHub 正式 Review/canonical 状态替代的本地 evidence、日志、readback/checkpoint、run-local 文档/程序和重复 reviewer ZIP；保留 H019 输入包、参考图、任务/manifest、现有输出 PNG，以及所有未知项。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
-- no live imagegen；
-- no H019 production；
-- no local cleanup rerun；
-- only maintenance/read-only inspection if Owner explicitly requests it。
+1. fresh-read current main / R3 plan；
+2. inventory 当前 workspace；
+3. 写 `DOC_EVIDENCE_PURGE_PLAN.json`；
+4. 对 H019 reviewer ZIP 做成员级 redundancy proof；
+5. exact-path 删除 proven redundant docs/evidence；
+6. final inventory；
+7. STOP at Reviewer。
+
+`IMAGEGEN_CALLS=0`。
 
 ### MANDATORY_REVIEW_STOP
 
@@ -92,31 +97,62 @@ Owner 选择下一正式生产目标后，由 Reviewer 基于 current Part 3 / P
 
 ### TARGET_AND_SCOPE
 
-当前无 Executor 任务。历史 cleanup/imagegen review 只在追溯时读取。
+允许删除的重点类别：
+
+- 已有正式 GitHub Review 的旧 R2R1*/R2R2* local evidence；
+- 已 formal PASS 的 cleanup evidence 目录；
+- H019 reviewer_upload 下经 hash/成员证明重复的 ZIP；
+- H019 run-local QA_REPORT / REVIEWER_HANDOFF / REVIEWER_PACKAGE_INDEX / RUN_RECORD / 执行队列 / H019_save_image.ps1；
+- 其他已证明只用于历史执行、且 durable fact 已在 GitHub 的日志/readback/checkpoint/report。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
-- accepted capability inheritance applies；
 - H019 = DEFERRED_BY_OWNER；
-- imagegen concurrency = 2；
-- no automatic replay of closed reliability/cleanup Gates；
-- local empty/unborn `.git` is not used as a production cleanliness authority；future local safety checks use `.git unchanged + tracked delta=0 + canonical checkout clean`。
+- IMAGEGEN_CALLS=0；
+- 不删 H019 source input package；
+- 不删 H019 reference PNG / task JSON / manifest / output PNG；
+- 不删两个 KEEP_UNKNOWN speed-test PNG；
+- 不删 `.git` / tracked / canonical / formal / production-approved assets；
+- reviewer ZIP 必须先证明其中没有 unique payload；
+- unknown = retain；
+- exact-path delete only；no wildcard delete。
 
 ### PREFLIGHT
 
-NONE — idle。
+1. current main fresh-read；
+2. read `reviews/maintenance/LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3.md`；
+3. current workspace inventory；
+4. current GitHub formal Review pointers confirmed；
+5. produce purge plan before deletion；
+6. ambiguity => retain。
 
 ### REQUIRED_EVIDENCE
 
-NONE — idle。
+- `DOC_EVIDENCE_PURGE_PLAN.json`
+- `REDUNDANCY_PROOF.json`
+- `DELETE_RESULT.json`
+- `WORKSPACE_INVENTORY_AFTER_R3.json`
+- `LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3.md`
+- deleted count / reclaimed bytes
+- retained unique/unknown list
+- IMAGEGEN_CALLS=0
 
 ### ACCEPTANCE_CRITERIA
 
-Idle remains valid while no unauthorized production or cleanup task is started。
+`PASS_CANDIDATE_LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3` requires：
+
+1. only proven-redundant docs/evidence deleted；
+2. H019 source/reference/task/manifest/output PNG preserved；
+3. reviewer ZIPs deleted only after redundancy proof；
+4. cleanup evidence deleted only after corresponding GitHub Review is durable；
+5. unknown items retained；
+6. canonical/formal/Git metadata untouched；
+7. IMAGEGEN_CALLS=0；
+8. workspace materially smaller。
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-Cleanup archive mapping remains available for H019 restoration if needed; confirmed disposable deletes are intentionally not restored。
+Permanent deletes are limited to proven redundant local copies. Durable facts remain in GitHub Review/canonical docs；H019 reconstructable inputs and existing outputs remain preserved。
 
 ### OWNER_ONLY_ACTIONS
 
@@ -124,12 +160,26 @@ NONE
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-当前没有 Executor 任务。不要执行 H019，不要重跑 cleanup，不要调用 imagegen。
+从 GitHub current main 开始，只执行 `LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3`。
+
+目标：`C:\Users\34707\Documents\ChatGPT\批量生图`。本轮 `IMAGEGEN_CALLS=0`，不执行 H019。
+
+这次不是再归档：先 inventory + `DOC_EVIDENCE_PURGE_PLAN.json`，然后永久删除已经由 GitHub 正式 Review/canonical 状态替代的本地旧 evidence、日志、readback/checkpoint、run-local 文档/程序以及经成员/hash 证明完全重复的 H019 reviewer ZIP。
+
+明确保留：H019 输入包、参考图、任务/manifest、现有 outputs PNG、两个 KEEP_UNKNOWN speed-test PNG、`.git`、tracked/canonical/formal/production-approved assets。
+
+任何 ZIP 有 unique payload、任何文件用途不确定，一律保留并报告。禁止 wildcard delete。完成后返回 reclaimed bytes、deleted count、retained list、final inventory；STOP_AT_REVIEWER=YES。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
 ```text
-NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
+结果：PASS_CANDIDATE_LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3 / RETURN_*
+改动：仅删除已证明冗余的本地文档/证据/重复 reviewer ZIP；H019 输入与输出保留；无生图。
+验证：说明 purge plan、redundancy proof、deleted count/bytes、retained unique/unknown、IMAGEGEN_CALLS=0、final inventory。
+问题：NONE，或简短说明阻塞。
+回滚：无；被删项均为 GitHub/canonical 已替代的本地冗余副本。
+请 Reviewer 检查：删除边界、ZIP redundancy、H019 保留项、final workspace。
+Owner 转交：NONE。
 ```
 ## CRITICAL_CONSTRAINTS
 
@@ -159,7 +209,7 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 
 ## UNRESOLVED
 
-1. **下一正式生产目标**：尚未选择。
+1. **本地文档/证据去冗余 R3**：当前 maintenance Gate；完成后恢复 idle。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
@@ -167,14 +217,10 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 
 ## NEXT_STEP
 
-NONE 当前不执行。
-
-Owner 后续选择下一篇正式剧本 / 执行包后：
-
-`选择 production target → fresh-read current contracts → compile production Gate/package → Reviewer approval → live imagegen`
+`LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3 → Reviewer closeout → idle`
 ## OWNER_ACTION_REQUIRED
 
-NONE
+- **R3 执行转交：**把当前 `REVIEWER_HANDOFF.md` 的 `LOCAL_WORKSPACE_DOC_EVIDENCE_PURGE_R3` Relay 交给 Windows / Codex Executor。
 ## EVIDENCE_POINTERS
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
