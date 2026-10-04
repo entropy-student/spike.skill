@@ -1,0 +1,78 @@
+{
+  "gate_fixture_id": "IMAGEGEN_SIX_TASK_RELIABILITY_R2R2_FIXTURE_V1",
+  "purpose": "Exercise the accepted Codex built-in imagegen fast path across three waves at fixed concurrency 2 without production-content dependencies.",
+  "constraints": {
+    "concurrency": 2,
+    "total_tasks": 6,
+    "max_imagegen_calls": 6,
+    "attempts_per_task": 1,
+    "retries": 0,
+    "replacements": 0,
+    "fallback_imagegen": 0,
+    "aspect_ratio": "16:9",
+    "target_canvas": "1920x1080",
+    "native_pixel_target": "NONE"
+  },
+  "tasks": [
+    {
+      "task_id": "R2R2-BEAT-01",
+      "prompt": "Simplified flat narrative comic, wide 16:9 landscape. A red bicycle leaning against a low brick wall beside a quiet tree-lined path in early autumn, warm afternoon light, simple readable composition, restrained detail. No people, no text, no logos, no watermark.",
+      "qa": [
+        "red bicycle is the clear subject",
+        "brick wall and autumn path are visible",
+        "wide landscape composition",
+        "no people/text/logo/watermark"
+      ]
+    },
+    {
+      "task_id": "R2R2-BEAT-02",
+      "prompt": "Simplified flat narrative comic, wide 16:9 landscape. A small white lighthouse on a rocky sea cliff at sunrise, calm ocean, long soft shadows, clean story-world composition, restrained detail. No people, no text, no logos, no watermark.",
+      "qa": [
+        "lighthouse is clearly visible",
+        "rocky cliff and ocean are visible",
+        "sunrise lighting is readable",
+        "no people/text/logo/watermark"
+      ]
+    },
+    {
+      "task_id": "R2R2-BEAT-03",
+      "prompt": "Simplified flat narrative comic, wide 16:9 landscape. A glass greenhouse in a quiet garden during light rain, warm interior lamps glowing through the glass, wet stone path, calm evening mood, restrained detail. No people, no text, no logos, no watermark.",
+      "qa": [
+        "greenhouse is the main subject",
+        "rain/wet path and warm interior glow are visible",
+        "wide landscape composition",
+        "no people/text/logo/watermark"
+      ]
+    },
+    {
+      "task_id": "R2R2-BEAT-04",
+      "prompt": "Simplified flat narrative comic, wide 16:9 landscape. A yellow tram moving through a rainy city street at blue hour, reflections on wet pavement, simple buildings, cinematic but low-density composition. No people in foreground, no readable text, no logos, no watermark.",
+      "qa": [
+        "yellow tram is clearly visible",
+        "rainy street reflections are visible",
+        "blue-hour city setting is readable",
+        "no readable text/logo/watermark"
+      ]
+    },
+    {
+      "task_id": "R2R2-BEAT-05",
+      "prompt": "Simplified flat narrative comic, wide 16:9 landscape. A small wooden sailboat crossing a still mountain lake in morning mist, distant pine-covered slopes and soft clouds, clean calm composition, restrained detail. No people, no text, no logos, no watermark.",
+      "qa": [
+        "sailboat is clearly visible",
+        "mountain lake and mist are visible",
+        "wide calm composition",
+        "no people/text/logo/watermark"
+      ]
+    },
+    {
+      "task_id": "R2R2-BEAT-06",
+      "prompt": "Simplified flat narrative comic, wide 16:9 landscape. A compact mountain cabin after fresh snowfall at dawn, warm window light, pine trees, pale sky, clear foreground-to-background depth, restrained detail. No people, no text, no logos, no watermark.",
+      "qa": [
+        "cabin is clearly visible",
+        "fresh snow and pine trees are visible",
+        "warm window light and dawn are readable",
+        "no people/text/logo/watermark"
+      ]
+    }
+  ]
+}
