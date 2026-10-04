@@ -1,6 +1,6 @@
 # 漫画叙事 — REVIEWER_HANDOFF
 
-> GOVERNANCE=`vps-project-governance/VNEXT.md v0.2.6`  
+> GOVERNANCE=`vps-project-governance/VNEXT.md v0.2.7`  
 > CURRENT_STATE_AUTHORITY=THIS_FILE  
 > LEGACY_HISTORY=`comic-narrative/history/HANDOFF.md`  
 > LAST_RECONCILED=2026-10-04
@@ -50,7 +50,7 @@ Part 6  执行与项目管理               [PENDING]
 
 - **Part 0 / Part 1**：正式基线已建立。
 - **New confirmed topics H021–H023**：Part 1 五项硬检查 + Part 0 D1–D5 复查均 PASS，已写入 `part0/TOPIC_LIBRARY.md`；三题分别为降噪耳机、手机夜景、AI 修老照片。尚未自动进入 Part 2。
-- **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
+- **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。
 - **Part 4**：`part4/IMAGE_ASSET_EXECUTION.md` 保持封板；图片规划 Agent 与生图执行 Agent 职责分离。
@@ -170,7 +170,7 @@ Owner 于 2026-10-04 要求把本轮长对话整理进 `main`，用于下一 Rev
 - `reviews/continuity/OWNER_DISCUSSION_HANDOFF_20261004.md`
 - `reviews/continuity/MATERIAL_PACKAGE_FOUR_SUPPLEMENTAL_CHECKS_20261004.md`
 
-当前对话层下一议题是：调研短视频标题 / Hook / 社交媒体发布标题的方法、Skill 或开源项目，提炼核心思想，解决“内部 WHY 选题题面过度外显、部分题目滑向科技科普”的问题；**先讨论最小接入方案，不直接修改 Part 1**。
+发布标题 / Hook 调研已完成，Owner 已批准最小接入方案并正式写入 Part 2：Part 1 继续保留内部 WHY 题面，最终发布包装在 Part 2 剧本锁定后编译；**Part 1 未修改，也未引入标题公式库**。23 个现有选题的发布标题已在对话中完成一轮候选复查，但未写入题库作为永久标题，因为最终发布标题仍应以对应 Part 2 锁稿后的真实故事为准。
 
 Owner 已确认后续批量素材包固定补查四项：Scene System 剧情状态、长 hold、episode-local 高频角色一致性、完成前跨 Part 2.5/3/4/4.5/imagegen 的整体复查。详情见上述独立清单。
 
@@ -183,7 +183,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
 5. **Final video 1920×1080 adaptation**：留待 Part 5 实现。
-6. **发布标题层 / 防科普化**：内部 WHY 题面与社交媒体发布标题的分离方案待调研；当前只讨论，未授权修改 Part 1。
+6. **发布标题层 / 防科普化**：结构问题已解决并写入 Part 2；现有 23 个题的对话版标题仅作候选基准，具体 episode 的最终发布标题仍需在该剧本锁稿后编译。
 
 ## NEXT_STEP
 
