@@ -264,7 +264,7 @@ Scene System 不等于 Scene Master 图片库。
 - 单地点故事允许成立；
 - Part 4 再根据连续性风险决定是否需要 canonical 图、兼容旧图、本集早期 accepted frame 或 mini master。
 
-判断 Scene System 是否合格，看的是**故事用途与状态关系是否清楚**，不是预生成了多少场景图。
+判断 Scene System 是否合格，看的是**故事用途与状态关系是否清楚**，不是预生成了多少场景图。Scene System 检查的是剧情 Scene / 状态阶段，不是物理地点清单；同一物理地点可以承载多个不同 Scene。
 
 ### 现实行动 / 世界后果优先原则
 
