@@ -1,11 +1,11 @@
-# VPS Project Governance v0.2.6
+# VPS Project Governance v0.2.7
 
 > STATUS=ACTIVE_PROVISIONAL
-> VERSION=v0.2.6
+> VERSION=v0.2.7
 > CANONICAL_OPERATIONAL_RULES=main:vps-project-governance/VNEXT.md
-> ACTIVE_RULESET=THIS_FILE_UNIVERSAL_SECTIONS_PLUS_TRIGGERED_11A_11F
+> ACTIVE_RULESET=THIS_FILE_UNIVERSAL_SECTIONS_PLUS_TRIGGERED_11A_11G
 > EXTERNAL_OPERATIONAL_ADDENDA=NONE
-> BASE_VERSION=v0.2.5
+> BASE_VERSION=v0.2.6
 
 This file is the complete operational rule surface. README, template, example, local copy, history file, incident record, or Handoff cannot add competing policy.
 
@@ -76,7 +76,7 @@ Every round Reviewer must:
 1. read the universal surface from GitHub: header + sections 0–10 + the section 11 trigger table + sections 12–13;
 2. read the current `REVIEWER_HANDOFF`, current Gate, and accepted Evidence needed for the round **when they exist and are reliable**;
 3. check **every** specialist trigger in section 11;
-4. read in full only the triggered specialist subsection(s) 11A–11F; uncertain applicability counts as triggered and therefore must be read;
+4. read in full only the triggered specialist subsection(s) 11A–11G; uncertain applicability counts as triggered and therefore must be read;
 5. reconcile material drift before consequential work.
 
 Do not skip the trigger scan, and do not load unrelated specialist sections merely because they exist in the same file.
@@ -416,6 +416,7 @@ Reviewer checks every row each round.
 | Automation / Auth | automated real actions, SAFE_MODE, browser/session, reauthentication/resume |
 | Provider / Payment | provider/account/payment/refund/callback/recovery/fulfillment |
 | Closeout | archive, deletion, decommission, retention, reconstruction |
+| Image Generation | Codex task requires image generation or image editing |
 
 ### 11A. Shared VPS / Storage
 
@@ -562,6 +563,15 @@ Maturity note: rules proven on one Provider/project do not become cross-Provider
 - Deferred business actions remain `DEFERRED_NOT_PASS`, not PASS.
 - Historical audit references are not globally rewritten when current pointers change; reference-only repair does not replay already-valid runtime checks.
 - Closeout does not authorize Secret deletion/disclosure, Shared Infra mutation, real payment/refund, Provider activation, destructive Git history rewrite, or other Owner-only actions.
+
+
+### 11G. Image Generation
+
+- Reviewer defines each image task before execution and provides only the minimum required context and references; Executor does not broadly reread project material or re-plan the image.
+- Maximum imagegen concurrency is **2**; under the current verified Codex baseline, concurrency 2 is the efficiency-optimal setting. Once an image enters save/QA, an unrelated next image may refill the free slot.
+- Prefer an existing suitable image or editing an existing image over unnecessary regeneration.
+- Use the fast path `imagegen -> output_hint -> SourcePath -> local copy -> QA`; do not transport image payloads through stdin/TTY/base64 or scan caches to guess outputs.
+- Retry the same image only after QA; after two materially similar failures, stop the same strategy and return to Reviewer for adjustment.
 
 ## 12. Common precise returns
 
