@@ -17,15 +17,14 @@
 
 ## PROJECT_STAGE
 
-`READY / OWNER_PAUSED_PRODUCTION_TARGET_SELECTION`
+`ACTIVE_REVIEW / H003_H004_PART2_OWNER_REVIEW`
 
 当前状态：
 
-- imagegen executor reliability 已正式封板；
-- Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
-- 本地文档/证据去冗余 R3 已正式 PASS；
-- H019 酒店价格 41 图生产 **DEFERRED_BY_OWNER**，当前不测试该剧本；
-- 当前无 Executor/live production 任务，等待 Owner 选择下一正式目标。
+- H003「家庭食谱」已完成 Part 2 完整草案，状态 `DRAFT_FOR_OWNER_REVIEW`；
+- H004「恋爱冲突」已完成 Part 2 完整草案，状态 `DRAFT_FOR_OWNER_REVIEW`；
+- 两篇均已锁定机制边界、故事前提、3–5 分钟口播草案、事实映射和 Part 2 自检；
+- 当前不进入 Part 2.5，不生成配音/SRT，不进入分镜或生图；等待 Owner 分别审核两篇。
 ## SYSTEM_MAP
 
 ```text
@@ -51,6 +50,7 @@ Part 6  执行与项目管理               [PENDING]
 - **Part 0 / Part 1**：正式基线已建立。
 - **New confirmed topics H021–H023**：Part 1 五项硬检查 + Part 0 D1–D5 复查均 PASS，已写入 `part0/TOPIC_LIBRARY.md`；三题分别为降噪耳机、手机夜景、AI 修老照片。尚未自动进入 Part 2。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
+- **H003/H004 Part 2 drafts**：已分别生成 `part2/cases/H003_家庭食谱_PART2_DRAFT.md` 与 `part2/cases/H004_恋爱冲突_PART2_DRAFT.md`；均未锁稿。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。
 - **Part 4**：`part4/IMAGE_ASSET_EXECUTION.md` 保持封板；图片规划 Agent 与生图执行 Agent 职责分离。
@@ -74,66 +74,71 @@ Part 6  执行与项目管理               [PENDING]
 
 ### GATE_ID
 
-PROJECT_IDLE_OWNER_TARGET_SELECTION
+H003_H004_PART2_OWNER_REVIEW
 
 ### OBJECTIVE
 
-保持项目在可恢复、已清理、可继续生产的状态；不自动启动 H019 或其他剧本。
-
-Owner 选择下一正式目标后，由 Reviewer 基于 current canonical Part 3 / Part 4 / Part 4.5 与已封板 imagegen fast-path 创建新的 production Gate。
+让 Owner 分别审核 H003 与 H004 的 Part 2 草案，决定：确认锁稿、要求修改、或暂缓。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
-- no live imagegen；
-- no H019 production；
-- no cleanup rerun；
-- only read-only/maintenance inspection if Owner explicitly requests it。
+- no Part 2.5；
+- no final TTS/SRT；
+- no Part 3；
+- no imagegen；
+- no automatic script locking。
 
 ### MANDATORY_REVIEW_STOP
 
-`STOP_AT_REVIEWER=YES`
+`STOP_AT_OWNER_REVIEW=YES`
 
 ### TARGET_AND_SCOPE
 
-当前无 Executor 任务。历史 cleanup/imagegen reviews 只在追溯时读取。
+- `part2/cases/H003_家庭食谱_PART2_DRAFT.md`
+- `part2/cases/H004_恋爱冲突_PART2_DRAFT.md`
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
-- accepted capability inheritance applies；
-- H019 = DEFERRED_BY_OWNER；
-- imagegen concurrency = 2；
-- no automatic replay of closed reliability/cleanup Gates；
-- local evidence is not a permanent runtime dependency；
-- unknown/unique historical local files are not deleted without a new explicit maintenance decision。
+- Part 2 current `SCRIPT_NARRATIVE.md` remains authoritative；
+- H003 locked topic mechanism = `STANDARDIZATION_VS_TACIT_EXPERIENCE`；
+- H004 locked topic mechanism = `HARMONY_VS_NECESSARY_FRICTION`；
+- Writer may improve expression but must not silently change topic mechanism or evidence boundary；
+- H003 must not become “AI/standardized recipes are useless”；
+- H004 must not become “more conflict is always better” or “AI harms relationships”；
+- fictional channel stories must not be presented as real-life personal experiences。
 
 ### PREFLIGHT
 
-NONE — idle。
+Owner reads each Part 2 draft independently。
 
 ### REQUIRED_EVIDENCE
 
-NONE — idle。
+Owner decision for H003 and H004 separately：
+
+- APPROVE / LOCK；
+- RETURN_FOR_EDIT + requested change；
+- DEFER。
 
 ### ACCEPTANCE_CRITERIA
 
-Idle remains valid while no unauthorized production or cleanup task is started。
+A script can move to `FINAL_LOCKED` only after explicit Owner approval for that script。
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-R2 archive mapping remains available for archived H019 restoration. R3 deletes were limited to proven redundant copies already durable elsewhere。
+Both files are drafts. No downstream artifact exists, so edit/rollback is text-only。
 
 ### OWNER_ONLY_ACTIONS
 
-NONE
+Review H003 and H004 separately and approve or request changes。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-当前没有 Executor 任务。不要执行 H019，不要重跑 cleanup，不要调用 imagegen。
+NONE — do not continue downstream before Owner review。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
 ```text
-NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
+NONE — WAITING FOR OWNER REVIEW OF H003 AND H004 PART 2 DRAFTS.
 ```
 ## CRITICAL_CONSTRAINTS
 
@@ -163,7 +168,7 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 
 ## UNRESOLVED
 
-1. **下一测试目标**：H021 / H022 / H023 已确认，等待 Owner 从三题中选择要先进入 Part 2 的一个或多个。
+1. **H003/H004 Part 2**：两篇草案等待 Owner 分别审核。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
@@ -171,16 +176,17 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 
 ## NEXT_STEP
 
-Owner 从已确认的 H021 / H022 / H023 中选择下一轮测试目标。
+Owner 分别审核：
 
-选中后：
+1. `H003_家庭食谱_PART2_DRAFT.md`；
+2. `H004_恋爱冲突_PART2_DRAFT.md`。
 
-`Part 2 剧本 → Part 2.5 配音/SRT → Part 3 分镜 → Part 4/4.5 图片执行包 → live imagegen`
+只有 Owner 明确批准的稿件才进入：
 
-本轮不自动启动剧本、分镜或生图。
+`FINAL_LOCKED → Part 2.5 配音/SRT → Part 3`
 ## OWNER_ACTION_REQUIRED
 
-- 从 H021 / H022 / H023 中告诉 Reviewer 哪一个或哪几个要继续测试；也可以先只看三题再决定。
+- 分别告诉 Reviewer：H003 是否通过 / 要改什么；H004 是否通过 / 要改什么。
 ## EVIDENCE_POINTERS
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
