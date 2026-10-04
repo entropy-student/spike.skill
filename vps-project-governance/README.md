@@ -1,6 +1,6 @@
-# VPS Project Governance v0.2.6
+# VPS Project Governance v0.2.7
 
-当前正式版本：**v0.2.6 / ACTIVE_PROVISIONAL**
+当前正式版本：**v0.2.7 / ACTIVE_PROVISIONAL**
 
 ## 当前文件结构
 
