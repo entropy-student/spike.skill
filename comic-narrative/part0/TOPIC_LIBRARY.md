@@ -1,7 +1,7 @@
 # Part 0 — 历史选题库
 
 本文件是漫画叙事的历史选题库。  
-当前包含 **20 个按 Part 1 选题策略跑出的 Case**。
+当前包含 **23 个按 Part 1 选题策略跑出的 Case**。
 
 规则：
 - 只记录已经通过选题策略检查、可作为历史参照的题；
@@ -454,3 +454,70 @@
 - Status：PASS
 
 ---
+
+
+---
+
+## H021 — 降噪耳机
+
+- 最终选题：**为什么降噪耳机能压住飞机轰鸣，却压不住旁边的人声？**
+- 选题类型：机制 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：耳机 / 通勤 / 飞行
+- Human Process：在持续噪声环境里听音 / 隔绝环境声
+- Human Problem：用户容易把“主动降噪”理解成所有声音都能被同等消除
+- 反常：发动机、空调等持续轰鸣明显变小，但附近人声仍容易穿进来
+- Human Tension：统一静音预期 vs 不同声音的可预测性 / 频率结构
+- Controlling Question：降噪耳机是在“消灭所有声音”，还是只特别擅长抵消某一类声音？
+- 科技改变的过程：麦克风实时采集环境声，DSP 生成相位相反的信号进行主动抵消
+- 主机制：ANC 对稳定、可预测的低频持续噪声最有效；快速变化、频率范围更宽的人声更难实时抵消
+- Audience Payoff：理解为什么“降噪强”不等于“任何声音都消失”
+- Meaning Fingerprint：`UNIVERSAL_SILENCE_EXPECTATION_VS_SIGNAL_PREDICTABILITY`
+- Motif：飞机 / 地铁持续轰鸣 → 戴上耳机后底噪退去 → 邻座开口仍能听见 → 展开反相信号与声音变化
+- Content Job：DISCOVERY
+- Source / Signal：EVERGREEN_CASE；Bose / Sony 官方 ANC 机制说明
+- Status：PASS
+
+---
+
+## H022 — 手机夜景
+
+- 最终选题：**为什么手机夜景一拍，现场明明很暗，照片却像突然开了灯？**
+- 选题类型：机制 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：手机摄影 / 夜景
+- Human Process：记录当下场景
+- Human Problem：用户直觉上把按一次快门理解为记录一个瞬间，却忽略现代手机会在背后采集和合并多帧
+- 反常：现实现场很暗，最终照片却更亮、更干净、细节更多
+- Human Tension：单次瞬间记录 vs 多帧计算合成
+- Controlling Question：手机夜景拍到的是“那一瞬间”，还是很多帧共同算出来的一张照片？
+- 科技改变的过程：夜景模式根据手抖与场景运动选择曝光，并连续采集多帧后合并、降噪、调整亮度与颜色
+- 主机制：多帧计算摄影把多张较暗但较清晰 / 不同曝光的图像信息合并，从而增加有效光线并降低噪声
+- Audience Payoff：理解为什么夜景照片能比单帧更亮更清楚，也理解为什么拍夜景时需要尽量稳定
+- Meaning Fingerprint：`SINGLE_MOMENT_VS_MULTI_FRAME_COMPUTATION`
+- Motif：昏暗街道 → 主角举手机 → 最终照片明显更亮 → 时间倒带展开连续多帧 → 合并成最终夜景
+- Content Job：DISCOVERY
+- Source / Signal：EVERGREEN_CASE；Google Pixel Night Sight 官方机制说明
+- Status：PASS
+
+---
+
+## H023 — AI 修老照片
+
+- 最终选题：**AI 把模糊老照片修得越清楚，为什么有时候反而越不像本人？**
+- 选题类型：机制 / 判断
+- Entry：HUMAN_WORLD_FIRST
+- X：家庭照片 / AI 图像修复
+- Human Process：保存人物记忆 / 恢复受损影像
+- Human Problem：原图里已经缺失的面部细节无法直接“找回来”，生成式修复必须借助先验去推断合理细节
+- 反常：照片清晰度大幅上升，本应更接近原貌，却可能在五官或身份感上更不像本人
+- Human Tension：清晰度 vs 忠实度
+- Controlling Question：当原图本来就没有足够细节时，AI 是在恢复事实，还是在补出一个“看起来合理”的版本？
+- 科技改变的过程：生成式人脸修复从训练数据中学到面部先验，并用这些先验补全低质量输入中缺失的细节
+- 主机制：Generative Facial Prior 可以生成真实感更强的面部细节，但在信息严重缺失时必须在 realness 与 fidelity 之间权衡
+- Audience Payoff：理解“更清晰”不等于“更真实”，尤其面对家人老照片时应把生成式修复视为重建而不是原始证据恢复
+- Meaning Fingerprint：`CLARITY_VS_FIDELITY`
+- Motif：翻出模糊家庭老照片 → 一键修复后先惊叹 → 与记忆 / 其他照片对比发现五官细节变化 → 回到原图发现那些信息本来就不存在
+- Content Job：TRUST
+- Source / Signal：EVERGREEN_CASE；CVPR 2021 GFPGAN；2026 社区老照片修复身份漂移讨论
+- Status：PASS
