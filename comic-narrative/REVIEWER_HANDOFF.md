@@ -3,7 +3,7 @@
 > GOVERNANCE=`vps-project-governance/VNEXT.md v0.2.7`  
 > CURRENT_STATE_AUTHORITY=THIS_FILE  
 > LEGACY_HISTORY=`comic-narrative/history/HANDOFF.md`  
-> LAST_RECONCILED=2026-10-04
+> LAST_RECONCILED=2026-10-05
 
 本文件只维护**当前状态、当前 Gate、关键约束和下一步**。历史迁移、旧执行轮次、长篇审计与失败链不再堆在根目录启动面；需要追溯时读取 `history/`、`reviews/` 或 `source-snapshots/`。
 
@@ -48,7 +48,7 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：正式基线已建立。Part 0 当前共有 **100 个 Case**：H001–H023 保留为已接受 PASS 基线；H024–H100 经复查纠正为扩展候选 `CANDIDATE / EVIDENCE_PENDING`，不得在完成事实证据 Gate 前描述为正式 PASS。本轮同时替换 10 个实质重复 / 偏弱候选。
+- **Part 0 / Part 1**：正式基线已建立。Part 0 当前共有 **100 个 Case**：H001–H023 保留为已接受 PASS 基线；H024–H100 为扩展候选 `CANDIDATE / EVIDENCE_PENDING`。Owner 已授权直接调整后 80 题，本轮冻结 H001–H020，对 H021–H100 做类型配平，并重写 9 个过度机制化候选。当前按主类型统计：机制 20、判断 18、惊奇 15、实用 15、体验 10、反思 8、趋势 8、探索 6。
 - **Topic library**：H001–H100 均保留在 `part0/TOPIC_LIBRARY.md` 供历史去重与选题；其中 H001–H023 为 accepted PASS，H024–H100 为候选储备。候选必须先完成 Part 1 事实证据 Gate 与最终 D1–D5，再允许进入 Part 2；内部题面仍不自动等于最终发布标题。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
@@ -178,7 +178,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## UNRESOLVED
 
-1. **下一测试目标**：H021 / H022 / H023 已确认，等待 Owner 从三题中选择要先进入 Part 2 的一个或多个。
+1. **下一测试目标**：不再限定 H021 / H022 / H023。Owner 可从 H001–H100 中选择；H001–H023 可直接进入 Part 2，H024–H100 必须先完成事实证据 Gate + 最终 D1–D5 后才能升级为 PASS 并进入 Part 2。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
@@ -187,16 +187,15 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## NEXT_STEP
 
-Owner 从已确认的 H021 / H022 / H023 中选择下一轮测试目标。
+Owner 从 H001–H100 中选择下一轮目标。
 
-选中后：
-
-`Part 2 剧本 → Part 2.5 配音/SRT → Part 3 分镜 → Part 4/4.5 图片执行包 → live imagegen`
+- 若选择 H001–H023：`Part 2 剧本 → Part 2.5 配音/SRT → Part 3 分镜 → Part 4/4.5 图片执行包 → live imagegen`；
+- 若选择 H024–H100：先做 `事实证据 Gate → 最终 D1–D5 → PASS`，再进入同一生产链。
 
 本轮不自动启动剧本、分镜或生图。
 ## OWNER_ACTION_REQUIRED
 
-- 从 H021 / H022 / H023 中告诉 Reviewer 哪一个或哪几个要继续测试；也可以先只看三题再决定。
+- 从 H001–H100 中选择要继续的题即可；若选到 H024–H100，Reviewer 会先完成该题的证据 Gate。
 ## EVIDENCE_POINTERS
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
