@@ -91,3 +91,20 @@ H003 / H004 冻结且不作参考；以下 8 题已按 Part 2 正式规则完成
 - 在 Owner 明确确认前，不替换 X 库中的 H002 R2。
 - 不自动开始 H007 等其他题的 Part 3 / 素材包重建。
 - 不启动 live imagegen。
+
+
+## 6. 仓库外持久交接资料
+
+ChatGPT File Library：
+
+`/comic-narrative_当前交接/2026-10-05_Part2定制重写与H002_R3候选/`
+
+当前已保存：
+- `Part2_重写_R2.zip`
+- `PART2二次独立复查报告_R2.md`
+- `H002_AI性格画像_Part4_最终图片执行包_READY_R3_CANDIDATE.zip`
+- `H002_R2_vs_R3候选_完成前独立复查与参数对比.md`
+- `H002_R3_CANDIDATE_INDEPENDENT_QA.json`
+- `PART2_CUSTOM_STORY_EXECUTION_AND_H002_R3_CANDIDATE_20261005.md`
+
+该目录是本轮交接资料，不是 X部分 Owner认定执行包；H002 R3 在 Owner 批准前不得从这里自动升级为 X 库正式版本。
