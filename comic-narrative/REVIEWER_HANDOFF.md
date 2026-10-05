@@ -17,7 +17,7 @@
 
 ## PROJECT_STAGE
 
-`READY / H002_R3_BACKFILLED_REMAINING_REBUILD_QUEUE`
+`OWNER_REVIEW / H007_R3_CANDIDATE_V2_PENDING_X_BACKFILL`
 
 当前状态：
 
@@ -25,7 +25,7 @@
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
 - H019 酒店价格 41 图生产 **DEFERRED_BY_OWNER**，当前不测试该剧本；
-- 当前无 live imagegen；Owner 已接受 H002 R3 V2 的重新 REVIEW 结果，并已正式回填 X 部分为 **H002 R3**。
+- 当前无 live imagegen；H002 R3 已正式回填。H007 已按当前规则完成 R3 Candidate V2 重建与重新 REVIEW，等待 Owner 确认是否回填 X 部分。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
 
@@ -75,16 +75,17 @@ Part 6  执行与项目管理               [PENDING]
 
 ### GATE_ID
 
-H002_R3_BACKFILL_COMPLETE
+H007_R3_CANDIDATE_V2_OWNER_REVIEW
 
 ### OBJECTIVE
 
-记录 H002 R3 已完成 Owner 接受与 X 部分正式回填；下一阶段只处理其余已重写 Part 2 的题，不重复重建 H002。
+保持 H007 R3 Candidate V2 为候选状态，等待 Owner 审阅；在 Owner 明确批准前，不替换 X 部分现有 H007 R2。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
 - no live imagegen；
 - H002 X-library backfill completed；
+- no H007 X-library backfill without Owner approval；
 - no automatic Part 3 / package rebuild for the other 7 rewritten scripts；
 - no H019 production；
 - no cleanup rerun。
@@ -95,9 +96,10 @@ H002_R3_BACKFILL_COMPLETE
 
 ### TARGET_AND_SCOPE
 
-- Target：H002 AI性格画像 R3 accepted/backfilled；
-- Current X-library package SHA-256：`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；
-- Current X-library accepted H002：R3；
+- Target：H007 AI旅行规划 R3 Candidate V2；
+- Candidate ZIP SHA-256：`2effbcc0552ef2b4535e1176b8953005c0dadb9be9e9f25fa48650484ce59780`；
+- Current X-library accepted H007：R2，保持不变；
+- Candidate 参数：3:28.500 / 72 Cue / 8 Scene / 9 Semantic Shot / 42 Beat / avg 4.964s / max 9.913s / >10s=0；
 - Part 2.5 时间仍是 Owner 测试例外下的同源预估 SRT，不宣称正式真实音频对齐。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
@@ -111,14 +113,13 @@ H002_R3_BACKFILL_COMPLETE
 
 ### PREFLIGHT
 
-已完成中断后从零重新 REVIEW：
-- 先做 ZIP 身份核验，发现同名 ZIP 与旧解压目录状态不一致，明确以 ZIP 实际字节为审查对象；
-- B03/B04 已分别承载“想去”与“这不像我”，单帧语义成立；
-- 后置机制桥保持 3 Cue / 3 Beat，并进一步附着于“回看旧材料 + 新经历”的动作；
-- 删除“未来模型证据必然加强”的过强因果，改为“仍没有新的反例记录”；
-- 收紧发布标题 / Hook，不把 AI 写成主动劝退者，也不把单次假设故事泛化；
-- 重算 Part 3 停留参数并修正 Asset Manifest 的陈旧 Beat 注释；
-- 最终 ZIP / Manifest / SRT / Beat / task / DAG / reference hash 独立 fresh QA 全部 PASS。
+H007 已完成重新 REVIEW：
+- Part 2 删除无必要普遍化句，并明确“由主角主动让软件补选项”；
+- Part 3 修正 B17 / B23 / B26 / B38 / B41 的过程式静帧描述；
+- Part 4 修复 B04 / B26 execution_mode 已为 GENERATE、但 prompt 仍残留 DERIVE 指令的合同冲突；
+- 重新生成 source-aligned SRT / Beat 时间并重算长 hold；
+- ZIP / Manifest / Part2↔SRT / Cue / Beat / task / DAG / prompt-mode / reference hash 独立 QA 全部 PASS；
+- H003 / H004 未作为 H007 剧情模板。
 
 ### REQUIRED_EVIDENCE
 
@@ -136,11 +137,11 @@ Owner 已选择 ACCEPT；H002 R3 已替换 X 部分 H002 R2，并完成 INDEX / 
 
 ### OWNER_ONLY_ACTIONS
 
-- H002 无待决 Owner 动作。
+- 决定 H007 R3 Candidate V2 是否回填 X 部分。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-当前没有生图 Executor 任务。不要调用 imagegen；H002 R3 已完成素材包回填，不重复执行。
+当前没有生图 Executor 任务。不要调用 imagegen；H007 Candidate V2 只等待 Owner 审阅，不得自动回填 X 部分。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
@@ -209,26 +210,16 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## NEXT_STEP
 
-当前下一步是继续处理其余 **7 篇已经完成 Part 2 R2 定制重写但尚未重建下游素材包**的题：
+当前下一步：Owner 审阅 H007 R2 vs R3 Candidate V2。
 
-- H007 AI旅行规划
-- H010 AI游戏NPC
-- H015 天气预报
-- H016 睡眠手表
-- H017 外卖配送
-- H024 自助收银
-- H025 闪付验证
-
-继续时必须逐篇按当前 Part 2 正式规则定制，不使用 H003/H004 作为参考模板，并在每篇完成 Part 2.5 → Part 3 → Part 4/4.5 后重新做跨模块 QA 与跨稿同构检查。
-
-另外：
-- H024 / H025 虽已通过各自生产 Gate 并进入 X 库，但 GitHub Part 0 仍保持 `CANDIDATE / EVIDENCE_PENDING`，如要使 canonical 题库状态与已验证事实一致，仍需单独做持久状态更新决策；
-- Part 5 / Part 6 仍未正式迁移；
-- 正式成片生产前，所有当前素材包仍需真实配音 → 正式 SRT 对齐 → 重绑 Part 3/4 时间。
+- ACCEPT：再把 H007 R3 正式化并替换 X 部分 H007 R2，同时重建 X 库 README / INDEX / MANIFEST / 整库 ZIP；
+- REVISE / REJECT：保留 X 库 H007 R2，按具体反馈返回对应模块；
+- 在 Owner 决策前，不自动开始 H010 / H015 / H016 / H017 / H024 / H025 的下游重建；
+- 不启动 live imagegen。
 
 ## OWNER_ACTION_REQUIRED
 
-- 当前无 H002 Owner 动作；下一题由 Owner 选择即可。
+- 查看 H007 R2 vs R3 Candidate V2 差异，决定是否回填 X 部分。
 ## EVIDENCE_POINTERS
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
