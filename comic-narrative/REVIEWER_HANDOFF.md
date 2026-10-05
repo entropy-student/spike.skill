@@ -79,7 +79,7 @@ H007_R3_CANDIDATE_V2_OWNER_REVIEW
 
 ### OBJECTIVE
 
-保持 H007 R3 Candidate V2 为候选状态，等待 Owner 审阅；在 Owner 明确批准前，不替换 X 部分现有 H007 R2。
+保持 H007 R3 Candidate V3 为候选状态，等待 Owner 审阅；在 Owner 明确批准前，不替换 X 部分现有 H007 R2。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
@@ -97,9 +97,9 @@ H007_R3_CANDIDATE_V2_OWNER_REVIEW
 ### TARGET_AND_SCOPE
 
 - Target：H007 AI旅行规划 R3 Candidate V2；
-- Candidate ZIP SHA-256：`2effbcc0552ef2b4535e1176b8953005c0dadb9be9e9f25fa48650484ce59780`；
+- Candidate ZIP SHA-256：`99cbd550b539590ef3a7a3dd221bfac0143dfd7f8c8ab4d4d892fad5913476d6`；
 - Current X-library accepted H007：R2，保持不变；
-- Candidate 参数：3:28.500 / 72 Cue / 8 Scene / 9 Semantic Shot / 42 Beat / avg 4.964s / max 9.913s / >10s=0；
+- Candidate 参数：3:28.500 / 60 Cue / 8 Scene / 9 Semantic Shot / 42 Beat / avg 4.964s / max 9.913s / >10s=0；
 - Part 2.5 时间仍是 Owner 测试例外下的同源预估 SRT，不宣称正式真实音频对齐。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
@@ -137,7 +137,7 @@ Owner 已选择 ACCEPT；H002 R3 已替换 X 部分 H002 R2，并完成 INDEX / 
 
 ### OWNER_ONLY_ACTIONS
 
-- 决定 H007 R3 Candidate V2 是否回填 X 部分。
+- 决定 H007 R3 Candidate V3 是否回填 X 部分。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
@@ -175,6 +175,8 @@ NONE — OWNER REVIEW GATE ONLY.
 - imagegen fast-path canonical tools 已封板并留在仓库。
 - 本地 deep cleanup R2 已完成：confirmed disposable 已删除，H019 已归档，可按 exact mapping 恢复 archive 项。
 - H019 未开始新的 41-task production run，因此无新生产输出需要回滚。
+
+- **H007 SRT 可读性修订（Owner 2026-10-05）**：在不改 Part 2 口播文字、不跨 Visual Beat 合并 Cue、不改变 42 个 Beat 时间边界的前提下，将 H007 R3 候选 SRT 从 72 Cue 调整为 60 Cue；合并同 Beat 内过碎短句，并拆开两条过长 Cue。当前候选升级为 V3，ZIP SHA-256=`99cbd550b539590ef3a7a3dd221bfac0143dfd7f8c8ab4d4d892fad5913476d6`，等待 Owner 确认，X 库仍保持旧 H007 R2。
 
 ## OWNER_DISCUSSION_CONTINUATION
 
