@@ -17,14 +17,14 @@
 
 ## PROJECT_STAGE
 
-`TOPIC_LIBRARY_CURATED_64 / NEXT_TARGET_SELECTION_PENDING`
+`TOPIC_LIBRARY_EXPANDED_100 / NEXT_TARGET_SELECTION_PENDING`
 
 当前状态：
 
 - imagegen executor reliability 已正式封板；
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
-- Owner 2026-10-05 完成 100 题库级复查后决定再次收缩：A「优先推进」42 题全部保留；B「保留」43 题中按 Reviewer 推荐保留 22、删除 21；C「建议淘汰」15 题全部删除。当前 Part 0 共 64 题并重新连续编号为 H001–H064；此前所有编号均视为 legacy ID，历史资产必须结合题名核对；
+- Owner 2026-10-05 完成 100 题库级复查后曾收缩为 64 题；随后按同一 Part 1 规则与“母题簇”原则新增 36 个全新候选 H065–H100。当前 Part 0 再次为连续 H001–H100 共 100 题；未恢复刚删除的弱题，新增重点补足控制权、记忆、身份、共同文化、关系边界、责任、公平与数字所有权等母题；
 - 当前无 live imagegen；H002 R3、H007 R3 既有正式回填保持不变。H015 已被本轮 Owner 题库裁剪移出当前库存，其 R2/R3 包仅保留为历史资产，不再继续 REVIEW、回填或生产。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
@@ -49,8 +49,8 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：正式基线已建立。当前库存共 **64 个 Case**：11 个既有 `PASS`、53 个 `CANDIDATE / EVIDENCE_PENDING`。本轮库级复查依据 Part 1 五项硬检查、D1–D5、Reach / Asset Value、生产优先级和新增“母题簇”规则完成；A 42 全保留，B 22/43 保留，C 0/15 保留。
-- **Topic library**：当前为现行 H001–H064 连续编号的 64 题库存。2026-10-05 之前及本轮重编前 ID 统一视为 legacy namespace；历史资产不批量改名，不得用 legacy H-ID 推断当前题库同号 Case。
+- **Part 0 / Part 1**：正式基线已建立。当前库存共 **100 个 Case**：11 个既有 `PASS`、89 个 `CANDIDATE / EVIDENCE_PENDING`。H001–H064 为上一轮筛选后保留集，H065–H100 为按五项硬检查、D1–D5、Reach / Asset Value、生产优先级与库级母题簇规则新增的 36 个候选。
+- **Topic library**：当前为现行 H001–H100 连续编号的 100 题库存。历史重编号前的 ID 继续作为 legacy namespace；历史资产不批量改名，不得用 legacy H-ID 推断当前题库同号 Case。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
@@ -75,11 +75,11 @@ Part 6  执行与项目管理               [PENDING]
 
 ### GATE_ID
 
-TOPIC_LIBRARY_64_READY_NEXT_SELECTION
+TOPIC_LIBRARY_100_READY_NEXT_SELECTION
 
 ### OBJECTIVE
 
-承接 Owner 2026-10-05 的库级筛选决定：保留 A 全部、B 中较强一半、删除 C 全部，使 Part 0 收缩为 64 题；在 Owner 选择下一制作目标前，不启动新的 Part 2 重写、素材包重建、X 库回填或 live imagegen。
+承接 Owner 2026-10-05 的扩库决定：在上一轮筛选后的 64 题基础上新增 36 个全新候选，使 Part 0 回到 100 题；在 Owner 选择下一制作目标前，不启动新的 Part 2 重写、素材包重建、X 库回填或 live imagegen。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
@@ -96,11 +96,10 @@ TOPIC_LIBRARY_64_READY_NEXT_SELECTION
 ### TARGET_AND_SCOPE
 
 - Part 1：仅补充 1 条“通过硬检查后的生产优先级”规则；
-- Part 0：对当前 100 题执行库级筛选；
-- A「优先推进」42 题全部保留；
-- B「保留」43 题保留 22、删除 21；
-- C「建议淘汰」15 题全部删除；
-- 当前题库连续重编为 H001–H064；所有旧编号只用于 legacy 历史追溯；
+- Part 0：保留上一轮库级筛选后的 H001–H064；
+- 新增 36 个全新候选 H065–H100；
+- 新题不恢复上一轮删除的弱题，不以换皮方式重建已淘汰母题；
+- 当前题库连续编号为 H001–H100；所有旧重编号前 ID 只用于 legacy 历史追溯；
 - 历史剧本、素材包、Review、X 库文件不因题库删除自动删除。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
@@ -128,10 +127,10 @@ TOPIC_LIBRARY_64_READY_NEXT_SELECTION
 ### ACCEPTANCE_CRITERIA
 
 - Part 1 仅新增已获 Owner 同意的生产优先级句；
-- Part 0 当前恰好 64 个 Case；
-- 11 个 `PASS` + 53 个 `CANDIDATE / EVIDENCE_PENDING`；
-- A 42 题全部存在；B 当前仅保留 Reviewer 推荐的 22 题；C 15 题全部不存在；
-- 当前 ID 连续范围 H001–H064；
+- Part 0 当前恰好 100 个 Case；
+- 11 个 `PASS` + 89 个 `CANDIDATE / EVIDENCE_PENDING`；
+- 新增题恰好 36 个，ID 范围 H065–H100；
+- 当前 ID 连续范围 H001–H100；
 - 主类型统计 = 判断 10 / 机制 5 / 体验 5 / 惊奇 4 / 趋势 3 / 反思 3 / 实用 2 / 探索 1；
 - 上一轮 B/C 67 题不再出现在当前 Part 0 库；
 - 保留题原 H-ID 不变；
@@ -156,7 +155,7 @@ NONE — OWNER NEXT-TOPIC SELECTION GATE.
 ```
 ## CRITICAL_CONSTRAINTS
 
-- **ID migration warning**：2026-10-05 本轮筛选后讨论当前选题必须以 Part 0 现行 H001–H064 为准；此前 production / review / X 库中的 H-ID 均视为 legacy ID，先按题名核对，不得只按数字对应。
+- **ID migration warning**：2026-10-05 本轮扩库后讨论当前选题必须以 Part 0 现行 H001–H100 为准；此前 production / review / X 库中的 H-ID 均视为 legacy ID，先按题名核对，不得只按数字对应。
 - `PASS_CANDIDATE != PASS`。
 - 已正式 PASS 的能力默认继承；只有相关实现/接口/运行环境发生可能影响能力的变化，或新证据与旧 PASS 冲突，才要求重验。
 - imagegen concurrency = 2；不主动测试 3+。
@@ -170,8 +169,8 @@ NONE — OWNER NEXT-TOPIC SELECTION GATE.
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`。
-- 当前状态：Part 0 已筛选收缩为 64 题；legacy H002 R3、legacy H007 R3 既有 accepted 资产保持；legacy H015（天气预报）R2/R3 仅为历史资产；无 live Executor。
-- 下一动作：等待 Owner 从当前 64 题中选择下一制作目标；若选择 `EVIDENCE_PENDING` 题，先走 Part 1 事实证据 Gate + 最终 D1–D5。
+- 当前状态：Part 0 已在筛选后的 64 题基础上新增 36 题，现为 100 题；legacy H002 R3、legacy H007 R3 既有 accepted 资产保持；legacy H015（天气预报）R2/R3 仅为历史资产；无 live Executor。
+- 下一动作：等待 Owner 从当前 100 题中选择下一制作目标；若选择 `EVIDENCE_PENDING` 题，先走 Part 1 事实证据 Gate + 最终 D1–D5。
 - Windows/Codex local paths 必须由对应 Gate 证明，不从历史路径猜测。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -184,6 +183,8 @@ NONE — OWNER NEXT-TOPIC SELECTION GATE.
 - **H007 SRT 可读性修订与回填（Owner 2026-10-05）**：在不改 Part 2 口播文字、不跨 Visual Beat 合并 Cue、不改变 42 个 Beat 时间边界的前提下，将 SRT 从 72 Cue 调整为 60 Cue；随后 Owner 接受并正式回填为 H007 R3。X 库正式 ZIP SHA-256=`69bdb4787e52f04572d0fe07064fe31a174a60458053804cfa4d1bf55e3e68c9`。
 
 ## OWNER_DISCUSSION_CONTINUATION
+
+- **64→100 扩库（Owner 2026-10-05）**：在上一轮结构筛选保留的 64 题基础上新增 36 个全新候选 H065–H100；扩库遵循 Part 1 五项硬检查、D1–D5、Reach / Asset Value、生产优先级和母题簇复查，不恢复已淘汰弱题。
 
 - **100→64 题库筛选（Owner 2026-10-05）**：基于上一轮 A/B/C 复查，A 42 全保留；B 43 中保留 22、删除 21；C 15 全删。删除主要优先移除母题同构较弱版本、科技因果偏弱、设备小知识、事实依赖特定平台实现或 Asset Value 明显较低的题。
 
@@ -212,7 +213,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## UNRESOLVED
 
-1. **下一测试目标**：等待 Owner 从当前 64 题中选择；11 个既有 `PASS` 可直接进入 Part 2，53 个 `CANDIDATE / EVIDENCE_PENDING` 必须先完成事实证据 Gate + 最终 D1–D5。
+1. **下一测试目标**：等待 Owner 从当前 100 题中选择；11 个既有 `PASS` 可直接进入 Part 2，89 个 `CANDIDATE / EVIDENCE_PENDING` 必须先完成事实证据 Gate + 最终 D1–D5。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
@@ -221,7 +222,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## NEXT_STEP
 
-下一轮第一件事：**Owner 从当前 64 题中选择下一制作目标**。
+下一轮第一件事：**Owner 从当前 100 题中选择下一制作目标**。
 
 - 若目标当前为 `PASS`：进入 Part 2 定制剧本流程；
 - 若目标为 `CANDIDATE / EVIDENCE_PENDING`：先完成 Part 1 事实证据 Gate + 最终 D1–D5，再决定是否升级 PASS；
