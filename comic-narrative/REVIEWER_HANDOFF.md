@@ -183,6 +183,8 @@ NONE — OWNER NEXT-TOPIC SELECTION GATE.
 
 ## OWNER_DISCUSSION_CONTINUATION
 
+- **Part 1 题库结构去重补充（Owner 2026-10-05）**：§6 已新增库级母题簇复查；即使单题未触发 D2/D3/D5，只要 Human Problem / Human Tension / 主机制 / Audience Payoff 大部分高度相似，也应视为同一母题簇，同簇默认只优先保留 1–2 个最强代表，其余降优先级或淘汰，除非人的后果、机制、受众或 Content Job 有实质差异。
+
 Owner 于 2026-10-04 要求把本轮长对话整理进 `main`，用于下一 Reviewer 续接，但暂不修改 Part 0–4.5 / `SKILL.md` 正式正文。
 
 续接入口：
