@@ -17,14 +17,14 @@
 
 ## PROJECT_STAGE
 
-`TOPIC_LIBRARY_CURATED / NEXT_TARGET_SELECTION_PENDING`
+`TOPIC_LIBRARY_EXPANDED_100 / NEXT_TARGET_SELECTION_PENDING`
 
 当前状态：
 
 - imagegen executor reliability 已正式封板；
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
-- Owner 2026-10-05 完成题库裁剪：仅保留上一轮 A「优先推进」33 题；B「保留」与 C「建议淘汰」共 67 题已从当前 Part 0 库删除。删除只影响当前选题库存，不自动删除历史剧本、素材包、Review 或 X 库文件；
+- Owner 2026-10-05 先将题库裁剪为 33 个优先题，随后要求按当前 Part 1 与新增生产优先级规则扩充回 100；现已新增 67 个全新候选 H101–H167。此前删除的 B/C 旧 Case 不恢复、不换皮回填，旧 H-ID 不复用；
 - 当前无 live imagegen；H002 R3、H007 R3 既有正式回填保持不变。H015 已被本轮 Owner 题库裁剪移出当前库存，其 R2/R3 包仅保留为历史资产，不再继续 REVIEW、回填或生产。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
@@ -49,8 +49,8 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：正式基线已建立。Owner 2026-10-05 将当前库存裁剪为 **33 个 Case**：11 个既有 `PASS`、22 个 `CANDIDATE / EVIDENCE_PENDING`。主类型统计：判断 10、机制 5、体验 5、惊奇 4、趋势 3、反思 3、实用 2、探索 1。Part 1 §6 已最小补充生产优先级：同等通过硬检查时，优先现实行动/后果更强、能以故事承载、知识增量更高且事实验证边界更清楚的题；该规则只影响优先级，不自动 RETURN。
-- **Topic library**：当前仅保留 33 个 Owner 确认的优先题。Case ID 作为稳定标识不因删题回收、重排或复用，避免破坏既有剧本、素材包、Review、X 库及历史证据引用；因此当前 H-ID 允许非连续。22 个候选仍必须先完成 Part 1 事实证据 Gate 与最终 D1–D5，再允许进入 Part 2。
+- **Part 0 / Part 1**：正式基线已建立。当前库存共 **100 个 Case**：11 个既有 `PASS`、89 个 `CANDIDATE / EVIDENCE_PENDING`。其中 33 个来自 Owner 本轮保留集，67 个为按 Part 1 五项硬检查、D1–D5 第一轮去重和生产优先级规则新扩充的 H101–H167；新增题正式进入 Part 2 前仍必须完成事实证据 Gate。
+- **Topic library**：当前为 100 题库存。Case ID 继续作为稳定标识，不因删题回收、重排或复用；此前删除的旧题保持删除状态，新题从 H101 继续编号。当前主类型均有覆盖，不设硬配额；内部题面仍不自动等于最终发布标题。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
@@ -75,11 +75,11 @@ Part 6  执行与项目管理               [PENDING]
 
 ### GATE_ID
 
-NEXT_TOPIC_SELECTION_PENDING
+TOPIC_LIBRARY_100_READY_NEXT_SELECTION
 
 ### OBJECTIVE
 
-承接 Owner 2026-10-05 的题库裁剪结果，保持 33 个优先题为当前唯一有效库存；在 Owner 选择下一制作目标前，不启动新的 Part 2 重写、素材包重建、X 库回填或 live imagegen。
+承接 Owner 2026-10-05 的扩库决定：在保留 33 个优先题基础上新增 67 个全新候选，使 Part 0 恢复为 100 题库存；在 Owner 选择下一制作目标前，不启动新的 Part 2 重写、素材包重建、X 库回填或 live imagegen。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
@@ -96,9 +96,10 @@ NEXT_TOPIC_SELECTION_PENDING
 ### TARGET_AND_SCOPE
 
 - Part 1：仅补充 1 条“通过硬检查后的生产优先级”规则；
-- Part 0：仅保留上一轮 A「优先推进」33 题；
-- 删除 B + C 共 67 题；
-- 保留原 H-ID 作为稳定 Case identity，不回收、不重排；
+- Part 0：保留上一轮 A「优先推进」33 题；
+- B + C 旧 67 题继续保持删除；
+- 新增 67 个全新候选 H101–H167，使当前库存达到 100；
+- 保留原 H-ID 作为稳定 Case identity，不回收、不重排、不复用；
 - 历史剧本、素材包、Review、X 库文件不因题库删除自动删除。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
@@ -113,7 +114,7 @@ NEXT_TOPIC_SELECTION_PENDING
 
 ### PREFLIGHT
 
-- Owner 已确认上一轮 A / B / C 分类，并明确要求保留 A、删除 B/C；
+- Owner 已确认上一轮 A / B / C 分类，随后明确要求在保留 A、继续删除 B/C 的前提下，按项目规则与 Reviewer 生产优先级建议重新扩充至 100；
 - Part 0 / Part 1 在修改前均 fresh-read；
 - 已确认 H-ID 被下游资产与交接文档使用，因此采用稳定 ID 方案而不是机械重编号。
 
@@ -126,8 +127,9 @@ NEXT_TOPIC_SELECTION_PENDING
 ### ACCEPTANCE_CRITERIA
 
 - Part 1 仅新增已获 Owner 同意的生产优先级句；
-- Part 0 当前恰好 33 个 Case；
-- 11 个 `PASS` + 22 个 `CANDIDATE / EVIDENCE_PENDING`；
+- Part 0 当前恰好 100 个 Case；
+- 11 个 `PASS` + 89 个 `CANDIDATE / EVIDENCE_PENDING`；
+- 新增 Case 恰好 67 个，ID 范围 H101–H167；
 - 主类型统计 = 判断 10 / 机制 5 / 体验 5 / 惊奇 4 / 趋势 3 / 反思 3 / 实用 2 / 探索 1；
 - 上一轮 B/C 67 题不再出现在当前 Part 0 库；
 - 保留题原 H-ID 不变；
@@ -165,8 +167,8 @@ NONE — OWNER NEXT-TOPIC SELECTION GATE.
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`。
-- 当前状态：Part 0 已裁剪为 33 个优先题；H002 R3、H007 R3 既有 accepted 资产保持；旧 H015 R2/R3 仅为历史资产；无 live Executor。
-- 下一动作：等待 Owner 从当前 33 题中选择下一制作目标；若选择 `EVIDENCE_PENDING` 题，先走 Part 1 事实证据 Gate + D1–D5。
+- 当前状态：Part 0 已扩充为 100 题；H002 R3、H007 R3 既有 accepted 资产保持；旧 H015 R2/R3 仅为历史资产；无 live Executor。
+- 下一动作：等待 Owner 从当前 100 题中选择下一制作目标；若选择 `EVIDENCE_PENDING` 题，先走 Part 1 事实证据 Gate + 最终 D1–D5。
 - Windows/Codex local paths 必须由对应 Gate 证明，不从历史路径猜测。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -203,7 +205,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## UNRESOLVED
 
-1. **下一测试目标**：等待 Owner 从当前 33 个保留题中选择；11 个既有 `PASS` 可直接进入 Part 2，22 个 `CANDIDATE / EVIDENCE_PENDING` 必须先完成事实证据 Gate + 最终 D1–D5。
+1. **下一测试目标**：等待 Owner 从当前 100 题中选择；11 个既有 `PASS` 可直接进入 Part 2，89 个 `CANDIDATE / EVIDENCE_PENDING` 必须先完成事实证据 Gate + 最终 D1–D5。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
@@ -212,7 +214,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## NEXT_STEP
 
-下一轮第一件事：**Owner 从当前 33 个优先题中选择下一制作目标**。
+下一轮第一件事：**Owner 从当前 100 题中选择下一制作目标**。
 
 - 若目标当前为 `PASS`：进入 Part 2 定制剧本流程；
 - 若目标为 `CANDIDATE / EVIDENCE_PENDING`：先完成 Part 1 事实证据 Gate + 最终 D1–D5，再决定是否升级 PASS；
