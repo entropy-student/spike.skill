@@ -17,7 +17,7 @@
 
 ## PROJECT_STAGE
 
-`OWNER_REVIEW / H007_R3_CANDIDATE_V2_PENDING_X_BACKFILL`
+`READY / H007_R3_BACKFILLED_REMAINING_REBUILD_QUEUE`
 
 当前状态：
 
@@ -25,7 +25,7 @@
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
 - H019 酒店价格 41 图生产 **DEFERRED_BY_OWNER**，当前不测试该剧本；
-- 当前无 live imagegen；H002 R3 已正式回填。H007 已按当前规则完成 R3 Candidate V2 重建与重新 REVIEW，等待 Owner 确认是否回填 X 部分。
+- 当前无 live imagegen；H002 R3、H007 R3 均已正式回填 X 部分。H007 最终采用 SRT 可读性修订后的 R3：60 Cue / 42 Beat / 3:28.500。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
 
@@ -75,18 +75,18 @@ Part 6  执行与项目管理               [PENDING]
 
 ### GATE_ID
 
-H007_R3_CANDIDATE_V2_OWNER_REVIEW
+H007_R3_BACKFILL_COMPLETE
 
 ### OBJECTIVE
 
-保持 H007 R3 Candidate V3 为候选状态，等待 Owner 审阅；在 Owner 明确批准前，不替换 X 部分现有 H007 R2。
+记录 H007 R3 已完成 Owner 接受与 X 部分正式回填；下一阶段继续处理剩余 6 篇已完成 Part 2 重写但尚未重建下游素材包的题。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
 - no live imagegen；
 - H002 X-library backfill completed；
-- no H007 X-library backfill without Owner approval；
-- no automatic Part 3 / package rebuild for the other 7 rewritten scripts；
+- H007 X-library backfill completed；
+- no automatic live production；剩余 6 题继续逐篇重建并单独 Review；
 - no H019 production；
 - no cleanup rerun。
 
@@ -96,19 +96,18 @@ H007_R3_CANDIDATE_V2_OWNER_REVIEW
 
 ### TARGET_AND_SCOPE
 
-- Target：H007 AI旅行规划 R3 Candidate V2；
-- Candidate ZIP SHA-256：`99cbd550b539590ef3a7a3dd221bfac0143dfd7f8c8ab4d4d892fad5913476d6`；
-- Current X-library accepted H007：R2，保持不变；
-- Candidate 参数：3:28.500 / 60 Cue / 8 Scene / 9 Semantic Shot / 42 Beat / avg 4.964s / max 9.913s / >10s=0；
+- Target：H007 AI旅行规划 R3 accepted/backfilled；
+- Current X-library package SHA-256：`69bdb4787e52f04572d0fe07064fe31a174a60458053804cfa4d1bf55e3e68c9`；
+- Current X-library accepted H007：R3；
+- Current 参数：3:28.500 / 60 Cue / 8 Scene / 9 Semantic Shot / 42 Beat / avg 4.964s / max 9.913s / >10s=0；
 - Part 2.5 时间仍是 Owner 测试例外下的同源预估 SRT，不宣称正式真实音频对齐。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
-- `PASS_CANDIDATE != PASS`；
-- H003/H004 不作为参考模板，H002 仅按当前 Part 2 / Part 3 / Part 4 / Part 4.5 正式规则复查；
+- H003/H004 不作为参考模板；H007 已只按当前 Part 2 / Part 3 / Part 4 / Part 4.5 正式规则完成重建与回填；
 - imagegen concurrency = 2；
 - no live imagegen；
-- H002 已接受并回填；后续其他题仍需各自完成 Owner 认定后才替换 X 库；
+- H002 / H007 已接受并回填；后续其他题仍需各自完成 Owner 认定后才替换 X 库；
 - H019 = DEFERRED_BY_OWNER。
 
 ### PREFLIGHT
@@ -125,23 +124,23 @@ H007 已完成重新 REVIEW：
 
 - `reviews/continuity/PART2_CUSTOM_STORY_EXECUTION_AND_H002_R3_CANDIDATE_20261005.md`
 - ChatGPT File Library current handoff：`/comic-narrative_当前交接/2026-10-05_Part2定制重写与H002_R3候选/`
-- H002 R3 candidate V2 ZIP SHA-256：`c06cff9585d6ccd2e513e974153a41f2524f3a91b9f19b285420fb1d8abbf98f`
+- H007 X-library R3 ZIP SHA-256：`69bdb4787e52f04572d0fe07064fe31a174a60458053804cfa4d1bf55e3e68c9`
 
 ### ACCEPTANCE_CRITERIA
 
-Owner 已选择 ACCEPT；H002 R3 已替换 X 部分 H002 R2，并完成 INDEX / README / MANIFEST / 整库 ZIP 重建与 fresh read-back。
+Owner 已选择 ACCEPT；H007 R3 已替换 X 部分 H007 R2，并完成 README / INDEX / MANIFEST / 整库 ZIP 重建与 fresh read-back。
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-无需运行态回滚；H002 R3 尚未进入 X 部分。保留现有 X 库 H002 R2 即为安全 rollback baseline。
+无需运行态回滚；旧 H007 R2 已移出 X 当前层并保存在仓库外交接历史目录，可作为回滚基线。
 
 ### OWNER_ONLY_ACTIONS
 
-- 决定 H007 R3 Candidate V3 是否回填 X 部分。
+- H007 无待决 Owner 动作。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-当前没有生图 Executor 任务。不要调用 imagegen；H007 Candidate V2 只等待 Owner 审阅，不得自动回填 X 部分。
+当前没有生图 Executor 任务。不要调用 imagegen；H007 R3 已完成素材包回填，不重复执行。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
@@ -164,9 +163,9 @@ NONE — OWNER REVIEW GATE ONLY.
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`。
-- 当前状态：H002 R3 已正式回填 X 部分；无 live Executor。
-- X 部分 H002 当前版本为 R3。
-- 下一生产动作应从其余 7 篇已完成 Part 2 R2 定制重写的题中继续逐篇重建。
+- 当前状态：H002 R3、H007 R3 已正式回填 X 部分；无 live Executor。
+- X 部分 H002 / H007 当前版本均为 R3。
+- 下一生产动作应从剩余 6 篇已完成 Part 2 R2 定制重写的题中继续逐篇重建：H010 / H015 / H016 / H017 / H024 / H025。
 - Windows/Codex local paths 必须由对应 Gate 证明，不从历史路径猜测。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -176,7 +175,7 @@ NONE — OWNER REVIEW GATE ONLY.
 - 本地 deep cleanup R2 已完成：confirmed disposable 已删除，H019 已归档，可按 exact mapping 恢复 archive 项。
 - H019 未开始新的 41-task production run，因此无新生产输出需要回滚。
 
-- **H007 SRT 可读性修订（Owner 2026-10-05）**：在不改 Part 2 口播文字、不跨 Visual Beat 合并 Cue、不改变 42 个 Beat 时间边界的前提下，将 H007 R3 候选 SRT 从 72 Cue 调整为 60 Cue；合并同 Beat 内过碎短句，并拆开两条过长 Cue。当前候选升级为 V3，ZIP SHA-256=`99cbd550b539590ef3a7a3dd221bfac0143dfd7f8c8ab4d4d892fad5913476d6`，等待 Owner 确认，X 库仍保持旧 H007 R2。
+- **H007 SRT 可读性修订与回填（Owner 2026-10-05）**：在不改 Part 2 口播文字、不跨 Visual Beat 合并 Cue、不改变 42 个 Beat 时间边界的前提下，将 SRT 从 72 Cue 调整为 60 Cue；随后 Owner 接受并正式回填为 H007 R3。X 库正式 ZIP SHA-256=`69bdb4787e52f04572d0fe07064fe31a174a60458053804cfa4d1bf55e3e68c9`。
 
 ## OWNER_DISCUSSION_CONTINUATION
 
@@ -197,9 +196,9 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 当前新增两点续接记录：
 
 - **机制标签与画面密度观察**：基于当前已完成并进入素材包库的 8 个样本，带“机制”标签的剧本（当前 H015 / H016 / H017）出现更长的平均单画面停留时长与更多长 hold；当前只记录为**小样本相关性信号**，不等同于“机制题必然稀疏”，也暂不修改 Part 1 / Part 3 正式规则。后续批量素材包继续积累样本后，再判断是否需要建立“机制型剧本视觉密度风险”检查。
-- **批量素材包生产状态**：仓库外 **X部分｜Owner认定执行包** 当前已收录 H002、H003、H004、H007、H010、H015、H016、H017、H024、H025 共 10 个题；X 部分仍不是 GitHub canonical 项目规则，不反向修改 Part 0–4.5。H002 已由 Owner 接受并正式升级为 R3。
+- **批量素材包生产状态**：仓库外 **X部分｜Owner认定执行包** 当前已收录 H002、H003、H004、H007、H010、H015、H016、H017、H024、H025 共 10 个题；X 部分仍不是 GitHub canonical 项目规则，不反向修改 Part 0–4.5。H002、H007 已由 Owner 接受并正式升级为 R3。
 - **Part 2 批量执行纠偏（Owner 2026-10-05）**：H003/H004 不再作为后续剧本参考样板；后续剧本只按当前 Part 2 正式规则逐篇定制。批量任务可共享规则、事实核验和 QA，但不得共享同一套开场、剧情骨架、转折或收束模板。每批完成后必须追加跨稿“同构检查”；若只是换题材套同一结构，应 RETURN 重写。此前 H015/H016/H017 等长讲解问题被确认主要属于执行与 Reviewer 漏检，而非 Part 2 缺少“演出来/防讲课”规则。
-- **Part 2 当前重写状态**：H003/H004 冻结且不作参考；H002、H007、H010、H015、H016、H017、H024、H025 已按 Part 2 正式规则完成定制 R2 重写与二次独立复查。H002 已完成下游重建并正式回填为 R3：62 Cue / 41 Beat / 3:14.831 / 平均 4.752s / 最长 8.883s / >10s=0；其余 7 题暂未进入新的 Part 2.5 / Part 3。
+- **Part 2 当前重写状态**：H003/H004 冻结且不作参考；H002、H007、H010、H015、H016、H017、H024、H025 已按 Part 2 正式规则完成定制 R2 重写与二次独立复查。H002 已正式回填 R3；H007 已正式回填 R3（60 Cue / 42 Beat / 3:28.500 / 平均 4.964s / 最长 9.913s / >10s=0）；其余 6 题尚未完成新的下游素材包重建。
 
 ## UNRESOLVED
 
@@ -212,16 +211,25 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## NEXT_STEP
 
-当前下一步：Owner 审阅 H007 R2 vs R3 Candidate V2。
+当前下一步是继续处理剩余 **6 篇已经完成 Part 2 R2 定制重写但尚未重建下游素材包**的题：
 
-- ACCEPT：再把 H007 R3 正式化并替换 X 部分 H007 R2，同时重建 X 库 README / INDEX / MANIFEST / 整库 ZIP；
-- REVISE / REJECT：保留 X 库 H007 R2，按具体反馈返回对应模块；
-- 在 Owner 决策前，不自动开始 H010 / H015 / H016 / H017 / H024 / H025 的下游重建；
-- 不启动 live imagegen。
+- H010 AI游戏NPC
+- H015 天气预报
+- H016 睡眠手表
+- H017 外卖配送
+- H024 自助收银
+- H025 闪付验证
+
+继续时必须逐篇按当前 Part 2 正式规则定制，不使用 H003/H004 作为参考模板；每篇完成 Part 2.5 → Part 3 → Part 4/4.5 后重新做跨模块 QA 与跨稿同构检查。
+
+另外：
+- H024 / H025 虽已通过各自生产 Gate 并进入 X 库，但 GitHub Part 0 仍保持 `CANDIDATE / EVIDENCE_PENDING`，如要使 canonical 题库状态与已验证事实一致，仍需单独做持久状态更新决策；
+- Part 5 / Part 6 仍未正式迁移；
+- 正式成片生产前，当前素材包仍需真实配音 → 正式 SRT 对齐 → 重绑 Part 3/4 时间。
 
 ## OWNER_ACTION_REQUIRED
 
-- 查看 H007 R2 vs R3 Candidate V2 差异，决定是否回填 X 部分。
+- 当前无 H007 Owner 动作；下一题由 Owner 选择即可。
 ## EVIDENCE_POINTERS
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
