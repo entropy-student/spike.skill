@@ -1,29 +1,28 @@
 # Part 0 — 历史选题库
 
 本文件是漫画叙事的历史选题库与扩展候选储备。  
-当前共有 **100 个 Case：11 个已接受 PASS 基线；89 个扩展候选仍需完成事实证据 Gate 后才可升级为正式 PASS**。
+当前共有 **64 个 Case：11 个已接受 PASS 基线；53 个扩展候选仍需完成事实证据 Gate 后才可升级为正式 PASS**。
 
 规则：
-- 当前库存由 Owner 本轮保留的 33 个优先题 + 本轮按 Part 1 重新扩充的 67 个新候选组成；此前删除的 Case 不恢复、不换皮回填；
-- 2026-10-05 Owner 明确要求当前题库重新连续编号：现行 Part 0 以本文件 H001–H100 为准；本次重编前的 H-ID 仅作为 legacy ID 保留在历史剧本、素材包、Review 与 X 库中，不再作为当前题库编号。
-- 当前 11 个 `PASS` Case 继续保留原 accepted 状态；89 个 `CANDIDATE / EVIDENCE_PENDING` Case 不得描述成正式 PASS；
+- 当前库存来自 2026-10-05 对 100 题的库级复查：A「优先推进」42 题全部保留；B「保留」43 题中保留 22 题、删除 21 题；C「建议淘汰」15 题全部删除；
+- 当前题库重新连续编号为 H001–H064；历史剧本、素材包、Review 与 X 库中的旧 H-ID 统一视为 legacy ID，读取时必须结合题名核对，不得只按数字对应；
+- 当前 11 个 `PASS` Case 继续保留原 accepted 状态；53 个 `CANDIDATE / EVIDENCE_PENDING` Case 不得描述成正式 PASS；
 - 新候选在最终 PASS 前必须与本库全部已接受题和候选题做 D1–D5 复查，并完成 Part 1 要求的事实证据 Gate；
 - 正式进入制作的选题应继续追加到本文件；
 - HOT 题未来应在 Source / Signal 中保存真实来源或事件标识，便于 D1 复查；
 - 题面优先使用普通人自然会说的话；
 - “科技”包含人工智能，但不强行把推荐算法、平台设计、自动化、设备等都写成人工智能；
-- 选题不默认走“反思科技代价”，允许惊奇、机制、实用、判断、趋势、探索、体验等方向。
-- `选题类型` 以斜杠前的标签作为**主类型**，用于题库结构与数量统计；斜杠后的标签只表示辅助属性。
-- 不因为每个题都存在“主机制”就自动把它归为机制型；机制型只用于“理解机制本身就是主要观看收获”的题。
-- 当前 100 题的主类型统计为：惊奇 18、判断 33、实用 12、机制 10、趋势 4、反思 6、体验 14、探索 3；这是当前库存结构，不是未来新增题的硬配额。
-
+- 选题不默认走“反思科技代价”，允许惊奇、机制、实用、判断、趋势、探索、体验等方向；
+- `选题类型` 以斜杠前的标签作为**主类型**，用于题库结构与数量统计；斜杠后的标签只表示辅助属性；
+- 不因为每个题都存在“主机制”就自动把它归为机制型；机制型只用于“理解机制本身就是主要观看收获”的题；
+- 当前 64 题的主类型统计为：惊奇 10、判断 22、实用 7、机制 7、趋势 3、反思 3、体验 10、探索 2；这是当前库存结构，不是未来新增题的硬配额。
 
 ### 2026-10-05 编号迁移
 
-- 当前题库现行编号：H001–H100 连续编号。
-- 本次重编保留文件顺序：原保留 33 题在前，新增 67 题在后。
-- 历史资产中的旧 H-ID 不改名；读取历史剧本 / 素材包 / Review 时按 legacy ID 解释。
-- 发生变化的映射：H012→H009、H013→H010、H023→H011、H024→H012、H026→H013、H030→H014、H031→H015、H035→H016、H037→H017、H039→H018、H042→H019、H051→H020、H054→H021、H060→H022、H064→H023、H069→H024、H070→H025、H081→H026、H086→H027、H087→H028、H090→H029、H091→H030、H092→H031、H094→H032、H099→H033、H101→H034、H102→H035、H103→H036、H104→H037、H105→H038、H106→H039、H107→H040、H108→H041、H109→H042、H110→H043、H111→H044、H112→H045、H113→H046、H114→H047、H115→H048、H116→H049、H117→H050、H118→H051、H119→H052、H120→H053、H121→H054、H122→H055、H123→H056、H124→H057、H125→H058、H126→H059、H127→H060、H128→H061、H129→H062、H130→H063、H131→H064、H132→H065、H133→H066、H134→H067、H135→H068、H136→H069、H137→H070、H138→H071、H139→H072、H140→H073、H141→H074、H142→H075、H143→H076、H144→H077、H145→H078、H146→H079、H147→H080、H148→H081、H149→H082、H150→H083、H151→H084、H152→H085、H153→H086、H154→H087、H155→H088、H156→H089、H157→H090、H158→H091、H159→H092、H160→H093、H161→H094、H162→H095、H163→H096、H164→H097、H165→H098、H166→H099、H167→H100
+- 复查前现行编号 H001–H100 → 复查后现行编号 H001–H064；
+- 被删除题不保留空号，剩余题按原文件顺序连续重编；
+- 历史资产不批量改名，所有旧 H-ID 均为 legacy namespace；
+- 本轮存续映射：H022→H021、H023→H022、H024→H023、H025→H024、H026→H025、H027→H026、H028→H027、H030→H028、H031→H029、H032→H030、H033→H031、H034→H032、H036→H033、H038→H034、H039→H035、H042→H036、H043→H037、H045→H038、H046→H039、H047→H040、H048→H041、H049→H042、H050→H043、H053→H044、H056→H045、H058→H046、H060→H047、H062→H048、H063→H049、H065→H050、H070→H051、H073→H052、H074→H053、H077→H054、H079→H055、H084→H056、H088→H057、H091→H058、H093→H059、H095→H060、H096→H061、H098→H062、H099→H063、H100→H064
 
 ---
 
@@ -275,6 +274,7 @@
 - 当前题库已按 Owner 指令统一重编为 H001–H100；旧编号只用于历史资产追溯。
 
 ---
+
 ## H012 — 自助收银
 
 - 最终选题：**超市里的收银台越来越少、自助机越来越多，结账这件事到底是谁在做？**
@@ -471,29 +471,7 @@
 - Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
-## H021 — 洗衣机倒计时
-
-- 最终选题：**洗衣机明明只剩 1 分钟，为什么这个 1 分钟能走好几分钟？**
-- 选题类型：机制 / 惊奇
-- Entry：HUMAN_WORLD_FIRST
-- X：家电 / 洗衣
-- Human Process：等待 / 剩余时间判断
-- Human Problem：用户把倒计时当作固定钟表，但机器需要根据当前衣物状态决定脱水、平衡或追加步骤
-- 反常：显示 1 分钟以后，数字长时间不归零
-- Human Tension：倒计时确定性 vs 自适应过程
-- Controlling Question：机器为什么不能像微波炉一样从 60 秒老老实实数到 0？
-- 科技改变的过程：部分洗衣阶段会根据负载平衡、泡沫、排水或脱水状态动态调整剩余时间估计
-- 主机制：剩余时间是过程预测而不是绝对计时器
-- Audience Payoff：理解动态设备上的时间显示是不断更新的估计
-- Meaning Fingerprint：`COUNTDOWN_CERTAINTY_VS_ADAPTIVE_PROCESS`
-- Motif：看到 1 分钟准备等结束 → 几分钟后还是 1 → 机器重新平衡衣物 → 时间估计被修正
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H022 — 地图最快路线
+## H021 — 地图最快路线
 
 - 最终选题：**地图说这条路最快，为什么你走完却觉得它是最难走的一条？**
 - 选题类型：判断 / 机制
@@ -515,7 +493,7 @@
 
 ---
 
-## H023 — 导航集体拥堵
+## H022 — 导航集体拥堵
 
 - 最终选题：**导航给每个人都选最快路线，为什么那条小路最后反而会堵起来？**
 - 选题类型：探索 / 机制
@@ -537,7 +515,7 @@
 
 ---
 
-## H024 — 隐藏点赞数
+## H023 — 隐藏点赞数
 
 - 最终选题：**同一条内容，把点赞数藏起来以后，为什么你可能会突然觉得它没那么好看了？**
 - 选题类型：反思 / 体验
@@ -558,7 +536,7 @@
 - Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
-## H025 — 运动圆环
+## H024 — 运动圆环
 
 - 最终选题：**运动圆环天天都要闭合，为什么休息一天反而会让人有负罪感？**
 - 选题类型：判断 / 反思
@@ -580,7 +558,7 @@
 
 ---
 
-## H026 — AI 声音克隆
+## H025 — AI 声音克隆
 
 - 最终选题：**声音克隆已经很像本人了，为什么一句“谢谢”还是能听出不是那个人？**
 - 选题类型：体验 / 探索
@@ -602,7 +580,7 @@
 
 ---
 
-## H027 — 评分可信度
+## H026 — 评分可信度
 
 - 最终选题：**两家店都是 4.8 分，为什么这两个 4.8 可能根本不是一回事？**
 - 选题类型：惊奇 / 判断
@@ -623,7 +601,7 @@
 - Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
-## H028 — AI 长文总结
+## H027 — AI 长文总结
 
 - 最终选题：**一篇长文压成十句话后明明每句都没错，为什么意思还是可能变了？**
 - 选题类型：判断 / 机制
@@ -645,29 +623,7 @@
 
 ---
 
-## H029 — 稍后阅读
-
-- 最终选题：**稍后阅读越存越多，为什么真正读完的反而越来越少？**
-- 选题类型：反思 / 体验
-- Entry：HUMAN_WORLD_FIRST
-- X：阅读 / 信息管理
-- Human Process：收藏 / 阅读
-- Human Problem：一键保存把“以后再看”的成本降到几乎为零，但真正阅读仍需要未来的一段完整时间和主动选择
-- 反常：收藏夹越来越像知识宝库，实际打开率却一路下降
-- Human Tension：保存便利 vs 阅读承诺
-- Controlling Question：把一篇文章成功保存下来，为什么这么容易被大脑误当成已经处理了它？
-- 科技改变的过程：稍后阅读工具把捕获信息与消费信息拆成两个动作，前者几乎无成本，后者仍占用真实注意力
-- 主机制：降低收集成本会扩大待处理队列，但不会同步增加未来的阅读时间
-- Audience Payoff：理解“保存”只是把决定推迟，而不是完成阅读
-- Meaning Fingerprint：`CAPTURE_EASE_VS_CONSUMPTION_COMMITMENT`
-- Motif：看到好文章马上收藏 → 数量快速破百 → 真想找时间读时发现队列比时间增长得更快
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H030 — AI 引用来源
+## H028 — AI 引用来源
 
 - 最终选题：**AI 回答后面明明列了出处，为什么点开出处还是可能找不到它刚才那句话？**
 - 选题类型：机制 / 判断
@@ -689,7 +645,7 @@
 
 ---
 
-## H031 — 软件改版
+## H029 — 软件改版
 
 - 最终选题：**软件每次更新都说更好用，为什么一个按钮挪位置就能让老用户难受好几天？**
 - 选题类型：趋势 / 体验
@@ -711,7 +667,7 @@
 
 ---
 
-## H032 — 买完还被追投广告
+## H030 — 买完还被追投广告
 
 - 最终选题：**东西都买完了，为什么同一件商品的广告还要追着你跑几天？**
 - 选题类型：体验 / 惊奇
@@ -733,7 +689,7 @@
 
 ---
 
-## H033 — 数字票根
+## H031 — 数字票根
 
 - 最终选题：**演唱会门票都进了手机以后，为什么结束后反而少了一样能留下来的东西？**
 - 选题类型：体验 / 反思
@@ -754,7 +710,7 @@
 - Status：CANDIDATE / EVIDENCE_PENDING
 ---
 
-## H034 — 搜索自动补全
+## H032 — 搜索自动补全
 
 - 最终选题：**你本来只想搜一个词，为什么搜索框给出的几个补全就可能把问题带到另一个方向？**
 - 选题类型：机制 / 探索
@@ -776,29 +732,7 @@
 
 ---
 
-## H035 — 搜索结果第一名
-
-- 最终选题：**搜索结果排在第一条，为什么不等于它就是最正确的答案？**
-- 选题类型：判断 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：搜索 / 信息判断
-- Human Process：搜索 / 选择来源
-- Human Problem：用户容易把排序位置当成真伪排名，但搜索系统首先是在估计与查询的相关性和可用性
-- 反常：排在最上面的结果最显眼，却不天然拥有最高事实可信度
-- Human Tension：可见排名 vs 事实可靠性
-- Controlling Question：“最先被找到”和“最值得相信”到底是不是同一件事？
-- 科技改变的过程：搜索排序会综合相关性、质量、时效等多类信号，但排序目标不等于逐条完成事实裁决
-- 主机制：排名靠前是检索系统的排序结果，不是对每个主张真实性的自动认证
-- Audience Payoff：学会把“容易找到”与“已经证实”分开判断
-- Meaning Fingerprint：`RANK_POSITION_VS_TRUTH_RELIABILITY`
-- Motif：搜一个争议问题 → 直接相信第一条 → 打开多个来源后发现结论并不一致
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H036 — 评论区热门排序
+## H033 — 评论区热门排序
 
 - 最终选题：**同一个评论区改成“热门优先”以后，为什么你看到的争论会像换了一场？**
 - 选题类型：体验 / 机制
@@ -820,29 +754,7 @@
 
 ---
 
-## H037 — 一次观看带偏推荐
-
-- 最终选题：**只把账号借给朋友看了一晚，为什么接下来几天推荐都像换了一个人？**
-- 选题类型：惊奇 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：推荐 / 视频
-- Human Process：观看 / 获得推荐
-- Human Problem：系统只能观察账号上的行为信号，无法天然知道某次观看来自本人还是临时使用者
-- 反常：朋友只看了一晚，本人的首页却可能连续出现陌生内容
-- Human Tension：近期行为 vs 稳定偏好
-- Controlling Question：推荐系统看到的是一次行为，怎么知道它代表“你变了”还是“别人借用了账号”？
-- 科技改变的过程：推荐会根据近期交互更新对兴趣的估计，而单次异常行为也可能暂时改变候选内容分布
-- 主机制：账号行为是偏好的证据，但不天然等于单一稳定身份的真实意图
-- Audience Payoff：理解推荐系统为何会被临时行为带偏，也理解账号行为记录本身的局限
-- Meaning Fingerprint：`RECENT_BEHAVIOR_VS_STABLE_PREFERENCE`
-- Motif：朋友借账号追一部剧 → 第二天首页全是同类 → 主角不断点“不感兴趣”恢复自己的首页
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H038 — 家庭共用账号
+## H034 — 家庭共用账号
 
 - 最终选题：**一家人共用一个视频账号明明更省事，为什么推荐页最后谁都觉得“不像自己”？**
 - 选题类型：体验 / 判断
@@ -864,7 +776,7 @@
 
 ---
 
-## H039 — 照片回忆推送
+## H035 — 照片回忆推送
 
 - 最终选题：**相册明明是在帮你回忆，为什么有些“那年今日”反而会让人想立刻关掉？**
 - 选题类型：判断 / 体验
@@ -886,51 +798,7 @@
 
 ---
 
-## H040 — 消失消息
-
-- 最终选题：**消息设置成 24 小时后消失，为什么它还是不能保证真的“没有留下来”？**
-- 选题类型：实用 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：聊天 / 隐私
-- Human Process：发送临时内容 / 控制留存
-- Human Problem：平台可以控制自己界面里的后续可见状态，却无法完全控制接收者已经看到、截图、复制或转存的内容
-- 反常：聊天记录自动消失了，但信息本身可能早已存在于别的地方
-- Human Tension：平台留存 vs 接收者复制
-- Controlling Question：“系统以后不显示”与“对方没有留下副本”中间差了什么？
-- 科技改变的过程：临时消息改变平台内的保存周期，但接收后的复制、截图和人工记录发生在另一个控制边界
-- 主机制：发送者能控制平台中的一部分生命周期，不能保证逆转所有已经发生的复制
-- Audience Payoff：理解临时消息降低的是默认留存，而不是赋予信息绝对可撤回性
-- Meaning Fingerprint：`EPHEMERAL_DISPLAY_VS_RECIPIENT_COPY`
-- Motif：发一张临时照片 → 倒计时结束聊天里消失 → 对方却发来此前保存的截图
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H041 — 定时发送消息
-
-- 最终选题：**生日祝福设成零点自动发送了，为什么准时不一定让人觉得更用心？**
-- 选题类型：反思 / 体验
-- Entry：HUMAN_WORLD_FIRST
-- X：社交 / 自动化
-- Human Process：表达关心 / 维持关系
-- Human Problem：自动发送能把时间执行得非常准确，却把“此刻想起对方并主动行动”这一部分从发送时刻中拆开
-- 反常：消息比以前更准时，接收者感受到的在场感却未必同步增加
-- Human Tension：准时执行 vs 当下心意
-- Controlling Question：一条关心的信息，价值有多少来自文字本身，又有多少来自“你当时真的想起了我”？
-- 科技改变的过程：调度工具把内容准备与实际发送分离，使表达可以在无人当场操作时自动发生
-- 主机制：自动化可以保证时间，不会自动生成关系中的当下投入
-- Audience Payoff：看到社交自动化解决的是执行问题，不等于完整替代关系表达
-- Meaning Fingerprint：`PUNCTUAL_AUTOMATION_VS_PRESENT_INTENTION`
-- Motif：提前批量写好祝福 → 零点自动发出 → 对方秒回想聊天 → 主角其实正在睡觉
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H042 — 语音转文字
+## H036 — 语音转文字
 
 - 最终选题：**语音消息转成文字后明明一句没漏，为什么读起来还是像换了个人？**
 - 选题类型：体验 / 判断
@@ -952,7 +820,7 @@
 
 ---
 
-## H043 — AI 礼物推荐
+## H037 — AI 礼物推荐
 
 - 最终选题：**人工智能把礼物类型都猜对了，为什么你还是可能觉得“这不是我会送的东西”？**
 - 选题类型：判断 / 体验
@@ -974,29 +842,7 @@
 
 ---
 
-## H044 — AI 相册精选
-
-- 最终选题：**相册自动挑出的“最佳照片”为什么经常不是你最舍不得删的那张？**
-- 选题类型：判断 / 体验
-- Entry：HUMAN_WORLD_FIRST
-- X：AI / 照片
-- Human Process：挑照片 / 保存记忆
-- Human Problem：自动精选容易依据清晰度、表情、构图等可见特征判断照片质量，但个人珍惜的理由可能来自事件和关系
-- 反常：更清楚、更标准的一张被选为最佳，真正最有意义的一张却可能模糊或构图很差
-- Human Tension：技术质量 vs 个人意义
-- Controlling Question：一张“好照片”的标准，究竟是拍得好，还是它替你留下了什么？
-- 科技改变的过程：自动照片评分可依赖视觉质量与主体信号，而私人意义通常需要额外的情境和关系信息
-- 主机制：视觉质量最优不等于记忆价值最高
-- Audience Payoff：把自动精选当成整理助手，而不是替人决定哪一张最值得留下
-- Meaning Fingerprint：`IMAGE_QUALITY_VS_PERSONAL_SIGNIFICANCE`
-- Motif：系统标星一张完美合照 → 主角却删不掉旁边那张晃糊的笑场瞬间
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H045 — AI 扩图
+## H038 — AI 扩图
 
 - 最终选题：**人工智能把照片外面补得天衣无缝，为什么那部分越真实越不能当成“原来就在那里”？**
 - 选题类型：惊奇 / 判断
@@ -1018,7 +864,7 @@
 
 ---
 
-## H046 — AI 代码补全
+## H039 — AI 代码补全
 
 - 最终选题：**人工智能把一段代码补得能跑了，为什么你下一次改它时反而可能更不敢动？**
 - 选题类型：判断 / 体验
@@ -1040,7 +886,7 @@
 
 ---
 
-## H047 — AI 会议行动项
+## H040 — AI 会议行动项
 
 - 最终选题：**会议结束后人工智能把行动项列得清清楚楚，为什么事情还是可能没人做？**
 - 选题类型：判断 / 反思
@@ -1062,7 +908,7 @@
 
 ---
 
-## H048 — AI 客服转人工
+## H041 — AI 客服转人工
 
 - 最终选题：**机器人客服已经把问题总结给人工了，为什么你还是常常要从头再讲一遍？**
 - 选题类型：体验 / 机制
@@ -1084,7 +930,7 @@
 
 ---
 
-## H049 — AI 拆任务
+## H042 — AI 拆任务
 
 - 最终选题：**人工智能把大目标拆成二十个小步骤后，为什么你还是可能不知道先做哪一个？**
 - 选题类型：实用 / 判断
@@ -1106,7 +952,7 @@
 
 ---
 
-## H050 — 个性化 AI 搜索
+## H043 — 个性化 AI 搜索
 
 - 最终选题：**同一个问题两个人问人工智能，为什么得到的“最佳答案”可能越来越不一样？**
 - 选题类型：探索 / 判断
@@ -1128,51 +974,7 @@
 
 ---
 
-## H051 — AI 简历匹配分
-
-- 最终选题：**简历匹配度显示 95%，为什么投出去还是可能连面试都没有？**
-- 选题类型：判断 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：AI / 求职
-- Human Process：投简历 / 判断匹配
-- Human Problem：匹配分通常只能依据可读取的职位描述与简历信号估计文本或条件匹配，而真实招聘还包含竞争、经验质量与组织判断
-- 反常：数字看起来接近满分，本应像“非常适合”，现实结果却可能完全不同
-- Human Tension：文本匹配 vs 招聘结果
-- Controlling Question：一个高匹配分到底证明了什么，又有哪些东西它根本没看到？
-- 科技改变的过程：自动匹配把职位要求和候选资料中的可提取信号转成相似度或规则判断，但并不等价于最终录用决策
-- 主机制：代理匹配分只能覆盖它输入和目标中定义的部分条件
-- Audience Payoff：把匹配分当成筛选线索，而不是对录用概率的承诺
-- Meaning Fingerprint：`PROFILE_MATCH_SCORE_VS_HIRING_OUTCOME`
-- Motif：页面显示 95% 匹配 → 主角满怀信心投递 → 石沉大海 → 回看数字其实只覆盖简历文本条件
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H052 — AI 图片描述
-
-- 最终选题：**人工智能把照片里的东西全说对了，为什么还是可能没说到这张照片真正重要的地方？**
-- 选题类型：体验 / 判断
-- Entry：HUMAN_WORLD_FIRST
-- X：AI / 图像理解
-- Human Process：看照片 / 理解事件
-- Human Problem：模型可以识别人、物、动作和场景，却未必知道照片对拍摄者意味着什么
-- 反常：画面内容描述完全正确，却可能漏掉“这是最后一次全家合照”这种决定意义的上下文
-- Human Tension：可见语义 vs 生活意义
-- Controlling Question：看懂一张图片里的东西，和理解这张图片为什么重要，是不是同一件事？
-- 科技改变的过程：图像模型主要从可见像素与训练语义中推断内容，私人历史与关系上下文通常不在图像本身
-- 主机制：视觉内容识别不能自动获得照片背后的私人事件意义
-- Audience Payoff：理解图像 AI 很会描述“看见什么”，但不一定知道“为什么重要”
-- Meaning Fingerprint：`VISIBLE_SEMANTICS_VS_LIVED_CONTEXT`
-- Motif：AI 准确描述五个人站在门前 → 家人却说最重要的是那是搬家前最后一晚
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H053 — AI 表格公式
+## H044 — AI 表格公式
 
 - 最终选题：**人工智能写的表格公式拿三个例子都算对了，为什么正式数据一导入就可能出错？**
 - 选题类型：实用 / 机制
@@ -1194,51 +996,7 @@
 
 ---
 
-## H054 — 待办完成数
-
-- 最终选题：**待办软件里一天勾掉十件事，为什么晚上还是会觉得最重要的事没推进？**
-- 选题类型：反思 / 判断
-- Entry：HUMAN_WORLD_FIRST
-- X：生产力 / 待办
-- Human Process：安排工作 / 判断进展
-- Human Problem：软件很容易记录任务是否完成，却不会自动让“完成数量”与真实目标的重要程度一致
-- 反常：完成项越来越多，本应更有成就感，关键项目却可能一直停在原地
-- Human Tension：可计数完成 vs 重要进展
-- Controlling Question：我们追踪的是“做完多少”，还是“真正推进了什么”？
-- 科技改变的过程：待办系统天然把不同大小和价值的事项都表示为可勾选条目，使数量非常显眼
-- 主机制：可计数的完成状态不是目标价值的统一尺度
-- Audience Payoff：理解任务工具记录执行状态，不应让条目数量替代对重要性的判断
-- Meaning Fingerprint：`TASK_COUNT_VS_MEANINGFUL_PROGRESS`
-- Motif：上午连续勾掉十个小任务 → 列表很漂亮 → 晚上发现唯一真正重要的报告一页没写
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H055 — 已解决评论
-
-- 最终选题：**协作文档里的评论都点了“已解决”，为什么团队的分歧可能一点都没解决？**
-- 选题类型：判断 / 体验
-- Entry：HUMAN_WORLD_FIRST
-- X：协作 / 文档
-- Human Process：讨论 / 达成共识
-- Human Problem：界面上的“解决评论”表示一个讨论线程被关闭或隐藏，不等于参与者已经改变观点或接受决定
-- 反常：页面变得干干净净，本应代表问题处理完，却可能只是把对话收了起来
-- Human Tension：界面关闭 vs 社会共识
-- Controlling Question：一个讨论在软件里结束，什么时候才算在人之间真正结束？
-- 科技改变的过程：协作工具提供线程状态管理，但共识、责任与异议是否消失仍由团队互动决定
-- 主机制：工作流状态可以记录处理动作，不能自动证明真实分歧已解决
-- Audience Payoff：避免把干净的文档界面误当成已经达成共识
-- Meaning Fingerprint：`THREAD_RESOLUTION_VS_HUMAN_CONSENSUS`
-- Motif：最后一条异议被点“解决” → 文档零评论 → 开会时同一个分歧再次爆发
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H056 — 团队聊天搜索
+## H045 — 团队聊天搜索
 
 - 最终选题：**聊天记录十年前都能搜出来，为什么搜到一句旧决定反而可能更危险？**
 - 选题类型：判断 / 机制
@@ -1260,29 +1018,7 @@
 
 ---
 
-## H057 — 专注模式
-
-- 最终选题：**手机已经开了专注模式，为什么你还是会自己点开最想戒掉的那个 App？**
-- 选题类型：实用 / 判断
-- Entry：HUMAN_WORLD_FIRST
-- X：手机 / 注意力
-- Human Process：专注 / 控制干扰
-- Human Problem：专注模式主要减少外部通知和入口干扰，却不能阻止用户主动寻求刺激或习惯性打开应用
-- 反常：通知都安静了，本应更容易专心，人却可能在没有任何提醒时自己离开当前任务
-- Human Tension：外部打断 vs 主动分心
-- Controlling Question：把别人叫你的声音关掉以后，为什么注意力还是会自己跑掉？
-- 科技改变的过程：系统可以屏蔽部分外部触发，但自发查看、习惯动作和内部冲动来自另一条行为路径
-- 主机制：降低外部干扰不等于消除所有分心来源
-- Audience Payoff：用专注模式时区分“被打断”和“主动逃离任务”这两类问题
-- Meaning Fingerprint：`EXTERNAL_INTERRUPTION_VS_SELF_INITIATED_DISTRACTION`
-- Motif：手机一整小时零通知 → 主角写到难处 → 手还是自动滑到短视频 App
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H058 — 自动会议排期
+## H046 — 自动会议排期
 
 - 最终选题：**排期工具明明找到了“所有人都有空”的时间，为什么还是可能对其中一个人特别不公平？**
 - 选题类型：判断 / 探索
@@ -1304,29 +1040,7 @@
 
 ---
 
-## H059 — 撤销发送邮件
-
-- 最终选题：**邮件点了“撤销发送”，为什么它很多时候其实不是把已经到对方邮箱的信抓回来？**
-- 选题类型：惊奇 / 实用
-- Entry：HUMAN_WORLD_FIRST
-- X：邮件 / 沟通
-- Human Process：发送邮件 / 后悔
-- Human Problem：部分邮件服务的“撤销发送”依赖发送前保留短暂延迟，而不是跨系统逆转一封已经完成投递的邮件
-- 反常：按钮叫“撤销”，用户容易理解成真正追回，实际可能只是取消尚未发出的延时任务
-- Human Tension：撤销窗口 vs 真正召回
-- Controlling Question：这个按钮到底是在撤回已经发生的发送，还是在最后几秒阻止发送发生？
-- 科技改变的过程：客户端或服务端可以设置短暂发送延迟，在倒计时内取消；一旦跨系统投递完成，控制边界就发生变化
-- 主机制：延迟发送提供后悔窗口，不等于普遍拥有跨邮箱召回能力
-- Audience Payoff：理解“撤销发送”的真实边界，避免把短暂缓冲误解成无限后悔权
-- Meaning Fingerprint：`SEND_DELAY_VS_TRUE_RECALL`
-- Motif：手滑发错收件人 → 秒点撤销成功 → 主角以为邮件被追回 → 发现其实它根本还没真正发出
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H060 — 一键结账
+## H047 — 一键结账
 
 - 最终选题：**购物网站把付款做到只剩一次点击，为什么你反而更容易在“还没想好”时就买下去？**
 - 选题类型：反思 / 判断
@@ -1348,29 +1062,7 @@
 
 ---
 
-## H061 — 最低价排序
-
-- 最终选题：**商品已经按“价格从低到高”排好了，为什么第一名到付款时反而可能不是最便宜？**
-- 选题类型：实用 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：电商 / 比价
-- Human Process：比较价格 / 下单
-- Human Problem：列表排序常基于页面定义的商品价格字段，而运费、税费、服务费或规格差异可能在后续才进入总成本
-- 反常：第一名看起来最便宜，本应最省钱，结账总额却可能被其他成本反超
-- Human Tension：展示价格 vs 完整成本
-- Controlling Question：一个商品被排成“最便宜”，系统到底比较了哪一个数字？
-- 科技改变的过程：排序只能对被纳入排序字段的价格进行比较；未包含的费用和规格会在其他阶段改变最终支出
-- 主机制：排序最低的展示价不等于最低的完整成交成本
-- Audience Payoff：比价时继续检查排序字段、规格和结账总价
-- Meaning Fingerprint：`DISPLAY_PRICE_VS_TOTAL_CHECKOUT_COST`
-- Motif：按最低价排序 → 点第一家 → 结账加上运费服务费 → 回头发现第二家总价更低
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H062 — 尺码推荐
+## H048 — 尺码推荐
 
 - 最终选题：**软件说你“最适合 M 码”，为什么同一个人还是可能在两件衣服上一个要 S、一个要 L？**
 - 选题类型：实用 / 判断
@@ -1392,7 +1084,7 @@
 
 ---
 
-## H063 — 生鲜替换商品
+## H049 — 生鲜替换商品
 
 - 最终选题：**买菜 App 把缺货牛奶自动换成“同类商品”，为什么你拿到手才发现这根本不是你要的？**
 - 选题类型：判断 / 体验
@@ -1414,29 +1106,7 @@
 
 ---
 
-## H064 — 多人扫码点餐
-
-- 最终选题：**一桌人都能用手机同时加菜，为什么点餐更快了以后反而更容易点超？**
-- 选题类型：体验 / 反思
-- Entry：HUMAN_WORLD_FIRST
-- X：餐饮 / 数字点餐
-- Human Process：共同点餐 / 控制总量
-- Human Problem：并行扫码让每个人都能低摩擦地独立下单，却会削弱原来由一个菜单、一位点单者形成的共享总量感
-- 反常：每个人点得都不多，最后整桌菜却远超预期
-- Human Tension：并行便利 vs 共享总量感
-- Controlling Question：当每个人只看见自己的“再加一道”，谁在看整桌已经点了多少？
-- 科技改变的过程：多人并行点餐把选择拆散到多个设备，降低等待和协调成本，也减少所有选择集中呈现的自然节点
-- 主机制：局部低摩擦选择可能削弱群体对整体订单的共同感知
-- Audience Payoff：理解并行点餐提高速度时，也需要新的总量反馈与协调
-- Meaning Fingerprint：`PARALLEL_ORDERING_VS_SHARED_SPEND_AWARENESS`
-- Motif：四个人各自在手机加两道 → 都觉得没多少 → 服务员开始上菜才发现桌子放不下
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H065 — 银行卡预授权
+## H050 — 银行卡预授权
 
 - 最终选题：**订单明明取消了，银行卡里为什么还会有一笔钱像被“扣住”了一样？**
 - 选题类型：惊奇 / 实用
@@ -1458,95 +1128,7 @@
 
 ---
 
-## H066 — 可用余额
-
-- 最终选题：**账户明明显示有 5000 元，为什么转账时却可能告诉你“可用余额不足”？**
-- 选题类型：惊奇 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：银行 / 账户
-- Human Process：看余额 / 使用资金
-- Human Problem：账户展示的账面余额可能包含尚未可自由使用、被授权占用或仍在处理中的资金，而交易系统关心的是当前可用部分
-- 反常：看到的钱没有消失，本应都能花，真正付款时可用数字却更小
-- Human Tension：账面记录 vs 可用资金
-- Controlling Question：余额里的钱什么时候只是“记在账户上”，什么时候才是“现在能拿来用”？
-- 科技改变的过程：金融系统会分别维护账面状态与可用状态，以反映待处理交易、冻结或其他限制
-- 主机制：账户总额和即时可支配金额是两个不同状态
-- Audience Payoff：理解看余额时要区分记录金额与当前可用金额
-- Meaning Fingerprint：`LEDGER_BALANCE_VS_AVAILABLE_FUNDS`
-- Motif：看到余额 5000 → 想转 4800 → 系统拒绝 → 展开详情才发现一部分仍被占用
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H067 — 公交地铁延迟扣款
-
-- 最终选题：**地铁已经刷卡出站了，为什么银行卡通知可能过一阵子才跳出来？**
-- 选题类型：惊奇 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：交通 / 支付
-- Human Process：乘车 / 付款
-- Human Problem：交通系统需要优先保证高吞吐通行，刷卡记录、票价计算和金融扣款可以分阶段处理
-- 反常：人早已完成行程，本应付款也同步完成，银行通知却可能晚很多
-- Human Tension：即时通行 vs 后台结算
-- Controlling Question：闸机放你过去的那一刻，钱真的已经完成扣款了吗？
-- 科技改变的过程：交通支付可以先快速验证凭证并记录行程，再根据完整旅程、封顶规则或批处理完成后续计费结算
-- 主机制：通行确认与最终金融结算可以是两个时间不同的阶段
-- Audience Payoff：理解交通支付为何看起来是“一碰就付”，后台却可能继续处理
-- Meaning Fingerprint：`INSTANT_ACCESS_VS_DEFERRED_SETTLEMENT`
-- Motif：早高峰刷卡秒过 → 晚上才收到扣款通知 → 主角以为被重复收费又去翻乘车记录
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H068 — 自动优惠券
-
-- 最终选题：**购物软件明明自动帮你选了“最佳优惠”，为什么手动换一种券有时反而更便宜？**
-- 选题类型：实用 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：电商 / 优惠
-- Human Process：使用优惠 / 结账
-- Human Problem：优惠规则可能包含门槛、适用商品、互斥和叠加关系，“最佳”依赖系统定义的组合搜索和当前购物车状态
-- 反常：系统已经替你优化，本应无需再算，换一张券却可能出现不同总价
-- Human Tension：自动最优 vs 规则边界
-- Controlling Question：“最佳优惠”究竟是对所有可能组合求出的最好结果，还是系统允许范围里的最好结果？
-- 科技改变的过程：优惠引擎按照编码规则与可组合集合计算折扣；规则缺失、互斥条件或状态变化都会改变候选解
-- 主机制：自动优化只能在它实际建模并允许的规则空间里寻找最优
-- Audience Payoff：结账时把“已自动选择”当作结果提示，而不是永远正确的数学证明
-- Meaning Fingerprint：`AUTO_DISCOUNT_VS_RULE_SPACE`
-- Motif：系统提示已用最佳券 → 主角随手切另一种组合 → 总价又少了十几元
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H069 — 卖家总评分
-
-- 最终选题：**一家店总评分一直很高，为什么最近一个月的评价却可能更值得你看？**
-- 选题类型：判断 / 实用
-- Entry：HUMAN_WORLD_FIRST
-- X：电商 / 评价
-- Human Process：选商家 / 判断当前质量
-- Human Problem：长期平均会把过去大量表现与近期变化混在一起，老数据越多，近期变差或变好越不容易立刻显著改变总分
-- 反常：店铺仍显示 4.9，本应一直很好，最新评价却连续出现同一个问题
-- Human Tension：长期平均 vs 当前状态
-- Controlling Question：一个长期积累出来的高分，需要多少新的坏体验才会明显掉下来？
-- 科技改变的过程：聚合评分会把不同时间的评价压缩成长期指标；大样本历史会降低近期少量变化对总分的影响
-- 主机制：稳定的历史平均不一定最敏感地反映当前运营状态
-- Audience Payoff：看总分时同时检查近期趋势和重复出现的新问题
-- Meaning Fingerprint：`LIFETIME_RATING_VS_CURRENT_STATE`
-- Motif：看到 4.9 放心下单 → 翻到最新十条全在说同一故障 → 才发现高分主要来自过去几年
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H070 — 预计送达日期
+## H051 — 预计送达日期
 
 - 最终选题：**购物软件已经写着“周五送达”，为什么包裹甚至还没发货？**
 - 选题类型：机制 / 体验
@@ -1568,51 +1150,7 @@
 
 ---
 
-## H071 — 定期购
-
-- 最终选题：**订阅了“每月自动送一盒”，为什么最省心的那几个月之后家里反而开始越囤越多？**
-- 选题类型：判断 / 反思
-- Entry：HUMAN_WORLD_FIRST
-- X：订阅 / 消费
-- Human Process：补货 / 使用商品
-- Human Problem：固定周期自动补货假设消耗速度相对稳定，但真实生活中的使用量会变化
-- 反常：自动补货本应避免忘记购买，需求一变，便利机制却会继续按旧节奏送货
-- Human Tension：稳定自动化 vs 需求变化
-- Controlling Question：一个月前设置的“刚刚好”，为什么会在生活变化后变成过量？
-- 科技改变的过程：定期购把过去设定的数量和周期持续执行，除非用户主动修改或系统获得新的需求信号
-- 主机制：规则自动化擅长稳定重复，不会自动知道需求已经改变
-- Audience Payoff：定期检查自动补货是否仍匹配真实消耗，而不是把订阅当永久最优设置
-- Meaning Fingerprint：`FIXED_REPLENISHMENT_VS_CHANGING_DEMAND`
-- Motif：前几个月每次刚好用完 → 出差一个月后仍照常送 → 柜子里开始堆出三盒
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H072 — 电商“最佳匹配”
-
-- 最终选题：**搜索商品时默认的“最佳匹配”，为什么可能和你心里的“最好”完全不是一回事？**
-- 选题类型：判断 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：电商 / 搜索
-- Human Process：搜索商品 / 排序
-- Human Problem：平台需要同时考虑相关性、库存、履约、商业规则等多类信号，而用户心中的最好可能只关心价格、材质或某个细节
-- 反常：系统把某商品排第一，本应最符合需求，用户却可能一眼就排除它
-- Human Tension：平台排序目标 vs 个人标准
-- Controlling Question：“最佳匹配”是谁的最佳，又是按哪些目标算出来的？
-- 科技改变的过程：商品排序会在多个平台信号下估计候选价值，默认目标函数不可能等同每个用户临时的全部偏好
-- 主机制：平台优化目标与个人当次决策标准可能不同
-- Audience Payoff：把默认排序当作候选生成，而不是替自己完成最终价值判断
-- Meaning Fingerprint：`PLATFORM_RANKING_VS_PERSONAL_CRITERIA`
-- Motif：搜索同一关键词 → 第一名销量高配送快 → 主角却只在乎可拆洗，最终翻到很后面才找到
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H073 — 晒图评价
+## H052 — 晒图评价
 
 - 最终选题：**买东西时为什么一张“翻车晒图”比一千条好评更容易改变你的决定？**
 - 选题类型：判断 / 体验
@@ -1634,7 +1172,7 @@
 
 ---
 
-## H074 — 随机播放
+## H053 — 随机播放
 
 - 最终选题：**音乐 App 明明开了随机播放，为什么你还是会觉得有几首歌总在出现？**
 - 选题类型：惊奇 / 机制
@@ -1656,51 +1194,7 @@
 
 ---
 
-## H075 — 共用流媒体档案
-
-- 最终选题：**和室友共用一个看片档案后，为什么连“继续观看”都开始变得不可信？**
-- 选题类型：体验 / 实用
-- Entry：HUMAN_WORLD_FIRST
-- X：流媒体 / 共享
-- Human Process：追剧 / 恢复进度
-- Human Problem：播放进度和观看历史通常绑定档案而不是现实中的具体观看者，多人共用会把不同人的状态写到同一个记录
-- 反常：系统本来是为了记住看到哪里，数据越完整，反而越不知道那是不是你的进度
-- Human Tension：状态记录 vs 使用者身份
-- Controlling Question：系统准确记录了“这个账号看到了第六集”，为什么仍然可能不知道你看到哪？
-- 科技改变的过程：进度功能把观看状态附着在账户或 profile；多人混用时，状态归属与人的身份分离
-- 主机制：正确的设备状态不等于正确的个人状态
-- Audience Payoff：共用服务时通过独立 profile 保持观看状态和推荐身份分开
-- Meaning Fingerprint：`PROFILE_STATE_VS_PERSONAL_STATE`
-- Motif：打开剧集发现已经播到第六集 → 主角以为自己失忆 → 室友说昨晚替你看完了
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H076 — 倍速播放
-
-- 最终选题：**视频开到 2 倍速以后确实看完得更快，为什么有些内容反而需要你反复倒回去？**
-- 选题类型：判断 / 实用
-- Entry：HUMAN_WORLD_FIRST
-- X：视频 / 学习
-- Human Process：观看 / 理解内容
-- Human Problem：倍速压缩播放时间，但复杂信息的处理、记笔记和建立关系并不会自动按同样比例加速
-- 反常：播放器节省了一半时间，本应效率翻倍，遇到密集内容却不断回退
-- Human Tension：播放速度 vs 信息处理
-- Controlling Question：把声音播快一倍，人的理解过程也会自动快一倍吗？
-- 科技改变的过程：播放速度直接改变输入节奏，而理解负荷取决于内容密度、熟悉程度和需要的加工深度
-- 主机制：减少播放时间与减少完整理解所需时间不是同一个目标
-- Audience Payoff：按内容复杂度选择倍速，而不是把更快播放等同于更高学习效率
-- Meaning Fingerprint：`PLAYBACK_SPEED_VS_PROCESSING_LOAD`
-- Motif：轻松访谈 2 倍速很顺 → 切到公式讲解仍保持 2 倍 → 十秒内连退三次
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H077 — 个性化影视封面
+## H054 — 个性化影视封面
 
 - 最终选题：**同一部剧为什么你和朋友看到的封面都不一样，甚至会以为它们不是同一种故事？**
 - 选题类型：惊奇 / 体验
@@ -1722,29 +1216,7 @@
 
 ---
 
-## H078 — 协作歌单
-
-- 最终选题：**朋友一起做歌单明明是为了照顾所有人，为什么最后最容易只剩大家都“不讨厌”的歌？**
-- 选题类型：探索 / 体验
-- Entry：HUMAN_WORLD_FIRST
-- X：音乐 / 社交
-- Human Process：共同选歌 / 聚会
-- Human Problem：群体共同编辑或投票会提高广泛可接受歌曲的生存机会，而少数人的强烈偏好更容易被平均掉
-- 反常：参与的人越多，本应歌单越丰富，最后反而可能变得越来越安全和平淡
-- Human Tension：广泛接受 vs 个体偏爱
-- Controlling Question：一个所有人都能接受的歌单，为什么可能没有任何一个人真正最喜欢？
-- 科技改变的过程：群体聚合机制倾向提升跨成员共同接受的选项，而强烈但小众的偏好难以成为共识结果
-- 主机制：群体最少冲突的选择不等于任何个体的最高偏好
-- Audience Payoff：理解协作推荐需要在共识和保留成员个性之间做取舍
-- Meaning Fingerprint：`CONSENSUS_ACCEPTANCE_VS_INDIVIDUAL_FAVORITES`
-- Motif：五个人各加最爱 → 不断有人跳歌 → 最后留下的全是没人反对但也没人兴奋的歌
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H079 — 游戏动态难度
+## H055 — 游戏动态难度
 
 - 最终选题：**游戏会根据你的表现悄悄调难度时，为什么你变强以后反而不一定感觉自己更强？**
 - 选题类型：判断 / 机制
@@ -1766,95 +1238,7 @@
 
 ---
 
-## H080 — 在线游戏更新
-
-- 最终选题：**你明明已经把一套打法练熟了，为什么一次游戏更新就能让“经验”突然变得不可靠？**
-- 选题类型：趋势 / 体验
-- Entry：HUMAN_WORLD_FIRST
-- X：游戏 / 软件更新
-- Human Process：练习 / 建立策略
-- Human Problem：在线游戏的规则、数值和角色能力可以持续更新，玩家积累的经验建立在一个会变化的环境上
-- 反常：练得越熟本应越稳定，一次补丁却可能让过去正确的判断变成错误
-- Human Tension：熟练经验 vs 可变规则
-- Controlling Question：当游戏世界本身会更新，所谓“练会了”到底能稳定多久？
-- 科技改变的过程：持续运营软件可以远程修改规则与平衡参数，使用户经验所依赖的环境版本发生变化
-- 主机制：经验的有效性依赖环境规则是否保持稳定
-- Audience Payoff：看到数字产品里的熟练度不仅属于玩家，也依赖产品版本
-- Meaning Fingerprint：`LEARNED_STRATEGY_VS_MUTABLE_RULES`
-- Motif：苦练一个月连招 → 更新后伤害和冷却改变 → 第一局按旧节奏操作全盘失灵
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H081 — 继续观看
-
-- 最终选题：**视频平台说你“看到第 8 集”，为什么有时候它记录得非常准确，你却完全不知道第 8 集讲了什么？**
-- 选题类型：体验 / 惊奇
-- Entry：HUMAN_WORLD_FIRST
-- X：流媒体 / 行为记录
-- Human Process：观看 / 恢复进度
-- Human Problem：播放器能准确记录视频播放到了哪里，却不知道用户当时是否睡着、离开或真正注意了内容
-- 反常：系统状态完全正确，本应代表观看进度，人的真实理解却可能早已停在前面
-- Human Tension：播放状态 vs 注意状态
-- Controlling Question：播放条走到哪里，什么时候才真的等于你看到了哪里？
-- 科技改变的过程：播放进度记录的是设备播放状态，而人是否在场、清醒和注意属于另一类不可直接等同的状态
-- 主机制：设备完成播放不能自动证明用户完成观看
-- Audience Payoff：把继续观看进度视为播放器状态，不把它误当成自己的理解记忆
-- Meaning Fingerprint：`PLAYBACK_STATE_VS_ATTENTIVE_VIEWING`
-- Motif：半夜睡着 → 剧集自动播完三集 → 第二天平台精准从第八集续播 → 主角一脸茫然
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H082 — 播客智能去空白
-
-- 最终选题：**播客把所有停顿都自动剪短后明明更省时间，为什么有些人说听起来反而更累？**
-- 选题类型：判断 / 体验
-- Entry：HUMAN_WORLD_FIRST
-- X：播客 / 音频处理
-- Human Process：听谈话 / 感受节奏
-- Human Problem：智能去空白可以压缩无语音区间，但停顿也承担换气、思考、情绪和话轮节奏
-- 反常：内容一个字没删，本应只是更紧凑，长时间听却可能变得没有呼吸感
-- Human Tension：时间压缩 vs 对话节奏
-- Controlling Question：一段“没有内容”的停顿，真的什么作用都没有吗？
-- 科技改变的过程：音频处理通过检测静音区间压缩时间，但无法把所有停顿都视为毫无语义功能的冗余
-- 主机制：无声片段可能同时承担交流和认知节奏功能
-- Audience Payoff：根据内容类型判断是否需要去空白，而不是把所有沉默都当浪费
-- Meaning Fingerprint：`SILENCE_COMPRESSION_VS_CONVERSATIONAL_CADENCE`
-- Motif：打开智能省时 → 一小时播客缩短十分钟 → 主角听到后半段开始觉得每句话都在追着下一句
-- Content Job：TRUST
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H083 — 人体感应灯
-
-- 最终选题：**人明明还坐在房间里，为什么感应灯会突然把你当成“没人”然后熄掉？**
-- 选题类型：惊奇 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：智能家居 / 传感器
-- Human Process：判断有人 / 自动照明
-- Human Problem：常见运动传感器更容易检测变化和移动，而安静坐着的人可能缺少足够触发信号
-- 反常：人真实存在，本应是最简单的事实，系统却会因为你太安静而判断错误
-- Human Tension：运动检测 vs 人员存在
-- Controlling Question：“有人在房间”和“传感器刚刚看见运动”为什么不是同一个状态？
-- 科技改变的过程：部分自动照明依赖运动或变化信号推断占用，持续静止时证据会减弱
-- 主机制：检测到运动可以支持有人，但长时间没检测到运动不能总是证明没人
-- Audience Payoff：理解传感器实际测量的信号，不把自动化判断当成系统真的“看见了人”
-- Meaning Fingerprint：`MOTION_SIGNAL_VS_PRESENCE_STATE`
-- Motif：主角坐着读书 → 灯突然灭 → 挥手亮起 → 五分钟后又灭 → 最后边看书边周期性举手
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H084 — 智能家居联动
+## H056 — 智能家居联动
 
 - 最终选题：**一个“回家模式”要同时开灯、开空调、拉窗帘，为什么功能越丰富反而越容易有一次没全成功？**
 - 选题类型：机制 / 判断
@@ -1876,73 +1260,7 @@
 
 ---
 
-## H085 — 语音助手选错房间
-
-- 最终选题：**你明明对着客厅音箱说话，为什么卧室那台有时反而先回答？**
-- 选题类型：惊奇 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：智能家居 / 语音
-- Human Process：语音控制 / 选择设备
-- Human Problem：多台设备都可能听见同一个唤醒词，系统还需要依据声音强度、网络时序和设备协同决定由谁响应
-- 反常：人离哪台最近看起来显而易见，本应由它回答，系统却可能做出不同选择
-- Human Tension：听见命令 vs 设备归属
-- Controlling Question：几台设备同时听见你说话时，谁有资格认领这句话？
-- 科技改变的过程：多设备语音环境需要先完成唤醒竞争与设备仲裁，再执行命令；麦克风和网络条件会影响判断
-- 主机制：理解语音内容只是第一步，还要解决“这句话是对哪台设备说的”
-- Audience Payoff：COMMAND_UNDERSTANDING_VS_DEVICE_CONTEXT
-- Meaning Fingerprint：`站在客厅喊关灯 → 卧室音箱说“好的” → 卧室灯灭了，客厅仍亮着`
-- Motif：DISCOVERY
-- Content Job：undefined
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H086 — 机器人地图过期
-
-- 最终选题：**扫地机器人明明把家里的地图记得很清楚，为什么挪一次家具后它反而可能更容易撞来撞去？**
-- 选题类型：判断 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：机器人 / 家庭
-- Human Process：导航 / 清扫
-- Human Problem：持久地图能提高重复环境中的效率，但当家具、门和障碍发生变化时，旧模型与现实会产生偏差
-- 反常：记忆越完整本应越会走，环境变化后过去的地图却可能暂时成为错误先验
-- Human Tension：稳定地图 vs 变化环境
-- Controlling Question：机器人最需要记住家里，还是最需要及时发现家里已经变了？
-- 科技改变的过程：自主导航结合历史地图与实时传感；环境变化要求系统检测差异并更新地图或局部规划
-- 主机制：历史模型能提高效率，也可能在世界变化时产生模型陈旧问题
-- Audience Payoff：理解智能机器人需要同时拥有记忆和纠错现实变化的能力
-- Meaning Fingerprint：`PERSISTENT_MAP_VS_CHANGING_ENVIRONMENT`
-- Motif：机器人熟练绕桌腿 → 主角把沙发横移半米 → 下一次清扫在旧路线附近反复试探
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H087 — 自动洗衣投放
-
-- 最终选题：**洗衣机都能自动决定放多少洗衣液了，为什么衣服特别脏的时候它还是可能猜不准？**
-- 选题类型：实用 / 判断
-- Entry：HUMAN_WORLD_FIRST
-- X：家电 / 自动化
-- Human Process：洗衣 / 投放洗涤剂
-- Human Problem：自动投放通常能依据负载、程序或有限传感信息估计用量，但衣物污渍种类和程度未必完全被系统观察到
-- 反常：机器比人更稳定地控制剂量，本应每次都刚好，特殊污渍却可能需要额外判断
-- Human Tension：可测负载 vs 隐藏污渍状态
-- Controlling Question：机器知道桶里有多少衣服，等不等于知道这些衣服有多脏？
-- 科技改变的过程：自动投放依据系统可获得的重量、程序或传感信号计算剂量，而未被观测的污渍状态可能影响真实需求
-- 主机制：自动化质量受限于它实际能观察到的状态变量
-- Audience Payoff：遇到特殊污渍时理解默认自动程序的输入边界，并保留人工调整
-- Meaning Fingerprint：`MEASURED_LOAD_VS_HIDDEN_SOILING`
-- Motif：日常衣服一直自动洗得很好 → 一件沾满泥的裤子放进去 → 主角第一次发现机器并不知道那块泥意味着什么
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H088 — 自动喂食器
+## H057 — 自动喂食器
 
 - 最终选题：**宠物自动喂食器每天准时出粮，为什么主人反而更需要知道它到底有没有真的吃？**
 - 选题类型：判断 / 体验
@@ -1964,51 +1282,7 @@
 
 ---
 
-## H089 — 自动窗帘
-
-- 最终选题：**智能窗帘按太阳位置自动开合，为什么“最省电”的状态可能正好是你最不喜欢的状态？**
-- 选题类型：判断 / 探索
-- Entry：HUMAN_WORLD_FIRST
-- X：智能家居 / 环境
-- Human Process：调光 / 使用房间
-- Human Problem：系统可以根据光照、温度或节能目标自动调节窗帘，但人还在乎景观、氛围和当下活动
-- 反常：自动化越来越聪明，本应更舒适，最佳能耗策略却可能挡住你想看的夕阳
-- Human Tension：资源优化 vs 主观体验
-- Controlling Question：一个房间的“最佳状态”到底只由温度和能耗决定吗？
-- 科技改变的过程：环境自动化根据被设定的传感指标和目标执行控制；未进入目标函数的体验偏好不会自动被优化
-- 主机制：技术最优取决于目标函数是否包含人真正关心的体验
-- Audience Payoff：设计自动化时明确哪些目标可自动优化，哪些时刻应把控制权还给人
-- Meaning Fingerprint：`ENERGY_OPTIMIZATION_VS_LIVED_PREFERENCE`
-- Motif：窗帘自动落下挡住西晒 → 空调更省电 → 主角却正准备坐下看每天最喜欢的落日
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H090 — 智能取件柜
-
-- 最终选题：**包裹明明已经属于你，为什么取件码过期以后柜门还是可以拒绝打开？**
-- 选题类型：惊奇 / 机制
-- Entry：HUMAN_WORLD_FIRST
-- X：物流 / 数字凭证
-- Human Process：取包裹 / 验证权限
-- Human Problem：物品所有权与当下访问柜门的数字凭证属于不同层级，取件系统可以让访问授权具有时间或状态限制
-- 反常：包裹是自己的，本应随时能拿，临时凭证失效却会让物理访问被系统拦住
-- Human Tension：所有权 vs 临时访问权
-- Controlling Question：“这个东西是我的”和“我现在有权限打开这个柜子”为什么不是同一件事？
-- 科技改变的过程：智能柜通过一次性码、账户状态或时间窗口控制柜门访问，凭证生命周期独立于物品归属
-- 主机制：对资产拥有权和对存储设施的当前访问授权是不同状态
-- Audience Payoff：理解数字凭证过期不代表所有权消失，但可能要求重新获得访问授权
-- Meaning Fingerprint：`OWNERSHIP_VS_TEMPORARY_ACCESS_CREDENTIAL`
-- Motif：收到取件码没去拿 → 第二天码失效 → 包裹仍显示本人所有 → 柜门却需要重新申请验证
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H091 — 电池百分比
+## H058 — 电池百分比
 
 - 最终选题：**手机同样剩 10% 电，为什么有时候能撑一小时，有时候十分钟就关机？**
 - 选题类型：惊奇 / 机制
@@ -2030,29 +1304,7 @@
 
 ---
 
-## H092 — 快充速度
-
-- 最终选题：**充电器写着 100W，为什么手机快充到后半段反而越来越慢？**
-- 选题类型：机制 / 惊奇
-- Entry：HUMAN_WORLD_FIRST
-- X：手机 / 充电
-- Human Process：充电 / 等待
-- Human Problem：标称功率通常表示特定条件下可达到的峰值，电池管理会随电量、温度和安全策略动态限制实际功率
-- 反常：越接近充满本应越快结束，充电速度却往往主动下降
-- Human Tension：峰值功率 vs 动态充电曲线
-- Controlling Question：一个写着 100W 的充电器，为什么不从 0% 到 100% 都一直以 100W 工作？
-- 科技改变的过程：充电协议与电池管理系统会根据荷电状态和温度调节电压电流，峰值功率只出现在部分区间
-- 主机制：峰值能力不等于整个过程持续维持峰值
-- Audience Payoff：理解快充参数应结合充电曲线和设备条件，而不是只看最大数字
-- Meaning Fingerprint：`PEAK_CHARGE_RATE_VS_DYNAMIC_CHARGING_CURVE`
-- Motif：前十分钟电量飞涨 → 80% 后数字开始慢慢爬 → 主角以为充电器坏了
-- Content Job：DISCOVERY
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H093 — 电动车续航
+## H059 — 电动车续航
 
 - 最终选题：**电动车仪表明明还有 300 公里续航，为什么一上高速数字掉得比路程还快？**
 - 选题类型：判断 / 机制
@@ -2074,29 +1326,7 @@
 
 ---
 
-## H094 — 充电桩功率
-
-- 最终选题：**充电桩上写着 250kW，为什么插上以后你的车可能只吃到 80kW？**
-- 选题类型：机制 / 实用
-- Entry：HUMAN_WORLD_FIRST
-- X：电动车 / 充电
-- Human Process：充电 / 判断速度
-- Human Problem：充电桩额定上限只是链路一端能力，车辆电池、温度、荷电状态和站点资源共同决定实时功率
-- 反常：桩标得很高，本应每台车都快，屏幕上的实际功率却可能远低于标称值
-- Human Tension：设备上限 vs 链路实际
-- Controlling Question：一次充电的速度到底由充电桩决定，还是由整条链路里最受限制的环节决定？
-- 科技改变的过程：车辆与充电设施会协商功率，实际值受双方能力和实时保护条件共同约束
-- 主机制：单个设备的最大能力不等于组合系统在此刻的实际输出
-- Audience Payoff：比较快充体验时看车辆兼容和实时条件，不只看桩体最大功率
-- Meaning Fingerprint：`RATED_POWER_VS_NEGOTIATED_OUTPUT`
-- Motif：看到 250kW 桩兴奋插枪 → 屏幕只显示 80 → 隔壁另一辆车却跑到 180
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H095 — 导航“已到达”
+## H060 — 导航“已到达”
 
 - 最终选题：**导航都说“已到达目的地”了，为什么你还可能要再找十分钟真正的入口？**
 - 选题类型：体验 / 判断
@@ -2118,7 +1348,7 @@
 
 ---
 
-## H096 — Wi‑Fi 满格
+## H061 — Wi‑Fi 满格
 
 - 最终选题：**Wi‑Fi 明明满格，为什么网页还是能慢到打不开？**
 - 选题类型：惊奇 / 机制
@@ -2140,29 +1370,7 @@
 
 ---
 
-## H097 — 蓝牙已连接却没声音
-
-- 最终选题：**耳机明明显示“已连接”，为什么声音还是可能从手机扬声器里出来？**
-- 选题类型：惊奇 / 实用
-- Entry：HUMAN_WORLD_FIRST
-- X：蓝牙 / 音频
-- Human Process：连接耳机 / 播放声音
-- Human Problem：设备建立蓝牙连接不等于所有音频类型都已经选择该设备作为当前输出路径，系统还要管理不同 profile 和音频路由
-- 反常：状态栏写着已连接，本应声音自然过去，播放键一按却从手机外放
-- Human Tension：连接状态 vs 音频路由
-- Controlling Question：两个设备已经认识并连上以后，谁决定这一段声音到底走哪条路？
-- 科技改变的过程：操作系统分别管理连接、支持的音频能力和当前输出路由，连接成功只是前置状态
-- 主机制：设备连接与具体媒体流的输出选择是不同状态
-- Audience Payoff：遇到“已连接无声音”时检查输出设备和音频 profile，而不是只反复重连
-- Meaning Fingerprint：`DEVICE_CONNECTION_VS_AUDIO_ROUTING`
-- Motif：蓝牙图标正常 → 地铁里点播放 → 手机突然外放 → 主角慌忙去切输出设备
-- Content Job：SOLUTION
-- Source / Signal：EVERGREEN_CASE；EVIDENCE_PENDING（正式 PASS 前必须补足可追溯来源）
-- Status：CANDIDATE / EVIDENCE_PENDING
-
----
-
-## H098 — 二维码链接
+## H062 — 二维码链接
 
 - 最终选题：**扫二维码比输入网址方便这么多，为什么它也让你更难在打开前知道自己要去哪里？**
 - 选题类型：实用 / 判断
@@ -2184,7 +1392,7 @@
 
 ---
 
-## H099 — 两步验证码钓鱼
+## H063 — 两步验证码钓鱼
 
 - 最终选题：**登录已经开了两步验证，为什么把验证码亲手输给假网站仍然可能出问题？**
 - 选题类型：实用 / 机制
@@ -2206,7 +1414,7 @@
 
 ---
 
-## H100 — 使用第三方账号登录
+## H064 — 使用第三方账号登录
 
 - 最终选题：**“使用 Google/Apple 登录”让你少记一个密码，为什么也会让一个账号变得比以前更重要？**
 - 选题类型：判断 / 机制
