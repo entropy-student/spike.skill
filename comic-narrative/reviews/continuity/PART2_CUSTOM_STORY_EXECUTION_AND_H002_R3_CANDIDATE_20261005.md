@@ -38,26 +38,30 @@ H003 / H004 冻结且不作参考；以下 8 题已按 Part 2 正式规则完成
 
 旧 X 库 Owner 认定版本仍为：`H002 R2`。
 
-本轮基于 H002 Part 2 定制重写，已重建并完成**第二次独立 REVIEW 修订**：
+本轮在多次中断后，不继承此前候选 PASS；先做文件身份核验，再从 ZIP 实际字节重新 REVIEW，最终形成：
 
-`H002_AI性格画像_Part4_最终图片执行包_READY_R3_CANDIDATE.zip`
+`H002_AI性格画像_Part4_最终图片执行包_READY_R3_CANDIDATE_V2.zip`
 
-状态：`PASS_CANDIDATE_FOR_OWNER_REVIEW_AFTER_SECOND_INDEPENDENT_REVIEW`；**尚未回填 X 部分**。
+状态：`PASS_CANDIDATE_V2_FOR_OWNER_REVIEW`；**尚未回填 X 部分**。
 
-### 二次 REVIEW 实际修正
+### 从零重新 REVIEW 实际发现与修正
 
-1. 修正 Part 2 锁稿里的过期状态文案：不再写“Part 3 及后续未复查”。
-2. 原 B03 同时承载“第一反应想去”与“第二反应这不像我”，违反单帧语义边界；已拆成两个独立 Visual Beat。
-3. 后置机制命名从约 25.766s、5 个 Beat 压缩为约 13.837s、3 个 Beat，只保留故事无法自行证明的必要边界。
-4. 重新执行 ZIP / Manifest / Cue / Beat / task / DAG / reference hash 独立 QA。
+1. 发现同名 R3 ZIP 与旧解压目录存在 62 Cue / 65 Cue 状态混淆；后续一律以 ZIP 实际字节为审查对象。
+2. 确认并保留 B03/B04 的独立静帧拆分：“想去”与“这不像我”不再塞进一张图。
+3. 机制桥保持 3 Cue / 3 Beat，并进一步附着在主角“回看旧材料 + 新经历”的动作上。
+4. 删除“下一次模型证据必然更强”的过强机制说法，改为“如果继续不尝试，下一次回头看仍没有新的反例记录”。
+5. 收紧发布包装：推荐标题改为“AI 太懂我，我差点拿它当理由拒掉一次想去的分享”；Hook 明确是主角自己想退缩，不把 AI 写成主动劝退者。
+6. 重算 Part 3 长 hold 参数，修正视觉策略里的陈旧平均值 / >6s 数量。
+7. 修正 ASSET_MANIFEST 中分享空间“B20建立”的陈旧注释为实际 B21。
+8. 最终独立 QA 重新验证 ZIP / Manifest / Part2↔SRT / Cue / Beat / task / DAG / DERIVE source / reference hash / 输出合同，全部 PASS。
 
-### H002 R2 → R3候选（二次 REVIEW）参数
+### H002 R2 → R3候选 V2 参数
 
-| 参数 | R2 | R3候选 |
+| 参数 | R2 | R3候选 V2 |
 |---|---:|---:|
 | 预估时长 | 3:48.000 | 3:14.831 |
 | SRT Cue | 75 | 62 |
-| 口播净字符 | 1372 | 821 |
+| 口播净字符（按SRT） | 1372 | 841 |
 | 功能空间 | 2 | 2 |
 | 剧情 Scene | 9 | 8 |
 | Semantic Shot | 9 | 9 |
@@ -71,33 +75,32 @@ H003 / H004 冻结且不作参考；以下 8 题已按 Part 2 正式规则完成
 | >8s Beat | 5 | 3 |
 | >10s Beat | 2 | 0 |
 
-### H002 R3候选二次独立 QA
+### H002 R3候选 V2 独立 QA
 
-- ZIP CRC / 文件列表：PASS
-- 总清单 size / SHA-256 独立重算：PASS
-- Part 2 锁稿 ↔ SRT 同源：PASS
+- ZIP CRC / 18 文件列表：PASS
+- 总清单 coverage / size / SHA-256 独立重算：PASS
+- Part 2 锁稿 ↔ SRT 逐字同源：PASS
 - SRT C1–C62 连续且无 gap / overlap：PASS
 - 41 Beat 连续覆盖 C1–C62，每 Cue 恰好一次：PASS
-- Beat ↔ 图片任务字段逐项一致：PASS
-- 依赖 earlier-only / 无环：PASS
-- 4 个 DERIVE_EDIT source earlier-only：PASS
+- Beat ↔ 图片任务 Scene / Shot / time / spoken 逐项一致：PASS
+- prerequisite 与 4 个 DERIVE_EDIT source earlier-only：PASS
 - packaged reference 3/3 hash：PASS
 - >6s Beat 人工复核：PASS；最长 B30=8.883s
 - Part 4.5：metadata prefilter 后无 surviving reusable full-frame candidate
 - Mini Master：NOT REQUIRED
 - 输出合同 / 并发2 / 16:9 / 1920×1080 / native target null：PASS
 - 禁止执行模式：PASS
-- 当前 ZIP SHA-256：`1d9c64328b37b292c876c246b2bff9a875190e6019e8cf66d86f062b20704e3b`
+- 当前 V2 ZIP SHA-256：`c06cff9585d6ccd2e513e974153a41f2524f3a91b9f19b285420fb1d8abbf98f`
 
 ### H002 事实复核
 
-- `Assessing personality using zero-shot generative AI scoring of brief open-ended text`：正式发表日期 **2026-01-30**；R3 候选已按官方记录修正。
+- `Assessing personality using zero-shot generative AI scoring of brief open-ended text`：正式发表日期 **2026-01-30**。
 - `Personality Trait Change in Adulthood`：`Current Directions in Psychological Science (2008)`。
-- 二次 REVIEW 进一步把正文机制句收紧为“AI 可以从语言材料里估计一些人格倾向”，避免把证据范围扩写成无边界的“长期行为读取”。
+- 正文继续区分 Big Five 研究与 MBTI 四字母标签，不把研究支持范围扩大为“标签能决定未来”。
 
 ## 5. 当前停止点
 
-- H002 R3候选：等待 Owner 查看 R2 vs R3 对比并决定是否回填 X 部分。
+- H002 R3候选 V2：等待 Owner 查看 R2 vs R3 V2 对比并决定是否回填 X 部分。
 - 在 Owner 明确确认前，不替换 X 库中的 H002 R2。
 - 不自动开始 H007 等其他题的 Part 3 / 素材包重建。
 - 不启动 live imagegen。
@@ -112,9 +115,9 @@ ChatGPT File Library：
 当前已保存：
 - `Part2_重写_R2.zip`
 - `PART2二次独立复查报告_R2.md`
-- `H002_AI性格画像_Part4_最终图片执行包_READY_R3_CANDIDATE.zip`
-- `H002_R2_vs_R3候选_完成前独立复查与参数对比.md`
-- `H002_R3_CANDIDATE_INDEPENDENT_QA.json`
+- `H002_AI性格画像_Part4_最终图片执行包_READY_R3_CANDIDATE_V2.zip`
+- `H002_R3候选V2_重新REVIEW与参数对比.md`
+- `H002_R3_CANDIDATE_V2_INDEPENDENT_QA.json`
 - `PART2_CUSTOM_STORY_EXECUTION_AND_H002_R3_CANDIDATE_20261005.md`
 
 该目录是本轮交接资料，不是 X部分 Owner认定执行包；H002 R3 在 Owner 批准前不得从这里自动升级为 X 库正式版本。
