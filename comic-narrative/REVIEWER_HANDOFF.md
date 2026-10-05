@@ -17,7 +17,7 @@
 
 ## PROJECT_STAGE
 
-`READY / OWNER_PAUSED_PRODUCTION_TARGET_SELECTION`
+`OWNER_REVIEW / H002_R3_CANDIDATE_PENDING_X_BACKFILL`
 
 当前状态：
 
@@ -25,7 +25,8 @@
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
 - H019 酒店价格 41 图生产 **DEFERRED_BY_OWNER**，当前不测试该剧本；
-- 当前无 Executor/live production 任务，等待 Owner 选择下一正式目标。
+- 当前无 live imagegen；H002 已生成 R3 素材包候选并完成独立 QA，等待 Owner 对比 R2 / R3 后决定是否回填 X 部分。
+- X 部分现有 H002 R2 在 Owner 明确认可 R3 前保持不变。
 ## SYSTEM_MAP
 
 ```text
@@ -169,6 +170,7 @@ Owner 于 2026-10-04 要求把本轮长对话整理进 `main`，用于下一 Rev
 
 - `reviews/continuity/OWNER_DISCUSSION_HANDOFF_20261004.md`
 - `reviews/continuity/MATERIAL_PACKAGE_FOUR_SUPPLEMENTAL_CHECKS_20261004.md`
+- `reviews/continuity/PART2_CUSTOM_STORY_EXECUTION_AND_H002_R3_CANDIDATE_20261005.md`
 
 发布标题 / Hook 调研已完成，Owner 已批准最小接入方案并正式写入 Part 2：Part 1 继续保留内部 WHY 题面，最终发布包装在 Part 2 剧本锁定后编译；**Part 1 未修改，也未引入标题公式库**。H001–H023 的发布标题已在对话中完成一轮候选复查，但未写入题库作为永久标题，因为最终发布标题仍应以对应 Part 2 锁稿后的真实故事为准。
 
@@ -179,7 +181,9 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 当前新增两点续接记录：
 
 - **机制标签与画面密度观察**：基于当前已完成并进入素材包库的 8 个样本，带“机制”标签的剧本（当前 H015 / H016 / H017）出现更长的平均单画面停留时长与更多长 hold；当前只记录为**小样本相关性信号**，不等同于“机制题必然稀疏”，也暂不修改 Part 1 / Part 3 正式规则。后续批量素材包继续积累样本后，再判断是否需要建立“机制型剧本视觉密度风险”检查。
-- **批量素材包生产状态**：当前正在持续批量制作素材包，并将 Owner 复查通过的最新版本填入仓库外的 **X部分｜Owner认定执行包** 素材包库。当前已收录 H002、H003、H004、H007、H010、H015、H016、H017 共 8 个题；X 部分仍不是 GitHub canonical 项目规则，不反向修改 Part 0–4.5。后续新素材包继续按“制作 → 完成前跨模块复查 → 二次复查 → Owner 认定后入 X 库”的流程追加。
+- **批量素材包生产状态**：仓库外 **X部分｜Owner认定执行包** 当前已收录 H002、H003、H004、H007、H010、H015、H016、H017、H024、H025 共 10 个题；X 部分仍不是 GitHub canonical 项目规则，不反向修改 Part 0–4.5。H002 R3 当前只是候选，尚未替换 X 库中的 H002 R2。
+- **Part 2 批量执行纠偏（Owner 2026-10-05）**：H003/H004 不再作为后续剧本参考样板；后续剧本只按当前 Part 2 正式规则逐篇定制。批量任务可共享规则、事实核验和 QA，但不得共享同一套开场、剧情骨架、转折或收束模板。每批完成后必须追加跨稿“同构检查”；若只是换题材套同一结构，应 RETURN 重写。此前 H015/H016/H017 等长讲解问题被确认主要属于执行与 Reviewer 漏检，而非 Part 2 缺少“演出来/防讲课”规则。
+- **Part 2 当前重写状态**：H003/H004 冻结且不作参考；H002、H007、H010、H015、H016、H017、H024、H025 已按 Part 2 正式规则完成定制 R2 重写与二次独立复查。当前只继续重建 H002 下游素材包，其余 7 题暂未进入新的 Part 2.5 / Part 3。
 
 ## UNRESOLVED
 
@@ -192,15 +196,16 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## NEXT_STEP
 
-Owner 从 H001–H100 中选择下一轮目标。
+当前下一步不是新选题，而是 Owner 审阅 H002 R2 vs R3 候选差异：
 
-- 若选择 H001–H023：`Part 2 剧本 → Part 2.5 配音/SRT → Part 3 分镜 → Part 4/4.5 图片执行包 → live imagegen`；
-- 若选择 H024–H100：先做 `事实证据 Gate → 最终 D1–D5 → PASS`，再进入同一生产链。
+- 若 Owner 接受 H002 R3：再替换 X 部分 H002 R2，并更新 X 库 INDEX / README / MANIFEST / 整库 ZIP；
+- 若 Owner 不接受：保留 X 库 H002 R2，根据具体反馈返回 Part 2 或对应下游模块；
+- 在 H002 决策前，不自动开始其余 7 篇重写稿的 Part 3 / 素材包重建；
+- 不启动 live imagegen。
 
-本轮不自动启动剧本、分镜或生图。
 ## OWNER_ACTION_REQUIRED
 
-- 从 H001–H100 中选择要继续的题即可；若选到 H024–H100，Reviewer 会先完成该题的证据 Gate。
+- 查看 H002 R2 vs R3候选参数与结构差异，决定是否回填 X 部分。
 ## EVIDENCE_POINTERS
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
