@@ -17,15 +17,15 @@
 
 ## PROJECT_STAGE
 
-`REVIEW_PENDING / H015_R3_CANDIDATE_BUILT`
+`TOPIC_LIBRARY_CURATED / NEXT_TARGET_SELECTION_PENDING`
 
 当前状态：
 
 - imagegen executor reliability 已正式封板；
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
-- H019 酒店价格 41 图生产 **DEFERRED_BY_OWNER**，当前不测试该剧本；
-- 当前无 live imagegen；H002 R3、H007 R3 均已正式回填 X 部分。H015 已完成新 R3 候选素材包**建立**，按 Owner 要求本轮未做独立 REVIEW、未回填 X 库；下轮先 REVIEW H015。
+- Owner 2026-10-05 完成题库裁剪：仅保留上一轮 A「优先推进」33 题；B「保留」与 C「建议淘汰」共 67 题已从当前 Part 0 库删除。删除只影响当前选题库存，不自动删除历史剧本、素材包、Review 或 X 库文件；
+- 当前无 live imagegen；H002 R3、H007 R3 既有正式回填保持不变。H015 已被本轮 Owner 题库裁剪移出当前库存，其 R2/R3 包仅保留为历史资产，不再继续 REVIEW、回填或生产。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
 
@@ -49,8 +49,8 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：正式基线已建立。Part 0 当前共有 **100 个 Case**：H001–H023 保留为已接受 PASS 基线；H024–H100 为扩展候选 `CANDIDATE / EVIDENCE_PENDING`。Owner 已授权直接调整后 80 题，本轮冻结 H001–H020，对 H021–H100 做类型配平，并重写 9 个过度机制化候选。当前按主类型统计：机制 20、判断 18、惊奇 15、实用 15、体验 10、反思 8、趋势 8、探索 6。
-- **Topic library**：H001–H100 均保留在 `part0/TOPIC_LIBRARY.md` 供历史去重与选题；其中 H001–H023 为 accepted PASS，H024–H100 为候选储备。候选必须先完成 Part 1 事实证据 Gate 与最终 D1–D5，再允许进入 Part 2；内部题面仍不自动等于最终发布标题。
+- **Part 0 / Part 1**：正式基线已建立。Owner 2026-10-05 将当前库存裁剪为 **33 个 Case**：11 个既有 `PASS`、22 个 `CANDIDATE / EVIDENCE_PENDING`。主类型统计：判断 10、机制 5、体验 5、惊奇 4、趋势 3、反思 3、实用 2、探索 1。Part 1 §6 已最小补充生产优先级：同等通过硬检查时，优先现实行动/后果更强、能以故事承载、知识增量更高且事实验证边界更清楚的题；该规则只影响优先级，不自动 RETURN。
+- **Topic library**：当前仅保留 33 个 Owner 确认的优先题。Case ID 作为稳定标识不因删题回收、重排或复用，避免破坏既有剧本、素材包、Review、X 库及历史证据引用；因此当前 H-ID 允许非连续。22 个候选仍必须先完成 Part 1 事实证据 Gate 与最终 D1–D5，再允许进入 Part 2。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
@@ -75,79 +75,81 @@ Part 6  执行与项目管理               [PENDING]
 
 ### GATE_ID
 
-H015_R3_CANDIDATE_BUILT_REVIEW_DEFERRED
+NEXT_TOPIC_SELECTION_PENDING
 
 ### OBJECTIVE
 
-记录 H015 R3 候选素材包已完成建立，但独立 REVIEW 由 Owner 明确延后到下一轮；在 REVIEW 前不回填 X 部分、不启动 live imagegen。
+承接 Owner 2026-10-05 的题库裁剪结果，保持 33 个优先题为当前唯一有效库存；在 Owner 选择下一制作目标前，不启动新的 Part 2 重写、素材包重建、X 库回填或 live imagegen。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
+- docs-only curation closeout；
 - no live imagegen；
-- H002 X-library backfill completed；
-- H007 X-library backfill completed；
-- no automatic live production；剩余 6 题继续逐篇重建并单独 Review；
-- no H019 production；
-- no cleanup rerun。
+- no X-library backfill；
+- no production package rebuild；
+- no historical asset deletion。
 
 ### MANDATORY_REVIEW_STOP
 
-`STOP_AT_OWNER_REVIEW=YES`
+`STOP_AT_OWNER_SELECTION=YES`
 
 ### TARGET_AND_SCOPE
 
-- Target：H015 天气预报 R3 candidate build；
-- Candidate ZIP SHA-256：`1092c900f70ce00c3442ecce6b5b4f07e120d5b9b652198e0c7ffd011de200ce`；
-- Current X-library accepted H015：仍为 R2；
-- Candidate build 参数：3:08.000 / 38 Cue / 4 functional spaces / 7 Scene / 7 Semantic Shot / 38 Beat / GENERATE 28 / DERIVE_EDIT 10；
-- Part 2.5 时间仍是 Owner 测试例外下的同源预估 SRT，不宣称正式真实音频对齐。
+- Part 1：仅补充 1 条“通过硬检查后的生产优先级”规则；
+- Part 0：仅保留上一轮 A「优先推进」33 题；
+- 删除 B + C 共 67 题；
+- 保留原 H-ID 作为稳定 Case identity，不回收、不重排；
+- 历史剧本、素材包、Review、X 库文件不因题库删除自动删除。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
-- H003/H004 不作为参考模板；H007 已只按当前 Part 2 / Part 3 / Part 4 / Part 4.5 正式规则完成重建与回填；
-- imagegen concurrency = 2；
-- no live imagegen；
-- H002 / H007 已接受并回填；后续其他题仍需各自完成 Owner 认定后才替换 X 库；
-- H019 = DEFERRED_BY_OWNER。
+- Owner 显式题库裁剪决定高于旧的 H015 / H019 / H010 / H016 / H017 / H025 生产计划；
+- 被移出当前题库的 Case 不得继续作为 active next target；
+- H002 / H007 既有 R3 accepted 资产保持可追溯；
+- 旧 H015 R2/R3、H019 archive 等仅作为历史资产保留，不继续 Review / backfill / production；
+- 原待重建列表中仅 H024 仍属于当前 33 题，但本 Gate 不自动启动其重建；
+- `PASS_CANDIDATE != PASS`；
+- no live imagegen。
 
 ### PREFLIGHT
 
-H007 已完成重新 REVIEW：
-- Part 2 删除无必要普遍化句，并明确“由主角主动让软件补选项”；
-- Part 3 修正 B17 / B23 / B26 / B38 / B41 的过程式静帧描述；
-- Part 4 修复 B04 / B26 execution_mode 已为 GENERATE、但 prompt 仍残留 DERIVE 指令的合同冲突；
-- 重新生成 source-aligned SRT / Beat 时间并重算长 hold；
-- ZIP / Manifest / Part2↔SRT / Cue / Beat / task / DAG / prompt-mode / reference hash 独立 QA 全部 PASS；
-- H003 / H004 未作为 H007 剧情模板。
+- Owner 已确认上一轮 A / B / C 分类，并明确要求保留 A、删除 B/C；
+- Part 0 / Part 1 在修改前均 fresh-read；
+- 已确认 H-ID 被下游资产与交接文档使用，因此采用稳定 ID 方案而不是机械重编号。
 
 ### REQUIRED_EVIDENCE
 
-- `reviews/continuity/PART2_CUSTOM_STORY_EXECUTION_AND_H002_R3_CANDIDATE_20261005.md`
-- ChatGPT File Library current handoff：`/comic-narrative_当前交接/2026-10-05_Part2定制重写与H002_R3候选/`
-- H007 X-library R3 ZIP SHA-256：`69bdb4787e52f04572d0fe07064fe31a174a60458053804cfa4d1bf55e3e68c9`
+- `part1/TOPIC_STRATEGY.md` current main；
+- `part0/TOPIC_LIBRARY.md` current main；
+- 本文件 current main fresh read-back。
 
 ### ACCEPTANCE_CRITERIA
 
-H015 本轮只完成素材包建立；未执行独立 REVIEW，因此当前没有 ACCEPTANCE 结论。下一轮必须先 REVIEW，只有 Owner 接受后才允许替换 X 部分 H015 R2。
+- Part 1 仅新增已获 Owner 同意的生产优先级句；
+- Part 0 当前恰好 33 个 Case；
+- 11 个 `PASS` + 22 个 `CANDIDATE / EVIDENCE_PENDING`；
+- 主类型统计 = 判断 10 / 机制 5 / 体验 5 / 惊奇 4 / 趋势 3 / 反思 3 / 实用 2 / 探索 1；
+- 上一轮 B/C 67 题不再出现在当前 Part 0 库；
+- 保留题原 H-ID 不变；
+- no imagegen / no X backfill / no production mutation。
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-无需运行态回滚；旧 H007 R2 已移出 X 当前层并保存在仓库外交接历史目录，可作为回滚基线。
+如 Owner 反悔，可通过本轮 Git commit 恢复 Part 0 / Part 1 / Reviewer handoff；本轮未删除历史素材资产，无运行态回滚需求。
 
 ### OWNER_ONLY_ACTIONS
 
-- H015 下一轮先做独立 REVIEW；当前无需 Owner 立即决定回填。
+- 下一步仅需 Owner 选择下一制作目标；在选择前不自动推进。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-当前没有生图 Executor 任务。不要调用 imagegen；H015 R3 candidate 仅为 BUILT 状态，下一轮先 REVIEW。
+当前没有 Executor 任务。不要调用 imagegen，不要继续 H015 Review，不要自动重建其他题。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
 ```text
-NONE — OWNER REVIEW GATE ONLY.
+NONE — OWNER NEXT-TOPIC SELECTION GATE.
 ```
-
 ## CRITICAL_CONSTRAINTS
 
 - `PASS_CANDIDATE != PASS`。
@@ -158,14 +160,13 @@ NONE — OWNER REVIEW GATE ONLY.
 - production output 必须使用 `outputs/<task_id>/<task_id>.png` nested destination。
 - 历史 `history/HANDOFF.md` 不作为 Reviewer / Executor 默认启动面。
 - `reviews/` 是正式 Review 证据，不等于当前待执行 Gate。
-- H019 当前暂停；未获得 Owner 新指令前不得启动其 41-task live production。
+- 已从当前题库删除的 Case（包括旧 H015 / H019 等）只保留历史资产；未经 Owner 新决定不得恢复为 active production target。
 
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`。
-- 当前状态：H002 R3、H007 R3 已正式回填 X 部分；H015 R3 candidate 已建立、等待下一轮 REVIEW；无 live Executor。
-- X 部分 H015 仍是 R2，未被候选包覆盖。
-- 下一动作：先 REVIEW H015 candidate；通过并由 Owner 接受后再考虑回填。
+- 当前状态：Part 0 已裁剪为 33 个优先题；H002 R3、H007 R3 既有 accepted 资产保持；旧 H015 R2/R3 仅为历史资产；无 live Executor。
+- 下一动作：等待 Owner 从当前 33 题中选择下一制作目标；若选择 `EVIDENCE_PENDING` 题，先走 Part 1 事实证据 Gate + D1–D5。
 - Windows/Codex local paths 必须由对应 Gate 证明，不从历史路径猜测。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -187,7 +188,7 @@ Owner 于 2026-10-04 要求把本轮长对话整理进 `main`，用于下一 Rev
 - `reviews/continuity/MATERIAL_PACKAGE_FOUR_SUPPLEMENTAL_CHECKS_20261004.md`
 - `reviews/continuity/PART2_CUSTOM_STORY_EXECUTION_AND_H002_R3_CANDIDATE_20261005.md`
 
-发布标题 / Hook 调研已完成，Owner 已批准最小接入方案并正式写入 Part 2：Part 1 继续保留内部 WHY 题面，最终发布包装在 Part 2 剧本锁定后编译；**Part 1 未修改，也未引入标题公式库**。H001–H023 的发布标题已在对话中完成一轮候选复查，但未写入题库作为永久标题，因为最终发布标题仍应以对应 Part 2 锁稿后的真实故事为准。
+发布标题 / Hook 调研已完成，Owner 已批准最小接入方案并正式写入 Part 2：Part 1 继续保留内部 WHY 题面，最终发布包装在 Part 2 剧本锁定后编译；本轮仅在 Part 1 §6 追加生产优先级句，不引入标题公式库。历史发布标题候选不写入题库作为永久标题，最终标题仍以对应 Part 2 锁稿后的真实故事为准。
 
 Owner 已确认的四项批量素材包补查现已完成正式对齐：Scene System 剧情状态已明确写入 Part 3；长 hold 原规则已完整覆盖、未重复修改；高频临时角色 Mini Master 判断与完成前跨模块整体复查已写入 Part 4。独立清单继续保留为来源记录。
 
@@ -195,43 +196,33 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 当前新增两点续接记录：
 
-- **机制标签与画面密度观察**：基于当前已完成并进入素材包库的 8 个样本，带“机制”标签的剧本（当前 H015 / H016 / H017）出现更长的平均单画面停留时长与更多长 hold；当前只记录为**小样本相关性信号**，不等同于“机制题必然稀疏”，也暂不修改 Part 1 / Part 3 正式规则。后续批量素材包继续积累样本后，再判断是否需要建立“机制型剧本视觉密度风险”检查。
-- **批量素材包生产状态**：仓库外 **X部分｜Owner认定执行包** 当前已收录 H002、H003、H004、H007、H010、H015、H016、H017、H024、H025 共 10 个题；X 部分仍不是 GitHub canonical 项目规则，不反向修改 Part 0–4.5。H002、H007 已由 Owner 接受并正式升级为 R3。
+- **机制标签与画面密度观察（历史）**：旧样本曾观察到 H015 / H016 / H017 等机制题出现更长 hold；这些题现已移出当前库存，因此该观察仅保留为历史执行信号，不构成当前选题规则。
+- **批量素材包生产状态**：仓库外 X 部分历史上曾收录 H002、H003、H004、H007、H010、H015、H016、H017、H024、H025；本轮题库裁剪不自动删除这些历史资产。H002、H007 既有 R3 accepted 状态保持；被删题对应资产不再视为 active production package。
 - **Part 2 批量执行纠偏（Owner 2026-10-05）**：H003/H004 不再作为后续剧本参考样板；后续剧本只按当前 Part 2 正式规则逐篇定制。批量任务可共享规则、事实核验和 QA，但不得共享同一套开场、剧情骨架、转折或收束模板。每批完成后必须追加跨稿“同构检查”；若只是换题材套同一结构，应 RETURN 重写。此前 H015/H016/H017 等长讲解问题被确认主要属于执行与 Reviewer 漏检，而非 Part 2 缺少“演出来/防讲课”规则。
-- **Part 2 当前重写状态**：H003/H004 冻结且不作参考；H002、H007、H010、H015、H016、H017、H024、H025 已按 Part 2 正式规则完成定制 R2 重写与二次独立复查。H002、H007 已正式回填 R3；H015 已完成新 R3 candidate build（38 Cue / 38 Beat / 3:08.000），但本轮按 Owner 要求**未做独立 REVIEW**，X 库仍保留 H015 R2；H010/H016/H017/H024/H025 尚未完成新的下游素材包重建。
+- **Part 2 当前重写状态**：H002、H007 既有 R3 accepted 资产保持；H003/H004 题目仍在当前 33 题中，但旧测试稿继续不作后续模板；H024 仍在当前库存且旧 R2 可作为历史输入，是否继续下游重建等待 Owner 选题；H010/H015/H016/H017/H025 已移出当前库存，不再自动继续重建或 Review。
 
 ## UNRESOLVED
 
-1. **下一测试目标**：不再限定 H021 / H022 / H023。Owner 可从 H001–H100 中选择；H001–H023 可直接进入 Part 2，H024–H100 必须先完成事实证据 Gate + 最终 D1–D5 后才能升级为 PASS 并进入 Part 2。
+1. **下一测试目标**：等待 Owner 从当前 33 个保留题中选择；11 个既有 `PASS` 可直接进入 Part 2，22 个 `CANDIDATE / EVIDENCE_PENDING` 必须先完成事实证据 Gate + 最终 D1–D5。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
 5. **Final video 1920×1080 adaptation**：留待 Part 5 实现。
-6. **发布标题层 / 防科普化**：结构问题已解决并写入 Part 2；现有 23 个题的对话版标题仅作候选基准，具体 episode 的最终发布标题仍需在该剧本锁稿后编译。
+6. **发布标题层 / 防科普化**：结构问题已解决并写入 Part 2；具体 episode 的最终发布标题仍需在该剧本锁稿后编译。
 
 ## NEXT_STEP
 
-下一轮第一件事：**独立 REVIEW H015 天气预报 R3 candidate**。
+下一轮第一件事：**Owner 从当前 33 个优先题中选择下一制作目标**。
 
-Review 必须覆盖：
-- Part 2 解释密度与机制是否继续由行动/后果演出；
-- Part 2.5 SRT 同源、断句与时间连续性；
-- Part 3 Scene System / Semantic Shot / Visual Beat / 单帧状态 / 长 hold；
-- Part 4 GENERATE / DERIVE source compatibility、连续性、prompt / dependency / output contract；
-- Part 4.5 历史素材复用判断；
-- 包级 Manifest / hash / DAG / 文件完整性。
-
-当前 candidate：
-`H015_天气预报_Part4_最终图片执行包_BUILT_R3_CANDIDATE.zip`
-SHA-256=`1092c900f70ce00c3442ecce6b5b4f07e120d5b9b652198e0c7ffd011de200ce`
-
-Review 通过且 Owner 接受前：**不回填 X 部分 H015 R2，不启动 live imagegen。**
-
-后续尚待重建：H010 / H016 / H017 / H024 / H025。
+- 若目标当前为 `PASS`：进入 Part 2 定制剧本流程；
+- 若目标为 `CANDIDATE / EVIDENCE_PENDING`：先完成 Part 1 事实证据 Gate + 最终 D1–D5，再决定是否升级 PASS；
+- 不继续旧 H015 天气预报 Review；
+- 不自动恢复任何已删除题；
+- 不启动 live imagegen，除非新的正式 Gate 明确要求。
 
 ## OWNER_ACTION_REQUIRED
 
-- 当前无立即决策；下一轮先看 H015 独立 REVIEW 结果。
+- 选择下一制作目标；除此之外当前无其他必须操作。
 ## EVIDENCE_POINTERS
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
