@@ -25,7 +25,7 @@
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
 - H019 酒店价格 41 图生产 **DEFERRED_BY_OWNER**，当前不测试该剧本；
-- 当前无 live imagegen；H002 已生成 R3 素材包候选并完成独立 QA，等待 Owner 对比 R2 / R3 后决定是否回填 X 部分。
+- 当前无 live imagegen；H002 R3 候选已完成**第二次独立 REVIEW 修订与 fresh QA**，当前 ZIP SHA-256=`1d9c64328b37b292c876c246b2bff9a875190e6019e8cf66d86f062b20704e3b`，等待 Owner 对比 R2 / R3 后决定是否回填 X 部分。
 - X 部分现有 H002 R2 在 Owner 明确认可 R3 前保持不变。
 ## SYSTEM_MAP
 
@@ -75,67 +75,78 @@ Part 6  执行与项目管理               [PENDING]
 
 ### GATE_ID
 
-PROJECT_IDLE_OWNER_TARGET_SELECTION
+H002_R3_CANDIDATE_OWNER_REVIEW
 
 ### OBJECTIVE
 
-保持项目在可恢复、已清理、可继续生产的状态；不自动启动 H019 或其他剧本。
-
-Owner 选择下一正式目标后，由 Reviewer 基于 current canonical Part 3 / Part 4 / Part 4.5 与已封板 imagegen fast-path 创建新的 production Gate。
+保持 H002 R3 为候选状态，向 Owner 提供 R2 vs R3 的真实差异与二次独立 QA；在 Owner 明确批准前，不替换 X 部分现有 H002 R2。
 
 ### MAX_ENDPOINT_THIS_ROUND
 
 - no live imagegen；
+- no H002 X-library backfill without Owner approval；
+- no automatic Part 3 / package rebuild for the other 7 rewritten scripts；
 - no H019 production；
-- no cleanup rerun；
-- only read-only/maintenance inspection if Owner explicitly requests it。
+- no cleanup rerun。
 
 ### MANDATORY_REVIEW_STOP
 
-`STOP_AT_REVIEWER=YES`
+`STOP_AT_OWNER_REVIEW=YES`
 
 ### TARGET_AND_SCOPE
 
-当前无 Executor 任务。历史 cleanup/imagegen reviews 只在追溯时读取。
+- Target：H002 AI性格画像 R3 candidate；
+- Current candidate SHA-256：`1d9c64328b37b292c876c246b2bff9a875190e6019e8cf66d86f062b20704e3b`；
+- Current X-library accepted H002：R2，保持不变；
+- Part 2.5 时间仍是 Owner 测试例外下的同源预估 SRT，不宣称正式真实音频对齐。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
 
-- accepted capability inheritance applies；
-- H019 = DEFERRED_BY_OWNER；
+- `PASS_CANDIDATE != PASS`；
+- H003/H004 不作为参考模板，H002 仅按当前 Part 2 / Part 3 / Part 4 / Part 4.5 正式规则复查；
 - imagegen concurrency = 2；
-- no automatic replay of closed reliability/cleanup Gates；
-- local evidence is not a permanent runtime dependency；
-- unknown/unique historical local files are not deleted without a new explicit maintenance decision。
+- no live imagegen；
+- no X-library mutation before Owner acceptance；
+- H019 = DEFERRED_BY_OWNER。
 
 ### PREFLIGHT
 
-NONE — idle。
+已完成第二次独立 REVIEW：
+- 清理 Part 2 过期状态文案；
+- 原 B03 的“想去 / 这不像我”双状态已拆分；
+- 后置机制命名由约 25.766s 压缩为约 13.837s；
+- ZIP / Manifest / SRT / Beat / task / DAG / reference hash fresh QA 全部通过。
 
 ### REQUIRED_EVIDENCE
 
-NONE — idle。
+- `reviews/continuity/PART2_CUSTOM_STORY_EXECUTION_AND_H002_R3_CANDIDATE_20261005.md`
+- ChatGPT File Library current handoff：`/comic-narrative_当前交接/2026-10-05_Part2定制重写与H002_R3候选/`
+- H002 R3 candidate ZIP SHA-256：`1d9c64328b37b292c876c246b2bff9a875190e6019e8cf66d86f062b20704e3b`
 
 ### ACCEPTANCE_CRITERIA
 
-Idle remains valid while no unauthorized production or cleanup task is started。
+Owner 明确选择：
+- ACCEPT R3 → 才允许替换 X 部分 H002 R2，并重建 X 库 INDEX / README / MANIFEST / 整库 ZIP；
+- REVISE / REJECT → 保留 H002 R2，按具体反馈返回对应模块。
 
 ### ROLLBACK_STATUS_OR_PLAN
 
-R2 archive mapping remains available for archived H019 restoration. R3 deletes were limited to proven redundant copies already durable elsewhere。
+无需运行态回滚；H002 R3 尚未进入 X 部分。保留现有 X 库 H002 R2 即为安全 rollback baseline。
 
 ### OWNER_ONLY_ACTIONS
 
-NONE
+- 决定 H002 R3 是否回填 X 部分。
 
 ### REVIEWER_TO_EXECUTOR_RELAY
 
-当前没有 Executor 任务。不要执行 H019，不要重跑 cleanup，不要调用 imagegen。
+当前没有生图 Executor 任务。不要调用 imagegen，不要执行 H002 R3 图片生成。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
 
 ```text
-NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
+NONE — OWNER REVIEW GATE ONLY.
 ```
+
 ## CRITICAL_CONSTRAINTS
 
 - `PASS_CANDIDATE != PASS`。
@@ -151,8 +162,9 @@ NONE — NO EXECUTOR TASK IS CURRENTLY AUTHORIZED.
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`。
-- 当前状态：idle，无 live Executor。
-- 下一正式生产任务由 Owner 选择目标后新建 Gate。
+- 当前状态：H002 R3 candidate **Owner Review Gate**；无 live Executor。
+- X 部分 H002 仍是 R2；未获得 Owner 明确接受前不得回填。
+- 下一生产动作只能由本 Gate 的 Owner 决策触发。
 - Windows/Codex local paths 必须由对应 Gate 证明，不从历史路径猜测。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -183,7 +195,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 - **机制标签与画面密度观察**：基于当前已完成并进入素材包库的 8 个样本，带“机制”标签的剧本（当前 H015 / H016 / H017）出现更长的平均单画面停留时长与更多长 hold；当前只记录为**小样本相关性信号**，不等同于“机制题必然稀疏”，也暂不修改 Part 1 / Part 3 正式规则。后续批量素材包继续积累样本后，再判断是否需要建立“机制型剧本视觉密度风险”检查。
 - **批量素材包生产状态**：仓库外 **X部分｜Owner认定执行包** 当前已收录 H002、H003、H004、H007、H010、H015、H016、H017、H024、H025 共 10 个题；X 部分仍不是 GitHub canonical 项目规则，不反向修改 Part 0–4.5。H002 R3 当前只是候选，尚未替换 X 库中的 H002 R2。
 - **Part 2 批量执行纠偏（Owner 2026-10-05）**：H003/H004 不再作为后续剧本参考样板；后续剧本只按当前 Part 2 正式规则逐篇定制。批量任务可共享规则、事实核验和 QA，但不得共享同一套开场、剧情骨架、转折或收束模板。每批完成后必须追加跨稿“同构检查”；若只是换题材套同一结构，应 RETURN 重写。此前 H015/H016/H017 等长讲解问题被确认主要属于执行与 Reviewer 漏检，而非 Part 2 缺少“演出来/防讲课”规则。
-- **Part 2 当前重写状态**：H003/H004 冻结且不作参考；H002、H007、H010、H015、H016、H017、H024、H025 已按 Part 2 正式规则完成定制 R2 重写与二次独立复查。当前只继续重建 H002 下游素材包，其余 7 题暂未进入新的 Part 2.5 / Part 3。
+- **Part 2 当前重写状态**：H003/H004 冻结且不作参考；H002、H007、H010、H015、H016、H017、H024、H025 已按 Part 2 正式规则完成定制 R2 重写与二次独立复查。H002 下游 R3 候选已完成第二次独立 REVIEW：62 Cue / 41 Beat / 3:14.831 / 最长 8.883s / >10s=0；其余 7 题暂未进入新的 Part 2.5 / Part 3。
 
 ## UNRESOLVED
 
