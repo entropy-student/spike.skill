@@ -25,7 +25,7 @@
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
 - Owner 2026-10-05 对现行 100 题再次复查后，仅删除 C「建议淘汰/重写」6 题：AA 分账、降价提醒、会议实时翻译、预算月报、消费自动分类、共同文化与个性化；A/B 全部保留。当前 Part 0 共 94 题，并按原顺序连续重编号为 H001–H094；本轮后题库暂不再扩充或调整。
-- 当前无 live imagegen；H002 R3、H007 R3 既有正式回填保持不变。H015 已被本轮 Owner 题库裁剪移出当前库存，其 R2/R3 包仅保留为历史资产，不再继续 REVIEW、回填或生产。
+- 当前无 live imagegen；legacy H002（AI性格画像）R3、legacy H007（AI旅行规划）R3 既有正式回填保持不变。legacy H015（天气预报）已移出当前库存，其历史包仅保留为历史资产，不再继续 REVIEW、回填或生产。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
 
@@ -56,6 +56,7 @@ Part 6  执行与项目管理               [PENDING]
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
 - **Part 4**：`part4/IMAGE_ASSET_EXECUTION.md` 保持封板；图片规划 Agent 与生图执行 Agent 职责分离。单集高频且连续性重要、漂移风险高的临时角色须在批量生图前判断是否需要 episode-local mini master；素材包完成前须跨 Part 2/2.5/3/4/4.5 与当前 imagegen 合同做整体复查。
 - **Part 4.5**：`part4_5/ASSET_REUSE_LIBRARY.md` 为当前素材复用与入库基线。
+- **X 素材包库（仓库外 Library）**：路径 `/X部分_OWNER认定执行包`，当前物理上仍收录 10 个 legacy Case。与现行 94 题按题名对照后，仍对应当前有效选题的 5 个为：legacy H002 AI性格画像（现行 H002）、legacy H003 家庭食谱（现行 H003）、legacy H004 恋爱冲突（现行 H004）、legacy H007 AI旅行规划（现行 H007）、legacy H024 自助收银（现行 H012）；已被当前题库移除、仅应视为历史素材包的 5 个为：legacy H010 AI游戏NPC、legacy H015 天气预报、legacy H016 睡眠手表、legacy H017 外卖配送、legacy H025 闪付验证。X 库目录名继续保留 legacy H-ID，不得按同号映射当前题库。
 - **Imagegen executor reliability**：正式 **PASS / CLOSED**。生产默认继承：
   - Codex built-in imagegen；
   - concurrency = 2；
@@ -109,15 +110,16 @@ TOPIC_LIBRARY_94_READY_NEXT_SELECTION
 - 被移出当前题库的 Case 不得继续作为 active next target；
 - H002 / H007 既有 R3 accepted 资产保持可追溯；
 - legacy H015（天气预报）R2/R3、H019 archive 等仅作为历史资产保留，不继续 Review / backfill / production；
-- 原待重建列表中仅 H024 仍属于当前 33 题，但本 Gate 不自动启动其重建；
+- legacy H024（自助收银，现行 H012）仍属于当前题库，但本 Gate 不自动启动其重建；
 - `PASS_CANDIDATE != PASS`；
 - no live imagegen。
 
 ### PREFLIGHT
 
-- Owner 已确认上一轮 A / B / C 分类，随后明确要求在保留 A、继续删除 B/C 的前提下，按项目规则与 Reviewer 生产优先级建议重新扩充至 100；
-- Part 0 / Part 1 在修改前均 fresh-read；
-- 已确认 H-ID 被下游资产与交接文档使用，因此采用稳定 ID 方案而不是机械重编号。
+- Owner 已确认当前题库最终保留 A/B、删除 C 6 题，并明确题库暂不继续修改；
+- Part 0 / Part 1 / Reviewer Handoff 均已在 GitHub `main` fresh-read；
+- 已确认当前题库为 H001–H094 连续编号；历史 production / review / X 库编号统一按 legacy ID 解释；
+- 已定位仓库外 X 素材包库并完成与当前 94 题按题名对照。
 
 ### REQUIRED_EVIDENCE
 
@@ -127,15 +129,14 @@ TOPIC_LIBRARY_94_READY_NEXT_SELECTION
 
 ### ACCEPTANCE_CRITERIA
 
-- Part 1 仅新增已获 Owner 同意的生产优先级句；
 - Part 0 当前恰好 94 个 Case；
 - 11 个 `PASS` + 83 个 `CANDIDATE / EVIDENCE_PENDING`；
 - C 类 6 题全部不存在；
 - 当前 ID 连续范围 H001–H094；
-- 主类型统计 = 判断 10 / 机制 5 / 体验 5 / 惊奇 4 / 趋势 3 / 反思 3 / 实用 2 / 探索 1；
-- 上一轮 B/C 67 题不再出现在当前 Part 0 库；
-- 保留题原 H-ID 不变；
-- no imagegen / no X backfill / no production mutation。
+- 主类型统计 = 惊奇 12 / 判断 37 / 实用 8 / 机制 7 / 趋势 6 / 反思 10 / 体验 12 / 探索 2；
+- Part 1 当前包含五项硬检查、D1–D5、生产优先级与库级母题簇复查；
+- X 库物理 10 包中：5 个对应当前有效选题，5 个为已删除选题的历史素材包；
+- no imagegen / no X package deletion / no production mutation。
 
 ### ROLLBACK_STATUS_OR_PLAN
 
