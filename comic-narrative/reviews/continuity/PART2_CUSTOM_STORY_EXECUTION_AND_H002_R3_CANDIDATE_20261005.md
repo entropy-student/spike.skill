@@ -42,7 +42,7 @@ H003 / H004 冻结且不作参考；以下 8 题已按 Part 2 正式规则完成
 
 `H002_AI性格画像_Part4_最终图片执行包_READY_R3_CANDIDATE_V2.zip`
 
-状态：`PASS_CANDIDATE_V2_FOR_OWNER_REVIEW`；**尚未回填 X 部分**。
+状态：`PASS / OWNER_ACCEPTED / BACKFILLED_TO_X_LIBRARY`。
 
 ### 从零重新 REVIEW 实际发现与修正
 
@@ -90,7 +90,8 @@ H003 / H004 冻结且不作参考；以下 8 题已按 Part 2 正式规则完成
 - Mini Master：NOT REQUIRED
 - 输出合同 / 并发2 / 16:9 / 1920×1080 / native target null：PASS
 - 禁止执行模式：PASS
-- 当前 V2 ZIP SHA-256：`c06cff9585d6ccd2e513e974153a41f2524f3a91b9f19b285420fb1d8abbf98f`
+- 入库前 V2 候选 ZIP SHA-256：`c06cff9585d6ccd2e513e974153a41f2524f3a91b9f19b285420fb1d8abbf98f`
+- X 库正式 R3 ZIP SHA-256：`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`
 
 ### H002 事实复核
 
@@ -100,9 +101,12 @@ H003 / H004 冻结且不作参考；以下 8 题已按 Part 2 正式规则完成
 
 ## 5. 当前停止点
 
-- H002 R3候选 V2：等待 Owner 查看 R2 vs R3 V2 对比并决定是否回填 X 部分。
-- 在 Owner 明确确认前，不替换 X 库中的 H002 R2。
-- 不自动开始 H007 等其他题的 Part 3 / 素材包重建。
+- Owner 已接受 H002 R3 V2 的重新 REVIEW 结果。
+- 已规范化为正式入库文件：`H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`。
+- X 部分原 H002 R2 已替换为 R3；README / INDEX / LIBRARY_MANIFEST / 整库 ZIP 已重建并 fresh read-back。
+- X 库正式 R3 ZIP SHA-256：`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`。
+- 旧 R2 与阶段性 R3 候选保留在仓库外交接历史目录，不留在 X 当前层。
+- 下一步是 H007 / H010 / H015 / H016 / H017 / H024 / H025 这 7 篇已重写 Part 2 的下游素材包重建。
 - 不启动 live imagegen。
 
 
@@ -115,7 +119,7 @@ ChatGPT File Library：
 当前已保存：
 - `Part2_重写_R2.zip`
 - `PART2二次独立复查报告_R2.md`
-- `H002_AI性格画像_Part4_最终图片执行包_READY_R3_CANDIDATE_V2.zip`
+- `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`
 - `H002_R3候选V2_重新REVIEW与参数对比.md`
 - `H002_R3_CANDIDATE_V2_INDEPENDENT_QA.json`
 - `PART2_CUSTOM_STORY_EXECUTION_AND_H002_R3_CANDIDATE_20261005.md`
