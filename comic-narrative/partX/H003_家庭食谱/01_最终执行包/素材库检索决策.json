@@ -1,0 +1,31 @@
+{
+  "episode": "H003",
+  "catalog_source": "comic-narrative/part4_5/library/catalog.jsonl",
+  "catalog_blob": "0be22835f84c6cbabc4a135d0272e255894c6133",
+  "catalog_records_reviewed_by_metadata": 35,
+  "metadata_candidates": [
+    {
+      "asset_id": "RL-NOODLE-022",
+      "possible_use": "主角在家用电脑姿势/机位",
+      "decision": "REJECT_FROM_EXECUTION_PACKAGE",
+      "reason": "当前规划环境未完成完整图片实看；metadata 不能证明场景/身份/构图兼容。"
+    },
+    {
+      "asset_id": "RL-NOODLE-026",
+      "possible_use": "主角在家面对一碗面的姿势",
+      "decision": "REJECT_FROM_EXECUTION_PACKAGE",
+      "reason": "旧图事件/餐食状态来自另一 episode；且当前未完成完整图片实看。"
+    },
+    {
+      "asset_id": "RL-NOODLE-027",
+      "possible_use": "闻面动作参考",
+      "decision": "REJECT_FROM_EXECUTION_PACKAGE",
+      "reason": "旧图发生在旧小面馆，与家庭厨房事件不同；不允许反向改场景。"
+    }
+  ],
+  "cross_episode_exact_reuse": 0,
+  "cross_episode_derive_edit": 0,
+  "cross_episode_reference_only": 0,
+  "final_policy": "无历史候选通过完整图片兼容性准入；本包不绑定跨集历史图片。使用 canonical refs + 本 run accepted frame continuity。",
+  "no_reuse_quota": true
+}
