@@ -1,11 +1,26 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "updated_date": "2026-10-06",
   "active_packages": [
     {
+      "topic_id": "H003",
+      "title": "家庭食谱",
+      "revision": "EDITABLE_R2_REVIEWED",
+      "status": "READY_FOR_IMAGE_EXECUTOR_UNDER_OWNER_PROVISIONAL_TIMING_EXCEPTION_FINALIZED",
+      "package_format": "EDITABLE_DIRECTORY",
+      "package_path": "comic-narrative/partX/H003_家庭食谱/01_最终执行包/",
+      "package_manifest": "comic-narrative/partX/H003_家庭食谱/01_最终执行包/总清单.json",
+      "package_digest": "comic-narrative/partX/H003_家庭食谱/01_最终执行包/PACKAGE_DIGEST.txt",
+      "aggregate_sha256": "a16aa9ebea605b421746b2744698fc361e06b13d58f472ac2b5f5b88c8b0257b",
+      "package_record": "comic-narrative/partX/H003_家庭食谱/PACKAGE_RECORD.md",
+      "reference_policy": "canonical PNG binaries resolve to existing comic-narrative/part3/assets paths; not duplicated in Part X"
+    },
+    {
       "topic_id": "H013",
       "title": "抢票锁票",
+      "revision": "FINAL_R2",
       "status": "READY_FOR_IMAGE_EXECUTOR_UNDER_OWNER_PROVISIONAL_TIMING_EXCEPTION_FINALIZED",
+      "package_format": "ZIP",
       "package_path": "comic-narrative/partX/H013_抢票锁票/01_最终执行包/H013_抢票锁票_最终素材包_FINAL_R2_REPO.zip",
       "package_record": "comic-narrative/partX/H013_抢票锁票/PACKAGE_RECORD.md",
       "original_transport_name": "H013_抢票锁票_最终素材包_FINAL_R2.zip",

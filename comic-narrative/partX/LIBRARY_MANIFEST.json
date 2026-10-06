@@ -1,9 +1,10 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "library": "comic-narrative/partX",
   "updated_date": "2026-10-06",
-  "active_package_count": 1,
+  "active_package_count": 2,
   "topic_ids": [
+    "H003",
     "H013"
   ],
   "policy": {
@@ -12,6 +13,14 @@
     "superseded_excluded_from_active_index": true,
     "per_topic_directory": true,
     "final_package_subdir": "01_最终执行包",
-    "canonical_binary_deduplication": true
+    "canonical_binary_deduplication": true,
+    "supported_package_formats": [
+      "ZIP",
+      "EDITABLE_DIRECTORY"
+    ],
+    "editable_directory_integrity_files": [
+      "总清单.json",
+      "PACKAGE_DIGEST.txt"
+    ]
   }
 }
