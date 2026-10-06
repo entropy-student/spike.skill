@@ -2,7 +2,7 @@
 
 > Date: 2026-10-04  
 > Scope: Part 2.5 / provisional SRT segmentation  
-> Status: RECORDED / NOT YET MIGRATED INTO CANONICAL RULES
+> Status: MIGRATED_TO_CANONICAL / CLOSED (2026-10-06 Owner authorized)
 
 ## 1. 问题
 
@@ -122,4 +122,4 @@ Readability check
 
 不记录任何当前测试剧本正文、测试 SRT 内容或测试选题推进状态。
 
-是否把这套细化规则正式迁移回 `part2_5/VOICE_SRT_ALIGNMENT.md`，需后续 Owner 明确授权。
+2026-10-06 Owner 已明确授权；上述细化规则已最小化迁移回 `part2_5/VOICE_SRT_ALIGNMENT.md`。本文件仅保留历史缺口与迁移追溯，不再作为运行时规则源。

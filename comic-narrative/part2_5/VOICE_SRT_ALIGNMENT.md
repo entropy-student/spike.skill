@@ -82,6 +82,60 @@ Part 2.5 不得为了对齐方便日常性重写剧本。
 
 字幕默认不为了覆盖静默而强行延长；Part 3 可以利用真实静默做 hold / reaction / reveal，但不得改写语音。
 
+### 3.5 Provisional SRT 编译规则（仅限 Owner 授权的预制作路径）
+
+Part 2.5 的正式产物仍以最终真实音频为准。只有在**尚无最终音频、且 Owner 明确允许用估算时间进入预制作**时，才使用以下 provisional 规则：
+
+```text
+Locked Spoken Script
+→ Speech Unit
+→ Subtitle Cue
+→ Readability / provisional timing check
+```
+
+**Speech Unit** 先按自然口语 / 韵律拆分，优先考虑：
+
+- 完整小意思；
+- 自然呼吸；
+- 对话轮次；
+- setup / answer；
+- action / reaction；
+- reversal；
+- punchline；
+- authored pause。
+
+再派生 **Subtitle Cue**，继续遵守：
+
+> **完整意义 > 对话轮次 > 戏剧落点 > 阅读长度 > 标点**
+
+普通 Subtitle Cue 的历史经验范围：
+
+- **约 9–18 个中文字**；
+- **约 1.4–3.2 秒**；
+- **1–2 行**。
+
+这些只是**普通 cue 的经验范围，不是硬下限 / 硬上限**。Punch / reversal / reaction / authored pause 可以更短；较长单元只有在语义安全处才拆分。不得为了满足字数或秒数破坏固定搭配、专名、数字与单位、对白轮次或戏剧落点。
+
+无真实音频时：
+
+- 优先使用 Owner / 当前项目明确指定的 provisional speaking rate；
+- 没有更新指定时，当前 comic-narrative 历史基线可使用 **5.9 中文字/秒**；
+- 加入自然的句间、转折、落锤等语义停顿；
+- **不得把 1.4–3.2 秒误当成每个 cue 的强制持续时间**；
+- Markdown 空行不自动等于语义停顿；
+- provisional 总时长由**锁定口播的可朗读量 + 真实语义停顿**共同决定。
+
+进入 Part 3 / Part 4 之前，必须确认：
+
+- provisional SRT 与当前锁稿逐字同源；
+- 当前锁稿版本与 SRT 版本没有陈旧错配；
+- 整篇 provisional 时长已经按 Part 2 当前平台编辑目标做过预检；
+- 普通 cue 已按上述经验范围复核，短 cue / 长 cue 的例外有明确语义或戏剧理由。
+
+一旦最终真实音频存在：
+
+> **全部 provisional 时间戳失效；必须重新按真实音频对齐正式 SRT。**
+
 ---
 
 ## 4. QA
@@ -95,6 +149,13 @@ Part 2.5 不得为了对齐方便日常性重写剧本。
 - 字幕没有拆词、孤立标点、严重碎切或多人对白粘连；
 - 重要反转、包袱、停顿没有因切分被破坏；
 - 输出明确标识所用音频与 SRT 版本。
+
+若本轮走 Owner 授权的 provisional 预制作路径，还要额外检查：
+- 文本与当前锁稿逐字一致，不漏句、不重复；
+- 普通 cue 的 9–18 字 / 1.4–3.2 秒只作为经验参考，所有明显例外均有语义 / 戏剧理由；
+- provisional 总时长已按 Part 2 当前平台编辑目标完成预检；
+- 输出明确标记为 `PROVISIONAL / ESTIMATED`，不得冒充正式真实音频时间；
+- Part 3 / Part 4 使用的 SRT 与当前锁稿版本一致，避免旧 SRT 继续驱动素材生产。
 
 若最终音频发生实质变化，原正式 SRT 失效，必须重新对齐后再进入 Part 3。
 
