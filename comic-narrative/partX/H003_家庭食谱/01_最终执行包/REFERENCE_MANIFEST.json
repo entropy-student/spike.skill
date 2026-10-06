@@ -1,0 +1,45 @@
+{
+  "episode": "H003",
+  "packaged_references": [
+    {
+      "file": "comic-narrative/part3/assets/characters/MAIN_CHARACTER_MASTER.png",
+      "sha256": "b102bb51a705fcc1b64e32531e96b7dabfc2546f65faabcdc6a33de2ba2830fe",
+      "size_bytes": 1915948,
+      "git_blob_sha": "c03775dff6852cafb5d9284bd72fb05378e7dc9c",
+      "availability": "CANONICAL_REPO_BINARY",
+      "local_package_relative_reference": "参考图片/MAIN_CHARACTER_MASTER.png",
+      "canonical_repository_path": "comic-narrative/part3/assets/characters/MAIN_CHARACTER_MASTER.png",
+      "archive_availability": "RESOLVE_CANONICAL_REPO_BINARY"
+    },
+    {
+      "file": "comic-narrative/part3/assets/style/STYLE_PRIMARY_TWO_PERSON_DINING.png",
+      "sha256": "30758175db8f533d72a46317be1947d247116d0281496cdee4ebacbff6068d3a",
+      "size_bytes": 3351964,
+      "git_blob_sha": "88e7b3b959f4f190c1abbb95071cdba9f780e6ed",
+      "availability": "CANONICAL_REPO_BINARY",
+      "local_package_relative_reference": "参考图片/STYLE_PRIMARY_TWO_PERSON_DINING.png",
+      "canonical_repository_path": "comic-narrative/part3/assets/style/STYLE_PRIMARY_TWO_PERSON_DINING.png",
+      "archive_availability": "RESOLVE_CANONICAL_REPO_BINARY"
+    },
+    {
+      "file": "comic-narrative/part3/assets/style/STYLE_SECONDARY_SINGLE_PERSON_DINING.png",
+      "sha256": "2f5796d0bbaedb1a029854a3bb09a32ac0abf4bb529090912e4d5a079e1fe7a4",
+      "size_bytes": 3395960,
+      "git_blob_sha": "aa8e79b2e205479594a7c9f8b9808d0c9e9ee10e",
+      "availability": "CANONICAL_REPO_BINARY",
+      "local_package_relative_reference": "参考图片/STYLE_SECONDARY_SINGLE_PERSON_DINING.png",
+      "canonical_repository_path": "comic-narrative/part3/assets/style/STYLE_SECONDARY_SINGLE_PERSON_DINING.png",
+      "archive_availability": "RESOLVE_CANONICAL_REPO_BINARY"
+    }
+  ],
+  "run_generated_references": [
+    {
+      "asset_id": "CHAR_GRANDMA_TEMP",
+      "task_id": "PRE_GRANDMA_MASTER",
+      "expected_path": "outputs/PRE_GRANDMA_MASTER/PRE_GRANDMA_MASTER.png",
+      "admission": "QA=ACCEPTED + actual SHA256 recorded before any dependent Beat executes"
+    }
+  ],
+  "archive_format": "EDITABLE_DIRECTORY",
+  "reference_resolution_file": "REFERENCE_RESOLUTION.md"
+}
