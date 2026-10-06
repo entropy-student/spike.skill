@@ -1,0 +1,4 @@
+# H003 Part X editable-directory package digest
+algorithm: SHA-256 over UTF-8 sorted lines `<file_sha256>  <relative_path>\n` for every archived file except PACKAGE_DIGEST.txt
+aggregate_sha256: a16aa9ebea605b421746b2744698fc361e06b13d58f472ac2b5f5b88c8b0257b
+file_count: 16
