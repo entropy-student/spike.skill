@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "updated_date": "2026-10-06",
+  "active_packages": [
+    {
+      "topic_id": "H013",
+      "title": "抢票锁票",
+      "status": "READY_FOR_IMAGE_EXECUTOR_UNDER_OWNER_PROVISIONAL_TIMING_EXCEPTION_FINALIZED",
+      "package_path": "comic-narrative/partX/H013_抢票锁票/01_最终执行包/H013_抢票锁票_最终素材包_FINAL_R2_REPO.zip",
+      "package_record": "comic-narrative/partX/H013_抢票锁票/PACKAGE_RECORD.md",
+      "original_transport_name": "H013_抢票锁票_最终素材包_FINAL_R2.zip",
+      "original_transport_sha256": "4880458c6249191aa83d70acf34ea3081d4531f49d79f8a8359241b36d91977a",
+      "repo_native_sha256": "1db35dd8c43848e841f4e786a63e48f285cf32673b1ec87bc564fad13fbceb60",
+      "reference_policy": "canonical PNG binaries resolve to existing comic-narrative/part3/assets paths; not duplicated in Part X"
+    }
+  ]
+}
