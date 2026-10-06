@@ -1,0 +1,62 @@
+{
+  "episode": "H003",
+  "revision": "PART4_EDITABLE_R2_REVIEWED",
+  "status": "READY_FOR_IMAGE_EXECUTOR_UNDER_OWNER_PROVISIONAL_TIMING_EXCEPTION",
+  "formal_image_production_complete": false,
+  "checks": {
+    "visual_beats_expected": 47,
+    "visual_beats_tasks": 47,
+    "beat_ids_contiguous": true,
+    "execution_modes": {
+      "GENERATE": 42,
+      "DERIVE_EDIT": 4,
+      "EXACT_REUSE": 1
+    },
+    "story_imagegen_task_count": 46,
+    "preasset_imagegen_task_count": 1,
+    "total_imagegen_operations_planned": 47,
+    "hold_count": 0,
+    "dependency_dag": "PASS",
+    "contract_field_completeness": "PASS",
+    "packaged_reference_checks": [
+      {
+        "file": "参考图片/MAIN_CHARACTER_MASTER.png",
+        "exists": true,
+        "sha256_match": true
+      },
+      {
+        "file": "参考图片/STYLE_PRIMARY_TWO_PERSON_DINING.png",
+        "exists": true,
+        "sha256_match": true
+      },
+      {
+        "file": "参考图片/STYLE_SECONDARY_SINGLE_PERSON_DINING.png",
+        "exists": true,
+        "sha256_match": true
+      }
+    ],
+    "cross_episode_reuse": {
+      "EXACT_REUSE": 0,
+      "DERIVE_EDIT": 0,
+      "REFERENCE_ONLY": 0
+    },
+    "exact_text_beats": [
+      "B02",
+      "B24"
+    ],
+    "forbidden_execution_modes_present": false,
+    "formal_audio_alignment": "PENDING",
+    "provisional_timing_exception": "OWNER_AUTHORIZED",
+    "review_repairs": [
+      "B31 DERIVE_EDIT→GENERATE：POV/crop family变化偏大",
+      "B32 DERIVE_EDIT→GENERATE：目标新增关键水壶/锅/尝汤 geometry",
+      "B36 DERIVE_EDIT→GENERATE：人物动作关系和关注对象变化过大",
+      "补齐 upstream_ref/frame_requirement/identity_lock",
+      "补齐 character/scene/prop-ui/style asset bindings",
+      "补齐 DERIVE immutable_preserve/exact_main_delta/incompatibility_gate",
+      "补齐 EXACT_REUSE no-edit/no-crop/no-new-binary contract",
+      "补齐 output_name/delivery_spec/reference admission"
+    ],
+    "errors": []
+  }
+}
