@@ -1,0 +1,41 @@
+[
+  {
+    "task_id": "PRE_GRANDMA_MASTER",
+    "asset_id": "CHAR_GRANDMA_TEMP",
+    "execution_mode": "GENERATE",
+    "purpose": "建立本集高频奶奶角色身份锚点，供后续所有奶奶出镜/视频内身份引用。",
+    "supporting_references": [
+      {
+        "file": "参考图片/STYLE_PRIMARY_TWO_PERSON_DINING.png",
+        "purpose": "锁定人物/环境整体画风，不继承具体餐桌/人物设定"
+      },
+      {
+        "file": "参考图片/STYLE_SECONDARY_SINGLE_PERSON_DINING.png",
+        "purpose": "辅助锁定单人物比例、线条与完成度，不继承姿势/场景"
+      }
+    ],
+    "prompt_or_instruction": "生成 H003 episode-local 奶奶角色参考表，16:9 横向白底/极简中性背景。角色只锁连续性所需的视觉身份：年长女性家庭成员，普通、可信、温和但不神秘化，日常朴素家居服/围裙，自然老年面部特征与灰黑发色；避免夸张皱纹、仙气、传统大师符号、职业厨师制服。同一角色以正面、3/4、侧面、背/3/4背四个一致视图展示，人物比例与两张 Style Plate 一致。不加入姓名、年龄数字、职业、地域、民族、品牌或剧情外背景设定。",
+    "identity_lock": [
+      "同一脸部几何/年龄感/发型轮廓/体型",
+      "同一基础家居服/围裙 identity",
+      "不把奶奶设计成超自然或专业厨师形象"
+    ],
+    "output": {
+      "path": "outputs/PRE_GRANDMA_MASTER/PRE_GRANDMA_MASTER.png",
+      "aspect_ratio": "16:9",
+      "final_delivery_target": "1920x1080",
+      "produces_new_binary": true
+    },
+    "acceptance_criteria": [
+      "四个视图明确是同一个人",
+      "普通家庭奶奶视觉成立，不新增身份故事",
+      "与 Style Plate 画风一致",
+      "手部/肢体数量合理",
+      "无可读文字/品牌/logo"
+    ],
+    "fallback": {
+      "on_failure": "RETURN_PREASSET_QA_FAILURE",
+      "retry": "允许在同一合同内重试；不得跳过 Mini Master 直接批量生成奶奶 Beat"
+    }
+  }
+]
