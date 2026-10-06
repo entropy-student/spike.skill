@@ -1,0 +1,99 @@
+{
+  "episode": "H003",
+  "topic": "家庭食谱",
+  "package_name": "H003_家庭食谱_Part4_素材包_EDITABLE_R2_REVIEWED_REPO",
+  "revision": "EDITABLE_R2_REVIEWED",
+  "package_format": "EDITABLE_DIRECTORY",
+  "status": "READY_FOR_IMAGE_EXECUTOR_UNDER_OWNER_PROVISIONAL_TIMING_EXCEPTION_FINALIZED",
+  "formal_image_production_complete": false,
+  "canonical_binary_deduplication": true,
+  "upstream_part3_compiled_into_tasks": true,
+  "reference_resolution": "REFERENCE_RESOLUTION.md",
+  "task_counts": {
+    "VISUAL_BEAT": 47,
+    "GENERATE": 42,
+    "DERIVE_EDIT": 4,
+    "EXACT_REUSE": 1,
+    "HOLD": 0,
+    "PREASSET": 1,
+    "STORY_IMAGEGEN": 46,
+    "TOTAL_IMAGEGEN": 47
+  },
+  "files": [
+    {
+      "file": "ASSET_MANIFEST.json",
+      "size_bytes": 9258,
+      "sha256": "2c9cacc488df98432652f99a917d001bfe9fa03a4b834f4a3e88f8b8be70a66b"
+    },
+    {
+      "file": "PACKAGE_QA.json",
+      "size_bytes": 1999,
+      "sha256": "74a95aba45d33f1555234ba06e802e64be7be80027edb63c14224e8dd35cb175"
+    },
+    {
+      "file": "README.md",
+      "size_bytes": 1725,
+      "sha256": "51699dd2ce6c599d3d6f578a6ed8e0994718c672ed5a27cf35eee7ac45093dc8"
+    },
+    {
+      "file": "REFERENCE_MANIFEST.json",
+      "size_bytes": 2222,
+      "sha256": "ff6e5746723a7df3a8bc6d4952cb5ec38229d1b0a8a21972582f154a1263aacf"
+    },
+    {
+      "file": "REFERENCE_RESOLUTION.md",
+      "size_bytes": 1379,
+      "sha256": "aa931ed1d0f7e094e7f95bbd84de50d3c381aac9044f7430ceb9bfd7a57a133f"
+    },
+    {
+      "file": "outputs/README.md",
+      "size_bytes": 140,
+      "sha256": "9bd80cba25ddce0de74e42609756912783fcd4e6fd7902ef7136c8ad78c166b2"
+    },
+    {
+      "file": "上游锁定输入/H003_LOCKED_VOICE_SCRIPT_R4.txt",
+      "size_bytes": 3568,
+      "sha256": "d495c2be8abec11360a56eb896c3257cffd25bb0d109c88460c61574a8c65608"
+    },
+    {
+      "file": "上游锁定输入/H003_PROVISIONAL_R4.srt",
+      "size_bytes": 6313,
+      "sha256": "7f73252791af2694f592a345ffa3f2d8bd85e35517969ec22d23f28ce7e242a9"
+    },
+    {
+      "file": "前置资产任务.json",
+      "size_bytes": 2050,
+      "sha256": "b42395fb154c0144024b7862e159bb4676c05c8c106d1ff9f8cc00b766a158cf"
+    },
+    {
+      "file": "图片任务.json",
+      "size_bytes": 405347,
+      "sha256": "67f721e084cced3bc8c02285115dd0f820442069d4c8d56471dcb2926ac832a4"
+    },
+    {
+      "file": "执行Agent话术.md",
+      "size_bytes": 1231,
+      "sha256": "5e134241c46c21e0d2e2e3835b9fc5a875bb5fee0ce14486078828e7a4b2940c"
+    },
+    {
+      "file": "执行模式审计.md",
+      "size_bytes": 2569,
+      "sha256": "838bbf1f317086773c337eb945e2100dbae05ac7df0f6b89c5705a9323a5e94c"
+    },
+    {
+      "file": "执行说明.md",
+      "size_bytes": 2973,
+      "sha256": "481f5cfe7ad4c2c352f2cd02c04751ef766d26b8fe9b7fb020a36c1c4644c822"
+    },
+    {
+      "file": "素材库检索决策.json",
+      "size_bytes": 1324,
+      "sha256": "651141dbb785c4741ae4656830e6616436980b5edd880b8766e32c9ff953e317"
+    },
+    {
+      "file": "跨模块复查.md",
+      "size_bytes": 2547,
+      "sha256": "03149b2a4e442947aeb09544cced50a8a8d32dedd6f2f897f9c256cbdeac317d"
+    }
+  ]
+}
