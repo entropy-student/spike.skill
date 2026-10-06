@@ -21,6 +21,8 @@
 
 当前状态：
 
+- **当前首要任务**：按照 Owner 的选题要求持续生产对应素材包；每个目标按现行 Part 1→Part 4.5 流程推进，并在认定完成前依项目要求完成复检。
+
 - imagegen executor reliability 已正式封板；
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
