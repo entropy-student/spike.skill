@@ -1520,3 +1520,716 @@
 
 ---
 
+## H067 — 账号安全
+
+- 最终选题：**手机丢了，明明记得 Google 密码，为什么还是可能登不进账号？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：账号安全
+- Human Process：账号安全中的真实操作或判断
+- Human Problem：失去绑定手机的用户需要第二因素或恢复通道
+- 反常：防盗保护 vs 本人恢复
+- Human Tension：防盗保护 vs 本人恢复
+- Controlling Question：手机丢了，明明记得 Google 密码，为什么还是可能登不进账号？
+- 科技改变的过程：Google 两步验证需要另一验证方法、备份码或账户恢复
+- 主机制：Google 两步验证需要另一验证方法、备份码或账户恢复
+- Audience Payoff：区分防盗保护 vs 本人恢复的机制与条件
+- Meaning Fingerprint：`ACCOUNT_067`
+- Motif：原手机丢失→新机登录→找备用验证
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/accounts/answer/185834?hl=en
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H068 — 账号安全
+
+- 最终选题：**硬件安全密钥丢了，为什么高安全登录反而更难找回？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：账号安全
+- Human Process：账号安全中的真实操作或判断
+- Human Problem：高级保护用户意外丢失身份认证物件
+- 反常：远程安全 vs 实体备份
+- Human Tension：远程安全 vs 实体备份
+- Controlling Question：硬件安全密钥丢了，为什么高安全登录反而更难找回？
+- 科技改变的过程：高级保护丢失主密钥需用备用密钥或恢复程序
+- 主机制：高级保护丢失主密钥需用备用密钥或恢复程序
+- Audience Payoff：区分远程安全 vs 实体备份的机制与条件
+- Meaning Fingerprint：`ACCOUNT_068`
+- Motif：安全钥匙遗失→账户锁住→求助备用密钥
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/accounts/answer/185834?hl=en
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H069 — 账号安全
+
+- 最终选题：**重新打印了一批谷歌备份码，为什么旧纸条上的十个码全部失效？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：账号安全
+- Human Process：账号安全中的真实操作或判断
+- Human Problem：旧版恢复码被误以为长期可复用
+- 反常：恢复通行 vs 主动轮换
+- Human Tension：恢复通行 vs 主动轮换
+- Controlling Question：重新打印了一批谷歌备份码，为什么旧纸条上的十个码全部失效？
+- 科技改变的过程：新生成一批备份码会使旧一批自动无效
+- 主机制：新生成一批备份码会使旧一批自动无效
+- Audience Payoff：区分恢复通行 vs 主动轮换的机制与条件
+- Meaning Fingerprint：`BACKUP_069`
+- Motif：更换安全纸条→试旧码→被拒
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/accounts/answer/1187538?hl=en
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H070 — 账号安全
+
+- 最终选题：**备份验证码昨晚已经用过一次，为什么今天不能再用？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：账号安全
+- Human Process：账号安全中的真实操作或判断
+- Human Problem：用户误把备份码当永久口令
+- 反常：备用登录 vs 防重放
+- Human Tension：备用登录 vs 防重放
+- Controlling Question：备份验证码昨晚已经用过一次，为什么今天不能再用？
+- 科技改变的过程：Google 每个备份码都是单次使用凭证
+- 主机制：Google 每个备份码都是单次使用凭证
+- Audience Payoff：区分备用登录 vs 防重放的机制与条件
+- Meaning Fingerprint：`BACKUP_070`
+- Motif：第一次扫码恢复成功→第二次使用失败
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/accounts/answer/1187538?hl=en
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H071 — 账号安全
+
+- 最终选题：**连续收到几条登录短信验证码，为什么最早那条反而失效？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：账号安全
+- Human Process：账号安全中的真实操作或判断
+- Human Problem：用户因网络延迟重复请求验证码
+- 反常：重发方便 vs 旧码作废
+- Human Tension：重发方便 vs 旧码作废
+- Controlling Question：连续收到几条登录短信验证码，为什么最早那条反而失效？
+- 科技改变的过程：Google 多次请求验证码时仅最新一条有效
+- 主机制：Google 多次请求验证码时仅最新一条有效
+- Audience Payoff：区分重发方便 vs 旧码作废的机制与条件
+- Meaning Fingerprint：`ACCOUNT_071`
+- Motif：信号不好反复点击→旧短信先到→登录失败
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/accounts/answer/185834?hl=en
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H072 — 账号安全
+
+- 最终选题：**两步验证明明开着，为什么把短信验证码告诉骗子仍会被盗号？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：账号安全
+- Human Process：账号安全中的真实操作或判断
+- Human Problem：用户把银行验证短信交给冒充官方的骗子
+- 反常：防盗验证 vs 社交诱骗
+- Human Tension：防盗验证 vs 社交诱骗
+- Controlling Question：两步验证明明开着，为什么把短信验证码告诉骗子仍会被盗号？
+- 科技改变的过程：当前有效 OTP 被骗子转用于登录或转账验证
+- 主机制：当前有效 OTP 被骗子转用于登录或转账验证
+- Audience Payoff：区分防盗验证 vs 社交诱骗的机制与条件
+- Meaning Fingerprint：`OTP_072`
+- Motif：假银行打电话→索码→账户被冒用
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/whats-verification-code-why-would-someone-ask-me-it
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H073 — 账号安全
+
+- 最终选题：**只是一家小网站泄露了密码，为什么其他账户也可能跟着出事？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：账号安全
+- Human Process：账号安全中的真实操作或判断
+- Human Problem：多处使用同一密码造成连锁风险
+- 反常：复用便捷 vs 连锁盗用
+- Human Tension：复用便捷 vs 连锁盗用
+- Controlling Question：只是一家小网站泄露了密码，为什么其他账户也可能跟着出事？
+- 科技改变的过程：泄露的用户名密码可在其他平台尝试登录
+- 主机制：泄露的用户名密码可在其他平台尝试登录
+- Audience Payoff：区分复用便捷 vs 连锁盗用的机制与条件
+- Meaning Fingerprint：`BREACH_073`
+- Motif：某网站数据泄露→邮箱被撞库→重新设独立密码
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://consumer.ftc.gov/consumer-alerts/2022/10/have-you-been-affected-data-breach-read
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H074 — 骗局与信任
+
+- 最终选题：**电话里明明是孙子的声音，为什么不一定真是他打来的？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：骗局与信任
+- Human Process：骗局与信任中的真实操作或判断
+- Human Problem：家属听到熟悉音色会降低身份戒心
+- 反常：熟悉音色 vs 可靠身份
+- Human Tension：熟悉音色 vs 可靠身份
+- Controlling Question：电话里明明是孙子的声音，为什么不一定真是他打来的？
+- 科技改变的过程：骗子可通过语音克隆模拟亲人声音制造紧急事件
+- 主机制：骗子可通过语音克隆模拟亲人声音制造紧急事件
+- Audience Payoff：区分熟悉音色 vs 可靠身份的机制与条件
+- Meaning Fingerprint：`VOICE_074`
+- Motif：求救电话→要求钱款→另一路确认
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H075 — 骗局与信任
+
+- 最终选题：**兼职 App 显示赚了几百元，为什么提现前还要你先充值？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：骗局与信任
+- Human Process：骗局与信任中的真实操作或判断
+- Human Problem：任务骗局用虚假收益与小额实付培养信任
+- 反常：账面收益 vs 真正到账
+- Human Tension：账面收益 vs 真正到账
+- Controlling Question：兼职 App 显示赚了几百元，为什么提现前还要你先充值？
+- 科技改变的过程：任务平台展示假的佣金并要求用户充钱解锁提现
+- 主机制：任务平台展示假的佣金并要求用户充钱解锁提现
+- Audience Payoff：区分账面收益 vs 真正到账的机制与条件
+- Meaning Fingerprint：`TASK_075`
+- Motif：点赞任务→虚拟利润→先充加密货币
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2025/08/how-spot-avoid-task-scams
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H076 — 骗局与信任
+
+- 最终选题：**停车场扫了付款二维码，为什么钱可能到了骗子账户？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：骗局与信任
+- Human Process：骗局与信任中的真实操作或判断
+- Human Problem：停车场正规二维码被覆盖换成仿冒二维码
+- 反常：线下可信场所 vs 可替换链接
+- Human Tension：线下可信场所 vs 可替换链接
+- Controlling Question：停车场扫了付款二维码，为什么钱可能到了骗子账户？
+- 科技改变的过程：扫码者被重定向到骗子模仿的收费页面
+- 主机制：扫码者被重定向到骗子模仿的收费页面
+- Audience Payoff：区分线下可信场所 vs 可替换链接的机制与条件
+- Meaning Fingerprint：`QRPARK_076`
+- Motif：停车扫码→站点名称异样→查看贴纸
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2026/09/see-qr-code-parked-somewhere-dont-scan-ityet
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H077 — 骗局与信任
+
+- 最终选题：**快递通知催你扫码改地址，为什么其实可能在偷账户密码？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：骗局与信任
+- Human Process：骗局与信任中的真实操作或判断
+- Human Problem：伪造物流问题制造扫码紧迫感
+- 反常：配送焦虑 vs 链接真假
+- Human Tension：配送焦虑 vs 链接真假
+- Controlling Question：快递通知催你扫码改地址，为什么其实可能在偷账户密码？
+- 科技改变的过程：诈骗二维码指向仿冒登录页索取凭证
+- 主机制：诈骗二维码指向仿冒登录页索取凭证
+- Audience Payoff：区分配送焦虑 vs 链接真假的机制与条件
+- Meaning Fingerprint：`QRPOST_077`
+- Motif：假配送短信→扫码→仿冒网站
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2023/12/scammers-hide-harmful-links-qr-codes-steal-your-information
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H078 — 骗局与信任
+
+- 最终选题：**超市货架上买的礼品卡，为什么充值后余额可能被别人花光？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：骗局与信任
+- Human Process：骗局与信任中的真实操作或判断
+- Human Problem：未启用的卡号可能早被骗子抄走
+- 反常：实体货架 vs 数字凭证失密
+- Human Tension：实体货架 vs 数字凭证失密
+- Controlling Question：超市货架上买的礼品卡，为什么充值后余额可能被别人花光？
+- 科技改变的过程：骗子提前窃取PIN并等待合法购买者充值
+- 主机制：骗子提前窃取PIN并等待合法购买者充值
+- Audience Payoff：区分实体货架 vs 数字凭证失密的机制与条件
+- Meaning Fingerprint：`GIFT_078`
+- Motif：买卡送人→余额归零→查卡包装
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2024/12/check-out-gift-cards-you-buy-them
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H079 — 骗局与信任
+
+- 最终选题：**网上买车交了订金，为什么到经销商店里竟然查无订单？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：骗局与信任
+- Human Process：骗局与信任中的真实操作或判断
+- Human Problem：用户受伪造经销商网站的视觉可信度欺骗
+- 反常：仿真官网 vs 真实商户
+- Human Tension：仿真官网 vs 真实商户
+- Controlling Question：网上买车交了订金，为什么到经销商店里竟然查无订单？
+- 科技改变的过程：骗子克隆库存图片、品牌Logo与评论骗取预付款
+- 主机制：骗子克隆库存图片、品牌Logo与评论骗取预付款
+- Audience Payoff：区分仿真官网 vs 真实商户的机制与条件
+- Meaning Fingerprint：`CARS_079`
+- Motif：网上付钱→到场提车→店铺否认
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2026/09/scammers-are-spoofing-car-dealership-websites-what-you-need-know
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H080 — 骗局与信任
+
+- 最终选题：**银行‘风控专员’说要把钱转入安全账户，为什么越照做越危险？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：骗局与信任
+- Human Process：骗局与信任中的真实操作或判断
+- Human Problem：消费者主动把存款转去诈骗账户
+- 反常：保护自己 vs 误转资产
+- Human Tension：保护自己 vs 误转资产
+- Controlling Question：银行‘风控专员’说要把钱转入安全账户，为什么越照做越危险？
+- 科技改变的过程：冒充银行安全专员制造风险要求转出资金
+- 主机制：冒充银行安全专员制造风险要求转出资金
+- Audience Payoff：区分保护自己 vs 误转资产的机制与条件
+- Meaning Fingerprint：`MOVE_080`
+- Motif：紧急电话→转账保护→钱被取走
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/never-move-your-money-protect-it-thats-scam
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H081 — 骗局与信任
+
+- 最终选题：**电脑出现病毒提示，又转接‘警方’，为什么最后要你转走存款？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：骗局与信任
+- Human Process：骗局与信任中的真实操作或判断
+- Human Problem：用户将多个假身份当作真实互相印证
+- 反常：权威层级 vs 实为同伙
+- Human Tension：权威层级 vs 实为同伙
+- Controlling Question：电脑出现病毒提示，又转接‘警方’，为什么最后要你转走存款？
+- 科技改变的过程：诈骗使用假系统弹窗和多次冒充权威套取款项
+- 主机制：诈骗使用假系统弹窗和多次冒充权威套取款项
+- Audience Payoff：区分权威层级 vs 实为同伙的机制与条件
+- Meaning Fingerprint：`FAKEPOPUP_081`
+- Motif：弹窗→客服→假警方→银行账户
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/new-tech-support-scammers-want-your-life-savings
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H082 — 购物与口碑
+
+- 最终选题：**商品有几百条生动五星评论，为什么评论者可能根本不存在？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：购物与口碑
+- Human Process：购物与口碑中的真实操作或判断
+- Human Problem：买家误认自动生成假评论为真实买家经历
+- 反常：评论文本 vs 真实体验
+- Human Tension：评论文本 vs 真实体验
+- Controlling Question：商品有几百条生动五星评论，为什么评论者可能根本不存在？
+- 科技改变的过程：AI生成或假账号可制造从未购买者的评论
+- 主机制：AI生成或假账号可制造从未购买者的评论
+- Audience Payoff：区分评论文本 vs 真实体验的机制与条件
+- Meaning Fingerprint：`REVIEWS_082`
+- Motif：准备购买→发现模式化账号→追查评价来源
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H083 — 购物与口碑
+
+- 最终选题：**商家说给五星就返现，为什么它和普通求好评不一样？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：购物与口碑
+- Human Process：购物与口碑中的真实操作或判断
+- Human Problem：以好评情绪作为奖励条件扭曲口碑
+- 反常：主动评价 vs 指定倾向
+- Human Tension：主动评价 vs 指定倾向
+- Controlling Question：商家说给五星就返现，为什么它和普通求好评不一样？
+- 科技改变的过程：针对特定正向或负向评价付费受FTC规则禁止
+- 主机制：针对特定正向或负向评价付费受FTC规则禁止
+- Audience Payoff：区分主动评价 vs 指定倾向的机制与条件
+- Meaning Fingerprint：`REVIEWS_083`
+- Motif：商品包装里的返现卡片→回看五星数据
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H084 — 购物与口碑
+
+- 最终选题：**一个‘普通顾客’夸得很真诚，为什么她可能是品牌员工？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：购物与口碑
+- Human Process：购物与口碑中的真实操作或判断
+- Human Problem：评论者与品牌之间的利益关系未披露
+- 反常：独立反馈 vs 内部利益
+- Human Tension：独立反馈 vs 内部利益
+- Controlling Question：一个‘普通顾客’夸得很真诚，为什么她可能是品牌员工？
+- 科技改变的过程：内幕人士评价需按规则披露与品牌关联
+- 主机制：内幕人士评价需按规则披露与品牌关联
+- Audience Payoff：区分独立反馈 vs 内部利益的机制与条件
+- Meaning Fingerprint：`REVIEWS_084`
+- Motif：读体验帖→发现公司关系→重新看结论
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H085 — 购物与口碑
+
+- 最终选题：**购物网站说展示了全部评价，为什么低分评论却可能被藏起来？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：购物与口碑
+- Human Process：购物与口碑中的真实操作或判断
+- Human Problem：商家压制负面评价却声称平台展示全部
+- 反常：完整口碑 vs 单边筛选
+- Human Tension：完整口碑 vs 单边筛选
+- Controlling Question：购物网站说展示了全部评价，为什么低分评论却可能被藏起来？
+- 科技改变的过程：误导性删除差评和全量展示虚假声称受到限制
+- 主机制：误导性删除差评和全量展示虚假声称受到限制
+- Audience Payoff：区分完整口碑 vs 单边筛选的机制与条件
+- Meaning Fingerprint：`REVIEWS_085`
+- Motif：店铺零差评→买家投诉负面评价消失
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H086 — 购物与口碑
+
+- 最终选题：**一个博主粉丝几十万，为什么里面可能根本没那么多真人？**
+- 选题类型：判断 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：购物与口碑
+- Human Process：购物与口碑中的真实操作或判断
+- Human Problem：指标被虚假购买粉丝污染
+- 反常：数字热度 vs 真实受众
+- Human Tension：数字热度 vs 真实受众
+- Controlling Question：一个博主粉丝几十万，为什么里面可能根本没那么多真人？
+- 科技改变的过程：买卖虚假粉丝或播放量可以夸大商业影响力
+- 主机制：买卖虚假粉丝或播放量可以夸大商业影响力
+- Audience Payoff：区分数字热度 vs 真实受众的机制与条件
+- Meaning Fingerprint：`REVIEWS_086`
+- Motif：商单报价→审核粉丝来源→发现机器人
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
+- Status：PASS_CANDIDATE
+
+---
+
+## H087 — AI与隐私
+
+- 最终选题：**ChatGPT 里删了对话，为什么资料库文件却还在？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：AI与隐私
+- Human Process：AI与隐私中的真实操作或判断
+- Human Problem：用户将删除聊天误解为删除其中的文件
+- 反常：聊天清理 vs 文件独立保存
+- Human Tension：聊天清理 vs 文件独立保存
+- Controlling Question：ChatGPT 里删了对话，为什么资料库文件却还在？
+- 科技改变的过程：资料库保存文件与聊天记录分别管理
+- 主机制：资料库保存文件与聊天记录分别管理
+- Audience Payoff：区分聊天清理 vs 文件独立保存的机制与条件
+- Meaning Fingerprint：`OPENAI_087`
+- Motif：删聊天→资料库仍见原文件→独立清理
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://help.openai.com/en/articles/8983778-how-are-files-vs-chats-retained
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H088 — AI与隐私
+
+- 最终选题：**把 ChatGPT 聊天归档，为什么不代表内容已经删除？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：AI与隐私
+- Human Process：AI与隐私中的真实操作或判断
+- Human Problem：归档只是隐藏侧栏聊天
+- 反常：界面隐藏 vs 数据删除
+- Human Tension：界面隐藏 vs 数据删除
+- Controlling Question：把 ChatGPT 聊天归档，为什么不代表内容已经删除？
+- 科技改变的过程：归档与删除的保留策略不同，归档通常持续保留
+- 主机制：归档与删除的保留策略不同，归档通常持续保留
+- Audience Payoff：区分界面隐藏 vs 数据删除的机制与条件
+- Meaning Fingerprint：`OPENAI_088`
+- Motif：归档旧对话→仍可搜索→改为删除
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://help.openai.com/en/articles/8983778-how-are-files-vs-chats-retained
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H089 — 云端协作
+
+- 最终选题：**Word 选择‘无标记’，为什么发给别人后旧修改仍然能被看到？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：云端协作
+- Human Process：云端协作中的真实操作或判断
+- Human Problem：用户将显示过滤当作内容净化
+- 反常：视觉干净 vs 文档留痕
+- Human Tension：视觉干净 vs 文档留痕
+- Controlling Question：Word 选择‘无标记’，为什么发给别人后旧修改仍然能被看到？
+- 科技改变的过程：No Markup 仅隐藏修订，接受或拒绝修订才真正移除
+- 主机制：No Markup 仅隐藏修订，接受或拒绝修订才真正移除
+- Audience Payoff：区分视觉干净 vs 文档留痕的机制与条件
+- Meaning Fingerprint：`WORD_089`
+- Motif：合同定稿→他人打开修订→紧急清理
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.microsoft.com/en-us/word/accept-or-reject-tracked-changes-in-word
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H090 — 云端协作
+
+- 最终选题：**Dropbox 明明点了‘移除我的访问’，为什么旧链接还打得开？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：云端协作
+- Human Process：云端协作中的真实操作或判断
+- Human Problem：用户以为取消个人权限等于关闭公开链接
+- 反常：我的视图 vs 分享链接本身
+- Human Tension：我的视图 vs 分享链接本身
+- Controlling Question：Dropbox 明明点了‘移除我的访问’，为什么旧链接还打得开？
+- 科技改变的过程：移除个人访问不影响分享者的活跃链接
+- 主机制：移除个人访问不影响分享者的活跃链接
+- Audience Payoff：区分我的视图 vs 分享链接本身的机制与条件
+- Meaning Fingerprint：`DROPBOX_090`
+- Motif：删我的共享入口→用旧链接仍进入
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://help.dropbox.com/share/remove-access
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H091 — 旅行与出行
+
+- 最终选题：**Google 地图轨迹明明一直开着，为什么几个月前的去向可能自动消失？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：旅行与出行
+- Human Process：旅行与出行中的真实操作或判断
+- Human Problem：用户误认为位置历史无限期保留
+- 反常：长期记录 vs 自动清理周期
+- Human Tension：长期记录 vs 自动清理周期
+- Controlling Question：Google 地图轨迹明明一直开着，为什么几个月前的去向可能自动消失？
+- 科技改变的过程：Timeline 按用户的自动删除设置定期清除旧记录
+- 主机制：Timeline 按用户的自动删除设置定期清除旧记录
+- Audience Payoff：区分长期记录 vs 自动清理周期的机制与条件
+- Meaning Fingerprint：`TIMELINE_091`
+- Motif：查去年出行→已被清理→看设置
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/maps/answer/6258979/google-maps-timeline-android
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H092 — 手机与硬件
+
+- 最终选题：**手机明明插着充电，却停在八成，为什么可能是天气太热？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：手机与硬件
+- Human Process：手机与硬件中的真实操作或判断
+- Human Problem：用户以为充电停止就是硬件故障
+- 反常：即时满电 vs 热安全
+- Human Tension：即时满电 vs 热安全
+- Controlling Question：手机明明插着充电，却停在八成，为什么可能是天气太热？
+- 科技改变的过程：iPhone 可因温度过高暂停充电
+- 主机制：iPhone 可因温度过高暂停充电
+- Audience Payoff：区分即时满电 vs 热安全的机制与条件
+- Meaning Fingerprint：`IPHONEHEAT_092`
+- Motif：汽车暴晒后充电→暂停→凉下恢复
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/en-la/105105
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H093 — 娱乐与推荐
+
+- 最终选题：**Spotify 的歌全下载了，为什么一个月不联网后可能无法离线听？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：娱乐与推荐
+- Human Process：娱乐与推荐中的真实操作或判断
+- Human Problem：用户以为下载永久可在本地授权播放
+- 反常：本地有文件 vs 定期联网授权
+- Human Tension：本地有文件 vs 定期联网授权
+- Controlling Question：Spotify 的歌全下载了，为什么一个月不联网后可能无法离线听？
+- 科技改变的过程：Spotify 下载内容需至少每30天联网校验
+- 主机制：Spotify 下载内容需至少每30天联网校验
+- Audience Payoff：区分本地有文件 vs 定期联网授权的机制与条件
+- Meaning Fingerprint：`SPOTIFY_093`
+- Motif：远途无网→音乐失效→恢复联网
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.spotify.com/us/article/listen-offline/
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H094 — 娱乐与推荐
+
+- 最终选题：**Spotify 歌下载好了，为什么卸载重装 App 后还得全部重下？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：娱乐与推荐
+- Human Process：娱乐与推荐中的真实操作或判断
+- Human Problem：App 下载文件不等于普通音乐文件
+- 反常：应用重装 vs 离线缓存
+- Human Tension：应用重装 vs 离线缓存
+- Controlling Question：Spotify 歌下载好了，为什么卸载重装 App 后还得全部重下？
+- 科技改变的过程：重装 Spotify 可能丢失应用内部的离线音乐缓存
+- 主机制：重装 Spotify 可能丢失应用内部的离线音乐缓存
+- Audience Payoff：区分应用重装 vs 离线缓存的机制与条件
+- Meaning Fingerprint：`SPOTIFY_094`
+- Motif：手机重置→准备登机→离线音乐不见
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.spotify.com/us/article/listen-offline/
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H095 — 日常沟通
+
+- 最终选题：**Gmail 的机密邮件禁止复制转发，为什么收件人仍可能截图？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：日常沟通
+- Human Process：日常沟通中的真实操作或判断
+- Human Problem：发送者错误理解机密邮件的防泄密边界
+- 反常：转发限制 vs 内容捕获
+- Human Tension：转发限制 vs 内容捕获
+- Controlling Question：Gmail 的机密邮件禁止复制转发，为什么收件人仍可能截图？
+- 科技改变的过程：Gmail 禁制一些界面操作但无法阻止截图拍照
+- 主机制：Gmail 禁制一些界面操作但无法阻止截图拍照
+- Audience Payoff：区分转发限制 vs 内容捕获的机制与条件
+- Meaning Fingerprint：`GMAIL_095`
+- Motif：给同事敏感文件→意外收到截图
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/mail/answer/7674059?co=GENIE.Platform%3DDesktop&hl=en-GB
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H096 — 日常沟通
+
+- 最终选题：**Gmail 预定发送时换了时区，为什么邮件仍按原时区发出？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：日常沟通
+- Human Process：日常沟通中的真实操作或判断
+- Human Problem：旅行者把发信时间理解成动态跟随当前时区
+- 反常：定时承诺 vs 时区基准
+- Human Tension：定时承诺 vs 时区基准
+- Controlling Question：Gmail 预定发送时换了时区，为什么邮件仍按原时区发出？
+- 科技改变的过程：Gmail 定时发信基于设定时区而非当前位置
+- 主机制：Gmail 定时发信基于设定时区而非当前位置
+- Audience Payoff：区分定时承诺 vs 时区基准的机制与条件
+- Meaning Fingerprint：`GMAILSCHEDULE_096`
+- Motif：跨国出差→安排发送→时差造成困扰
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/mail/answer/9214606?hl=en-3
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
+## H097 — 职场协作
+
+- 最终选题：**Zoom 开了‘主持人前入会’，为什么同事还在等候室？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：职场协作
+- Human Process：职场协作中的真实操作或判断
+- Human Problem：主持人错误假设单一选项决定提前入会
+- 反常：提前参加 vs 等候室安全
+- Human Tension：提前参加 vs 等候室安全
+- Controlling Question：Zoom 开了‘主持人前入会’，为什么同事还在等候室？
+- 科技改变的过程：Zoom 等候室设置可能覆盖主持人前入会设置
+- 主机制：Zoom 等候室设置可能覆盖主持人前入会设置
+- Audience Payoff：区分提前参加 vs 等候室安全的机制与条件
+- Meaning Fingerprint：`ZOOM_097`
+- Motif：主持人迟到→同事卡住→检查冲突设置
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0082131
+- 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
+- Status：PASS_CANDIDATE
+
+---
+
