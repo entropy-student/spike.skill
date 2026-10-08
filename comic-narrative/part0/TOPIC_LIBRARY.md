@@ -1,10 +1,10 @@
 # Part 0 — 现实问题优先选题库（2026-10-08 复核版）
 
-> 100 个有来源锚点的**待正式 Reviewer 接受的选题候选**：其中 74 个继承上一候选库经本轮初筛、26 个来自可检索监管案例或研究。所有条目只进入选题候选池，不自动代表完成 3–5 分钟独立故事审查，也不代表法规投诉一定被裁判认定为既成事实。
+> 100 个有来源锚点的**待正式 Reviewer 接受的选题候选**：其中 67 个继承上一候选库初筛、33 个来自可检索监管案例或研究。所有条目只进入选题候选池，不自动代表完成 3–5 分钟独立故事审查，也不代表法规投诉一定被裁判认定为既成事实。
 
 ## 本轮执行与硬性边界
 
-- 现行旧 100 库审查：删除低独立性/无明显观众价值的 26 个旧题（旧编号：H002、H005、H007、H013、H015、H018、H020、H023、H024、H026、H039、H052、H061、H065、H068、H070、H071、H077、H088、H091、H092、H094、H096、H098、H099、H100）；保留 74，新增 26 条更直接的现实问题来源，继续维持候选池 100 条。**不能说本轮有 100 个已 PASS 的成片选题**。
+- 现行旧 100 库审查：删除低独立性/无明显观众价值的 26 个旧题（旧编号：H002、H005、H007、H013、H015、H018、H020、H023、H024、H026、H039、H052、H061、H065、H068、H070、H071、H077、H088、H091、H092、H094、H096、H098、H099、H100）；先保留 74、替换 26 条；后追加替换 7 个同构/微型问答，最终旧题 67 + 新例 33，继续维持候选池 100 条。**不能说本轮有 100 个已 PASS 的成片选题**。
 - 与更早的旧 30 题补证：其中 17 条 EVIDENCE_PENDING 无一按原题自动升级；仅在可得到新的可靠资料时，按不同真实事实边界重建；14 个旧题未原样继承，另外 3 组实际重建均需要按新主机制审查。
 - 来源分类：官方功能文件仅能证明具体可复现功能；监管案件需用“FTC 指控/监管称/已达成和解”区分行政指控与终局事实；个案不能证明普遍发生率；Pew 调查不能自行衍生出不曾测量的因果。
 - 所有新素材的旧编号仅供追溯，不得用现行 H 编号回填已生成的 H002/H007 等制作包。历史文件与 Owner 接受资产不改动。
@@ -216,7 +216,30 @@
 
 ---
 
-## H009 — 手机与硬件
+## H009 — 车载数据与保费
+
+- 最终选题：**买了新车以为在用安全驾驶助手，为什么保险公司也可能知道你急刹车？**
+- 选题类型：判断 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：车载数据与保费
+- Human Process：消费者使用数字产品做出真实选择与授权
+- Human Problem：FTC 指控通用汽车通过 OnStar 收集车速、急刹车与定位并分享给消费者报告机构
+- 反常：本应更安全、便利或公正的服务带来未被预期的风险或代价
+- Human Tension：安全服务 vs 数据变现
+- Controlling Question：哪一个具体的技术、权限或数据状态改变了人的实际结果？
+- 科技改变的过程：技术平台将人的身份、行为或数字服务转为可跨系统执行的数据流
+- 主机制：车辆行驶行为和位置数据可被分享至保险风险评估链，不只是帮助车主自己回顾驾驶
+- Audience Payoff：理解安全服务 vs 数据变现所涉及的真实产品/监管边界，而不把营销说法直接当成已验证结果
+- Meaning Fingerprint：`安全服务 vs 数据变现｜车辆行驶行为和位置数据可被分享至保险风险评估链，不`
+- Motif：开启车载服务→驾驶行为被记录→保险信息反映车辆数据
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-takes-action-against-general-motors-sharing-drivers-precise-location-driving-behavior-data
+- 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
+- Status：PASS_CANDIDATE
+- 历史来源编号：从旧百题库 H012 位置换入新的独立现实案例，不能沿用原题身份
+- 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
+
+---
 
 - 最终选题：**AirTag 分享给家人后，为什么共享的人不再收到陌生跟踪警报？**
 - 选题类型：机制 / 判断
@@ -466,7 +489,30 @@
 
 ---
 
-## H019 — 云端协作
+## H019 — 个人化价格
+
+- 最终选题：**同一商品的价格为什么可能跟你之前搜索过什么有关？**
+- 选题类型：判断 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：个人化价格
+- Human Process：消费者使用数字产品做出真实选择与授权
+- Human Problem：FTC 市场调查记录定价中介利用浏览、位置等细粒度消费者信号协助个性化定价
+- 反常：本应更安全、便利或公正的服务带来未被预期的风险或代价
+- Human Tension：统一标价 vs 个人画像定价
+- Controlling Question：哪一个具体的技术、权限或数据状态改变了人的实际结果？
+- 科技改变的过程：技术平台将人的身份、行为或数字服务转为可跨系统执行的数据流
+- 主机制：个人行为数据可参与生成不同价格或折扣，价格不必只按公开库存需求决定
+- Audience Payoff：理解统一标价 vs 个人画像定价所涉及的真实产品/监管边界，而不把营销说法直接当成已验证结果
+- Meaning Fingerprint：`统一标价 vs 个人画像定价｜个人行为数据可参与生成不同价格或折扣，价格不必只按`
+- Motif：两位用户查看价格→追踪个性化信号→确认实际定价条件
+- Content Job：DISCOVERY
+- Source / Signal：RESEARCH_OBSERVATION；https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-surveillance-pricing-study-indicates-wide-range-personal-data-used-set-individualized-consumer
+- 证据适用边界：FTC 市场研究指出定价工具存在这些能力，但不证明任何指定商家一定在给两个具体用户不同报价；报告中部分案例是假设。
+- Status：PASS_CANDIDATE
+- 历史来源编号：从旧百题库 H029 位置换入新的独立现实案例，不能沿用原题身份
+- 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
+
+---
 
 - 最终选题：**OneDrive 里‘有这份文件’，为什么电脑磁盘几乎不占空间？**
 - 选题类型：机制 / 判断
@@ -991,7 +1037,30 @@
 
 ---
 
-## H040 — 支付与订阅
+## H040 — 儿童机器人玩具
+
+- 最终选题：**孩子为了操控机器人玩具打开定位，为什么另一家公司也可能拿到位置？**
+- 选题类型：判断 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：儿童机器人玩具
+- Human Process：消费者使用数字产品做出真实选择与授权
+- Human Problem：FTC 指控 Apitor 玩具伴侣 App 嵌入第三方 SDK、未正确取得家长同意即共享儿童定位
+- 反常：本应更安全、便利或公正的服务带来未被预期的风险或代价
+- Human Tension：玩具控制 vs 第三方定位收集
+- Controlling Question：哪一个具体的技术、权限或数据状态改变了人的实际结果？
+- 科技改变的过程：技术平台将人的身份、行为或数字服务转为可跨系统执行的数据流
+- 主机制：第三方 SDK 可在宿主应用授权下获得定位数据并传向外部公司
+- Audience Payoff：理解玩具控制 vs 第三方定位收集所涉及的真实产品/监管边界，而不把营销说法直接当成已验证结果
+- Meaning Fingerprint：`玩具控制 vs 第三方定位收集｜第三方 SDK 可在宿主应用授权下获得定位数据并传`
+- Motif：连接智能玩具→允许位置→第三方数据收集→家长知情权
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/09/ftc-takes-action-against-robot-toy-maker-allowing-collection-childrens-data-without-parental-consent
+- 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
+- Status：PASS_CANDIDATE
+- 历史来源编号：从旧百题库 H051 位置换入新的独立现实案例，不能沿用原题身份
+- 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
+
+---
 
 - 最终选题：**Google Play 订阅已经取消，为什么会员权益还能用到年底？**
 - 选题类型：机制 / 体验
@@ -1141,7 +1210,30 @@
 
 ---
 
-## H046 — 支付与订阅
+## H046 — 演唱会抢票
+
+- 最终选题：**演唱会明明限制每人买四张，为什么黄牛还能攒出上千个账号抢票？**
+- 选题类型：判断 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：演唱会抢票
+- Human Process：消费者使用数字产品做出真实选择与授权
+- Human Problem：FTC 起诉 Ticketmaster 涉嫌容许票贩用大量账号和代理IP绕过购票限额
+- 反常：本应更安全、便利或公正的服务带来未被预期的风险或代价
+- Human Tension：普通观众 vs 系统化抢票
+- Controlling Question：哪一个具体的技术、权限或数据状态改变了人的实际结果？
+- 科技改变的过程：技术平台将人的身份、行为或数字服务转为可跨系统执行的数据流
+- 主机制：实名与每账号限购在多账号、代理IP和平台风控不足时可能被绕开
+- Audience Payoff：理解普通观众 vs 系统化抢票所涉及的真实产品/监管边界，而不把营销说法直接当成已验证结果
+- Meaning Fingerprint：`普通观众 vs 系统化抢票｜实名与每账号限购在多账号、代理IP和平台风控不足时`
+- Motif：粉丝排队→票快速售罄→二手票高价出现→审查代理和批量账号
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2025/09/ftc-sues-live-nation-ticketmaster-engaging-illegal-ticket-resale-tactics-deceiving-artists-consumers
+- 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
+- Status：PASS_CANDIDATE
+- 历史来源编号：从旧百题库 H058 位置换入新的独立现实案例，不能沿用原题身份
+- 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
+
+---
 
 - 最终选题：**信用卡已经注销，原路退款为什么不一定就丢了？**
 - 选题类型：机制 / 体验
@@ -1191,7 +1283,30 @@
 
 ---
 
-## H048 — 支付与订阅
+## H048 — 网站托管安全
+
+- 最终选题：**网站服务商宣传安全防护获奖，为什么客户网站还是可能被黑？**
+- 选题类型：判断 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：网站托管安全
+- Human Process：消费者使用数字产品做出真实选择与授权
+- Human Problem：FTC 指控 GoDaddy 未实施部分基础防护措施造成多次入侵
+- 反常：本应更安全、便利或公正的服务带来未被预期的风险或代价
+- Human Tension：外包安全 vs 实际责任
+- Controlling Question：哪一个具体的技术、权限或数据状态改变了人的实际结果？
+- 科技改变的过程：技术平台将人的身份、行为或数字服务转为可跨系统执行的数据流
+- 主机制：服务商安全承诺与实际 MFA、监控、连接防护落实水平并非一回事
+- Audience Payoff：理解外包安全 vs 实际责任所涉及的真实产品/监管边界，而不把营销说法直接当成已验证结果
+- Meaning Fingerprint：`外包安全 vs 实际责任｜服务商安全承诺与实际 MFA、监控、连接防护落实水`
+- Motif：选择主机→相信安全声明→网站遭入侵→查看安全审计
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/05/ftc-finalizes-order-godaddy-over-data-security-failures
+- 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
+- Status：PASS_CANDIDATE
+- 历史来源编号：从旧百题库 H060 位置换入新的独立现实案例，不能沿用原题身份
+- 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
+
+---
 
 - 最终选题：**加油站只加了半箱油，银行卡为什么先显示一笔临时扣款？**
 - 选题类型：机制 / 体验
@@ -1341,7 +1456,30 @@
 
 ---
 
-## H054 — 账号安全
+## H054 — 儿童视频标记
+
+- 最终选题：**孩子看的动画明明面向儿童，为什么 YouTube 却可能把它当作成人视频投放个性化广告？**
+- 选题类型：判断 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：儿童视频标记
+- Human Process：消费者使用数字产品做出真实选择与授权
+- Human Problem：FTC 指控迪士尼部分面向儿童的视频被不恰当标为非儿童内容，使相关数据收集和个性化广告功能继续
+- 反常：本应更安全、便利或公正的服务带来未被预期的风险或代价
+- Human Tension：内容分级 vs 儿童隐私
+- Controlling Question：哪一个具体的技术、权限或数据状态改变了人的实际结果？
+- 科技改变的过程：技术平台将人的身份、行为或数字服务转为可跨系统执行的数据流
+- 主机制：上传者的视频受众分类会影响平台是否开放个性化广告及儿童隐私保护
+- Audience Payoff：理解内容分级 vs 儿童隐私所涉及的真实产品/监管边界，而不把营销说法直接当成已验证结果
+- Meaning Fingerprint：`内容分级 vs 儿童隐私｜上传者的视频受众分类会影响平台是否开放个性化广告及`
+- Motif：儿童看动画→视频错标→个性化追踪触发→平台审核与监管
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2025/12/court-approves-order-requiring-disney-pay-10-million-settle-ftc-allegations-firm-enabled-unlawful
+- 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
+- Status：PASS_CANDIDATE
+- 历史来源编号：从旧百题库 H069 位置换入新的独立现实案例，不能沿用原题身份
+- 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
+
+---
 
 - 最终选题：**重新打印了一批谷歌备份码，为什么旧纸条上的十个码全部失效？**
 - 选题类型：机制 / 体验
@@ -1841,7 +1979,30 @@
 
 ---
 
-## H074 — 职场协作
+## H074 — 医院摄像头泄露
+
+- 最终选题：**医院里的摄像头原本为了安全，为什么黑客可能看见患者的私密影像？**
+- 选题类型：判断 / 惊奇
+- Entry：HUMAN_WORLD_FIRST
+- X：医院摄像头泄露
+- Human Process：消费者使用数字产品做出真实选择与授权
+- Human Problem：FTC 指控 Verkada 网络摄像头安全措施不足，入侵者访问十余万路摄像头
+- 反常：本应更安全、便利或公正的服务带来未被预期的风险或代价
+- Human Tension：病人安全 vs 隐私泄露
+- Controlling Question：哪一个具体的技术、权限或数据状态改变了人的实际结果？
+- 科技改变的过程：技术平台将人的身份、行为或数字服务转为可跨系统执行的数据流
+- 主机制：联网安防设备的集中后台如果缺乏有效密码、权限和网络保护，会扩大攻击者访问面
+- Audience Payoff：理解病人安全 vs 隐私泄露所涉及的真实产品/监管边界，而不把营销说法直接当成已验证结果
+- Meaning Fingerprint：`病人安全 vs 隐私泄露｜联网安防设备的集中后台如果缺乏有效密码、权限和网络`
+- Motif：医院装安防摄像头→平台管理后台被入侵→患者画面暴露
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/ftc-takes-action-against-security-camera-firm-verkada-over-charges-it-failed-secure-videos-other
+- 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
+- Status：PASS_CANDIDATE
+- 历史来源编号：从旧百题库 H097 位置换入新的独立现实案例，不能沿用原题身份
+- 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
+
+---
 
 - 最终选题：**Zoom 开了‘主持人前入会’，为什么同事还在等候室？**
 - 选题类型：机制 / 体验
