@@ -5,7 +5,7 @@
 ## 当前审核结果
 
 - S = 13（优先研究）；A = 35（较值得研究）；B = 34（备选且需补证）；R = 18（RETURN／合并建议）。合计 100，无号码重复。
-- 强匹配重复证据/讨论索引信号只有少数：`FREQUENCY_EVIDENCED` 5，`ATTENTION_EVIDENCED` 1；这些证据**只支持记录中说明的范围**，不能当作中国 B 站的潜在播放量。其他题多数只有上位问题类别的 `CATEGORY_PROXY`，不许冒充单题流行度。
+- 强匹配重复证据/讨论索引信号只有少数：`FREQUENCY_EVIDENCED` 8，`ATTENTION_EVIDENCED` 1；这些证据**只支持记录中说明的范围**，不能当作中国 B 站的潜在播放量。其他题大多只有上位问题类别的 `CATEGORY_PROXY`，不许冒充单题流行度。
 - `CATEGORY_PROXY` 与 `SIGNAL_UNVERIFIED` 一律不能直接进入正式 Part 2；S/A 没有频率或同题观众信号时，即便故事性好也必须保持 `HOLD_SIGNAL`。没有满足双证据、完整 D1–D5 和故事检查的题，不标正式 PASS。
 - 原标题如实保留；本轮仅对 13 个 S 档标题进行有限的人类场景优先措辞改写（非凭空增添新事实），不为了增加情绪编造新的个人遭遇。
 - 本轮重点背景：[公安部/国家反诈中心2025手册](https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html)、[2025全国消协投诉分析](https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml)、[个人信息保护专项行动](https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm)、[2025游戏投诉报告](https://hb.tousu.sina.com.cn/articles/view/429550/)、[CNNIC生成式AI用户背景](https://www.cnnic.cn/n4/2026/0930/c326-11690.html)。**这些只提供相关类目关注/问题背景，不证明细题高频**；真实直接信号见对应题目记录。
@@ -1446,15 +1446,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.ftc.gov/legal-library/browse/cases-proceedings/2123050-amazoncom-inc-rosca-ftc-v
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：HOLD_SIGNAL
+- Status：CANDIDATE / FORMAL_GATE_PENDING
 - 本轮等级（2026-10-08 X+科技复审）：S
 - 本轮生活领域 X：日常消费与订阅
 - 本轮推荐理由：购物被捆绑自动续费，高发会员投诉母题且有多消费者反馈
-- 高频/关注度信号类型：CATEGORY_PROXY
-- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
-- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
-- 实际审核状态：HOLD_SIGNAL
-- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
+- 高频/关注度信号类型：FREQUENCY_EVIDENCED
+- 高频/关注度说明：国内2025年自动续费投诉约6.92万件，其中不知情或诱导续费及未获提示约5.15万件；证明不知情续费是重复问题，不证明某一购物平台普遍强加会员
+- 高频/关注度来源：https://www.chinanews.com/cj/2026/03-14/10586915.shtml
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：已有有限重复现实问题信号，但仍要证实具体技术因果、地区/平台受众迁移、故事独立性和D1–D5；尚非正式PASS
 - 历史来源编号：2026-10-08 旧百题库 H054
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -2012,15 +2012,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：HOLD_SIGNAL
+- Status：CANDIDATE / FORMAL_GATE_PENDING
 - 本轮等级（2026-10-08 X+科技复审）：S
 - 本轮生活领域 X：亲情与信任
 - 本轮推荐理由：熟悉的家人声音也不能证明身份，信任冲突强；声音克隆细题高频尚未证明
-- 高频/关注度信号类型：CATEGORY_PROXY
-- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
-- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
-- 实际审核状态：HOLD_SIGNAL
-- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
+- 高频/关注度信号类型：FREQUENCY_EVIDENCED
+- 高频/关注度说明：2024-2025中国辽宁、湖北公安/检察办案出现不同老人遭AI拟声冒充亲人索款，湖北同案3人；证明多例发生，不代表已知全国发生率
+- 高频/关注度来源：https://www.xinhuanet.com/politics/20260416/8caba2d233f546f2b1e6efda39915fa8/c.html
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：已有有限重复现实问题信号，但仍要证实具体技术因果、地区/平台受众迁移、故事独立性和D1–D5；尚非正式PASS
 - 历史来源编号：2026-10-08 旧百题库 H074
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -2179,15 +2179,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/never-move-your-money-protect-it-thats-scam
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：HOLD_SIGNAL
+- Status：CANDIDATE / FORMAL_GATE_PENDING
 - 本轮等级（2026-10-08 X+科技复审）：S
 - 本轮生活领域 X：家庭资金安全与信任
 - 本轮推荐理由：冒充银行安全账户，信任与钱的冲突强，冒充骗术是高发类别
-- 高频/关注度信号类型：CATEGORY_PROXY
-- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
-- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
-- 实际审核状态：HOLD_SIGNAL
-- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
+- 高频/关注度信号类型：FREQUENCY_EVIDENCED
+- 高频/关注度说明：中国公安部将冒充公检法要求转账安全账户列入高发骗局，也有冒充银行资金安全型；仅支持骗局手法反复出现，不证明所有具体银行身份版本频繁
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxrdtj/202506/t20250624_521439.html
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：已有有限重复现实问题信号，但仍要证实具体技术因果、地区/平台受众迁移、故事独立性和D1–D5；尚非正式PASS
 - 历史来源编号：2026-10-08 旧百题库 H080
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
