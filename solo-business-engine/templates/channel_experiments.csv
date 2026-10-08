@@ -1,0 +1,1 @@
+experiment_id,opportunity_id,channel_role,channel_name,buyer_state,buyer_segment,offer_version,proof_format,legal_eligibility,assigned_owner,cash_spend_limit,time_hours_limit,start_date,end_date,maturity_window,primary_metric,guardrails,success_condition,kill_condition,actual_exposure,qualified_leads,quotes,valid_payments,refunds,cash_spent,owner_hours,decision,source_links

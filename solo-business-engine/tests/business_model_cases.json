@@ -1,0 +1,162 @@
+[
+  {
+    "id": "M01",
+    "scenario": "高价网站开发委托，一单高收入但每次80小时完全定制，没有估算售后",
+    "candidate_model": "project",
+    "expected_rule_decision": "TEST",
+    "must_note": "必须先量化成本/范围,不宣称可规模化",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M02",
+    "scenario": "节庆一次性个性礼品已有销售，但每位客户不复购",
+    "candidate_model": "one_off_gift",
+    "expected_rule_decision": "TEST",
+    "must_note": "考察新客户循环和季节性,不强制订阅",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M03",
+    "scenario": "订阅工具首月付款有30位，但没有任何第二月续费数据",
+    "candidate_model": "subscription",
+    "expected_rule_decision": "INCONCLUSIVE",
+    "must_note": "续费/留存未知,不宣称可持续订阅",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M04",
+    "scenario": "竞争对手某模板品类销量好，我们无任何自己的订单",
+    "candidate_model": "digital_product",
+    "expected_rule_decision": "INCONCLUSIVE",
+    "must_note": "竞品证据不等于我们产品成交",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M05",
+    "scenario": "重复录入服务客户确定有痛点，但含敏感授权信息，尚无安全交付方案",
+    "candidate_model": "productized_service",
+    "expected_rule_decision": "HOLD",
+    "must_note": "先核对合规和可交付性",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M06",
+    "scenario": "有5次重复咨询，能定义固定输入，仍未报价和付款",
+    "candidate_model": "productized_service",
+    "expected_rule_decision": "TEST",
+    "must_note": "允许做样例和有界报价,不可宣布 PMF",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M07",
+    "scenario": "创作者流量每月很高，却无购买意向或客户付款",
+    "candidate_model": "audience",
+    "expected_rule_decision": "INCONCLUSIVE",
+    "must_note": "观看量不等于交易",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M08",
+    "scenario": "连续几个相似订单已完成，单次现金贡献为正但 Owner 总工作小时未记录",
+    "candidate_model": "productized_service",
+    "expected_rule_decision": "INCONCLUSIVE",
+    "must_note": "缺个人时间账不宣称长期自由",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M09",
+    "scenario": "自动生成报告的脚本很快，却没有发现真实买家",
+    "candidate_model": "software",
+    "expected_rule_decision": "INCONCLUSIVE",
+    "must_note": "技术可行不等于可售",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M10",
+    "scenario": "单一采购大客户签约带来绝大部分收入，没有其他获客来源",
+    "candidate_model": "enterprise_project",
+    "expected_rule_decision": "HOLD",
+    "must_note": "客户集中度和可重复获客未经验证",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M11",
+    "scenario": "低毛利平台数字商品已有销售，排名规则变化且没有自有入口",
+    "candidate_model": "marketplace",
+    "expected_rule_decision": "TEST",
+    "must_note": "先测单笔贡献和平台依赖,不盲扩大",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M12",
+    "scenario": "高价值精品咨询每月少量订单，有边界和很好的现金贡献/小时",
+    "candidate_model": "premium_expertise",
+    "expected_rule_decision": "TEST",
+    "must_note": "不强制软件化,应验证稳定客源与本人可承受性",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M13",
+    "scenario": "产品月付但客户只每年用一次功能，第二月就大量取消",
+    "candidate_model": "subscription",
+    "expected_rule_decision": "HOLD",
+    "must_note": "修正付费频率与价值频率,可测试按次",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M14",
+    "scenario": "人工客服的简单问题有重复，自动回复可以做，但失败会误导客户付款",
+    "candidate_model": "automation",
+    "expected_rule_decision": "TEST",
+    "must_note": "先跑可逆人工审核并测错率及售后",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M15",
+    "scenario": "付费内容用户来自合作伙伴，分成后利润未知",
+    "candidate_model": "partnership",
+    "expected_rule_decision": "INCONCLUSIVE",
+    "must_note": "合格订单不代表分成后利润",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M16",
+    "scenario": "准备跨平台群发，试图轮换账号突破陌生人私信限制",
+    "candidate_model": "outbound",
+    "expected_rule_decision": "REJECT",
+    "must_note": "不得建议平台限制规避",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M17",
+    "scenario": "有好看的工具原型和用户口头表示愿意付钱，但无实际报价/收款",
+    "candidate_model": "saas",
+    "expected_rule_decision": "INCONCLUSIVE",
+    "must_note": "口头意愿不是实付",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M18",
+    "scenario": "成本足够低可预售低风险实体样品，客户已支付订金但未交付",
+    "candidate_model": "physical",
+    "expected_rule_decision": "TEST",
+    "must_note": "单次交易成立但验收和退款未验证",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M19",
+    "scenario": "客户愿意一次性购买模板，无理由按月收费",
+    "candidate_model": "license",
+    "expected_rule_decision": "TEST",
+    "must_note": "优先检验符合使用时点的一次性定价",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  },
+  {
+    "id": "M20",
+    "scenario": "业务涉及不可合法销售的商品和不安全数据利用",
+    "candidate_model": "prohibited",
+    "expected_rule_decision": "REJECT",
+    "must_note": "非法或严重安全风险硬停止",
+    "evidence_scope": "SYNTHETIC_RULE_EXAMPLE"
+  }
+]

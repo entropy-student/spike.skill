@@ -1,0 +1,22 @@
+[
+ {"id":"B2B_EMPLOYEE_NO_AUTHORITY","signal":"员工抱怨高","must_include":["付款人","购买","Gate"],"forbid_claims":["已有真实交易"]},
+ {"id":"B2C_GIFT_NO_PAIN","signal":"节庆送礼、情感身份","must_include":["情感","购买","Trigger"],"forbid_claims":["没有痛点所以无市场"]},
+ {"id":"PREPAID_NOT_DELIVERABLE","signal":"先收货款但产品无法交付","must_include":["交付","退款","安全"],"forbid_claims":["可以放心预售"]},
+ {"id":"COMPETITOR_MAKES_MONEY","signal":"竞争对手已有收入","must_include":["Why Us","替代","本人"],"forbid_claims":["我们已经验证成交"]},
+ {"id":"ZERO_REPLIES","signal":"几十次不回复","must_include":["UNKNOWN","渠道","买家"],"forbid_claims":["不存在需求"]},
+ {"id":"FRIEND_BOUGHT_ONCE","signal":"熟人支持第一单","must_include":["熟人","重复","交易"],"forbid_claims":["已验证PMF"]},
+ {"id":"SINGLE_SEASON_PURCHASE","signal":"节日产品一次性购买","must_include":["一次性","季节","新客户"],"forbid_claims":["必须订阅"]},
+ {"id":"CHURN_BEATS_GROWTH","signal":"每月新付费很多但更快流失","must_include":["留存","退款","贡献"],"forbid_claims":["可以直接放大"]},
+ {"id":"SEO_TRAFFIC_ONLY","signal":"SEO有访问但没有询价","must_include":["搜索","询价","付款"],"forbid_claims":["SEO证明成交"]},
+ {"id":"HIGH_TOUCH_PROFIT_TRAP","signal":"高收入却消耗大量个人交付时间","must_include":["Owner","人工","贡献"],"forbid_claims":["可以零人工放大"]},
+ {"id":"PROTECTED_API","signal":"需要客户账号、个人资料或受限 API","must_include":["授权","隐私","许可"],"forbid_claims":["直接爬取即可"]},
+ {"id":"MARKETPLACE_RULES","signal":"平台禁止引导站外付款","must_include":["站内","平台","合规"],"forbid_claims":["引导站外付款"]},
+ {"id":"NO_OWNER_BUDGET","signal":"现金预算未确认","must_include":["UNKNOWN","风险","投放"],"forbid_claims":["已经获授权投放"]},
+ {"id":"SELF_REPORT_BIAS","signal":"问卷都说会付费","must_include":["支付","口头","意愿"],"forbid_claims":["付费已验证"]},
+ {"id":"WIDE_EXPLORATION","signal":"全新市场探索同时多变量变动","must_include":["探索","因果","实验"],"forbid_claims":["单变量已严格证明"]},
+ {"id":"AD_CLICK_NO_ORDER","signal":"搜索广告点击很多没付费","must_include":["点击","真实","付款"],"forbid_claims":["广告已验证盈利"]},
+ {"id":"REFERRAL_DEPENDENCY","signal":"所有订单由单一转介人介绍","must_include":["独立","渠道","重复"],"forbid_claims":["所有渠道均可扩大"]},
+ {"id":"LIVE_MARKET_NOT_TESTED","signal":"二手资料充分，但没有真实市场实验","must_include":["BLOCKED_BY_REAL_INPUT","实收","真实"],"forbid_claims":["现实市场已经验证系统"]},
+ {"id":"ALREADY_SATISFIED_CUSTOMER","signal":"用户无意替换现有供应商","must_include":["替代","切换","差异"],"forbid_claims":["需求高就是愿意换"]},
+ {"id":"SERVICE_FAILS_AFTER_PURCHASE","signal":"已收款但交付失败或要求退款","must_include":["退款","交付","暂停"],"forbid_claims":["已经可规模化"]}
+]
