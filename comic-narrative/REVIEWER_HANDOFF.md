@@ -17,16 +17,16 @@
 
 ## PROJECT_STAGE
 
-`TOPIC_LIBRARY_EVIDENCE_EXPANSION_100 / EDITORIAL_REVIEW_PENDING`
+`TOPIC_100_X_FIRST_MARKET_SIGNAL_REVIEW / FORMAL_PASS_PENDING`
 
 当前状态：
 
-- **当前首要任务**：按照 Owner 的选题要求持续生产对应素材包；每个目标按现行 Part 1→Part 4.5 流程推进，并在认定完成前依项目要求完成复检。
+- **当前首要任务**：完成100题X主导、现实问题、科技因果、频次/关注度的严格审查；正式PASS之前不能直接进Part2制作素材包。
 
 - imagegen executor reliability 已正式封板；
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
-- **2026-10-08 Owner 证据优先扩库**：先淘汰原候选中的 34 条 FAQ 化、重复或事实范围不佳的题目，再补入 34 条现实案例，现行 100 条来源挂接候选（100 `PASS_CANDIDATE` / 0 本轮正式编辑 PASS）。**100 是候选规模，不代表已有 100 个合格成片题**；保留 66 条旧候选也需正式双证据与叙事价值复核。
+- **2026-10-08 Owner 最新授权**：在原Part1上仅增两处补丁，强调X+科技（X优先）、真实人的问题、科技因果、同题频次或观看/关注证据及独立故事价值；重跑当前100条，结果S13/A35/B34/R18，0正式PASS。R18暂标RETURN保留审计；没有因目标100而强保候选资格。
 - 当前无 live imagegen；legacy H002（AI性格画像）R3、legacy H007（AI旅行规划）R3 既有正式回填保持不变。legacy H015（天气预报）已移出当前库存，其历史包仅保留为历史资产，不再继续 REVIEW、回填或生产。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
@@ -51,8 +51,8 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：Part 1 双证据 Gate 持续有效；Part 0 100 条候选，旧候选留存 66 + 新增可追溯监管/研究个案 34；当前统一 `PASS_CANDIDATE`，尚无本轮正式编辑 `PASS`。初筛已剔除 34 条较弱旧选题，但 100 条仍须逐题检验‘问题存在 + 科技因果’的证据、D1–D5 独立性与 3–5 分钟故事收获。上一版 30 题的 17 个 EVIDENCE_PENDING 不原样继承。
-- **Topic library**：现行 H001–H100。历史 94 题、30 题及上一版 100 题均有不同编号快照；同号不能映射，必须按题名+来源+本轮审查说明比对，原始历史可由 Git 提交还原。
+- **Part 0 / Part 1**：现行 Part1 为恢复原文后的两处最小增补：X为主、真实人类问题+科技因果+具体频次/受众关注证据。Part0 H001–H100现在是**100条审计样本**，S13/A35/B34/R18，不是100条制作合格题。5条特定范围FREQUENCY_EVIDENCED、1条有限ATTENTION_EVIDENCED；76条CATEGORY_PROXY和18条SIGNAL_UNVERIFIED尚不能证明细题高频或实际关注。正式PASS为0；R18为RETURN建议。
+- **Topic library**：现行 H001–H100 是本轮100样本审计编号；13条S档题面有限地以人的场景重写，保留「上版题面」。历史94/30/上一轮100题及X素材包的相同编号不能自动映射，必须使用题名与来源。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
@@ -74,13 +74,15 @@ Part 6  执行与项目管理               [PENDING]
 - **Local doc/evidence purge R3**：正式 **PASS**。17 个 proven-redundant 文件被删除，回收 153,449,311 bytes；3 个 H019 image-review ZIP 在 36/36 PNG hash 对应证明后删除；unique `审核其他资料.zip` 与未证明冗余的 QA/RUN/REVIEWER/queue 文档保留；H019 inputs/refs/tasks/manifest/36 outputs preserved；IMAGEGEN_CALLS=0。
 - **Part 5 / Part 6**：PENDING。
 
+**2026-10-08 最新审计说明**：Part1 已从经核对的原文进行两处最小增补；Part0 100 条逐题复审（S13/A35/B34/R18）；只有6条具有限定范围的独立重复/观看线索，绝大多数只有行业类目背景。**R档18条建议删除/合并，但保留审计条目避免破坏历史可追溯性；正式制作PASS=0。** 海外FTC案例应注明“指控/和解”，不得把行业普及率当成细题发生率。
+
 ## CURRENT_GATE
 
 ### GATE_ID
-TOPIC_EXPANSION_100_EVIDENCE_STAGE
+TOPIC_100_MARKET_GATE_REVIEW_STAGE
 
 ### OBJECTIVE
-Owner 2026-10-08 要求先对上版 17 个待补证题严格处理，缺乏可信来源的删除，再按 Part 1 双证据规则扩充到 100 题。当前 GitHub main 逐题有100条来源挂接候选，在本轮实际删改中淘汰34条旧问题，并引入34条有监管/研究来源的独立个案；真正正式 PASS 仍需完成逐题证据和内容质量复核。
+Owner 最新要求：在恢复旧Part1后最小增加X主导与现实高频或明确受众关注门槛，重审100个选题。现已完成两处补丁和100条逐题审计：S13/A35/B34/R18。六条具有限定范围的重复/观看信号、九十四条缺少直接细题市场信号；正式PASS尚未开放。
 
 ### MAX_ENDPOINT_THIS_ROUND
 - 仅修改 Part 0、Part 1 旧示例身份说明、本 Handoff；
@@ -88,7 +90,7 @@ Owner 2026-10-08 要求先对上版 17 个待补证题严格处理，缺乏可�
 - 不调用 imagegen、不执行在线生产。
 
 ### MANDATORY_REVIEW_STOP
-STOP_AT_EDITORIAL_REVIEW=YES；不得因凑数量自动宣布 100 PASS。
+STOP_AT_EDITORIAL_REVIEW=YES；不得因凑数量自动宣布 100 PASS；无细题需求信号者HOLD_SIGNAL。
 
 ### TARGET_AND_SCOPE
 - 原 30 题（13 PASS / 17 EVIDENCE_PENDING）保留完整 Git 历史，不机械继承原待补证题；
@@ -109,11 +111,11 @@ STOP_AT_EDITORIAL_REVIEW=YES；不得因凑数量自动宣布 100 PASS。
 当前 Part 0 100 题的逐题 Source / Signal、证据边界、主机制、来源类型，GitHub fresh read-back；Part 1 双证据及 D1–D5；本 Handoff 当前状态。
 
 ### ACCEPTANCE_CRITERIA
-- 100 个连续编号且无完全重复题面；
+- 100 个连续审计编号且无完全重复题面；
 - 全部具备非空来源 URL 和范围说明；
 - 所有正式 PASS 均有针对事实、人类困境、科技机制与独立故事价值的逐项审阅证据；
 - 无历史资产丢失、无下游改动、无 live imagegen。
-- 当前编号/字段/可追溯 URL 的结构性检查已完成；100 条完整的外部来源核实、跨稿 D1–D5 与正式编辑 PASS **尚未完成**，不虚报 Gate fully closed。
+- 已完成100条编号/字段、推荐分档与市场信号类型的结构检查。当前仍缺94条具体细题市场证据；未完成所有来源全文的逐条回读和正式编辑审核，0正式PASS，不虚报Gate通过。
 
 ### ROLLBACK_STATUS_OR_PLAN
 GitHub 保留旧 30 题及当前前续提交；当前仅文档文字变动，可按 commit 恢复，不影响历史素材。
@@ -125,7 +127,7 @@ NONE；质量未达标候选先由 Reviewer 再筛，不能直接进入剧本生
 下一执行轮仅针对 Part 0 做证据真实性及编辑价值核验，不主动运行 Part 2/图像生成。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
-NONE — 100 SOURCE-LINKED CANDIDATES; FORMAL REVIEW PENDING.
+NONE — 100 AUDIT SAMPLES, S13/A35/B34/R18; 0 FORMAL PASS.
 
 ## CRITICAL_CONSTRAINTS
 
@@ -143,7 +145,7 @@ NONE — 100 SOURCE-LINKED CANDIDATES; FORMAL REVIEW PENDING.
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`。
-- 当前状态：Part 0 H001–H100 共 100 个 source-linked PASS_CANDIDATE；尚无本轮正式编辑 PASS，旧 X 库包保留；无 live Executor。
+- 当前状态：Part0 100条审计样本，S13/A35/B34/R18；FREQUENCY_EVIDENCED 5、ATTENTION_EVIDENCED 1、CATEGORY_PROXY 76、SIGNAL_UNVERIFIED 18。0正式PASS；旧X库保留；无live Executor。
 - 下一动作：对 H001–H100 做最终双证据与 D1–D5、故事可讲性、可追溯链接回读的细审；不合格直接删除/替换，合格才升级 PASS。
 - Windows/Codex local paths 必须由对应 Gate 证明，不从历史路径猜测。
 
@@ -202,7 +204,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## NEXT_STEP
 
-下一轮第一件事：**先完成现行 100 个候选的正式证据与编辑质量复查，而不是直接进入 Part 2。**
+下一轮第一件事：**优先为S档的中国B站受众找同题反复讨论/观看/投诉证据，并做完整双证据+D1–D5审查；R18不再进入Part2。**
 
 - 只有逐题证据核实与故事价值都通过，才能升级正式 PASS；
 - 仍有不支持题面的来源、重复或贫乏故事价值时，直接删除/替换，不将猜想写为事实；
@@ -215,7 +217,8 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 - 选择下一制作目标；除此之外当前无其他必须操作。
 ## EVIDENCE_POINTERS
 
-- Current 100 sourced topic candidates: `comic-narrative/part0/TOPIC_LIBRARY.md` (commit `5fe5989eddd7a8aa2e791310d52b418031b2bcfb`)
+- Current 100-topic tier/signal audit: `comic-narrative/part0/TOPIC_LIBRARY.md` (commit `ba97300b982d4a9abbd439b0603d457ff07a81d4`)
+- Part1 X/market signal minimal addition: `comic-narrative/part1/TOPIC_STRATEGY.md` (commit `abd9ae6ef06a1305a0a7c5308952840434aba2a8`)
 - Part1 historical examples fixed: comic-narrative/part1/TOPIC_STRATEGY.md (commit 192074b4f0c18725cf35f905aac3a0fbba38dfab)
 
 - Reality first Part 1: comic-narrative/part1/TOPIC_STRATEGY.md — commit 00be98d9c5e1175e311b799953ecec71d867a9d1
