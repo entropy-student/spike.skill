@@ -1249,7 +1249,7 @@
 - Meaning Fingerprint：`一次消费 vs 持续订阅｜FTC 指控 Amazon Prime`
 - Motif：买必需品→查到会员账单→追溯结算按钮
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://www.ftc.gov/legal-library/browse/cases-proceedings/2123050-amazoncom-inc-rosca-ftc-v
+- Source / Signal：OBSERVED_CASE；https://www.ftc.gov/legal-library/browse/cases-proceedings/2123050-amazoncom-inc-rosca-ftc-v
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
 - Status：PASS_CANDIDATE
 
@@ -1272,7 +1272,7 @@
 - Meaning Fingerprint：`宣传免运费 vs 真实总价｜FTC 对 Instacart 的指控`
 - Motif：按免费配送广告下单→结账总价上涨→拆出费用
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://search.ftc.gov/news-events/news/press-releases/2025/12/instacart-pay-60-million-consumer-refunds-settle-ftc-lawsuit-over-allegations-it-engaged-deceptive
+- Source / Signal：OBSERVED_CASE；https://search.ftc.gov/news-events/news/press-releases/2025/12/instacart-pay-60-million-consumer-refunds-settle-ftc-lawsuit-over-allegations-it-engaged-deceptive
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
 - Status：PASS_CANDIDATE
 
@@ -1663,7 +1663,7 @@
 - Meaning Fingerprint：`防盗验证 vs 社交诱骗｜当前有效 OTP 被骗子转用于登录或转`
 - Motif：假银行打电话→索码→账户被冒用
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2024/03/whats-verification-code-why-would-someone-ask-me-it
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/whats-verification-code-why-would-someone-ask-me-it
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1709,7 +1709,7 @@
 - Meaning Fingerprint：`熟悉音色 vs 可靠身份｜骗子可通过语音克隆模拟亲人声音制造紧急`
 - Motif：求救电话→要求钱款→另一路确认
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1732,7 +1732,7 @@
 - Meaning Fingerprint：`账面收益 vs 真正到账｜任务平台展示假的佣金并要求用户充钱解锁`
 - Motif：点赞任务→虚拟利润→先充加密货币
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2025/08/how-spot-avoid-task-scams
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2025/08/how-spot-avoid-task-scams
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1755,7 +1755,7 @@
 - Meaning Fingerprint：`线下可信场所 vs 可替换链接｜扫码者被重定向到骗子模仿的收费页面`
 - Motif：停车扫码→站点名称异样→查看贴纸
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2026/09/see-qr-code-parked-somewhere-dont-scan-ityet
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2026/09/see-qr-code-parked-somewhere-dont-scan-ityet
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1778,7 +1778,7 @@
 - Meaning Fingerprint：`配送焦虑 vs 链接真假｜诈骗二维码指向仿冒登录页索取凭证`
 - Motif：假配送短信→扫码→仿冒网站
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2023/12/scammers-hide-harmful-links-qr-codes-steal-your-information
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2023/12/scammers-hide-harmful-links-qr-codes-steal-your-information
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1801,7 +1801,7 @@
 - Meaning Fingerprint：`实体货架 vs 数字凭证失密｜骗子提前窃取PIN并等待合法购买者充值`
 - Motif：买卡送人→余额归零→查卡包装
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2024/12/check-out-gift-cards-you-buy-them
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/12/check-out-gift-cards-you-buy-them
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1824,7 +1824,7 @@
 - Meaning Fingerprint：`仿真官网 vs 真实商户｜骗子克隆库存图片、品牌Logo与评论骗`
 - Motif：网上付钱→到场提车→店铺否认
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2026/09/scammers-are-spoofing-car-dealership-websites-what-you-need-know
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2026/09/scammers-are-spoofing-car-dealership-websites-what-you-need-know
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1847,7 +1847,7 @@
 - Meaning Fingerprint：`保护自己 vs 误转资产｜冒充银行安全专员制造风险要求转出资金`
 - Motif：紧急电话→转账保护→钱被取走
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2024/03/never-move-your-money-protect-it-thats-scam
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/never-move-your-money-protect-it-thats-scam
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1870,7 +1870,7 @@
 - Meaning Fingerprint：`权威层级 vs 实为同伙｜诈骗使用假系统弹窗和多次冒充权威套取款`
 - Motif：弹窗→客服→假警方→银行账户
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://consumer.ftc.gov/consumer-alerts/2024/03/new-tech-support-scammers-want-your-life-savings
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/new-tech-support-scammers-want-your-life-savings
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1893,7 +1893,7 @@
 - Meaning Fingerprint：`评论文本 vs 真实体验｜AI生成或假账号可制造从未购买者的评论`
 - Motif：准备购买→发现模式化账号→追查评价来源
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- Source / Signal：OBSERVED_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1916,7 +1916,7 @@
 - Meaning Fingerprint：`主动评价 vs 指定倾向｜针对特定正向或负向评价付费受FTC规则`
 - Motif：商品包装里的返现卡片→回看五星数据
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- Source / Signal：OBSERVED_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1962,7 +1962,7 @@
 - Meaning Fingerprint：`完整口碑 vs 单边筛选｜误导性删除差评和全量展示虚假声称受到限`
 - Motif：店铺零差评→买家投诉负面评价消失
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- Source / Signal：OBSERVED_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
@@ -1985,7 +1985,7 @@
 - Meaning Fingerprint：`数字热度 vs 真实受众｜买卖虚假粉丝或播放量可以夸大商业影响力`
 - Motif：商单报价→审核粉丝来源→发现机器人
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE（监管文件）；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
+- Source / Signal：OBSERVED_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
 - Status：PASS_CANDIDATE
 
