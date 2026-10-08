@@ -1,7 +1,7 @@
 # Part 0 — 历史选题库
 
 本文件是漫画叙事的历史选题库与扩展候选储备。  
-当前共有 **30 个经 2026-10-08 现实问题证据优先复查后留存的 Case**。来源与结论见逐题 Reality Gate；旧 94 题是历史库存，不再代表当前库存。
+当前共有 **30 个经 2026-10-08 现实问题证据优先复查后留存的 Case（13 PASS / 17 EVIDENCE_PENDING）**。来源与结论见逐题 Reality Gate；旧 94 题是历史库存，不再代表当前库存。
 
 规则：
 - 2026-10-05 旧库存来自当时的 100 题复查结果：A「优先推进」与 B「建议保留」全部保留，C「建议淘汰/重写」6 题已按 Owner 指令删除；本轮不再扩库、不再调整其余题。
@@ -37,7 +37,7 @@
 ### 2026-10-08 现实问题证据优先复核（当前唯一题库身份）
 
 - Owner 授权质量优先、不保数量：旧 94 题逐项对照；上轮 C/D 8 题直接淘汰，其余 A/B 同样按真实信号、科技因果、非平凡收获及同构检查决定。**保留 30 / 删除 64**。
-- 保留稿的 `PASS` 只表示本轮在题面范围内识别到可追溯现实观察或产品行为；**不替代 Part 2 开写前的事实/机制再核验**。个案仅证明有人遇到，不能证明普遍性；第三方社区用户自述可能不可靠。
+- 当前 30 题中 **13 题 `PASS`、17 题 `CANDIDATE / EVIDENCE_PENDING`**。`PASS` 只表示当前题面相对明确且有可追溯现实观察或产品行为支撑；**不替代 Part 2 开写前的事实/机制再核验**。另 17 题有真实线索但因果、直接来源或代表性仍待补充，未获正式制作许可。个案仅证明有人遇到，不能证明普遍性；第三方社区自述可能不可靠。
 - 原有成片/分镜/素材包属于历史锁稿，不随本轮重编号替换、重写或删除；如旧 H002/H007 等已被剔出当前选题库，其历史制作包仍可追溯，**不得把历史包按新 H-ID 自动映射为当前题目**。
 - `EVERGREEN_CASE` 不是证据等级；本轮要求每个留存条目附具体来源及适用边界。对于一个来源只支持有限现象的选题，题面已收紧，仍需制作前独立校验。
 
@@ -99,7 +99,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：原话很笨但像本人 → AI改得完美 → 对方问“这真是你写的吗？”
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/ChatGPT/comments/1u08gd4/people_have_started_sounding_like_chatgpt_now_and/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H005
 - Reality Gate 范围：讨论 AI 写作痕迹；不能推出所有朋友都识别得出
 
@@ -123,7 +123,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：题题秒懂 → 合上AI独立做题 → 卡住 → 回看自己从未真正做过判断
 - Content Job：TRUST
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/edtech/comments/1wywcmj/13yo_can_not_do_homework_without_chatgpt_anymore/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H006
 - Reality Gate 范围：家长自述个案；不推断 AI 必然降低学习能力
 
@@ -147,7 +147,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：本想看一条 → 条条都相关 → 抬头已经过去很久
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/nosurf/comments/1veat89/do_people_not_get_bored_of_just_endlessly/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H008
 - Reality Gate 范围：用户长时间滚动的观察；算法权重与个人行为无法从此个案分离
 
@@ -225,7 +225,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：刷到余票 → 选中座位 → 付款页提示售罄 → 回看多人同时竞争同一库存
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://developer.ticketmaster.com/products-and-docs/apis/partner/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H013
 - Reality Gate 范围：真实票务接口存在库存失效与过期购物车；平台细则不互相套用
 
@@ -249,7 +249,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：购物车差一点免邮 → 加一件不需要的东西 → 获得“省了运费”的满足 → 对比整单总额
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/Frugal/comments/17e8d4g
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H014
 - Reality Gate 范围：用户明确谈论额外凑单；不主张所有凑单都非理性
 
@@ -297,7 +297,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：异地第一次刷卡 → 被拒 → 主角证明是本人 → 回看系统为什么觉得这笔交易不像平时
 - Content Job：TRUST
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/CreditCards/comments/1unknua/citi_mastercard_frustrating_experience_with_citi/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H016
 - Reality Gate 范围：具体银行卡风控旅行案例；并非一切跨境拒付都出自同类原因
 
@@ -344,7 +344,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Meaning Fingerprint：`HOME_ADAPTS_TO_AUTOMATION`
 - Motif：第一次机器人到处卡住 → 主角开始收线挪家具 → 几周后家里的摆放习惯已经围绕机器路线变化
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/roomba/comments/eal6qq
+- Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/RobotVacuums/comments/1vbc30v/do_you_tidy_the_floor_before_running_your_robot/
 - Status：PASS
 - 2026-10-08 复查前编号：H020
 - Reality Gate 范围：不同机器人避障能力不同，案例仅说明常见整理边界
@@ -392,7 +392,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：AI 回答看起来很可靠 → 点开脚注 → 搜遍原文没找到那个结论 → 开始逐句核引用
 - Content Job：TRUST
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/ChatGPTcomplaints/comments/1rea9cz/why_gpt_hallucinates_sources_in_long_research/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H028
 - Reality Gate 范围：用户压力测试报告；引用质量需要逐个核查
 
@@ -415,10 +415,10 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Meaning Fingerprint：`INTERFACE_IMPROVEMENT_VS_MOTOR_MEMORY`
 - Motif：更新前操作行云流水 → 按钮位置改变 → 每一步都下意识点错 → 几天后又重新变快
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/Windows11/comments/17c4lnh
+- Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/Windows11/comments/1eqypyl
 - Status：PASS
 - 2026-10-08 复查前编号：H029
-- Reality Gate 范围：按钮移位后旧操作习惯的真实反馈
+- Reality Gate 范围：Windows 改版后用户抱怨原有操作增加点击；不推断所有软件升级都降低效率。
 
 ---
 
@@ -440,7 +440,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：搜索一双鞋 → 买下 → 接下来几天网页继续追同款 → 广告系统仍把旧兴趣当成当前意图
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/marketing/comments/15ct6bx
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H030
 - Reality Gate 范围：已购商品仍被定向推送的用户观察；不推断平台一定能看见成交
 
@@ -463,10 +463,10 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Meaning Fingerprint：`ACCOUNT_SHARING_VS_IDENTITY_SEPARATION`
 - Motif：一家三口轮流观看 → 首页从动画跳到球赛再到悬疑剧 → 每个人都开始手动搜索
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/AmItheAsshole/comments/klce0n
+- Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/netflix/comments/df7dx0
 - Status：PASS
 - 2026-10-08 复查前编号：H034
-- Reality Gate 范围：共同使用个人化资料的真实讨论；需区分共账号与共 profile
+- Reality Gate 范围：同一个 profile 的观看历史会影响推荐；区分共享账户与共享 profile。
 
 ---
 
@@ -512,7 +512,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：机器人问完一轮 → 显示“已为你总结” → 人工第一句仍问“请问遇到什么问题”
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/customerexperience/comments/1ud82vo/ai_support_is_cutting_costs_but_quietly_wrecking/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H041
 - Reality Gate 范围：客服交接失联的从业者反馈；具体流程需确定品牌及上下文
 
@@ -560,7 +560,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：下单后立刻取消 → 商家显示已取消 → 银行余额旁边仍挂着一笔 pending
 - Content Job：SOLUTION
 - Source / Signal：VERIFIED_BEHAVIOR；https://docs.stripe.com/api/payment_intents/capture?lang=go
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H050
 - Reality Gate 范围：授权/实际扣款不同阶段；银行释放时间和具体商家状态仍须核验
 
@@ -584,7 +584,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：页面一直写周五到 → 周三还未发货 → 主角以为系统矛盾 → 周四夜间才进入快速干线
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/wayfair/comments/19bfq5z/anyone_else_dealing_with_very_delayed_shipping/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H051
 - Reality Gate 范围：用户真实记录预计送达日前仍未发货；不要说每单必然延迟
 
@@ -632,7 +632,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：城市里显示 300km → 上高速开暖风 → 走了 50km 数字却少了 90km
 - Content Job：TRUST
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/electricvehicles/comments/1uf6lca/open_road_range_expectations/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H059
 - Reality Gate 范围：车主实际高速续航抱怨；范围受车速天气车型等条件影响
 
@@ -656,7 +656,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：家人看到主角下班后没回家 → 发来一句“你怎么在那里” → 原本普通的临时停留突然变成需要说明的事件
 - Content Job：TRUST
 - Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/iphone/comments/1uau863/my_parents_are_forcing_me_to_share_the_same_apple/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H068
 - Reality Gate 范围：持续位置共享引发关系压力的第一人称记录
 
@@ -704,7 +704,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：购物页只显示“每期 49” → 连续买了几样 → 月底四五个小扣款同时出现才看见总额
 - Content Job：TRUST
 - Source / Signal：RESEARCH_OBSERVATION；https://www.consumerfinance.gov/archive/newsroom/cfpb-research-reveals-heavy-buy-now-pay-later-use-among-borrowers-with-high-credit-balances-and-multiple-pay-in-four-loans/
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H074
 - Reality Gate 范围：CFPB 报告确认多笔并行 BNPL；不能直接推导每个用户忘记欠款
 
@@ -727,10 +727,10 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Meaning Fingerprint：`APPLICATION_FRICTION_VS_SIGNAL_DILUTION`
 - Motif：过去准备半小时投一份 → 现在十分钟投十份 → 招聘方后台同一岗位几千份申请一起涌入
 - Content Job：DISCOVERY
-- Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/jobsearchhacks/comments/1lg8qab
-- Status：PASS
+- Source / Signal：OBSERVED_CASE；https://www.reddit.com/r/jobsearchhacks/comments/1dl4osi
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H078
-- Reality Gate 范围：真实求职者描述投递量；不能证明‘一键投递’单独造成就业市场竞争
+- Reality Gate 范围：存在用户主观反馈一键投递‘量大但少回应’，另有相反经历；不可推出 Easy Apply 导致整体低回复率。
 
 ---
 
@@ -776,7 +776,7 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - Motif：一路一键下单 → 包裹发出后才看到收货地址还是两年前的旧家
 - Content Job：SOLUTION
 - Source / Signal：OBSERVED_CASE；https://support.google.com/chrome/thread/173149983/correct-my-saved-info?hl=en
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H090
 - Reality Gate 范围：用户自述旧/错的自动填充地址；误寄包裹仍只作为潜在风险
 
@@ -784,12 +784,12 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 
 ## H030 — 数字内容所有权
 
-- 最终选题：**Steam 账号失去访问权限时，为什么买过的游戏也可能无法再玩？**
+- 最终选题：**买来的 Steam 账号明明附带游戏，为什么平台仍可能锁定它？**
 - 选题类型：判断 / 探索
 - Entry：HUMAN_WORLD_FIRST
 - X：数字内容 / 账号
 - Human Process：购买内容 / 长期访问
-- Human Problem：数字内容购买通常依赖账户、平台授权和服务可用性完成访问，与拿到一个可独立持有的实体物品不同
+- Human Problem：用户误把第三方买来的 Steam 账号与其库中游戏理解成可转让且受平台保护的所有权
 - 反常：付款已经完成本应意味着东西属于自己，访问却仍持续依赖账号和平台环境
 - Human Tension：购买完成 vs 独立持有
 - Controlling Question：数字世界里的“我买了”，到底是买下一个可以独立保存的东西，还是获得持续访问它的资格？
@@ -797,11 +797,11 @@ H001 美食推荐、H002 MBTI / 性格画像、H003 家庭食谱、H004 恋爱�
 - 主机制：数字交易中的所有感与实际访问控制可能分离
 - Audience Payoff：理解数字购买时要区分付款、许可、下载能力和长期访问边界
 - Meaning Fingerprint：`DIGITAL_PURCHASE_VS_INDEPENDENT_POSSESSION`
-- Motif：实体游戏十年后插上还能玩 → 数字库里同样标着已购买 → 账号验证失败时却一个都打不开
+- Motif：从他人购入带游戏的账号 → 账号受限 → 回看账号权利与游戏访问条款
 - Content Job：TRUST
 - Source / Signal：VERIFIED_BEHAVIOR；https://help.steampowered.com/zh-cn/faqs/view/7E78-08DB-AC21-CE32
-- Status：PASS
+- Status：CANDIDATE / EVIDENCE_PENDING
 - 2026-10-08 复查前编号：H094
-- Reality Gate 范围：Steam 仅确认买卖账号违反规则可能损失游戏访问；不能扩大为正版个人账户会随意被收回
+- Reality Gate 范围：Steam 官方禁止账户买卖，所引发的锁定风险适用于违规转让账户；不能扩大为正规购买的个人账号会任意丧失游戏。
 
 ---
