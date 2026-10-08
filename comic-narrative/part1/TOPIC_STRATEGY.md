@@ -249,7 +249,9 @@ Meaning Fingerprint
 
 ---
 
-## 8. 参考 Case
+## 8. 历史示例（非现行选题库）
+
+以下 Case 仅解释旧版推理流程，**不代表符合现行真实来源 Gate，也不代表当前 Part 0 同号选题**；尤其未证明 AI 造成所假设的人类后果前，不能直接生产。当前选题身份以 Part 0 的 2026-10-08 H001–H100 为准。
 
 ### Case 1 — 美食 + AI 推荐
 
@@ -266,7 +268,7 @@ Meaning Fingerprint
 - AI Changed Process：推荐排序替人压缩了主动探索和随机发现
 - 主机制：基于既有偏好 / 可量化信号的推荐排序，会持续优先高概率匹配而减少探索
 - Meaning Fingerprint：`OPTIMIZATION_VS_EXPLORATION`
-- 历史复查：命中 Part 0 H001；本 Case 是规则示例，不重复进入制作
+- 历史复查：该示例对应旧版 2026-10-05 H001，现行 Part 0 H001 已非此题；真实困境证据不足时不能视作正式 PASS
 - 结果：`REFERENCE_CASE`
 
 ### Case 2 — MBTI + AI 分析
@@ -284,7 +286,7 @@ Meaning Fingerprint
 - AI Changed Process：人工智能把零散的过去行为持续归纳成稳定画像，并让画像反过来参与判断
 - 主机制：基于历史行为的模式归纳 / 分类只能描述已有证据，不等于定义未来可能性
 - Meaning Fingerprint：`UNDERSTANDING_VS_DEFINITION`
-- 历史复查：命中 Part 0 H002；本 Case 是规则示例，不重复进入制作
+- 历史复查：该示例对应旧版 2026-10-05 H002，现行 Part 0 H002 已非此题；AI 造成标签限制的现实后果未证实前只能是 HYPOTHESIS_ONLY
 - 结果：`REFERENCE_CASE`
 
 ### Case 3 — AI Agent 能自动完成更多任务
