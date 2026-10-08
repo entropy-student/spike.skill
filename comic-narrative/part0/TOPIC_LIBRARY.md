@@ -784,3 +784,739 @@
 
 ---
 
+## H035 — 娱乐与推荐
+
+- 最终选题：**把 YouTube 观看历史全关掉，为什么首页可能只剩搜索框？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：娱乐与推荐
+- Human Process：娱乐与推荐中的具体选择和后果
+- Human Problem：用户以为隐藏观看记录只会减少隐私暴露
+- 反常：隐私控制 vs 推荐所需信号
+- Human Tension：隐私控制 vs 推荐所需信号
+- Controlling Question：把 YouTube 观看历史全关掉，为什么首页可能只剩搜索框？
+- 科技改变的过程：缺少有效观看历史且停用记录时首页推荐功能可能被移除
+- 主机制：缺少有效观看历史且停用记录时首页推荐功能可能被移除
+- Audience Payoff：理解隐私控制 vs 推荐所需信号的不同层次
+- Meaning Fingerprint：`YTHISTORY_035`
+- Motif：清空历史→首页变空→理解推荐依赖什么
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/95725?hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H036 — 娱乐与推荐
+
+- 最终选题：**只是帮朋友看了一段视频，为什么之后的视频推荐可能受影响？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：娱乐与推荐
+- Human Process：娱乐与推荐中的具体选择和后果
+- Human Problem：别人借用账号看视频会写入自身观看历史
+- 反常：借设备方便 vs 兴趣信号混入
+- Human Tension：借设备方便 vs 兴趣信号混入
+- Controlling Question：只是帮朋友看了一段视频，为什么之后的视频推荐可能受影响？
+- 科技改变的过程：YouTube 使用播放历史作为首页推荐的重要信号
+- 主机制：YouTube 使用播放历史作为首页推荐的重要信号
+- Audience Payoff：理解借设备方便 vs 兴趣信号混入的不同层次
+- Meaning Fingerprint：`YTEXPLAIN_036`
+- Motif：朋友借账号→首页出现新风格→清理历史
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/16089387?hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H037 — 娱乐与推荐
+
+- 最终选题：**点了‘不感兴趣’，为什么还可能看到同类型视频？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：娱乐与推荐
+- Human Process：娱乐与推荐中的具体选择和后果
+- Human Problem：用户把负面反馈当成永久全局禁止某类内容
+- 反常：推荐倾向 vs 强制过滤
+- Human Tension：推荐倾向 vs 强制过滤
+- Controlling Question：点了‘不感兴趣’，为什么还可能看到同类型视频？
+- 科技改变的过程：YouTube 的不感兴趣是调整偏好信号而非全站硬封锁
+- 主机制：YouTube 的不感兴趣是调整偏好信号而非全站硬封锁
+- Audience Payoff：理解推荐倾向 vs 强制过滤的不同层次
+- Meaning Fingerprint：`YTREC_037`
+- Motif：连续点不喜欢→仍出现类似视频→检查控制范围
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6342839?hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H038 — 娱乐与推荐
+
+- 最终选题：**研究一个陌生话题时，怎么避免把自己的视频推荐页也带跑偏？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：娱乐与推荐
+- Human Process：娱乐与推荐中的具体选择和后果
+- Human Problem：短期工作性浏览可能混入长期兴趣画像
+- 反常：临时任务 vs 长期偏好
+- Human Tension：临时任务 vs 长期偏好
+- Controlling Question：研究一个陌生话题时，怎么避免把自己的视频推荐页也带跑偏？
+- 科技改变的过程：YouTube 提供暂停观看/搜索历史来避免研究内容影响后续推荐
+- 主机制：YouTube 提供暂停观看/搜索历史来避免研究内容影响后续推荐
+- Audience Payoff：理解临时任务 vs 长期偏好的不同层次
+- Meaning Fingerprint：`YTREC_038`
+- Motif：做功课看十种视频→推荐被改→暂停历史重试
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6342839?hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H039 — 娱乐与推荐
+
+- 最终选题：**删除 YouTube 搜索记录，为什么连同一天的观看记录也可能一起消失？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：娱乐与推荐
+- Human Process：娱乐与推荐中的具体选择和后果
+- Human Problem：用户只想移除几个搜索词却连播放历史也受到影响
+- 反常：精准清理 vs 历史连带
+- Human Tension：精准清理 vs 历史连带
+- Controlling Question：删除 YouTube 搜索记录，为什么连同一天的观看记录也可能一起消失？
+- 科技改变的过程：在 YouTube 的特定删除操作中搜索历史与观看历史会同时间段清理
+- 主机制：在 YouTube 的特定删除操作中搜索历史与观看历史会同时间段清理
+- Audience Payoff：理解精准清理 vs 历史连带的不同层次
+- Meaning Fingerprint：`YTSEARCH_039`
+- Motif：想删敏感搜索→视频观看记录不见→核对清除范围
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/57711?hl=en-GB
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H040 — 创作与版权
+
+- 最终选题：**YouTube 视频设为‘不公开’，为什么拿到链接的人仍然能转给别人？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：创作者把非公开链接误当成仅指定好友可看
+- 反常：传播便利 vs 真正访问限制
+- Human Tension：传播便利 vs 真正访问限制
+- Controlling Question：YouTube 视频设为‘不公开’，为什么拿到链接的人仍然能转给别人？
+- 科技改变的过程：Unlisted 依赖持有链接即可访问并可再次分享
+- 主机制：Unlisted 依赖持有链接即可访问并可再次分享
+- Audience Payoff：理解传播便利 vs 真正访问限制的不同层次
+- Meaning Fingerprint：`YTPRIVACY_040`
+- Motif：发私密试看链接→链接外传→选择真正私密模式
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/157177?co=GENIE.Platform%3DAndroid&hl=en&ref_type=adv
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H041 — 创作与版权
+
+- 最终选题：**视频设置了私密，为什么平台仍可能审核版权和违规内容？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：用户以为不向观众公开就不受平台自动检查
+- 反常：不公开展示 vs 平台内部审核
+- Human Tension：不公开展示 vs 平台内部审核
+- Controlling Question：视频设置了私密，为什么平台仍可能审核版权和违规内容？
+- 科技改变的过程：YouTube 系统和人员仍可为版权广告适宜及滥用审查私密视频
+- 主机制：YouTube 系统和人员仍可为版权广告适宜及滥用审查私密视频
+- Audience Payoff：理解不公开展示 vs 平台内部审核的不同层次
+- Meaning Fingerprint：`YTPRIVACY_041`
+- Motif：上传私人测试片→收到审核→区分观众权限和平台审查
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/157177?co=GENIE.Platform%3DAndroid&hl=en&ref_type=adv
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H042 — 创作与版权
+
+- 最终选题：**视频收到 Content ID 声明，为什么不一定等于账号吃了一次版权警告？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：创作者将自动版权匹配与正式下架处罚混为一谈
+- 反常：版权分成处理 vs 平台处罚
+- Human Tension：版权分成处理 vs 平台处罚
+- Controlling Question：视频收到 Content ID 声明，为什么不一定等于账号吃了一次版权警告？
+- 科技改变的过程：Content ID 版权声明与移除请求/版权警告是不同流程
+- 主机制：Content ID 版权声明与移除请求/版权警告是不同流程
+- Audience Payoff：理解版权分成处理 vs 平台处罚的不同层次
+- Meaning Fingerprint：`YTCLAIM_042`
+- Motif：上传有背景音乐的视频→版权声明→查处理路径
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6013276?co=GENIE.Platform%3DAndroid&hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H043 — 创作与版权
+
+- 最终选题：**同一段音乐在某国还能播放，为什么换个国家视频就被屏蔽？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：观众以为同一版权声明对全球只有一个结果
+- 反常：全球公开 vs 地区版权许可
+- Human Tension：全球公开 vs 地区版权许可
+- Controlling Question：同一段音乐在某国还能播放，为什么换个国家视频就被屏蔽？
+- 科技改变的过程：内容版权人可对不同地域设置盈利、追踪或屏蔽规则
+- 主机制：内容版权人可对不同地域设置盈利、追踪或屏蔽规则
+- Audience Payoff：理解全球公开 vs 地区版权许可的不同层次
+- Meaning Fingerprint：`YTCLAIM_043`
+- Motif：外地朋友打不开视频→查看地区版权策略
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6013276?co=GENIE.Platform%3DAndroid&hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H044 — 创作与版权
+
+- 最终选题：**明明视频没有改，为什么版权申诉一升级反而出现被下架风险？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：创作者把申诉等同于毫无额外后果的客服纠错
+- 反常：维权机会 vs 升级代价
+- Human Tension：维权机会 vs 升级代价
+- Controlling Question：明明视频没有改，为什么版权申诉一升级反而出现被下架风险？
+- 科技改变的过程：版权主张方收到申诉后可按流程发布正式移除请求，可能带来警告
+- 主机制：版权主张方收到申诉后可按流程发布正式移除请求，可能带来警告
+- Audience Payoff：理解维权机会 vs 升级代价的不同层次
+- Meaning Fingerprint：`YTAPPEAL_044`
+- Motif：决定申诉→收到新处理通知→核对权利依据
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/12104471?co=GENIE.Platform%3DDesktop&hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H045 — 创作与版权
+
+- 最终选题：**自动字幕连十句话都识别对了，为什么一个人名仍可能被写错？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：人名错误比普通词错误更影响理解与尊重
+- 反常：总体准确率 vs 关键称谓准确
+- Human Tension：总体准确率 vs 关键称谓准确
+- Controlling Question：自动字幕连十句话都识别对了，为什么一个人名仍可能被写错？
+- 科技改变的过程：自动字幕识别易受口音、发音、噪声等影响，不能保证专名正确
+- 主机制：自动字幕识别易受口音、发音、噪声等影响，不能保证专名正确
+- Audience Payoff：理解总体准确率 vs 关键称谓准确的不同层次
+- Meaning Fingerprint：`YTCAPTION_045`
+- Motif：上传访谈→嘉宾名字识别错→人工校对
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6373554?hl=en-GB
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H046 — 创作与版权
+
+- 最终选题：**YouTube 自动配音可能已经上线，为什么原作者还不知道？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：创作者不理解不同自动配音资格与默认发布选项
+- 反常：跨语言覆盖 vs 作者逐条控制
+- Human Tension：跨语言覆盖 vs 作者逐条控制
+- Controlling Question：YouTube 自动配音可能已经上线，为什么原作者还不知道？
+- 科技改变的过程：符合条件的作品可自动生成并依发布设置上线其他语言音轨
+- 主机制：符合条件的作品可自动生成并依发布设置上线其他语言音轨
+- Audience Payoff：理解跨语言覆盖 vs 作者逐条控制的不同层次
+- Meaning Fingerprint：`YTDUB_046`
+- Motif：视频旧内容被自动配音→发现配音轨→调整发布设置
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/15569972?co=GENIE.Platform%3DDesktop&hl=en%40Dilshan_Ali_7
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H047 — 创作与版权
+
+- 最终选题：**明明获得素材作者许可，为什么搬运合集仍可能失去变现资格？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：用户误以为版权许可等于平台认可其原创价值
+- 反常：拥有使用权 vs 提供独创价值
+- Human Tension：拥有使用权 vs 提供独创价值
+- Controlling Question：明明获得素材作者许可，为什么搬运合集仍可能失去变现资格？
+- 科技改变的过程：YouTube 的重复使用内容变现规则与版权授权是不同判断
+- 主机制：YouTube 的重复使用内容变现规则与版权授权是不同判断
+- Audience Payoff：理解拥有使用权 vs 提供独创价值的不同层次
+- Meaning Fingerprint：`YTMONETIZE_047`
+- Motif：申请变现被拒→核对原创贡献而非只看授权
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/1311392?hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H048 — 创作与版权
+
+- 最终选题：**AI 一天能生成几百篇文章，为什么网站反而可能被搜索平台处罚？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：创作与版权
+- Human Process：创作与版权中的具体选择和后果
+- Human Problem：站长把批量生产效率错当成搜索排名通行证
+- 反常：产量自动化 vs 用户价值
+- Human Tension：产量自动化 vs 用户价值
+- Controlling Question：AI 一天能生成几百篇文章，为什么网站反而可能被搜索平台处罚？
+- 科技改变的过程：Google 将主要为操纵排名而规模化生产低价值页面视为垃圾内容
+- 主机制：Google 将主要为操纵排名而规模化生产低价值页面视为垃圾内容
+- Audience Payoff：理解产量自动化 vs 用户价值的不同层次
+- Meaning Fingerprint：`GOOGLESPAM_048`
+- Motif：网站批量上新→流量下降→核对搜索垃圾政策
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://developers.google.com/search/docs/fundamentals/using-gen-ai-content?hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H049 — 娱乐与推荐
+
+- 最终选题：**电影已经下载到手机，为什么坐上飞机却显示‘已过期’？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：娱乐与推荐
+- Human Process：娱乐与推荐中的具体选择和后果
+- Human Problem：下载完成被用户当成永久离线所有权
+- 反常：离线副本 vs 授权时间
+- Human Tension：离线副本 vs 授权时间
+- Controlling Question：电影已经下载到手机，为什么坐上飞机却显示‘已过期’？
+- 科技改变的过程：Netflix 下载内容存在有效期与授权变化，过期需要重新下载
+- 主机制：Netflix 下载内容存在有效期与授权变化，过期需要重新下载
+- Audience Payoff：理解离线副本 vs 授权时间的不同层次
+- Meaning Fingerprint：`NETEXPIRE_049`
+- Motif：机场无网打开下载→发现已过期→重排观影
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://help.netflix.com/en/node/54865
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H050 — 支付与订阅
+
+- 最终选题：**已经把 App 从手机删除了，为什么订阅还在收费？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：卸载应用不代表取消应用商店的付费协议
+- 反常：删除软件 vs 停止支付授权
+- Human Tension：删除软件 vs 停止支付授权
+- Controlling Question：已经把 App 从手机删除了，为什么订阅还在收费？
+- 科技改变的过程：Google Play 的订阅需在对应订阅管理页面取消
+- 主机制：Google Play 的订阅需在对应订阅管理页面取消
+- Audience Payoff：理解删除软件 vs 停止支付授权的不同层次
+- Meaning Fingerprint：`GPLAY_050`
+- Motif：删掉健身应用→下一月扣款→回到账单管理
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/googleplay/answer/7018481?co=GENIE.Platform%3DAndroid&hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H051 — 支付与订阅
+
+- 最终选题：**Google Play 订阅已经取消，为什么会员权益还能用到年底？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：用户以为取消订阅立即撤回之前买到的剩余服务期
+- 反常：停止续订 vs 已付款服务权利
+- Human Tension：停止续订 vs 已付款服务权利
+- Controlling Question：Google Play 订阅已经取消，为什么会员权益还能用到年底？
+- 科技改变的过程：Google Play 取消续费后通常仍可使用已经支付的订阅期间
+- 主机制：Google Play 取消续费后通常仍可使用已经支付的订阅期间
+- Audience Payoff：理解停止续订 vs 已付款服务权利的不同层次
+- Meaning Fingerprint：`GPLAY_051`
+- Motif：取消年度会员→仍能播放→搞清到期时间
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/googleplay/answer/7018481?co=GENIE.Platform%3DAndroid&hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H052 — 支付与订阅
+
+- 最终选题：**刚买的付费 App 想退款，为什么过了48小时渠道就不一样？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：用户把应用商店退款申请当成没有时间条件的通用入口
+- 反常：即时后悔 vs 有条件退款权利
+- Human Tension：即时后悔 vs 有条件退款权利
+- Controlling Question：刚买的付费 App 想退款，为什么过了48小时渠道就不一样？
+- 科技改变的过程：Google Play 退款渠道和受理方式与购买时间及商品政策有关
+- 主机制：Google Play 退款渠道和受理方式与购买时间及商品政策有关
+- Audience Payoff：理解即时后悔 vs 有条件退款权利的不同层次
+- Meaning Fingerprint：`GPLAYREFUND_052`
+- Motif：装软件才发现不适合→第3天退款→查询开发者渠道
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/googleplay/answer/15574908?hl=en
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H053 — 支付与订阅
+
+- 最终选题：**订阅显示月付，取消时为什么突然有一笔提前解约费？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：消费者以为按月扣款就能逐月自由退出
+- 反常：收费频率 vs 合同期限
+- Human Tension：收费频率 vs 合同期限
+- Controlling Question：订阅显示月付，取消时为什么突然有一笔提前解约费？
+- 科技改变的过程：FTC 指控 Adobe 部分计划为年度承诺按月支付且未明确提示解约费用
+- 主机制：FTC 指控 Adobe 部分计划为年度承诺按月支付且未明确提示解约费用
+- Audience Payoff：理解收费频率 vs 合同期限的不同层次
+- Meaning Fingerprint：`ADOBE_053`
+- Motif：为短期任务订软件→打算取消→发现年度费用
+- Content Job：DISCOVERY
+- Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/05/adobe-used-hidden-fee-trap-people-paying-subscription-plans-ftc-says
+- 证据适用边界：只陈述监管指控或已记录体验，不认定所有商家有同样行为。
+- Status：PASS_CANDIDATE
+
+---
+
+## H054 — 支付与订阅
+
+- 最终选题：**办会员只想买一次东西，为什么结账后却多了一份自动续费？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：部分消费者报告不知情被纳入会员自动续费
+- 反常：一次消费 vs 持续订阅
+- Human Tension：一次消费 vs 持续订阅
+- Controlling Question：办会员只想买一次东西，为什么结账后却多了一份自动续费？
+- 科技改变的过程：FTC 指控 Amazon Prime 采用误导性界面促成注册与困难取消
+- 主机制：FTC 指控 Amazon Prime 采用误导性界面促成注册与困难取消
+- Audience Payoff：理解一次消费 vs 持续订阅的不同层次
+- Meaning Fingerprint：`PRIME_054`
+- Motif：买必需品→查到会员账单→追溯结算按钮
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://www.ftc.gov/legal-library/browse/cases-proceedings/2123050-amazoncom-inc-rosca-ftc-v
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H055 — 支付与订阅
+
+- 最终选题：**买菜广告写免费送货，为什么最后订单上还有好几种费用？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：消费者从免配送承诺推断最终费用为零
+- 反常：宣传免运费 vs 真实总价
+- Human Tension：宣传免运费 vs 真实总价
+- Controlling Question：买菜广告写免费送货，为什么最后订单上还有好几种费用？
+- 科技改变的过程：FTC 对 Instacart 的指控涉及免费配送的展示与附加费用之间的落差
+- 主机制：FTC 对 Instacart 的指控涉及免费配送的展示与附加费用之间的落差
+- Audience Payoff：理解宣传免运费 vs 真实总价的不同层次
+- Meaning Fingerprint：`INSTA_055`
+- Motif：按免费配送广告下单→结账总价上涨→拆出费用
+- Content Job：DISCOVERY
+- Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2025/12/instacart-pay-60-million-consumer-refunds-settle-ftc-lawsuit-over-allegations-it-engaged-deceptive
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H056 — 支付与订阅
+
+- 最终选题：**支付平台显示‘退款已发出’，为什么信用卡还没有收到钱？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：用户把支付平台处理结束当成银行入账结束
+- 反常：卖方退款动作 vs 银行到账
+- Human Tension：卖方退款动作 vs 银行到账
+- Controlling Question：支付平台显示‘退款已发出’，为什么信用卡还没有收到钱？
+- 科技改变的过程：PayPal 退款返回原支付渠道后仍受发卡行结算时差影响
+- 主机制：PayPal 退款返回原支付渠道后仍受发卡行结算时差影响
+- Audience Payoff：理解卖方退款动作 vs 银行到账的不同层次
+- Meaning Fingerprint：`PAYPALREFUND_056`
+- Motif：商家退款→平台完成→卡账单还没变
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://www.paypal.com/us/cshelp/article/where-is-my-refund-help130
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H057 — 支付与订阅
+
+- 最终选题：**原价退款了，为什么跨币种订单拿回来的钱却少了一点？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：用户误以为跨境退款固定使用支付日的汇率
+- 反常：名义原币退款 vs 实收本币金额
+- Human Tension：名义原币退款 vs 实收本币金额
+- Controlling Question：原价退款了，为什么跨币种订单拿回来的钱却少了一点？
+- 科技改变的过程：PayPal 外汇退款可能按照退款时汇率重新换算
+- 主机制：PayPal 外汇退款可能按照退款时汇率重新换算
+- Audience Payoff：理解名义原币退款 vs 实收本币金额的不同层次
+- Meaning Fingerprint：`PAYPALREFUND_057`
+- Motif：海外买礼物退货→退款折算金额不同→对比汇率
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://www.paypal.com/us/cshelp/article/where-is-my-refund-help130
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H058 — 支付与订阅
+
+- 最终选题：**信用卡已经注销，原路退款为什么不一定就丢了？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：用户以为原卡不存在就无法接受退款
+- 反常：卡号失效 vs 清算路径存续
+- Human Tension：卡号失效 vs 清算路径存续
+- Controlling Question：信用卡已经注销，原路退款为什么不一定就丢了？
+- 科技改变的过程：支付服务仍可向原卡通道发起退款，由发卡机构处理对应账户
+- 主机制：支付服务仍可向原卡通道发起退款，由发卡机构处理对应账户
+- Audience Payoff：理解卡号失效 vs 清算路径存续的不同层次
+- Meaning Fingerprint：`PAYPALREFUND_058`
+- Motif：换银行卡后退货→商家原路退→向银行确认入账
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://www.paypal.com/us/cshelp/article/where-is-my-refund-help130
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H059 — 支付与订阅
+
+- 最终选题：**酒店还没结账，银行卡额度为什么已被占了一大块？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：旅客把预授权冻结误当成酒店已经正式扣款
+- 反常：费用保障 vs 可用余额
+- Human Tension：费用保障 vs 可用余额
+- Controlling Question：酒店还没结账，银行卡额度为什么已被占了一大块？
+- 科技改变的过程：酒店可用预授权暂占信用额度，最终支付需另行清算
+- 主机制：酒店可用预授权暂占信用额度，最终支付需另行清算
+- Audience Payoff：理解费用保障 vs 可用余额的不同层次
+- Meaning Fingerprint：`STRIPE_059`
+- Motif：办理入住→看到占款短信→分辨真实消费
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://stripe.com/resources/more/card-authorization-explained
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H060 — 支付与订阅
+
+- 最终选题：**加油站只加了半箱油，银行卡为什么先显示一笔临时扣款？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：加油前商户可能不知道最终实际消费金额
+- 反常：先预估额度 vs 最终价格
+- Human Tension：先预估额度 vs 最终价格
+- Controlling Question：加油站只加了半箱油，银行卡为什么先显示一笔临时扣款？
+- 科技改变的过程：预授权先冻结一定额度，最终收费按交易结算
+- 主机制：预授权先冻结一定额度，最终收费按交易结算
+- Audience Payoff：理解先预估额度 vs 最终价格的不同层次
+- Meaning Fingerprint：`PAYPALHOLD_060`
+- Motif：刷卡加油→先收到占款通知→等待实际结算
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://www.paypal.com/us/cshelp/article/how-do-i-find-my-paypal-debit-card-transaction-history-help139
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H061 — 支付与订阅
+
+- 最终选题：**自己明明有钱，线上付款为什么还是会被银行卡拒绝？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：用户误以为额度足够就保证支付成功
+- 反常：有余额 vs 授权成功
+- Human Tension：有余额 vs 授权成功
+- Controlling Question：自己明明有钱，线上付款为什么还是会被银行卡拒绝？
+- 科技改变的过程：支付授权还要评估卡状态、反欺诈、有效期等因素
+- 主机制：支付授权还要评估卡状态、反欺诈、有效期等因素
+- Audience Payoff：理解有余额 vs 授权成功的不同层次
+- Meaning Fingerprint：`STRIPE_061`
+- Motif：付款失败→检查额度没问题→银行给出安全拒绝原因
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://stripe.com/resources/more/card-authorization-explained
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H062 — 支付与订阅
+
+- 最终选题：**四笔免息分期各自不贵，为什么总还款安排容易挤在同一个月？**
+- 选题类型：判断 / 反思
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：多笔小额分期可以形成同时到期的资金压力
+- 反常：小额便利 vs 总体现金流
+- Human Tension：小额便利 vs 总体现金流
+- Controlling Question：四笔免息分期各自不贵，为什么总还款安排容易挤在同一个月？
+- 科技改变的过程：CFPB 观察到先买后付借贷的多笔使用与还款风险
+- 主机制：CFPB 观察到先买后付借贷的多笔使用与还款风险
+- Audience Payoff：理解小额便利 vs 总体现金流的不同层次
+- Meaning Fingerprint：`BNPL_062`
+- Motif：先后四次分期购物→月底发现多笔同时扣
+- Content Job：DISCOVERY
+- Source / Signal：RESEARCH_OBSERVATION；https://www.consumerfinance.gov/data-research/research-reports/buy-now-pay-later-market-trends-and-consumer-impacts/
+- 证据适用边界：只采纳研究或监管文件实际讨论的风险与边界，不把关联改成普遍因果。
+- Status：PASS_CANDIDATE
+
+---
+
+## H063 — 支付与订阅
+
+- 最终选题：**按时还了四期免息，为什么信用分数可能完全没加分？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：消费者把按时分期等同于每笔都会建立征信
+- 反常：还款认真 vs 征信可见
+- Human Tension：还款认真 vs 征信可见
+- Controlling Question：按时还了四期免息，为什么信用分数可能完全没加分？
+- 科技改变的过程：不少 BNPL 贷款未向三大信用局报告正常还款
+- 主机制：不少 BNPL 贷款未向三大信用局报告正常还款
+- Audience Payoff：理解还款认真 vs 征信可见的不同层次
+- Meaning Fingerprint：`BNPLCREDIT_063`
+- Motif：付款计划完成→查信用报告→没有对应记录
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://www.consumerfinance.gov/ask-cfpb/will-a-buy-now-pay-later-bnpl-loan-impact-my-credit-scores-en-2117/
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H064 — 支付与订阅
+
+- 最终选题：**先买后付的商品已经退货，为什么分期账单处理并不总是同时结束？**
+- 选题类型：判断 / 反思
+- Entry：HUMAN_WORLD_FIRST
+- X：支付与订阅
+- Human Process：支付与订阅中的具体选择和后果
+- Human Problem：退货和信贷合同结算是两个不同平台状态
+- 反常：商家退货 vs 借贷关系结束
+- Human Tension：商家退货 vs 借贷关系结束
+- Controlling Question：先买后付的商品已经退货，为什么分期账单处理并不总是同时结束？
+- 科技改变的过程：CFPB 指出 BNPL 退款与争议处理在消费者保护方面存在边界
+- 主机制：CFPB 指出 BNPL 退款与争议处理在消费者保护方面存在边界
+- Audience Payoff：理解商家退货 vs 借贷关系结束的不同层次
+- Meaning Fingerprint：`BNPLRETURN_064`
+- Motif：网购退款→下期账单仍待处理→追查放款方
+- Content Job：DISCOVERY
+- Source / Signal：RESEARCH_OBSERVATION；https://www.consumerfinance.gov/archive/newsroom/cfpb-study-details-the-rapid-growth-of-buy-now-pay-later-lending/
+- 证据适用边界：只采纳研究或监管文件实际讨论的风险与边界，不把关联改成普遍因果。
+- Status：PASS_CANDIDATE
+
+---
+
+## H065 — 购物与物流
+
+- 最终选题：**包裹超过预计送达日却没有收到，为什么不能立刻跳过卖家找平台？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：购物与物流
+- Human Process：购物与物流中的具体选择和后果
+- Human Problem：消费者以为延迟即刻由平台全额兜底
+- 反常：运输承诺 vs 平台申诉程序
+- Human Tension：运输承诺 vs 平台申诉程序
+- Controlling Question：包裹超过预计送达日却没有收到，为什么不能立刻跳过卖家找平台？
+- 科技改变的过程：eBay 未收到货的申诉流程有截止日期及先找卖家的步骤
+- 主机制：eBay 未收到货的申诉流程有截止日期及先找卖家的步骤
+- Audience Payoff：理解运输承诺 vs 平台申诉程序的不同层次
+- Meaning Fingerprint：`EBAY_065`
+- Motif：包裹延迟→商家回应期→平台介入
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://www.ebay.com/help/buying/returns-items-not-received-refunds-buyers/item-not-received?id=4042
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
+## H066 — 购物与物流
+
+- 最终选题：**收货地址下错了，为什么交易平台不直接替你把包裹改送新地址？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：购物与物流
+- Human Process：购物与物流中的具体选择和后果
+- Human Problem：用户以为平台可在付款后无条件更换收货点
+- 反常：提交订单 vs 履约状态锁定
+- Human Tension：提交订单 vs 履约状态锁定
+- Controlling Question：收货地址下错了，为什么交易平台不直接替你把包裹改送新地址？
+- 科技改变的过程：eBay 错误送货地址通常要求联系卖家取消后用正确地址重买
+- 主机制：eBay 错误送货地址通常要求联系卖家取消后用正确地址重买
+- Audience Payoff：理解提交订单 vs 履约状态锁定的不同层次
+- Meaning Fingerprint：`EBAY_066`
+- Motif：搬家没改地址→卖家已出单→决定是否取消
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://www.ebay.com/help/buying/returns-items-not-received-refunds-buyers/item-not-received?id=4042
+- 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
+- Status：PASS_CANDIDATE
+
+---
+
