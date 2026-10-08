@@ -1,20 +1,18 @@
-# Part 0 — 现实问题优先选题库（2026-10-08 复核版）
+# Part 0 — X + 科技：100 条原候选的证据/需求复审（2026-10-08）
 
-> 100 个有来源锚点的**待正式 Reviewer 接受的选题候选**：其中 66 个继承上一候选库初筛、34 个来自可检索监管案例或研究。所有条目只进入选题候选池，不自动代表完成 3–5 分钟独立故事审查，也不代表法规投诉一定被裁判认定为既成事实。
+> 本轮审查对象为旧库 H001–H100，全量逐题分档、记录人类问题和受众信号。**100 是复审样本，不是 100 个合格选题。** S/A/B 是优先级判断，不是正式 PASS；R 是建议淘汰或合并。原始题目保留在 Git 历史，发生改题的条目另记「上版题面」。
 
-## 本轮执行与硬性边界
+## 当前审核结果
 
-- 现行旧 100 库审查：删除低独立性/无明显观众价值的 26 个旧题（旧编号：H002、H005、H007、H013、H015、H018、H020、H023、H024、H026、H039、H052、H061、H065、H068、H070、H071、H077、H088、H091、H092、H094、H096、H098、H099、H100）；先保留 74、替换 26 条；后追加替换 8 个同构/微型问答，最终旧题 66 + 新例 34，继续维持候选池 100 条。**不能说本轮有 100 个已 PASS 的成片选题**。
-- 与更早的旧 30 题补证：其中 17 条 EVIDENCE_PENDING 无一按原题自动升级；仅在可得到新的可靠资料时，按不同真实事实边界重建；14 个旧题未原样继承，另外 3 组实际重建均需要按新主机制审查。
-- 来源分类：官方功能文件仅能证明具体可复现功能；监管案件需用“FTC 指控/监管称/已达成和解”区分行政指控与终局事实；个案不能证明普遍发生率；Pew 调查不能自行衍生出不曾测量的因果。
-- 所有新素材的旧编号仅供追溯，不得用现行 H 编号回填已生成的 H002/H007 等制作包。历史文件与 Owner 接受资产不改动。
-- 下一轮仍须按 Part 1 确认“现实问题证据 + 科技因果证据 + 五项硬检查 + D1–D5 + 3–5 分钟故事价值”；**证据足不代表能单独做一期**。候选数量不能替代正式 PASS。
+- S = 13（优先研究）；A = 35（较值得研究）；B = 34（备选且需补证）；R = 18（RETURN／合并建议）。合计 100，无号码重复。
+- 强匹配重复证据/讨论索引信号只有少数：`FREQUENCY_EVIDENCED` 5，`ATTENTION_EVIDENCED` 1；这些证据**只支持记录中说明的范围**，不能当作中国 B 站的潜在播放量。其他题多数只有上位问题类别的 `CATEGORY_PROXY`，不许冒充单题流行度。
+- `CATEGORY_PROXY` 与 `SIGNAL_UNVERIFIED` 一律不能直接进入正式 Part 2；S/A 没有频率或同题观众信号时，即便故事性好也必须保持 `HOLD_SIGNAL`。没有满足双证据、完整 D1–D5 和故事检查的题，不标正式 PASS。
+- 原标题如实保留；本轮仅对 13 个 S 档标题进行有限的人类场景优先措辞改写（非凭空增添新事实），不为了增加情绪编造新的个人遭遇。
+- 本轮重点背景：[公安部/国家反诈中心2025手册](https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html)、[2025全国消协投诉分析](https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml)、[个人信息保护专项行动](https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm)、[2025游戏投诉报告](https://hb.tousu.sina.com.cn/articles/view/429550/)、[CNNIC生成式AI用户背景](https://www.cnnic.cn/n4/2026/0930/c326-11690.html)。**这些只提供相关类目关注/问题背景，不证明细题高频**；真实直接信号见对应题目记录。
+- 欧美监管和功能说明只能支持其指控/产品条件。拟面向国内 B 站时，应进一步获取国内同题评论、观看/搜索、真实投诉或观察数据；不得假定海外事实具备国内关注度。
+- 本轮只是**100旧候选复审**，不是再额外新增100题；已有 X 库历史素材、Part 2-4.5 均未修改。历史编号仍按题名和来源定位，不允许同号自动映射。
 
-### 现行重编号与来源
-
-原旧库留存编号映射：H001→H001；H003→H002；H004→H003；H006→H004；H008→H005；H009→H006；H010→H007；H011→H008；H014→H010；H016→H011；H017→H012；H019→H013；H021→H014；H022→H015；H025→H016；H027→H017；H030→H020；H031→H021；H032→H022；H033→H023；H034→H024；H035→H025；H036→H026；H037→H027；H038→H028；H040→H029；H041→H030；H042→H031；H043→H032；H044→H033；H045→H034；H046→H035；H047→H036；H048→H037；H049→H038；H050→H039；H053→H041；H054→H042；H055→H043；H056→H044；H057→H045；H059→H047；H062→H049；H063→H050；H064→H051；H066→H052；H067→H053；H072→H055；H073→H056；H074→H057；H075→H058；H076→H059；H078→H060；H079→H061；H080→H062；H081→H063；H082→H064；H083→H065；H084→H066；H085→H067；H086→H068；H087→H069；H089→H070；H090→H071；H093→H072；H095→H073；
-
----
+## 100 条逐题复审记录
 
 ## H001 — 照片与家庭
 
@@ -35,7 +33,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/en-us/108782
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：照片与家庭
+- 本轮推荐理由：云端同步导致回忆丢失；生活后果真实，但须补重复投诉或观看数据
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H001
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -60,7 +66,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/en-us/108782
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：照片与家庭
+- 本轮推荐理由：照片原图按需下载属功能解释；难支撑完整故事
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H003
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -85,7 +99,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/en-euro/118229
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：照片与家庭
+- 本轮推荐理由：与H001同为同步误删后果；先合并
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H004
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -110,7 +131,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/en-euro/118229
 - 证据适用边界：Apple 官方共享图库说明：创建者存储满会停止同步新增和元数据，不应推断已有照片必然立即消失。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：照片与家庭
+- 本轮推荐理由：共享空间不足偏罕见产品规则；缺独立人物冲突
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H006
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -135,7 +163,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/en-ph/guide/iphone/iph9202bbd07/ios
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：手机与硬件
+- 本轮推荐理由：80%充电解释过短；更适合科普短帖
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H008
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -160,7 +196,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/guide/iphone/set-schedules-with-screen-time-iphb0c7313c9/ios
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：手机与硬件
+- 本轮推荐理由：家庭管教矛盾可共鸣；须找到具体真实投诉及频率
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H009
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -185,7 +229,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/guide/iphone/allow-or-silence-notifications-for-a-focus-iph21d43af5b/ios
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：手机与硬件
+- 本轮推荐理由：勿扰例外是一项设置；没有非平凡收获
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H010
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -210,7 +261,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/guide/personal-safety/detect-unwanted-trackers-ips139b15fd9/web
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：手机与硬件
+- 本轮推荐理由：定位器误报关系到信任与安全；需要受众关注信号
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H011
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -218,7 +277,8 @@
 
 ## H009 — 车载数据与保费
 
-- 最终选题：**买了新车以为在用安全驾驶助手，为什么保险公司也可能知道你急刹车？**
+- 最终选题：**买了提供安全驾驶服务的车，为什么保险公司可能知道你急刹车？**
+- 上版题面：买了新车以为在用安全驾驶助手，为什么保险公司也可能知道你急刹车？
 - 选题类型：判断 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
 - X：车载数据与保费
@@ -235,7 +295,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-takes-action-against-general-motors-sharing-drivers-precise-location-driving-behavior-data
 - 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
-- Status：PASS_CANDIDATE
+- Status：CANDIDATE / FORMAL_GATE_PENDING
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：出行、财务与隐私
+- 本轮推荐理由：车联网记录关系隐私和保险费用；涉大量车辆与消费者投诉，但不得推断所有车主保费上涨
+- 高频/关注度信号类型：FREQUENCY_EVIDENCED
+- 高频/关注度说明：多辆车的数据收集与多名消费者投诉（不证明个人保费普遍上涨）
+- 高频/关注度来源：https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-takes-action-against-general-motors-sharing-drivers-precise-location-driving-behavior-data
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：仍需补足 Part1 的独立真实性/科技因果、故事收获和 D1–D5 最终校验；当前推荐档不等于正式PASS
 - 历史来源编号：从旧百题库 H012 位置换入新的独立现实案例，不能沿用原题身份
 - 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
 
@@ -283,7 +351,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/guide/iphone/manage-crash-detection-iph948a628e9/ios
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：手机与硬件
+- 本轮推荐理由：自动呼救涉及生死选择；需真实救助或误报故事
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H014
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -308,7 +384,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.apple.com/en-lamr/guide/iphone/iph6e7917d3f/ios
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：家庭与孩子
+- 本轮推荐理由：组织者付款规则太直白，无独立故事价值
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H016
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -333,7 +416,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/maps/answer/6291838?hl=en
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：旅行与出行
+- 本轮推荐理由：离线地图无法更新是常识；故事冲突不足
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H017
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -358,7 +448,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/maps/answer/6258979/google-maps-timeline-android
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：旅行与出行
+- 本轮推荐理由：历史轨迹丢失有个人情感代价；需更多换机受害经历
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H019
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -383,7 +481,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/maps/answer/7055486?co=GENIE.Platform%3DDesktop&hl=en
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：旅行与出行
+- 本轮推荐理由：商家信息审核是平台流程；不宜独立成片
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H021
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -408,7 +513,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://support.google.com/maps/thread/409266874/how-can-i-make-sure-a-duplicate-incorrect-address-gets-corrected-my-edit-got-denied-immediately?hl=en
 - 证据适用边界：具体当事人自述仅能证明曾有此类经历，不能代表所有用户或地区。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：旅行与出行
+- 本轮推荐理由：地址被拒纠错而引发误导；补多用户案例会更强
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H022
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -433,7 +546,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/photos/answer/6128843?co=GENIE.Platform%3DAndroid&hl=en
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：照片与家庭
+- 本轮推荐理由：手机释放照片空间直觉有用，但与H001主题相近
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H025
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -458,7 +579,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/photos/answer/7378858?co=GENIE.Platform%3DAndroid&hl=en-0
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：照片与家庭
+- 本轮推荐理由：前任或亲友照片撤回失败涉及关系与控制；需要真实人类后果
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H027
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -483,14 +612,23 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/04/ftc-takes-action-against-uber-deceptive-billing-cancellation-practices
 - 证据适用边界：FTC 对 Uber One 的指控明确涉及展示每月节省25美元却未扣除会员月费；不据此推断所有用户最终亏损。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：外卖会员账单
+- 本轮推荐理由：订阅优惠被高估有钱的后果，FTC控诉提供具体投诉；本土关注待补
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：在上一候选库 H028 对应槽位替换为独立监管案例，原 OneDrive 主题不继承
 - 本轮复核说明：具有明确消费者经济后果与可检索监管材料；仍需生产前逐题走 Part 1 D1–D5 和独立故事价值检查。
 
 ---
 ## H019 — 个人化价格
 
-- 最终选题：**同一商品的价格为什么可能跟你之前搜索过什么有关？**
+- 最终选题：**为什么同样一件商品，你和朋友在网上看到的价格可能不同？**
+- 上版题面：同一商品的价格为什么可能跟你之前搜索过什么有关？
 - 选题类型：判断 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
 - X：个人化价格
@@ -507,7 +645,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：RESEARCH_OBSERVATION；https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-surveillance-pricing-study-indicates-wide-range-personal-data-used-set-individualized-consumer
 - 证据适用边界：FTC 市场研究指出定价工具存在这些能力，但不证明任何指定商家一定在给两个具体用户不同报价；报告中部分案例是假设。
-- Status：PASS_CANDIDATE
+- Status：CANDIDATE / FORMAL_GATE_PENDING
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：日常网购与公平定价
+- 本轮推荐理由：同品不同价有明确消费利益，B站有对应观看讨论；不能把所有价差都归为大数据定价
+- 高频/关注度信号类型：ATTENTION_EVIDENCED
+- 高频/关注度说明：B站历史同题材视频出现12.2万播放的搜索索引信号（2020年上传、查询结果非播放量复核；不能推断本题现在必火）
+- 高频/关注度来源：https://search.bilibili.com/all?keyword=%E5%A4%A9%E7%8C%AB%E5%95%86%E5%93%81%E5%8E%86%E5%8F%B2%E4%BB%B7%E6%A0%BC%E6%8E%A5%E5%8F%A3
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：仍需补足 Part1 的独立真实性/科技因果、故事收获和 D1–D5 最终校验；当前推荐档不等于正式PASS
 - 历史来源编号：从旧百题库 H029 位置换入新的独立现实案例，不能沿用原题身份
 - 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
 
@@ -555,7 +701,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.microsoft.com/en-us/onedrive/restore-your-onedrive-files
 - 证据适用边界：Microsoft 365 的整盘还原与文件版本恢复通常有订阅要求；一般回收站恢复另有个人/组织保存期限。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：云端协作
+- 本轮推荐理由：云文件版本救援对职场有用；授权区分太复杂易教程化
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H030
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -580,7 +734,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/drive/answer/2375102?hl=en
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：云端协作
+- 本轮推荐理由：所有者删除后协作文件失去访问；缺强独立故事
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H031
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -605,7 +767,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/drive/answer/7166529?hl=en
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：云端协作
+- 本轮推荐理由：文件夹转移权属是管理细节，难形成大众关注
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H032
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -630,7 +799,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/drive/answer/7166529?hl=en
 - 证据适用边界：只针对该官方文档所载产品、条件和功能；不外推其他服务、版本或用户。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：云端协作
+- 本轮推荐理由：权限继承太技术化；X和人物目标被产品机制盖过
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H033
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -655,7 +831,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://support.google.com/docs/thread/174551542/lost-changes-made-to-offline-document?hl=en
 - 证据适用边界：具体当事人自述仅能证明曾有此类经历，不能代表所有用户或地区。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：云端协作
+- 本轮推荐理由：离线修改丢失可带来任务危机；需多个独立用户证据
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H034
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -680,7 +864,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/95725?hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：娱乐与推荐
+- 本轮推荐理由：关闭观看历史后无推荐，反常但知识增量有限
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H035
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -705,7 +897,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/16089387?hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：娱乐与推荐
+- 本轮推荐理由：朋友借账号影响推荐，可切入关系与习惯；需真实抱怨或实验
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H036
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -730,7 +930,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6342839?hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：娱乐与推荐
+- 本轮推荐理由：不感兴趣并非屏蔽，一句话可解释
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H037
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -755,7 +962,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://consumer.ftc.gov/articles/buying-online-marketplace
 - 证据适用边界：FTC 消费者建议明确提醒平台外付款可能失去该平台保障；需要说明具体平台的例外及保护条款。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：娱乐与推荐
+- 本轮推荐理由：二手交易站外转账失去保障，平台交易类高频且有具体后果
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H038
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -780,7 +995,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/157177?co=GENIE.Platform%3DAndroid&hl=en&ref_type=adv
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：不公开链接可转发，纯链接权限常识
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H040
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -805,7 +1027,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/157177?co=GENIE.Platform%3DAndroid&hl=en&ref_type=adv
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：私密视频受平台审核属政策问答，没有足够人物后果
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H041
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -830,7 +1059,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6013276?co=GENIE.Platform%3DAndroid&hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：创作者版权声明影响收入，较有需求但普通用户受众窄
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H042
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -855,7 +1092,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6013276?co=GENIE.Platform%3DAndroid&hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：跨国播放差异有迁移/异地生活故事；需国内相关人群信号
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H043
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -880,7 +1125,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/12104471?co=GENIE.Platform%3DDesktop&hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：版权申诉升级可能被下架，动作—代价完整；适合垂直作者
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H044
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -905,7 +1158,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/6373554?hl=en-GB
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：字幕认错人名缺少真实严重后果，容易功能科普
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有AI使用类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cnnic.cn/n4/2026/0930/c326-11690.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H045
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -930,7 +1191,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/15569972?co=GENIE.Platform%3DDesktop&hl=en%40Dilshan_Ali_7
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：创作者自动配音发布存在控制权问题；需受影响创作者案例
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有AI使用类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cnnic.cn/n4/2026/0930/c326-11690.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H046
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -955,7 +1224,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/youtube/answer/1311392?hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：素材授权与变现规则冲突，创作者受众适合但较专业
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H047
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -980,7 +1257,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://developers.google.com/search/docs/fundamentals/using-gen-ai-content?hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：创作与版权
+- 本轮推荐理由：AI批量稿被搜索惩罚，适合内容生产故事；需证实具体遭罚案例
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有AI使用类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cnnic.cn/n4/2026/0930/c326-11690.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H048
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1005,7 +1290,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://help.netflix.com/en/node/54865
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：娱乐与推荐
+- 本轮推荐理由：下载影片离线过期可引发旅行尴尬，机制比较短
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H049
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1030,7 +1323,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/googleplay/answer/7018481?co=GENIE.Platform%3DAndroid&hl=en
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：卸载后续费有普遍认知误差，但结论简单且题材拥挤
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H050
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1055,7 +1356,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/09/ftc-takes-action-against-robot-toy-maker-allowing-collection-childrens-data-without-parental-consent
 - 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：儿童机器人玩具
+- 本轮推荐理由：儿童玩具定位数据外泄牵涉家长选择，FTC案例明确但中国关注待测
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：从旧百题库 H051 位置换入新的独立现实案例，不能沿用原题身份
 - 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
 
@@ -1103,7 +1412,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/05/adobe-used-hidden-fee-trap-people-paying-subscription-plans-ftc-says
 - 证据适用边界：只陈述监管指控或已记录体验，不认定所有商家有同样行为。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：看似月付却绑定长约，真实财务后果强
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H053
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1111,7 +1428,8 @@
 
 ## H042 — 支付与订阅
 
-- 最终选题：**办会员只想买一次东西，为什么结账后却多了一份自动续费？**
+- 最终选题：**本来只想下单买一次东西，为什么结账后却多了自动续费会员？**
+- 上版题面：办会员只想买一次东西，为什么结账后却多了一份自动续费？
 - 选题类型：机制 / 体验
 - Entry：HUMAN_WORLD_FIRST
 - X：支付与订阅
@@ -1128,7 +1446,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.ftc.gov/legal-library/browse/cases-proceedings/2123050-amazoncom-inc-rosca-ftc-v
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：日常消费与订阅
+- 本轮推荐理由：购物被捆绑自动续费，高发会员投诉母题且有多消费者反馈
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H054
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1153,7 +1479,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://search.ftc.gov/news-events/news/press-releases/2025/12/instacart-pay-60-million-consumer-refunds-settle-ftc-lawsuit-over-allegations-it-engaged-deceptive
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：免运广告与各种杂费的落差普遍，订单实际金额可感知
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H055
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1178,7 +1512,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://www.paypal.com/us/cshelp/article/where-is-my-refund-help130
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：退款成功与银行到账存在时差；流程说明偏短
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H056
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1203,7 +1545,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://www.paypal.com/us/cshelp/article/where-is-my-refund-help130
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：跨币种退款损失有金钱价值，但情境偏窄
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H057
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1211,7 +1561,8 @@
 
 ## H046 — 演唱会抢票
 
-- 最终选题：**演唱会明明限制每人买四张，为什么黄牛还能攒出上千个账号抢票？**
+- 最终选题：**演唱会明明每人限购四张，为什么黄牛能用成千上万个账号拿走大批票？**
+- 上版题面：演唱会明明限制每人买四张，为什么黄牛还能攒出上千个账号抢票？
 - 选题类型：判断 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
 - X：演唱会抢票
@@ -1228,7 +1579,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2025/09/ftc-sues-live-nation-ticketmaster-engaging-illegal-ticket-resale-tactics-deceiving-artists-consumers
 - 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
-- Status：PASS_CANDIDATE
+- Status：CANDIDATE / FORMAL_GATE_PENDING
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：追星、演唱会与购票
+- 本轮推荐理由：黄牛大规模绕过限购有跨活动数量与账号证据，粉丝购票情绪强
+- 高频/关注度信号类型：FREQUENCY_EVIDENCED
+- 高频/关注度说明：FTC披露多账户、多票和跨活动抢购（美国票务平台案件）
+- 高频/关注度来源：https://search.ftc.gov/news-events/news/press-releases/2025/09/ftc-sues-live-nation-ticketmaster-engaging-illegal-ticket-resale-tactics-deceiving-artists-consumers
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：仍需补足 Part1 的独立真实性/科技因果、故事收获和 D1–D5 最终校验；当前推荐档不等于正式PASS
 - 历史来源编号：从旧百题库 H058 位置换入新的独立现实案例，不能沿用原题身份
 - 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
 
@@ -1276,7 +1635,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://stripe.com/resources/more/card-authorization-explained
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：酒店预授权占额，旅行意外情境不错但规则易讲完
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H059
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1301,7 +1668,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/05/ftc-finalizes-order-godaddy-over-data-security-failures
 - 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：网站托管安全
+- 本轮推荐理由：托管服务失守后网站被入侵，真实企业困境但受众窄
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：从旧百题库 H060 位置换入新的独立现实案例，不能沿用原题身份
 - 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
 
@@ -1349,7 +1724,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：RESEARCH_OBSERVATION；https://www.consumerfinance.gov/data-research/research-reports/buy-now-pay-later-market-trends-and-consumer-impacts/
 - 证据适用边界：只采纳研究或监管文件实际讨论的风险与边界，不把关联改成普遍因果。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：分期叠加负担影响消费选择；需更直接的本土复用数据
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H062
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1374,7 +1757,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://www.consumerfinance.gov/ask-cfpb/will-a-buy-now-pay-later-bnpl-loan-impact-my-credit-scores-en-2117/
 - 证据适用边界：根据官方条件、版本和权限成立，不外推其他平台。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：按时还分期信用记录不更新，地域制度太强
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H063
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1399,7 +1790,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：RESEARCH_OBSERVATION；https://www.consumerfinance.gov/archive/newsroom/cfpb-study-details-the-rapid-growth-of-buy-now-pay-later-lending/
 - 证据适用边界：只采纳研究或监管文件实际讨论的风险与边界，不把关联改成普遍因果。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：支付与订阅
+- 本轮推荐理由：退货与还款不同步有金钱痛点；需多个真实账单
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H064
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1424,7 +1823,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://www.ebay.com/help/buying/shipping-delivery/changing-shipping-details-purchase?id=4028
 - 证据适用边界：eBay 官方流程：出货前买家可联系卖家申请取消后重新下单；不是全部订单永远不能改地址。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：购物与物流
+- 本轮推荐理由：改不了电商地址属平台售后细节，缺新理解
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H066
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1449,7 +1855,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/accounts/answer/185834?hl=en
 - 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：账号安全
+- 本轮推荐理由：手机丢了进不了账号，把安全与自由变成两难
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H067
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1474,7 +1888,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2025/12/court-approves-order-requiring-disney-pay-10-million-settle-ftc-allegations-firm-enabled-unlawful
 - 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：儿童视频标记
+- 本轮推荐理由：儿童视频错分造成广告跟踪，因果需要精确本地化
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：从旧百题库 H069 位置换入新的独立现实案例，不能沿用原题身份
 - 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
 
@@ -1505,7 +1927,8 @@
 
 ## H055 — 账号安全
 
-- 最终选题：**两步验证明明开着，为什么把短信验证码告诉骗子仍会被盗号？**
+- 最终选题：**明明开了两步验证，为什么骗子拿到验证码后仍能登录？**
+- 上版题面：两步验证明明开着，为什么把短信验证码告诉骗子仍会被盗号？
 - 选题类型：判断 / 体验
 - Entry：HUMAN_WORLD_FIRST
 - X：账号安全
@@ -1522,7 +1945,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/whats-verification-code-why-would-someone-ask-me-it
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：账号与信任
+- 本轮推荐理由：验证码可被社工转移，账户安全共鸣强，有高发冒充类证据
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H072
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1547,7 +1978,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://consumer.ftc.gov/consumer-alerts/2022/10/have-you-been-affected-data-breach-read
 - 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：账号安全
+- 本轮推荐理由：小网站密码泄露波及全网，重要但原理熟悉
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H073
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1555,7 +1994,8 @@
 
 ## H057 — 骗局与信任
 
-- 最终选题：**电话里明明是孙子的声音，为什么不一定真是他打来的？**
+- 最终选题：**电话里传来家人求救的声音，为什么不能只凭声音确认身份？**
+- 上版题面：电话里明明是孙子的声音，为什么不一定真是他打来的？
 - 选题类型：判断 / 体验
 - Entry：HUMAN_WORLD_FIRST
 - X：骗局与信任
@@ -1572,7 +2012,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：亲情与信任
+- 本轮推荐理由：熟悉的家人声音也不能证明身份，信任冲突强；声音克隆细题高频尚未证明
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H074
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1580,7 +2028,8 @@
 
 ## H058 — 骗局与信任
 
-- 最终选题：**兼职 App 显示赚了几百元，为什么提现前还要你先充值？**
+- 最终选题：**兼职平台显示已经赚到钱，为什么提现之前还要先充值？**
+- 上版题面：兼职 App 显示赚了几百元，为什么提现前还要你先充值？
 - 选题类型：判断 / 体验
 - Entry：HUMAN_WORLD_FIRST
 - X：骗局与信任
@@ -1597,7 +2046,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2025/08/how-spot-avoid-task-scams
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：CANDIDATE / FORMAL_GATE_PENDING
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：兼职、求职与收入
+- 本轮推荐理由：刷单返利的假收益/预充值，国内官方将其列为高发类型
+- 高频/关注度信号类型：FREQUENCY_EVIDENCED
+- 高频/关注度说明：中国公安手册列刷单返利为高发类型；具体App形式尚无独立发生率
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：仍需补足 Part1 的独立真实性/科技因果、故事收获和 D1–D5 最终校验；当前推荐档不等于正式PASS
 - 历史来源编号：2026-10-08 旧百题库 H075
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1622,7 +2079,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2026/09/see-qr-code-parked-somewhere-dont-scan-ityet
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：骗局与信任
+- 本轮推荐理由：停车二维码换成假链接，易画面化但本土直接重复证据待补
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H076
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1647,7 +2112,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/12/check-out-gift-cards-you-buy-them
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：骗局与信任
+- 本轮推荐理由：礼品卡余额遭抢花意外强，美国支付工具情境，国内迁移弱
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H078
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1672,7 +2145,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2026/09/scammers-are-spoofing-car-dealership-websites-what-you-need-know
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：骗局与信任
+- 本轮推荐理由：假经销商预付定金涉及高损失，但消费者接触面较窄
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H079
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1680,7 +2161,8 @@
 
 ## H062 — 骗局与信任
 
-- 最终选题：**银行‘风控专员’说要把钱转入安全账户，为什么越照做越危险？**
+- 最终选题：**有人自称银行风控，要你转走存款才能保住钱，为什么越照做越危险？**
+- 上版题面：银行‘风控专员’说要把钱转入安全账户，为什么越照做越危险？
 - 选题类型：判断 / 体验
 - Entry：HUMAN_WORLD_FIRST
 - X：骗局与信任
@@ -1697,7 +2179,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/never-move-your-money-protect-it-thats-scam
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：家庭资金安全与信任
+- 本轮推荐理由：冒充银行安全账户，信任与钱的冲突强，冒充骗术是高发类别
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H080
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1722,7 +2212,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://consumer.ftc.gov/consumer-alerts/2024/03/new-tech-support-scammers-want-your-life-savings
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：骗局与信任
+- 本轮推荐理由：病毒弹窗接假警察形成多步剧情，需避免与H062同构
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H081
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1730,7 +2228,8 @@
 
 ## H064 — 购物与口碑
 
-- 最终选题：**商品有几百条生动五星评论，为什么评论者可能根本不存在？**
+- 最终选题：**网上几百条五星好评，为什么它们可能并非真实买家的体验？**
+- 上版题面：商品有几百条生动五星评论，为什么评论者可能根本不存在？
 - 选题类型：判断 / 体验
 - Entry：HUMAN_WORLD_FIRST
 - X：购物与口碑
@@ -1747,7 +2246,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：网购与口碑判断
+- 本轮推荐理由：虚假五星评论与每个人购物有关，选择信任被技术影响
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H082
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1772,7 +2279,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：购物与口碑
+- 本轮推荐理由：五星评价返现有现实问题，但与H064合并更好
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H083
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1797,7 +2312,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/mail/answer/7674059?co=GENIE.Platform%3DDesktop&hl=en-GB
 - 证据适用边界：只支持 Gmail 机密模式能限制界面操作、不能阻止外部复制的官方事实，不主张现实中每个接收者都会截屏。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：购物与口碑
+- 本轮推荐理由：Gmail机密模式可拍照过于直白，缺故事余量
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H084
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1822,7 +2344,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：购物与口碑
+- 本轮推荐理由：隐藏差评欺骗消费者，与H064同簇但着眼不同机制
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H085
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1847,7 +2377,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：OBSERVED_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials?bui=N1fJnibGCA855boYsj14aw
 - 证据适用边界：监管案例支持风险的存在，不能把攻击手法写成所有人一定遭遇。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：购物与口碑
+- 本轮推荐理由：买粉丝制造虚假影响力，营销和创作痛点；需平台本土讨论
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H086
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1872,7 +2410,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://help.openai.com/en/articles/8983778-how-are-files-vs-chats-retained
 - 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：AI与隐私
+- 本轮推荐理由：删除ChatGPT对话后仍存Library文件，需确认当前产品版本，故事偏微
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：2026-10-08 旧百题库 H087
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1897,7 +2443,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.microsoft.com/en-us/word/accept-or-reject-tracked-changes-in-word
 - 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：云端协作
+- 本轮推荐理由：Word隐藏修订并非真正清除，适合职场泄密单案补证
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H089
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1922,7 +2475,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://help.dropbox.com/share/remove-access
 - 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：云端协作
+- 本轮推荐理由：Dropbox失去访问但链接还有效，平台技巧且与H017同为访问撤回
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H090
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1947,7 +2507,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.spotify.com/us/article/listen-offline/
 - 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：娱乐与推荐
+- 本轮推荐理由：Spotify离线需要联网，单一产品功能无可观赏因果链
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H093
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1972,7 +2539,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/mail/answer/7674059?co=GENIE.Platform%3DDesktop&hl=en-GB
 - 证据适用边界：产品/平台条件以所引官方页面为准，不推断所有版本普遍如此。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：日常沟通
+- 本轮推荐理由：机密邮件过期打不开，与H066共享邮件访问概念且过于FAQ
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：2026-10-08 旧百题库 H095
 - 本轮复核说明：来源足以构成具体现实信号；仍须在正式 PASS 前检验独立冲突、可讲性、D1–D5，单一 FAQ 不可自动生产。
 
@@ -1997,7 +2571,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/08/ftc-takes-action-against-security-camera-firm-verkada-over-charges-it-failed-secure-videos-other
 - 证据适用边界：仅以监管公开投诉、执法调查或和解披露的具体事实范围为限；应使用‘FTC 指控/调查发现’措辞，不把尚未判决的争议当作全部确定事实。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：医院摄像头泄露
+- 本轮推荐理由：安防系统泄露医院画面，私密后果强；须避免与H089只换摄像头
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：从旧百题库 H097 位置换入新的独立现实案例，不能沿用原题身份
 - 本轮复核说明：优先审核真实人的代价、主机制与同构；有清晰来源，但尚未完成正式 Part 1 全 Gate + Part 2 可讲性审查。
 
@@ -2045,7 +2627,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/12/ftc-sends-refund-payments-consumers-impacted-epic-games-unlawful-billing-practices
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：游戏误购
+- 本轮推荐理由：游戏预览误扣费，适合角色体验，但与H076须防共用一案
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有游戏投诉类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://hb.tousu.sina.com.cn/articles/view/429550/
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2070,7 +2660,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2023/03/ftc-finalizes-order-requiring-fortnite-maker-epic-games-pay-245-million-tricking-users-making
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：游戏支付争议
+- 本轮推荐理由：拒付后账号被锁是更高代价，可并入H075或保留独立机制
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有游戏投诉类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://hb.tousu.sina.com.cn/articles/view/429550/
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2078,7 +2676,8 @@
 
 ## H077 — 抽卡真实花费
 
-- 最终选题：**抽卡明明只需游戏币，为什么孩子很难算清已经花了多少钱？**
+- 最终选题：**抽卡只花游戏币，为什么有人算不清自己真正花了多少钱？**
+- 上版题面：抽卡明明只需游戏币，为什么孩子很难算清已经花了多少钱？
 - 选题类型：判断 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
 - X：抽卡真实花费
@@ -2095,7 +2694,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/01/genshin-impact-game-developer-will-be-banned-selling-lootboxes-teens-under-16-without-parental
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：游戏、娱乐与消费
+- 本轮推荐理由：虚拟币抽卡使真钱成本不透明；国内游戏抽卡有重复投诉信号但不直接证实币价混淆比例
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有游戏投诉类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://hb.tousu.sina.com.cn/articles/view/429550/
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2120,7 +2727,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/09/ftc-alleges-sendit-app-its-ceo-unlawfully-collected-personal-data-children-deceived-users-about
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：匿名社交
+- 本轮推荐理由：匿名表白可能由机器人编造，真实诱导订阅案例；国内关注仍待证
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2145,7 +2760,14 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2026/08/ftc-finalizes-orders-cox-media-group-two-other-firms-settling-charges-they-deceived-customers-about
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：RETURN / EDITORIAL
+- 本轮等级（2026-10-08 X+科技复审）：R
+- 本轮生活领域 X：AI营销承诺
+- 本轮推荐理由：被营销为偷听的广告技术涉及误导；题面容易反向散播谣言，暂不采用
+- 高频/关注度信号类型：SIGNAL_UNVERIFIED
+- 高频/关注度说明：无足以支持独立成片的具体发生率/关注度证据；或单独故事价值不足
+- 实际审核状态：RETURN / EDITORIAL
+- 后续审核：建议停止该独立题/合并证据，不以替换功能名复活
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2170,7 +2792,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2025/04/ftc-order-requires-workado-back-artificial-intelligence-detection-claims
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：AI检测
+- 本轮推荐理由：AI检测错误伤害作者身份认定；需找实际误判后果以增强故事
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2195,7 +2825,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-order-prohibiting-intellivision-making-deceptive-claims-about-its-facial-recognition
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：人脸识别宣传
+- 本轮推荐理由：人脸识别零偏见宣称属测评监管新闻，人物行动偏弱
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2220,7 +2858,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/legal-library/browse/cases-proceedings/cleo-ai-inc-ftc-v
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：现金预支
+- 本轮推荐理由：现金预支宣传与到账不符，金钱急迫情境强但美国产品限定
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2245,7 +2891,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2024/01/ftc-acts-stop-floatmes-deceptive-free-money-promises-discriminatory-cash-advance-practices-baseless
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：算法信用额度
+- 本轮推荐理由：宣传算法调额度实为人工，案例独特但与H082同簇
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2270,7 +2924,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.consumerfinance.gov/archive/newsroom/cfpb-orders-operator-of-cash-app-to-pay-175-million-and-fix-its-failures-on-fraud/
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：转账诈骗维权
+- 本轮推荐理由：被骗后支付平台和银行互推责任，行动阻力逐步升级
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2295,7 +2957,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/legal-library/browse/cases-proceedings/182-3145-publishers-clearing-house-llc-pch-ftc-v
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：抽奖误导
+- 本轮推荐理由：免费抽奖暗示要购物，故事存在但国内用户相关性不明
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有诈骗类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://legalinfo.moj.gov.cn/zhfxfzzx/fzzxyw/202506/t20250619_521225.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2303,7 +2973,8 @@
 
 ## H086 — 超市误识别
 
-- 最终选题：**只是进药店买东西，为什么人脸识别系统可能把顾客当作盗窃嫌疑人？**
+- 最终选题：**只是去药店买东西，为什么店员会把无辜顾客当成小偷？**
+- 上版题面：只是进药店买东西，为什么人脸识别系统可能把顾客当作盗窃嫌疑人？
 - 选题类型：判断 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
 - X：超市误识别
@@ -2320,7 +2991,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2023/12/rite-aid-banned-using-ai-facial-recognition-after-ftc-says-retailer-deployed-technology-without
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：CANDIDATE / FORMAL_GATE_PENDING
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：商店购物与社会信任
+- 本轮推荐理由：药店顾客被面部误匹配公开怀疑，FTC称数千次误匹配；具体人身后果明确
+- 高频/关注度信号类型：FREQUENCY_EVIDENCED
+- 高频/关注度说明：FTC称涉零售商系统产生数千误匹配（不等于数千人均被员工指控）
+- 高频/关注度来源：https://search.ftc.gov/news-events/news/press-releases/2023/12/rite-aid-banned-using-ai-facial-recognition-after-ftc-says-retailer-deployed-technology-without
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：仍需补足 Part1 的独立真实性/科技因果、故事收获和 D1–D5 最终校验；当前推荐档不等于正式PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2345,7 +3024,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2024/06/ftc-finalizes-order-avast-banning-it-selling-or-licensing-web-browsing-data-advertising-requiring-it
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：浏览隐私
+- 本轮推荐理由：防隐私泄露工具售卖浏览记录，反转强；需要独立中国受众验证
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2370,7 +3057,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2023/02/ftc-enforcement-action-bar-goodrx-sharing-consumers-sensitive-health-info-advertising
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：处方隐私
+- 本轮推荐理由：查药价后信息进入广告系统，医学隐私强且有案件；地区局限
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2395,7 +3090,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-says-ring-employees-illegally-surveilled-customers-failed-stop-hackers-taking-control-users
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：家庭摄像头隐私
+- 本轮推荐理由：家用摄像头被员工窥探，家庭安全被反转；国内关注预期强但需直证
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2420,7 +3123,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：儿童语音隐私
+- 本轮推荐理由：儿童Alexa语音留存与家长删除选择冲突；限特定产品和地区
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2445,7 +3156,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/08/ftc-sues-stop-air-ai-using-deceptive-claims-about-business-growth-earnings-potential-refund
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：AI创业承诺
+- 本轮推荐理由：买高价AI服务承诺收入未兑现，创业者目标具体但圈层偏窄
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有AI使用类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cnnic.cn/n4/2026/0930/c326-11690.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2470,7 +3189,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：AI法律服务
+- 本轮推荐理由：机器人律师是否能替代律师有公共讨论；需避免技术营销新闻化
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有AI使用类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cnnic.cn/n4/2026/0930/c326-11690.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2495,7 +3222,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2024/11/ftc-order-against-ai-enabled-review-platform-sitejabber-will-ensure-consumers-get-truthful-accurate
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：评价收集时机
+- 本轮推荐理由：未收到货却出现好评，购物体验有反常；监管来源具体
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2503,7 +3238,8 @@
 
 ## H094 — 位置经纪交易
 
-- 最终选题：**我只是在手机上授权了一个定位 App，为什么陌生公司能知道我去过哪些敏感场所？**
+- 最终选题：**手机定位只授权给一个App，为什么陌生公司也可能知道你去过哪里？**
+- 上版题面：我只是在手机上授权了一个定位 App，为什么陌生公司能知道我去过哪些敏感场所？
 - 选题类型：判断 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
 - X：位置经纪交易
@@ -2520,7 +3256,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-ban-kochava-subsidiary-selling-sensitive-location-data-settle-charges-they-sold-location-data
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：出行与个人隐私
+- 本轮推荐理由：行踪被位置经纪商传卖涉及强隐私冲突，多方收集链有故事潜力
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2545,7 +3289,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2026/07/travel-app-hopper-pay-35-million-settle-ftc-allegations-it-charged-fees-without-consent-deceived
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：旅游隐藏费用
+- 本轮推荐理由：旅游结账默认附加服务，价格后果直观
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2570,7 +3322,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/09/ed-tech-provider-chegg-pay-75-million-settle-ftc-allegations-concerning-unlawful-cancellation
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：订阅取消失败
+- 本轮推荐理由：申请取消会员仍被扣款，付费与控制权强但注意与H042重复
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有消费/互联网服务类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://news.cctv.cn/2026/02/05/ARTIQwtKIESEtnhJvRippz2S260205.shtml
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2595,7 +3355,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：RESEARCH_OBSERVATION；https://www.pewresearch.org/social-trends/2025/02/25/workers-experience-with-ai-chatbots-in-their-jobs/
 - 证据适用边界：Pew 调查仅呈现调查对象报告的使用感受，不证明效率提高直接造成品质下降。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：职场AI效用
+- 本轮推荐理由：AI工作提速和质量不升的对比有兴趣，但调查不能证明单人因果
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有AI使用类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cnnic.cn/n4/2026/0930/c326-11690.html
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2603,7 +3371,8 @@
 
 ## H098 — AI引用事故
 
-- 最终选题：**律师把 AI 找来的法律引用写进法庭文件，为什么可能反而连累案件？**
+- 最终选题：**律师把AI写的法律引用交给法官，为什么反而可能害了自己的当事人？**
+- 上版题面：律师把 AI 找来的法律引用写进法庭文件，为什么可能反而连累案件？
 - 选题类型：判断 / 惊奇
 - Entry：HUMAN_WORLD_FIRST
 - X：AI引用事故
@@ -2620,7 +3389,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REPORTED_CASE；https://www.reuters.com/legal/litigation/judge-warns-ai-could-stunt-lawyers-training-harm-their-clients-2026-10-02/
 - 证据适用边界：路透报道是具体司法案件，不代表所有法律工作者或所有模型。
-- Status：PASS_CANDIDATE
+- Status：CANDIDATE / FORMAL_GATE_PENDING
+- 本轮等级（2026-10-08 X+科技复审）：S
+- 本轮生活领域 X：职场、法律与责任
+- 本轮推荐理由：法庭文件引用不存在判例已出现大量不同案件；AI与职业责任有深度
+- 高频/关注度信号类型：FREQUENCY_EVIDENCED
+- 高频/关注度说明：路透报道跨案件虚假AI引证大量出现（司法专业圈而非普通人高频）
+- 高频/关注度来源：https://www.reuters.com/legal/government/ai-error-ridden-court-filings-surge-despite-three-years-court-sanctions-2026-09-17/
+- 实际审核状态：CANDIDATE / FORMAL_GATE_PENDING
+- 后续审核：仍需补足 Part1 的独立真实性/科技因果、故事收获和 D1–D5 最终校验；当前推荐档不等于正式PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2645,7 +3422,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://search.ftc.gov/news-events/news/press-releases/2026/03/ftc-takes-action-against-match-okcupid-deceiving-users-sharing-personal-data-third-party
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：A
+- 本轮生活领域 X：交友数据承诺
+- 本轮推荐理由：交友照片分享出原有承诺范围，关系与隐私强但品牌地域限定
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
@@ -2670,7 +3455,15 @@
 - Content Job：DISCOVERY
 - Source / Signal：REGULATORY_CASE；https://www.ftc.gov/news-events/news/press-releases/2025/09/ftc-alleges-sendit-app-its-ceo-unlawfully-collected-personal-data-children-deceived-users-about
 - 证据适用边界：监管公开调查/投诉/和解仅支持所涉主体及时间段；以 FTC 指控为事实描述，不将指控当作普遍已证实行为或最终司法认定。
-- Status：PASS_CANDIDATE
+- Status：HOLD_SIGNAL
+- 本轮等级（2026-10-08 X+科技复审）：B
+- 本轮生活领域 X：未成年匿名App
+- 本轮推荐理由：儿童匿名App收数据，与H078同一家公司案，除非讲独立儿童后果
+- 高频/关注度信号类型：CATEGORY_PROXY
+- 高频/关注度说明：仅有个人信息保护类目相关广泛受众/投诉/监管背景，不能证明本细题高频或国内实际关注度；仍需具体同题信号
+- 高频/关注度来源：https://www.cac.gov.cn/2025-03/28/c_1744867353112759.htm
+- 实际审核状态：HOLD_SIGNAL
+- 后续审核：找到国内同题多源讨论、需求/投诉或直接观众行为数据，否则不能升级正式 PASS
 - 历史来源编号：新增案例
 - 本轮复核说明：能追溯具体真实材料且具有人物后果，但不得未经逐条 Part 1 D1–D5 和故事价值核查就自动进入制作。
 
