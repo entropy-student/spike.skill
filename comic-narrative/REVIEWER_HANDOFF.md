@@ -26,7 +26,7 @@
 - imagegen executor reliability 已正式封板；
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
-- **2026-10-08 Owner 新增授权**：不留证据不足的旧题，基于真实用户经历、产品规则与监管案例重新构建 100 个逐项附来源的选题候选（100 PASS_CANDIDATE / 0 本轮正式编辑 PASS）。100 是候选规模，**不等于 100 个内容质量已获确认的正式制作题**。
+- **2026-10-08 Owner 证据优先扩库**：先淘汰原候选中的 34 条 FAQ 化、重复或事实范围不佳的题目，再补入 34 条现实案例，现行 100 条来源挂接候选（100 `PASS_CANDIDATE` / 0 本轮正式编辑 PASS）。**100 是候选规模，不代表已有 100 个合格成片题**；保留 66 条旧候选也需正式双证据与叙事价值复核。
 - 当前无 live imagegen；legacy H002（AI性格画像）R3、legacy H007（AI旅行规划）R3 既有正式回填保持不变。legacy H015（天气预报）已移出当前库存，其历史包仅保留为历史资产，不再继续 REVIEW、回填或生产。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
@@ -51,14 +51,14 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：Part 1 双证据 Gate 持续有效。Part 0 现行 H001–H100 共有 100 个来源挂接的候选，状态统一 PASS_CANDIDATE；需逐题完成来源边界、D1–D5 同构、3–5 分钟故事价值的 Reviewer 接受后才能正式 PASS。上一版 30 题的 17 个 EVIDENCE_PENDING 未原样继承。
-- **Topic library**：现行编号 H001–H100；旧 94 与旧 30 题的同编号属于各自历史快照，不能映射；本轮以现行题名+来源为准，原始历史可由 Git 提交还原。
+- **Part 0 / Part 1**：Part 1 双证据 Gate 持续有效；Part 0 100 条候选，旧候选留存 66 + 新增可追溯监管/研究个案 34；当前统一 `PASS_CANDIDATE`，尚无本轮正式编辑 `PASS`。初筛已剔除 34 条较弱旧选题，但 100 条仍须逐题检验‘问题存在 + 科技因果’的证据、D1–D5 独立性与 3–5 分钟故事收获。上一版 30 题的 17 个 EVIDENCE_PENDING 不原样继承。
+- **Topic library**：现行 H001–H100。历史 94 题、30 题及上一版 100 题均有不同编号快照；同号不能映射，必须按题名+来源+本轮审查说明比对，原始历史可由 Git 提交还原。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
 - **Part 4**：`part4/IMAGE_ASSET_EXECUTION.md` 保持封板；图片规划 Agent 与生图执行 Agent 职责分离。单集高频且连续性重要、漂移风险高的临时角色须在批量生图前判断是否需要 episode-local mini master；素材包完成前须跨 Part 2/2.5/3/4/4.5 与当前 imagegen 合同做整体复查。
 - **Part 4.5**：`part4_5/ASSET_REUSE_LIBRARY.md` 为当前素材复用与入库基线。
-- **X 素材包库（仓库外 Library）**：历史 Owner-accepted 包均保持不变。本轮移除了原 H002 性格画像、原 H007 旅行规划作为现行选题，但其 R3 素材继续存档；旧 H024 自助收银现为新 H005。未执行 X 库内容删除或回填。
+- **X 素材包库（仓库外 Library）**：此前 Owner-accepted 包保持不变，不随多轮题库重编号自动变更题目身份。旧 H002 性格画像、旧 H007 旅行规划的 R3 包仍为历史接受资产，但不是当前 H002/H007；旧 H024 自助收银在旧 30 题快照曾对应 H005，在**当前新 100 题库已经不能按该编号认定**。本轮未改 X 库。
 - **Imagegen executor reliability**：正式 **PASS / CLOSED**。生产默认继承：
   - Codex built-in imagegen；
   - concurrency = 2；
@@ -80,7 +80,7 @@ Part 6  执行与项目管理               [PENDING]
 TOPIC_EXPANSION_100_EVIDENCE_STAGE
 
 ### OBJECTIVE
-Owner 2026-10-08 要求先对上版 17 个待补证题严格处理，缺乏可信来源的删除，再按 Part 1 双证据规则扩充到 100 题。当前在 GitHub main 已产生 100 条附具体出处和证据边界的候选；真正的正式 PASS 仍需完成逐题编辑质量复核。
+Owner 2026-10-08 要求先对上版 17 个待补证题严格处理，缺乏可信来源的删除，再按 Part 1 双证据规则扩充到 100 题。当前 GitHub main 逐题有100条来源挂接候选，在本轮实际删改中淘汰34条旧问题，并引入34条有监管/研究来源的独立个案；真正正式 PASS 仍需完成逐题证据和内容质量复核。
 
 ### MAX_ENDPOINT_THIS_ROUND
 - 仅修改 Part 0、Part 1 旧示例身份说明、本 Handoff；
@@ -93,7 +93,7 @@ STOP_AT_EDITORIAL_REVIEW=YES；不得因凑数量自动宣布 100 PASS。
 ### TARGET_AND_SCOPE
 - 原 30 题（13 PASS / 17 EVIDENCE_PENDING）保留完整 Git 历史，不机械继承原待补证题；
 - 重新从原始用户陈述、产品官方帮助、监管案例及研究发现 100 个源链接明确的现实问题候选；
-- H001–H100 当前连续编号；每项写明主问题、技术机制、现实场景、证据来源与事实适用范围；
+- H001–H100 当前连续编号；每项写明主问题、技术机制、现实场景、证据来源与事实适用范围；对内容同构、仅是 FAQ 的候选继续有权剔除，不因数量已达100放松；
 - 正式制作前逐题复核出处真实性与是否支持题面、D1–D5、核心人物行动后果与非平凡收获；重复或弱故事题直接删除，用独立证据的新题替换，不能为了维持 100 降门槛。
 
 ### APPLICABLE_CRITICAL_CONSTRAINTS
@@ -113,7 +113,7 @@ STOP_AT_EDITORIAL_REVIEW=YES；不得因凑数量自动宣布 100 PASS。
 - 全部具备非空来源 URL 和范围说明；
 - 所有正式 PASS 均有针对事实、人类困境、科技机制与独立故事价值的逐项审阅证据；
 - 无历史资产丢失、无下游改动、无 live imagegen。
-- 当前第一、二项完成；正式编辑 PASS 尚未完成，不虚报 Gate fully closed。
+- 当前编号/字段/可追溯 URL 的结构性检查已完成；100 条完整的外部来源核实、跨稿 D1–D5 与正式编辑 PASS **尚未完成**，不虚报 Gate fully closed。
 
 ### ROLLBACK_STATUS_OR_PLAN
 GitHub 保留旧 30 题及当前前续提交；当前仅文档文字变动，可按 commit 恢复，不影响历史素材。
@@ -158,7 +158,7 @@ NONE — 100 SOURCE-LINKED CANDIDATES; FORMAL REVIEW PENDING.
 
 ## OWNER_DISCUSSION_CONTINUATION
 
-- **现实证据扩库至 100 候选（Owner 2026-10-08）**：旧 30 题恢复依据是 Git 历史；新版本重建 H001–H100，均有来源 URL、机制与事实边界，尚为 PASS_CANDIDATE。跨题编辑/真实证据的正式 PASS 不因达到数字目标而自动发生。
+- **现实证据扩库至 100 候选（Owner 2026-10-08）**：旧 30 题通过 Git 历史恢复；对另一版 100 候选再做质量删改，剔除 34 条旧候选、补充 34 条监管与真实研究案例，当前 H001–H100 均有来源 URL 与事实边界、仍为 PASS_CANDIDATE。正式跨题去重、独立故事价值与双证据再审未完成，不因达到 100 自动视作 PASS。
 
 - **现实证据 Gate 94→30（Owner 2026-10-08，现行）**：Owner 授权不保数量；Part 1 已升级、Part 0 保留 30 / 删除 64、H001–H030 重新编号。旧 94 题冻结现已失效，历史素材保持。
 
@@ -189,7 +189,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 - **机制标签与画面密度观察（历史）**：旧样本曾观察到 H015 / H016 / H017 等机制题出现更长 hold；这些题现已移出当前库存，因此该观察仅保留为历史执行信号，不构成当前选题规则。
 - **批量素材包生产状态**：仓库外 X 部分历史上曾收录 H002、H003、H004、H007、H010、H015、H016、H017、H024、H025；本轮题库裁剪不自动删除这些历史资产。H002、H007 既有 R3 accepted 状态保持；被删题对应资产不再视为 active production package。
 - **Part 2 批量执行纠偏（Owner 2026-10-05）**：H003/H004 不再作为后续剧本参考样板；后续剧本只按当前 Part 2 正式规则逐篇定制。批量任务可共享规则、事实核验和 QA，但不得共享同一套开场、剧情骨架、转折或收束模板。每批完成后必须追加跨稿“同构检查”；若只是换题材套同一结构，应 RETURN 重写。此前 H015/H016/H017 等长讲解问题被确认主要属于执行与 Reviewer 漏检，而非 Part 2 缺少“演出来/防讲课”规则。
-- **Part 2 历史重写状态**：原 H002/H007 R3 包 accepted、但题目已出当前库；原 H024 自助收银现为新 H005；其他旧包一律按题名和原制作编号核对，不能推断为新库同号题。
+- **Part 2 历史重写状态**：原 H002/H007 R3 包仍为 accepted 历史资产，但现行 H002/H007 是新题；原 H024 自助收银曾在旧 30 题快照编号为 H005，但新 100 题库存不再沿用此映射；历史包一律按题名、制作时编号及来源核对。
 
 ## UNRESOLVED
 
@@ -215,7 +215,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 - 选择下一制作目标；除此之外当前无其他必须操作。
 ## EVIDENCE_POINTERS
 
-- Current 100 sourced topic candidates: comic-narrative/part0/TOPIC_LIBRARY.md (commit f93b751c64109de501f5d3b2dc141e9f17fabf97)
+- Current 100 sourced topic candidates: `comic-narrative/part0/TOPIC_LIBRARY.md` (commit `5fe5989eddd7a8aa2e791310d52b418031b2bcfb`)
 - Part1 historical examples fixed: comic-narrative/part1/TOPIC_STRATEGY.md (commit 192074b4f0c18725cf35f905aac3a0fbba38dfab)
 
 - Reality first Part 1: comic-narrative/part1/TOPIC_STRATEGY.md — commit 00be98d9c5e1175e311b799953ecec71d867a9d1
