@@ -2233,3 +2233,72 @@
 
 ---
 
+## H098 — 音乐
+
+- 最终选题：**在第六台设备上下载 Spotify 歌曲，为什么最早那台的离线音乐可能消失？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：音乐
+- Human Process：音乐中的具体服务使用和决策
+- Human Problem：用户以为每台设备的离线下载各自独立
+- 反常：跨设备便利 vs 授权设备上限
+- Human Tension：跨设备便利 vs 授权设备上限
+- Controlling Question：在第六台设备上下载 Spotify 歌曲，为什么最早那台的离线音乐可能消失？
+- 科技改变的过程：Spotify 限制高级订阅可下载音乐的设备数量，超过限制可能移除最久未使用设备的下载
+- 主机制：Spotify 限制高级订阅可下载音乐的设备数量，超过限制可能移除最久未使用设备的下载
+- Audience Payoff：理解跨设备便利 vs 授权设备上限的边界与具体条件
+- Meaning Fingerprint：`SVC_98`
+- Motif：换新机→旧平板离线列表清空
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.spotify.com/us/article/listen-offline/
+- 证据适用边界：只针对来源官方所列对应产品、版本与条件，不把机制推广到其他应用。
+- Status：PASS_CANDIDATE
+
+---
+
+## H099 — 日常沟通
+
+- 最终选题：**Gmail 明明设置上午九点准时发送，为什么也可能晚几分钟？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：日常沟通
+- Human Process：日常沟通中的具体服务使用和决策
+- Human Problem：发送者把排队任务的时间视为毫秒级实时送达保证
+- 反常：计划时间 vs 服务实际执行
+- Human Tension：计划时间 vs 服务实际执行
+- Controlling Question：Gmail 明明设置上午九点准时发送，为什么也可能晚几分钟？
+- 科技改变的过程：Gmail 官方明确提醒定时邮件可能比预设时间晚数分钟发出
+- 主机制：Gmail 官方明确提醒定时邮件可能比预设时间晚数分钟发出
+- Audience Payoff：理解计划时间 vs 服务实际执行的边界与具体条件
+- Meaning Fingerprint：`SVC_99`
+- Motif：卡点发送报名材料→邮件延后→查看调度说明
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/mail/answer/9214606?hl=en-3
+- 证据适用边界：只针对来源官方所列对应产品、版本与条件，不把机制推广到其他应用。
+- Status：PASS_CANDIDATE
+
+---
+
+## H100 — 日常沟通
+
+- 最终选题：**机密邮件设了过期时间，为什么对方到点就无法再打开原邮件？**
+- 选题类型：机制 / 体验
+- Entry：HUMAN_WORLD_FIRST
+- X：日常沟通
+- Human Process：日常沟通中的具体服务使用和决策
+- Human Problem：收件人把收到的机密邮件当作持久保存在收件箱内的普通正文
+- 反常：收件箱有记录 vs 实际访问许可
+- Human Tension：收件箱有记录 vs 实际访问许可
+- Controlling Question：机密邮件设了过期时间，为什么对方到点就无法再打开原邮件？
+- 科技改变的过程：Gmail 机密邮件过期或被发件人撤回后，访问权限受控而非依赖已有收件箱条目
+- 主机制：Gmail 机密邮件过期或被发件人撤回后，访问权限受控而非依赖已有收件箱条目
+- Audience Payoff：理解收件箱有记录 vs 实际访问许可的边界与具体条件
+- Meaning Fingerprint：`SVC_100`
+- Motif：收到敏感合同→过期再打开→发现链接权限已撤销
+- Content Job：DISCOVERY
+- Source / Signal：VERIFIED_BEHAVIOR；https://support.google.com/mail/answer/7674059?co=GENIE.Platform%3DDesktop&hl=en-GB
+- 证据适用边界：只针对来源官方所列对应产品、版本与条件，不把机制推广到其他应用。
+- Status：PASS_CANDIDATE
+
+---
+
