@@ -17,16 +17,16 @@
 
 ## PROJECT_STAGE
 
-`TOPIC_100_X_FIRST_MARKET_SIGNAL_REVIEW / FORMAL_PASS_PENDING`
+`TOPIC_48_CURATED_SHORTLIST / FORMAL_PASS_PENDING`
 
 当前状态：
 
-- **当前首要任务**：完成100题X主导、现实问题、科技因果、频次/关注度的严格审查；正式PASS之前不能直接进Part2制作素材包。
+- **当前首要任务**：对精简后48条逐题完成实际发生/近期关注、科技因果、D1–D5与3–5分钟独立故事的正式审查；未取得PASS者不能进入Part2制作。
 
 - imagegen executor reliability 已正式封板；
 - Windows 本地 `批量生图` 深度清理 R2 已正式 PASS；
 - 本地文档/证据去冗余 R3 已正式 PASS；
-- **2026-10-08 Owner 最新授权**：在原Part1上仅增两处补丁，强调X+科技（X优先）、真实人的问题、科技因果、同题频次或观看/关注证据及独立故事价值；重跑当前100条，结果S13/A35/B34/R18，0正式PASS。R18暂标RETURN保留审计；没有因目标100而强保候选资格。
+- **2026-10-08 Owner 最新选题精简**：以最近一次对话排序 S6/A25/B52/R17 为基线，从B删35（67.3%），R（Owner称C档）17条全删，现行 Part0 48条：S6/A25/B17，0正式PASS。历史删除条目保留在Git提交；H编号不连续，以防误映射。
 - 当前无 live imagegen；legacy H002（AI性格画像）R3、legacy H007（AI旅行规划）R3 既有正式回填保持不变。legacy H015（天气预报）已移出当前库存，其历史包仅保留为历史资产，不再继续 REVIEW、回填或生产。
 - X 部分 H002 当前唯一有效版本为 `H002_AI性格画像_Part4_最终图片执行包_READY_R3.zip`，SHA-256=`0c754be5d94153afccc38b0be632b0d693d7e274e9d9e1a62645b96e6a9b9176`；旧 R2 已移出 X 库并保存在仓库外交接历史目录。
 ## SYSTEM_MAP
@@ -51,8 +51,8 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：现行 Part1 为恢复原文后的两处最小增补：X为主、真实人类问题+科技因果+具体频次/受众关注证据。Part0 H001–H100现在是**100条审计样本**，S13/A35/B34/R18，不是100条制作合格题。8条特定范围FREQUENCY_EVIDENCED、1条有限ATTENTION_EVIDENCED；73条CATEGORY_PROXY和18条SIGNAL_UNVERIFIED尚不能证明细题高频或实际关注。正式PASS为0；R18为RETURN建议。
-- **Topic library**：现行 H001–H100 是本轮100样本审计编号；13条S档题面有限地以人的场景重写，保留「上版题面」。历史94/30/上一轮100题及X素材包的相同编号不能自动映射，必须使用题名与来源。
+- **Part 0 / Part 1**：Part1正式两处最小补丁继续有效；**本轮对话热点优先没有写入Part1**。当前 Part0 为48条活跃精选：S6/A25/B17、正式制片PASS=0。每题一个题面、一组故事问题，来源及审查状态保留；市场信号类型8条FREQUENCY_EVIDENCED、3条ATTENTION_EVIDENCED、37条CATEGORY_PROXY（不能冒充细题热度）。正式Gate仍待完整回读。
+- **Topic library**：现行48条沿用原H001–H100中的非连续编号，52条被删（B35+C/R17），48条统一套话式反常与Controlling Question已改为对应题目的问题；23条套话式人物过程/科技改变/观众收获已改写；H019/H028来源更新为2026年国内现实案例，H080/H091改写成当年国内直接题材并保留上版标题。旧资产身份仍按标题/来源核对。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
 - **Part 3**：`part3/STORYBOARD_VISUAL_DIRECTOR.md` 为当前视觉导演基线；长期角色 / 画风资产位于 `part3/assets/`。Scene System 已明确按剧情 Scene / 状态阶段检查，不把物理地点数量当作 Scene 数量。
@@ -74,64 +74,44 @@ Part 6  执行与项目管理               [PENDING]
 - **Local doc/evidence purge R3**：正式 **PASS**。17 个 proven-redundant 文件被删除，回收 153,449,311 bytes；3 个 H019 image-review ZIP 在 36/36 PNG hash 对应证明后删除；unique `审核其他资料.zip` 与未证明冗余的 QA/RUN/REVIEWER/queue 文档保留；H019 inputs/refs/tasks/manifest/36 outputs preserved；IMAGEGEN_CALLS=0。
 - **Part 5 / Part 6**：PENDING。
 
-**2026-10-08 最新审计说明**：Part1 已从经核对的原文进行两处最小增补；Part0 100 条逐题复审（S13/A35/B34/R18）；只有9条具有限定范围的独立重复/观看线索，绝大多数只有行业类目背景。**R档18条建议删除/合并，但保留审计条目避免破坏历史可追溯性；正式制作PASS=0。** 海外FTC案例应注明“指控/和解”，不得把行业普及率当成细题发生率。
+**2026-10-08 最新精简已生效**：Part0当前48活跃精选（S6/A25/B17）；52条旧题正文已删并由Git保存历史。Part1未增加“近期热点优先”新规。0正式PASS，仍须逐题审核。
 
 ## CURRENT_GATE
 
 ### GATE_ID
-TOPIC_100_MARKET_GATE_REVIEW_STAGE
+TOPIC_48_EDITORIAL_SHORTLIST_FORMAL_VALIDATION_PENDING
 
 ### OBJECTIVE
-Owner 最新要求：在恢复旧Part1后最小增加X主导与现实高频或明确受众关注门槛，重审100个选题。现已完成两处补丁和100条逐题审计：S13/A35/B34/R18。九条具有限定范围的重复/观看信号、九十一条缺少直接细题市场信号；正式PASS尚未开放。
+Owner 本轮要求：沿用最近一次对话的S6/A25/B52/R17，B类删除约三分之二，C类（上一轮R）全删；再次复核后更新**原文档**。已完成 **S6/A25/B17 = 48活跃候选**，B删除35、C/R删除17，合计52条。
 
-### MAX_ENDPOINT_THIS_ROUND
-- 仅修改 Part 0、Part 1 旧示例身份说明、本 Handoff；
-- 不改 Part 2–4.5、X 库与任何旧配音/图片执行包；
-- 不调用 imagegen、不执行在线生产。
+### CURRENT_READBACK / QA
+- Part0活跃题 = 48；唯一原编号 = 48；唯一最终题面 = 48；原始Source/Signal可回读URL覆盖 = 48。非连续编号有意保留。
+- 本轮清除了原100库中7处无独立编号历史段落：其中5处在被保留的父编号内被明确截去，2处随父条目删除。
+- 已重写48条反常/Controlling Question的模板句、23条通用Human Process/科技改变过程/Audience Payoff；按2026年国内报道重建 H080/H091，并更新H019/H028现实来源，事实范围明确保留。
+- 状态计数：正式制片PASS 0；HOLD_SIGNAL 37；CANDIDATE / FORMAL_GATE_PENDING 11。市场标识：FREQUENCY_EVIDENCED 8，ATTENTION_EVIDENCED 3，CATEGORY_PROXY 37。**这只是来源和编辑层的精选，不意味着48条均取得正式PASS**。
+- 近期事件/近期讨论/UP相近选题优先是本次排序口径，**不得据此修改Part1正式规则**。同类视频有播放不等于每条候选能获得同样播放。
 
 ### MANDATORY_REVIEW_STOP
-STOP_AT_EDITORIAL_REVIEW=YES；不得因凑数量自动宣布 100 PASS；无细题需求信号者HOLD_SIGNAL。
+STOP_AT_EDITORIAL_REVIEW=YES；严格核实真人问题证据、科技因果、具体受众市场信号、正式D1–D5及每条3–5分钟独立故事后，才能签发PASS并进入Part2。绝不凭配额或题库精选数量自动签发。
 
-### TARGET_AND_SCOPE
-- 原 30 题（13 PASS / 17 EVIDENCE_PENDING）保留完整 Git 历史，不机械继承原待补证题；
-- 重新从原始用户陈述、产品官方帮助、监管案例及研究发现 100 个源链接明确的现实问题候选；
-- H001–H100 当前连续编号；每项写明主问题、技术机制、现实场景、证据来源与事实适用范围；对内容同构、仅是 FAQ 的候选继续有权剔除，不因数量已达100放松；
-- 正式制作前逐题复核出处真实性与是否支持题面、D1–D5、核心人物行动后果与非平凡收获；重复或弱故事题直接删除，用独立证据的新题替换，不能为了维持 100 降门槛。
+### CONSTRAINTS
+- 不修改Part2–Part4.5和既有X素材/图像及配音执行包，不触发imagegen或 live executor。
+- 保留旧H-ID，不将当前同号内容静默当成旧视频题目。删去内容由Git历史恢复。
+- 监管案件区分指控、调查和事实；产品FAQ只证明指定产品条件，不能证明真人困扰。
+- H064/H067/H068、H042/H096、H074/H089、H049/H051 属于需要重点区分主机制/人物后果的簇，不能未经新证据同构量产。
 
-### APPLICABLE_CRITICAL_CONSTRAINTS
-- `PASS_CANDIDATE != PASS`；链接真实不代表链接支持全部断言、也不等于具备 Bilibili 3–5 分钟叙事价值。
-- 监管声明若是指控，只能写为监管指控；官方产品规则受品牌/版本/地区限制；真人社区故事只说明该用户描述的经历。
-- 所有 legacy H-ID / Owner accepted H002/H007 素材保持历史身份；不按本轮同号映射。
-- 不扩大到 Part 2+ 与 X 库资产操作。
-
-### PREFLIGHT
-读取当前 GitHub Part 1、旧 30 题和 Handoff；浏览产品厂商、支付和监管来源；旧 30 可通过 Git 历史恢复。
-
-### REQUIRED_EVIDENCE
-当前 Part 0 100 题的逐题 Source / Signal、证据边界、主机制、来源类型，GitHub fresh read-back；Part 1 双证据及 D1–D5；本 Handoff 当前状态。
-
-### ACCEPTANCE_CRITERIA
-- 100 个连续审计编号且无完全重复题面；
-- 全部具备非空来源 URL 和范围说明；
-- 所有正式 PASS 均有针对事实、人类困境、科技机制与独立故事价值的逐项审阅证据；
-- 无历史资产丢失、无下游改动、无 live imagegen。
-- 已完成100条编号/字段、推荐分档与市场信号类型的结构检查。当前仍缺91条可直接与细题对应的市场证据；未完成所有来源全文的逐条回读和正式编辑审核，0正式PASS，不虚报Gate通过。
-
-### ROLLBACK_STATUS_OR_PLAN
-GitHub 保留旧 30 题及当前前续提交；当前仅文档文字变动，可按 commit 恢复，不影响历史素材。
+### ROLLBACK
+本轮变更仅是 GitHub 文字与条目裁剪；从上一轮 Part0 提交 `f56d199068aba2c3d1ce4abb58367ae6181832d1` 可恢复100条历史快照（但其中原先隐藏残留必须另外处理）。原H002/H007历史制作包不改。
 
 ### OWNER_ONLY_ACTIONS
-NONE；质量未达标候选先由 Reviewer 再筛，不能直接进入剧本生产。
-
-### REVIEWER_TO_EXECUTOR_RELAY
-下一执行轮仅针对 Part 0 做证据真实性及编辑价值核验，不主动运行 Part 2/图像生成。
+NONE — Owner已授权正式精简，不需额外确认；后续只有满足正式选题Gate后才能制片。
 
 ### EXECUTOR_TO_REVIEWER_RELAY
-NONE — 100 AUDIT SAMPLES, S13/A35/B34/R18; 0 FORMAL PASS.
+DONE_EDITORIAL_PRUNE_48 / S6_A25_B17 / C17_REMOVED / B35_REMOVED / FORMAL_PASS_0.
 
 ## CRITICAL_CONSTRAINTS
 
-- **ID migration warning**：现行 2026-10-08 H001–H100 与上轮 H001–H030、再上一轮 H001–H094、legacy X 素材编号属于不同命名空间；必须按标题/内容/来源回溯，绝不直接用相同 H-ID 代替。
+- **ID migration warning**：现行48条使用旧H001–H100中的非连续编号，与历史H001–H030、H001–H094及已交付素材不属于同一批题；必须按题名/来源/制作时编号确认身份。
 - `PASS_CANDIDATE != PASS`。
 - 已正式 PASS 的能力默认继承；只有相关实现/接口/运行环境发生可能影响能力的变化，或新证据与旧 PASS 冲突，才要求重验。
 - imagegen concurrency = 2；不主动测试 3+。
@@ -145,8 +125,8 @@ NONE — 100 AUDIT SAMPLES, S13/A35/B34/R18; 0 FORMAL PASS.
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`。
-- 当前状态：Part0 100条审计样本，S13/A35/B34/R18；FREQUENCY_EVIDENCED 8、ATTENTION_EVIDENCED 1、CATEGORY_PROXY 73、SIGNAL_UNVERIFIED 18。0正式PASS；旧X库保留；无live Executor。
-- 下一动作：先给 S13/A35补直接匹配具体题目的中国平台投诉、讨论、视频/搜索需求与真人遭遇证据，并执行来源全文回读、D1–D5和故事可讲性正式审查；无需求信号者维持HOLD，不得直接进入Part2。
+- 当前状态：Part0精简为48条活跃：S6/A25/B17；FREQUENCY_EVIDENCED 8、ATTENTION_EVIDENCED 3、CATEGORY_PROXY 37；0正式PASS，旧X库保留，无live Executor。
+- 下一动作：优先完成48条的严格来源全文复查、同题中国受众证据、科技因果和D1–D5；37条CATEGORY_PROXY维持HOLD，未正式通过不得进入Part2。
 - Windows/Codex local paths 必须由对应 Gate 证明，不从历史路径猜测。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -195,7 +175,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## UNRESOLVED
 
-1. **下一测试目标**：当前100条是审计样本，不是100条有效库存；S13/A35/B34/R18。继续核实国内同题频次/真实关注信号与完整D1–D5，R18只保留历史审计。
+1. **下一测试目标**：当前仅48活跃精选候选（S6/A25/B17），不代表48个正式PASS；优先补近期待验证题的直接市场信号和故事证据。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
@@ -204,7 +184,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## NEXT_STEP
 
-下一轮第一件事：**优先为S档的中国B站受众找同题反复讨论/观看/投诉证据，并做完整双证据+D1–D5审查；R18不再进入Part2。**
+下一轮第一件事：**优先补S6/A25中尚缺的国内同题受众证据，并继续完成严格因果/真人遭遇/D1–D5与故事价值审查；已删C17不得再进入Part2。**
 
 - 只有逐题证据核实与故事价值都通过，才能升级正式 PASS；
 - 仍有不支持题面的来源、重复或贫乏故事价值时，直接删除/替换，不将猜想写为事实；
@@ -217,11 +197,11 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 - 暂无需要Owner执行的操作；目前没有达到全部正式Gate的制作选题。
 ## EVIDENCE_POINTERS
 
-- Current 100-topic tier/signal audit: `comic-narrative/part0/TOPIC_LIBRARY.md` (commit `f56d199068aba2c3d1ce4abb58367ae6181832d1`)
+- Current 48-topic curated library: `comic-narrative/part0/TOPIC_LIBRARY.md` (commit `681becf3e9acc1d4a958103a49cfa31c4488cba9`)
 - Part1 X/market signal minimal addition: `comic-narrative/part1/TOPIC_STRATEGY.md` (commit `abd9ae6ef06a1305a0a7c5308952840434aba2a8`)
 - Part1 historical examples fixed: comic-narrative/part1/TOPIC_STRATEGY.md (commit 192074b4f0c18725cf35f905aac3a0fbba38dfab)
 
-- Reality first Part 1: comic-narrative/part1/TOPIC_STRATEGY.md — commit 00be98d9c5e1175e311b799953ecec71d867a9d1
+- Current Part1 minimal X+market gate: comic-narrative/part1/TOPIC_STRATEGY.md — commit abd9ae6ef06a1305a0a7c5308952840434aba2a8 (the earlier 00be98 reality-gate version was restored/replaced)
 - Quality filtered Part 0: comic-narrative/part0/TOPIC_LIBRARY.md — commit c85db1703f006bfdc3e0a26e9205d284caa84600
 
 - Legacy history: `comic-narrative/history/HANDOFF.md`
