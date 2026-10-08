@@ -51,7 +51,7 @@ Part 6  执行与项目管理               [PENDING]
 
 ## CURRENT_ACCEPTED_STATE
 
-- **Part 0 / Part 1**：现行 Part1 为恢复原文后的两处最小增补：X为主、真实人类问题+科技因果+具体频次/受众关注证据。Part0 H001–H100现在是**100条审计样本**，S13/A35/B34/R18，不是100条制作合格题。5条特定范围FREQUENCY_EVIDENCED、1条有限ATTENTION_EVIDENCED；76条CATEGORY_PROXY和18条SIGNAL_UNVERIFIED尚不能证明细题高频或实际关注。正式PASS为0；R18为RETURN建议。
+- **Part 0 / Part 1**：现行 Part1 为恢复原文后的两处最小增补：X为主、真实人类问题+科技因果+具体频次/受众关注证据。Part0 H001–H100现在是**100条审计样本**，S13/A35/B34/R18，不是100条制作合格题。8条特定范围FREQUENCY_EVIDENCED、1条有限ATTENTION_EVIDENCED；73条CATEGORY_PROXY和18条SIGNAL_UNVERIFIED尚不能证明细题高频或实际关注。正式PASS为0；R18为RETURN建议。
 - **Topic library**：现行 H001–H100 是本轮100样本审计编号；13条S档题面有限地以人的场景重写，保留「上版题面」。历史94/30/上一轮100题及X素材包的相同编号不能自动映射，必须使用题名与来源。
 - **Part 2**：`part2/SCRIPT_NARRATIVE.md` 为现行正式规则；已按 Owner 批准的最小方案加入“内部选题题面 ≠ 最终发布标题”的发布包装步骤：剧本锁定后生成 3 个差异化标题候选、1 个推荐标题、开场 Hook 与封面方向，并做真实性 / 非同义改写 / 非机械重复检查；11 项 edit map 仍等待 Owner 逐项批准，未写入正文。
 - **Part 2.5**：`part2_5/VOICE_SRT_ALIGNMENT.md` 为正式配音 / SRT 对齐基线。
@@ -74,7 +74,7 @@ Part 6  执行与项目管理               [PENDING]
 - **Local doc/evidence purge R3**：正式 **PASS**。17 个 proven-redundant 文件被删除，回收 153,449,311 bytes；3 个 H019 image-review ZIP 在 36/36 PNG hash 对应证明后删除；unique `审核其他资料.zip` 与未证明冗余的 QA/RUN/REVIEWER/queue 文档保留；H019 inputs/refs/tasks/manifest/36 outputs preserved；IMAGEGEN_CALLS=0。
 - **Part 5 / Part 6**：PENDING。
 
-**2026-10-08 最新审计说明**：Part1 已从经核对的原文进行两处最小增补；Part0 100 条逐题复审（S13/A35/B34/R18）；只有6条具有限定范围的独立重复/观看线索，绝大多数只有行业类目背景。**R档18条建议删除/合并，但保留审计条目避免破坏历史可追溯性；正式制作PASS=0。** 海外FTC案例应注明“指控/和解”，不得把行业普及率当成细题发生率。
+**2026-10-08 最新审计说明**：Part1 已从经核对的原文进行两处最小增补；Part0 100 条逐题复审（S13/A35/B34/R18）；只有9条具有限定范围的独立重复/观看线索，绝大多数只有行业类目背景。**R档18条建议删除/合并，但保留审计条目避免破坏历史可追溯性；正式制作PASS=0。** 海外FTC案例应注明“指控/和解”，不得把行业普及率当成细题发生率。
 
 ## CURRENT_GATE
 
@@ -82,7 +82,7 @@ Part 6  执行与项目管理               [PENDING]
 TOPIC_100_MARKET_GATE_REVIEW_STAGE
 
 ### OBJECTIVE
-Owner 最新要求：在恢复旧Part1后最小增加X主导与现实高频或明确受众关注门槛，重审100个选题。现已完成两处补丁和100条逐题审计：S13/A35/B34/R18。六条具有限定范围的重复/观看信号、九十四条缺少直接细题市场信号；正式PASS尚未开放。
+Owner 最新要求：在恢复旧Part1后最小增加X主导与现实高频或明确受众关注门槛，重审100个选题。现已完成两处补丁和100条逐题审计：S13/A35/B34/R18。九条具有限定范围的重复/观看信号、九十一条缺少直接细题市场信号；正式PASS尚未开放。
 
 ### MAX_ENDPOINT_THIS_ROUND
 - 仅修改 Part 0、Part 1 旧示例身份说明、本 Handoff；
@@ -115,7 +115,7 @@ STOP_AT_EDITORIAL_REVIEW=YES；不得因凑数量自动宣布 100 PASS；无细�
 - 全部具备非空来源 URL 和范围说明；
 - 所有正式 PASS 均有针对事实、人类困境、科技机制与独立故事价值的逐项审阅证据；
 - 无历史资产丢失、无下游改动、无 live imagegen。
-- 已完成100条编号/字段、推荐分档与市场信号类型的结构检查。当前仍缺94条具体细题市场证据；未完成所有来源全文的逐条回读和正式编辑审核，0正式PASS，不虚报Gate通过。
+- 已完成100条编号/字段、推荐分档与市场信号类型的结构检查。当前仍缺91条可直接与细题对应的市场证据；未完成所有来源全文的逐条回读和正式编辑审核，0正式PASS，不虚报Gate通过。
 
 ### ROLLBACK_STATUS_OR_PLAN
 GitHub 保留旧 30 题及当前前续提交；当前仅文档文字变动，可按 commit 恢复，不影响历史素材。
@@ -145,8 +145,8 @@ NONE — 100 AUDIT SAMPLES, S13/A35/B34/R18; 0 FORMAL PASS.
 ## DEFAULT_EXECUTION_CHANNEL
 
 - Canonical docs / reviews：GitHub `main`。
-- 当前状态：Part0 100条审计样本，S13/A35/B34/R18；FREQUENCY_EVIDENCED 5、ATTENTION_EVIDENCED 1、CATEGORY_PROXY 76、SIGNAL_UNVERIFIED 18。0正式PASS；旧X库保留；无live Executor。
-- 下一动作：对 H001–H100 做最终双证据与 D1–D5、故事可讲性、可追溯链接回读的细审；不合格直接删除/替换，合格才升级 PASS。
+- 当前状态：Part0 100条审计样本，S13/A35/B34/R18；FREQUENCY_EVIDENCED 8、ATTENTION_EVIDENCED 1、CATEGORY_PROXY 73、SIGNAL_UNVERIFIED 18。0正式PASS；旧X库保留；无live Executor。
+- 下一动作：先给 S13/A35补直接匹配具体题目的中国平台投诉、讨论、视频/搜索需求与真人遭遇证据，并执行来源全文回读、D1–D5和故事可讲性正式审查；无需求信号者维持HOLD，不得直接进入Part2。
 - Windows/Codex local paths 必须由对应 Gate 证明，不从历史路径猜测。
 
 ## CURRENT_ROLLBACK_STATUS
@@ -160,9 +160,9 @@ NONE — 100 AUDIT SAMPLES, S13/A35/B34/R18; 0 FORMAL PASS.
 
 ## OWNER_DISCUSSION_CONTINUATION
 
-- **现实证据扩库至 100 候选（Owner 2026-10-08）**：旧 30 题通过 Git 历史恢复；对另一版 100 候选再做质量删改，剔除 34 条旧候选、补充 34 条监管与真实研究案例，当前 H001–H100 均有来源 URL 与事实边界、仍为 PASS_CANDIDATE。正式跨题去重、独立故事价值与双证据再审未完成，不因达到 100 自动视作 PASS。
+- **现实证据扩库至 100 候选（Owner 2026-10-08）**：旧 30 题通过 Git 历史恢复；对另一版 100 候选再做质量删改，剔除 34 条旧候选、补充 34 条监管与真实研究案例，当时 H001–H100 均为 PASS_CANDIDATE（历史快照，现行已重新分档与标记RETURN/HOLD）。正式跨题去重、独立故事价值与双证据再审未完成，不因达到 100 自动视作 PASS。
 
-- **现实证据 Gate 94→30（Owner 2026-10-08，现行）**：Owner 授权不保数量；Part 1 已升级、Part 0 保留 30 / 删除 64、H001–H030 重新编号。旧 94 题冻结现已失效，历史素材保持。
+- **现实证据 Gate 94→30（Owner 2026-10-08，历史已覆盖）**：Owner 授权不保数量；Part 1 已升级、Part 0 保留 30 / 删除 64、H001–H030 重新编号。旧 94 题冻结现已失效，历史素材保持。
 
 - **100→94 最终筛选（Owner 2026-10-05，历史）**：当时删除 C 6 题、保留 A/B 94 题且暂停修改；已被 2026-10-08 新指令覆盖。
 
@@ -195,7 +195,7 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## UNRESOLVED
 
-1. **下一测试目标**：现行 100 个来源挂接候选（非 100 个正式 PASS）。先执行真实来源、D1–D5 与故事价值复核；不达标淘汰，同编号资产归属谨慎判定。
+1. **下一测试目标**：当前100条是审计样本，不是100条有效库存；S13/A35/B34/R18。继续核实国内同题频次/真实关注信号与完整D1–D5，R18只保留历史审计。
 2. **Part 2**：11 项 edit map 等待 Owner 逐项批准。
 3. **Style Plate / Part 3→Part 4 style contract**：仍有后续独立对齐空间。
 4. **Part 5 / Part 6**：尚未正式迁移。
@@ -214,10 +214,10 @@ H003 / H004 本轮测试仅在续接文档记录状态摘要；完整测试脚�
 
 ## OWNER_ACTION_REQUIRED
 
-- 选择下一制作目标；除此之外当前无其他必须操作。
+- 暂无需要Owner执行的操作；目前没有达到全部正式Gate的制作选题。
 ## EVIDENCE_POINTERS
 
-- Current 100-topic tier/signal audit: `comic-narrative/part0/TOPIC_LIBRARY.md` (commit `ba97300b982d4a9abbd439b0603d457ff07a81d4`)
+- Current 100-topic tier/signal audit: `comic-narrative/part0/TOPIC_LIBRARY.md` (commit `f56d199068aba2c3d1ce4abb58367ae6181832d1`)
 - Part1 X/market signal minimal addition: `comic-narrative/part1/TOPIC_STRATEGY.md` (commit `abd9ae6ef06a1305a0a7c5308952840434aba2a8`)
 - Part1 historical examples fixed: comic-narrative/part1/TOPIC_STRATEGY.md (commit 192074b4f0c18725cf35f905aac3a0fbba38dfab)
 
